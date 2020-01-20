@@ -19,7 +19,6 @@ $( document ).ready(function() {
  <div id="services">
  </div>
  <a href="javascript:addService()">Add Service</a>
- <a href="javascript:generateXML()">Generate XML</a>
 </form>
 <form action="javascript:uploadServicelist()" method="post">
     <input type="text" name="filename" id="filename">
@@ -28,6 +27,7 @@ $( document ).ready(function() {
 <div id="saved_servicelists">
 </div>
 <textarea readonly id="xml"></textarea><br>
+<a href="javascript:showXML()">Generate XML</a><br/>
 <a href="https://dvb.org/wp-content/uploads/2019/12/a177_dvb-i_specification.pdf">DVB-I Specification</a>
 </body>
 </html>
