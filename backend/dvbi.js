@@ -229,7 +229,10 @@ function uploadServicelist() {
       .done(function( data ) {
         alert( "Servicelist saved!" );
         listSavedServicelists();
-    });
+      })
+      .fail(function(data) {
+        alert( "Error saving servicelist:"+data.responseText );
+      });
 }
 
 function generatetServiceInstance(instance,doc) {
