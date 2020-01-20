@@ -1,0 +1,12 @@
+.service {
+	border: 1px solid #000000;
+    width: 500px;
+    margin: 2px;
+
+}
+.serviceinstance {
+	border: 1px solid #000000;
+    width: 400px;
+    margin: 2px;
+
+}

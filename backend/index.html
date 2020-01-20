@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>DVB-I Servicelist generator</title>
+<script type="text/javascript" src="dvbi.js"></script>
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="dvbi.css">
+<script type="text/javascript">
+$( document ).ready(function() {
+    listSavedServicelists();
+});
+</script>
+</head>
+<body>
+<form>
+ Service list version<input type="text" id="version" name="version" value=""><br>
+ Service list name<input type="text" id="name" name="name" value=""><br>
+ Service list provider<input type="text" id="provider" name="provider" value=""><br>
+ <input type="hidden" id="service_count" value="0"/>
+ <div id="services">
+ </div>
+ <a href="javascript:addService()">Add Service</a>
+ <a href="javascript:generateXML()">Generate XML</a>
+</form>
+<form action="javascript:uploadServicelist()" method="post">
+    <input type="text" name="filename" id="filename">
+    <input type="submit" value="Save Servicelist" name="submit">
+</form>
+<div id="saved_servicelists">
+</div>
+<textarea readonly id="xml"></textarea><br>
+<a href="https://dvb.org/wp-content/uploads/2019/12/a177_dvb-i_specification.pdf">DVB-I Specification</a>
+</body>
+</html>
