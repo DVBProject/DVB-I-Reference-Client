@@ -224,16 +224,6 @@ function generateXML() {
     return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+new XMLSerializer().serializeToString(doc.documentElement);
 }
 
-function uploadServicelist() {
-    $.post( "upload_servicelist.php", { servicelist: generateXML(), filename: document.getElementById('filename').value })
-      .done(function( data ) {
-        alert( "Servicelist saved!" );
-        listSavedServicelists();
-      })
-      .fail(function(data) {
-        alert( "Error saving servicelist:"+data.responseText );
-      });
-}
 
 function generatetServiceInstance(instance,doc) {
     var instanceElement = doc.createElement("ServiceInstance");
@@ -274,6 +264,17 @@ function listSavedServicelists() {
         targetElement.appendChild(document.createElement('br'));
       });
     });
+}
+
+function uploadServicelist() {
+    $.post( "upload_servicelist.php", { servicelist: generateXML(), filename: document.getElementById('filename').value })
+      .done(function( data ) {
+        alert( "Servicelist saved!" );
+        listSavedServicelists();
+      })
+      .fail(function(data) {
+        alert( "Error saving servicelist:"+data.responseText );
+      });
 }
 
 function loadServicelist(list) {
