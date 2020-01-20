@@ -265,6 +265,10 @@ function listSavedServicelists() {
       $.each( data, function( val ) {
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:loadServicelist('"+this+"')";
+        newTextbox.appendChild(document.createTextNode("Edit "+this.substr("./servicelists/".length)));
+        targetElement.appendChild(newTextbox);
+        var newTextbox = document.createElement('a');
+        newTextbox.href=this;
         newTextbox.appendChild(document.createTextNode("Open "+this.substr("./servicelists/".length)));
         targetElement.appendChild(newTextbox);
         targetElement.appendChild(document.createElement('br'));
