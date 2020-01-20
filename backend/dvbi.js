@@ -147,7 +147,6 @@ function addService(serviceElement) {
     services.appendChild(serviceDiv);
 
     if(serviceElement != null) {
-        console.log("Populate service!");
         document.getElementById("service_"+serviceId+"_version").value = serviceElement.getAttribute("version");
         var children = serviceElement.childNodes;
         for (var i = 0; i < children.length ;i++) {
@@ -161,7 +160,6 @@ function addService(serviceElement) {
                 document.getElementById("service_"+serviceId+"_unique_id").value = children[i].childNodes[0].nodeValue;
             }
             else if(children[i].nodeName === "ServiceInstance") {
-                console.log("Add ServiceInstance");
                 addServiceInstance(serviceId,children[i]);            
             }
         }
