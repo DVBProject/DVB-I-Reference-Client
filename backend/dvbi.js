@@ -1,3 +1,19 @@
+const sourceTypes = {
+    "urn:dvb:metadata:source:dvb-dash": "DVB-DASH",
+    "urn:dvb:metadata:source:dvb-t":"DVB-T" ,
+    "urn:dvb:metadata:source:dvb-s":"DVB-S" ,
+    "urn:dvb:metadata:source:dvb-c":"DVB-C" ,
+    "urn:dvb:metadata:source:dvb-iptv":"DVB-IPTV" ,
+    "urn:dvb:metadata:source:application":"Application"
+};
+
+const polarizationTypes = {
+    "horizontal": "Horizontal",
+    "vertical":"Vertical" ,
+    "left circular":"Left circular",
+    "right circular":"Right circular"
+};
+
 function addServiceInstance(serviceId,instanceElement) {
     var service=document.getElementById('service_'+serviceId);
     var instanceId=parseInt(document.getElementById("service_"+serviceId+"_instances").value);
@@ -14,57 +30,24 @@ function addServiceInstance(serviceId,instanceElement) {
     newTextbox.id="instance_"+serviceId+"_"+instanceId+"_priority";
     instanceDiv.appendChild(newTextbox);
     instanceDiv.appendChild(document.createElement('br'));
-
     instanceDiv.appendChild(document.createTextNode("Source Type"));
     newTextbox = document.createElement('select');
+    newTextbox.onchange = function() {changeSourceType(instanceDiv.id)};
     newTextbox.name="instance_"+serviceId+"_"+instanceId+"_source_type";
     newTextbox.id="instance_"+serviceId+"_"+instanceId+"_source_type";
     
-    var option = document.createElement("option");
-    option.value = "urn:dvb:metadata:source:dvb-dash";
-    option.text = "DVB-DASH";
-    newTextbox.appendChild(option);
-
-    option = document.createElement("option");
-    option.value = "urn:dvb:metadata:source:dvb-t";
-    option.text = "DVB-T";
-    option.disabled = true;
-    newTextbox.appendChild(option);
-
-    option = document.createElement("option");
-    option.value = "urn:dvb:metadata:source:dvb-s";
-    option.text = "DVB-S";
-    option.disabled = true;
-    newTextbox.appendChild(option);
-
-    option = document.createElement("option");
-    option.value = "urn:dvb:metadata:source:dvb-c";
-    option.text = "DVB-C";
-    option.disabled = true;
-    newTextbox.appendChild(option);
-
-    option = document.createElement("option");
-    option.value = "urn:dvb:metadata:source:dvb-iptv";
-    option.text = "DVB-IPTV";
-    option.disabled = true;
-    newTextbox.appendChild(option);
-
-    option = document.createElement("option");
-    option.value = "urn:dvb:metadata:source:application";
-    option.text = "Application";
-    option.disabled = true;
-    newTextbox.appendChild(option);
+    for (var sourceType in sourceTypes) {
+        var option = document.createElement("option");
+        option.value = sourceType;
+        option.text = sourceTypes[sourceType];
+        newTextbox.appendChild(option);
+    }
 
     instanceDiv.appendChild(newTextbox);
-    instanceDiv.appendChild(document.createElement('br'));
-
-    instanceDiv.appendChild(document.createTextNode("DASH manifest URI"));
-    newTextbox = document.createElement('input');
-    newTextbox.type="text";
-    newTextbox.name="instance_"+serviceId+"_"+instanceId+"_dash_uri";
-    newTextbox.id="instance_"+serviceId+"_"+instanceId+"_dash_uri";
-    instanceDiv.appendChild(newTextbox);
-    instanceDiv.appendChild(document.createElement('br'));
+    var params =  document.createElement('div');
+    params.classList.add("deliveryparameters");
+    params.id="instance_"+serviceId+"_"+instanceId+"_deliveryparameters";
+    instanceDiv.appendChild(params);
 
     newTextbox = document.createElement('a');
     newTextbox.href="javascript:removeElement('instance_"+serviceId+"_"+instanceId+"')";
@@ -79,12 +62,117 @@ function addServiceInstance(serviceId,instanceElement) {
         for (var i = 0; i < children.length ;i++) {
             if(children[i].nodeName === "SourceType") {
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_source_type").value = children[i].childNodes[0].nodeValue;
+                changeSourceType(instanceDiv.id);
             }
             else if(children[i].nodeName === "DASHDeliveryParameters") {
-                document.getElementById("instance_"+serviceId+"_"+instanceId+"_dash_uri").value = children[i].childNodes[0].childNodes[0].childNodes[0].nodeValue
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_dash_uri").value = children[i].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+            }
+            else if(children[i].nodeName === "DVBTDeliveryParameters") {
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_dvb_triplet").value = parseDvbTriplet(children[i].getElementsByTagName("DVBTriplet")[0]);
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_target_country").value = children[i].getElementsByTagName("TargetCountry")[0].childNodes[0].nodeValue;
+            }
+            else if(children[i].nodeName === "DVBCDeliveryParameters") {
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_dvb_triplet").value = parseDvbTriplet(children[i].getElementsByTagName("DVBTriplet")[0]);
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_target_country").value = children[i].getElementsByTagName("TargetCountry")[0].childNodes[0].nodeValue;
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_network_id").value = children[i].getElementsByTagName("NetworkID")[0].childNodes[0].nodeValue;
+            }
+            else if(children[i].nodeName === "DVBSDeliveryParameters") {
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_dvb_triplet").value = parseDvbTriplet(children[i].getElementsByTagName("DVBTriplet")[0]);
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_frequency").value = parseFloat(children[i].getElementsByTagName("Frequency")[0].childNodes[0].nodeValue)/100000.0;
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_polarization").value = children[i].getElementsByTagName("Polarization")[0].childNodes[0].nodeValue;
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_orbital_position").value = children[i].getElementsByTagName("OrbitalPosition")[0].childNodes[0].nodeValue;
             }
         }
     }
+    else {
+        changeSourceType(instanceDiv.id);
+    }
+}
+
+function parseDvbTriplet(tripletElement) {
+    var orgid = parseInt(tripletElement.getAttribute("origNetId")).toString(16);
+    var tsid = parseInt(tripletElement.getAttribute("tsId")).toString(16);
+    var sid = parseInt(tripletElement.getAttribute("serviceId")).toString(16);
+    return orgid+"."+tsid+"."+sid;
+}
+
+function changeSourceType(serviceInstanceId) {
+    var type = document.getElementById(serviceInstanceId+"_source_type").value;
+    var params = document.getElementById(serviceInstanceId+"_deliveryparameters");
+    //Remove previous content
+    while (params.firstChild) {
+        params.firstChild.remove();
+    }
+    if(type == "urn:dvb:metadata:source:dvb-dash") {
+        params.appendChild(document.createTextNode("DASH manifest URI"));
+        var newTextbox = document.createElement('input');
+        newTextbox.type="text";
+        newTextbox.name=serviceInstanceId+"_dash_uri";
+        newTextbox.id=serviceInstanceId+"_dash_uri";
+        params.appendChild(newTextbox);
+    }
+    else if(type == "urn:dvb:metadata:source:dvb-iptv") {
+        //TODO
+    }
+    else if(type == "urn:dvb:metadata:source:application") {
+        //TODO
+    }
+    else { //DVB-T, DVB-C or DVB-S
+        params.appendChild(document.createTextNode("DVB Triplet (onid.tsid.sid) using hex values"));
+        var newTextbox = document.createElement('input');
+        newTextbox.type="text";
+        newTextbox.name=serviceInstanceId+"_dvb_triplet";
+        newTextbox.id=serviceInstanceId+"_dvb_triplet";
+        params.appendChild(newTextbox);
+        params.appendChild(document.createElement('br'));
+        if(type == "urn:dvb:metadata:source:dvb-s") {
+            params.appendChild(document.createTextNode("Orbital Position"));
+            newTextbox = document.createElement('input');
+            newTextbox.type="text";
+            newTextbox.name=serviceInstanceId+"_orbital_position";
+            newTextbox.id=serviceInstanceId+"_orbital_position";
+            params.appendChild(newTextbox);
+            params.appendChild(document.createElement('br'));
+            params.appendChild(document.createTextNode("Frequency in GHz")); 
+            newTextbox = document.createElement('input');
+            newTextbox.type="text";
+            newTextbox.name=serviceInstanceId+"_frequency";
+            newTextbox.id=serviceInstanceId+"_frequency";
+            params.appendChild(newTextbox);
+            params.appendChild(document.createElement('br'));
+            params.appendChild(document.createTextNode("Polarization"));
+            newTextbox = document.createElement('select');
+            newTextbox.name=serviceInstanceId+"_polarization";
+            newTextbox.id=serviceInstanceId+"_polarization";
+    
+            for (var polarization in polarizationTypes) {
+                var option = document.createElement("option");
+                option.value = polarization;
+                option.text = polarizationTypes[polarization];
+                newTextbox.appendChild(option);
+            }
+
+            params.appendChild(newTextbox);
+        }
+        else { //DVB-T or DVB-C, both have target country 
+            params.appendChild(document.createTextNode("Target Country")); 
+            newTextbox = document.createElement('input');
+            newTextbox.type="text";
+            newTextbox.name=serviceInstanceId+"_target_country";
+            newTextbox.id=serviceInstanceId+"_target_country";
+            params.appendChild(newTextbox);
+            if(type == "urn:dvb:metadata:source:dvb-c") {
+                params.appendChild(document.createElement('br'));
+                params.appendChild(document.createTextNode("Network ID")); 
+                newTextbox = document.createElement('input');
+                newTextbox.type="text";
+                newTextbox.name=serviceInstanceId+"_network_id";
+                newTextbox.id=serviceInstanceId+"_network_id";
+                params.appendChild(newTextbox);
+            }
+        } 
+    }
+ 
 }   
 
 function addService(serviceElement) {
@@ -160,7 +248,12 @@ function addService(serviceElement) {
                 document.getElementById("service_"+serviceId+"_unique_id").value = children[i].childNodes[0].nodeValue;
             }
             else if(children[i].nodeName === "ServiceInstance") {
-                addServiceInstance(serviceId,children[i]);            
+                try {
+                    addServiceInstance(serviceId,children[i]);
+                }
+                catch(e) {
+                    alert( "Error reading servicelist:"+e.message );
+                }
             }
         }
     }
@@ -241,8 +334,55 @@ function generatetServiceInstance(instance,doc) {
         locationElement.appendChild(uriElement);
         deliveryParametersElement.appendChild(locationElement);  
         instanceElement.appendChild(deliveryParametersElement);
-    }    
+    }
+    else if(sourceType === "urn:dvb:metadata:source:dvb-t") {
+        var deliveryParametersElement = doc.createElement("DVBTDeliveryParameters");
+        deliveryParametersElement.appendChild(generateDVBTriplet(document.getElementById(instanceId+"_dvb_triplet").value,doc));
+        var targetCountry = doc.createElement("TargetCountry");
+        targetCountry.appendChild(doc.createTextNode(document.getElementById(instanceId+"_target_country").value));
+        deliveryParametersElement.appendChild(targetCountry);
+        instanceElement.appendChild(deliveryParametersElement);
+    }
+    else if(sourceType === "urn:dvb:metadata:source:dvb-c") {
+        var deliveryParametersElement = doc.createElement("DVBCDeliveryParameters");
+        deliveryParametersElement.appendChild(generateDVBTriplet(document.getElementById(instanceId+"_dvb_triplet").value,doc));
+        var targetCountry = doc.createElement("TargetCountry");
+        targetCountry.appendChild(doc.createTextNode(document.getElementById(instanceId+"_target_country").value));
+        deliveryParametersElement.appendChild(targetCountry);
+        var networkId = doc.createElement("NetworkID");
+        networkId.appendChild(doc.createTextNode(document.getElementById(instanceId+"_network_id").value));
+        deliveryParametersElement.appendChild(networkId);
+        instanceElement.appendChild(deliveryParametersElement);
+    }
+    else if(sourceType === "urn:dvb:metadata:source:dvb-s") {
+        var deliveryParametersElement = doc.createElement("DVBSDeliveryParameters");
+        deliveryParametersElement.appendChild(generateDVBTriplet(document.getElementById(instanceId+"_dvb_triplet").value,doc));
+        var parameter = doc.createElement("OrbitalPosition");
+        parameter.appendChild(doc.createTextNode(document.getElementById(instanceId+"_orbital_position").value));
+        deliveryParametersElement.appendChild(parameter);
+        var parameter = doc.createElement("Frequency");
+        var freq = parseFloat(document.getElementById(instanceId+"_frequency").value)*100000;
+        parameter.appendChild(doc.createTextNode(freq));
+        deliveryParametersElement.appendChild(parameter);
+        var parameter = doc.createElement("Polarization");
+        parameter.appendChild(doc.createTextNode(document.getElementById(instanceId+"_polarization").value));
+        deliveryParametersElement.appendChild(parameter);
+
+        instanceElement.appendChild(deliveryParametersElement);
+    }
     return instanceElement;
+}
+
+function generateDVBTriplet(input,doc) {
+    var tripletElement = doc.createElement("DVBTriplet");
+    var res = input.split(".");
+    var onid = parseInt(res[0],16);
+    var tsid = parseInt(res[1],16);
+    var sid = parseInt(res[2],16);
+    tripletElement.setAttribute("origNetId",onid);
+    tripletElement.setAttribute("tsId",tsid);
+    tripletElement.setAttribute("serviceId",sid);
+    return tripletElement;
 }
 
 function listSavedServicelists() {
@@ -300,7 +440,12 @@ function loadServicelist(list) {
                 document.getElementById("provider").value = children[i].childNodes[0].nodeValue;
             }
             else if(children[i].nodeName === "Service") {
-                addService(children[i]);            
+                try {
+                    addService(children[i]);
+                } 
+                catch(e) {
+                    alert( "Error reading servicelist:"+e.message );
+                }
             }
         }
         
