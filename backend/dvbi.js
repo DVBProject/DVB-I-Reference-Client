@@ -42,6 +42,7 @@ function addServiceInstance(serviceId,instanceElement) {
     instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_priority","Priority"));
     instanceDiv.appendChild(document.createTextNode("Source Type"));
     newTextbox = document.createElement('select');
+    newTextbox.classList.add("btn","btn-primary","btn-sm");
     newTextbox.onchange = function() {changeSourceType(instanceDiv.id)};
     newTextbox.name="instance_"+serviceId+"_"+instanceId+"_source_type";
     newTextbox.id="instance_"+serviceId+"_"+instanceId+"_source_type";
@@ -130,6 +131,7 @@ function changeSourceType(serviceInstanceId) {
             params.appendChild(createTextInput(serviceInstanceId+"_frequency","Frequency in GHz"));
             params.appendChild(document.createTextNode("Polarization"));
             newTextbox = document.createElement('select');
+            newTextbox.classList.add("btn","btn-primary","btn-sm");
             newTextbox.name=serviceInstanceId+"_polarization";
             newTextbox.id=serviceInstanceId+"_polarization";
     
