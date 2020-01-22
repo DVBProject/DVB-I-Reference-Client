@@ -14,6 +14,23 @@ const polarizationTypes = {
     "right circular":"Right circular"
 };
 
+function createTextInput(inputId, label) {
+    var inputDiv = document.createElement('div');
+    inputDiv.classList.add("form-group");
+    var inputLabel = document.createElement('label');
+    inputLabel.htmlFor = inputId;
+    inputLabel.appendChild(document.createTextNode(label));
+    inputDiv.appendChild(inputLabel);
+    var inputElement = document.createElement('input');
+    inputElement.classList.add("form-control");
+    inputElement.type="text";
+    inputElement.name=inputId;
+    inputElement.id=inputId;
+    inputDiv.appendChild(inputElement);
+    return inputDiv;
+
+}
+
 function addServiceInstance(serviceId,instanceElement) {
     var service=document.getElementById('service_'+serviceId);
     var instanceId=parseInt(document.getElementById("service_"+serviceId+"_instances").value);
@@ -22,14 +39,7 @@ function addServiceInstance(serviceId,instanceElement) {
     instanceDiv.id = "instance_"+serviceId+"_"+instanceId;
     instanceDiv.classList.add("serviceinstance");
     instanceDiv.classList.add("service_"+serviceId+"_instance");
-    
-    instanceDiv.appendChild(document.createTextNode("Priority"));
-    var newTextbox = document.createElement('input');
-    newTextbox.type="text";
-    newTextbox.name="instance_"+serviceId+"_"+instanceId+"_priority";
-    newTextbox.id="instance_"+serviceId+"_"+instanceId+"_priority";
-    instanceDiv.appendChild(newTextbox);
-    instanceDiv.appendChild(document.createElement('br'));
+    instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_priority","Priority"));
     instanceDiv.appendChild(document.createTextNode("Source Type"));
     newTextbox = document.createElement('select');
     newTextbox.onchange = function() {changeSourceType(instanceDiv.id)};
@@ -104,12 +114,7 @@ function changeSourceType(serviceInstanceId) {
         params.firstChild.remove();
     }
     if(type == "urn:dvb:metadata:source:dvb-dash") {
-        params.appendChild(document.createTextNode("DASH manifest URI"));
-        var newTextbox = document.createElement('input');
-        newTextbox.type="text";
-        newTextbox.name=serviceInstanceId+"_dash_uri";
-        newTextbox.id=serviceInstanceId+"_dash_uri";
-        params.appendChild(newTextbox);
+        params.appendChild(createTextInput(serviceInstanceId+"_dash_uri","DASH manifest URI"));
     }
     else if(type == "urn:dvb:metadata:source:dvb-iptv") {
         //TODO
@@ -118,28 +123,10 @@ function changeSourceType(serviceInstanceId) {
         //TODO
     }
     else { //DVB-T, DVB-C or DVB-S
-        params.appendChild(document.createTextNode("DVB Triplet (onid.tsid.sid) using hex values"));
-        var newTextbox = document.createElement('input');
-        newTextbox.type="text";
-        newTextbox.name=serviceInstanceId+"_dvb_triplet";
-        newTextbox.id=serviceInstanceId+"_dvb_triplet";
-        params.appendChild(newTextbox);
-        params.appendChild(document.createElement('br'));
+        params.appendChild(createTextInput(serviceInstanceId+"_dvb_triplet","DVB Triplet (onid.tsid.sid) using hex values"));
         if(type == "urn:dvb:metadata:source:dvb-s") {
-            params.appendChild(document.createTextNode("Orbital Position"));
-            newTextbox = document.createElement('input');
-            newTextbox.type="text";
-            newTextbox.name=serviceInstanceId+"_orbital_position";
-            newTextbox.id=serviceInstanceId+"_orbital_position";
-            params.appendChild(newTextbox);
-            params.appendChild(document.createElement('br'));
-            params.appendChild(document.createTextNode("Frequency in GHz")); 
-            newTextbox = document.createElement('input');
-            newTextbox.type="text";
-            newTextbox.name=serviceInstanceId+"_frequency";
-            newTextbox.id=serviceInstanceId+"_frequency";
-            params.appendChild(newTextbox);
-            params.appendChild(document.createElement('br'));
+            params.appendChild(createTextInput(serviceInstanceId+"_orbital_position","Orbital Position"));
+            params.appendChild(createTextInput(serviceInstanceId+"_frequency","Frequency in GHz"));
             params.appendChild(document.createTextNode("Polarization"));
             newTextbox = document.createElement('select');
             newTextbox.name=serviceInstanceId+"_polarization";
@@ -155,20 +142,9 @@ function changeSourceType(serviceInstanceId) {
             params.appendChild(newTextbox);
         }
         else { //DVB-T or DVB-C, both have target country 
-            params.appendChild(document.createTextNode("Target Country")); 
-            newTextbox = document.createElement('input');
-            newTextbox.type="text";
-            newTextbox.name=serviceInstanceId+"_target_country";
-            newTextbox.id=serviceInstanceId+"_target_country";
-            params.appendChild(newTextbox);
+            params.appendChild(createTextInput(serviceInstanceId+"_target_country","Target Country"));
             if(type == "urn:dvb:metadata:source:dvb-c") {
-                params.appendChild(document.createElement('br'));
-                params.appendChild(document.createTextNode("Network ID")); 
-                newTextbox = document.createElement('input');
-                newTextbox.type="text";
-                newTextbox.name=serviceInstanceId+"_network_id";
-                newTextbox.id=serviceInstanceId+"_network_id";
-                params.appendChild(newTextbox);
+                params.appendChild(createTextInput(serviceInstanceId+"_network_id","Network ID"));
             }
         } 
     }
@@ -190,37 +166,10 @@ function addService(serviceElement) {
     newTextbox.value = "0";
     serviceDiv.appendChild(newTextbox);
     
-    serviceDiv.appendChild(document.createTextNode("Service name"));
-    var newTextbox = document.createElement('input');
-    newTextbox.type="text";
-    newTextbox.name="service_"+serviceId+"_name";
-    newTextbox.id="service_"+serviceId+"_name";
-    serviceDiv.appendChild(newTextbox);
-    serviceDiv.appendChild(document.createElement('br'));
-
-    serviceDiv.appendChild(document.createTextNode("Service Unique Identifier"));
-    var newTextbox = document.createElement('input');
-    newTextbox.type="text";
-    newTextbox.name="service_"+serviceId+"_unique_id";
-    newTextbox.id="service_"+serviceId+"_unique_id";
-    serviceDiv.appendChild(newTextbox);
-    serviceDiv.appendChild(document.createElement('br'));
-
-    serviceDiv.appendChild(document.createTextNode("Service version"));
-    var newTextbox = document.createElement('input');
-    newTextbox.type="text";
-    newTextbox.name="service_"+serviceId+"_version";
-    newTextbox.id="service_"+serviceId+"_version";
-    serviceDiv.appendChild(newTextbox);
-    serviceDiv.appendChild(document.createElement('br'));
-
-    serviceDiv.appendChild(document.createTextNode("Service provider"));
-    var newTextbox = document.createElement('input');
-    newTextbox.type="text";
-    newTextbox.name="service_"+serviceId+"_provider";
-    newTextbox.id="service_"+serviceId+"_provider";
-    serviceDiv.appendChild(newTextbox);
-    serviceDiv.appendChild(document.createElement('br'));
+    serviceDiv.appendChild(createTextInput("service_"+serviceId+"_name","Service name"));
+    serviceDiv.appendChild(createTextInput("service_"+serviceId+"_unique_id","Service Unique Identifier"));
+    serviceDiv.appendChild(createTextInput("service_"+serviceId+"_version","Service version"));
+    serviceDiv.appendChild(createTextInput("service_"+serviceId+"_provider","Service provider"));
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:addServiceInstance('"+serviceId+"')";
