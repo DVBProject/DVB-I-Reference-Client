@@ -342,11 +342,19 @@ function listSavedServicelists() {
       $.each( data, function( val ) {
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:loadServicelist('"+this+"')";
-        newTextbox.appendChild(document.createTextNode("Edit "+this.substr("./servicelists/".length)));
+        newTextbox.appendChild(document.createTextNode( this.substr("./servicelists/".length)));
+        targetElement.appendChild(newTextbox);
+        var newTextbox = document.createElement('a');
+        newTextbox.href="javascript:loadServicelist('"+this+"')";
+        newTextbox.appendChild(document.createTextNode( "Edit" ));
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
         newTextbox.href=this;
-        newTextbox.appendChild(document.createTextNode("Open "+this.substr("./servicelists/".length)));
+        newTextbox.appendChild(document.createTextNode("Open"));
+        targetElement.appendChild(newTextbox);
+        var newTextbox = document.createElement('a');
+        newTextbox.href="javascript:deleteServicelist('"+this+"')";
+        newTextbox.appendChild(document.createTextNode("Delete"));
         targetElement.appendChild(newTextbox);
         targetElement.appendChild(document.createElement('br'));
       });
@@ -399,5 +407,16 @@ function loadServicelist(list) {
         }
         
     },"text");
+}
+
+function deleteServicelist(list) {
+    $.post( "delete_servicelist.php", { servicelist: list })
+      .done(function( data ) {
+        alert( "Servicelist deleted!" );
+        listSavedServicelists();
+      })
+      .fail(function(data) {
+        alert( "Error deleting servicelist:"+data.responseText );
+      });
 }
 
