@@ -42,6 +42,7 @@ function addServiceInstance(serviceId,instanceElement) {
     instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_priority","Priority"));
     instanceDiv.appendChild(document.createTextNode("Source Type"));
     newTextbox = document.createElement('select');
+    newTextbox.classList.add("btn","btn-primary","btn-sm");
     newTextbox.onchange = function() {changeSourceType(instanceDiv.id)};
     newTextbox.name="instance_"+serviceId+"_"+instanceId+"_source_type";
     newTextbox.id="instance_"+serviceId+"_"+instanceId+"_source_type";
@@ -130,6 +131,7 @@ function changeSourceType(serviceInstanceId) {
             params.appendChild(createTextInput(serviceInstanceId+"_frequency","Frequency in GHz"));
             params.appendChild(document.createTextNode("Polarization"));
             newTextbox = document.createElement('select');
+            newTextbox.classList.add("btn","btn-primary","btn-sm");
             newTextbox.name=serviceInstanceId+"_polarization";
             newTextbox.id=serviceInstanceId+"_polarization";
     
@@ -171,6 +173,7 @@ function addService(serviceElement) {
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_unique_id","Service Unique Identifier"));
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_version","Service version"));
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_provider","Service provider"));
+    serviceDiv.appendChild(createTextInput("service_"+serviceId+"_lcn","LCN"));
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:addServiceInstance('"+serviceId+"')";
@@ -239,6 +242,14 @@ function generateXML() {
     doc.documentElement.setAttribute("xsi:schemaLocation","urn:dvb:metadata:servicediscovery:2019 ../dvbi_v1.0.xsd");
     doc.documentElement.setAttribute("xmlns:tva","urn:tva:metadata:2019");
 
+    var lcnTableElement = doc.createElement("LCNTableList");
+    doc.documentElement.appendChild(lcnTableElement);
+    var lcnTable = doc.createElement("LCNTable");
+    lcnTableElement.appendChild(lcnTable);
+    var targetRegion = doc.createElement("TargetRegion");
+    targetRegion.appendChild(doc.createTextNode(document.getElementById("target_region").value));
+    lcnTable.appendChild(targetRegion);
+
     for(var i=0; i<services.length;i++) {
         var serviceId = services[i].id;
         var serviceElement = doc.createElement("Service");
@@ -259,9 +270,11 @@ function generateXML() {
         nameElement = doc.createElement("ProviderName");
         nameElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_provider").value));
         serviceElement.appendChild(nameElement);
-
         doc.documentElement.appendChild(serviceElement);
-
+        var lcn = doc.createElement("LCN");
+        lcn.setAttribute("channelNumber",document.getElementById(serviceId+"_lcn").value);
+        lcn.setAttribute("serviceRef",document.getElementById(serviceId+"_unique_id").value);
+        lcnTable.appendChild(lcn);
     }
 
     return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+new XMLSerializer().serializeToString(doc.documentElement);
@@ -337,6 +350,21 @@ function generateDVBTriplet(input,doc) {
     return tripletElement;
 }
 
+function readLCN(lcnElement) {
+    var lcnTables = lcnElement.getElementsByTagName("LCNTable");
+    var lcnList = {};
+    for (var i = 0; i < lcnTables.length ;i++) {
+          var targetRegion = lcnTables[0].getElementsByTagName("TargetRegion")[0].childNodes[0].nodeValue;
+          var chanellList = {};
+          var lcnElements = lcnElement.getElementsByTagName("LCN");
+          for (var j = 0; j < lcnElements.length ;j++) {
+            chanellList[lcnElements[j].getAttribute("serviceRef")] = lcnElements[j].getAttribute("channelNumber");
+          }
+          lcnList[targetRegion] = chanellList;
+    }
+    return lcnList;
+}
+
 function listSavedServicelists() {
     $.getJSON( "saved_lists.php", function( data ) {
       var items = [];
@@ -396,6 +424,8 @@ function loadServicelist(list) {
         document.getElementById('service_count').value = 0;
         document.getElementById("version").value = doc.documentElement.getAttribute("version");
         var children = doc.documentElement.childNodes;
+        var lcnMap = null;
+
         for (var i = 0; i < children.length ;i++) {
             if(children[i].nodeName === "Name") {
                 document.getElementById("name").value = children[i].childNodes[0].nodeValue;
@@ -403,12 +433,31 @@ function loadServicelist(list) {
             else if(children[i].nodeName === "ProviderName") {
                 document.getElementById("provider").value = children[i].childNodes[0].nodeValue;
             }
+            else if(children[i].nodeName === "LCNTableList") {
+                lcnMap = readLCN(children[i]);
+            }
             else if(children[i].nodeName === "Service") {
                 try {
                     addService(children[i]);
                 } 
                 catch(e) {
                     alert( "Error reading servicelist:"+e.message );
+                }
+            }
+        }
+        if(lcnMap != null) {
+            var services = document.getElementsByClassName("service");
+            for (var lcnRegion in lcnMap) {
+                document.getElementById("target_region").value = lcnRegion;
+                var lcnList = lcnMap[lcnRegion];
+                for (var channelRef in lcnList) {
+                    for(var i=0; i<services.length;i++) {
+                        var serviceId = services[i].id;
+                        if(document.getElementById(serviceId+"_unique_id").value === channelRef) {
+                            document.getElementById(serviceId+"_lcn").value = lcnList[channelRef];
+                            break;
+                        }
+                    }
                 }
             }
         }
