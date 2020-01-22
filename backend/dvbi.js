@@ -61,7 +61,7 @@ function addServiceInstance(serviceId,instanceElement) {
 
     newTextbox = document.createElement('a');
     newTextbox.href="javascript:removeElement('instance_"+serviceId+"_"+instanceId+"')";
-    newTextbox.classList.add("btn","btn-primary","btn-sm");
+    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mr-1");
     newTextbox.appendChild(document.createTextNode("Remove instance"));
     instanceDiv.appendChild(newTextbox);
     
@@ -174,14 +174,14 @@ function addService(serviceElement) {
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:addServiceInstance('"+serviceId+"')";
-    newTextbox.classList.add("btn","btn-primary","btn-sm");
+    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mr-1");
     newTextbox.appendChild(document.createTextNode("Add service instance"));
     serviceDiv.appendChild(newTextbox);
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:removeElement('service_"+serviceId+"')";
     newTextbox.appendChild(document.createTextNode("Remove service"));
-    newTextbox.classList.add("btn","btn-primary","btn-sm");
+    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mr-1");
     serviceDiv.appendChild(newTextbox);
 
     services.appendChild(serviceDiv);
@@ -345,25 +345,25 @@ function listSavedServicelists() {
       $.each( data, function( val ) {
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:loadServicelist('"+this+"')";
-        newTextbox.classList.add("btn","btn-primary","btn-sm");
+        newTextbox.classList.add("btn-sm","mb-1");
         newTextbox.appendChild(document.createTextNode( this.substr("./servicelists/".length)));
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:loadServicelist('"+this+"')";
         newTextbox.appendChild(document.createTextNode( "Edit" ));
-        newTextbox.classList.add("btn","btn-primary","btn-sm");
+        newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mb-1","mr-1");
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
         newTextbox.href=this;
         newTextbox.appendChild(document.createTextNode("Open"));
-        newTextbox.classList.add("btn","btn-primary","btn-sm");
+        newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mb-1","mr-1");
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:deleteServicelist('"+this+"')";
         newTextbox.appendChild(document.createTextNode("Delete"));
-        newTextbox.classList.add("btn","btn-primary","btn-sm");
+        newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mb-1");
         targetElement.appendChild(newTextbox);
-        targetElement.appendChild(document.createElement('br'));
+        targetElement.appendChild(document.createElement('hr'));
       });
     });
 }
