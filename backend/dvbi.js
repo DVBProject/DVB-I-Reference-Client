@@ -61,6 +61,7 @@ function addServiceInstance(serviceId,instanceElement) {
 
     newTextbox = document.createElement('a');
     newTextbox.href="javascript:removeElement('instance_"+serviceId+"_"+instanceId+"')";
+    newTextbox.classList.add("btn","btn-primary","btn-sm");
     newTextbox.appendChild(document.createTextNode("Remove instance"));
     instanceDiv.appendChild(newTextbox);
     
@@ -344,19 +345,23 @@ function listSavedServicelists() {
       $.each( data, function( val ) {
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:loadServicelist('"+this+"')";
+        newTextbox.classList.add("btn","btn-primary","btn-sm");
         newTextbox.appendChild(document.createTextNode( this.substr("./servicelists/".length)));
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:loadServicelist('"+this+"')";
         newTextbox.appendChild(document.createTextNode( "Edit" ));
+        newTextbox.classList.add("btn","btn-primary","btn-sm");
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
         newTextbox.href=this;
         newTextbox.appendChild(document.createTextNode("Open"));
+        newTextbox.classList.add("btn","btn-primary","btn-sm");
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:deleteServicelist('"+this+"')";
         newTextbox.appendChild(document.createTextNode("Delete"));
+        newTextbox.classList.add("btn","btn-primary","btn-sm");
         targetElement.appendChild(newTextbox);
         targetElement.appendChild(document.createElement('br'));
       });
