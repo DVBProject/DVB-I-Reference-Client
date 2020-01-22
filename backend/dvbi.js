@@ -16,13 +16,14 @@ const polarizationTypes = {
 
 function createTextInput(inputId, label) {
     var inputDiv = document.createElement('div');
-    inputDiv.classList.add("form-group");
+    inputDiv.classList.add("form-group","mb-1");
     var inputLabel = document.createElement('label');
+    inputLabel.classList.add("small","col-6","px-0");  
     inputLabel.htmlFor = inputId;
     inputLabel.appendChild(document.createTextNode(label));
     inputDiv.appendChild(inputLabel);
     var inputElement = document.createElement('input');
-    inputElement.classList.add("form-control");
+    inputElement.classList.add("form-control-sm","small","col-5");
     inputElement.type="text";
     inputElement.name=inputId;
     inputElement.id=inputId;
@@ -40,9 +41,14 @@ function addServiceInstance(serviceId,instanceElement) {
     instanceDiv.classList.add("serviceinstance");
     instanceDiv.classList.add("service_"+serviceId+"_instance");
     instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_priority","Priority"));
-    instanceDiv.appendChild(document.createTextNode("Source Type"));
+    var inputDiv = document.createElement('div');
+    inputDiv.classList.add("form-group","mb-1");
+    var inputLabel = document.createElement('label');
+    inputLabel.classList.add("small","col-6","px-0");
+    inputLabel.appendChild(document.createTextNode("Source Type"));  
+    inputDiv.appendChild(inputLabel);
     newTextbox = document.createElement('select');
-    newTextbox.classList.add("btn","btn-primary","btn-sm");
+    newTextbox.classList.add("form-control","form-control-sm","col-5");
     newTextbox.onchange = function() {changeSourceType(instanceDiv.id)};
     newTextbox.name="instance_"+serviceId+"_"+instanceId+"_source_type";
     newTextbox.id="instance_"+serviceId+"_"+instanceId+"_source_type";
@@ -54,7 +60,8 @@ function addServiceInstance(serviceId,instanceElement) {
         newTextbox.appendChild(option);
     }
 
-    instanceDiv.appendChild(newTextbox);
+    inputDiv.appendChild(newTextbox);
+    instanceDiv.appendChild(inputDiv);
     var params =  document.createElement('div');
     params.classList.add("deliveryparameters");
     params.id="instance_"+serviceId+"_"+instanceId+"_deliveryparameters";
