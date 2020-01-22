@@ -173,12 +173,14 @@ function addService(serviceElement) {
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:addServiceInstance('"+serviceId+"')";
+    newTextbox.classList.add("btn","btn-primary","btn-sm");
     newTextbox.appendChild(document.createTextNode("Add service instance"));
     serviceDiv.appendChild(newTextbox);
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:removeElement('service_"+serviceId+"')";
     newTextbox.appendChild(document.createTextNode("Remove service"));
+    newTextbox.classList.add("btn","btn-primary","btn-sm");
     serviceDiv.appendChild(newTextbox);
 
     services.appendChild(serviceDiv);
