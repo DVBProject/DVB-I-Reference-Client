@@ -382,8 +382,10 @@ function listSavedServicelists() {
     $.getJSON( "saved_lists.php", function( data ) {
       var items = [];
       $('#saved_servicelists').empty();
-      var targetElement = document.getElementById("saved_servicelists");
+      var listElement = document.getElementById("saved_servicelists");
       $.each( data, function( val ) {
+        var targetElement = document.createElement('div');
+        targetElement.classList.add("row");
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:loadServicelist('"+this+"')";
         newTextbox.classList.add("btn-sm","mb-1");
@@ -405,6 +407,7 @@ function listSavedServicelists() {
         newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mb-1");
         targetElement.appendChild(newTextbox);
         targetElement.appendChild(document.createElement('hr'));
+        listElement.appendChild(targetElement);
       });
     });
 }
