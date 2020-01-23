@@ -16,14 +16,14 @@ const polarizationTypes = {
 
 function createTextInput(inputId, label) {
     var inputDiv = document.createElement('div');
-    inputDiv.classList.add("form-group","mb-1");
+    inputDiv.classList.add("form-group","row","mb-1");
     var inputLabel = document.createElement('label');
-    inputLabel.classList.add("small","col-6","px-0");  
+    inputLabel.classList.add("col-7","col-form-label","col-form-label-sm","my-auto");  
     inputLabel.htmlFor = inputId;
     inputLabel.appendChild(document.createTextNode(label));
     inputDiv.appendChild(inputLabel);
     var inputElement = document.createElement('input');
-    inputElement.classList.add("form-control-sm","small","col-5");
+    inputElement.classList.add("form-control-sm","col-4","my-auto");
     inputElement.type="text";
     inputElement.name=inputId;
     inputElement.id=inputId;
@@ -42,13 +42,13 @@ function addServiceInstance(serviceId,instanceElement) {
     instanceDiv.classList.add("service_"+serviceId+"_instance");
     instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_priority","Priority"));
     var inputDiv = document.createElement('div');
-    inputDiv.classList.add("form-group","mb-1");
+    inputDiv.classList.add("form-group","mb-1","row"); 
     var inputLabel = document.createElement('label');
-    inputLabel.classList.add("small","col-6","px-0");
+    inputLabel.classList.add("col-7","col-form-label","col-form-label-sm","my-auto");
     inputLabel.appendChild(document.createTextNode("Source Type"));  
     inputDiv.appendChild(inputLabel);
     newTextbox = document.createElement('select');
-    newTextbox.classList.add("form-control","form-control-sm","col-5");
+    newTextbox.classList.add("form-control","form-control-sm","col-4","my-auto");
     newTextbox.onchange = function() {changeSourceType(instanceDiv.id)};
     newTextbox.name="instance_"+serviceId+"_"+instanceId+"_source_type";
     newTextbox.id="instance_"+serviceId+"_"+instanceId+"_source_type";
@@ -69,7 +69,7 @@ function addServiceInstance(serviceId,instanceElement) {
 
     newTextbox = document.createElement('a');
     newTextbox.href="javascript:removeElement('instance_"+serviceId+"_"+instanceId+"')";
-    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mr-1");
+    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mr-1","mt-2");
     newTextbox.appendChild(document.createTextNode("Remove instance"));
     instanceDiv.appendChild(newTextbox);
     
@@ -184,14 +184,14 @@ function addService(serviceElement) {
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:addServiceInstance('"+serviceId+"')";
-    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mr-1");
+    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mr-1","mt-2");
     newTextbox.appendChild(document.createTextNode("Add service instance"));
     serviceDiv.appendChild(newTextbox);
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:removeElement('service_"+serviceId+"')";
     newTextbox.appendChild(document.createTextNode("Remove service"));
-    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mr-1");
+    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","float-right","mt-2");
     serviceDiv.appendChild(newTextbox);
 
     services.appendChild(serviceDiv);

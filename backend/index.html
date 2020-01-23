@@ -1,34 +1,102 @@
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DVB-I Servicelist generator</title>
-<script type="text/javascript" src="dvbi.js"></script>
-<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" href="dvbi.css">
+<script type="text/javascript" src="dvbi.js"></script> 
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script> 
+
+<!-- Bootstrap -->
+<link href="css/bootstrap-4.3.1.css" rel="stylesheet">
+<link href="css/dvbi.css" rel="stylesheet">
 <script type="text/javascript">
 $( document ).ready(function() {
     listSavedServicelists();
 });
 </script>
 </head>
-<body>
-<form>
- Service list version<input type="text" id="version" name="version" value=""><br>
- Service list name<input type="text" id="name" name="name" value=""><br>
- Service list provider<input type="text" id="provider" name="provider" value=""><br>
- LCN Target region<input type="text" id="target_region" name="target_region" value=""><br>
- <input type="hidden" id="service_count" value="0"/>
- <div id="services">
- </div>
- <a href="javascript:addService()">Add Service</a>
-</form>
-<form action="javascript:uploadServicelist()" method="post">
-    <input type="text" name="filename" id="filename">
-    <input type="submit" value="Save Servicelist" name="submit">
-</form>
-<div id="saved_servicelists">
+<body class="">
+<section class="header">
+  <nav class="navbar navbar-dark bg-dark"><img class="navbar-brand" src="images/logo_dvb-i.png" alt="DVB-I"> <a class="navbar-brand font-weight-bold" href="#">DVB-I Reference Application</a> <img class="navbar-brand float-md-right ml-md-auto my-2 my-lg-0" src="images/logo_sofiadigital.png" alt="Sofia Digital"> </nav>
+</section>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 col-md-8 col-lg-8 mb-2">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Edit Service</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Subtitle</h6>
+          <p class="card-text"><style>div, label, input {_border: 1px solid red;} </style>
+          <div class="row">
+            <div class="col-12 col-md-6 border-right">
+              <form>
+                <div class="form-group row mb-1">
+                  <label for="formGroupExampleInput" class="col-6 col-form-label col-form-label-sm">Service list version</label>
+                  <input type="text" id="version" name="version" value="" class="form-control-sm col-5" placeholder="Placeholder">
+                </div>
+                <div class="form-group row mb-1">
+                  <label for="formGroupExampleInput2" class="col-6 col-form-label col-form-label-sm">Service list name</label>
+                  <input type="text" id="name" name="name" value="" class="form-control-sm col-5" placeholder="Placeholder">
+                </div>
+                <div class="form-group row mb-1">
+                  <label for="formGroupExampleInput2" class="col-6 col-form-label col-form-label-sm">Service list provider</label>
+                  <input type="text" id="provider" name="provider" value="" class="form-control-sm col-5" placeholder="Placeholder">
+                </div>
+                <div class="form-group row mb-1">
+                  <label for="formGroupExampleInput2" class="col-6 col-form-label col-form-label-sm">Target Region</label>
+                  <input type="text" id="target_region" name="target_region" value="" class="form-control-sm col-5" placeholder="Placeholder">
+                </div>
+                <input type="hidden" id="service_count" value="0"/>
+                <div id="services"> </div>
+                <a href="javascript:addService()" class="btn btn-orange btn-sm">Add Service</a>
+              </form>
+            </div>
+            <div class="col-12 col-md-6">
+              <form action="javascript:uploadServicelist()" method="post">
+                <div class="form-group">
+                  <label for="formGroupExampleInput" class="small col-6 px-0">Service list title</label>
+                  <input type="text" name="filename" id="filename" class="form-control-sm col-5 small mb-3">
+                  <input type="submit" value="Save Servicelist" name="submit"  class="btn btn-orange btn-sm">
+                </div>
+              </form>
+              <hr>
+              <h5 class="card-title">Generate XML</h5>
+              <textarea readonly id="xml" class="w-100 mb-3" rows="5"></textarea>
+              <a href="javascript:showXML()" class="btn btn-orange btn-sm">Generate XML</a><br/>
+            </div>
+          </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4 mb-2">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Servicelist</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Subtitle</h6>
+          <p class="card-text">
+          <div id="saved_servicelists"> </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
 </div>
-<textarea readonly id="xml"></textarea><br>
-<a href="javascript:showXML()">Generate XML</a><br/>
-<a href="https://dvb.org/wp-content/uploads/2019/12/a177_dvb-i_specification.pdf">DVB-I Specification</a>
+<section class="footer">
+  <div class="row mx-0">
+    <div class="text-center col-lg-6 offset-lg-3">
+      <h4></h4>
+      <p><a href="https://dvb.org/wp-content/uploads/2019/12/a177_dvb-i_specification.pdf">DVB-I Specification</a> </p>
+      <p>&copy; 2020 Sofia Digital Ltd. <br>
+        <small> All Rights Reserved <br>
+        <a href="#">Sofia Digital</a><br>
+        <br>
+        Version 1.0</small></p>
+    </div>
+  </div>
+</section>
+<script src="js/popper.min.js"></script>
 </body>
 </html>
