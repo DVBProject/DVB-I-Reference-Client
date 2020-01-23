@@ -136,9 +136,14 @@ function changeSourceType(serviceInstanceId) {
         if(type == "urn:dvb:metadata:source:dvb-s") {
             params.appendChild(createTextInput(serviceInstanceId+"_orbital_position","Orbital Position"));
             params.appendChild(createTextInput(serviceInstanceId+"_frequency","Frequency in GHz"));
-            params.appendChild(document.createTextNode("Polarization"));
+            var inputDiv = document.createElement('div');
+            inputDiv.classList.add("form-group","mb-1","row"); 
+            var inputLabel = document.createElement('label');
+            inputLabel.classList.add("col-7","col-form-label","col-form-label-sm","my-auto");
+            inputLabel.appendChild(document.createTextNode("Polarization"));  
+            inputDiv.appendChild(inputLabel);
             newTextbox = document.createElement('select');
-            newTextbox.classList.add("btn","btn-primary","btn-sm");
+            newTextbox.classList.add("form-control","form-control-sm","col-4","my-auto");
             newTextbox.name=serviceInstanceId+"_polarization";
             newTextbox.id=serviceInstanceId+"_polarization";
     
@@ -149,7 +154,8 @@ function changeSourceType(serviceInstanceId) {
                 newTextbox.appendChild(option);
             }
 
-            params.appendChild(newTextbox);
+            inputDiv.appendChild(newTextbox);
+            params.appendChild(inputDiv);
         }
         else { //DVB-T or DVB-C, both have target country 
             params.appendChild(createTextInput(serviceInstanceId+"_target_country","Target Country"));
