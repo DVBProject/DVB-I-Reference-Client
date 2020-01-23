@@ -24,6 +24,15 @@ $lightgrey-color: #848484;
     padding: 1em 0.5em; 
   }
 }
+#saved_servicelists {
+  .icon {
+    width: 26px;
+    height: 26px;
+  }
+  .btn:focus, .btn.focus {
+    box-shadow: none;
+  }
+}
 .btn-outline-blue {
   border: 1px solid $blue-color;
   border-radius: 0px;
@@ -47,6 +56,7 @@ $lightgrey-color: #848484;
     color: #fff;
   }
 }
+
 .footer {
   //background-color: $lightgrey-color;
 }  

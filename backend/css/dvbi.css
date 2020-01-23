@@ -19,6 +19,12 @@ lightgrey: #848484
     margin: 1em 0em 0em 0em;
     padding: 1em 0.5em; }
 
+#saved_servicelists .icon {
+  width: 26px;
+  height: 26px; }
+#saved_servicelists .btn:focus, #saved_servicelists .btn.focus {
+  box-shadow: none; }
+
 .btn-outline-blue {
   border: 1px solid #3996c9;
   border-radius: 0px;
