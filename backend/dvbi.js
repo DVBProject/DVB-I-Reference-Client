@@ -399,7 +399,7 @@ function listSavedServicelists() {
         image.alt ="Edit";
         image.title ="Edit";
         newTextbox.appendChild(image);
-        newTextbox.classList.add("btn","btn-outline-blue_","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
+        newTextbox.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
         newTextbox.href=this;
@@ -409,7 +409,7 @@ function listSavedServicelists() {
         image.alt ="Open";
         image.title ="Open";
         newTextbox.appendChild(image);
-        newTextbox.classList.add("btn","btn-outline-blue_","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
+        newTextbox.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
         newTextbox.href="javascript:deleteServicelist('"+this+"')";
@@ -419,7 +419,7 @@ function listSavedServicelists() {
         image.alt ="Delete";
         image.title ="Delete";
         newTextbox.appendChild(image);
-        newTextbox.classList.add("btn","btn-outline-blue_","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
+        newTextbox.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
         targetElement.appendChild(newTextbox);
         targetElement.appendChild(document.createElement('hr'));
         listElement.appendChild(targetElement);
