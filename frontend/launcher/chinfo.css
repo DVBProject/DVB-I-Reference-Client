@@ -1,0 +1,171 @@
+/* CSS Document */
+div {
+    position: absolute;
+}
+#chinfo {
+	position: absolute;
+	left: 0px;
+	color: #FFF;
+	font-size: 22px;
+	line-height: 1;
+    
+    opacity: 1;
+	-o-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+	
+    height: 140px;
+    width: 1280px;
+    top: 580px;
+    /*
+    background-image: url(../CommonUI/bg_buttonbar_player.png);
+    background-repeat: repeat-x;
+    */
+    background-image: url(images/bg_chinfo.png);
+    background-repeat: repeat-y;
+  
+    height: 720px;
+    top: 0px;
+}
+#chinfo.hide {
+    opacity: 0;
+    display: block !important;  
+}
+#chinfo_chname {
+    top: 347px;
+    left: 140px;
+    font-size: 26px;
+    color: #fff;
+}
+#chinfo_chnumber {
+    top: 330px;
+    left: 80px;
+    color: #0090f1;
+    font-size: 48px;
+  _border: 1px solid red;
+  text-align: right;
+  width: 50px;
+}
+#chinfo_chicon {
+    left: 90px;
+    top: 260px;
+    height: 80px;
+    line-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+#chinfo_chicon img {
+
+}
+#chinfo_now {
+    left: 90px;
+    top: 460px;
+    height: 80px;
+  transform: scale(1.2,1.2);
+}
+
+
+#chinfo_starttime {
+    top: 50px;
+    left: 200px;
+    font-size: 18px;
+}
+
+#chinfo_endtime {
+    top: 50px;
+    left: 410px;
+    font-size: 18px;
+}
+/* progressbar */
+#chinfo_progressbar {
+    top: 65px;
+    height: 5px;
+    left: 150px;
+    width: 130px;
+}
+#chinfo_progressbarbg {
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.8);
+    width: 100%;
+    height: 5px;
+}
+#chinfo_progressbarTime {
+    background-color: #3996c9;
+    height: 5px;
+    top: 0px;
+    left: 0px;
+}
+/* next program */
+#chinfo_next {
+    left: 90px;
+    top: 610px;
+    height: 80px;
+}
+#chinfo_next > div {
+  color: #BBBBBB;
+}
+#chinfo_now_header,
+#chinfo_next_header {
+    left: 0px;
+    font-size: 32px;
+    text-align: left;
+    width: 70px;
+    color: rgba(233,233,233,0.5) !important;
+  width: 500px;
+  white-space: nowrap;
+  margin-top: -30px;
+}
+#chinfo_now_title,
+#chinfo_next_title {
+    left: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 330px;
+    text-overflow: ellipsis;
+    height: 30px;
+    line-height: 30px;
+    font-size: 24px;
+  text-shadow: 0px 0px 5px #000;
+}
+#chinfo_now_starttime,
+#chinfo_next_starttime {
+    left: 150px;
+    font-size: 18px;
+    top: 35px;
+    width: 150px;
+  text-shadow: 0px 0px 5px #000;
+
+}
+#chinfo_now_endtime,
+#chinfo_next_endtime {
+    left: 215px;
+    font-size: 18px;
+    top: 35px;
+  text-shadow: 0px 0px 5px #000;
+
+}
+
+#chinfo_next_image,
+#chinfo_now_image {
+    left: 0px;
+    top: 0px;
+    height: 80px;
+    width: 140px;
+    background-color: #000;
+    text-align: center;
+    line-height: 80px;
+}
+#chinfo_next_image img,
+#chinfo_now_image img{
+    height: 100%;
+    object-fit: contain;
+    max-width: 140px;
+}
+#chinfo_logo {
+  position: absolute;
+  top: 50px;
+  left: 90px;
+}
