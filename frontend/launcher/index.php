@@ -201,9 +201,9 @@
                        sourceTypes.push("DVB-DASH");
                        chan.dashUrl = serviceInstances[j].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
                 }
-                if(sourceType == "urn:dvb:metadata:source:dvb-t" || 
+                if(channelList && (sourceType == "urn:dvb:metadata:source:dvb-t" || 
                    sourceType == "urn:dvb:metadata:source:dvb-c" ||
-                   sourceType == "urn:dvb:metadata:source:dvb-s" ) {
+                   sourceType == "urn:dvb:metadata:source:dvb-s" ) ) {
                     //Just search for the triplet in the channel list;
                     var triplet = serviceInstances[j].getElementsByTagName("DVBTriplet")[0];
                     
