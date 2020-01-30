@@ -211,7 +211,7 @@
                         if(channelList[k].sid == triplet.getAttribute("serviceId") &&
                            channelList[k].onid == triplet.getAttribute("origNetId") &&
                            channelList[k].tsid == triplet.getAttribute("tsId")) {
-                             chan.dvbChannel = channelList[k];
+                             chan.dvbChannel = channelList.item(k);
                              sourceTypes.push("DVB-"+ sourceType.charAt(sourceType.length-1).toUpperCase());
                              break;
                            }                            
