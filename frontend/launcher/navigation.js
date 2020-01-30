@@ -165,7 +165,6 @@ function onKey(keyCode)
 		}
 		
 		var num_key;
-
 		switch (keyCode) {
 		//case 82:
 		//case 403:
@@ -515,9 +514,9 @@ function keyRed(){
 function updateBannerProgram(prefix,program) {
       if(program) {
           $("#"+prefix+'title').html(program.title);
-          $("#"+prefix+'starttime').html(program.start ? program.start_utc.toUTCDate().create24HourTimeString()+" -" : "");
-          $("#"+prefix+'endtime').html(program.end ? program.end_utc.toUTCDate().create24HourTimeString() : "");
-          $("#"+prefix+'image_img').attr("src",program.mediaimage);
+          $("#"+prefix+'starttime').html(program.start ? program.start.create24HourTimeString()+" -" : "");
+          $("#"+prefix+'endtime').html(program.end ? program.end.create24HourTimeString() : "");
+          $("#"+prefix+'image_img').attr("src",program.img);
     }
     else {
         $("#"+prefix+'title').html("No program");
