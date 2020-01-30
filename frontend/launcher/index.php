@@ -208,10 +208,11 @@
                     var triplet = serviceInstances[j].getElementsByTagName("DVBTriplet")[0];
                     
                     for(var k = 0;k<channelList.length;k++) {
-                        if(channelList[k].sid == triplet.getAttribute("serviceId") &&
-                           channelList[k].onid == triplet.getAttribute("origNetId") &&
-                           channelList[k].tsid == triplet.getAttribute("tsId")) {
-                             chan.dvbChannel = channelList.item(k);
+                        var dvbChannel = channelList.item(k);
+                        if(dvbChannel.sid == triplet.getAttribute("serviceId") &&
+                           dvbChannel.onid == triplet.getAttribute("origNetId") &&
+                           dvbChannel.tsid == triplet.getAttribute("tsId")) {
+                             chan.dvbChannel = dvbChannel;
                              sourceTypes.push("DVB-"+ sourceType.charAt(sourceType.length-1).toUpperCase());
                              break;
                            }                            
