@@ -518,7 +518,6 @@ function updateBannerProgram(prefix,program) {
           $("#"+prefix+'starttime').html(program.start ? program.start_utc.toUTCDate().create24HourTimeString()+" -" : "");
           $("#"+prefix+'endtime').html(program.end ? program.end_utc.toUTCDate().create24HourTimeString() : "");
           $("#"+prefix+'image_img').attr("src",program.mediaimage);
-          document.getElementById(prefix+'image_img').setAttribute('onerror','javascript:this.src="random.php?_="+Math.random();');
     }
     else {
         $("#"+prefix+'title').html("No program");
@@ -536,7 +535,6 @@ function updateBannerProgramDVB(prefix,program) {
           $("#"+prefix+'starttime').html( startTime.create24HourTimeString());
           $("#"+prefix+'endtime').html( endTime.create24HourTimeString());
           $("#"+prefix+'image_img').attr("src","fokapokfpok");
-          document.getElementById(prefix+'image_img').setAttribute('onerror','javascript:this.src="random.php?_="+Math.random();');
     }
 }
 

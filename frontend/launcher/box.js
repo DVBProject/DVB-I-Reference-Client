@@ -69,7 +69,6 @@ Box.prototype.populate = function(callback){
 		image.onload = function(imgtag, box, url){
 			imgtag.setAttribute("src", url);
             imgtag.setAttribute("alt", "Image not found");
-			imgtag.setAttribute('onerror','javascript:this.src="random.php?_="+Math.random();')
 			box.appendChild(imgElem);
 		}(imgElem, boxitem_image, img_url);
 		image.src = img_url;
