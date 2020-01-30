@@ -771,13 +771,13 @@ img#logo {
 	vertical-align:top;
 }
 .boxitem.focused {
-	border: 2px solid #f7921e !important;
+	border: 2px solid #0098f4 !important;
 	border: none !important;
 	_margin-left: -2px;
 	_margin-top: -2px;	
 }
 .boxitem.focused .boxitem_image {
-	border: 2px solid #f7921e !important;	
+	border: 2px solid #0098f4 !important;	
 }
 .boxitem:last-child{
 	margin-right: 90px;
