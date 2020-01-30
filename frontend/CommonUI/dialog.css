@@ -1,0 +1,211 @@
+#dialog{
+	height: 720px;
+	width: 1280px;
+	background-color: RGBA(12, 12, 12, 0.95);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 400;
+	text-align: center;	
+	/*background-image:url(bg_gradient.png);*/
+	background-repeat:repeat-x;	 
+	_display: none;
+}
+#dialog h1{
+	height:50px;
+	color:#b5b5b5;
+	margin: 0px;
+	line-height: 50px;
+}
+#dialog .wrapper {
+  display: block;
+  height: 550px;
+  line-height: 550px;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+  /*width: 390px;*/ width: 470px;
+  left: 445px;
+}
+#dialog .wrapper {
+	left: 0px;
+	top: 0px;
+	
+	width: 1280px;
+	height: 602px;	
+
+}
+
+
+#dialogButtons  {
+  	_position: relative;
+ display: inline-block;
+  position: unset;
+  vertical-align: middle;	
+
+}
+#dialogButtons.dialogButton_alert {
+	display: block;	
+}
+.dialog_btn_container {
+	height: 530px;
+    vertical-align:middle;
+    display:table-cell;
+	position: relative;
+	overflow: hidden;
+}
+/*
+#dialogButtons {
+    height:auto;
+	position:relative;		
+}
+*/
+.dialogButton {
+	background-color: rgba(0,0,0,0.1);
+	color: #b5b5b5;
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	margin-bottom: 11px;
+	position: relative;
+	text-align: center;
+	/*width: 390px;*/ 
+	width: 450px;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align:middle;
+	border: none;
+	_border-bottom: 3px transparent solid !important;	
+	overflow: hidden;	
+  
+  /*
+    -webkit-transition: border 0.2s linear;
+    -o-transition: border 0.2s linear;
+    -moz-transition: border 0.2s linear;
+    transition: border 0.2s linear;
+	*/
+}
+
+/*
+.dialogButton:last-child{
+	margin-bottom: 0px !important;
+}
+*/
+.dialogButton.checked{
+	background-color: #000;
+	_border-bottom: 3px solid #000;
+}
+.dialogButton.focused{
+	/*
+	border-bottom: 3px #f7921e solid !important;
+	color: #b5b5b5 !important;
+	background-color: #38393a;
+	*/
+	background-image:url(../epg/images/bg_program_focused.png);
+	background-size: contain;
+	border-radius: 1px;
+	border-bottom: none !important;
+}
+
+.dialog_arrow{
+	position:absolute;
+	left: 625px;
+    background-image: url("menu_arrow.png");
+    height: 15px;
+    width: 30px;	
+}
+#dialog_up_arrow{
+	top: 30px;
+}
+#dialog_down_arrow{
+	top: 642px;
+ 	background-position: 0 -15px;	
+ 	z-index: 500;
+}
+.dialogButton span:first-child {
+	width: 390px;
+	overflow: hidden;
+	white-space:nowrap;
+	display:inline-block;
+	margin-right: auto;	
+	margin-left: auto;
+	text-align: center; 
+	text-overflow: ellipsis;
+}
+.checkmark {
+	display: none;
+	height: inherit;
+	position: absolute;
+	right: 3px;
+	top: 2px;
+	width: 35px;
+	background-image:url(dialog_checkmark.png);
+	background-repeat:no-repeat;
+}
+.checked .checkmark{
+	display: block !important;
+}
+
+/* Dialog alert */
+/*
+.dialog_alert {
+	_border:  1px solid red;
+   display: inline-block;
+    position: relative;
+    _vertical-align: middle;
+	width: 80%;
+	margin-bottom: 20px;
+	line-height:normal !important;
+}
+*/
+
+/**/
+.dialog_alert_container {
+	display: inline-block;
+	position:relative;
+	vertical-align:middle;
+	_border: 1px solid red;
+	text-align:center;		
+}
+.dialog_alert_container:before {  
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;  
+    height: 100%;
+	line-height: normal !important;
+}
+.dialog_alert_container #dialogWrapper {
+	display:inline-block;
+	vertical-align:middle;
+	width: 80% !important;
+	height: 300px !important;	
+}
+.dialog_alert_header {
+	_display: block;
+	height:  50px;
+	line-height:  50px;
+	font-size: 32px;
+	color: #fff;
+}
+.dialog_alert_text{
+	margin-left:  auto;
+	margin-right:  auto;
+}
+.dialog_alert_text span {
+	display:  block;
+	height:  30px;
+	line-height:  30px;
+	color: #aaa;
+	font-size: 18px;
+}
+.dialog_alert_container #dialogButtons {
+	margin-top: 20px;	
+}
+.dialog_alert_container .dialogButton {
+	width: 	250px;
+}
+.dialog_alert_container .dialogButton span:first-child {
+	width: 	100%;
+}
+
+/* END dialog alert */
