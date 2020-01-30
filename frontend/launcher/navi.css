@@ -383,7 +383,7 @@ div, span {
 	-o-transition: opacity 0.3s linear;
 	transition: opacity 0.3s linear;
 	_margin-left: 30px;
-  left: 970px !important;
+  left: 970px;
 }
 .menuitem .items.visible{
 	display: block !important;
