@@ -28,7 +28,7 @@ else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sids']) ){
     $index = 1;
     $id = "crid://".$_GET['sids'][0].".".$index;
     while($start < $schedule_end) {
-        $schedule = file_get_contents("schedule_event_template .xml");
+        $schedule = file_get_contents("schedule_event_template.xml");
         $schedule =str_replace("PROGRAM_ID_TEMPLATE",$id,$schedule);
         $schedule =str_replace("START_TIME_TEMPLATE",date("c", $start),$schedule);
         $schedule =str_replace("DURATION_TEMPLATE","PT".$program_length."M",$schedule);
