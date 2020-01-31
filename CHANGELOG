@@ -1,0 +1,14 @@
+31 Jan 2020
+
+First release
+Backend: generation of DVB-I Service list supporting DASH and DVB style 
+services, LCNs and most commonly used features of the service list.
+
+Frontend: First attempt of the HbbTV OpApp version of the DVB-I implementation, 
+supporting DVB and DASH services, selecting services and browsing the list. 
+A simple EPG and info banner implementations are also present.
+
+TO-DO
+code cleanups
+UI cleanups, DVB branding
+More useful TV Anytime data
