@@ -7,9 +7,9 @@ function Channel( init_obj, element_id ){
 
 Channel.prototype.getNowNext = function() {
     var self = this;
-    if(true) {//self.contentId) {
+    if(self.id) {
         var scheduleURI = "../../backend/schedule.php"; //TODO get the schedule url from the service list
-         $.get( scheduleURI/*+"?sid="+self.contendId+"&now_next=true"*/, function( data ) {
+         $.get( scheduleURI+"?sid="+self.id+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
             var parser = new DOMParser();
             var doc = parser.parseFromString(data,"text/xml");
             var events = doc.getElementsByTagName("ScheduleEvent");
@@ -25,7 +25,14 @@ Channel.prototype.getNowNext = function() {
                     if(programs[j].getAttribute("programId") == programId) {
                         var descriprion = programs[j].getElementsByTagName("BasicDescription")[0];
                         program.title = descriprion.getElementsByTagName("Title")[0].childNodes[0].nodeValue;
-                        program.img = descriprion.getElementsByTagName("MediaUri")[0].childNodes[0].nodeValue;
+                        var relatedMaterial =  descriprion.getElementsByTagName("RelatedMaterial");
+                        for(var k=0;k<relatedMaterial.length;k++) {
+                            var howRelated = relatedMaterial[k].getElementsByTagName("HowRelated")[0].getAttribute("href");
+                            if(howRelated == "urn:tva:metadata:cs:HowRelatedCS:2012:19") { //Program still image
+                                program.img = relatedMaterial[k].getElementsByTagName("MediaUri")[0].childNodes[0].nodeValue;
+                                break;
+                            }
+                        }
                         break;
                     }
                 }
@@ -305,7 +312,7 @@ Channel.prototype.update = function(epg_obj){
 		if(self.element){
 			var items = self.element.childNodes.getByClass("items")[0];
 			if(items){ items.innerHTML = ""; }
-			self.init(epg_obj, self.element_id, true);
+			self.getNowNext();
 			if(self.open){
 				var activeBoxName = (activeBox) ? activeBox.name : null;
 				var focus = self.getBoxByName(activeBoxName);

@@ -45,17 +45,11 @@
     var lang_json_array = [];
 	lang_json_array.sort();
 	var loc = null;
-	var languageNames = {
-        	"eng.json":"English",
-	        "mandarin.json":"Mandarin"
-	};
 
-	var COOKIE_LANG_NAME = "locLangATLAS";
 	var VERTICAL_MENU = 0;
 	var HORIZONTAL_MENU = 1;
 	var BOXITEM = 2;
 	var TWENTY_FOUR_HOURS = 86400000;
-	var server_name = "SofiaPVR(ipts)";
 	var container = null;
 	var menus = [{}]  ;
 	var prevs, prevm;
@@ -70,11 +64,7 @@
 	var progressOpenWidth = 0;
 	var localizationLangFile = null;
 
-    
-	localizationLangFile = readCookie(COOKIE_LANG_NAME);
-	if( !localizationLangFile || localizationLangFile == "") {
-		localizationLangFile = "eng.json";  //"../eng.json"
-	}
+
 
 	var lang = "eng";
 	if(localizationLangFile != "eng.json"){
@@ -177,7 +167,6 @@
         var doc = parser.parseFromString(data,"text/xml");
         var services = doc.getElementsByTagName("Service");
         var lcnList = doc.getElementsByTagName("LCNTable")[0].getElementsByTagName("LCN");
-        serviceList = [];
         for (var i = 0; i < services.length ;i++) {
             var chan = {}; 
             
@@ -248,73 +237,6 @@
         
 	}
 
-	function updateMenu(epg){
-        if(epg){
-            console.log("updateMenu called");
-
-            curTime = new Date();
-            console.log(curTime);
-            
-            $.each(_menu_.items, function(i, channel){
-
-                if(channel.number){
-                    var epgchannel = epg.channels[channel.number - 1];
-                    if(!epgchannel.number){
-                        console.log("epgchannel.number undefined, menu update stopped");
-                        return;
-                    }
-                }else{
-                    console.log("channel.number undefined, menu update stopped");
-                    return;
-                }
-                var status_wrapper = channel.element.childNodes.getByClass("status_wrapper")[0];
-                
-                if(channel instanceof Channel && channel.number == epgchannel.number && (channel.epg.now.end != undefined && curTime >= channel.epg.now.end)){
-                    
-                   try{
-                  
-                      channel.update(epgchannel);
-          
-                   }catch(e){
-                       console.log("Exception in updating channel " + e.message );
-                   }                    
-                  
-                    // Title
-                    
-                    var program_title = status_wrapper.childNodes.getByClass("program_title")[0];
-                    var now = channel.boxes[0];
-                    var title = now.getTitle("def");
-                    if(title.length == 0) title = now.getTitle("alt");
-                    program_title.innerHTML = XMLEscape(title);
-
-                    // Clock
-                    if(channel.boxes[0].start != undefined) {
-                            var start = channel.boxes[0].start.create24HourTimeString() +" ";
-                            var starttime = status_wrapper.childNodes.getByClass("start_time")[0];
-                            starttime.innerHTML = XMLEscape(start) || "";
-                    }
-                                
-                }
-                
-                var pb_width = 0;
-                if(channel.boxes[0].start && channel.boxes[0].end){
-                    var start = channel.boxes[0].start;
-                    var end = channel.boxes[0].end;
-                    pb_width = Math.floor(Math.max(0, Math.round((curTime.getTime() - start.getTime()) / 1000 / 60)) / Math.max(0, Math.round((end.getTime() - start.getTime()) / 1000 / 60)) * progressWidth);
-                }
-                
-                // Update all closed channels progressbars
-                var progress_bar_frame = status_wrapper.childNodes.getByClass("progress_bar_frame")[0];
-                var progress_bar = progress_bar_frame.childNodes.getByClass("progress_bar")[0];
-                progress_bar.style.width = pb_width + "px";
-            
-           });
-            console.log("menu updated");
-        }else{
-            console.log("Epg not defined, menu not updated");
-        }
-	}
-    
     function updateProggressbars(){   
          $.each(_menu_.items, function(i, channel){ 
             var status_wrapper = channel.element.childNodes.getByClass("status_wrapper")[0];
@@ -377,8 +299,6 @@
     }
 
     function refresh() {
-
-
         curTime = new Date();
 		
 
@@ -387,19 +307,15 @@
             
 			displayTime();
 			
-			if ((prevm == 10) || (prevm == 40))
-				console.log(curTime);
 
 			var hidden = (document.hidden != undefined && document.hidden) ? true : false;
-        	if(miniepg && !hidden){
-			var needToUpdate = false;
-        		for(var i = 0; i < miniepg.channels.length; i++){
-        			if(miniepg.channels[i].epg.now && miniepg.channels[i].epg.now.end){
-	    				if(curTime >= miniepg.channels[i].epg.now.end){
+        	if(_menu_ && _menu_.items && !hidden){
+
+        		for(var i = 0; i < _menu_.items.length; i++){
+        			if(_menu_.items[i].epg.now && _menu_.items[i].epg.now.end){
+	    				if(curTime >= _menu_.items[i].epg.now.end){
 	    					// update miniepg
-	    					console.log("update miniepg");
-							needToUpdate = true;
-							break;
+			                _menu_.items[i].update();
 	    				}
 	    			}
         		}
@@ -408,43 +324,8 @@
             updateProggressbars();
                 
 			// Update the currently opened channel
-			updateOpenChannel();
-
-        		if(needToUpdate){
-                   
-                   
-                    console.log("needToUpdate menu");
-                    var date = new Date(curTime.getTime());
-                    if(curTime.getHours() >= 0 && curTime.getHours() < 4){
-                        date = new Date(curTime.getTime()-TWENTY_FOUR_HOURS);
-                    }
-                    var datestr = date.getFullYear()+addZeroPrefix(date.getMonth()+1)+addZeroPrefix(date.getDate());
-                        
-                    try{
-                        getMiniEPG(datestr, lang, function(epg){
-                            if(_menu_ == null){
-                                createMenu(epg);
-                            }
-                            else{
-                                updateMenu(epg);
-                            }
-                            
-                            
-                            var channel = _menu_.getOpenChannel();
-                        
-                            if(channel){
-                                 channel.update();
-                            }
-                            
-                        }, function(){
-                            console.log("Error in fetching miniepg data");
-                        });
-                    }catch(e){
-                      console.log(e.message);  
-                    }
+			updateOpenChannel();	
 					
-					
-				}
         	}
         }
         setTimeout(refresh, 1000);

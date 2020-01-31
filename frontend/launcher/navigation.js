@@ -792,7 +792,6 @@ function playDASH(url) {
      }
 
     try {
-        showInfo("Current channel"+supervisor.currentChannel.name)
         if(supervisor.playState == 1 ) {
             supervisor.pause();
             supervisor.setChannel(null);
