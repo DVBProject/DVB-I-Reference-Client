@@ -19,7 +19,7 @@ Channel.prototype.getNowNext = function() {
             for(var i=0;i<events.length;i++) {
                 var program = {};
                 var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
-                program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toDate();
+                program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toUTCDate();
                 program.end  = iso6801end(events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue, program.start);
                 for(var j=0;j<programs.length;j++) {
                     if(programs[j].getAttribute("programId") == programId) {
