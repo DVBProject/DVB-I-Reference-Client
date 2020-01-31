@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xmlns="urn:tva:metadata:2019"
+ xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" xml:lang="eng">
+ <ProgramDescription>
+ <ProgramInformationTable xml:lang="eng">
+ <!--PROGRAMS-->
+ </ProgramInformationTable>
+ <ProgramLocationTable xml:lang="eng">
+ <Schedule serviceIDRef="SERVICE_ID_TEMPLATE" start="START_TEMPLATE" end="END_TEMPLATE">
+ <!--SCHEDULES-->
+ </Schedule>
+ </ProgramLocationTable>
+ </ProgramDescription>
+</TVAMain>

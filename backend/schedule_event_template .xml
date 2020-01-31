@@ -1,0 +1,5 @@
+ <ScheduleEvent>
+ <Program crid="PROGRAM_ID_TEMPLATE"/>
+ <PublishedStartTime>START_TIME_TEMPLATE</PublishedStartTime>
+ <PublishedDuration>DURATION_TEMPLATE</PublishedDuration>
+ </ScheduleEvent>
