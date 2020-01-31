@@ -364,6 +364,14 @@ div, span {
 	font-weight: 700;
 
 }
+.open .menuitem_title .sourcetype {
+    font-size: 18px;
+}
+
+.closed .menuitem_title .sourcetype {
+	font-size: 12px;
+	font-weight: 700;
+}
 .closed .menuitem_title {
 	font-size: 21px;
 	font-weight: 700;
