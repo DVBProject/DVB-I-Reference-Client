@@ -232,7 +232,19 @@ Channel.prototype.getNowNext = function() {
         self.center = 0;        
       
         self.populate(null);
-                
+        var status_wrapper = self.element.childNodes.getByClass("status_wrapper")[0];
+        var pb_width = 0;
+        if(self.boxes[0].start && self.boxes[0].end){
+            var start = self.boxes[0].start;
+            var end = self.boxes[0].end;
+            pb_width = Math.floor(Math.max(0, Math.round((curTime.getTime() - start.getTime()) / 1000 / 60)) / Math.max(0, Math.round((end.getTime() - start.getTime()) / 1000 / 60)) * progressWidth);
+        }
+
+        // Update all closed channels progressbars
+        var progress_bar_frame = status_wrapper.childNodes.getByClass("progress_bar_frame")[0];
+        var progress_bar = progress_bar_frame.childNodes.getByClass("progress_bar")[0];
+        progress_bar.style.width = pb_width + "px";
+ 
             
          },"text");
     }
