@@ -359,6 +359,7 @@ function onKey(keyCode)
 			window.location = "../epg/index.php";
 		break;
         case 109:
+        case VK_BLUE:
 		case VK_INFO:
             if(menuOpen) {
                 hideMenu();
