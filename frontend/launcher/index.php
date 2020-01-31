@@ -24,6 +24,7 @@
    	<script type="text/javascript" src="box.js"></script>
 	<script type="text/javascript" src="navigation.js"></script>
 	<script type="text/javascript" src="../session.js"></script>
+    <script type="text/javascript" src="../isoduration.js"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript" src="../buttonbar.js"></script>
 	<script type="text/javascript" src="../alertDialog.js"></script>
@@ -193,6 +194,10 @@
             chan.center_name = services[i].getElementsByTagName("ServiceName")[0].childNodes[0].nodeValue;
             chan.name = chan.center_name;
             chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
+            var cgRefs =  services[i].getElementsByTagName("ContentGuideServiceRef");
+            if(cgRefs && cgRefs.length > 0) {
+                chan.contentId = cgRefs[0].childNodes[0].nodeValue;
+            }
             var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
             var sourceTypes = [];
             for(var j = 0;j < serviceInstances.length;j++) {
@@ -264,7 +269,7 @@
                 }
                 var status_wrapper = channel.element.childNodes.getByClass("status_wrapper")[0];
                 
-                if(channel instanceof Channel && channel.number == epgchannel.number && (channel.epg.now.end != undefined && curTime >= channel.epg.now.end.toDate())){
+                if(channel instanceof Channel && channel.number == epgchannel.number && (channel.epg.now.end != undefined && curTime >= channel.epg.now.end)){
                     
                    try{
                   
@@ -284,7 +289,7 @@
 
                     // Clock
                     if(channel.boxes[0].start != undefined) {
-                            var start = channel.boxes[0].start.toDate().create24HourTimeString() +" ";
+                            var start = channel.boxes[0].start.create24HourTimeString() +" ";
                             var starttime = status_wrapper.childNodes.getByClass("start_time")[0];
                             starttime.innerHTML = XMLEscape(start) || "";
                     }
@@ -293,8 +298,8 @@
                 
                 var pb_width = 0;
                 if(channel.boxes[0].start && channel.boxes[0].end){
-                    var start = channel.boxes[0].start.toDate();
-                    var end = channel.boxes[0].end.toDate();
+                    var start = channel.boxes[0].start;
+                    var end = channel.boxes[0].end;
                     pb_width = Math.floor(Math.max(0, Math.round((curTime.getTime() - start.getTime()) / 1000 / 60)) / Math.max(0, Math.round((end.getTime() - start.getTime()) / 1000 / 60)) * progressWidth);
                 }
                 
@@ -315,8 +320,8 @@
             var status_wrapper = channel.element.childNodes.getByClass("status_wrapper")[0];
             var pb_width = 0;
             if(channel.boxes[0].start && channel.boxes[0].end){
-                var start = channel.boxes[0].start.toDate();
-                var end = channel.boxes[0].end.toDate();
+                var start = channel.boxes[0].start;
+                var end = channel.boxes[0].end;
                 pb_width = Math.floor(Math.max(0, Math.round((curTime.getTime() - start.getTime()) / 1000 / 60)) / Math.max(0, Math.round((end.getTime() - start.getTime()) / 1000 / 60)) * progressWidth);
             }
 
@@ -349,14 +354,14 @@
                 var timeremainingElems = box.element.getElementsByClassName("timeremaining");
                 if(timeremainingElems.length > 0){
                     var timeremaining = timeremainingElems[0];
-                    timeremaining.innerHTML = Math.max(0, Math.round((box.end.toDate().getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining";
+                    timeremaining.innerHTML = Math.max(0, Math.round((box.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining";
                 }
             });
 
             var pb_width = 0;
             if(channel.boxes[0].start && channel.boxes[0].end){
-                var start = channel.boxes[0].start.toDate();
-                var end = channel.boxes[0].end.toDate();
+                var start = channel.boxes[0].start;
+                var end = channel.boxes[0].end;
                 pb_width = Math.floor(Math.max(0, Math.round((curTime.getTime() - start.getTime()) / 1000 / 60)) / Math.max(0, Math.round((end.getTime() - start.getTime()) / 1000 / 60)) * progressOpenWidth);
                 console.log("progressbar updated");
             }
@@ -390,7 +395,7 @@
 			var needToUpdate = false;
         		for(var i = 0; i < miniepg.channels.length; i++){
         			if(miniepg.channels[i].epg.now && miniepg.channels[i].epg.now.end){
-	    				if(curTime >= miniepg.channels[i].epg.now.end.toDate()){
+	    				if(curTime >= miniepg.channels[i].epg.now.end){
 	    					// update miniepg
 	    					console.log("update miniepg");
 							needToUpdate = true;

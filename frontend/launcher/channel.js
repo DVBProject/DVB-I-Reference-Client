@@ -5,53 +5,36 @@ function Channel( init_obj, element_id ){
 	this.init(init_obj, element_id);
 }
 
-Channel.prototype.init = function( init_obj, element_id){
-		var self = this;
-		self.boxes = [];
-		$.each( init_obj, function( f, field ){
-			self[f] = field;
-		});
-		self.element = document.getElementById(element_id);
-		if(self.element == null){
-			var element = document.createElement("div");
-			element.className = "menuitem closed";
-			element.setAttribute("id", element_id);
+Channel.prototype.getNowNext = function() {
+    var self = this;
+    if(true) {//self.contentId) {
+        var scheduleURI = "../../backend/schedule.php"; //TODO get the schedule url from the service list
+         $.get( scheduleURI/*+"?sid="+self.contendId+"&now_next=true"*/, function( data ) {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(data,"text/xml");
+            var events = doc.getElementsByTagName("ScheduleEvent");
+            var programs = doc.getElementsByTagName("ProgramInformation");
+            var epg = {};
+            var boxes = [];
+            for(var i=0;i<events.length;i++) {
+                var program = {};
+                var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
+                program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toDate();
+                program.end  = iso6801end(events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue, program.start);
+                for(var j=0;j<programs.length;j++) {
+                    if(programs[j].getAttribute("programId") == programId) {
+                        var descriprion = programs[j].getElementsByTagName("BasicDescription")[0];
+                        program.title = descriprion.getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+                        program.img = descriprion.getElementsByTagName("MediaUri")[0].childNodes[0].nodeValue;
+                        break;
+                    }
+                }
+                epg[i == 0 ? "now" : "next"] = program;
 
-			// Arrow up
-			var arrow_up = document.createElement("div");
-			arrow_up.addClass("menu_arrow_triangle_up");
-			arrow_up.addClass("menu_arrow");
-			element.appendChild(arrow_up);
+                }
+                self.epg = epg;
 
-			// Boxitem title
-			if(self.description != null && self.description.length > 0){
-				var boxitem_title = document.createElement("div");
-				boxitem_title.innerHTML = "<span>" + XMLEscape(self.description) + "</span>";
-				boxitem_title.addClass("boxitem_title");
-				element.appendChild(boxitem_title);
-			}
-
-			// Menuitem title
-			var menuitem_title = document.createElement("div");
-            menuitem_title.innerHTML = "<span>" + XMLEscape(self.majorChannel) +".</span><span>" + XMLEscape(self.name) +"</span><span>" + XMLEscape(self.sourceTypes) +"</span>";
-            menuitem_title.addClass("menuitem_title", null);
-			element.appendChild(menuitem_title);
-            
-			// Items
-			var items = document.createElement("div");
-			items.addClass("items", null);
-			element.appendChild(items);
-			
-			// Arrow down
-			var arrow_down = document.createElement("div");
-			arrow_down.addClass("menu_arrow_triangle_down");
-			arrow_down.addClass("menu_arrow");
-			element.appendChild(arrow_down);
-
-			self.element = element;
-		}
-
-		$.each( self.items, function( i, item ){
+	$.each( self.items, function( i, item ){
 			if(self.epg && self.epg[item.name] != null){
 				// Set info text for the Box
 				// NOW
@@ -65,14 +48,13 @@ Channel.prototype.init = function( init_obj, element_id){
                         var info = "";
                         var next = self.epg["next"];
                         var following = self.epg["following"];
-                        var following = self.epg["following"];
                         
                         if(now){
                             
                             //   info += "<span>";
                             if(now.start && now.end){
-                                var now_start = now.start.toDate();
-                                var now_end = now.end.toDate();
+                                var now_start = now.start;
+                                var now_end = now.end;
                             }
                             
                             if(now_start){
@@ -125,7 +107,7 @@ Channel.prototype.init = function( init_obj, element_id){
                             now.info = info;
                             
                             if(now instanceof Box){
-                                self.boxes.push(now);
+                                boxes.push(now);
                             }
                        
                             if(self.epg[item.name].title == "No program" && self.epg["following"].title == "No program" && self.epg["next"].title == "No program"){
@@ -144,8 +126,8 @@ Channel.prototype.init = function( init_obj, element_id){
 						if(box){
 							
 							if(following.start && following.end){
-								var following_start = following.start.toDate();
-								var following_end = following.end.toDate();
+								var following_start = following.start;
+								var following_end = following.end;
 							}
 							
                             box.name = "following";
@@ -182,7 +164,7 @@ Channel.prototype.init = function( init_obj, element_id){
 						}	
 						
 						if(box instanceof Box){
-							self.boxes.push(box);
+							boxes.push(box);
 						}
 					}
 					
@@ -198,8 +180,8 @@ Channel.prototype.init = function( init_obj, element_id){
 							//info += "<span>";
 						
 							if(next.start && next.end){
-								var next_start = next.start.toDate();
-								var next_end = next.end.toDate();
+								var next_start = next.start;
+								var next_end = next.end;
 							}
                             
 							info += "<span class=\"horizontalAutoscroll\"> ";
@@ -230,22 +212,73 @@ Channel.prototype.init = function( init_obj, element_id){
                             
 						}
 						if(box instanceof Box){
-							self.boxes.push(box);
+							boxes.push(box);
 						}
 					}
                     
 					
 				}	
 			}
-            // TODO this is propably not needed
-            /*
-			else if(Object.keys(self.epg).indexOf(item.name) < 0){
-				if(box instanceof Box){
-					self.boxes.push(box);
-				}
-			}
-*/            
+         
 		});
+        self.boxes = boxes;
+        self.center = 0;        
+      
+        self.populate(null);
+                
+            
+         },"text");
+    }
+}
+
+
+Channel.prototype.init = function( init_obj, element_id){
+		var self = this;
+		self.boxes = [];
+		$.each( init_obj, function( f, field ){
+			self[f] = field;
+		});
+        self.getNowNext();
+		self.element = document.getElementById(element_id);
+		if(self.element == null){
+			var element = document.createElement("div");
+			element.className = "menuitem closed";
+			element.setAttribute("id", element_id);
+
+			// Arrow up
+			var arrow_up = document.createElement("div");
+			arrow_up.addClass("menu_arrow_triangle_up");
+			arrow_up.addClass("menu_arrow");
+			element.appendChild(arrow_up);
+
+			// Boxitem title
+			if(self.description != null && self.description.length > 0){
+				var boxitem_title = document.createElement("div");
+				boxitem_title.innerHTML = "<span>" + XMLEscape(self.description) + "</span>";
+				boxitem_title.addClass("boxitem_title");
+				element.appendChild(boxitem_title);
+			}
+
+			// Menuitem title
+			var menuitem_title = document.createElement("div");
+            menuitem_title.innerHTML = "<span>" + XMLEscape(self.majorChannel) +".</span><span>" + XMLEscape(self.name) +"</span><span>" + XMLEscape(self.sourceTypes) +"</span>";
+            menuitem_title.addClass("menuitem_title", null);
+			element.appendChild(menuitem_title);
+            
+			// Items
+			var items = document.createElement("div");
+			items.addClass("items", null);
+			element.appendChild(items);
+			
+			// Arrow down
+			var arrow_down = document.createElement("div");
+			arrow_down.addClass("menu_arrow_triangle_down");
+			arrow_down.addClass("menu_arrow");
+			element.appendChild(arrow_down);
+
+			self.element = element;
+		}
+
         if(!self.epg) {
             var placeholder = { text : "No program" };
             var box = new Box( placeholder, self.element_id + "_" + self.code);
@@ -264,14 +297,6 @@ Channel.prototype.init = function( init_obj, element_id){
        
 
         }
-  		$.each( self.boxes, function( b, box ){
-			if(self.center_name == box.name){
-				self.center = b;
-			}
-		});
-        
-      
-        self.populate(null);
     
 }
 
@@ -305,7 +330,7 @@ Channel.prototype.setOpen = function(open, focus){
 			if(focusBox(box)){
 				var itemsElem = channel.element.childNodes.getByClass("items")[0];
 				if(itemsElem){
-					var left = 210;
+					var left = 970;
 					for(var i = 0; i < itemsElem.childNodes.length; i++){
 						if(itemsElem.childNodes[i] == box.element){
 							break;

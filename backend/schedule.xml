@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xmlns="urn:tva:metadata:2019"
+ xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" xml:lang="eng">
+ <ProgramDescription>
+ <ProgramInformationTable xml:lang="eng">
+ <ProgramInformation programId="crid://channel7.co.uk/b01myjsy">
+ <BasicDescription>
+ <Title type="main">Bargain Hunt</Title>
+ <Title type="secondary">01/01/2014</Title>
+ <Synopsis length="short">
+ The Bargain Hunt teams head to Staffordshire's County Showground.</Synopsis>
+ <Synopsis length="medium"> The Bargain Hunt teams head to
+ Staffordshire's County Showground, where both experts face double
+ trouble.</Synopsis>
+ <Genre href="urn:dvb:metadata:cs:ContentSubject:2019:3" type="main"/>
+ <ParentalGuidance>
+ <mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
+ <ExplanatoryText length="long">Contains strong language and flash photography
+ </ExplanatoryText>
+ </ParentalGuidance>
+ <RelatedMaterial>
+ <HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+ <MediaLocator>
+ <MediaUri contentType="image/png">http://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/backend/now.png</MediaUri>
+ </MediaLocator>
+ </RelatedMaterial>
+ </BasicDescription>
+ </ProgramInformation>
+ <ProgramInformation programId="crid://channel7.co.uk/b03bhc3n">
+ <BasicDescription>
+ <Title type="main">BBC News at One</Title>
+ <Synopsis length="medium"> The latest national and international
+ news stories from the BBC News team, followed by weather</Synopsis>
+ <Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+ <ParentalGuidance>
+ <mpeg7:ParentalRating
+ href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:no_parental_controls"/>
+ <ExplanatoryText length="long">
+ Contains scenes of violence and strong language.</ExplanatoryText>
+ </ParentalGuidance>
+ <RelatedMaterial>
+ <HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+ <MediaLocator>
+ <MediaUri contentType="image/png">http://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/backend/next.png</MediaUri>
+ </MediaLocator>
+ </RelatedMaterial>
+ </BasicDescription>
+ </ProgramInformation>
+ </ProgramInformationTable>
+ <ProgramLocationTable xml:lang="eng">
+ <Schedule serviceIDRef="3039" start="2013-09-25T11:15:00Z" end="2013-09-25T12:30:00.000Z">
+ <ScheduleEvent>
+ <Program crid="crid://channel7.co.uk/b01myjsy"/>
+ <ProgramURL>dvb://233a..3039;b2e3</ProgramURL>
+ <InstanceDescription>
+ <CaptionLanguage closed="true">eng</CaptionLanguage>
+ <SignLanguage closed="false">sgn</SignLanguage>
+ <AVAttributes>
+ <AudioAttributes>
+ <AudioLanguage purpose="urn:tva:metadata:cs:AudioPurposeCS:2007:1">
+ eng</AudioLanguage>
+ </AudioAttributes>
+ <AudioAttributes>
+ <MixType href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2001:3"/>
+ <AudioLanguage purpose="urn:tva:metadata:cs:AudioPurposeCS:2007:6">
+ eng</AudioLanguage>
+ </AudioAttributes>
+ <VideoAttributes>
+ <HorizontalSize>1920</HorizontalSize>
+ <VerticalSize>1080</VerticalSize>
+ <AspectRatio>16:9</AspectRatio>
+ </VideoAttributes>
+ <CaptioningAttributes>
+ <Coding href="urn:tva:metadata:cs:CaptionCodingFormatCS:2010:2.1"/>
+ </CaptioningAttributes>
+ </AVAttributes>
+ <OtherIdentifier type="eit-programme-crid">
+ crid://channel7.co.uk/23VD4Q</OtherIdentifier>
+ <OtherIdentifier type="eit-series-crid">
+ crid://channel7.co.uk/KM9T8E</OtherIdentifier>
+ </InstanceDescription>
+ <PublishedStartTime>2013-09-25T11:15:00Z</PublishedStartTime>
+ <PublishedDuration>PT45M</PublishedDuration>
+ </ScheduleEvent>
+ <ScheduleEvent>
+ <Program crid="crid://channel7.co.uk/b03bhc3n"/>
+ <ProgramURL>dvb://233a..3039;b2e4</ProgramURL>
+ <InstanceDescription>
+ <AVAttributes>
+ <VideoAttributes>
+ <HorizontalSize>576</HorizontalSize>
+ <VerticalSize>512</VerticalSize>
+ <AspectRatio>16:9</AspectRatio>
+ </VideoAttributes>
+ </AVAttributes>
+ <OtherIdentifier type="eit-programme-crid">
+ crid://channel7.co.uk/5A795M</OtherIdentifier>
+ <OtherIdentifier type="eit-series-crid">
+ crid://channel7.co.uk/KCI4LM</OtherIdentifier>
+ </InstanceDescription>
+ <PublishedStartTime>2013-09-25T12:00:00Z</PublishedStartTime>
+ <PublishedDuration>PT30M</PublishedDuration>
+ </ScheduleEvent>
+ </Schedule>
+ </ProgramLocationTable>
+ </ProgramDescription>
+</TVAMain>
