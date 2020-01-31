@@ -109,7 +109,7 @@ div, span {
 .status_wrapper{
 	/*color: #fff;*/
 	/*font-size: 12px;*/
-	left:984px;
+	left:960px;
 	position: absolute;
 	display:none;
 	top: 45px;
@@ -203,14 +203,14 @@ div, span {
 .menuitem_title{
 	color: #fff;
 	font-size: 32px;
-	left:205px;
+	left:180px;
 	position: relative;
 
 /*	
-	-moz-transition: all 0.10s linear;
-	-webkit-transition: all 0.10s linear;
-	-o-transition: all 0.10s linear;
-	transition: all 0.10s linear;
+	-moz-transition: all 0.05s linear;
+	-webkit-transition: all 0.05s linear;
+	-o-transition: all 0.05s linear;
+	transition: all 0.05s linear;
 */
 	display:block;
 	top: 0px;
@@ -383,7 +383,7 @@ div, span {
 	-o-transition: opacity 0.3s linear;
 	transition: opacity 0.3s linear;
 	_margin-left: 30px;
-  left: 970px;
+  left: 718px;
 }
 .menuitem .items.visible{
 	display: block !important;
