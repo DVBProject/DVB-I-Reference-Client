@@ -20,16 +20,16 @@ $( document ).ready(function() {
 <section class="header">
   <nav class="navbar navbar-dark bg-dark"><img class="navbar-brand" src="images/logo_dvb-i.png" alt="DVB-I"> <a class="navbar-brand font-weight-bold" href="#">DVB-I Reference Application</a> <img class="navbar-brand float-md-right ml-md-auto my-2 my-lg-0" src="images/logo_sofiadigital.png" alt="Sofia Digital"> </nav>
 </section>
-<div class="container">
+<div class="main container">
   <div class="row mt-5">
-    <div class="col-12 col-md-8 col-lg-8 mb-2">
+    <div class="col-12 col-lg-8 mb-2">
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Edit Service</h5>
           <h6 class="card-subtitle mb-2 text-muted">Subtitle</h6>
           <p class="card-text"><style>div, label, input {_border: 1px solid red;} </style>
           <div class="row">
-            <div class="col-12 col-md-6 border-right">
+            <div class="col-12 col-md-6 border-right border-md-none">
               <form>
                 <div class="form-group row mb-1">
                   <label for="formGroupExampleInput" class="col-6 col-form-label col-form-label-sm">Service list version</label>
@@ -53,6 +53,7 @@ $( document ).ready(function() {
               </form>
             </div>
             <div class="col-12 col-md-6">
+              <h5 class="card-title">Save servicelist</h5>              
               <form action="javascript:uploadServicelist()" method="post">
                 <div class="form-group">
                   <label for="formGroupExampleInput" class="small col-6 px-0">Service list title</label>
@@ -70,7 +71,7 @@ $( document ).ready(function() {
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-4 col-lg-4 mb-2">
+    <div class="col-12 col-lg-4 mb-2">
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Servicelist</h5>
@@ -86,7 +87,6 @@ $( document ).ready(function() {
       </div>
     </div>
   </div>
-  <hr>
 </div>
 <section class="footer">
   <div class="row mx-0">

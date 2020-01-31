@@ -6,8 +6,19 @@ light blue: #3996c9
 dark: #0b0b0b
 grey: #131313
 lightgrey: #848484
-
+darkblue: #011927
 */
+html {
+  height: 100vh; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
+
+.main {
+  flex: 1; }
+
 .service {
   border: 1px solid #848484;
   border-radius: 8px;
@@ -45,3 +56,8 @@ lightgrey: #848484
   .btn-orange:hover {
     background-color: #ff9018;
     color: #fff; }
+
+.footer {
+  height: 15vh;
+  background-color: #011927;
+  color: #fff; }
