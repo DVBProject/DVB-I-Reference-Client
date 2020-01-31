@@ -18,3 +18,9 @@ http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/
 The frontend uses "example.xml" as the service list. It can be browsed in the 
 Backend editor as well, but not modified. 
 http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelists/example.xml
+
+For testing, a TS is provided with AIT that links to the application
+https://cloud.sofiadigital.fi/index.php/s/qrB6MoFH5cPCDoN
+
+Note that this version is "Normal HbbTV" version and lacks some of the functionalities
+of the OpApp version, and might display some inconsistent UI behavior.
