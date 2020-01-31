@@ -130,11 +130,12 @@ function registerKeys(mode) {
 	try {
  
         var app = document.getElementById('appmgr').getOwnerApplication(document);
-        app.onOperatorApplicationStateChange = onOperatorApplicationStateChange;
         var cfg = document.getElementById('oipfcfg');
-        cfg.configuration.replaceUIElements([cfg.configuration.UI_TVMODE,cfg.configuration.UI_MENU,cfg.configuration.UI_EPG]);
+        app.privateData.keyset.setValue(mask);    
         var keys = [KeyEvent.VK_GUIDE,KeyEvent.VK_CHANNEL_UP,KeyEvent.VK_CHANNEL_DOWN,KeyEvent.VK_SUBTITLE,KeyEvent.VK_INFO,KeyEvent.VK_MENU];
         app.privateData.keyset.setValue(mask,keys);
+        cfg.configuration.replaceUIElements([cfg.configuration.UI_TVMODE,cfg.configuration.UI_MENU,cfg.configuration.UI_EPG]);
+        app.onOperatorApplicationStateChange = onOperatorApplicationStateChange;        
         var vid = document.getElementById('broadcast');
 	    supervisor = vid.getChannelConfig().getBroadcastSupervisor();
         
