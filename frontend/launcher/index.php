@@ -430,7 +430,7 @@
         <div id="chinfo_chname"></div>
         <div id="chinfo_chnumber"></div>
         <div id="chinfo_chicon"><img id="chinfo_chicon_img" src="" alt=""/></div>
-        <div id="chinfo_logo"><img src="images/launcher_logo.png" alt=""/></div>
+        <div id="chinfo_logo"><img src="images/logo_dvb-i.png" alt=""/></div>
       
         <div id="chinfo_now">
             <div id="chinfo_now_header">NOW SHOWING</div>
