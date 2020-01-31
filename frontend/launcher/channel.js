@@ -337,7 +337,7 @@ Channel.prototype.setOpen = function(open, focus){
 			if(focusBox(box)){
 				var itemsElem = channel.element.childNodes.getByClass("items")[0];
 				if(itemsElem){
-					var left = 970;
+					var left = 930;
 					for(var i = 0; i < itemsElem.childNodes.length; i++){
 						if(itemsElem.childNodes[i] == box.element){
 							break;

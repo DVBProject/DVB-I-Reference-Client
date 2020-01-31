@@ -818,22 +818,22 @@ img#logo {
 	-webkit-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
 	transition: all 0.2s linear; 
-
 }
 .boxitem_image {
 	background-color: #000;	
-  	height: 131px;
-  	width: 233px;
-  	margin-top: 28px;	
-
+	height: 131px;
+	width: 233px;
 	position: absolute;
 	top: 28px;
 	margin-top: 0px;
-	background-image:url(bg_searchResultItem.png);
+	background-image:url(bg_boxitem_image.png);
 	background-repeat:no-repeat;
 	background-size:cover;
-    border: 2px solid #000;
-
+  border: 2px solid #000;
+  border-radius: 2px;
+}
+.boxitem_image img:before {
+  color: #8C8C8C !important;
 }
 .boxitem span {
 	
@@ -901,22 +901,20 @@ img#logo {
 /* Box item info */
 .boxitem_info {
 	color: #fff;
-  	display: none;
+	display: none;
 	font-size: 14px;
-  	left: 0;
-  	line-height: 18px;
-	/*height: 102px;*/
+	line-height: 18px;
 	height: 50px;
 	width: 217px;
 	overflow: hidden;
 	position:absolute;
 	background-image:url(bg_boxitem_info.png);
 	background-repeat:repeat-x;
+  background-size: contain;
 	bottom: 0px;
-	/*	top: 162px; */
-  	vertical-align: middle;
-  	white-space: normal;
-  	text-align: left;
+  vertical-align: middle;
+  white-space: normal;
+  text-align: left;
 	padding: 5px 8px 0px 8px;
 	left: 2px;
 	top: 106px;
