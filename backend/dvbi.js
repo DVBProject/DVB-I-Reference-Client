@@ -187,6 +187,7 @@ function addService(serviceElement) {
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_version","Service version"));
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_provider","Service provider"));
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_lcn","LCN"));
+    serviceDiv.appendChild(createTextInput("service_"+serviceId+"_content_guide_service_reference","Content Guide Service Reference"));
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:addServiceInstance('"+serviceId+"')";
@@ -214,6 +215,9 @@ function addService(serviceElement) {
             }
             else if(children[i].nodeName === "UniqueIdentifier") {
                 document.getElementById("service_"+serviceId+"_unique_id").value = children[i].childNodes[0].nodeValue;
+            }
+             else if(children[i].nodeName === "ContentGuideServiceRef") {
+                document.getElementById("service_"+serviceId+"_content_guide_service_reference").value = children[i].childNodes[0].nodeValue;
             }
             else if(children[i].nodeName === "ServiceInstance") {
                 try {
@@ -267,9 +271,9 @@ function generateXML() {
         var serviceId = services[i].id;
         var serviceElement = doc.createElement("Service");
         serviceElement.setAttribute("version",document.getElementById(serviceId+"_version").value);
-        var nameElement = doc.createElement("UniqueIdentifier");
-        nameElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_unique_id").value));
-        serviceElement.appendChild(nameElement);
+        var propertyElement = doc.createElement("UniqueIdentifier");
+        propertyElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_unique_id").value));
+        serviceElement.appendChild(propertyElement);
         
         var instances = document.getElementsByClassName(serviceId+"_instance");
         for(var j=0; j<instances.length;j++) {
@@ -277,13 +281,17 @@ function generateXML() {
             serviceElement.appendChild(instanceElement);
         }
        
-        nameElement = doc.createElement("ServiceName");
-        nameElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_name").value));
-        serviceElement.appendChild(nameElement);
-        nameElement = doc.createElement("ProviderName");
-        nameElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_provider").value));
-        serviceElement.appendChild(nameElement);
+        propertyElement = doc.createElement("ServiceName");
+        propertyElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_name").value));
+        serviceElement.appendChild(propertyElement);
+        propertyElement = doc.createElement("ProviderName");
+        propertyElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_provider").value));
+        serviceElement.appendChild(propertyElement);
+        propertyElement = doc.createElement("ContentGuideServiceRef");
+        propertyElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_content_guide_service_reference").value));
+        serviceElement.appendChild(propertyElement);
         doc.documentElement.appendChild(serviceElement);
+
         var lcn = doc.createElement("LCN");
         lcn.setAttribute("channelNumber",document.getElementById(serviceId+"_lcn").value);
         lcn.setAttribute("serviceRef",document.getElementById(serviceId+"_unique_id").value);
