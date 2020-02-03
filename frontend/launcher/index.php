@@ -88,11 +88,8 @@
 	}
 	
 	function onLoad() {
-        console.log("onload called");
 		menuOffset = $("#menu_0").css("top");
-		console.log("menuOffset" + menuOffset);
 		menuOffset = menuOffset.substring(0, menuOffset.length-2);
-		console.log("menuOffset" + menuOffset);
 		
 		registerKeys(1);
 	    registerKeyListener();
@@ -185,7 +182,7 @@
             chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
             var cgRefs =  services[i].getElementsByTagName("ContentGuideServiceRef");
             if(cgRefs && cgRefs.length > 0) {
-                chan.contentId = cgRefs[0].childNodes[0].nodeValue;
+                chan.contetGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
             }
             var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
             var sourceTypes = [];

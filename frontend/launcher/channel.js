@@ -7,9 +7,9 @@ function Channel( init_obj, element_id ){
 
 Channel.prototype.getNowNext = function() {
     var self = this;
-    if(self.id) {
+    if(self.contetGuideServiceRef) {
         var scheduleURI = "../../backend/schedule.php"; //TODO get the schedule url from the service list
-         $.get( scheduleURI+"?sid="+self.id+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
+         $.get( scheduleURI+"?sid="+self.contetGuideServiceRef+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
             var parser = new DOMParser();
             var doc = parser.parseFromString(data,"text/xml");
             var events = doc.getElementsByTagName("ScheduleEvent");
@@ -38,10 +38,10 @@ Channel.prototype.getNowNext = function() {
                 }
                 epg[i == 0 ? "now" : "next"] = program;
 
-                }
-                self.epg = epg;
+            }
+            self.epg = epg;
 
-	$.each( self.items, function( i, item ){
+	        $.each( self.items, function( i, item ){
 			if(self.epg && self.epg[item.name] != null){
 				// Set info text for the Box
 				// NOW
