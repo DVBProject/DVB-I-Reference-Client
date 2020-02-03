@@ -21,16 +21,17 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 
 	if( !$("#player")[0] ){
 		$("body").append( '<div id="player" class="hide">'
-			+'<div id="playposition"></div>'
-			+'<div id="playtime"></div>'
-			+'<div id="progress_currentTime" style="left:130px"></div>'
+			+'<div id="playposition" class="hide"></div>'
+			+'<div id="playtime" class="hide"></div>'
+			+'<div id="progress_currentTime" class="hide" style="left:130px"></div>'
             +'<div id="progressbarbg"></div><div id="progressSeekable" style="transition03all"></div><div id="progressbar" style="transition03all"></div>'
 			+'<div id="prew"></div>'
 			+'<div id="ppauseplay" class="pause"><div class="vcrbtn"></div><span id="pauseplay"></span></div> '
 			+'<div id="pff"></div>'
-			+'<div id="subtitleButton"><div id="subtitleButtonText">Subtitles</div></div>'
-			+'<div id="audioButton"><div id="audioButtonText">Audio</div></div>'
+			+'<div id="subtitleButton" class="hide"><div id="subtitleButtonText">Subtitles</div></div>'
+			+'<div id="audioButton" class="hide"><div id="audioButtonText">Audio</div></div>'
 			+'</div>');
+ 
 		console.log("Add player component");
 	}
 

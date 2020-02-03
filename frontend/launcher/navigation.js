@@ -429,17 +429,12 @@ function changeVolume(amount) {
       
       var cfg = document.getElementById('oipfcfg');
       var  orig = cfg.localSystem.volume;
-        
-      //var registered = cfg.configuration.replaceUIElements([cfg.configuration.UI_TVMODE,cfg.configuration.UI_VOLUME,cfg.configuration.UI_MENU,cfg.configuration.UI_EPG]);
       cfg.localSystem.volume = cfg.localSystem.volume+amount;
-      showInfo( "Volume:"+cfg.localSystem.volume+" Orig:"+orig );
 }
 
 function mute() {
      var cfg = document.getElementById('oipfcfg');
-      //var registered = cfg.configuration.replaceUIElements([cfg.configuration.UI_TVMODE,cfg.configuration.UI_VOLUME,cfg.configuration.UI_MENU,cfg.configuration.UI_EPG]);
       cfg.localSystem.mute = !cfg.localSystem.mute;
-      showInfo( "Mute:"+cfg.localSystem.mute );
 }
 
 function openChannel(ch_index){
@@ -703,7 +698,6 @@ function channelUp(){
 				}
 				catch(e){
 					console.log(e);
-                    showInfo(e.message);
 				}	
 				
 				clearTimeout(chChangeTimer);
@@ -768,7 +762,6 @@ function channelDown(){
 				}
 				catch(e){
 					console.log(e);
-                    showInfo(e.message);
 				}	
 				
 				clearTimeout(chChangeTimer);
@@ -800,7 +793,6 @@ function playDASH(url) {
         }
      }
      catch(e) {
-        showInfo(e);
      }
      player = new VideoPlayerHTML5("player");
      player.populate();
