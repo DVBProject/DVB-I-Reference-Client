@@ -21,7 +21,7 @@ techniques will be offered at a later stage. The app can also be tested by gener
 the link mentioned above. For easier testing, a TS is provided with AIT that links to the application:
 https://cloud.sofiadigital.fi/index.php/s/qrB6MoFH5cPCDoN
 
-Note that this version is run as a "Normal HbbTV" version and might lack some of the functionalities
+Note that this version runs as a "Normal HbbTV" version and might lack some of the functionalities
 of the OpApp version, and might display some inconsistent UI behavior.
 
 Backend:
