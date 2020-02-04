@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="navi.css"/>
 	<link rel="stylesheet" href="../CommonUI/dialog.css"/>
     <link rel="stylesheet" href="chinfo.css"/>
-    <script src="../../jquery-3.4.1.min.js"></script>
+    <script src="../../../jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="menu.js"></script>
    	<script type="text/javascript" src="channel.js"></script>
    	<script type="text/javascript" src="box.js"></script>
@@ -117,7 +117,7 @@
         var progressframeopen = getStyleSheetPropertyValue(".progress_bar_frame.open", "width");
         progressOpenWidth = progressframeopen.substring(0, progressframeopen.length-2);
         
-        getServiceList("../../backend/servicelists/example.xml", function( epg ){
+        getServiceList("../../../backend/servicelists/example.xml", function( epg ){
                 createMenu(epg);
                 
                 if(chNumber){
