@@ -1,0 +1,22 @@
+{
+  "short_name": "Video",
+  "name": "Video player for mobile devices",
+  "icons": [
+    {
+      "src": "images/icons-128.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#000000",
+  "display": "fullscreen",
+  "orientation": "landscape",  
+  "scope": "",
+  "theme_color": "#0098f4"
+}

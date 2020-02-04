@@ -1,0 +1,47 @@
+/* CSS Document */
+body {
+  margin: 0px;
+  padding: 0px; 
+  height: 100vh; 
+}
+body {
+  display: flex;
+  flex-direction: column;
+  //min-height: 100vh; 
+}
+
+.main {
+  flex: 1; }
+
+.video_wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9, for an aspect ratio of 1:1 change to this value to 100% */
+  background-color: green; 
+  .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: pink; 
+  }
+  .channels {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/bg_chinfo.png");
+    background-position: right;
+    background-size: contain;
+    .list-group {
+      //border: 1px solid red;
+      .list-group-item {
+        background-color: transparent;
+      }
+    }
+  }
+
+}
+
