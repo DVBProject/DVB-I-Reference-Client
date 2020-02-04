@@ -7,7 +7,7 @@ function playDASH(url) {
 }
 
 window.onload = function(){
-    loadServicelist("../backend/servicelists/example.xml");
+    loadServicelist("../../backend/servicelists/example.xml");
 }
 
 function loadServicelist(list) {
