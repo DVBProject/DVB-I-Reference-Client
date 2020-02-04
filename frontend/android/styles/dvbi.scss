@@ -1,4 +1,15 @@
-/* CSS Document */
+/*
+orange: #e47600
+light blue: #3996c9
+dark: #0b0b0b
+grey: #131313
+lightgrey: #848484
+darkblue: #011927
+*/
+$orange-color: #e47600;
+$blue-color: #3996c9;
+$darkblue-color: #011927;
+$lightgrey-color: #848484;
 body {
   margin: 0px;
   padding: 0px; 
@@ -39,7 +50,22 @@ body {
       //border: 1px solid red;
       .list-group-item {
         background-color: transparent;
+        a {
+          color: $lightgrey-color;
+        }
+        span:first-child {
+          font-size: 1.2em;
+          margin-right: 0.5em,
+        }
+        span:last-child {
+          font-size: 1.5em;
+        }
+        &.active a {
+          color: $blue-color;
+          font-size: 2em;
+        }
       }
+
     }
   }
 

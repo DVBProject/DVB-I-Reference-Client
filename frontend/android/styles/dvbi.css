@@ -1,4 +1,11 @@
-/* CSS Document */
+/*
+orange: #e47600
+light blue: #3996c9
+dark: #0b0b0b
+grey: #131313
+lightgrey: #848484
+darkblue: #011927
+*/
 body {
   margin: 0px;
   padding: 0px;
@@ -34,3 +41,13 @@ body {
     background-size: contain; }
     .video_wrapper .channels .list-group .list-group-item {
       background-color: transparent; }
+      .video_wrapper .channels .list-group .list-group-item a {
+        color: #848484; }
+      .video_wrapper .channels .list-group .list-group-item span:first-child {
+        font-size: 1.2em;
+        margin-right: 0.5em; }
+      .video_wrapper .channels .list-group .list-group-item span:last-child {
+        font-size: 1.5em; }
+      .video_wrapper .channels .list-group .list-group-item.active a {
+        color: #3996c9;
+        font-size: 2em; }
