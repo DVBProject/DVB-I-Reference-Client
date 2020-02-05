@@ -1,4 +1,6 @@
-function playDASH(url) {
+function playDASH(url,channelId) {
+    $(".active").removeClass("active"); 
+    document.getElementById(channelId).classList.add("active");
     var player = videojs('my-video');
     player.src([{type: "application/dash+xml", src: url}]);
     player.ready(function() {
@@ -61,7 +63,6 @@ function loadServicelist(list) {
         }
 
 		populate(items);
-        console.log("menu created");    
     },"text");
 }
 
@@ -70,7 +71,7 @@ function populate(items) {
     for(var i = 0;i < items.length;i++) {
         var channel = items[i];
         var newTextbox = document.createElement('a');
-        newTextbox.href="javascript:playDASH('"+channel.dashUrl+"')";
+        newTextbox.href="javascript:playDASH('"+channel.dashUrl+"','channel_"+i+"')";
         var span = document.createElement('span');
         span.appendChild(document.createTextNode( channel.majorChannel));
         newTextbox.appendChild(span);
@@ -78,7 +79,8 @@ function populate(items) {
         span.appendChild(document.createTextNode( channel.name));
         newTextbox.appendChild(span);
         var li = document.createElement('li');
-        li.classList.add("list-group-item", "active");
+        li.classList.add("list-group-item");
+        li.id = "channel_"+i;
         li.appendChild(newTextbox);
         listElement.appendChild(li);
     }        

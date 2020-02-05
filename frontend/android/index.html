@@ -5,8 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0098f4" />
-  <title>Video testi</title>
+  <title>DVB-I RefApp</title>
 
+<script type="text/javascript" src="../../jquery-3.4.1.min.js"></script> 
 
 <!-- Bootstrap -->
 <link href="styles/bootstrap-4.3.1.css" rel="stylesheet">  
@@ -25,20 +26,7 @@
   <script src="https://vjs.zencdn.net/7.6.6/video.js"></script>
   <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
   <script src="js/videojs-dash.min.js"></script>
-  <script src="js/dvbi-mobile.js"></script>
-  <script src="js/dvbi-mobile.js"></script>
-  <script src="../../jquery-3.4.1.min.js"></script> 
-  <style type="text/css">
-    #overlay {
-  position: absolute; 
-  top: 100px; 
-  color: #FFF; 
-  font-size: 20px;
-  background-color: #FFFFFF50;
-  padding: 10px;
-  z-index: 100;
-}
-  </style>
+  <script src="js/dvbi-mobile.js"></script> 
 
 </head>
 <body style="margin: 0px">
@@ -55,12 +43,17 @@
       <div class="main container h-100 mw-100">
         <div class="row h-100">
           <div class="col-8 h-100">
-          
-          
+          <div class="row header">
+            <div class="col-12  text-white">Logot</div>
           </div>
-          <div class="col-4 h-100">        
+            <div class="row footer">
+              <div class="col-12 text-white">
+                Footer | ch info | chnumber | chname | Now | Next | progressbar
+              </div>
+            </div>
+            </div>
+          <div class="col-4 h-100">
               <ul id="channel_list" class="list-group overflow-auto h-100">
-                          
               </ul>                    
           </div>
         </div>
