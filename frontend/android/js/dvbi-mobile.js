@@ -1,16 +1,26 @@
-function playDASH(url,channelId) {
-    $(".active").removeClass("active"); 
-    document.getElementById(channelId).classList.add("active");
-    var player = videojs('my-video');
-    player.src([{type: "application/dash+xml", src: url}]);
-    player.ready(function() {
-      player.play();
-    });
+function channelSelected(channelIndex) {
+    var newChannel = channels[channelIndex];
+    if(newChannel == selectedChannel) {
+        console.log("Same channel!");
+        return;
+    }
+    else if(!newChannel) {
+        return;
+    }
+
+    if(selectedChannel) {
+        selectedChannel.unselected();
+    }
+    newChannel.channelSelected();
+    selectedChannel = newChannel;    
+
 }
 
 window.onload = function(){
     loadServicelist("../../backend/servicelists/example.xml");
 }
+var selectedChannel = null;
+var channels = []
 
 function loadServicelist(list) {
     $.get( list, function( data ) {
@@ -19,21 +29,11 @@ function loadServicelist(list) {
         var services = doc.getElementsByTagName("Service");
         var lcnList = doc.getElementsByTagName("LCNTable")[0].getElementsByTagName("LCN");
         var items = [];
+        var channelIndex = 0;
         for (var i = 0; i < services.length ;i++) {
             var chan = {}; 
-            
-            chan.items =  [
-                {
-                    "title": "Now Showing",
-                    "description": "Now Showing",
-                    "name": "now",
-                    "app": 0
-                }
-            ];
             chan.code = i;
-            chan.eval = "miniepg("+ i +");";
-            chan.center_name = services[i].getElementsByTagName("ServiceName")[0].childNodes[0].nodeValue;
-            chan.name = chan.center_name;
+            chan.name = services[i].getElementsByTagName("ServiceName")[0].childNodes[0].nodeValue;
             chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
             var cgRefs =  services[i].getElementsByTagName("ContentGuideServiceRef");
             if(cgRefs && cgRefs.length > 0) {
@@ -59,30 +59,32 @@ function loadServicelist(list) {
                 }                
             }
             chan.sourceTypes =sourceTypes.join('/');
-            items.push(chan);
+            var channel = new Channel(chan,channelIndex++);
+            channels.push(channel);
         }
 
-		populate(items);
+		populate();
     },"text");
 }
 
-function populate(items) {
+function populate() {
     var listElement = document.getElementById("channel_list");
-    for(var i = 0;i < items.length;i++) {
-        var channel = items[i];
-        var newTextbox = document.createElement('a');
-        newTextbox.href="javascript:playDASH('"+channel.dashUrl+"','channel_"+i+"')";
-        var span = document.createElement('span');
-        span.appendChild(document.createTextNode( channel.majorChannel));
-        newTextbox.appendChild(span);
-        span = document.createElement('span');
-        span.appendChild(document.createTextNode( channel.name));
-        newTextbox.appendChild(span);
-        var li = document.createElement('li');
-        li.classList.add("list-group-item");
-        li.id = "channel_"+i;
-        li.appendChild(newTextbox);
-        listElement.appendChild(li);
-    }        
+    for(var i = 0;i < channels.length;i++) {
+        var channel = channels[i];
+        listElement.appendChild(channel.element);
+    } 
+    setTimeout(refresh, (60-new Date().getSeconds())*1000);       
 }
+
+function refresh() {
+	    updateOpenChannel();	
+        setTimeout(refresh, (60-new Date().getSeconds())*1000);
+}
+
+function updateOpenChannel() {
+    if(selectedChannel) {
+        selectedChannel.updateChannelInfo();
+    }
+}
+
 

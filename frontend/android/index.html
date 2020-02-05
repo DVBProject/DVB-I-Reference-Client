@@ -27,6 +27,9 @@
   <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
   <script src="js/videojs-dash.min.js"></script>
   <script src="js/dvbi-mobile.js"></script> 
+  <script src="js/channel.js"></script>
+  <script src="../common.js"></script>
+  <script src="../isoduration.js"></script>
 
 </head>
 <body style="margin: 0px">
@@ -38,7 +41,7 @@
   </div>
 -->  
 <div class="video_wrapper overflow-hidden">
-    <div class="video"><video id='my-video' class='video-js' autoplay controls preload='auto' width="100%" height="100%" data-setup='{"fluid": true}'></video></div>
+    <div class="video"><video id='my-video' class='video-js' autoplay preload='auto' width="100%" height="100%" data-setup='{"aspectRatio": "16:9"}'></video></div>
     <div class="channels">
       <div class="main container h-100 mw-100">
         <div class="row h-100">
@@ -47,7 +50,7 @@
             <div class="col-12  text-white">Logot</div>
           </div>
             <div class="row footer">
-              <div class="col-12 text-white">
+              <div id="channel_info" class="col-12 text-white">
                 Footer | ch info | chnumber | chname | Now | Next | progressbar
               </div>
             </div>
