@@ -9,7 +9,9 @@ darkblue: #011927
 body {
   margin: 0px;
   padding: 0px;
-  height: 100vh; }
+  height: 100vh;
+  font-size: 12px;
+  background-color: #333; }
 
 body {
   display: flex;
@@ -22,14 +24,13 @@ body {
   position: relative;
   padding-bottom: 56.25%;
   /* 16:9, for an aspect ratio of 1:1 change to this value to 100% */
-  background-color: green; }
+  box-shadow: 0px 0px 25px #000; }
   .video_wrapper .video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: pink; }
+    height: 100%; }
   .video_wrapper .channels {
     position: absolute;
     top: 0;
@@ -40,14 +41,24 @@ body {
     background-position: right;
     background-size: contain; }
     .video_wrapper .channels .list-group .list-group-item {
-      background-color: transparent; }
+      background-color: transparent;
+      border: none; }
       .video_wrapper .channels .list-group .list-group-item a {
         color: #848484; }
       .video_wrapper .channels .list-group .list-group-item span:first-child {
-        font-size: 1.2em;
+        font-size: 1.0em;
         margin-right: 0.5em; }
       .video_wrapper .channels .list-group .list-group-item span:last-child {
-        font-size: 1.5em; }
+        font-size: 1.2em; }
       .video_wrapper .channels .list-group .list-group-item.active a {
         color: #3996c9;
-        font-size: 2em; }
+        font-size: 1.5em; }
+  .video_wrapper #channel_info span:first-child {
+    font-size: 1.0em;
+    margin-right: 0.5em;
+    color: #3996c9; }
+  .video_wrapper #channel_info span:last-child {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-left: 0.5em;
+    color: #3996c9; }
