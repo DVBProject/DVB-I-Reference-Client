@@ -3,6 +3,7 @@ function Channel( init_obj, element_id ){
 	this.open = false;
 	this.element_id = element_id;
 	this.init(init_obj, element_id);
+    this.selected = false;
 }
 
 Channel.prototype.getNowNext = function() {
@@ -40,6 +41,9 @@ Channel.prototype.getNowNext = function() {
 
             }
             self.epg = epg;
+            if(self.selected) {
+                self.updateChannelInfo();
+            }
    
        },"text");
     }
@@ -77,6 +81,7 @@ Channel.prototype.init = function( init_obj, channel_index){
 
 Channel.prototype.unselected = function () {
     var self = this;
+    self.selected = false;
     self.element.classList.remove("active");
 }
 
@@ -88,6 +93,8 @@ Channel.prototype.channelSelected = function () {
     player.ready(function() {
       player.play();
     });
+    self.selected = true;
+
     self.updateChannelInfo();
 }
 
@@ -100,6 +107,11 @@ Channel.prototype.updateChannelInfo = function () {
         curTime = new Date();
         var now = self.epg["now"];
         if(now) {
+            if(curTime >= now.end) {
+               //Current program ended,update now/next information before updating info
+               self.getNowNext();
+               return;
+            }
             info += "|<span>Now:"+now.title+" ";
             info +=  Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
         }
