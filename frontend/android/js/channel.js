@@ -112,12 +112,12 @@ Channel.prototype.updateChannelInfo = function () {
                self.getNowNext();
                return;
             }
-            info += "|<span>Now:"+now.title+" ";
+            info += "<span>Now: "+now.title+" ";
             info +=  Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
         }
         var next= self.epg["next"];
         if(next) {
-            info += "|<span>Next:"+next.title+" ";
+            info += "<span>Next: "+next.title+" ";
             info +=  next.start.create24HourTimeString()+" ";
             info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
         }

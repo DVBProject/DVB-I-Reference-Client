@@ -93,11 +93,23 @@ body {
           color: $blue-color;
           display: block;
       }
-      &:last-child {
+      &:nth-child(2) {
           font-size: 1.5em;
           font-weight: 600;
-          color: $blue-color;          
+          color: $blue-color;
+          display: block;        
       }
+      &:nth-child(3) {
+          font-size: 1.0em;
+          font-weight: 600;
+          color: $lightgrey-color;
+          display: block;          
+      }
+      &:nth-child(4) {
+          font-size: 1.0em;
+          font-weight: 600;
+          color: $lightgrey-color;          
+      }      
   }
 }
 }
