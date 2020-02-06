@@ -27,8 +27,10 @@ body {
   flex: 1; }
 
 .video_wrapper {
+  /*
   position: relative;
   padding-bottom: 56.25%;
+  */
   /* 16:9, for an aspect ratio of 1:1 change to this value to 100% */
   box-shadow: 0px 0px 25px #000;
   .video {
@@ -38,22 +40,33 @@ body {
     width: 100%;
     height: 100%;
   }
-  .channels {
+  .player-ui {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../images/bg_chinfo.png");
-    background-position: right;
-    background-size: contain;
+    .channels {
+      background-image: url("../images/bg_chinfo.png");
+      background-position: right;
+      background-size: contain;
+    }
+    .info {
+      background-image: url("../images/bg_info.png");
+      background-position: left;
+      background-size: contain;
+    }    
     .list-group {
       //border: 1px solid red;
       .list-group-item {
         background-color: transparent;
-        border: none;     
+        border: none;
+        height: 40px;
+        line-height: 40px;
+        padding: 0px;
         a {
           color: $lightgrey-color;
+          text-decoration: none;
         }
         span:first-child {
           font-size: 1.0em;
@@ -65,23 +78,32 @@ body {
         &.active a {
           color: $blue-color;
           font-size: 1.5em;
+          text-shadow: 2px 2px 0px #000;
         }
       }
 
     }
   }
   #channel_info {
-        span:first-child {
+    span {
+        text-shadow: 2px 2px 0px #000;    
+      &:first-child {
           font-size: 1.0em;
           margin-right: 0.5em;
           color: $blue-color;
-        }
-        span:last-child {
-          font-size: 1.2em;
+          display: block;
+      }
+      &:last-child {
+          font-size: 1.5em;
           font-weight: 600;
-          margin-left: 0.5em;
           color: $blue-color;          
-        }
+      }
   }
 }
-
+}
+.hide {
+  opacity: 0;
+}
+.show {
+  opacity: 1;
+}
