@@ -21,8 +21,10 @@ body {
   flex: 1; }
 
 .video_wrapper {
-  position: relative;
+  /*position: relative; 
   padding-bottom: 56.25%;
+  Removed so the video will fill the entire screen
+  */
   /* 16:9, for an aspect ratio of 1:1 change to this value to 100% */
   box-shadow: 0px 0px 25px #000; }
   .video_wrapper .video {
