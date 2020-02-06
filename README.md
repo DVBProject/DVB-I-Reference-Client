@@ -11,10 +11,16 @@ A separate client is offered for Android devices. Android client is a PWA applic
 same functionality. 
 
 Demo installations available at:
+
 HbbTV Frontend:
 http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/launcher/
+
+(note the new location)
+
 Android PWA Frontend:
 http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/
+
+(one can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app) 
 
 To test the OpApp version, follow the specific opapp installations instructions for the device in use. Proper OpApp installation
 techniques will be offered at a later stage. The app can also be tested by generating a Transport Stream with an AIT pointing to 
