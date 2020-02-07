@@ -26,13 +26,13 @@ var channels = [];
 var uiHideTimeout = null;
 
 function resetHideTimeout() {
-    $(".player-ui").show();
+    $(".player-ui").removeClass("hide");
     clearTimeout(uiHideTimeout);
     uiHideTimeout = setTimeout(hideUI, 5000);
 }
 
 function hideUI() {
-    $(".player-ui").hide();
+    $(".player-ui").addClass("hide");
 }
 
 function loadServicelist(list) {
