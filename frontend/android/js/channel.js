@@ -59,7 +59,7 @@ Channel.prototype.init = function( init_obj, channel_index){
 		self.element = document.getElementById("channel_"+channel_index);
 		if(self.element == null){			
             var newTextbox = document.createElement('a');
-            newTextbox.href="javascript:channelSelected("+channel_index+")";
+            newTextbox.href="javascript:channelSelected('"+self.id+"')";
             var span = document.createElement('span');
             span.appendChild(document.createTextNode( self.lcn));
             newTextbox.appendChild(span);

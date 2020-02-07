@@ -1,5 +1,11 @@
-function channelSelected(channelIndex) {
-    var newChannel = channels[channelIndex];
+function channelSelected(channelId) {
+    var newChannel = null;
+    for (var i = 0; i < channels.length; i++) {
+        if(channels[i].id == channelId) {
+            newChannel =channels[i];
+            break;
+        }
+    }
     if(newChannel == selectedChannel) {
         console.log("Same channel!");
         return;
