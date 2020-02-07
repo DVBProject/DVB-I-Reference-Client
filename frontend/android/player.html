@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0098f4" />
+  <title>DVB-I RefApp</title>
+
+<script type="text/javascript" src="../../jquery-3.4.1.min.js"></script> 
+
+<!-- Bootstrap -->
+<link href="styles/bootstrap-4.3.1.css" rel="stylesheet">  
+  
+<!-- iOS meta tags and icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0098f4">
+  <meta name="apple-mobile-web-app-title" content="DVB-I">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  
+  <link rel="stylesheet" type="text/css" href="styles/dvbi.css">
+  <link rel="icon" href="images/icons-512.png" type="image/x-icon" />
+  <link rel="manifest" href="./manifest.json">
+
+  <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+  <script src="https://vjs.zencdn.net/7.6.6/video.js"></script>
+  <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+  <script src="js/videojs-dash.min.js"></script>
+  <script src="js/dvbi-mobile.js"></script> 
+  <script src="js/channel.js"></script>
+  <script src="../common.js"></script>
+  <script src="../isoduration.js"></script>
+
+</head>
+<body style="margin: 0px" class="player">
+<!--   <video id='my-video' class='video-js' autoplay controls preload='auto' width="100%" height="100%" data-setup='{"fluid": true}'>
+  </video>
+  <div id="overlay">
+  <a href="javascript:playDASH('http://ftc05.akamaized.net/dash/live/2003270/ftc05/dash.mpd')">TV HOPE</a><br>
+  <a href="javascript:playDASH('http://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd')">IRT Subtitle channel</a>
+  </div>
+-->  
+<div class="video_wrapper overflow-hidden">
+    <div class="video text-center"><video id='my-video' class='video-js' autoplay preload='auto' width="100%" height="100%" data-setup='{"fill":true}'></video></div>
+    <div class="channels player-ui">
+      <div class="main container h-100 mw-100">
+        <div class="row h-100">
+        <div class="col-6 col-md-6 h-100 info">
+         <div class="row h-100 ">
+            <div class="col-12 text-white header">
+              <div class="mt-4"><img src="images/logo_dvbi_sofia.png" alt="logo dvb-i sofia digital" /></div>
+            </div>
+              <div id="channel_info" class="col-12 text-white footer mt-auto mb-4">
+                <span></span>
+              </div>
+            </div>
+            </div>
+          <div class="col-6 col-md-6 h-100 channels">
+              <ul id="channel_list" class="list-group overflow-auto h-100 text-right">
+              </ul>                    
+          </div>
+        </div>
+      </div>  
+    
+      
+    </div>  
+  </div>
+<script src="js/popper.min.js"></script>  
+  
+</body>
+</html>

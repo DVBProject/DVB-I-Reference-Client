@@ -11,13 +11,13 @@ $blue-color: #3996c9;
 $darkblue-color: #011927;
 $lightgrey-color: #848484;
 body {
-  margin: 0px;
-  padding: 0px; 
-  height: 100vh;
   font-size: 12px;
   background-color: #333;
 }
-body {
+body.player {
+  margin: 0px;
+  padding: 0px;   
+  height: 100vh;  
   display: flex;
   flex-direction: column;
   //min-height: 100vh; 
@@ -113,9 +113,36 @@ body {
   }
 }
 }
+/* common styles */
 .hide {
   opacity: 0;
+	-moz-transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;	  
 }
 .show {
   opacity: 1;
+	-moz-transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;	  
+}
+.color-blue {
+  color: $blue-color;
+}
+/* landing page */
+.landingPage {
+  background-color:  #000;
+  height: auto;  
+  .jumbotron {
+  background-color:  #000;    
+  background-image: url("../images/landinpage_banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  li {
+    font-size: 2em;
+  }
+  
 }

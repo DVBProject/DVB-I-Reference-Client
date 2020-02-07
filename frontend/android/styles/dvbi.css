@@ -7,13 +7,13 @@ lightgrey: #848484
 darkblue: #011927
 */
 body {
-  margin: 0px;
-  padding: 0px;
-  height: 100vh;
   font-size: 12px;
   background-color: #333; }
 
-body {
+body.player {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
   display: flex;
   flex-direction: column; }
 
@@ -87,8 +87,32 @@ body {
       font-weight: 600;
       color: #848484; }
 
+/* common styles */
 .hide {
-  opacity: 0; }
+  opacity: 0;
+  -moz-transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
 
 .show {
-  opacity: 1; }
+  opacity: 1;
+  -moz-transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
+
+.color-blue {
+  color: #3996c9; }
+
+/* landing page */
+.landingPage {
+  background-color: #000;
+  height: auto; }
+  .landingPage .jumbotron {
+    background-color: #000;
+    background-image: url("../images/landinpage_banner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; }
+  .landingPage li {
+    font-size: 2em; }
