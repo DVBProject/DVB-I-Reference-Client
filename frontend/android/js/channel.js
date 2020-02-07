@@ -61,7 +61,7 @@ Channel.prototype.init = function( init_obj, channel_index){
             var newTextbox = document.createElement('a');
             newTextbox.href="javascript:channelSelected("+channel_index+")";
             var span = document.createElement('span');
-            span.appendChild(document.createTextNode( self.majorChannel));
+            span.appendChild(document.createTextNode( self.lcn));
             newTextbox.appendChild(span);
             span = document.createElement('span');
             span.appendChild(document.createTextNode( self.name));
@@ -102,7 +102,7 @@ Channel.prototype.updateChannelInfo = function () {
      console.log("updateChannelInfo");
      var self = this;
      var channelInfo = document.getElementById("channel_info");
-     var info = "<span>" + self.majorChannel +".</span><span>" + self.name +"</span>";
+     var info = "<span>" + self.lcn +".</span><span>" + self.name +"</span>";
      if(self.epg) {
         curTime = new Date();
         var now = self.epg["now"];

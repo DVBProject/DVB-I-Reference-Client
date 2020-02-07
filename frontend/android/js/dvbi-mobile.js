@@ -67,7 +67,7 @@ function loadServicelist(list) {
             var channelNumber = 0;
             for(var j = 0;j < lcnList.length;j++) {
                 if(lcnList[j].getAttribute("serviceRef") == chan.id) {
-                    chan.majorChannel = parseInt(lcnList[j].getAttribute("channelNumber"));
+                    chan.lcn = parseInt(lcnList[j].getAttribute("channelNumber"));
                     break;
                 }                
             }
@@ -75,7 +75,7 @@ function loadServicelist(list) {
             var channel = new Channel(chan,channelIndex++);
             channels.push(channel);
         }
-
+        channels.sort(compareLCN);
 		populate();
     },"text");
 }
@@ -98,6 +98,13 @@ function updateOpenChannel() {
     if(selectedChannel) {
         selectedChannel.updateChannelInfo();
     }
+}
+
+function compareLCN(a, b) {
+  if (a.lcn > b.lcn) return 1;
+  if (b.lcn > a.lcn) return -1;
+
+  return 0;
 }
 
 
