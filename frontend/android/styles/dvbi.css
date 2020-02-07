@@ -38,7 +38,12 @@ body.player {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    opacity: 1;
+    -moz-transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear; }
     .video_wrapper .player-ui .channels {
       background-image: url("../images/bg_chinfo.png");
       background-position: right;
@@ -89,14 +94,14 @@ body.player {
 
 /* common styles */
 .hide {
-  opacity: 0;
+  opacity: 0 !important;
   -moz-transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear; }
 
 .show {
-  opacity: 1;
+  opacity: 1 !important;
   -moz-transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
