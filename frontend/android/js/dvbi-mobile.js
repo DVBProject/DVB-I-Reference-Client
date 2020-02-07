@@ -18,9 +18,22 @@ function channelSelected(channelIndex) {
 
 window.onload = function(){
     loadServicelist("../../backend/servicelists/example.xml");
+    uiHideTimeout = setTimeout(hideUI, 5000);
+    $(".video_wrapper").on("click touchstart",resetHideTimeout);
 }
 var selectedChannel = null;
-var channels = []
+var channels = [];
+var uiHideTimeout = null;
+
+function resetHideTimeout() {
+    $(".player-ui").show();
+    clearTimeout(uiHideTimeout);
+    uiHideTimeout = setTimeout(hideUI, 5000);
+}
+
+function hideUI() {
+    $(".player-ui").hide();
+}
 
 function loadServicelist(list) {
     $.get( list, function( data ) {
