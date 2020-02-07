@@ -385,18 +385,6 @@ function keyRight(){
                     }
                 });
             }
-            else if(_epg_.nextDayIsAvailable && _epg_.lastDay < _epg_.maxDay){
-                // load the previous day
-                var currentProgram = _epg_.activeItem;
-                _epg_.loadNextDay(function(){
-                    if(currentProgram instanceof Program){
-                        var prg = _epg_.getProgramByKeyValue("id", currentProgram.id)
-                        if(prg){
-                            _epg_.setActiveItem(prg);
-                        }
-                    }
-                });
-            }
         }
     }
 }
@@ -426,13 +414,6 @@ function keyLeft(){
                         }   
                     }
                 });
-            }
-            else if(_epg_.previousDayIsAvailable && _epg_.firstDay > _epg_.minDay){
-                // load the previous day
-                _epg_.loadPreviousDay();
-            }
-            else{
-                console.log("Previous day is not available");
             }
         }
     }
