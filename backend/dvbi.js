@@ -188,6 +188,7 @@ function addService(serviceElement) {
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_provider","Service provider"));
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_lcn","LCN"));
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_content_guide_service_reference","Content Guide Service Reference"));
+    serviceDiv.appendChild(createTextInput("service_"+serviceId+"_service_logo","Service logo URI"));
 
     var newTextbox = document.createElement('a');
     newTextbox.href="javascript:addServiceInstance('"+serviceId+"')";
@@ -216,8 +217,16 @@ function addService(serviceElement) {
             else if(children[i].nodeName === "UniqueIdentifier") {
                 document.getElementById("service_"+serviceId+"_unique_id").value = children[i].childNodes[0].nodeValue;
             }
-             else if(children[i].nodeName === "ContentGuideServiceRef") {
+            else if(children[i].nodeName === "ContentGuideServiceRef") {
                 document.getElementById("service_"+serviceId+"_content_guide_service_reference").value = children[i].childNodes[0].nodeValue;
+            }
+            else if(children[i].nodeName === "RelatedMaterial") {
+                var howRelated = children[i].getElementsByTagName("tva:HowRelated")
+                if(howRelated.length > 0) {
+                    if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
+                        document.getElementById("service_"+serviceId+"_service_logo").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
+                    }
+                }
             }
             else if(children[i].nodeName === "ServiceInstance") {
                 try {
@@ -287,6 +296,20 @@ function generateXML() {
         propertyElement = doc.createElement("ProviderName");
         propertyElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_provider").value));
         serviceElement.appendChild(propertyElement);
+        var logo = document.getElementById(serviceId+"_service_logo").value;
+        if(logo && logo.length > 0) {
+            propertyElement = doc.createElement("RelatedMaterial");
+            var howRelated = doc.createElement("tva:HowRelated");
+            howRelated.setAttribute("href","urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2");
+            propertyElement.appendChild(howRelated);
+            var mediaLocator = doc.createElement("tva:MediaLocator");
+            var mediauri = doc.createElement("tva:MediaUri");
+            mediauri.setAttribute("contentType",logo.endsWith(".jpg") ? "image/jpg": "image/png");
+            mediauri.appendChild(doc.createTextNode(logo));
+            mediaLocator.appendChild(mediauri);
+            propertyElement.appendChild(mediaLocator);
+            serviceElement.appendChild(propertyElement);
+        }
         propertyElement = doc.createElement("ContentGuideServiceRef");
         propertyElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_content_guide_service_reference").value));
         serviceElement.appendChild(propertyElement);
