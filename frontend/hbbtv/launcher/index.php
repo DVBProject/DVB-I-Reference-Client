@@ -24,8 +24,8 @@
    	<script type="text/javascript" src="box.js"></script>
 	<script type="text/javascript" src="navigation.js"></script>
 	<script type="text/javascript" src="../session.js"></script>
-    <script type="text/javascript" src="../isoduration.js"></script>
-    <script type="text/javascript" src="../common.js"></script>
+    <script type="text/javascript" src="../../isoduration.js"></script>
+    <script type="text/javascript" src="../../common.js"></script>
     <script type="text/javascript" src="../buttonbar.js"></script>
 	<script type="text/javascript" src="../alertDialog.js"></script>
     <script type="text/javascript" src="videoplayer_basic.js"></script>

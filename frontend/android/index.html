@@ -5,8 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0098f4" />
-  <title>Video testi</title>
+  <title>DVB-I RefApp</title>
 
+<script type="text/javascript" src="../../jquery-3.4.1.min.js"></script> 
 
 <!-- Bootstrap -->
 <link href="styles/bootstrap-4.3.1.css" rel="stylesheet">  
@@ -25,52 +26,35 @@
   <script src="https://vjs.zencdn.net/7.6.6/video.js"></script>
   <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
   <script src="js/videojs-dash.min.js"></script>
-  <script src="js/dvbi-mobile.js"></script>
-  <script src="js/dvbi-mobile.js"></script>
-  <script src="../../jquery-3.4.1.min.js"></script> 
-  <style type="text/css">
-    #overlay {
-  position: absolute; 
-  top: 100px; 
-  color: #FFF; 
-  font-size: 20px;
-  background-color: #FFFFFF50;
-  padding: 10px;
-  z-index: 100;
-}
-  </style>
+  <script src="js/dvbi-mobile.js"></script> 
+  <script src="js/channel.js"></script>
+  <script src="../common.js"></script>
+  <script src="../isoduration.js"></script>
 
 </head>
-<body style="margin: 0px">
-<!--   <video id='my-video' class='video-js' autoplay controls preload='auto' width="100%" height="100%" data-setup='{"fluid": true}'>
-  </video>
-  <div id="overlay">
-  <a href="javascript:playDASH('http://ftc05.akamaized.net/dash/live/2003270/ftc05/dash.mpd')">TV HOPE</a><br>
-  <a href="javascript:playDASH('http://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd')">IRT Subtitle channel</a>
-  </div>
--->  
-<div class="video_wrapper overflow-hidden">
-    <div class="video"><video id='my-video' class='video-js' autoplay controls preload='auto' width="100%" height="100%" data-setup='{"fluid": true}'></video></div>
-    <div class="channels">
-      <div class="main container h-100 mw-100">
-        <div class="row h-100">
-          <div class="col-8 h-100">
-          
-          
-          </div>
-          <div class="col-4 h-100">        
-              <ul id="channel_list" class="list-group overflow-auto h-100">
-                          
-              </ul>                    
-          </div>
-        </div>
-      </div>  
-    
-      
-    </div>  
-  </div>
-  
-<script src="js/popper.min.js"></script>  
+<body class="landingPage">
+
+<div class="jumbotron mb-0">
+  <h1>&nbsp;</h1>
+</div>
+
+ 
+<div class="container">
+  <div class="row text-white">
+    <div class="col-12 col-sm-8">
+      <h4>Add <span class="color-blue font-weight-bold">DVB-I RefApp</span> to your Home screen:</h4>
+      <ul class="">
+        <li>Tap the menu icon</li>
+        <li>Tap Add to homescreen.</li>
+      </ul>
+      </div>
+    <div class="col-12 col-sm-4">
+      <img src="images/landingpage_ui.png" class="img-fluid" alt="dvb-i">
+      </div>
+    </div>
+</div>
+
+  <script src="js/popper.min.js"></script>  
   
 </body>
 </html>

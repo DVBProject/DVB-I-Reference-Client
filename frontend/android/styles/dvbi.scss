@@ -11,11 +11,13 @@ $blue-color: #3996c9;
 $darkblue-color: #011927;
 $lightgrey-color: #848484;
 body {
-  margin: 0px;
-  padding: 0px; 
-  height: 100vh; 
+  font-size: 12px;
+  background-color: #333;
 }
-body {
+body.player {
+  margin: 0px;
+  padding: 0px;   
+  height: 100vh;  
   display: flex;
   flex-direction: column;
   //min-height: 100vh; 
@@ -25,49 +27,127 @@ body {
   flex: 1; }
 
 .video_wrapper {
+  /*
   position: relative;
   padding-bottom: 56.25%;
+  */
   /* 16:9, for an aspect ratio of 1:1 change to this value to 100% */
-  background-color: green; 
+  box-shadow: 0px 0px 25px #000;
   .video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: pink; 
   }
-  .channels {
+  .player-ui {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../images/bg_chinfo.png");
-    background-position: right;
-    background-size: contain;
+    opacity: 1;
+    -moz-transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;	    
+    .channels {
+      background-image: url("../images/bg_chinfo.png");
+      background-position: right;
+      background-size: contain;
+    }
+    .info {
+      background-image: url("../images/bg_info.png");
+      background-position: left;
+      background-size: contain;
+    }    
     .list-group {
       //border: 1px solid red;
       .list-group-item {
         background-color: transparent;
+        border: none;
+        height: 40px;
+        line-height: 40px;
+        padding: 0px;
         a {
           color: $lightgrey-color;
+          text-decoration: none;
         }
         span:first-child {
-          font-size: 1.2em;
-          margin-right: 0.5em,
+          font-size: 1.0em;
+          margin-right: 0.5em;
         }
         span:last-child {
-          font-size: 1.5em;
+          font-size: 1.2em;
         }
         &.active a {
           color: $blue-color;
-          font-size: 2em;
+          font-size: 1.5em;
+          text-shadow: 2px 2px 0px #000;
         }
       }
 
     }
   }
-
+  #channel_info {
+    span {
+        text-shadow: 2px 2px 0px #000;    
+      &:first-child {
+          font-size: 1.0em;
+          margin-right: 0.5em;
+          color: $blue-color;
+          display: block;
+      }
+      &:nth-child(2) {
+          font-size: 1.5em;
+          font-weight: 600;
+          color: $blue-color;
+          display: block;        
+      }
+      &:nth-child(3) {
+          font-size: 1.0em;
+          font-weight: 600;
+          color: $lightgrey-color;
+          display: block;          
+      }
+      &:nth-child(4) {
+          font-size: 1.0em;
+          font-weight: 600;
+          color: $lightgrey-color;          
+      }      
+  }
 }
-
+}
+/* common styles */
+.hide {
+  opacity: 0 !important;
+	-moz-transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;	  
+}
+.show {
+  opacity: 1 !important;
+	-moz-transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;	  
+}
+.color-blue {
+  color: $blue-color;
+}
+/* landing page */
+.landingPage {
+  background-color:  #000;
+  height: auto;  
+  .jumbotron {
+  background-color:  #000;    
+  background-image: url("../images/landinpage_banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  li {
+    font-size: 2em;
+  }
+  
+}
