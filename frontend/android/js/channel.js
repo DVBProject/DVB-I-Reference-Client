@@ -111,9 +111,9 @@ Channel.prototype.updateChannelInfo = function () {
      var channelInfo = document.getElementById("channel_info");
      var info = "";
      if(self.image) {
-        info = "<span><img src=\""+self.image+"\"></span>";
+        info = "<span class=\"menuitem_chicon\"><img src=\""+self.image+"\"></span>";
      }
-     info += "<span>" + self.lcn +".</span><span>" + self.name +"</span>";
+     info += "<span class=\"menuitem_chnumber\">" + self.lcn +".</span><span class=\"menuitem_chname\">" + self.name +"</span>";
      if(self.epg) {
         curTime = new Date();
         var now = self.epg["now"];
