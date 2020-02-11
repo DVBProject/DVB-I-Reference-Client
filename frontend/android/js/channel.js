@@ -62,15 +62,18 @@ Channel.prototype.init = function( init_obj, channel_index){
             newTextbox.href="javascript:channelSelected('"+self.id+"')";
             if(self.image) {
                 var span = document.createElement('span');
+                span.classList.add("chicon");
                 var img = document.createElement('img');
                 img.setAttribute("src",self.image);
                 span.appendChild(img);
                 newTextbox.appendChild(span);
             }
             var span = document.createElement('span');
+            span.classList.add("chnumber");
             span.appendChild(document.createTextNode( self.lcn));
             newTextbox.appendChild(span);
             span = document.createElement('span');
+             span.classList.add("chname");
             span.appendChild(document.createTextNode( self.name));
             newTextbox.appendChild(span);
             var li = document.createElement('li');
