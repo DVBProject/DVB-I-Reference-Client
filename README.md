@@ -1,4 +1,4 @@
-DVB-I Reference Application 
+# DVB-I Reference Application 
 
 Project consists of a backend and frontend parts.
 
@@ -11,14 +11,10 @@ A separate client is offered for Android devices. Android client is a PWA applic
 same functionality. 
 
 Demo installations available at:
-
-HbbTV Frontend:
-http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/launcher/
-
-(note the new location)
-
-Android PWA Frontend:
-http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/
+- HbbTV Frontend:
+    http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/launcher/
+- Android PWA Frontend:
+    http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/
 
 (one can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app) 
 
@@ -30,7 +26,7 @@ https://cloud.sofiadigital.fi/index.php/s/qrB6MoFH5cPCDoN
 Note that this version runs as a "Normal HbbTV" version and might lack some of the functionalities
 of the OpApp version, and might display some inconsistent UI behavior.
 
-Backend:
+- Backend:
 http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/
 
 Backend is deployable to any web server with PHP support. Make sure that the "servicelists" directory is writable. The backend
