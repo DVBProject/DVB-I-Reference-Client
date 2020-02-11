@@ -586,7 +586,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
 				rating.addClass("hide")
 			}
 			if(program.genre && program.genre.length > 0){
-				genre.innerHTML = "Genre" + ": " + genres[program.genre];
+				genre.innerHTML = "Genre" + ": " + program.genre;
 				genre.removeClass("hide");
 			}
 			else{

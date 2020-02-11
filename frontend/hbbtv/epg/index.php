@@ -27,30 +27,6 @@
     var channelList = [];
     var DAYS_ENGL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var MONTHS_ENGL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	var genres = {
-		"1": "News",
-		"1.1": "News",
-		"1.2": "News",
-		"2": "Documentary",
-		"3.1":"Documentary",
-		"3.2":"Documentary",
-		"4":"Sports",
-		"4.1":"Sports",
-		"4.2":"Sports",
-		"5":"Drama",		
-		"6":"Drama",		
-		"7.1":"Movie",		
-		"7.2":"Movie",		
-		"8":"Children",		
-		"9":"Children",		
-		"9":"Documentary",		
-		"10":"Entertainment",				
-		"10.1":"Entertainment",				
-		"10.2":"Comedy",
-		"12":"Game Show",
-		"12.1":"Shopping",
-		"12.2":"Game"
-	};
     var VISIBLE_ROWS = 5;
     var IDLE_TIME_THRESHOLD = 600000; // 10 minutes
     var TWENTY_FOUR_HOURS = 86400000;

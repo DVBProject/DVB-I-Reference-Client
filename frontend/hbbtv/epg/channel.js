@@ -4,14 +4,59 @@ function Channel(channeldata, element_id,loadedCallback){
     this.loadedCallback = loadedCallback;
 }
 
+Channel.prototype.getGenre = function(genre) {
+    if(typeof genre === 'string' && genre.substring(0,  "urn:dvb:metadata:cs:ContentSubject:2019:".length) == "urn:dvb:metadata:cs:ContentSubject:2019:") {
+        var genre = genre.substring(genre.lastIndexOf(":")+1);
+        if(genre == "1") {
+            return "Movie/Drama";
+        }
+        else if(genre == "2") {
+            return "News/Current affairs";
+        }
+        else if(genre == "3") {
+            return "Show/Game show";
+        }
+        else if(genre == "4") {
+            return "Sports";
+        }
+        else if(genre == "5") {
+            return "Children's/Youth programmes";
+        }
+        else if(genre == "6") {
+            return "Music/Ballet/Dance";
+        }
+        else if(genre == "7") {
+            return "Arts/Culture";
+        }
+        else if(genre == "8") {
+            return "Social/Political issues/Economics";
+        }
+        else if(genre == "9") {
+            return "Education/Science/Factual topics";
+        }
+        else if(genre == "10") {
+            return "Leisure hobbies";
+        }
+        else if(genre == "11") {
+            return "Special characteristics";
+        }
+        else if(genre == "12") {
+            return "Adult";
+        }
+
+
+    }
+    return null; 
+}
+
 Channel.prototype.getSchedule = function(element_id) {
     var self = this;
-    if(self.id) {
+    if(self.contentId) {
         var scheduleURI = "../../../backend/schedule.php"; //TODO get the schedule url from the service list
         var start = Math.round((new Date()).getTime() / 1000);
         var end = start + (60*60*12);
 
-         $.get( scheduleURI+"?sids[]="+self.id+"&start="+start+"&end="+end, function( data ) { //TODO use ContentGuideServiceRef from the service
+         $.get( scheduleURI+"?sids[]="+self.contentId+"&start="+start+"&end="+end, function( data ) { //TODO use ContentGuideServiceRef from the service
             var parser = new DOMParser();
             var doc = parser.parseFromString(data,"text/xml");
             var events = doc.getElementsByTagName("ScheduleEvent");
@@ -29,6 +74,13 @@ Channel.prototype.getSchedule = function(element_id) {
                         var synopsis = description.getElementsByTagName("Synopsis")
                         if(synopsis.length > 0) {
                             program.desc = synopsis[0].childNodes[0].nodeValue;
+                        }
+                        var genre = description.getElementsByTagName("Genre")
+                        if(genre.length > 0) {
+                            var genreValue = self.getGenre(genre[0].getAttribute("href"));
+                            if(genreValue != null) {
+                                program.genre = genreValue;
+                            }
                         }
                         var relatedMaterial =  description.getElementsByTagName("RelatedMaterial");
                         for(var k=0;k<relatedMaterial.length;k++) {
