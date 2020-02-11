@@ -312,7 +312,7 @@ div, span {
   background-image: url("../CommonUI/bg_channel_info.png");
   background-repeat: no-repeat;
 }
-.channel_info span:first-child {
+.channel_info .menuitem_title span.menuitem_chname {
   _background-color: #222;
     _border-radius: 50%;
     color: #fff;
@@ -346,31 +346,35 @@ div, span {
   display: block !important;
   opacity: 0;
 }
-.menuitem_title span:first-child {
+.menuitem_title .menuitem_chicon {
+  display: inline-block;
+  border-right-width: 45px;
+  line-height: 45px;
+}
+.open .menuitem_title .menuitem_chicon img {
+  height: 45px;
+}
+.closed .menuitem_title .menuitem_chicon img {
+  height: 25px;
+}
+.menuitem_title .menuitem_chnumber {
 	text-align:right;
-	width: 2em;
 	display:inline-block;
 	color: #fff;
 	height:  45px;
 	line-height: 45px;
   margin-right: 0.2em;
+  margin-left: 0.2em;
 }
-.menuitem_title span:last-child {
+.menuitem_title span.sourcetype {
 	height:  45px;
 	line-height:  45px;
 	margin-left: 10px;
 }
-.open .menuitem_title span:first-child {
+.open .menuitem_title span.menuitem_chnumber {
 	color: #0090f1;
 }
 
-/*
-.menuitem.open .menuitem_title{
-	color: #9F248B !important;
-	font-size: 48px !important;
-}
-*/
-/**/
 .open .menuitem_title, .menuitem_title.selected {
 	font-size: 42px;	
 	color: #0098f4 !important;
