@@ -276,11 +276,17 @@ GridEPG.prototype.populate = function(callback){
 
 		$.each(self.channels, function(i, channel){
 			// leftbar
-            var img = channel.image4 || channel.image;
+            var img = channel.image;
 			var channelElement = document.createElement("div");
 			channelElement.setAttribute("id", "channel_" + i);
 			channelElement.addClass("channel");
-			channelElement.innerHTML = "<span>"+channel.title+"</span>";//"<img src=\"" + img + "\" alt=\"\" />";
+            if(img) {
+                channelElement.innerHTML = "<img src=\"" + img + "\" alt=\"\" />";
+            }
+            else {
+                channelElement.innerHTML = "<span>"+channel.title+"</span>";
+            }
+			
 			self.leftbar.firstChild.appendChild(channelElement);
 
 			// epgRow
