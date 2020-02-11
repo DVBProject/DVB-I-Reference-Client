@@ -310,9 +310,12 @@ function generateXML() {
             propertyElement.appendChild(mediaLocator);
             serviceElement.appendChild(propertyElement);
         }
-        propertyElement = doc.createElement("ContentGuideServiceRef");
-        propertyElement.appendChild(doc.createTextNode(document.getElementById(serviceId+"_content_guide_service_reference").value));
-        serviceElement.appendChild(propertyElement);
+        var contentGuideServiceRef = document.getElementById(serviceId+"_content_guide_service_reference").value;
+        if(contentGuideServiceRef && contentGuideServiceRef.length > 0) {
+            propertyElement = doc.createElement("ContentGuideServiceRef");
+            propertyElement.appendChild(doc.createTextNode(contentGuideServiceRef));
+            serviceElement.appendChild(propertyElement);
+        }
         doc.documentElement.appendChild(serviceElement);
 
         var lcn = doc.createElement("LCN");
