@@ -443,7 +443,7 @@ function listSavedServicelists() {
         newTextbox.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
-        newTextbox.href="javascript:deleteServicelist('"+this+"')";
+        newTextbox.href="javascript:deleteServicelist('"+this.substr("./servicelists/".length)+"')";
         var image = document.createElement('img');
         image.classList.add("icon");
         image.src ="icons/trash.svg";
@@ -530,7 +530,7 @@ function loadServicelist(list) {
 function deleteServicelist(list) {
     $.post( "delete_servicelist.php", { servicelist: list })
       .done(function( data ) {
-        alert( "Servicelist deleted!" );
+        alert( "Servicelist '"+list+"'  deleted!" );
         listSavedServicelists();
       })
       .fail(function(data) {
