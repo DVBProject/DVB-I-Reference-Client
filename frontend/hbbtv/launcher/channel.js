@@ -280,7 +280,12 @@ Channel.prototype.init = function( init_obj, element_id){
 
 			// Menuitem title
 			var menuitem_title = document.createElement("div");
-            menuitem_title.innerHTML = "<span>" + XMLEscape(self.majorChannel) +".</span><span>" + XMLEscape(self.name) +"</span><span class=\"sourcetype\">" + XMLEscape(self.sourceTypes) +"</span>";
+            var innerHtml = "";
+            if(self.image && self.image.length > 0 ) {
+                innerHtml = "<span><img src=\""+self.image+"\"></img></span>";
+            }
+            menuitem_title.innerHTML = innerHtml+"<span>" + XMLEscape(self.majorChannel) +".</span><span>" + XMLEscape(self.name) +"</span><span class=\"sourcetype\">" + XMLEscape(self.sourceTypes) +"</span>";
+
             menuitem_title.addClass("menuitem_title", null);
 			element.appendChild(menuitem_title);
             

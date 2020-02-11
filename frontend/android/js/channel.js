@@ -60,6 +60,13 @@ Channel.prototype.init = function( init_obj, channel_index){
 		if(self.element == null){			
             var newTextbox = document.createElement('a');
             newTextbox.href="javascript:channelSelected('"+self.id+"')";
+            if(self.image) {
+                var span = document.createElement('span');
+                var img = document.createElement('img');
+                img.setAttribute("src",self.image);
+                span.appendChild(img);
+                newTextbox.appendChild(span);
+            }
             var span = document.createElement('span');
             span.appendChild(document.createTextNode( self.lcn));
             newTextbox.appendChild(span);
@@ -102,7 +109,11 @@ Channel.prototype.updateChannelInfo = function () {
      console.log("updateChannelInfo");
      var self = this;
      var channelInfo = document.getElementById("channel_info");
-     var info = "<span>" + self.lcn +".</span><span>" + self.name +"</span>";
+     var info = "";
+     if(self.image) {
+        info = "<span><img src=\""+self.image+"\"></span>";
+     }
+     info += "<span>" + self.lcn +".</span><span>" + self.name +"</span>";
      if(self.epg) {
         curTime = new Date();
         var now = self.epg["now"];
