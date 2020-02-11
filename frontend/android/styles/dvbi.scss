@@ -73,12 +73,23 @@ body.player {
           color: $lightgrey-color;
           text-decoration: none;
         }
-        span:first-child {
+        span.chicon{
+          float: right;
+          height: 40px;
+          line-height: 40px;
+          padding-right: 0.2em;
+          img {
+            height: 20px;
+            //margin-top: 10px;
+          }
+        }
+        span.chnumber{
           font-size: 1.0em;
           margin-right: 0.5em;
         }
-        span:last-child {
+        span.chname {
           font-size: 1.2em;
+          margin-right: 0.5em;
         }
         &.active a {
           color: $blue-color;
@@ -92,25 +103,30 @@ body.player {
   #channel_info {
     span {
         text-shadow: 2px 2px 0px #000;    
-      &:first-child {
+      &.menuitem_chicon {
+        img {
+         
+        }
+      }
+      &.menuitem_chnumber {
           font-size: 1.0em;
           margin-right: 0.5em;
           color: $blue-color;
           display: block;
       }
-      &:nth-child(2) {
+      &.menuitem_chname {
           font-size: 1.5em;
           font-weight: 600;
           color: $blue-color;
           display: block;        
       }
-      &:nth-child(3) {
+      &.menuitem_now {
           font-size: 1.0em;
           font-weight: 600;
           color: $lightgrey-color;
           display: block;          
       }
-      &:nth-child(4) {
+      &.menuitem_next {
           font-size: 1.0em;
           font-weight: 600;
           color: $lightgrey-color;          
