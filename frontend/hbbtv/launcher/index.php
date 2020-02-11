@@ -119,15 +119,7 @@
         
         getServiceList("../../../backend/servicelists/example.xml", function( epg ){
                 createMenu(epg);
-                
-                if(chNumber){
-                    currentChIndex = parseInt(chNumber);
-                    broadcastChannel = _menu_.getChannelAtIndex(chNumber);
-                }
                 openCurrentChannel();
-			if (window.location.search.indexOf("mode=open") != -1) {
-				onKey(VK_UP);
-			}
         }, function(){
             console.log("Error in fetching service data");
         });
@@ -137,7 +129,7 @@
 	function createMenu(data){
 		_menu_ = new Menu("menu_0");
 		_menu_.center = 0;
-
+        var currentChannel = null;
         try {
             var searchSelected;
             if(selectedChNumber.length > 0){
@@ -152,14 +144,11 @@
             var vid = document.getElementById('broadcast');
             var config = vid.getChannelConfig();
             var channelList = config.channelList;
-            var currentChannel = _application_.privateData.currentChannel;
+            currentChannel  = _application_.privateData.currentChannel;
           
         } catch (e) {
-            console.log("Getting data");
-
-            showInfo(e.message);
         }        
-
+        var current_channel_obj = null;
         var parser = new DOMParser();
         var doc = parser.parseFromString(data,"text/xml");
         var services = doc.getElementsByTagName("Service");
@@ -234,10 +223,28 @@
 				channel_obj.boxes[b].description = "";
 				break;
 			}
+            if(chan.dvbChannel != null && chan.dvbChannel.sid == currentChannel.sid && chan.dvbChannel.tsid == currentChannel.tsid && chan.dvbChannel.onid == currentChannel.onid ) {
+                current_channel_obj = channel_obj;
+            }
 			_menu_.items.push(channel_obj);
         }
-
-		_menu_.populate();
+        _menu_.items.sort(compareLCN);
+        if(current_channel_obj == null) {
+            current_channel_obj = _menu_.items[0]; 
+        }
+        else {         
+            for(var i = 0; i < _menu_.items.length; i++){
+                if(current_channel_obj.majorChannel == _menu_.items[i].majorChannel) {
+                    _menu_.center = i;
+                    break;
+                }
+            }
+        }
+        document.getElementById("info_num").innerHTML = current_channel_obj.majorChannel+".";
+        document.getElementById("info_name").innerHTML = current_channel_obj.name.replace('&', '&amp;');
+        currentChIndex = current_channel_obj.majorChannel;
+		_menu_.populate();      
+        
         console.log("menu created");
         
 	}

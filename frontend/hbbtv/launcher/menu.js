@@ -16,7 +16,6 @@ Menu.prototype.init = function(element_id){
 Menu.prototype.populate = function(){
 	_menu_.element.innerHTML = "";
 	_menu_.element.setAttribute("style", "");
-    this.items.sort(compareLCN);
 	for(var i = 0; i < this.items.length; i++){
 		var pb_frame = document.createElement("span");
 		pb_frame.addClass("progress_bar_frame");
