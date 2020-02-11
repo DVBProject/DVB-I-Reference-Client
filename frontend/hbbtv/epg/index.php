@@ -111,9 +111,9 @@
             }
             var relatedMaterial = services[i].getElementsByTagName("RelatedMaterial");
             for(var j = 0;j < relatedMaterial.length;j++) {
-                var howRelated = relatedMaterial[j].getElementsByTagName("tva:HowRelated")[0].getAttribute("href");
+                var howRelated = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
                 if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
-                    chan.image = relatedMaterial[j].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
+                    chan.image = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
                 }
             }
             var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
