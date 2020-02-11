@@ -61,33 +61,41 @@ body.player {
       .video_wrapper .player-ui .list-group .list-group-item a {
         color: #848484;
         text-decoration: none; }
-      .video_wrapper .player-ui .list-group .list-group-item span:first-child {
+      .video_wrapper .player-ui .list-group .list-group-item span.chicon {
+        float: right;
+        height: 40px;
+        line-height: 40px;
+        padding-right: 0.2em; }
+        .video_wrapper .player-ui .list-group .list-group-item span.chicon img {
+          height: 20px; }
+      .video_wrapper .player-ui .list-group .list-group-item span.chnumber {
         font-size: 1.0em;
         margin-right: 0.5em; }
-      .video_wrapper .player-ui .list-group .list-group-item span:last-child {
-        font-size: 1.2em; }
+      .video_wrapper .player-ui .list-group .list-group-item span.chname {
+        font-size: 1.2em;
+        margin-right: 0.5em; }
       .video_wrapper .player-ui .list-group .list-group-item.active a {
         color: #3996c9;
         font-size: 1.5em;
         text-shadow: 2px 2px 0px #000; }
   .video_wrapper #channel_info span {
     text-shadow: 2px 2px 0px #000; }
-    .video_wrapper #channel_info span:first-child {
+    .video_wrapper #channel_info span.menuitem_chnumber {
       font-size: 1.0em;
       margin-right: 0.5em;
       color: #3996c9;
       display: block; }
-    .video_wrapper #channel_info span:nth-child(2) {
+    .video_wrapper #channel_info span.menuitem_chname {
       font-size: 1.5em;
       font-weight: 600;
       color: #3996c9;
       display: block; }
-    .video_wrapper #channel_info span:nth-child(3) {
+    .video_wrapper #channel_info span.menuitem_now {
       font-size: 1.0em;
       font-weight: 600;
       color: #848484;
       display: block; }
-    .video_wrapper #channel_info span:nth-child(4) {
+    .video_wrapper #channel_info span.menuitem_next {
       font-size: 1.0em;
       font-weight: 600;
       color: #848484; }

@@ -126,12 +126,12 @@ Channel.prototype.updateChannelInfo = function () {
                self.getNowNext();
                return;
             }
-            info += "<span clas=\"menuitem_now\">Now: "+now.title+" ";
+            info += "<span class=\"menuitem_now\">Now: "+now.title+" ";
             info +=  Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
         }
         var next= self.epg["next"];
         if(next) {
-            info += "<span clas=\"menuitem_next\">Next: "+next.title+" ";
+            info += "<span class=\"menuitem_next\">Next: "+next.title+" ";
             info +=  next.start.create24HourTimeString()+" ";
             info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
         }
