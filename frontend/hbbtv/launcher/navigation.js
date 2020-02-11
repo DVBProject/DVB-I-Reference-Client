@@ -26,6 +26,7 @@ var selectionChangeTimer = null;
 var menuOpen = false;
 var supervisor = null;
 var player = null;
+var broadcast = null;
 
 if (typeof(KeyEvent)!='undefined') {
 	if (typeof(KeyEvent.VK_LEFT)!='undefined') {
@@ -131,16 +132,20 @@ function registerKeys(mode) {
  
         var app = document.getElementById('appmgr').getOwnerApplication(document);
         var cfg = document.getElementById('oipfcfg');
-        app.privateData.keyset.setValue(mask);    
+        app.privateData.keyset.setValue(mask);
+        broadcast = document.getElementById('broadcast');
+        try {
+	        supervisor = broadcast.getChannelConfig().getBroadcastSupervisor();
+            supervisor.onChannelChangeSucceeded = onChannelChangeSucceeded;
+            supervisor.onChannelChangeError = onChannelChangeError;
+        } catch (e) {
+            broadcast.bindToCurrentChannel();
+        }
+
         var keys = [KeyEvent.VK_GUIDE,KeyEvent.VK_CHANNEL_UP,KeyEvent.VK_CHANNEL_DOWN,KeyEvent.VK_SUBTITLE,KeyEvent.VK_INFO,KeyEvent.VK_MENU];
         app.privateData.keyset.setValue(mask,keys);
         cfg.configuration.replaceUIElements([cfg.configuration.UI_TVMODE,cfg.configuration.UI_MENU,cfg.configuration.UI_EPG]);
         app.onOperatorApplicationStateChange = onOperatorApplicationStateChange;        
-        var vid = document.getElementById('broadcast');
-	    supervisor = vid.getChannelConfig().getBroadcastSupervisor();
-        
-        supervisor.onChannelChangeSucceeded = onChannelChangeSucceeded;
-        supervisor.onChannelChangeError = onChannelChangeError;
 	} catch (e2) {
  	}
 }
@@ -682,16 +687,9 @@ function channelUp(){
 			chChangeTimer = setTimeout(function(){
                try{
                     if(channel_obj.dvbChannel) {
-                        if(player) {
-                            player.stop();
-                        }
-                        supervisor.setChannel(channel_obj.dvbChannel,false,"");
+                        selectDVBService(channel_obj.dvbChannel);
                     }
                     else if(channel_obj.dashUrl) {
-                        if(player) {
-                            player.stop();
-            
-                        }
                         playDASH(channel_obj.dashUrl);
                     }
 
@@ -747,10 +745,7 @@ function channelDown(){
 			chChangeTimer = setTimeout(function(){
                 try{
                     if(channel_obj.dvbChannel) {
-                        if(player) {
-                            player.stop();
-                        }
-                        supervisor.setChannel(channel_obj.dvbChannel,false,"");
+                        selectDVBService(channel_obj.dvbChannel) ;
                     }
                     else if(channel_obj.dashUrl) {
                         if(player) {
@@ -781,15 +776,25 @@ function channelDown(){
 
 function playDASH(url) {
      try {
+        if(player) {
+            player.stop();
+        }
         $( "#player" ).remove();
      }
      catch(e) {
      }
 
     try {
-        if(supervisor.playState == 1 ) {
-            supervisor.pause();
-            supervisor.setChannel(null);
+        if(supervisor != null) {
+            if(supervisor.playState == 1 ) {
+                supervisor.stop();
+                supervisor.setChannel(null);
+            }
+        }
+        else {
+            broadcast = document.getElementById('broadcast');
+            broadcast.stop();
+            broadcast.addClass("hide_broadcast");
         }
      }
      catch(e) {
@@ -799,6 +804,31 @@ function playDASH(url) {
      player.createPlayer();    
      player.setURL(url);
      player.startVideo(true);
+}
+
+function selectDVBService(channel) {
+     try {
+        if(player) {
+            player.stop();
+        }
+        $( "#player" ).remove();
+     }
+     catch(e) {
+     }
+    try {
+        if(supervisor != null) {
+           supervisor.setChannel(channel,false,"");
+        }
+        else {
+            broadcast = document.getElementById('broadcast');
+            broadcast.bindToCurrentChannel();
+            broadcast.setChannel(channel,false,"");
+            broadcast.removeClass("hide_broadcast");
+        }
+     }
+     catch(e) {
+     }
+
 }
 
 function keyEnter(){
@@ -819,18 +849,17 @@ function keyEnter(){
 			
 			if(activeBox instanceof Box){
                 if(channel_obj.dvbChannel) {
-                    if(player) {
-                        player.stop();
+                   document.getElementById("info_num").innerHTML = channel_obj.majorChannel+".";
+                   document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
+                   currentChIndex = channel_obj.majorChannel;
+                   try {
+                       selectDVBService(channel_obj.dvbChannel);
                     }
-                    supervisor.setChannel(channel_obj.dvbChannel,false,"");
-                    document.getElementById("info_num").innerHTML = channel_obj.majorChannel+".";
-                    document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
-                    currentChIndex = channel_obj.majorChannel;
+                    catch(e) {
+                       showInfo("Error selecting channel!");
+                    }
                 }
                 else if(channel_obj.dashUrl) {
-                    if(player) {
-                        player.stop();
-                    }
                     playDASH(channel_obj.dashUrl);
                     document.getElementById("info_num").innerHTML = channel_obj.majorChannel+".";
                     document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');

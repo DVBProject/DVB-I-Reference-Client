@@ -395,12 +395,12 @@
 	<div style="visibility:hidden;width:0px;height:0px;">
 		<object id="appmgr" type="application/oipfApplicationManager" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
 		<object id="oipfcfg" type="application/oipfConfiguration" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
-        <object id="broadcast" type="video/broadcast" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
+       
 	</div>
 
     <!-- <div id="debug" style="position:absolute; left:100px; top:100px; display:block;"></div> -->
 	<div id="dialog" class="hide"></div>
-	
+	<object id="broadcast" type="video/broadcast" ></object>
 	<div id="wrapper" class="hide">
 
 		<!-- <div id="debug" style="position:absolute; top:100px; left:100px;"></div> -->
