@@ -184,6 +184,14 @@
             if(cgRefs && cgRefs.length > 0) {
                 chan.contetGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
             }
+            var relatedMaterial = services[i].getElementsByTagName("RelatedMaterial");
+            for(var j = 0;j < relatedMaterial.length;j++) {
+                var howRelated = relatedMaterial[j].getElementsByTagName("tva:HowRelated")[0].getAttribute("href");
+                if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
+                    chan.image = relatedMaterial[j].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
+                }
+            }
+
             var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
             var sourceTypes = [];
             for(var j = 0;j < serviceInstances.length;j++) {
