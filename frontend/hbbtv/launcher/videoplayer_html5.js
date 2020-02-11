@@ -722,23 +722,7 @@ VideoPlayerHTML5.prototype.startVideo = function( isLive, nthCall ){
 		this.subtitleTrack = false;
 	}
 	
-	if( nthCall && nthCall > 0 ){
-		try{
-			var broadcast = $("#broadcast")[0];
-			if( !broadcast ){
-				$("body").append("<object type='video/broadcast' id='broadcast'></object>");
-			}
-			broadcast = $("#broadcast")[0];
-			console.log( broadcast );
-			broadcast.bindToCurrentChannel();
-			broadcast.stop();
-			console.log("broadcast stopped");
-		}
-		catch(e){
-			console.log("error stopping broadcast");
-		}
-	}
-	
+
 	var self = this;
 	this.onAdBreak = false;
 	this.firstPlay = true;
@@ -875,9 +859,6 @@ VideoPlayerHTML5.prototype.clearVideo = function(){
 			self.video.src = "";
 			$( "#video" ).remove(); // clear from dom
 			this.video = null;
-		}
-		if( $("#broadcast")[0] ){
-			$("#broadcast")[0].bindToCurrentChannel();
 		}
 	}
 	catch(e){

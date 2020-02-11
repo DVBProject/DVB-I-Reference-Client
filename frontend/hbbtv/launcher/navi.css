@@ -27,6 +27,20 @@
 div, span {
 	_border:  1px solid red;
 }
+.hide_broadcast {
+    height: 0px !important;
+    width: 0px !important;
+    display: none !important;
+}
+
+#broadcast {
+ position: absolute;
+ left: 0px;
+ top: 0px;
+ width: 100%; 
+ height: 100%;
+}
+
 #wrapper.hide{
   opacity: 0 !important;
   display: block !important;
