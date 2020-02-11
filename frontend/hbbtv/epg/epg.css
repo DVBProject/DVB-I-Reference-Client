@@ -225,11 +225,12 @@ body {
     transition: opacity 0.3s linear;
 	left: 186px;
 	top: 276px;
+  width: 1094px;
 }
 
 #container {
 	display: inline-block;
-	height: 289px;
+	height: 287px;
 	left: 0;
 	overflow: hidden;
 	position: absolute;
@@ -239,6 +240,7 @@ body {
     -o-transition: left 0.2s linear;
     -moz-transition: left 0.2s linear;
     transition: left 0.2s linear;
+  border-radius: 2px;
 }
 
 #noDataInfo {
@@ -297,7 +299,7 @@ body {
 	width: inherit;
 	margin-bottom: 3px;
 	z-index: 1;
-	background-color: #38393a;
+	background-color: transparent;
 /*
 	-webkit-box-shadow: inset 32px 0px 24px -14px rgba(0,0,0,0.5);
 	-moz-box-shadow: inset 32px 0px 24px -14px rgba(0,0,0,0.5);
@@ -371,6 +373,7 @@ body {
 	background-color: rgba(0,0,0,0.85);
 */
 	background-color: #101011;
+  border-radius: 2px;
 }
 
 .program:after {
@@ -388,7 +391,7 @@ body {
   right: -5px;
   z-index: 199;
     background-repeat: repeat-y;
-    box-shadow:  -5px 0px 8px 1px rgba(0,0,0,1);
+    box-shadow:  -5px 0px 8px 0px rgba(0,0,0,1);
 }
 	
 .program.noprogram, .spaceFiller.noprogram{
@@ -403,7 +406,7 @@ body {
 	_right: 12px;
 }
 .program.focused, .noprogram.focused, .upcoming.focused {
-	background-color: #3996c9 !important;
+	background-color: #0098f4 !important;
 	color: #fff !important;
 	z-index: 10 !important;
 	margin-left: 0px;
@@ -438,12 +441,12 @@ body {
 	color: #6e6e6e;		
 }
 .program.now{
-	background-color: #606060;
+	background-color: #006898;
 	color: #fff;
 	z-index: 10;
 }
 .program.upcoming{
-	background-color:#2e2e2e;
+	background-color:#032c44;
 	color: #fff;
 }
 
@@ -485,7 +488,7 @@ body {
 }
 */
 #date {
-  color: #3996c9;
+  color: #0098f4;
   display: block;
   font-size: 18px;
   height: 57px;
@@ -515,7 +518,7 @@ body {
 	z-index: 8;
 	left: 0px;
 	top: 12px;
-	color: #3996c9;
+	color: #0098f4;
 	font-size: 21px;
 }
 
@@ -623,7 +626,7 @@ body {
 	width: 150px;
 }
 .time_text{
-	color:#3996c9;
+	color:#0098f4;
 }
 .timeline_fullhour .time_text{
 	font-size: 18px;
