@@ -10,16 +10,16 @@ if(isset($_POST['servicelist']) && isset($_POST['filename'])) {
        die();
     }
 
+    if(substr($filename, -4) != ".xml") {
+        $filename = $filename.".xml";
+    }
+
     if($filename == "example.xml") {
         http_response_code (400);
         echo('Example xml cannot be modified!');
         die();
     }
 
-
-    if(substr($filename, -4) != ".xml") {
-        $filename = $filename.".xml";
-    }
     $target = $target_dir.$filename;
     if (!file_exists($target)) {
         $fh = fopen($target , 'w') or die("Can't create file");
