@@ -119,7 +119,6 @@
         
         getServiceList("../../../backend/servicelists/example.xml", function( epg ){
                 createMenu(epg);
-                openCurrentChannel();
         }, function(){
             console.log("Error in fetching service data");
         });
