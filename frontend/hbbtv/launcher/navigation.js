@@ -120,32 +120,34 @@ if (typeof (VK_LEFT) == "undefined") {
 	var VK_TELETEXT = 459;
 }
 
-function registerKeys(mode) {
+function registerKeys() {
 	var mask;
-	// ui hidden, only red and green registered
-	if (mode == 0) {
-		mask = 0x400;
-	} else {
-		mask = 0x10+0x20+0x40+0x80+0x100+0x400;
-	}
+
+    //OpeApp mask, no color buttons
+    mask = 0x10+0x20+0x40+0x80+0x100+0x400;
+
 	try {
- 
         var app = document.getElementById('appmgr').getOwnerApplication(document);
-        var cfg = document.getElementById('oipfcfg');
-        app.privateData.keyset.setValue(mask);
+        var cfg = document.getElementById('oipfcfg');   
         broadcast = document.getElementById('broadcast');
         try {
 	        supervisor = broadcast.getChannelConfig().getBroadcastSupervisor();
             supervisor.onChannelChangeSucceeded = onChannelChangeSucceeded;
             supervisor.onChannelChangeError = onChannelChangeError;
+
+             cfg.configuration.replaceUIElements([cfg.configuration.UI_TVMODE,cfg.configuration.UI_MENU,cfg.configuration.UI_EPG]);
+            app.onOperatorApplicationStateChange = onOperatorApplicationStateChange;   
+             
+            var keys = [KeyEvent.VK_GUIDE,KeyEvent.VK_CHANNEL_UP,KeyEvent.VK_CHANNEL_DOWN,KeyEvent.VK_SUBTITLE,KeyEvent.VK_INFO,KeyEvent.VK_MENU];
+            app.privateData.keyset.setValue(mask,keys);
         } catch (e) {
+            //Not an OpApp, register color buttons for HbbTV usage
+            mask = 0x1+0x2+0x4+0x8+0x10+0x20+0x40+0x80+0x100;
+            app.privateData.keyset.setValue(mask);
             broadcast.bindToCurrentChannel();
         }
-
-        var keys = [KeyEvent.VK_GUIDE,KeyEvent.VK_CHANNEL_UP,KeyEvent.VK_CHANNEL_DOWN,KeyEvent.VK_SUBTITLE,KeyEvent.VK_INFO,KeyEvent.VK_MENU];
-        app.privateData.keyset.setValue(mask,keys);
-        cfg.configuration.replaceUIElements([cfg.configuration.UI_TVMODE,cfg.configuration.UI_MENU,cfg.configuration.UI_EPG]);
-        app.onOperatorApplicationStateChange = onOperatorApplicationStateChange;        
+       
+        
 	} catch (e2) {
  	}
 }
