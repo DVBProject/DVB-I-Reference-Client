@@ -9,6 +9,12 @@ if(isset($_POST['servicelist'])) {
        die();
     }
 
+    if($filename == "example.xml") {
+        http_response_code (400);
+        echo('Example xml cannot be deleted!');
+        die();
+    }
+
     
     $target = $target_dir.$filename;
     if (file_exists($target)) {
