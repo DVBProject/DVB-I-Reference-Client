@@ -23,6 +23,7 @@ function channelSelected(channelId) {
 }
 
 window.onload = function(){
+    $(".epg").hide();
     loadServicelist("../../backend/servicelists/example.xml");
     uiHideTimeout = setTimeout(hideUI, 5000);
     $(".video_wrapper").on("click touchstart",resetHideTimeout);
@@ -32,13 +33,27 @@ var channels = [];
 var uiHideTimeout = null;
 
 function resetHideTimeout() {
-    $(".player-ui").removeClass("hide");
+    if( $(".player-ui").hasClass("hide") && !($(".epg").hasClass("hide"))) {
+        $(".player-ui").removeClass("hide");
+    }
     clearTimeout(uiHideTimeout);
     uiHideTimeout = setTimeout(hideUI, 5000);
 }
 
 function hideUI() {
     $(".player-ui").addClass("hide");
+}
+
+function showEpg(service) {
+    $(".epg").removeClass("hide");
+    $(".player-ui").addClass("hide");
+    $(".epg").show();
+}
+
+function closeEpg() {
+    $(".epg").hide();
+    $(".epg").addClass("hide");
+    $(".player_ui").removeClass("hide");
 }
 
 function loadServicelist(list) {

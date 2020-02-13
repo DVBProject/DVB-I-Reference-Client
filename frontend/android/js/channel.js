@@ -136,6 +136,7 @@ Channel.prototype.updateChannelInfo = function () {
             info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
         }
      }
+     info += "<span class=\"menuitem_epg\"><a href=\"javascript:showEpg('"+self.contetGuideServiceRef+"')\">Open EPG</a></span>"
      channelInfo.innerHTML = info;
 }
 
