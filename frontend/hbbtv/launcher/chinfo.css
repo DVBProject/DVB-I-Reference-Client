@@ -23,7 +23,8 @@ div {
     background-repeat: repeat-x;
     */
     background-image: url(images/bg_chinfo.png);
-    background-repeat: repeat-y;
+    background-repeat: repeat-x;
+  background-position: bottom;
   
     height: 720px;
     top: 0px;
@@ -33,23 +34,22 @@ div {
     display: block !important;  
 }
 #chinfo_chname {
-    top: 347px;
-    left: 140px;
+    top: 500px;
+    left: 85px;
     font-size: 26px;
     color: #fff;
 }
 #chinfo_chnumber {
-    top: 330px;
-    left: 80px;
+    top: 450px;
+    left: 85px;
     color: #0090f1;
     font-size: 48px;
-  _border: 1px solid red;
-  text-align: right;
-  width: 50px;
+  text-align: left;
+  width: 200px;
 }
 #chinfo_chicon {
-    left: 90px;
-    top: 260px;
+    left: 85px;
+    top: 360px;
     height: 80px;
     line-height: 80px;
     display: flex;
@@ -61,9 +61,8 @@ div {
 }
 #chinfo_now {
     left: 90px;
-    top: 460px;
+    top: 580px;
     height: 80px;
-  transform: scale(1.2,1.2);
 }
 
 
@@ -84,6 +83,8 @@ div {
     height: 5px;
     left: 150px;
     width: 130px;
+  border-radius: 1px;
+  overflow: hidden;
 }
 #chinfo_progressbarbg {
     top: 0px;
@@ -93,15 +94,15 @@ div {
     height: 5px;
 }
 #chinfo_progressbarTime {
-    background-color: #3996c9;
+    background-color: #0098f4;
     height: 5px;
     top: 0px;
     left: 0px;
 }
 /* next program */
 #chinfo_next {
-    left: 90px;
-    top: 610px;
+    left: 640px;
+    top: 580px;
     height: 80px;
 }
 #chinfo_next > div {
@@ -123,7 +124,7 @@ div {
     left: 150px;
     overflow: hidden;
     white-space: nowrap;
-    width: 330px;
+    width: 400px;
     text-overflow: ellipsis;
     height: 30px;
     line-height: 30px;
