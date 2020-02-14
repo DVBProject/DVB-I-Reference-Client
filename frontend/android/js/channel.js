@@ -176,7 +176,7 @@ Channel.prototype.init = function( init_obj, channel_index){
             span.appendChild(document.createTextNode( self.lcn));
             newTextbox.appendChild(span);
             span = document.createElement('span');
-            span.classList.add("chname");
+            span.classList.add("chname","text-truncate");
             span.appendChild(document.createTextNode( self.name));
             newTextbox.appendChild(span);
             var li = document.createElement('li');
@@ -235,7 +235,7 @@ Channel.prototype.updateChannelInfo = function () {
             info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
         }
      }
-     info += "<span class=\"menuitem_epg\"><a href=\"javascript:showEpg('"+self.contetGuideServiceRef+"')\">Open EPG</a></span>"
+     info += "<span class=\"menuitem_epg btn btn-outline-light btn-small mt-1 p-1\"><a href=\"javascript:showEpg('"+self.contetGuideServiceRef+"')\" class=\"text-white\">Open EPG</a></span>"
      channelInfo.innerHTML = info;
 }
 

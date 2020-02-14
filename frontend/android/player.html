@@ -65,18 +65,15 @@
       </div>  
     </div>  
   </div>
-  <div style="display:none" id="epg" class="epg container-fluid text-white hide">
+  <div style="display:none" id="epg" class="epg container-fluid text-white hide overflow-auto h-100">
      <div class="row">
-     <ul>
-     <div class="col-4">
-      <h4 class="d-flex align-items-center">
-        <a href="javascript:closeEpg()">Close EPG</a>
-      </h4>
-     </div>
-     </ul>
-     </div>
+      <div class="p-2 bd-highlight"><a class="p-2" href="#"><img src="images/chevron-left.svg" alt="Previous" width="32" height="32" title="Previous" class="icon-white"></a></div>
+      <div class="p-2 bd-highlight flex-grow-1"><h4>EPG</h4></div>
+      <div class="p-2 bd-highlight"><a  class="p-2" href="javascript:closeEpg()"><img src="images/x-circle.svg" alt="Close EPG" width="32" height="32" title="Close EPG" class="icon-white"></a></div>
+      <div class="p-2 bd-highlight"><a class="p-2" href="#"><img src="images/chevron-right.svg" alt="Next" width="32" height="32" title="Next" class="icon-white"></a></div>      
+    </div>
   </div>
-</div>
+
 <script src="js/popper.min.js"></script>  
   
 </body>
