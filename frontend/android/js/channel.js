@@ -6,6 +6,52 @@ function Channel( init_obj, element_id ){
     this.selected = false;
 }
 
+Channel.prototype.getGenre = function(genre) {
+    if(typeof genre === 'string' && genre.substring(0,  "urn:dvb:metadata:cs:ContentSubject:2019:".length) == "urn:dvb:metadata:cs:ContentSubject:2019:") {
+        var genre = genre.substring(genre.lastIndexOf(":")+1);
+        if(genre == "1") {
+            return "Movie/Drama";
+        }
+        else if(genre == "2") {
+            return "News/Current affairs";
+        }
+        else if(genre == "3") {
+            return "Show/Game show";
+        }
+        else if(genre == "4") {
+            return "Sports";
+        }
+        else if(genre == "5") {
+            return "Children's/Youth programmes";
+        }
+        else if(genre == "6") {
+            return "Music/Ballet/Dance";
+        }
+        else if(genre == "7") {
+            return "Arts/Culture";
+        }
+        else if(genre == "8") {
+            return "Social/Political issues/Economics";
+        }
+        else if(genre == "9") {
+            return "Education/Science/Factual topics";
+        }
+        else if(genre == "10") {
+            return "Leisure hobbies";
+        }
+        else if(genre == "11") {
+            return "Special characteristics";
+        }
+        else if(genre == "12") {
+            return "Adult";
+        }
+
+
+    }
+    return null; 
+}
+
+
 Channel.prototype.getNowNext = function() {
     var self = this;
     if(self.contetGuideServiceRef) {
@@ -50,12 +96,69 @@ Channel.prototype.getNowNext = function() {
 }
 
 
+Channel.prototype.getSchedule = function() {
+    var self = this;
+    self.programs = [];
+    if(self.contetGuideServiceRef) {
+        var scheduleURI = "../../backend/schedule.php"; //TODO get the schedule url from the service list
+        var start = Math.round((new Date()).getTime() / 1000);
+        var end = start + (60*60*12);
+
+         $.get( scheduleURI+"?sids[]="+self.contetGuideServiceRef+"&start="+start+"&end="+end, function( data ) { //TODO use ContentGuideServiceRef from the service
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(data,"text/xml");
+            var events = doc.getElementsByTagName("ScheduleEvent");
+            var programs = doc.getElementsByTagName("ProgramInformation");
+            for(var i=0;i<events.length;i++) {
+                var program = {};
+                var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
+                program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toDate();
+                program.end  = iso6801end(events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue, program.start);
+                program.prglen = (program.end.getTime() - program.start.getTime())/(1000*60);
+                for(var j=0;j<programs.length;j++) {
+                    if(programs[j].getAttribute("programId") == programId) {
+                        var description = programs[j].getElementsByTagName("BasicDescription")[0];
+                        program.title = description.getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+                        var synopsis = description.getElementsByTagName("Synopsis")
+                        if(synopsis.length > 0) {
+                            program.desc = synopsis[0].childNodes[0].nodeValue;
+                        }
+                        var genre = description.getElementsByTagName("Genre")
+                        if(genre.length > 0) {
+                            var genreValue = self.getGenre(genre[0].getAttribute("href"));
+                            if(genreValue != null) {
+                                program.genre = genreValue;
+                            }
+                        }
+                        var relatedMaterial =  description.getElementsByTagName("RelatedMaterial");
+                        for(var k=0;k<relatedMaterial.length;k++) {
+                            var howRelated = relatedMaterial[k].getElementsByTagName("HowRelated")[0].getAttribute("href");
+                            if(howRelated == "urn:tva:metadata:cs:HowRelatedCS:2012:19") { //Program still image
+                                program.mediaimage = relatedMaterial[k].getElementsByTagName("MediaUri")[0].childNodes[0].nodeValue;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                var program = new Program(program);
+		        program.bilingual = self.bilingual;
+		        program.channelimage = self.image;
+		        program.channel_streamurl = self.streamurl;
+		        self.programs.push(program);
+                }
+
+         },"text");
+    }
+}
+
 Channel.prototype.init = function( init_obj, channel_index){
 		var self = this;
 		$.each( init_obj, function( f, field ){
 			self[f] = field;
 		});
         self.getNowNext();
+        self.getSchedule();
 		self.element = document.getElementById("channel_"+channel_index);
 		if(self.element == null){			
             var newTextbox = document.createElement('a');
@@ -73,7 +176,7 @@ Channel.prototype.init = function( init_obj, channel_index){
             span.appendChild(document.createTextNode( self.lcn));
             newTextbox.appendChild(span);
             span = document.createElement('span');
-             span.classList.add("chname");
+            span.classList.add("chname");
             span.appendChild(document.createTextNode( self.name));
             newTextbox.appendChild(span);
             var li = document.createElement('li');
@@ -82,10 +185,6 @@ Channel.prototype.init = function( init_obj, channel_index){
             li.appendChild(newTextbox);
 			self.element = li;
 		}
-
-        if(!self.epg) {
-
-        }
     
 }
 
@@ -140,3 +239,39 @@ Channel.prototype.updateChannelInfo = function () {
      channelInfo.innerHTML = info;
 }
 
+Channel.prototype.populateEPG = function () {
+	var self = this;
+
+	if(self.epg_element == null){
+        var element = document.createElement("div");
+        element.addClass("col-4");
+        var header = document.createElement("h4");
+        header.addClass("d-flex align-items-center");
+        if(self.image) {
+            var logo = document.createElement("img");
+            logo.setAttribute("src",self.image);
+            logo.setAttribute("alt","channel icon");
+            logo.addClass("chicon img-fluid mr-1");
+            header.appendChild(logo);
+        }
+        var number = document.createElement("div");
+        number.addClass("chnumber mr-1");
+        number.innerHTML = self.lcn;
+        header.appendChild(number);
+        var name = document.createElement("div");
+        name.addClass("chname text-truncate");
+        name.innerHTML = self.name;
+        header.appendChild(name);
+        element.appendChild(header);
+        var programList = document.createElement("ul");
+        programList.addClass("list list-group-flush list-programs container-fluid");
+        element.appendChild(programList);
+        if(self.programs) {
+            for(var i = 0;i<self.programs.length;i++) {
+                programList.appendChild(self.programs[i].populate());
+            }
+        }
+        self.epg_element = element;
+    }
+    return self.epg_element;
+}

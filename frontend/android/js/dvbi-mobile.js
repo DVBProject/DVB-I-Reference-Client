@@ -30,10 +30,11 @@ window.onload = function(){
 }
 var selectedChannel = null;
 var channels = [];
+var epg = null;
 var uiHideTimeout = null;
 
 function resetHideTimeout() {
-    if( $(".player-ui").hasClass("hide") && !($(".epg").hasClass("hide"))) {
+    if( $(".player-ui").hasClass("hide") && $(".epg").hasClass("hide")) {
         $(".player-ui").removeClass("hide");
     }
     clearTimeout(uiHideTimeout);
@@ -41,19 +42,24 @@ function resetHideTimeout() {
 }
 
 function hideUI() {
-    $(".player-ui").addClass("hide");
+    if(!($(".player-ui").hasClass("hide"))) {
+        $(".player-ui").addClass("hide");
+    }
 }
 
 function showEpg(service) {
     $(".epg").removeClass("hide");
     $(".player-ui").addClass("hide");
     $(".epg").show();
+    $(".epg").append(epg.populate());
 }
 
 function closeEpg() {
     $(".epg").hide();
-    $(".epg").addClass("hide");
-    $(".player_ui").removeClass("hide");
+    if(! $(".epg").hasClass("hide") ) {
+        $(".epg").addClass("hide");
+    }
+    $(".player-ui").removeClass("hide");
 }
 
 function loadServicelist(list) {
@@ -105,6 +111,7 @@ function loadServicelist(list) {
         }
         channels.sort(compareLCN);
 		populate();
+        epg = new EPG(channels);
     },"text");
 }
 
