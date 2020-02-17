@@ -65,13 +65,30 @@
       </div>  
     </div>  
   </div>
+  <div  style="display:none" class="menubar">
+      <h4 class="menuitem">
+        <a href="javascript:showPrevious()"><<</a>
+      </h4>
+      <h4 class="menuitem">
+        <a href="javascript:showNext()">>></a>
+      </h4>
+      <h4 class="menuitem">
+        <a href="javascript:previousDay()">Previous day</a>
+      </h4>
+      <h4 class="menuitem">
+        <span id="epg_date"></span>
+      </h4>
+      <h4 class="menuitem">
+        <a href="javascript:nextDay()">Next day</a>
+      </h4>
+      <h4 class="menuitem">
+        <a href="javascript:closeEpg()">Close EPG</a>
+      </h4>
+  </div>
   <div style="display:none" id="epg" class="epg container-fluid text-white hide">
      <div class="row">
      <ul>
      <div class="col-4">
-      <h4 class="d-flex align-items-center">
-        <a href="javascript:closeEpg()">Close EPG</a>
-      </h4>
      </div>
      </ul>
      </div>

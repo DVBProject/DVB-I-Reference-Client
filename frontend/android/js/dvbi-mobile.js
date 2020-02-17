@@ -24,6 +24,7 @@ function channelSelected(channelId) {
 
 window.onload = function(){
     $(".epg").hide();
+    $(".menubar").hide();
     loadServicelist("../../backend/servicelists/example.xml");
     uiHideTimeout = setTimeout(hideUI, 5000);
     $(".video_wrapper").on("click touchstart",resetHideTimeout);
@@ -49,18 +50,45 @@ function hideUI() {
 
 function showEpg(service) {
     $(".epg").removeClass("hide");
+    $(".menubar").removeClass("hide");
     $(".player-ui").addClass("hide");
     $(".epg").show();
-    $(".epg").append(epg.populate());
+    $(".menubar").show();
+    $(".epg").append(epg.showChannel(service));
+    var epgdate = new Date(epg.start*1000);
+    $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
 }
 
 function closeEpg() {
     $(".epg").hide();
+    $(".menubar").hide();
     if(! $(".epg").hasClass("hide") ) {
         $(".epg").addClass("hide");
+        $(".menubar").addClass("hide");
     }
     $(".player-ui").removeClass("hide");
 }
+
+function showNext() {
+    epg.showNextChannel();
+}
+
+function showPrevious() {
+    epg.showPreviousChannel();
+}
+
+function nextDay() {
+    epg.showNextDay();
+    var epgdate = new Date(epg.start*1000);
+    $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
+}
+
+function previousDay() {
+    epg.showPreviousDay();
+    var epgdate = new Date(epg.start*1000);
+    $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
+}
+
 
 function loadServicelist(list) {
     $.get( list, function( data ) {

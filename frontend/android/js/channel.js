@@ -61,7 +61,7 @@ Channel.prototype.getNowNext = function() {
             var doc = parser.parseFromString(data,"text/xml");
             var events = doc.getElementsByTagName("ScheduleEvent");
             var programs = doc.getElementsByTagName("ProgramInformation");
-            var epg = {};
+            var now_next = {};
             var boxes = [];
             for(var i=0;i<events.length;i++) {
                 var program = {};
@@ -83,10 +83,10 @@ Channel.prototype.getNowNext = function() {
                         break;
                     }
                 }
-                epg[i == 0 ? "now" : "next"] = program;
+                now_next[i == 0 ? "now" : "next"] = program;
 
             }
-            self.epg = epg;
+            self.now_next = now_next;
             if(self.selected) {
                 self.updateChannelInfo();
             }
@@ -96,15 +96,12 @@ Channel.prototype.getNowNext = function() {
 }
 
 
-Channel.prototype.getSchedule = function() {
+Channel.prototype.getSchedule = function(callback) {
     var self = this;
     self.programs = [];
     if(self.contetGuideServiceRef) {
         var scheduleURI = "../../backend/schedule.php"; //TODO get the schedule url from the service list
-        var start = Math.round((new Date()).getTime() / 1000);
-        var end = start + (60*60*12);
-
-         $.get( scheduleURI+"?sids[]="+self.contetGuideServiceRef+"&start="+start+"&end="+end, function( data ) { //TODO use ContentGuideServiceRef from the service
+         $.get( scheduleURI+"?sids[]="+self.contetGuideServiceRef+"&start="+self.epg.start+"&end="+self.epg.end, function( data ) { //TODO use ContentGuideServiceRef from the service
             var parser = new DOMParser();
             var doc = parser.parseFromString(data,"text/xml");
             var events = doc.getElementsByTagName("ScheduleEvent");
@@ -112,7 +109,7 @@ Channel.prototype.getSchedule = function() {
             for(var i=0;i<events.length;i++) {
                 var program = {};
                 var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
-                program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toDate();
+                program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toUTCDate();
                 program.end  = iso6801end(events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue, program.start);
                 program.prglen = (program.end.getTime() - program.start.getTime())/(1000*60);
                 for(var j=0;j<programs.length;j++) {
@@ -142,12 +139,14 @@ Channel.prototype.getSchedule = function() {
                     }
                 }
                 var program = new Program(program);
-		        program.bilingual = self.bilingual;
-		        program.channelimage = self.image;
-		        program.channel_streamurl = self.streamurl;
-		        self.programs.push(program);
+		            program.bilingual = self.bilingual;
+		            program.channelimage = self.image;
+		            program.channel_streamurl = self.streamurl;
+		            self.programs.push(program);
                 }
-
+                if(typeof(callback) == "function"){
+                    callback.call();
+                }
          },"text");
     }
 }
@@ -158,7 +157,7 @@ Channel.prototype.init = function( init_obj, channel_index){
 			self[f] = field;
 		});
         self.getNowNext();
-        self.getSchedule();
+        //self.getSchedule();
 		self.element = document.getElementById("channel_"+channel_index);
 		if(self.element == null){			
             var newTextbox = document.createElement('a');
@@ -216,9 +215,9 @@ Channel.prototype.updateChannelInfo = function () {
         info = "<span class=\"menuitem_chicon\"><img src=\""+self.image+"\"></span>";
      }
      info += "<span class=\"menuitem_chnumber\">" + self.lcn +".</span><span class=\"menuitem_chname\">" + self.name +"</span>";
-     if(self.epg) {
+     if(self.now_next) {
         curTime = new Date();
-        var now = self.epg["now"];
+        var now = self.now_next["now"];
         if(now) {
             if(curTime >= now.end) {
                //Current program ended,update now/next information before updating info
@@ -228,7 +227,7 @@ Channel.prototype.updateChannelInfo = function () {
             info += "<span class=\"menuitem_now\">Now: "+now.title+" ";
             info +=  Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
         }
-        var next= self.epg["next"];
+        var next= self.now_next["next"];
         if(next) {
             info += "<span class=\"menuitem_next\">Next: "+next.title+" ";
             info +=  next.start.create24HourTimeString()+" ";
@@ -239,9 +238,9 @@ Channel.prototype.updateChannelInfo = function () {
      channelInfo.innerHTML = info;
 }
 
-Channel.prototype.populateEPG = function () {
-	var self = this;
-
+Channel.prototype.showEPG = function () {
+    var self = this;
+    var programList = null;
 	if(self.epg_element == null){
         var element = document.createElement("div");
         element.addClass("col-4");
@@ -263,15 +262,29 @@ Channel.prototype.populateEPG = function () {
         name.innerHTML = self.name;
         header.appendChild(name);
         element.appendChild(header);
-        var programList = document.createElement("ul");
-        programList.addClass("list list-group-flush list-programs container-fluid");
-        element.appendChild(programList);
-        if(self.programs) {
-            for(var i = 0;i<self.programs.length;i++) {
-                programList.appendChild(self.programs[i].populate());
-            }
-        }
+        this.programList = document.createElement("ul");
+        this.programList.addClass("list list-group-flush list-programs container-fluid");
+        element.appendChild(this.programList);
         self.epg_element = element;
     }
+    else {
+        $(this.programList).empty();
+    }
+    if(!self.programs) {
+        this.getSchedule(self.populateEPG.bind(self));
+    }
+    else {
+        this.populateEPG();
+    }
     return self.epg_element;
+}
+
+
+Channel.prototype.populateEPG = function (self) {
+    var self = this;
+    if(self.programs) {
+        for(var i = 0;i<self.programs.length;i++) {
+            this.programList.appendChild(self.programs[i].populate());
+        }
+    }
 }
