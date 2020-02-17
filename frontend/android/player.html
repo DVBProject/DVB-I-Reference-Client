@@ -65,35 +65,18 @@
       </div>  
     </div>  
   </div>
-  <div  style="display:none" class="menubar">
-      <h4 class="menuitem">
-        <a href="javascript:showPrevious()"><<</a>
-      </h4>
-      <h4 class="menuitem">
-        <a href="javascript:showNext()">>></a>
-      </h4>
-      <h4 class="menuitem">
-        <a href="javascript:previousDay()">Previous day</a>
-      </h4>
-      <h4 class="menuitem">
-        <span id="epg_date"></span>
-      </h4>
-      <h4 class="menuitem">
-        <a href="javascript:nextDay()">Next day</a>
-      </h4>
-      <h4 class="menuitem">
-        <a href="javascript:closeEpg()">Close EPG</a>
-      </h4>
-  </div>
-  <div style="display:none" id="epg" class="epg container-fluid text-white hide">
+  <div style="display:none" id="epg" class="epg container-fluid text-white hide overflow-auto h-100">
      <div class="row">
-     <ul>
-     <div class="col-4">
-     </div>
-     </ul>
-     </div>
+      <div class="p-2 bd-highlight"><a class="p-2" href="javascript:showPrevious()"><img src="images/chevron-left.svg" alt="Previous" width="32" height="32" title="Previous" class="icon-white"></a></div>
+      <div class="p-2 bd-highlight flex-grow-1"><h4>EPG</h4></div>
+      <div class="p-2 bd-highlight"><a class="p-2" href="javascript:previousDay()"><img src="images/chevron-left.svg" alt="Previous" width="32" height="32" title="Previous" class="icon-white"></a></div>
+      <div class="p-2 bd-highlight flex-grow-1"><h4 id="epg_date"></h4></div>
+      <div class="p-2 bd-highlight"><a class="p-2" href="javascript:nextDay()()"><img src="images/chevron-right.svg" alt="Previous" width="32" height="32" title="Next" class="icon-white"></a></div>
+      <div class="p-2 bd-highlight"><a class="p-2" href="javascript:closeEpg()"><img src="images/x-circle.svg" alt="Close EPG" width="32" height="32" title="Close EPG" class="icon-white"></a></div>
+      <div class="p-2 bd-highlight"><a class="p-2" href="javascript:showNext()"><img src="images/chevron-right.svg" alt="Next" width="32" height="32" title="Next" class="icon-white"></a></div>      
+    </div>
   </div>
-</div>
+
 <script src="js/popper.min.js"></script>  
   
 </body>
