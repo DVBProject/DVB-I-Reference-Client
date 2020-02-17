@@ -244,21 +244,21 @@ Channel.prototype.showEPG = function () {
 	if(self.epg_element == null){
         var element = document.createElement("div");
         element.addClass("col-4");
-        var header = document.createElement("h4");
-        header.addClass("d-flex align-items-center");
+        var header = document.createElement("div");
+        header.addClass("d-flex_ align-items-center");
         if(self.image) {
             var logo = document.createElement("img");
             logo.setAttribute("src",self.image);
             logo.setAttribute("alt","channel icon");
-            logo.addClass("chicon img-fluid mr-1");
+            logo.addClass("chicon img-fluid d-block");
             header.appendChild(logo);
         }
-        var number = document.createElement("div");
-        number.addClass("chnumber mr-1");
+        var number = document.createElement("span");
+        number.addClass("chnumber mr-1 d-inline-block float-left");
         number.innerHTML = self.lcn;
         header.appendChild(number);
-        var name = document.createElement("div");
-        name.addClass("chname text-truncate");
+        var name = document.createElement("span");
+        name.addClass("chname text-truncate d-inline-block");
         name.innerHTML = self.name;
         header.appendChild(name);
         element.appendChild(header);
