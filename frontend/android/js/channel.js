@@ -138,7 +138,7 @@ Channel.prototype.getSchedule = function(callback) {
                         break;
                     }
                 }
-                var program = new Program(program);
+                var program = new Program(program,self);
 		            program.bilingual = self.bilingual;
 		            program.channelimage = self.image;
 		            program.channel_streamurl = self.streamurl;

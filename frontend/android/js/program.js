@@ -1,12 +1,13 @@
 
-function Program(programdata){
-	this.init(programdata);	
+function Program(programdata,channel){
+	this.init(programdata,channel);	
 }
 
-Program.prototype.init = function(programdata){
+Program.prototype.init = function(programdata,channel){
 	for(var field in programdata){
 		this[field] = programdata[field];
 	}
+    this.channel = channel;
 }
 
 Program.prototype.populate = function(){
@@ -16,6 +17,7 @@ Program.prototype.populate = function(){
 		var element = document.createElement("a");
 		element.addClass("list-group-item ist-group-item-action row d-flex px-0 py-1");
 		element.setAttribute("href", "#");
+        element.addEventListener("click", function () { openProgramInfo(self); }, false);
 
 		var startTime = document.createElement("div");
         startTime.addClass("col-2 pl-0");
@@ -28,4 +30,18 @@ Program.prototype.populate = function(){
 		self.element = element;
 	}
     return self.element;
+}
+
+Program.prototype.populateProgramInfo = function(){
+    $(".chicon").attr('src',this.channel.image);
+    $(".chnumber").text(this.channel.lcn);
+    $(".chname").text(this.channel.name);
+    $(".title").text(this.title);
+    $(".description").text(this.desc);
+    $(".img").attr('src',this.mediaimage);
+    $(".date").text(this.start.getDate()+"."+(this.start.getMonth()+1)+".");
+    $(".starttime").text(this.start.create24HourTimeString());
+    $(".endtime").text(this.end.create24HourTimeString());
+    $(".duration").text(this.prglen+" mins");
+    
 }

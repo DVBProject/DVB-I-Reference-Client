@@ -106,6 +106,18 @@ function previousDay() {
     $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
 }
 
+function closeProgramInfo() {
+    $(".programinfo").addClass("hide");
+    $(".grid").show();
+}
+
+function openProgramInfo(program) {
+    console.log("openProgramInfo");
+    program.populateProgramInfo();
+    $(".grid").hide();
+    $(".programinfo").removeClass("hide");
+}
+
 
 function loadServicelist(list) {
     $.get( list, function( data ) {
