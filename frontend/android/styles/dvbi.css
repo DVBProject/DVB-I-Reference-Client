@@ -20,6 +20,18 @@ body.player {
 .main {
   flex: 1; }
 
+.menubar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: white; }
+
+.menuitem {
+  float: left;
+  margin-left: 20px; }
+
 .video_wrapper {
   /*
   position: relative;
@@ -60,7 +72,8 @@ body.player {
       padding: 0px; }
       .video_wrapper .player-ui .list-group .list-group-item a {
         color: #848484;
-        text-decoration: none; }
+        text-decoration: none;
+        text-shadow: 2px 2px 0px #000; }
       .video_wrapper .player-ui .list-group .list-group-item span.chicon {
         float: right;
         height: 40px;
@@ -76,8 +89,7 @@ body.player {
         margin-right: 0.5em; }
       .video_wrapper .player-ui .list-group .list-group-item.active a {
         color: #3996c9;
-        font-size: 1.2em;
-        text-shadow: 2px 2px 0px #000; }
+        font-size: 1.2em; }
   .video_wrapper #channel_info span {
     text-shadow: 2px 2px 0px #000; }
     .video_wrapper #channel_info span.menuitem_chnumber {
