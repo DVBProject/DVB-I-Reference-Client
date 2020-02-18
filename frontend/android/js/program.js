@@ -33,9 +33,9 @@ Program.prototype.populate = function(){
 }
 
 Program.prototype.populateProgramInfo = function(){
-    $(".chicon").attr('src',this.channel.image);
-    $(".chnumber").text(this.channel.lcn);
-    $(".chname").text(this.channel.name);
+    $("#info_chicon").attr('src',this.channel.image);
+    $("#info_chnumber").text(this.channel.lcn);
+    $("#info_chname").text(this.channel.name);
     $(".title").text(this.title);
     $(".description").text(this.desc);
     $(".img").attr('src',this.mediaimage);
