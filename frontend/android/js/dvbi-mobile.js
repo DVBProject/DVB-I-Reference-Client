@@ -50,13 +50,17 @@ function hideUI() {
 
 function showEpg(service) {
     $(".epg").removeClass("hide");
-    $(".menubar").removeClass("hide");
     $(".player-ui").addClass("hide");
     $(".epg").show();
-    $(".menubar").show();
     $(".epg").append(epg.showChannel(service));
     var epgdate = new Date(epg.start*1000);
     $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
+    if(epg.displayIndex == 0) {
+         $("#previous_channel").addClass("end");
+    }
+    else if(epg.displayIndex == (epg.channels-3)) {
+        $("#next_channel").addClass("end");
+    }
 }
 
 function closeEpg() {
@@ -64,17 +68,30 @@ function closeEpg() {
     $(".menubar").hide();
     if(! $(".epg").hasClass("hide") ) {
         $(".epg").addClass("hide");
-        $(".menubar").addClass("hide");
     }
     $(".player-ui").removeClass("hide");
 }
 
 function showNext() {
-    epg.showNextChannel();
+    if(!epg.showNextChannel()) {
+        if(!$("#next_channel").hasClass("end")) {
+           $("#next_channel").addClass("end");
+        }
+    }
+    else if($("#previous_channel").hasClass("end")) {
+        $("#previous_channel").removeClass("end");
+    }
 }
 
 function showPrevious() {
-    epg.showPreviousChannel();
+     if(!epg.showPreviousChannel()) {
+        if(!$("#previous_channel").hasClass("end")) {
+           $("#previous_channel").addClass("end");
+        }
+    }
+    else if($("#next_channel").hasClass("end")) {
+        $("#next_channel").removeClass("end");
+    }
 }
 
 function nextDay() {
