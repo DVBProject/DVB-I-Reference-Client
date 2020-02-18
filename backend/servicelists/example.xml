@@ -91,7 +91,7 @@
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
-    <ServiceName>Akamai Low Latency DASH</ServiceName>
+    <ServiceName>Akamai Low Latency FFMPEG</ServiceName>
     <ProviderName>Akamai</ProviderName>
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
