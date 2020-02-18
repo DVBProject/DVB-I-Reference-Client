@@ -13,8 +13,10 @@ same functionality.
 Demo installations available at:
 - HbbTV Frontend:
     http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/launcher/
-- Android PWA Frontend:
+- Android PWA Frontend on a tablet/smartphone:
     http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/
+- Android PWA for testing on a PC browser
+    http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html
 
 (one can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app) 
 
