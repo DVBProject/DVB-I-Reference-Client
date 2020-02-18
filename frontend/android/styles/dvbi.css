@@ -6,9 +6,11 @@ grey: #131313
 lightgrey: #848484
 darkblue: #011927
 */
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 body {
   font-size: 12px;
-  background-color: #333; }
+  background-color: #333;
+  font-family: 'Roboto', sans-serif; }
 
 body.player {
   margin: 0px;
@@ -73,7 +75,7 @@ body.player {
       .video_wrapper .player-ui .list-group .list-group-item a {
         color: #848484;
         text-decoration: none;
-        text-shadow: 2px 2px 0px #000; }
+        text-shadow: 2px 2px 2px #000; }
       .video_wrapper .player-ui .list-group .list-group-item span.chicon {
         float: right;
         height: 40px;
@@ -91,7 +93,7 @@ body.player {
         color: #3996c9;
         font-size: 1.2em; }
   .video_wrapper #channel_info span {
-    text-shadow: 2px 2px 0px #000; }
+    text-shadow: 2px 2px 2px #000; }
     .video_wrapper #channel_info span.menuitem_chnumber {
       font-size: 1.0em;
       margin-right: 0.5em;
@@ -121,7 +123,9 @@ body.player {
   -moz-transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
-  transition: all 0.2s linear; }
+  transition: all 0.2s linear;
+  animation-name: displaynone;
+  animation-duration: 0.2s; }
 
 .show {
   opacity: 1 !important;
@@ -148,8 +152,13 @@ body.player {
 .epg {
   background-color: rgba(0, 0, 0, 0.8);
   position: relative; }
+  .epg .grid.hide {
+    display: none; }
   .epg .icon-white {
     filter: invert(100%); }
+  .epg .end .icon-white {
+    opacity: 0.3;
+    cursor: default; }
   .epg .navbar {
     background-color: rgba(0, 0, 0, 0.75); }
   .epg .list-programs li, .epg .list-programs .list-group-item {
@@ -167,4 +176,27 @@ body.player {
       font-size: 1.5em;
       margin-top: 0.5em;
       margin-bottom: 0.5em;
-      font-weight: 600; }
+      font-weight: 600;
+      max-width: 80%; }
+
+.programinfo .chinfo .chnumber {
+  font-size: 1.5em; }
+.programinfo .chinfo .chname {
+  font-weight: 700;
+  font-size: 1.5em; }
+.programinfo .title {
+  font-weight: 700;
+  margin-top: 0.5em; }
+.programinfo .time {
+  color: #3996c9;
+  font-size: 1.1em; }
+  .programinfo .time span {
+    margin-right: 0.5em; }
+.programinfo .description {
+  font-size: 1.2em; }
+
+@keyframes displaynone {
+  from {
+    display: block; }
+  to {
+    display: none; } }
