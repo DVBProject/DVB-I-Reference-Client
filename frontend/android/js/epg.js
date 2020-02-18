@@ -45,13 +45,16 @@ EPG.prototype.showNextChannel = function(start,end) {
         this.displayIndex++;
         this.populate();
     }
+    return this.displayIndex < this.channels.length-3;
 }
 
 EPG.prototype.showPreviousChannel = function(start,end) {
     if(this.displayIndex >0) {
         this.displayIndex--;
         this.populate();
+       
     }
+    return this.displayIndex > 0;
 }
 
 EPG.prototype.showNextDay = function() {
