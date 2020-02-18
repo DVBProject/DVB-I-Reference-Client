@@ -165,7 +165,7 @@
     function init(callback){
         console.log("app init");
         initClock();
-        var yesterday = new Date(curTime.getTime()-TWENTY_FOUR_HOURS);
+        var yesterday = new Date(curTime.getTime());
         var datestr = yesterday.getFullYear()+addZeroPrefix(yesterday.getMonth()+1)+addZeroPrefix(yesterday.getDate());
         var days = 3;
 

@@ -47,7 +47,7 @@ GridEPG.prototype.initEPG = function(element_id, epgdata, firstvisible_channel, 
 	this.firstDay 										= new Date(this.firstDay.setMinutes(0));
 	this.firstDay 										= new Date(this.firstDay.setSeconds(0));
 	this.firstDay 										= new Date(this.firstDay.setMilliseconds(0));
-	this.lastDay 										= new Date(Math.min(this.maxDay.getTime(), this.firstDay.getTime() + (days - 1 + ((this.dayIdx == 0) ? -1 : 0)) * TWENTY_FOUR_HOURS));
+	this.lastDay 										= new Date(this.firstDay);
 	this.timelinestart 									= new Date(timelinestart);
 	this.timelinestart 									= new Date(this.timelinestart.setMinutes(0));
 	this.timelinestart 									= new Date(this.timelinestart.setSeconds(0));
@@ -67,14 +67,17 @@ GridEPG.prototype.initEPG = function(element_id, epgdata, firstvisible_channel, 
 	}
 
 	this.channels = [];
+    var start = this.firstDay.getTime()/1000;
+    var end = start +(24*60*60);
 	for(var i = 0; i < epgdata["channels"].length; i++){
-		var channel = new Channel(epgdata["channels"][i], "epgRow" + i,this.channelLoaded.bind(this) );
+		var channel = new Channel(epgdata["channels"][i], "epgRow" + i );
 		if(i >= firstvisible_channel && i < firstvisible_channel + this.visible_channels){
 			channel.visible = true;
 		}
 		else{
 			channel.visible = false;
 		}
+        channel.getSchedule(start,end,this.channelLoaded.bind(this),false);
 		this.channels.push(channel);
 	}
 
@@ -727,56 +730,13 @@ GridEPG.prototype.setProgramDate = function(dateobj){
 			date.innerHTML = "Today";
 		}
 		else{
-			date.innerHTML = loc[DAYS_ENGL[dateobj.getDay()]].substring(0,3);
+			date.innerHTML = DAYS_ENGL[dateobj.getDay()].substring(0,3);
 		}
 		date.innerHTML += ", " + Number(dateobj.getDate()) + "/" +  Number(dateobj.getMonth()+1);
 	}
 }
 
-GridEPG.prototype.changeDate = function(callback){
-	var epg = this;
-	var middleDay = new Date(epg.minDay.getTime() + (TWENTY_FOUR_HOURS*(epg.dayIdx)));
-	epg.firstDay = new Date(Math.max(epg.minDay.getTime(), middleDay.getTime() - TWENTY_FOUR_HOURS));
-	if(epg.dayIdx == 0){
-		middleDay = new Date(epg.firstDay.getTime());
-	}
-	epg.lastDay = new Date(Math.min(epg.maxDay.getTime(), middleDay.getTime() + TWENTY_FOUR_HOURS));
 
-	middleDay.setHours(epg.timelinestart.getHours());
-	middleDay.setMinutes(epg.timelinestart.getMinutes());
-
-	var firstdaystr 
-		= epg.firstDay.getFullYear().toString() 
-		+ addZeroPrefix(epg.firstDay.getMonth()+1) 
-		+ addZeroPrefix(epg.firstDay.getDate()); 
-	var days = Math.min(epg.days, (epg.lastDay.getTime() - epg.firstDay.getTime() + TWENTY_FOUR_HOURS) / TWENTY_FOUR_HOURS);
-	getData(firstdaystr, cids.toString(), days, epglang, function(epg_response){
-		var emptyEPG = true;
-		if(epg_response["channels"] != null){
-			$.each(epg_response.channels, function(c, channel){
-				if(channel.epg.length > 0){
-					emptyEPG = false;
-					return false;
-				}
-			});
-		}
-		if(emptyEPG){
-			console.log("emptyEPG");
-			setLoading(false);
-		}
-		else{
-			var openChannelIdx = epg.channels.indexOf(epg.getOpenChannel());
-			var firstVisibleChannelIdx = epg.channels.indexOf(epg.getFirstVisibleChannel());
-			epg.initEPG(epg.element_id, epg_response, firstVisibleChannelIdx, epg.visible_channels, epg.firstDay, middleDay, epg.days);
-		    epg.populate(function(){
-                CSSscrollDown(document.getElementById("epgRows"), firstVisibleChannelIdx * (epg.channel_element_height + epg.channel_margin_bottom), 0, null);
-                CSSscrollDown(document.getElementById("channels"), firstVisibleChannelIdx * (epg.channel_element_height + epg.channel_margin_bottom), 0, null);
-            	epg.setActiveItem(epg.channels[openChannelIdx]);
-            });
-			setLoading(false);
-		}
-	}); 
-}
 
 GridEPG.prototype.populateInfo = function(str){
 	var noDataInfo = document.createElement("div");
@@ -812,3 +772,44 @@ GridEPG.prototype.lastLoadedChannelIdx = function(){
 	}
 	return null;
 }
+
+GridEPG.prototype.loadPreviousDay = function(){
+    setLoading(true);
+    this.firstDay = new Date(this.firstDay.getTime() - TWENTY_FOUR_HOURS);
+    this.channelsLoaded = 0;
+    var start = this.firstDay.getTime()/1000;
+    var end = start +(24*60*60);
+    this.loadedCallback = this.dayLoaded.bind(this);
+    this.timelineend = new Date(this.timelineend.getTime() - (1000 * 60 * 30));
+    this.timelinestart = new Date(this.timelinestart.getTime() - (1000 * 60 * 30));
+    console.log("loadPreviousDay");
+    for(var i = 0;i < this.channels.length;i++) {
+           this.channels[i].getSchedule(start,end,this.channelLoaded.bind(this),true);
+    }
+
+}
+
+GridEPG.prototype.loadNextDay = function(){
+   setLoading(true);
+   this.lastDay =  new Date(this.lastDay.getTime() + TWENTY_FOUR_HOURS);
+   this.channelsLoaded = 0;
+   var start = this.lastDay.getTime()/1000;
+   var end = start +(24*60*60);
+   this.timelineend = new Date(this.timelineend.getTime() + (1000 * 60 * 30));
+   this.timelinestart = new Date(this.timelinestart.getTime() + (1000 * 60 * 30));
+
+   this.loadedCallback = this.dayLoaded.bind(this);
+   for(var i = 0;i < this.channels.length;i++) {
+         this.channels[i].getSchedule(start,end,this.channelLoaded.bind(this),false);
+   }
+   console.log("loadNextDay");
+}
+
+GridEPG.prototype.dayLoaded = function(){
+        var ch = (this.channels.indexOf(this.getOpenChannel()) >= 0) ? this.channels.indexOf(this.getOpenChannel()) : 0;
+		this.populatePrograms();
+		this.channels[ch].setFocus();
+		setLoading(false);
+}
+
+

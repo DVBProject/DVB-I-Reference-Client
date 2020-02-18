@@ -1,7 +1,6 @@
 /********* Channel ***********/
-function Channel(channeldata, element_id,loadedCallback){
+function Channel(channeldata, element_id){
 	this.init(channeldata, element_id);
-    this.loadedCallback = loadedCallback;
 }
 
 Channel.prototype.getGenre = function(genre) {
@@ -49,14 +48,14 @@ Channel.prototype.getGenre = function(genre) {
     return null; 
 }
 
-Channel.prototype.getSchedule = function(element_id) {
+Channel.prototype.getSchedule = function(start,end,callback,earlier) {
     var self = this;
+  
     if(self.contentId) {
         var scheduleURI = "../../../backend/schedule.php"; //TODO get the schedule url from the service list
-        var start = Math.round((new Date()).getTime() / 1000);
-        var end = start + (60*60*12);
 
          $.get( scheduleURI+"?sids[]="+self.contentId+"&start="+start+"&end="+end, function( data ) { //TODO use ContentGuideServiceRef from the service
+            var newPrograms = [];            
             var parser = new DOMParser();
             var doc = parser.parseFromString(data,"text/xml");
             var events = doc.getElementsByTagName("ScheduleEvent");
@@ -93,15 +92,24 @@ Channel.prototype.getSchedule = function(element_id) {
                         break;
                     }
                 }
-                var program = new Program(program, element_id + "_program_" + i, self);
+                var program = new Program(program, self.element_id + "_program_" + i, self);
 		        program.bilingual = self.bilingual;
 		        program.channelimage = self.image;
 		        program.channel_streamurl = self.streamurl;
-		        self.programs.push(program);
-
+                newPrograms.push(program);
+             }
+            if(earlier) {
+                for(var j=newPrograms.length-1;j>= 0;j--) {
+		           self.programs.unshift(newPrograms[j]);
                 }
-            if(typeof(self.loadedCallback) == "function") {
-                self.loadedCallback.call();
+            }
+            else {
+                for(var j= 0;j < newPrograms.length;j++) {
+		           self.programs.push(newPrograms[j]);
+                }
+            }
+            if(typeof(callback) == "function") {
+                callback.call();
             }
          },"text");
     }
@@ -127,7 +135,6 @@ Channel.prototype.init = function(channeldata, element_id){
 	}
 
 	channel.bilingual = false;
-    channel.getSchedule(element_id);
 }
 
 Channel.prototype.setVisiblePrograms = function(start, end){
