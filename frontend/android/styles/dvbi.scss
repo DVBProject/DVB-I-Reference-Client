@@ -157,7 +157,9 @@ body.player {
 	-moz-transition: all 0.2s linear;
 	-webkit-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
-	transition: all 0.2s linear;	  
+	transition: all 0.2s linear;
+  animation-name: displaynone;
+  animation-duration: 0.2s;  
 }
 .show {
   opacity: 1 !important;
@@ -186,6 +188,9 @@ body.player {
 }
 // EPG styles
 .epg {
+  .grid.hide {
+    display: none;
+  }
   background-color: rgba(0,0,0,0.80);
   position: relative;
     .icon-white {
@@ -217,4 +222,27 @@ body.player {
       font-weight: 600;
     }
   }
+}
+// programinfo styles
+.programinfo {
+  .chinfo {
+    border: 1px solid red;
+  }
+  .title {
+    
+  }
+  .time {
+    
+  }
+  .description {
+    
+  }
+  .img {
+    
+  }
+}
+
+@keyframes displaynone {
+  from {display: block;}
+  to {display: none;}
 }

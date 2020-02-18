@@ -121,7 +121,9 @@ body.player {
   -moz-transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
-  transition: all 0.2s linear; }
+  transition: all 0.2s linear;
+  animation-name: displaynone;
+  animation-duration: 0.2s; }
 
 .show {
   opacity: 1 !important;
@@ -148,6 +150,8 @@ body.player {
 .epg {
   background-color: rgba(0, 0, 0, 0.8);
   position: relative; }
+  .epg .grid.hide {
+    display: none; }
   .epg .icon-white {
     filter: invert(100%); }
   .epg .navbar {
@@ -168,3 +172,12 @@ body.player {
       margin-top: 0.5em;
       margin-bottom: 0.5em;
       font-weight: 600; }
+
+.programinfo .chinfo {
+  border: 1px solid red; }
+
+@keyframes displaynone {
+  from {
+    display: block; }
+  to {
+    display: none; } }
