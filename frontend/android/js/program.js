@@ -14,15 +14,15 @@ Program.prototype.populate = function(){
 
 	if(self.element == null){
 		var element = document.createElement("a");
-		element.addClass("list-group-item ist-group-item-action row d-flex px-0");
+		element.addClass("list-group-item ist-group-item-action row d-flex px-0 py-1");
 		element.setAttribute("href", "#");
 
 		var startTime = document.createElement("div");
-        startTime.addClass("col-2");
+        startTime.addClass("col-2 pl-0");
         startTime.innerHTML = self.start.create24HourTimeString();
         element.appendChild(startTime);
         var title = document.createElement("div");
-        title.addClass("col-10 text-truncate");
+        title.addClass("col-10 pl-0 text-truncate");
         title.innerHTML = self.title;
         element.appendChild(title);
 		self.element = element;

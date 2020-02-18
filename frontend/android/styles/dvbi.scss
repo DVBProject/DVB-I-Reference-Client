@@ -191,9 +191,30 @@ body.player {
     .icon-white {
       filter: invert(100%);
   }
+  .navbar {
+    background-color: rgba(0,0,0,0.75);
+  }
+  .epgdata {
+
+  }
     .list-programs li, .list-programs .list-group-item {
       background-color: transparent;
       border-color: rgba(255,255,255,0.2) !important;
       color: #fff;
-    }  
+    }
+  .epg_chinfo {
+    border-bottom: 2px solid $blue-color;
+    .chnumber {
+      font-size: 1.5em;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      padding-right: 0.5em;
+    }
+    .chname {
+      font-size: 1.5em;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      font-weight: 600;
+    }
+  }
 }

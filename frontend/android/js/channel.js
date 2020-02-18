@@ -245,7 +245,7 @@ Channel.prototype.showEPG = function () {
         var element = document.createElement("div");
         element.addClass("col-4");
         var header = document.createElement("div");
-        header.addClass("d-flex_ align-items-center");
+        header.addClass("epg_chinfo align-items-center");
         if(self.image) {
             var logo = document.createElement("img");
             logo.setAttribute("src",self.image);
