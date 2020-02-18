@@ -154,6 +154,9 @@ body.player {
     display: none; }
   .epg .icon-white {
     filter: invert(100%); }
+  .epg .end .icon-white {
+    opacity: 0.3;
+    cursor: default; }
   .epg .navbar {
     background-color: rgba(0, 0, 0, 0.75); }
   .epg .list-programs li, .epg .list-programs .list-group-item {
@@ -171,7 +174,8 @@ body.player {
       font-size: 1.5em;
       margin-top: 0.5em;
       margin-bottom: 0.5em;
-      font-weight: 600; }
+      font-weight: 600;
+      max-width: 80%; }
 
 .programinfo .chinfo {
   border: 1px solid red; }

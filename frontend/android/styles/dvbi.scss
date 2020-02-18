@@ -196,6 +196,12 @@ body.player {
     .icon-white {
       filter: invert(100%);
   }
+  .end {
+    .icon-white {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
   .navbar {
     background-color: rgba(0,0,0,0.75);
   }
@@ -220,6 +226,7 @@ body.player {
       margin-top: 0.5em;
       margin-bottom: 0.5em;
       font-weight: 600;
+      max-width: 80%;
     }
   }
 }
