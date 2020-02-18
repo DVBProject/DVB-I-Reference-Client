@@ -57,7 +57,7 @@
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
-    <ServiceName>IRT subtitle channel</ServiceName>
+    <ServiceName>IRT test channel</ServiceName>
     <ProviderName>IRT</ProviderName>
     <ContentGuideServiceRef>cgsid_3</ContentGuideServiceRef>
   </Service>
