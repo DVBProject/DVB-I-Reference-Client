@@ -10,9 +10,13 @@ $orange-color: #e47600;
 $blue-color: #3996c9;
 $darkblue-color: #011927;
 $lightgrey-color: #848484;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
 body {
   font-size: 12px;
   background-color: #333;
+  font-family: 'Roboto', sans-serif;  
 }
 body.player {
   margin: 0px;
@@ -85,7 +89,7 @@ body.player {
         a {
           color: $lightgrey-color;
           text-decoration: none;
-          text-shadow: 2px 2px 0px #000;          
+          text-shadow: 2px 2px 2px #000;          
         }
         span.chicon{
           float: right;
@@ -115,7 +119,7 @@ body.player {
   }
   #channel_info {
     span {
-        text-shadow: 2px 2px 0px #000;    
+        text-shadow: 2px 2px 2px #000;    
       &.menuitem_chicon {
         img {
          
@@ -219,7 +223,7 @@ body.player {
       font-size: 1.5em;
       margin-top: 0.5em;
       margin-bottom: 0.5em;
-      padding-right: 0.5em;
+      padding-right: 0.5em;     
     }
     .chname {
       font-size: 1.5em;
@@ -233,16 +237,27 @@ body.player {
 // programinfo styles
 .programinfo {
   .chinfo {
-    border: 1px solid red;
+    .chnumber {
+      font-size: 1.5em;
+    }
+    .chname {
+      font-weight: 700;
+      font-size: 1.5em;      
+    }
   }
   .title {
-    
+    font-weight: 700;
+    margin-top: 0.5em;
   }
   .time {
-    
+    color: $blue-color;
+    font-size: 1.1em;
+    span {
+      margin-right: 0.5em;
+    }
   }
   .description {
-    
+    font-size: 1.2em;
   }
   .img {
     

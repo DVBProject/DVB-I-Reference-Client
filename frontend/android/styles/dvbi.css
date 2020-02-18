@@ -6,9 +6,11 @@ grey: #131313
 lightgrey: #848484
 darkblue: #011927
 */
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 body {
   font-size: 12px;
-  background-color: #333; }
+  background-color: #333;
+  font-family: 'Roboto', sans-serif; }
 
 body.player {
   margin: 0px;
@@ -73,7 +75,7 @@ body.player {
       .video_wrapper .player-ui .list-group .list-group-item a {
         color: #848484;
         text-decoration: none;
-        text-shadow: 2px 2px 0px #000; }
+        text-shadow: 2px 2px 2px #000; }
       .video_wrapper .player-ui .list-group .list-group-item span.chicon {
         float: right;
         height: 40px;
@@ -91,7 +93,7 @@ body.player {
         color: #3996c9;
         font-size: 1.2em; }
   .video_wrapper #channel_info span {
-    text-shadow: 2px 2px 0px #000; }
+    text-shadow: 2px 2px 2px #000; }
     .video_wrapper #channel_info span.menuitem_chnumber {
       font-size: 1.0em;
       margin-right: 0.5em;
@@ -177,8 +179,21 @@ body.player {
       font-weight: 600;
       max-width: 80%; }
 
-.programinfo .chinfo {
-  border: 1px solid red; }
+.programinfo .chinfo .chnumber {
+  font-size: 1.5em; }
+.programinfo .chinfo .chname {
+  font-weight: 700;
+  font-size: 1.5em; }
+.programinfo .title {
+  font-weight: 700;
+  margin-top: 0.5em; }
+.programinfo .time {
+  color: #3996c9;
+  font-size: 1.1em; }
+  .programinfo .time span {
+    margin-right: 0.5em; }
+.programinfo .description {
+  font-size: 1.2em; }
 
 @keyframes displaynone {
   from {
