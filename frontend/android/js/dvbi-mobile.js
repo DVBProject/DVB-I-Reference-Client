@@ -52,7 +52,7 @@ function showEpg(service) {
     $(".epg").removeClass("hide");
     $(".player-ui").addClass("hide");
     $(".epg").show();
-    $(".epg").append(epg.showChannel(service));
+    $(".grid").append(epg.showChannel(service));
     var epgdate = new Date(epg.start*1000);
     $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
     if(epg.displayIndex == 0) {
