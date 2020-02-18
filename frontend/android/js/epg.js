@@ -20,7 +20,7 @@ EPG.prototype.populate = function (start,end) {
     else {
         $(self.element).empty();
     }
-    var serviceIndex = Math.min(self.displayIndex,self.channels.length-4);
+    var serviceIndex = self.displayIndex;
     for(var i = serviceIndex ;i<(serviceIndex+3);i++) {
         self.element.appendChild(self.channels[i].showEPG(start,end));
     }
@@ -36,7 +36,7 @@ EPG.prototype.showChannel = function(service,start,end) {
             break;
         } 
     }
-    this.displayIndex = serviceIndex;
+    this.displayIndex = Math.min(serviceIndex,(this.channels.length-3));
     return this.populate(start,end);
 }
 

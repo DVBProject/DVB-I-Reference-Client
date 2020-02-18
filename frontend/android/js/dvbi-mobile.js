@@ -58,7 +58,7 @@ function showEpg(service) {
     if(epg.displayIndex == 0) {
          $("#previous_channel").addClass("end");
     }
-    else if(epg.displayIndex == (epg.channels-3)) {
+    else if(epg.displayIndex >= (epg.channels.length-3)) {
         $("#next_channel").addClass("end");
     }
 }
