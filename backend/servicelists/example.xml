@@ -21,6 +21,12 @@
       <LCN channelNumber="645" serviceRef="sid14"/>
     </LCNTable>
   </LCNTableList>
+  <ContentGuideSource CGSID="cgid-1">
+    <ProviderName>DVB-I Reference Application</ProviderName>
+    <ScheduleInfoEndpoint contentType="application/xml">
+      <URI>https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/schedule.php</URI>
+    </ScheduleInfoEndpoint>
+  </ContentGuideSource>
   <Service version="1">
     <UniqueIdentifier>sid1</UniqueIdentifier>
     <ServiceInstance priority="1">
