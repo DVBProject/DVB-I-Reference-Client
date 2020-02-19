@@ -279,6 +279,24 @@ function generateXML() {
         lcnTable.appendChild(targetRegion);
     }
 
+    var scheduleEndpoint = document.getElementById("content_guide_schedule_endpoint").value;
+    var contentGuideId = document.getElementById("content_guide_id").value;
+    var contentProvider = document.getElementById("content_guide_provider").value;
+    if(scheduleEndpoint && scheduleEndpoint.length > 0 && contentGuideId && contentGuideId.length > 0 && contentProvider && contentProvider.length > 0) {
+        var contentGuideElement = doc.createElement("ContentGuideSource");
+        contentGuideElement.setAttribute("CGSID",contentGuideId);
+        var provider = doc.createElement("ProviderName");
+        provider.appendChild(doc.createTextNode(contentProvider));
+        contentGuideElement.appendChild(provider);
+        var endPoint = doc.createElement("ScheduleInfoEndpoint");
+        endPoint.setAttribute("contentType","application/xml");
+        var uri = doc.createElement("URI");
+        uri.appendChild(doc.createTextNode(scheduleEndpoint));
+        endPoint.appendChild(uri);
+        contentGuideElement.appendChild(endPoint);
+        doc.documentElement.appendChild(contentGuideElement);
+    }
+
     for(var i=0; i<services.length;i++) {
         var serviceId = services[i].id;
         var serviceElement = doc.createElement("Service");
@@ -489,6 +507,11 @@ function loadServicelist(list) {
           doc.loadXML(data); 
         } 
         $('#services').empty();
+        document.getElementById("content_guide_id").value = "";
+        document.getElementById("content_guide_schedule_endpoint").value = "";
+        document.getElementById("content_guide_provider").value = "";
+        document.getElementById("target_region").value = "";
+
         document.getElementById('service_count').value = 0;
         document.getElementById("version").value = doc.documentElement.getAttribute("version");
         var children = doc.documentElement.childNodes;
@@ -503,6 +526,11 @@ function loadServicelist(list) {
             }
             else if(children[i].nodeName === "LCNTableList") {
                 lcnMap = readLCN(children[i]);
+            }
+            else if(children[i].nodeName === "ContentGuideSource") {
+                document.getElementById("content_guide_id").value = children[i].getAttribute("CGSID");
+                document.getElementById("content_guide_schedule_endpoint").value = children[i].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+                document.getElementById("content_guide_provider").value = children[i].getElementsByTagName("ProviderName")[0].childNodes[0].nodeValue;
             }
             else if(children[i].nodeName === "Service") {
                 try {
