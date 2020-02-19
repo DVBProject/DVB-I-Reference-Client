@@ -98,16 +98,21 @@
         var parser = new DOMParser();
         var doc = parser.parseFromString(data,"text/xml");
         var services = doc.getElementsByTagName("Service");
+        var contentGuides = doc.getElementsByTagName("ContentGuideSource");
+        var contentGuideURI = null;
+        if(contentGuides.length > 0) {
+            contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+        }
         var lcnList = doc.getElementsByTagName("LCNTable")[0].getElementsByTagName("LCN");
         for (var i = 0; i < services.length ;i++) {
             var chan = {}; 
-            
+            chan.contentGuideURI = contentGuideURI;
             chan.code = i;
             chan.title = services[i].getElementsByTagName("ServiceName")[0].childNodes[0].nodeValue;
             chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
             var cgRefs =  services[i].getElementsByTagName("ContentGuideServiceRef");
             if(cgRefs && cgRefs.length > 0) {
-                chan.contentId = cgRefs[0].childNodes[0].nodeValue;
+                chan.contetGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
             }
             var relatedMaterial = services[i].getElementsByTagName("RelatedMaterial");
             for(var j = 0;j < relatedMaterial.length;j++) {

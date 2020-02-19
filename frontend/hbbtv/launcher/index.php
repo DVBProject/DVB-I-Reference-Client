@@ -152,6 +152,11 @@
         var doc = parser.parseFromString(data,"text/xml");
         var services = doc.getElementsByTagName("Service");
         var lcnList = doc.getElementsByTagName("LCNTable")[0].getElementsByTagName("LCN");
+        var contentGuideURI = null;
+        var contentGuides = doc.getElementsByTagName("ContentGuideSource");
+        if(contentGuides.length > 0) {
+            contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+        }
         for (var i = 0; i < services.length ;i++) {
             var chan = {}; 
             
@@ -164,6 +169,7 @@
                 }
             ];
             chan.code = i;
+            chan.contentGuideURI = contentGuideURI;
             chan.eval = "miniepg("+ i +");";
             chan.center_name = services[i].getElementsByTagName("ServiceName")[0].childNodes[0].nodeValue;
             chan.name = chan.center_name;
