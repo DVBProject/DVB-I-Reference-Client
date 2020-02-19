@@ -1,6 +1,7 @@
 <?php
 //TODO 
 header('Content-Type: text/xml');
+header("Access-Control-Allow-Origin: *");
 date_default_timezone_set ("Zulu");
 if(isset($_GET['now_next']) && isset($_GET['sid']) && $_GET['now_next'] == "true" ) {
     $present_start = rand(1,45);
