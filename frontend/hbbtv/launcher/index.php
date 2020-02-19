@@ -317,19 +317,17 @@
 
     function refresh() {
         curTime = new Date();
-		
 
         if(curTime.getMinutes() != prevm){
         	prevm = curTime.getMinutes();
             
 			displayTime();
-			
 
 			var hidden = (document.hidden != undefined && document.hidden) ? true : false;
         	if(_menu_ && _menu_.items && !hidden){
 
         		for(var i = 0; i < _menu_.items.length; i++){
-        			if(_menu_.items[i].epg.now && _menu_.items[i].epg.now.end){
+                    if(_menu_.items[i].epg && _menu_.items[i].epg.now && _menu_.items[i].epg.now.end){
 	    				if(curTime >= _menu_.items[i].epg.now.end){
 	    					// update miniepg
 			                _menu_.items[i].update();
@@ -363,18 +361,6 @@
 	}
 
 	function displayTime() {
-		
-		var cury = curTime.getFullYear();
-        var curmo = curTime.getMonth()+1;
-        var curd = curTime.getDate();
-        var curh = curTime.getHours();
-        var curm = curTime.getMinutes();
-        var curs = curTime.getSeconds();
-		
-        document.getElementById("clock_date_date").innerHTML = addZeroPrefix(curd);
-        document.getElementById("clock_date_month").innerHTML = "." + addZeroPrefix(curmo);
-        document.getElementById("clock_date_year").innerHTML = "." + cury;
-		
 		document.getElementById("clock_time").innerHTML = curTime.create24HourTimeString();
     }
 
@@ -428,12 +414,6 @@
 		<div id="menu_0"></div>
 		
 		<div id="clock">
-			<canvas id="analog_clock" width="40" height="40"></canvas> 
-			<div id="clock_date">
-				<span id="clock_date_date"></span>
-				<span id="clock_date_month"></span>
-				<span id="clock_date_year"></span>
-			</div> 
             <div id="clock_time">
             </div>
 		</div>
