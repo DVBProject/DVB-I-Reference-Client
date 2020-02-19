@@ -43,5 +43,6 @@ Program.prototype.populateProgramInfo = function(){
     $(".starttime").text(this.start.create24HourTimeString());
     $(".endtime").text(this.end.create24HourTimeString());
     $(".duration").text(this.prglen+" mins");
+    $("#select_service_button").attr("href","javascript:channelSelected('"+this.channel.id+"')");
     
 }

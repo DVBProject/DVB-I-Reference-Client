@@ -17,6 +17,7 @@ function channelSelected(channelId) {
     if(selectedChannel) {
         selectedChannel.unselected();
     }
+    closeEpg();
     newChannel.channelSelected();
     selectedChannel = newChannel;    
 
