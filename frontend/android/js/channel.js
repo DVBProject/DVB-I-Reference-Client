@@ -212,9 +212,9 @@ Channel.prototype.updateChannelInfo = function () {
      var channelInfo = document.getElementById("channel_info");
      var info = "";
      if(self.image) {
-        info = "<span class=\"menuitem_chicon\"><img src=\""+self.image+"\"></span>";
+        info = "<span class=\"menuitem_chicon d-block\"><img src=\""+self.image+"\"></span>";
      }
-     info += "<span class=\"menuitem_chnumber\">" + self.lcn +".</span><span class=\"menuitem_chname\">" + self.name +"</span>";
+     info += "<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + self.name +"</span>";
      if(self.now_next) {
         curTime = new Date();
         var now = self.now_next["now"];
@@ -234,7 +234,7 @@ Channel.prototype.updateChannelInfo = function () {
             info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
         }
      }
-     info += "<span class=\"menuitem_epg btn btn-outline-light btn-small mt-1 p-1\"><a href=\"javascript:showEpg('"+self.contetGuideServiceRef+"')\" class=\"text-white\">Open EPG</a></span>"
+     info += "<span class=\"menuitem_epg btn btn-outline-dark btn-small mt-1 p-1\"><a href=\"javascript:showEpg('"+self.contetGuideServiceRef+"')\" class=\"text-white\">Open EPG</a></span>"
      channelInfo.innerHTML = info;
 }
 

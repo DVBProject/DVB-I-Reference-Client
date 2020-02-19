@@ -200,8 +200,14 @@ body.player {
     .icon-white {
       filter: invert(100%);
   }
-  .end {
+    //a:hover .icon-white {
+      //filter: invert(50%);
+    //}
+  .end,
+  //a.end:hover .icon-white
+  {
     .icon-white {
+     filter: invert(100%);      
       opacity: 0.3;
       cursor: default;
     }

@@ -157,6 +157,7 @@ body.player {
   .epg .icon-white {
     filter: invert(100%); }
   .epg .end .icon-white {
+    filter: invert(100%);
     opacity: 0.3;
     cursor: default; }
   .epg .navbar {
