@@ -157,6 +157,7 @@ body.player {
   .epg .icon-white {
     filter: invert(100%); }
   .epg .end .icon-white {
+    filter: invert(100%);
     opacity: 0.3;
     cursor: default; }
   .epg .navbar {
@@ -171,7 +172,7 @@ body.player {
       font-size: 1.5em;
       margin-top: 0.5em;
       margin-bottom: 0.5em;
-      padding-right: 0.5em; }
+      padding-right: 0.2em; }
     .epg .epg_chinfo .chname {
       font-size: 1.5em;
       margin-top: 0.5em;
