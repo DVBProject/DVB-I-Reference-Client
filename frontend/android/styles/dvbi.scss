@@ -151,6 +151,10 @@ body.player {
       }
       &.menuitem_epg {
         font-size: 1.0em;
+        text-shadow: none;
+        a {
+          text-decoration: none !important;
+        }
       }
   }
 }

@@ -115,7 +115,10 @@ body.player {
       color: #848484;
       display: block; }
     .video_wrapper #channel_info span.menuitem_epg {
-      font-size: 1.0em; }
+      font-size: 1.0em;
+      text-shadow: none; }
+      .video_wrapper #channel_info span.menuitem_epg a {
+        text-decoration: none !important; }
 
 /* common styles */
 .hide {
