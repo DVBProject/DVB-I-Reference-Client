@@ -252,7 +252,7 @@ Channel.prototype.showEPG = function () {
             header.appendChild(logo);
         }
         var number = document.createElement("span");
-        number.addClass("chnumber mr-1 d-inline-block float-left");
+        number.addClass("chnumber d-inline-block float-left");
         number.innerHTML = self.lcn;
         header.appendChild(number);
         var name = document.createElement("span");
