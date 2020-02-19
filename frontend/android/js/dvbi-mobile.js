@@ -25,7 +25,7 @@ function channelSelected(channelId) {
 window.onload = function(){
     $(".epg").hide();
     $(".menubar").hide();
-    loadServicelist("../../backend/servicelists/example.xml");
+    loadServicelist("../../backend/servicelist.php");
     uiHideTimeout = setTimeout(hideUI, 5000);
     $(".video_wrapper").on("click touchstart",resetHideTimeout);
 }
@@ -125,10 +125,16 @@ function loadServicelist(list) {
         var doc = parser.parseFromString(data,"text/xml");
         var services = doc.getElementsByTagName("Service");
         var lcnList = doc.getElementsByTagName("LCNTable")[0].getElementsByTagName("LCN");
+        var contentGuideURI = null;
+        var contentGuides = doc.getElementsByTagName("ContentGuideSource");
+        if(contentGuides.length > 0) {
+            contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+        }
         var items = [];
         var channelIndex = 0;
         for (var i = 0; i < services.length ;i++) {
-            var chan = {}; 
+            var chan = {};
+            chan.contentGuideURI = contentGuideURI;
             chan.code = i;
             chan.name = services[i].getElementsByTagName("ServiceName")[0].childNodes[0].nodeValue;
             chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;

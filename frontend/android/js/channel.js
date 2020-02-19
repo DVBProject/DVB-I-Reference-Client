@@ -54,9 +54,8 @@ Channel.prototype.getGenre = function(genre) {
 
 Channel.prototype.getNowNext = function() {
     var self = this;
-    if(self.contetGuideServiceRef) {
-        var scheduleURI = "../../backend/schedule.php"; //TODO get the schedule url from the service list
-         $.get( scheduleURI+"?sid="+self.contetGuideServiceRef+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
+    if(self.contetGuideServiceRef && self.contentGuideURI) {
+         $.get( self.contentGuideURI+"?sid="+self.contetGuideServiceRef+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
             var parser = new DOMParser();
             var doc = parser.parseFromString(data,"text/xml");
             var events = doc.getElementsByTagName("ScheduleEvent");
@@ -99,9 +98,8 @@ Channel.prototype.getNowNext = function() {
 Channel.prototype.getSchedule = function(callback) {
     var self = this;
     self.programs = [];
-    if(self.contetGuideServiceRef) {
-        var scheduleURI = "../../backend/schedule.php"; //TODO get the schedule url from the service list
-         $.get( scheduleURI+"?sids[]="+self.contetGuideServiceRef+"&start="+self.epg.start+"&end="+self.epg.end, function( data ) { //TODO use ContentGuideServiceRef from the service
+    if(self.contetGuideServiceRef && self.contentGuideURI) {
+         $.get( self.contentGuideURI+"?sids[]="+self.contetGuideServiceRef+"&start="+self.epg.start+"&end="+self.epg.end, function( data ) { //TODO use ContentGuideServiceRef from the service
             var parser = new DOMParser();
             var doc = parser.parseFromString(data,"text/xml");
             var events = doc.getElementsByTagName("ScheduleEvent");

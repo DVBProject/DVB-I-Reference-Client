@@ -7,9 +7,8 @@ function Channel( init_obj, element_id ){
 
 Channel.prototype.getNowNext = function() {
     var self = this;
-    if(self.contetGuideServiceRef) {
-        var scheduleURI = "../../../backend/schedule.php"; //TODO get the schedule url from the service list
-         $.get( scheduleURI+"?sid="+self.contetGuideServiceRef+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
+    if(self.contetGuideServiceRef && self.contentGuideURI) {
+         $.get( self.contentGuideURI+"?sid="+self.contetGuideServiceRef+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
             var parser = new DOMParser();
             var doc = parser.parseFromString(data,"text/xml");
             var events = doc.getElementsByTagName("ScheduleEvent");

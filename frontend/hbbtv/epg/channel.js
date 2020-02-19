@@ -51,10 +51,8 @@ Channel.prototype.getGenre = function(genre) {
 Channel.prototype.getSchedule = function(start,end,callback,earlier) {
     var self = this;
   
-    if(self.contentId) {
-        var scheduleURI = "../../../backend/schedule.php"; //TODO get the schedule url from the service list
-
-         $.get( scheduleURI+"?sids[]="+self.contentId+"&start="+start+"&end="+end, function( data ) { //TODO use ContentGuideServiceRef from the service
+    if(self.contetGuideServiceRef && self.contentGuideURI) {
+         $.get( self.contentGuideURI+"?sids[]="+self.contetGuideServiceRef+"&start="+start+"&end="+end, function( data ) { //TODO use ContentGuideServiceRef from the service
             var newPrograms = [];            
             var parser = new DOMParser();
             var doc = parser.parseFromString(data,"text/xml");
