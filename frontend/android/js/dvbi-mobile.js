@@ -25,7 +25,7 @@ function channelSelected(channelId) {
 window.onload = function(){
     $(".epg").hide();
     $(".menubar").hide();
-    loadServicelist("../../backend/servicelists/example.xml");
+    loadServicelist("../../backend/servicelist.php");
     uiHideTimeout = setTimeout(hideUI, 5000);
     $(".video_wrapper").on("click touchstart",resetHideTimeout);
 }

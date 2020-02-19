@@ -93,7 +93,7 @@
 
 	}
     function loadChannelList(){
-         $.get( "../../../backend/servicelists/example.xml", function( data ) {
+         $.get( "../../../backend/servicelist.php", function( data ) {
         var list = [];
         var parser = new DOMParser();
         var doc = parser.parseFromString(data,"text/xml");

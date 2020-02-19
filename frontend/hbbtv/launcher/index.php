@@ -117,7 +117,7 @@
         var progressframeopen = getStyleSheetPropertyValue(".progress_bar_frame.open", "width");
         progressOpenWidth = progressframeopen.substring(0, progressframeopen.length-2);
         
-        getServiceList("../../../backend/servicelists/example.xml", function( epg ){
+        getServiceList("../../../backend/servicelist.php", function( epg ){
                 createMenu(epg);
         }, function(){
             console.log("Error in fetching service data");
