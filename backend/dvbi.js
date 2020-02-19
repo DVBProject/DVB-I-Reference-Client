@@ -272,9 +272,12 @@ function generateXML() {
     doc.documentElement.appendChild(lcnTableElement);
     var lcnTable = doc.createElement("LCNTable");
     lcnTableElement.appendChild(lcnTable);
-    var targetRegion = doc.createElement("TargetRegion");
-    targetRegion.appendChild(doc.createTextNode(document.getElementById("target_region").value));
-    lcnTable.appendChild(targetRegion);
+    var targetRegionValue = document.getElementById("target_region").value;
+    if(targetRegionValue && targetRegionValue.length > 0) {
+        var targetRegion = doc.createElement("TargetRegion");
+        targetRegion.appendChild(doc.createTextNode(targetRegionValue));
+        lcnTable.appendChild(targetRegion);
+    }
 
     for(var i=0; i<services.length;i++) {
         var serviceId = services[i].id;
