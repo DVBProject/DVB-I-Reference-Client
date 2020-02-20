@@ -183,6 +183,8 @@ body.player {
       font-weight: 600;
       max-width: 80%; }
 
+.programinfo.hide {
+  display: none; }
 .programinfo .chinfo .chnumber {
   font-size: 1.5em; }
 .programinfo .chinfo .chname {
