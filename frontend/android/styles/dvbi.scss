@@ -246,6 +246,9 @@ body.player {
 }
 // programinfo styles
 .programinfo {
+  &.hide {
+    display: none;
+  }
   .chinfo {
     .chnumber {
       font-size: 1.5em;
