@@ -66,7 +66,6 @@ function showEpg(service) {
 
 function closeEpg() {
     $(".epg").hide();
-    $(".menubar").hide();
     if(! $(".epg").hasClass("hide") ) {
         $(".epg").addClass("hide");
     }
