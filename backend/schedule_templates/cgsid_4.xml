@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xml:lang="eng" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ProgramDescription>
+		<ProgramInformationTable>
+			<ProgramInformation programId="crid://12026821">
+				<BasicDescription>
+					<Title type="main">Mountains</Title>
+					<Synopsis length="medium">The secretive lives of mountain animals; snow leopards come together to help a mother and cub, trapped between rival males.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13451711_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026822">
+				<BasicDescription>
+					<Title type="main">Jason Peterson's Into The Wild</Title>
+					<Synopsis length="medium">Jason Peterson hunts the most dangerous animals across North America and the around the world.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p10870905_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026823">
+				<BasicDescription>
+					<Title type="main">Alone</Title>
+					<Synopsis length="medium">Bob Harte's loneliness abates when a visitor arrives at his cabin; the Seldens enjoy a major triumph; Ray Lewis begins hunting for meat.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p12736914_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026824">
+				<BasicDescription>
+					<Title type="main">Jungles</Title>
+					<Synopsis length="medium">From the jungles of Brazil to Costa Rica, animals face life in the most competitive place on Earth.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13451731_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026825">
+				<BasicDescription>
+					<Title type="main">We Bought a Zoo</Title>
+					<Synopsis length="medium">Following his wife's untimely death, Los Angeles journalist Benjamin Mee (Matt Damon) decides to make a fresh start by quitting his job and moving his children (Colin Ford, Maggie Elizabeth Jones) to an 18-acre property containing the Rosemoor Wildlife Park. Though closed for years, Rosemoor is still home to many animals, cared for by Kelly Foster (Scarlett Johansson) and her small staff. Mee opens his heart and his checkbook as he, Kelly and the others work to renovate and reopen the zoo.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:5" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p8768802_i_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026826">
+				<BasicDescription>
+					<Title type="main">Airstream Dream</Title>
+					<Synopsis length="medium">The guys tap into their spirit animals to track down a lifetime picker; a bizarre totem pole catches Mike's eye; an original Airstream trailer renders Mike speechless.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p8694696_e_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026827">
+				<BasicDescription>
+					<Title type="main">Funnymals</Title>
+					<Synopsis length="medium">Secuencias cómicas desternillantes protagonizadas por animales. Peces cantarines, suricatas paranoicas y jirafas cuentachistes, entre otras diversiones.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:5" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p11367512_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026828">
+				<BasicDescription>
+					<Title type="main">Animal Invaders</Title>
+					<Synopsis length="medium">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p9912983_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026829">
+				<BasicDescription>
+					<Title type="main">The Pride of the Eastern Cape</Title>
+					<Synopsis length="medium">In Africa, great lengths are taken to keep the Eastern Cape lion population healthy for generations to come; protecting animals from poachers.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:9" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p10117343_i_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026830">
+				<BasicDescription>
+					<Title type="main">We Bought a Zoo</Title>
+					<Synopsis length="medium">Following his wife's untimely death, Los Angeles journalist Benjamin Mee (Matt Damon) decides to make a fresh start by quitting his job and moving his children (Colin Ford, Maggie Elizabeth Jones) to an 18-acre property containing the Rosemoor Wildlife Park. Though closed for years, Rosemoor is still home to many animals, cared for by Kelly Foster (Scarlett Johansson) and her small staff. Mee opens his heart and his checkbook as he, Kelly and the others work to renovate and reopen the zoo.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:5" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p8768802_i_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026831">
+				<BasicDescription>
+					<Title type="main">Airstream Dream</Title>
+					<Synopsis length="medium">The guys tap into their spirit animals to track down a lifetime picker; a bizarre totem pole catches Mike's eye; an original Airstream trailer renders Mike speechless.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p8694696_e_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026832">
+				<BasicDescription>
+					<Title type="main">Cities</Title>
+					<Synopsis length="medium">Cities serve as places of surprising opportunity for animals to thrive.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13469377_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026833">
+				<BasicDescription>
+					<Title type="main">Jungles</Title>
+					<Synopsis length="medium">From the jungles of Brazil to Costa Rica, animals face life in the most competitive place on Earth.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13451731_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026834">
+				<BasicDescription>
+					<Title type="main">Mountains</Title>
+					<Synopsis length="medium">The secretive lives of mountain animals; snow leopards come together to help a mother and cub, trapped between rival males.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13451711_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026835">
+				<BasicDescription>
+					<Title type="main">Animal Invaders</Title>
+					<Synopsis length="medium">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p9912983_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12026836">
+				<BasicDescription>
+					<Title type="main">Face Ripper</Title>
+					<Synopsis length="medium">Jeremy investigates the case of a Bolivian man who had his face ripped off by a ferocious river predator, leading to a showdown with an old adversary.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p9826901_e_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+		</ProgramInformationTable>
+		<ProgramLocationTable lang="eng">
+			<Schedule end="DATE_TEMPLATE 23:59:59" serviceIDRef="4" start="DATE_TEMPLATE 00:00:00">
+				<ScheduleEvent>
+					<Program crid="crid://12026821"/>
+					<PublishedStartTime>DATE_TEMPLATET01:01:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026822"/>
+					<PublishedStartTime>DATE_TEMPLATET02:01:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026823"/>
+					<PublishedStartTime>DATE_TEMPLATET06:01:00Z</PublishedStartTime>
+					<PublishedDuration>PT2H59M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026824"/>
+					<PublishedStartTime>DATE_TEMPLATET09:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026825"/>
+					<PublishedStartTime>DATE_TEMPLATET10:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026826"/>
+					<PublishedStartTime>DATE_TEMPLATET12:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026827"/>
+					<PublishedStartTime>DATE_TEMPLATET13:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026828"/>
+					<PublishedStartTime>DATE_TEMPLATET13:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026829"/>
+					<PublishedStartTime>DATE_TEMPLATET14:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026830"/>
+					<PublishedStartTime>DATE_TEMPLATET15:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT2H30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026831"/>
+					<PublishedStartTime>DATE_TEMPLATET17:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026832"/>
+					<PublishedStartTime>DATE_TEMPLATET18:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026833"/>
+					<PublishedStartTime>DATE_TEMPLATET19:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026834"/>
+					<PublishedStartTime>DATE_TEMPLATET20:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026835"/>
+					<PublishedStartTime>DATE_TEMPLATET21:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12026836"/>
+					<PublishedStartTime>DATE_TEMPLATET22:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT2H31M</PublishedDuration>
+				</ScheduleEvent>
+			</Schedule>
+		</ProgramLocationTable>
+	</ProgramDescription>
+</TVAMain>

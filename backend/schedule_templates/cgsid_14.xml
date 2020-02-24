@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xml:lang="eng" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ProgramDescription>
+		<ProgramInformationTable>
+			<ProgramInformation programId="crid://12021633">
+				<BasicDescription>
+					<Title type="main">Mobile's Monster Meals</Title>
+					<Synopsis length="medium">The Destroyer has two pounds of burger, 12 strips of bacon and a stack of cheese, all loaded into an enormous grilled doughnut; whole bacon-wrapped chicken topped with fried oysters and collard greens is piled onto pimento cheese cornbread.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13915382_b_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021634">
+				<BasicDescription>
+					<Title type="main">London</Title>
+					<Synopsis length="medium">Leslie travels to London to accept an award; Tom hunts down a businessman; Ann and Chris take their relationship to the next level.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p10202050_e_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021635">
+				<BasicDescription>
+					<Title type="main">Like Father, Like Sun</Title>
+					<Synopsis length="medium">Ozzy and Jack begin their travels in Key West, Fla., where they do some deep-sea fishing and pay a visit to Robert the Haunted Doll; the duo hunt for pythons in the Everglades and drive by Mar-a-Lago, President Donald Trump's&quot;Winter White House.&quot;</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p14676959_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021636">
+				<BasicDescription>
+					<Title type="main">International Situation</Title>
+					<Synopsis length="medium">Nick Popovich and his team travel to Turkey and France to hunt down two Airbus A320s for repossession.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p8399068_i_h13_ah.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021637">
+				<BasicDescription>
+					<Title type="main">Confucius</Title>
+					<Synopsis length="medium">Bettany Hughes travels to China on the trail of Confucius, a great sage of Chinese history whose ideas have fundamentally shaped the country of his birth for around 2,500 years.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p11984611_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021638">
+				<BasicDescription>
+					<Title type="main">The Mutilator</Title>
+					<Synopsis length="medium">Jeremy Wade travels to the Sepik River in New Guinea to investigate a creature suspected of taking the lives of at least two fishermen.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p8558983_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021639">
+				<BasicDescription>
+					<Title type="main">New York, NY</Title>
+					<Synopsis length="medium">Casey Webb travels to New York City for the best in big city eats, including an insane challenge that has him choosing between a 151-ounce milkshake, an eight-pound sloppy joe or six habanero ghost chili wings.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p14328326_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021640">
+				<BasicDescription>
+					<Title type="main">Friends in Wild Places</Title>
+					<Synopsis length="medium">Traveling the terrain of North America on inspirational adventures.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p10677704_b_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021641">
+				<BasicDescription>
+					<Title type="main">Globetrotting with Gemstones</Title>
+					<Synopsis length="medium">Here at Gemporia, we travel the globe to source your exquisite gemstones and we are proud to bring them to you in this hour in stunning designs and incredible prices.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13225082_st_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021642">
+				<BasicDescription>
+					<Title type="main">Laura McKenzie's Traveler</Title>
+					<Synopsis length="medium">The award winning travel journalist takes picturesque tours around the world.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p424773_i_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021643">
+				<BasicDescription>
+					<Title type="main">The Story of the South African Quaalude</Title>
+					<Synopsis length="medium">South Africa is the last place on earth Quaaludes can still be found; Hamilton travels there to study the drug and learns of a dark history of medical experimentation.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13351779_e_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021644">
+				<BasicDescription>
+					<Title type="main">The Time Travelers</Title>
+					<Synopsis length="medium">Considering the possibility that sightings of alien beings or UFOs may be evidence of time travelers from the future.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p9146095_e_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021645">
+				<BasicDescription>
+					<Title type="main">Slinky Brand Fashions</Title>
+					<Synopsis length="medium">Wrinkle resistant dresses, pants, tops, and sets that are easy wear, easy care, travel companions; these flattering fashions are designed to be worn from morning to night. Made with comfort in mind and offered in multiple options of color and print.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p907551_i_h13_ad.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021646">
+				<BasicDescription>
+					<Title type="main">Pythian Castle</Title>
+					<Synopsis length="medium">Zak and the crew travel to Springfield, Mo., to investigate Pythian Castle, a historic building infected with violent spirits who appear to mimic the living and deliver fatal premonitions.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p14422731_b_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021647">
+				<BasicDescription>
+					<Title type="main">Santorini</Title>
+					<Synopsis length="medium">Bursting with beauty and culinary icons of near mythical proportion, the Greek island of Santorini is home to tomato fritters, lamb fricassee and natural delicacies like grilled octopus.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13987543_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021648">
+				<BasicDescription>
+					<Title type="main">Bogota</Title>
+					<Synopsis length="medium">Hearty potato soup, whole-roasted stuffed pork, egg filled arepas and cheesy hot chocolate.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p12656224_e_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021649">
+				<BasicDescription>
+					<Title type="main">Prague</Title>
+					<Synopsis length="medium">Andrew Zimmern visits Prague, a pilsner-lover's paradise in the Czech Republic; the city's cuisine is full of hearty comfort classics like pork knuckle marinated in lager, mushroom soup, sweet plum pastries, and a lot of dumplings.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p14386668_e_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021650">
+				<BasicDescription>
+					<Title type="main">Mayan Apocalypse</Title>
+					<Synopsis length="medium">Unearthing human skulls and ancient Mayan sacrificial alters in the caverns underneath the jungles and ruins of Mexico.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p11468820_e_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12021651">
+				<BasicDescription>
+					<Title type="main">Undiscovered Hawaii</Title>
+					<Synopsis length="medium">Andrew wants to find out what Hawaiians really like to eat; dried octopus bile sac; crispy pork intestine;and a traditional take on a raw fish salad that includes the eyeballs.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p9891993_e_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+		</ProgramInformationTable>
+		<ProgramLocationTable lang="eng">
+			<Schedule end="DATE_TEMPLATE 23:59:59Z" serviceIDRef="2" start="DATE_TEMPLATE 00:00:00Z">
+				<ScheduleEvent>
+					<Program crid="crid://12021633"/>
+					<PublishedStartTime>DATE_TEMPLATET00:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT6H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021634"/>
+					<PublishedStartTime>DATE_TEMPLATET06:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT3H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021635"/>
+					<PublishedStartTime>DATE_TEMPLATET09:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021636"/>
+					<PublishedStartTime>DATE_TEMPLATET10:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021637"/>
+					<PublishedStartTime>DATE_TEMPLATET11:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021638"/>
+					<PublishedStartTime>DATE_TEMPLATET12:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021639"/>
+					<PublishedStartTime>DATE_TEMPLATET13:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021640"/>
+					<PublishedStartTime>DATE_TEMPLATET13:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021641"/>
+					<PublishedStartTime>DATE_TEMPLATET14:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT2H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021642"/>
+					<PublishedStartTime>DATE_TEMPLATET16:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021643"/>
+					<PublishedStartTime>DATE_TEMPLATET16:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021644"/>
+					<PublishedStartTime>DATE_TEMPLATET17:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021645"/>
+					<PublishedStartTime>DATE_TEMPLATET18:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021646"/>
+					<PublishedStartTime>DATE_TEMPLATET19:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021647"/>
+					<PublishedStartTime>DATE_TEMPLATET20:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021648"/>
+					<PublishedStartTime>DATE_TEMPLATET21:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021649"/>
+					<PublishedStartTime>DATE_TEMPLATET21:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021650"/>
+					<PublishedStartTime>DATE_TEMPLATET22:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12021651"/>
+					<PublishedStartTime>DATE_TEMPLATET23:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+			</Schedule>
+		</ProgramLocationTable>
+	</ProgramDescription>
+</TVAMain>

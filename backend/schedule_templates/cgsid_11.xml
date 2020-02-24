@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xml:lang="eng" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ProgramDescription>
+		<ProgramInformationTable>
+			<ProgramInformation programId="crid://12024293">
+				<BasicDescription>
+					<Title type="main">SportsNation</Title>
+					<Synopsis length="medium">The topics covered in this weekday show are chosen by fans via ESPN.com's SportsNation site.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p3560175_ce_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024294">
+				<BasicDescription>
+					<Title type="main">NASCAR Race Hub</Title>
+					<Synopsis length="medium">NASCAR news and features.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p7871891_b_h13_ad.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024295">
+				<BasicDescription>
+					<Title type="main">TMZ Sports</Title>
+					<Synopsis length="medium">Gossip and exclusive stories about athletes' personal lives.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p10455655_b_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024296">
+				<BasicDescription>
+					<Title type="main">Sports Scene</Title>
+					<Synopsis length="medium">No description</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p10888616_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024297">
+				<BasicDescription>
+					<Title type="main">The Fantasy Show</Title>
+					<Synopsis length="medium">Noted fantasy sports expert Matthew Berry provides analysis on the day's news and developments.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p14301742_b_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024298">
+				<BasicDescription>
+					<Title type="main">REAL Sports With Bryant Gumbel</Title>
+					<Synopsis length="medium">Northwestern University men's basketball coach Chris Collins; soccer development coach Tom Byer; a south Texas football team rises from the devastation of Hurricane Harvey; professional surfer Kelly Slater works to develop the perfect man-made wave.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13508178_b_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024299">
+				<BasicDescription>
+					<Title type="main">SportsNation</Title>
+					<Synopsis length="medium">The topics covered in this weekday show are chosen by fans via ESPN.com's SportsNation site.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p3560175_ce_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024300">
+				<BasicDescription>
+					<Title type="main">Top Ten</Title>
+					<Synopsis length="medium">The ten best plays of the week in sports.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p186674_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024301">
+				<BasicDescription>
+					<Title type="main">BYU Sports Nation</Title>
+					<Synopsis length="medium">News and information about BYU athletics with guest interviews.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p10600060_i_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024302">
+				<BasicDescription>
+					<Title type="main">SportsCenter With Scott Van Pelt</Title>
+					<Synopsis length="medium">Scott Van Pelt presents the day in sports through his unique perspective with highlights, special guests and his &quot;One Big Thing&quot; commentary.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13816005_i_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024303">
+				<BasicDescription>
+					<Title type="main">Sports Scene</Title>
+					<Synopsis length="medium">No description</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p10888616_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024304">
+				<BasicDescription>
+					<Title type="main">Top Ten</Title>
+					<Synopsis length="medium">The ten best plays of the week in sports.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p186674_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024305">
+				<BasicDescription>
+					<Title type="main">Pac-12 Final Score</Title>
+					<Synopsis length="medium">Relive all of the plays, hits and upsets from the biggest day in college sports.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p12010632_b_h13_ab.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024306">
+				<BasicDescription>
+					<Title type="main">SportsCenter</Title>
+					<Synopsis length="medium">ESPN's flagship program provides sports news, highlights and analysis.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p186674_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024307">
+				<BasicDescription>
+					<Title type="main">SportsNation</Title>
+					<Synopsis length="medium">The topics covered in this weekday show are chosen by fans via ESPN.com's SportsNation site.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p3560175_ce_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024308">
+				<BasicDescription>
+					<Title type="main">Outside the Lines</Title>
+					<Synopsis length="medium">Examining daily issues with an investigative piece followed by a debate. Hosted by Bob Ley.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p186286_i_h13_ac.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024309">
+				<BasicDescription>
+					<Title type="main">SportsCenter With Michael and Jemele</Title>
+					<Synopsis length="medium">Jemele Hill and Michael Smith discuss the day in sports, interview athletes and celebrities and bring fans their &quot;Doin' Too Much&quot; countdown.</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p13815986_ce_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024310">
+				<BasicDescription>
+					<Title type="main">Mobil 1 The Grid</Title>
+					<Synopsis length="medium">The best motorsport features and action from the biggest race series around the world.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p8025232_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://12024311">
+				<BasicDescription>
+					<Title type="main">Sedona Tire RipSaw Ridge</Title>
+					<Synopsis length="medium">Action sports athletes compete in ATV and SideXSide racing on muddy course conditions.</Synopsis>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://tmsimg.com/assets/p9282588_i_h13_aa.jpg</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+			</ProgramInformation>
+		</ProgramInformationTable>
+		<ProgramLocationTable lang="eng">
+			<Schedule end="DATE_TEMPLATE 23:59:59Z" serviceIDRef="3" start="DATE_TEMPLATE 00:00:00Z">
+				<ScheduleEvent>
+					<Program crid="crid://12024293"/>
+					<PublishedStartTime>DATE_TEMPLATET06:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT2H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024294"/>
+					<PublishedStartTime>DATE_TEMPLATET08:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024295"/>
+					<PublishedStartTime>DATE_TEMPLATET09:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024296"/>
+					<PublishedStartTime>DATE_TEMPLATET10:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024297"/>
+					<PublishedStartTime>DATE_TEMPLATET10:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024298"/>
+					<PublishedStartTime>DATE_TEMPLATET11:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024299"/>
+					<PublishedStartTime>DATE_TEMPLATET12:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024300"/>
+					<PublishedStartTime>DATE_TEMPLATET13:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024301"/>
+					<PublishedStartTime>DATE_TEMPLATET13:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024302"/>
+					<PublishedStartTime>DATE_TEMPLATET14:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024303"/>
+					<PublishedStartTime>DATE_TEMPLATET15:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024304"/>
+					<PublishedStartTime>DATE_TEMPLATET16:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024305"/>
+					<PublishedStartTime>DATE_TEMPLATET16:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024306"/>
+					<PublishedStartTime>DATE_TEMPLATET17:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024307"/>
+					<PublishedStartTime>DATE_TEMPLATET18:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024308"/>
+					<PublishedStartTime>DATE_TEMPLATET19:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024309"/>
+					<PublishedStartTime>DATE_TEMPLATET20:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT2H</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024310"/>
+					<PublishedStartTime>DATE_TEMPLATET22:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://12024311"/>
+					<PublishedStartTime>DATE_TEMPLATET22:30:00Z</PublishedStartTime>
+					<PublishedDuration>PT1H</PublishedDuration>
+				</ScheduleEvent>
+			</Schedule>
+		</ProgramLocationTable>
+	</ProgramDescription>
+</TVAMain>
