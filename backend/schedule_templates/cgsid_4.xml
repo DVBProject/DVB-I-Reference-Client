@@ -220,7 +220,7 @@
 				<ScheduleEvent>
 					<Program crid="crid://12026822"/>
 					<PublishedStartTime>DATE_TEMPLATET02:01:00Z</PublishedStartTime>
-					<PublishedDuration>PT30M</PublishedDuration>
+					<PublishedDuration>PT3H30M</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026823"/>

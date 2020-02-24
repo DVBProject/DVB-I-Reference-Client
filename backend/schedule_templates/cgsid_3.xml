@@ -248,8 +248,8 @@
 			<Schedule end="DATE_TEMPLATE 23:59:59Z" serviceIDRef="3" start="DATE_TEMPLATE 00:00:00Z">
 				<ScheduleEvent>
 					<Program crid="crid://12024293"/>
-					<PublishedStartTime>DATE_TEMPLATET06:00:00Z</PublishedStartTime>
-					<PublishedDuration>PT2H</PublishedDuration>
+					<PublishedStartTime>DATE_TEMPLATET04:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT4H</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12024294"/>
@@ -339,7 +339,7 @@
 				<ScheduleEvent>
 					<Program crid="crid://12024311"/>
 					<PublishedStartTime>DATE_TEMPLATET22:30:00Z</PublishedStartTime>
-					<PublishedDuration>PT1H</PublishedDuration>
+					<PublishedDuration>PT5H</PublishedDuration>
 				</ScheduleEvent>
 			</Schedule>
 		</ProgramLocationTable>

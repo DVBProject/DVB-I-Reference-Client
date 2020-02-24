@@ -214,82 +214,82 @@
 			<Schedule end="DATE_TEMPLATE 23:59:59" serviceIDRef="4" start="DATE_TEMPLATE 00:00:00">
 				<ScheduleEvent>
 					<Program crid="crid://12026821"/>
-					<PublishedStartTime>DATE_TEMPLATET01:01:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET01:01:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026822"/>
-					<PublishedStartTime>DATE_TEMPLATET02:01:00</PublishedStartTime>
-					<PublishedDuration>PT30M</PublishedDuration>
+					<PublishedStartTime>DATE_TEMPLATET02:01:00Z</PublishedStartTime>
+					<PublishedDuration>PT3H30M</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026823"/>
-					<PublishedStartTime>DATE_TEMPLATET06:01:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET06:01:00Z</PublishedStartTime>
 					<PublishedDuration>PT2H59M</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026824"/>
-					<PublishedStartTime>DATE_TEMPLATET09:00:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET09:00:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H30M</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026825"/>
-					<PublishedStartTime>DATE_TEMPLATET10:30:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET10:30:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H30M</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026826"/>
-					<PublishedStartTime>DATE_TEMPLATET12:00:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET12:00:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026827"/>
-					<PublishedStartTime>DATE_TEMPLATET13:00:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET13:00:00Z</PublishedStartTime>
 					<PublishedDuration>PT30M</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026828"/>
-					<PublishedStartTime>DATE_TEMPLATET13:30:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET13:30:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026829"/>
-					<PublishedStartTime>DATE_TEMPLATET14:30:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET14:30:00Z</PublishedStartTime>
 					<PublishedDuration>PT30M</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026830"/>
-					<PublishedStartTime>DATE_TEMPLATET15:00:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET15:00:00Z</PublishedStartTime>
 					<PublishedDuration>PT2H30M</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026831"/>
-					<PublishedStartTime>DATE_TEMPLATET17:30:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET17:30:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026832"/>
-					<PublishedStartTime>DATE_TEMPLATET18:30:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET18:30:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026833"/>
-					<PublishedStartTime>DATE_TEMPLATET19:30:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET19:30:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026834"/>
-					<PublishedStartTime>DATE_TEMPLATET20:30:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET20:30:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026835"/>
-					<PublishedStartTime>DATE_TEMPLATET21:30:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET21:30:00Z</PublishedStartTime>
 					<PublishedDuration>PT1H</PublishedDuration>
 				</ScheduleEvent>
 				<ScheduleEvent>
 					<Program crid="crid://12026836"/>
-					<PublishedStartTime>DATE_TEMPLATET22:30:00</PublishedStartTime>
+					<PublishedStartTime>DATE_TEMPLATET22:30:00Z</PublishedStartTime>
 					<PublishedDuration>PT2H31M</PublishedDuration>
 				</ScheduleEvent>
 			</Schedule>
