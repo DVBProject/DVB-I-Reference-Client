@@ -247,6 +247,10 @@ Channel.prototype.getNowNext = function() {
             
          },"text");
     }
+    else {
+        self.center = 0;
+        self.populate(null);
+    }
 }
 
 
@@ -256,8 +260,7 @@ Channel.prototype.init = function( init_obj, element_id){
 		$.each( init_obj, function( f, field ){
 			self[f] = field;
 		});
-        self.getNowNext();
-		self.element = document.getElementById(element_id);
+        self.element = document.getElementById(element_id);
 		if(self.element == null){
 			var element = document.createElement("div");
 			element.className = "menuitem closed";
@@ -303,24 +306,17 @@ Channel.prototype.init = function( init_obj, element_id){
 		}
 
         if(!self.epg) {
-            var placeholder = { text : "No program" };
+            var placeholder = { text : "No program information" };
             var box = new Box( placeholder, self.element_id + "_" + self.code);
             box.name = self.name;
             box.parentimage = "../CommonUI/empty.png";
             box.description =  "";
             var now = box;
-            var info = "No program";
-            
-
+            var info = "No program information";
             now.info = info;
-            
-            if(now instanceof Box){
-                self.boxes.push(now);
-            }
-       
-
+            self.boxes.push(now);
         }
-    
+        self.getNowNext();
 }
 
 Channel.prototype.update = function(epg_obj){
