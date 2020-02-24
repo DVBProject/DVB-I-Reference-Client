@@ -214,17 +214,26 @@ Channel.prototype.setFocus = function(){
 	try{
 		var nowProgram = null;
 		var firstVisible = null;
+        var current = null;
 		var self = this;
 		$.each(self.visiblePrograms, function(i, program){
 			if(program.now()){
 				this.open = true;
 				nowProgram = program;
 			}
-			if(program.visible && !firstVisible){
+   			if(program.visible && !firstVisible){
 				firstVisible = program;
 			}
+            if(_epg_.activeItem instanceof Program && program.title  == _epg_.activeItem.title && program.start.getTime() == _epg_.activeItem.start.getTime() && program.end.getTime() == _epg_.activeItem.end.getTime()) {
+               current = program;
+               return;
+            }
 		});
-		if(!nowProgram && firstVisible){
+        if(current) {
+            this.open = true;
+			_epg_.setActiveItem(current);
+        }
+        else if(!nowProgram && firstVisible){
 			this.open = true;
 			_epg_.setActiveItem(firstVisible);
 		}
