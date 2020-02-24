@@ -100,6 +100,9 @@
         var services = doc.getElementsByTagName("Service");
         var contentGuides = doc.getElementsByTagName("ContentGuideSource");
         var contentGuideURI = null;
+        var vid = document.getElementById('broadcast');
+        var config = vid.getChannelConfig();
+        var dvbChannels = config.channelList;
         if(contentGuides.length > 0) {
             contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
         }
@@ -129,14 +132,14 @@
                        sourceTypes.push("DVB-DASH");
                        chan.dashUrl = serviceInstances[j].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
                 }
-                /*if(channelList && (sourceType == "urn:dvb:metadata:source:dvb-t" || 
+                if(dvbChannels && (sourceType == "urn:dvb:metadata:source:dvb-t" || 
                    sourceType == "urn:dvb:metadata:source:dvb-c" ||
                    sourceType == "urn:dvb:metadata:source:dvb-s" ) ) {
                     //Just search for the triplet in the channel list;
                     var triplet = serviceInstances[j].getElementsByTagName("DVBTriplet")[0];
                     
-                    for(var k = 0;k<channelList.length;k++) {
-                        var dvbChannel = channelList.item(k);
+                    for(var k = 0;k<dvbChannels.length;k++) {
+                        var dvbChannel = dvbChannels.item(k);
                         if(dvbChannel.sid == triplet.getAttribute("serviceId") &&
                            dvbChannel.onid == triplet.getAttribute("origNetId") &&
                            dvbChannel.tsid == triplet.getAttribute("tsId")) {
@@ -145,7 +148,7 @@
                              break;
                            }                            
                     }
-                }*/
+                }
             }
             if(sourceTypes.length == 0) {
                 continue;
@@ -278,6 +281,7 @@
 		<div style="visibility:hidden;width:0px;height:0px;">
 			<object id="appmgr" type="application/oipfApplicationManager" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
 			<object id="oipfcfg" type="application/oipfConfiguration" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
+            <object id="broadcast" type="video/broadcast" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
 		</div>
     	<div class="app_header">
 		</div>
