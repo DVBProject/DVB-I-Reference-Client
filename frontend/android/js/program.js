@@ -1,5 +1,5 @@
 
-function Program(programdata,channel){
+function Program(programdata,element_id,channel){
 	this.init(programdata,channel);	
 }
 

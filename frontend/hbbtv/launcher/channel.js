@@ -7,36 +7,17 @@ function Channel( init_obj, element_id ){
 
 Channel.prototype.getNowNext = function() {
     var self = this;
-    if(self.contetGuideServiceRef && self.contentGuideURI) {
-         $.get( self.contentGuideURI+"?sid="+self.contetGuideServiceRef+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(data,"text/xml");
-            var events = doc.getElementsByTagName("ScheduleEvent");
-            var programs = doc.getElementsByTagName("ProgramInformation");
+    if(self.contentGuideURI) {
+        $.get( self.contentGuideURI+"?sid="+self.getServiceRef()+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
             var epg = {};
             var boxes = [];
-            for(var i=0;i<events.length;i++) {
-                var program = {};
-                var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
-                program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toUTCDate();
-                program.end  = iso6801end(events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue, program.start);
-                for(var j=0;j<programs.length;j++) {
-                    if(programs[j].getAttribute("programId") == programId) {
-                        var descriprion = programs[j].getElementsByTagName("BasicDescription")[0];
-                        program.title = descriprion.getElementsByTagName("Title")[0].childNodes[0].nodeValue;
-                        var relatedMaterial =  descriprion.getElementsByTagName("RelatedMaterial");
-                        for(var k=0;k<relatedMaterial.length;k++) {
-                            var howRelated = relatedMaterial[k].getElementsByTagName("HowRelated")[0].getAttribute("href");
-                            if(howRelated == "urn:tva:metadata:cs:HowRelatedCS:2012:19") { //Program still image
-                                program.img = relatedMaterial[k].getElementsByTagName("MediaUri")[0].childNodes[0].nodeValue;
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
-                epg[i == 0 ? "now" : "next"] = program;
-
+            var now_next = {};
+            var newPrograms = self.parseSchedule(data);
+            if(newPrograms.length > 0) {
+                 epg["now"] = newPrograms[0];
+            }
+            if(newPrograms.length > 1) {
+                 epg["next"] = newPrograms[1];
             }
             self.epg = epg;
 

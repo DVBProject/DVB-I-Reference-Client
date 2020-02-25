@@ -18,6 +18,7 @@
     <script type="text/javascript" src="../../common.js"></script>
     <script type="text/javascript" src="../session.js"></script>
     <script type="text/javascript" src="../../isoduration.js"></script>
+    <script type="text/javascript" src="../../channel-common.js"></script>
 
 	<script type="text/javascript" language="javascript">
 	//<![CDATA[
@@ -115,7 +116,7 @@
             chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
             var cgRefs =  services[i].getElementsByTagName("ContentGuideServiceRef");
             if(cgRefs && cgRefs.length > 0) {
-                chan.contetGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
+                chan.contentGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
             }
             var relatedMaterial = services[i].getElementsByTagName("RelatedMaterial");
             for(var j = 0;j < relatedMaterial.length;j++) {

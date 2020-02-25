@@ -31,7 +31,7 @@ EPG.prototype.populate = function (start,end) {
 EPG.prototype.showChannel = function(service,start,end) {
     var serviceIndex = 0;
     for(var i = 0 ;i<this.channels.length;i++) {
-        if(this.channels[i].contetGuideServiceRef === service ) {
+        if(this.channels[i].getServiceRef() === service ) {
             serviceIndex = i;
             break;
         } 

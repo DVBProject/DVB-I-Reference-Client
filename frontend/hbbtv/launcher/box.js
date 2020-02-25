@@ -49,7 +49,6 @@ Box.prototype.getTitle = function(lang){
 Box.prototype.populate = function(callback){
 	var self = this;
     
-    
 	var boxitem_description = document.createElement("div");
 	boxitem_description.addClass("boxitem_description");
 	if(self.catchup || self.related_video){
@@ -61,7 +60,7 @@ Box.prototype.populate = function(callback){
 	var boxitem_image = document.createElement("div");
 	boxitem_image.addClass("boxitem_image");
     
-	var img_url = self["serieimage"] || self["img"] || self["parentimage"];
+	var img_url = self["mediaimage"] || self["parentimage"];
 	
     if(img_url != null && img_url.length > 0){
 		var image = new Image();

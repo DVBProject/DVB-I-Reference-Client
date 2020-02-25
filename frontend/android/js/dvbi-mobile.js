@@ -140,7 +140,7 @@ function loadServicelist(list) {
             chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
             var cgRefs =  services[i].getElementsByTagName("ContentGuideServiceRef");
             if(cgRefs && cgRefs.length > 0) {
-                chan.contetGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
+                chan.contentGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
             }
             var relatedMaterial = services[i].getElementsByTagName("RelatedMaterial");
             for(var j = 0;j < relatedMaterial.length;j++) {

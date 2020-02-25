@@ -21,10 +21,12 @@
     <script src="../../../jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="menu.js"></script>
    	<script type="text/javascript" src="channel.js"></script>
+    <script type="text/javascript" src="program.js"></script>
    	<script type="text/javascript" src="box.js"></script>
 	<script type="text/javascript" src="navigation.js"></script>
 	<script type="text/javascript" src="../session.js"></script>
     <script type="text/javascript" src="../../isoduration.js"></script>
+    <script type="text/javascript" src="../../channel-common.js"></script>
     <script type="text/javascript" src="../../common.js"></script>
     <script type="text/javascript" src="../buttonbar.js"></script>
 	<script type="text/javascript" src="../alertDialog.js"></script>
@@ -176,7 +178,7 @@
             chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
             var cgRefs =  services[i].getElementsByTagName("ContentGuideServiceRef");
             if(cgRefs && cgRefs.length > 0) {
-                chan.contetGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
+                chan.contentGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
             }
             var relatedMaterial = services[i].getElementsByTagName("RelatedMaterial");
             for(var j = 0;j < relatedMaterial.length;j++) {

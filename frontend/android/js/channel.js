@@ -54,42 +54,22 @@ Channel.prototype.getGenre = function(genre) {
 
 Channel.prototype.getNowNext = function() {
     var self = this;
-    if(self.contetGuideServiceRef && self.contentGuideURI) {
-         $.get( self.contentGuideURI+"?sid="+self.contetGuideServiceRef+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(data,"text/xml");
-            var events = doc.getElementsByTagName("ScheduleEvent");
-            var programs = doc.getElementsByTagName("ProgramInformation");
+    if(self.contentGuideURI) {
+         $.get( self.contentGuideURI+"?sid="+self.getServiceRef()+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
             var now_next = {};
             var boxes = [];
-            for(var i=0;i<events.length;i++) {
-                var program = {};
-                var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
-                program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toUTCDate();
-                program.end  = iso6801end(events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue, program.start);
-                for(var j=0;j<programs.length;j++) {
-                    if(programs[j].getAttribute("programId") == programId) {
-                        var descriprion = programs[j].getElementsByTagName("BasicDescription")[0];
-                        program.title = descriprion.getElementsByTagName("Title")[0].childNodes[0].nodeValue;
-                        var relatedMaterial =  descriprion.getElementsByTagName("RelatedMaterial");
-                        for(var k=0;k<relatedMaterial.length;k++) {
-                            var howRelated = relatedMaterial[k].getElementsByTagName("HowRelated")[0].getAttribute("href");
-                            if(howRelated == "urn:tva:metadata:cs:HowRelatedCS:2012:19") { //Program still image
-                                program.img = relatedMaterial[k].getElementsByTagName("MediaUri")[0].childNodes[0].nodeValue;
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
-                now_next[i == 0 ? "now" : "next"] = program;
-
+            var newPrograms = self.parseSchedule(data);
+            if(newPrograms.length > 0) {
+                 now_next["now"] = newPrograms[0];
+            }
+            if(newPrograms.length > 1) {
+                 now_next["next"] = newPrograms[1];
             }
             self.now_next = now_next;
             if(self.selected) {
                 self.updateChannelInfo();
             }
-   
+
        },"text");
     }
 }
@@ -98,50 +78,10 @@ Channel.prototype.getNowNext = function() {
 Channel.prototype.getSchedule = function(callback) {
     var self = this;
     self.programs = [];
-    if(self.contetGuideServiceRef && self.contentGuideURI) {
-         $.get( self.contentGuideURI+"?sids[]="+self.contetGuideServiceRef+"&start="+self.epg.start+"&end="+self.epg.end, function( data ) { //TODO use ContentGuideServiceRef from the service
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(data,"text/xml");
-            var events = doc.getElementsByTagName("ScheduleEvent");
-            var programs = doc.getElementsByTagName("ProgramInformation");
-            for(var i=0;i<events.length;i++) {
-                var program = {};
-                var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
-                program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toUTCDate();
-                program.end  = iso6801end(events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue, program.start);
-                program.prglen = (program.end.getTime() - program.start.getTime())/(1000*60);
-                for(var j=0;j<programs.length;j++) {
-                    if(programs[j].getAttribute("programId") == programId) {
-                        var description = programs[j].getElementsByTagName("BasicDescription")[0];
-                        program.title = description.getElementsByTagName("Title")[0].childNodes[0].nodeValue;
-                        var synopsis = description.getElementsByTagName("Synopsis")
-                        if(synopsis.length > 0) {
-                            program.desc = synopsis[0].childNodes[0].nodeValue;
-                        }
-                        var genre = description.getElementsByTagName("Genre")
-                        if(genre.length > 0) {
-                            var genreValue = self.getGenre(genre[0].getAttribute("href"));
-                            if(genreValue != null) {
-                                program.genre = genreValue;
-                            }
-                        }
-                        var relatedMaterial =  description.getElementsByTagName("RelatedMaterial");
-                        for(var k=0;k<relatedMaterial.length;k++) {
-                            var howRelated = relatedMaterial[k].getElementsByTagName("HowRelated")[0].getAttribute("href");
-                            if(howRelated == "urn:tva:metadata:cs:HowRelatedCS:2012:19") { //Program still image
-                                program.mediaimage = relatedMaterial[k].getElementsByTagName("MediaUri")[0].childNodes[0].nodeValue;
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
-                var program = new Program(program,self);
-		            program.bilingual = self.bilingual;
-		            program.channelimage = self.image;
-		            program.channel_streamurl = self.streamurl;
-		            self.programs.push(program);
-                }
+
+    if(self.contentGuideURI) {
+         $.get( self.contentGuideURI+"?sids[]="+self.getServiceRef()+"&start="+self.epg.start+"&end="+self.epg.end, function( data ) { //TODO use ContentGuideServiceRef from the service
+                self.programs = self.parseSchedule(data);
                 if(typeof(callback) == "function"){
                     callback.call();
                 }
@@ -232,7 +172,7 @@ Channel.prototype.updateChannelInfo = function () {
             info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
         }
      }
-     info += "<span class=\"menuitem_epg btn btn-outline-dark btn-small mt-1 p-1\"><a href=\"javascript:showEpg('"+self.contetGuideServiceRef+"')\" class=\"text-white\">Open EPG</a></span>"
+     info += "<span class=\"menuitem_epg btn btn-outline-dark btn-small mt-1 p-1\"><a href=\"javascript:showEpg('"+self.getServiceRef()+"')\" class=\"text-white\">Open EPG</a></span>"
      channelInfo.innerHTML = info;
 }
 
