@@ -866,55 +866,6 @@ function keyEnter(){
                     document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
                     currentChIndex = channel_obj.lcn;
                 }
-				else if(activeBox.mediaurl && activeBox.mediaurl.length > 0){
-					var _item = {
-						title : (activeBox.texts && activeBox.texts.length > 0) ? activeBox.texts[0].title : (activeBox.title && activeBox.title.length > 0) ? activeBox.title : (activeBox.serie && activeBox.serie.length > 0) ? activeBox.serie : "",
-						serieTitle : ( activeBox.texts && activeBox.texts.length ? activeBox.texts[0].serietitle : "" ),
-						serieid : activeBox.serie,
-						img : activeBox.mediaimage || "files/icon_play.png",
-						type : "list", 
-						code : activeBox.code,
-						desc : activeBox.desc,
-						seriedesc : (activeBox.texts && activeBox.texts.length > 0) ? activeBox.texts[0].seriedesc : "",
-						start : activeBox.start,
-						end : activeBox.end,
-						genre : activeBox.genre,
-						url : activeBox.mediaurl,
-						rating : activeBox.rating,
-						sname : (video.sname ? video.sname : undefined ),
-						ratingReasons : ( activeBox.ratingreason? activeBox.ratingreason.split(",") : [] ),
-						adtags : { adtag1 : "", adtag1 : "" },
-						attributes : activeBox.attributes
-					};
-					item = _item;
-					//prepareVideoStart();
-				}
-				else if(focus.getAttribute("data-eval") != null){
-					console.log("eval called");
-					eval(focus.getAttribute("data-eval"));
-				}
-				else if(focus.getAttribute("data-url") != null){
-					
-					var root = "http://tvportal.sofiadigital.tv/atlas_dev";
-					var url = "";
-					if(focus.getAttribute("data-url").search("epg") != -1){
-						url = focus.getAttribute("data-url").replace("..", root)+"?selected_ch=" + channel_obj.code;
-					}else{
-						url = focus.getAttribute("data-url").replace("..", root);
-					}
-					console.log("url " + url);	
-					
-					//setReturnLink( focus.getAttribute("data-url") ); 
-					var returnUrl = "../launcher/index.php?ch="+ channel_obj.code + "&selected_ch=" + channel_obj.code;
-					var appUrl = focus.getAttribute("data-url");
-					console.log("returnUrl  " + returnUrl);
-					console.log("appUrl  " + appUrl );
-					
-					setReturnLink( appUrl,  returnUrl ); 
-					
-					location.href = focus.getAttribute("data-url");
-						
-				}
 			}
 			
 	refreshMenu();
