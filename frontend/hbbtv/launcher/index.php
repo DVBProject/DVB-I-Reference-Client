@@ -150,6 +150,7 @@
         } catch (e) {
         }        
         var current_channel_obj = null;
+        var listedChannels = [];
         var services = parseServiceList(data,channelList);  
         for (var i = 0; i < services.length ;i++) {
             var chan = services[i];
@@ -170,7 +171,43 @@
             if(chan.dvbChannel != null && currentChannel && chan.dvbChannel.ccid == currentChannel.ccid ) {
                 current_channel_obj = channel_obj;
             }
+            if(chan.dvbChannel != null) {
+                listedChannels.push(chan.dvbChannel);
+            }
 			_menu_.items.push(channel_obj);
+        }
+        var number = 1000;
+        for(var k = 0;k<channelList.length;k++) {
+            var dvbChannel = channelList.item(k);
+            var listed = false;
+            for(var l = 0;l<listedChannels.length;l++) {
+                if(listedChannels[l].ccid == dvbChannel.ccid) {
+                    listed = true;
+                    break;
+                }
+            }
+            if(!listed) {
+                var chan = {};
+                chan.items =  [
+                    {
+                        "title": "Now Showing",
+                        "description": "Now Showing",
+                        "name": "now",
+                        "app": 0
+                    }
+                ];
+                chan.code = k + services.length
+                chan.title = dvbChannel.name;
+                chan.dvbChannel = dvbChannel;
+                chan.lcn = number++;
+                var channel_obj = new Channel(chan, "menuitem"+ (k + services.length));
+                for(var b = 0; b < channel_obj.boxes.length; b++){
+				    channel_obj.boxes[b].description = "";
+				    break;
+			    }
+			    _menu_.items.push(channel_obj);
+            }
+
         }
         _menu_.items.sort(compareLCN);
         if(current_channel_obj == null) {
