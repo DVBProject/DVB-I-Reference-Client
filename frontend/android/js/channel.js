@@ -6,51 +6,6 @@ function Channel( init_obj, element_id ){
     this.selected = false;
 }
 
-Channel.prototype.getGenre = function(genre) {
-    if(typeof genre === 'string' && genre.substring(0,  "urn:dvb:metadata:cs:ContentSubject:2019:".length) == "urn:dvb:metadata:cs:ContentSubject:2019:") {
-        var genre = genre.substring(genre.lastIndexOf(":")+1);
-        if(genre == "1") {
-            return "Movie/Drama";
-        }
-        else if(genre == "2") {
-            return "News/Current affairs";
-        }
-        else if(genre == "3") {
-            return "Show/Game show";
-        }
-        else if(genre == "4") {
-            return "Sports";
-        }
-        else if(genre == "5") {
-            return "Children's/Youth programmes";
-        }
-        else if(genre == "6") {
-            return "Music/Ballet/Dance";
-        }
-        else if(genre == "7") {
-            return "Arts/Culture";
-        }
-        else if(genre == "8") {
-            return "Social/Political issues/Economics";
-        }
-        else if(genre == "9") {
-            return "Education/Science/Factual topics";
-        }
-        else if(genre == "10") {
-            return "Leisure hobbies";
-        }
-        else if(genre == "11") {
-            return "Special characteristics";
-        }
-        else if(genre == "12") {
-            return "Adult";
-        }
-
-
-    }
-    return null; 
-}
-
 
 Channel.prototype.getNowNext = function() {
     var self = this;
