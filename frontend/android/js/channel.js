@@ -55,6 +55,7 @@ Channel.prototype.init = function( init_obj, channel_index){
 		if(self.element == null){			
             var newTextbox = document.createElement('a');
             newTextbox.href="javascript:channelSelected('"+self.id+"')";
+            
             if(self.image) {
                 var span = document.createElement('span');
                 span.classList.add("chicon");
@@ -69,7 +70,7 @@ Channel.prototype.init = function( init_obj, channel_index){
             newTextbox.appendChild(span);
             span = document.createElement('span');
             span.classList.add("chname","text-truncate");
-            span.appendChild(document.createTextNode( self.name));
+            span.appendChild(document.createTextNode( self.title));
             newTextbox.appendChild(span);
             var li = document.createElement('li');
             li.classList.add("list-group-item");
