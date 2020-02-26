@@ -550,7 +550,7 @@ function showInfobanner() {
         hintTimer = null;
     }
     var channel = _menu_.getOpenChannel();
-    $('#chinfo_chname').html(channel.name);
+    $('#chinfo_chname').html(channel.title);
     $('#chinfo_chnumber').html(channel.lcn);
     $('#chinfo_chicon_img').attr("src",channel.image);
    
@@ -683,7 +683,7 @@ function channelUp(){
 			currentChIndex = channel_obj.lcn;
           
 			document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
-            document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
+            document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
                      showInfobanner();
 			chChangeTimer = setTimeout(function(){
                try{
@@ -740,7 +740,7 @@ function channelDown(){
 			}
             currentChIndex = channel_obj.lcn;
             document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
-            document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
+            document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
             showInfobanner();
 
 			chChangeTimer = setTimeout(function(){
@@ -851,7 +851,7 @@ function keyEnter(){
 			if(activeBox instanceof Box){
                 if(channel_obj.dvbChannel) {
                    document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
-                   document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
+                   document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
                    currentChIndex = channel_obj.lcn;
                    try {
                        selectDVBService(channel_obj.dvbChannel);
@@ -863,7 +863,7 @@ function keyEnter(){
                 else if(channel_obj.dashUrl) {
                     playDASH(channel_obj.dashUrl);
                     document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
-                    document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
+                    document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
                     currentChIndex = channel_obj.lcn;
                 }
 				else if(activeBox.mediaurl && activeBox.mediaurl.length > 0){
