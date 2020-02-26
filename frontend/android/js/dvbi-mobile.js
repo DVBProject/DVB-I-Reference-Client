@@ -53,6 +53,7 @@ function showEpg(service) {
     $(".epg").removeClass("hide");
     $(".player-ui").addClass("hide");
     $(".epg").show();
+    $(".grid").show();
     $(".grid").append(epg.showChannel(service));
     var epgdate = new Date(epg.start*1000);
     $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
@@ -68,6 +69,9 @@ function closeEpg() {
     $(".epg").hide();
     if(! $(".epg").hasClass("hide") ) {
         $(".epg").addClass("hide");
+    }
+    if(! $(".programinfo").hasClass("hide") ) {
+        $(".programinfo").addClass("hide");
     }
     $(".player-ui").removeClass("hide");
 }
@@ -112,7 +116,6 @@ function closeProgramInfo() {
 }
 
 function openProgramInfo(program) {
-    console.log("openProgramInfo");
     program.populateProgramInfo();
     $(".grid").hide();
     $(".programinfo").removeClass("hide");
