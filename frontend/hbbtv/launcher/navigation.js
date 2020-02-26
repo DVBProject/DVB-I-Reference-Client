@@ -551,7 +551,7 @@ function showInfobanner() {
     }
     var channel = _menu_.getOpenChannel();
     $('#chinfo_chname').html(channel.name);
-    $('#chinfo_chnumber').html(channel.majorChannel);
+    $('#chinfo_chnumber').html(channel.lcn);
     $('#chinfo_chicon_img').attr("src",channel.image);
    
     if(channel.epg) {
@@ -621,7 +621,6 @@ function showMenu(){
 }
 
 function hideMenu(){
-	console.log("wrapper hide()");
     menuOpen = false;
 	if(!document.getElementById("wrapper").hasClass("hide")){
 		document.getElementById("wrapper").addClass("hide");
@@ -681,9 +680,9 @@ function channelUp(){
 			if(currentChIndex){
 				lastChIndex = currentChIndex;
 			}
-			currentChIndex = channel_obj.majorChannel;
+			currentChIndex = channel_obj.lcn;
           
-			document.getElementById("info_num").innerHTML = channel_obj.majorChannel+".";
+			document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
             document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
                      showInfobanner();
 			chChangeTimer = setTimeout(function(){
@@ -739,8 +738,8 @@ function channelDown(){
 			if(currentChIndex){
 				lastChIndex = currentChIndex;
 			}
-            currentChIndex = channel_obj.majorChannel;
-            document.getElementById("info_num").innerHTML = channel_obj.majorChannel+".";
+            currentChIndex = channel_obj.lcn;
+            document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
             document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
             showInfobanner();
 
@@ -840,7 +839,7 @@ function keyEnter(){
     }else{
 		var focus = getFocus();
 		var channel_obj = _menu_.getOpenChannel();
-		if(currentChIndex == channel_obj.majorChannel) {
+		if(currentChIndex == channel_obj.lcn) {
 			hideMenu();
 			return;
 		}
@@ -851,9 +850,9 @@ function keyEnter(){
 			
 			if(activeBox instanceof Box){
                 if(channel_obj.dvbChannel) {
-                   document.getElementById("info_num").innerHTML = channel_obj.majorChannel+".";
+                   document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
                    document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
-                   currentChIndex = channel_obj.majorChannel;
+                   currentChIndex = channel_obj.lcn;
                    try {
                        selectDVBService(channel_obj.dvbChannel);
                     }
@@ -863,9 +862,9 @@ function keyEnter(){
                 }
                 else if(channel_obj.dashUrl) {
                     playDASH(channel_obj.dashUrl);
-                    document.getElementById("info_num").innerHTML = channel_obj.majorChannel+".";
+                    document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
                     document.getElementById("info_name").innerHTML = channel_obj.name.replace('&', '&amp;');
-                    currentChIndex = channel_obj.majorChannel;
+                    currentChIndex = channel_obj.lcn;
                 }
 				else if(activeBox.mediaurl && activeBox.mediaurl.length > 0){
 					var _item = {
@@ -928,7 +927,7 @@ function getCurrentChannel(){
 	var item;
 	for(var i = 0; i < _menu_.items.length; i++) {
 		item = _menu_.items[i];
-		if(item.majorChannel === currentChIndex){
+		if(item.lcn === currentChIndex){
 			console.log("current channel found");
 			out = item;
 			break;
@@ -1149,7 +1148,7 @@ function keyUp(){
 function refreshMenu(){
 	var currentChannel = getCurrentChannel();
 	var openChannel = _menu_.getOpenChannel();
-	if(openChannel && currentChannel && (openChannel.majorChannel !== currentChannel.majorChannel) ){
+	if(openChannel && currentChannel && (openChannel.lcn !== currentChannel.lcn) ){
 			var openMenu = openChannel.element;
 			var currentMenu = currentChannel.element;
 			var centerBox = currentChannel.getCenterBox();

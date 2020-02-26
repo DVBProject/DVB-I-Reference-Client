@@ -150,18 +150,9 @@
         } catch (e) {
         }        
         var current_channel_obj = null;
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(data,"text/xml");
-        var services = doc.getElementsByTagName("Service");
-        var lcnList = doc.getElementsByTagName("LCNTable")[0].getElementsByTagName("LCN");
-        var contentGuideURI = null;
-        var contentGuides = doc.getElementsByTagName("ContentGuideSource");
-        if(contentGuides.length > 0) {
-            contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
-        }
+        var services = parseServiceList(data,channelList);  
         for (var i = 0; i < services.length ;i++) {
-            var chan = {}; 
-            
+            var chan = services[i];
             chan.items =  [
                 {
                     "title": "Now Showing",
@@ -170,67 +161,13 @@
                     "app": 0
                 }
             ];
-            chan.code = i;
-            chan.contentGuideURI = contentGuideURI;
             chan.eval = "miniepg("+ i +");";
-            chan.center_name = services[i].getElementsByTagName("ServiceName")[0].childNodes[0].nodeValue;
-            chan.name = chan.center_name;
-            chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
-            var cgRefs =  services[i].getElementsByTagName("ContentGuideServiceRef");
-            if(cgRefs && cgRefs.length > 0) {
-                chan.contentGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
-            }
-            var relatedMaterial = services[i].getElementsByTagName("RelatedMaterial");
-            for(var j = 0;j < relatedMaterial.length;j++) {
-                var howRelated = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
-                if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
-                    chan.image = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
-                }
-            }
-
-            var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
-            var sourceTypes = [];
-            for(var j = 0;j < serviceInstances.length;j++) {
-                var sourceType =serviceInstances[j].getElementsByTagName("SourceType")[0].childNodes[0].nodeValue;
-                if(sourceType == "urn:dvb:metadata:source:dvb-dash") {
-                       sourceTypes.push("DVB-DASH");
-                       chan.dashUrl = serviceInstances[j].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
-                }
-                if(channelList && (sourceType == "urn:dvb:metadata:source:dvb-t" || 
-                   sourceType == "urn:dvb:metadata:source:dvb-c" ||
-                   sourceType == "urn:dvb:metadata:source:dvb-s" ) ) {
-                    //Just search for the triplet in the channel list;
-                    var triplet = serviceInstances[j].getElementsByTagName("DVBTriplet")[0];
-                    
-                    for(var k = 0;k<channelList.length;k++) {
-                        var dvbChannel = channelList.item(k);
-                        if(dvbChannel.sid == triplet.getAttribute("serviceId") &&
-                           dvbChannel.onid == triplet.getAttribute("origNetId") &&
-                           dvbChannel.tsid == triplet.getAttribute("tsId")) {
-                             chan.dvbChannel = dvbChannel;
-                             sourceTypes.push("DVB-"+ sourceType.charAt(sourceType.length-1).toUpperCase());
-                             break;
-                           }                            
-                    }
-                }
-            }
-            if(sourceTypes.length == 0) {
-                continue;
-            }
-            var channelNumber = 0;
-            for(var j = 0;j < lcnList.length;j++) {
-                if(lcnList[j].getAttribute("serviceRef") == chan.id) {
-                    chan.majorChannel = parseInt(lcnList[j].getAttribute("channelNumber"));
-                    break;
-                }                
-            }
-            chan.sourceTypes =sourceTypes.join('/');
             var channel_obj = new Channel(chan, "menuitem"+ i);
             for(var b = 0; b < channel_obj.boxes.length; b++){
 				channel_obj.boxes[b].description = "";
 				break;
 			}
-            if(chan.dvbChannel != null && chan.dvbChannel.sid == currentChannel.sid && chan.dvbChannel.tsid == currentChannel.tsid && chan.dvbChannel.onid == currentChannel.onid ) {
+            if(chan.dvbChannel != null && currentChannel && chan.dvbChannel.ccid == currentChannel.ccid ) {
                 current_channel_obj = channel_obj;
             }
 			_menu_.items.push(channel_obj);
@@ -247,11 +184,10 @@
                 }
             }
         }
-        document.getElementById("info_num").innerHTML = current_channel_obj.majorChannel+".";
-        document.getElementById("info_name").innerHTML = current_channel_obj.name.replace('&', '&amp;');
-        currentChIndex = current_channel_obj.majorChannel;
+        document.getElementById("info_num").innerHTML = current_channel_obj.lcn+".";
+        document.getElementById("info_name").innerHTML = current_channel_obj.title.replace('&', '&amp;');
+        currentChIndex = current_channel_obj.lcn;
 		_menu_.populate();      
-        
         console.log("menu created");
         
 	}

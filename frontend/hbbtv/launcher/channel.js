@@ -267,7 +267,7 @@ Channel.prototype.init = function( init_obj, element_id){
             if(self.image && self.image.length > 0 ) {
                 innerHtml = "<span class=\"menuitem_chicon\"><img src=\""+self.image+"\"></img></span>";
             }
-            menuitem_title.innerHTML = innerHtml+"<span class=\"menuitem_chnumber\">" + XMLEscape(self.majorChannel) +".</span><span class=\"menuitem_chname\">" + XMLEscape(self.name) +"</span><span class=\"sourcetype\">" + XMLEscape(self.sourceTypes) +"</span>";
+            menuitem_title.innerHTML = innerHtml+"<span class=\"menuitem_chnumber\">" + XMLEscape(self.lcn) +".</span><span class=\"menuitem_chname\">" + XMLEscape(self.title) +"</span><span class=\"sourcetype\">" + XMLEscape(self.sourceTypes) +"</span>";
 
             menuitem_title.addClass("menuitem_title", null);
 			element.appendChild(menuitem_title);
@@ -286,7 +286,7 @@ Channel.prototype.init = function( init_obj, element_id){
 			self.element = element;
 		}
 
-        if(!self.epg) {
+        if(!self.epg || self.epg.length == 0) {
             var placeholder = { text : "No program information" };
             var box = new Box( placeholder, self.element_id + "_" + self.code);
             box.name = self.name;

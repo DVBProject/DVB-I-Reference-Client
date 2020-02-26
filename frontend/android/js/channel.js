@@ -107,7 +107,7 @@ Channel.prototype.updateChannelInfo = function () {
      if(self.image) {
         info = "<span class=\"menuitem_chicon d-block\"><img src=\""+self.image+"\"></span>";
      }
-     info += "<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + self.name +"</span>";
+     info += "<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + self.title +"</span>";
      if(self.now_next) {
         curTime = new Date();
         var now = self.now_next["now"];
@@ -152,7 +152,7 @@ Channel.prototype.showEPG = function () {
         header.appendChild(number);
         var name = document.createElement("span");
         name.addClass("chname text-truncate d-inline-block");
-        name.innerHTML = self.name;
+        name.innerHTML = self.title;
         header.appendChild(name);
         element.appendChild(header);
         this.programList = document.createElement("ul");

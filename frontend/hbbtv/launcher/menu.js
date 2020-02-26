@@ -150,7 +150,7 @@ Menu.prototype.getNextChannelIndex = function(){
 Menu.prototype.getChannelAtIndex = function(index){	
 		var value = null;
 		for(var i = 0; i < this.items.length; i++){
-			if(this.items[i].sortorder == index) {
+			if(this.items[i].lcn == index) {
 				value = this.items[i];
 				break;
 			}
@@ -182,8 +182,8 @@ Menu.prototype.get5plusChannel = function(){
 }
 
 function compareLCN(a, b) {
-  if (a.majorChannel > b.majorChannel) return 1;
-  if (b.majorChannel > a.majorChannel) return -1;
+  if (a.lcn > b.lcn) return 1;
+  if (b.lcn > a.lcn) return -1;
 
   return 0;
 }
