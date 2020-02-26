@@ -233,7 +233,7 @@ function addService(serviceElement) {
                     addServiceInstance(serviceId,children[i]);
                 }
                 catch(e) {
-                    alert( "Error reading servicelist:"+e.message );
+                    alert( "Error reading service instance",e.message );
                 }
             }
         }
@@ -338,11 +338,13 @@ function generateXML() {
             serviceElement.appendChild(propertyElement);
         }
         doc.documentElement.appendChild(serviceElement);
-
-        var lcn = doc.createElement("LCN");
-        lcn.setAttribute("channelNumber",document.getElementById(serviceId+"_lcn").value);
-        lcn.setAttribute("serviceRef",document.getElementById(serviceId+"_unique_id").value);
-        lcnTable.appendChild(lcn);
+        var lcnValue = document.getElementById(serviceId+"_lcn").value;
+        if(lcnValue && lcnValue.length > 0) {
+            var lcn = doc.createElement("LCN");
+            lcn.setAttribute("channelNumber",lcnValue);
+            lcn.setAttribute("serviceRef",document.getElementById(serviceId+"_unique_id").value);
+            lcnTable.appendChild(lcn);
+        }
     }
 
     return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+new XMLSerializer().serializeToString(doc.documentElement);
