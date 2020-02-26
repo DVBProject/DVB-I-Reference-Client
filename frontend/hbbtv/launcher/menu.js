@@ -62,19 +62,17 @@ Menu.prototype.populate = function(){
 		
 		this.items[i].element.childNodes.getByClass("items")[0].style.left = 0 + "px";
 		if(i == this.center){
-			if(this.items[i].eval != null){
-				this.items[i].setOpen(true);
-				this.items[i].element.childNodes.getByClass("items")[0].addClass("visible");
-				
-                var newTop = (menuOffset  - (i * (ROW_HEIGHT - ROW_VERTICAL_MARGIN)));
-                menuOffset = newTop; 
-						
-                console.log("newTop " + newTop, " menuOffset " + menuOffset);
-                $("#menu_0").css("top", menuOffset);
-				
-                if(activeBox){
-					activeBox.autoScrollChildren();
-				}
+			this.items[i].setOpen(true);
+			this.items[i].element.childNodes.getByClass("items")[0].addClass("visible");
+
+            var newTop = (menuOffset  - (i * (ROW_HEIGHT - ROW_VERTICAL_MARGIN)));
+            menuOffset = newTop;
+
+            console.log("newTop " + newTop, " menuOffset " + menuOffset);
+            $("#menu_0").css("top", menuOffset);
+
+            if(activeBox){
+				activeBox.autoScrollChildren();
 			}
 		}
 	}

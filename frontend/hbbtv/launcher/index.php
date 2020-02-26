@@ -196,7 +196,6 @@
                         "app": 0
                     }
                 ];
-                chan.code = k + services.length
                 chan.title = dvbChannel.name;
                 chan.dvbChannel = dvbChannel;
                 chan.lcn = number++;
@@ -205,21 +204,20 @@
 				    channel_obj.boxes[b].description = "";
 				    break;
 			    }
+                if(currentChannel && chan.dvbChannel.ccid == currentChannel.ccid ) {
+                     current_channel_obj = channel_obj;
+                }
 			    _menu_.items.push(channel_obj);
             }
 
         }
         _menu_.items.sort(compareLCN);
         if(current_channel_obj == null) {
-            current_channel_obj = _menu_.items[0]; 
+            current_channel_obj = _menu_.items[0];
+             _menu_.center = 0;
         }
-        else {         
-            for(var i = 0; i < _menu_.items.length; i++){
-                if(current_channel_obj.majorChannel == _menu_.items[i].majorChannel) {
-                    _menu_.center = i;
-                    break;
-                }
-            }
+        else {
+            _menu_.center = _menu_.getChannelIndex(current_channel_obj);
         }
         document.getElementById("info_num").innerHTML = current_channel_obj.lcn+".";
         document.getElementById("info_name").innerHTML = current_channel_obj.title.replace('&', '&amp;');

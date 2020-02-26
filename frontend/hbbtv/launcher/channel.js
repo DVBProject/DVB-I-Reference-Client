@@ -224,9 +224,12 @@ Channel.prototype.getNowNext = function() {
         var progress_bar_frame = status_wrapper.childNodes.getByClass("progress_bar_frame")[0];
         var progress_bar = progress_bar_frame.childNodes.getByClass("progress_bar")[0];
         progress_bar.style.width = pb_width + "px";
- 
-            
-         },"text");
+        if(self.open){
+			var activeBoxName = (activeBox) ? activeBox.name : null;
+			var focus = self.getBoxByName(activeBoxName);
+			self.setOpen(true, focus);
+        }
+      },"text");
     }
     else {
         self.center = 0;
