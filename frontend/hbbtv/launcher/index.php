@@ -189,6 +189,8 @@
         currentChIndex = current_channel_obj.lcn;
 		_menu_.populate();      
         console.log("menu created");
+        showMenu();
+        hideTimer = setTimeout(function(){ hideMenu(); }, 5000);
         
 	}
 
