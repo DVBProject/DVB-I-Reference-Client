@@ -99,6 +99,15 @@ Menu.prototype.getOpenChannelIndex = function(){
 	return 0;
 }
 
+Menu.prototype.getChannelIndex = function(channel){
+	for(var i = 0; i < this.items.length; i++){
+		if(this.items[i] == channel){
+			return i;
+		}
+	}
+	return 0;
+}
+
 Menu.prototype.getPreviousChannel = function(){
 	for(var i = 1; i < this.items.length; i++){
 		if(this.items[i].open){

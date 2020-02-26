@@ -449,7 +449,7 @@ function openChannel(ch_index){
 	console.log("ch_index " + ch_index);
 	console.log("keyPresses " + keyPresses);
 	
-	if(keyPresses < 3){
+	if(keyPresses < 4){
 		document.getElementById("channel_change").removeClass("hide");
 		keyPresses++;	
 		clearTimeout(numKeyTimer);	
@@ -483,16 +483,14 @@ function openChannel(ch_index){
 			console.log("timer closed");
 			
 			document.getElementById("channel_change").addClass("hide");
-		}, 3000);
+		}, 2000);
 		
 		if(numKeyTimer){
 			channelNumberStr = channelNumberStr+String(ch_index);
-			if(keyPresses < 3){
+			if(keyPresses < 4){
                 document.getElementById("channel_change").innerHTML = "<span>" + channelNumberStr  +"_</span>";
-				//document.getElementById("change_num").innerHTML = channelNumberStr  +"_";
 			}else{
                 document.getElementById("channel_change").innerHTML = "<span>" + channelNumberStr  +"</span>";
-				//document.getElementById("change_num").innerHTML =  channelNumberStr;
 			}
 			console.log("channelNumberStr " + channelNumberStr);
 		}
@@ -953,7 +951,7 @@ function jumpToMenuItem(menuItem, menu_hidden){
 						openChannel.setOpen(false);
 						currentChannel.setOpen(true);
 						var newTop;
-						newTop = 300 - (currentChannel.code)*(ROW_HEIGHT + ROW_VERTICAL_MARGIN);
+						newTop = 300 - _menu_.getChannelIndex(currentChannel)*(ROW_HEIGHT + ROW_VERTICAL_MARGIN);
 						menuOffset = newTop; 
 						
 						console.log("newTop " + newTop, " menuOffset " + menuOffset);
@@ -1111,7 +1109,7 @@ function refreshMenu(){
 						openChannel.setOpen(false);
 						currentChannel.setOpen(true);
 						var newTop;
-							newTop = 300 - (currentChannel.code)*(ROW_HEIGHT + ROW_VERTICAL_MARGIN);
+							newTop = 300 - menu_.getChannelIndex(currentChannel)*(ROW_HEIGHT + ROW_VERTICAL_MARGIN);
 							menuOffset = newTop;
 							currentMenu.childNodes.getByClass("items")[0].addClass("visible");
 							animating = false;

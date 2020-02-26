@@ -398,7 +398,7 @@
 	</div>
 	
 
-	
+    <div id="channel_change" class="channel_change"></div>
 	<div id="channel_info" class="channel_info hide"><span id="info_num"></span><span id="info_name"></span></div>
     <div  id="chinfo" class="hide">
         <div id="chinfo_chname"></div>
