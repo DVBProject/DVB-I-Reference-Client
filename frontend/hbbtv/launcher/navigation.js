@@ -732,10 +732,7 @@ function playDASH(url) {
 
     try {
         if(supervisor != null) {
-            if(supervisor.playState == 1 ) {
-                supervisor.stop();
-                supervisor.setChannel(null);
-            }
+            supervisor.setChannel(null);
         }
         else {
             broadcast = document.getElementById('broadcast');
