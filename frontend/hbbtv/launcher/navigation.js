@@ -27,6 +27,7 @@ var menuOpen = false;
 var supervisor = null;
 var player = null;
 var broadcast = null;
+var playingDASH = false;
 
 if (typeof(KeyEvent)!='undefined') {
 	if (typeof(KeyEvent.VK_LEFT)!='undefined') {
@@ -160,7 +161,12 @@ function onChannelChangeError(channel,error) {
 }
 
 function onOperatorApplicationStateChange(oldstate, newstate) {
-    //showInfo("State changed from "+oldstate +" to "+newstate );
+     if(playingDASH && newstate != "foreground") {
+        try {
+            _application_.opAppRequestForeground();
+        } catch(e) {
+        }
+    }
 }
 
 
@@ -361,14 +367,12 @@ function onKey(keyCode)
                 hideMenu(false);
             }
             if(document.getElementById("chinfo").hasClass("hide")){
-                try {
-                    _application_.opAppRequestTransient();
-                } catch(e) {
-                }  
+                requestTransient();
 		        showInfobanner();
             }
-            else {
+            else if(!playingDASH) {
                 try {
+
                   _application_.opAppRequestBackground();
                 } catch(e) {;                    
                 }                    
@@ -444,12 +448,16 @@ function hideUItimer() {
 	    hideTimer = null;
 	},10000);
 }
-
-function openChannel(ch_index){
-	 try {
-        _application_.opAppRequestTransient();
-    } catch(e) {
+function requestTransient() {
+    if(!playingDASH) {
+	    try {
+            _application_.opAppRequestTransient();
+        } catch(e) {
+        }
     }
+}
+function openChannel(ch_index){
+
 	console.log("ch_index " + ch_index);
 	console.log("keyPresses " + keyPresses);
 	
@@ -580,10 +588,7 @@ function hideInfobanner() {
 
 function showMenu(){
     menuOpen = true;
-    try {
-        _application_.opAppRequestTransient();
-    } catch(e) {
-    }
+    requestTransient();
     hideInfobanner();
 	if(document.getElementById("wrapper").hasClass("hide")){
 		document.getElementById("wrapper").removeClass("hide");
@@ -596,9 +601,9 @@ function showMenu(){
 }
 
 function hideMenu(requestBackground){
-    if(requestBackground) {
+    if(requestBackground && !playingDASH) {
         try {
-            _application_.opAppRequestBackground();
+             _application_.opAppRequestBackground();
         } catch(e) {}
     }
     menuOpen = false;
@@ -625,11 +630,7 @@ function keyBack(){
 }
 
 function channelUp(){
-            try {
-		    _application_.opAppRequestTransient();
-            } catch(e) {           
-            }
-			
+            requestTransient();			
             var nextChannel = _menu_.getNextChannel();
 			if(!nextChannel || menuTimer){
 				return;
@@ -669,10 +670,7 @@ function channelUp(){
 }
 
 function channelDown(){
-            try {
-		    _application_.opAppRequestTransient();
-            } catch(e) {
-            }
+            requestTransient();
 
             var previousChannel = _menu_.getPreviousChannel();
 			if(!previousChannel || menuTimer){
@@ -729,7 +727,12 @@ function playDASH(url) {
      }
      catch(e) {
      }
-
+	 try {
+        _application_.opAppRequestForeground();
+        playingDASH = true;
+        
+    } catch(e) {
+    }
     try {
         if(supervisor != null) {
             supervisor.setChannel(null);
@@ -758,6 +761,9 @@ function selectDVBService(channel) {
      }
      catch(e) {
      }
+    playingDASH = false;  
+    requestTransient();
+
     try {
         if(supervisor != null) {
            supervisor.setChannel(channel,false,"");
