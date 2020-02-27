@@ -847,10 +847,10 @@ function keyEnter(){
 
 			
 			if(activeBox instanceof Box){
+                document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
+                document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
+                currentChIndex = channel_obj.lcn;
                 if(channel_obj.dvbChannel) {
-                   document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
-                   document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
-                   currentChIndex = channel_obj.lcn;
                    try {
                        selectDVBService(channel_obj.dvbChannel);
                     }
@@ -860,9 +860,7 @@ function keyEnter(){
                 }
                 else if(channel_obj.dashUrl) {
                     playDASH(channel_obj.dashUrl);
-                    document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
-                    document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
-                    currentChIndex = channel_obj.lcn;
+
                 }
 			}
 			
