@@ -82,7 +82,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_hopetv.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_hopetv.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_4</ContentGuideServiceRef>
@@ -102,7 +102,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_akamai.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_akamai.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_5</ContentGuideServiceRef>
@@ -122,7 +122,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_br_1.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_br_1.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_6</ContentGuideServiceRef>
@@ -142,7 +142,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_br_hd.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_br_hd.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_7</ContentGuideServiceRef>
@@ -162,7 +162,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_8</ContentGuideServiceRef>
@@ -182,7 +182,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_9</ContentGuideServiceRef>
@@ -202,7 +202,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_10</ContentGuideServiceRef>
@@ -222,7 +222,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_11</ContentGuideServiceRef>
@@ -233,7 +233,7 @@
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>http://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ3)/manifest.mpd</URI>
+          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ3)/manifest.mpd</URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -242,7 +242,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_12</ContentGuideServiceRef>
@@ -253,7 +253,7 @@
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>http://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ4)/manifest.mpd</URI>
+          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ4)/manifest.mpd</URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -262,7 +262,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_13</ContentGuideServiceRef>
@@ -273,7 +273,7 @@
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>http://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ5)/manifest.mpd</URI>
+          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ5)/manifest.mpd</URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -282,7 +282,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
