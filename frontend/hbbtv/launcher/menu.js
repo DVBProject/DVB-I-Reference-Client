@@ -67,8 +67,6 @@ Menu.prototype.populate = function(){
 
             var newTop = (menuOffset  - (i * (ROW_HEIGHT - ROW_VERTICAL_MARGIN)));
             menuOffset = newTop;
-
-            console.log("newTop " + newTop, " menuOffset " + menuOffset);
             $("#menu_0").css("top", menuOffset);
 
             if(activeBox){
