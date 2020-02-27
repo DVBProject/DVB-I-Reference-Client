@@ -118,7 +118,7 @@ Channel.prototype.getNowNext = function() {
 							}
 							
                             box.name = "following";
-							box.parentimage = following.mediaimage2 || "../CommonUI/empty.png";
+							box.parentimage = following.mediaimage || "../CommonUI/empty.png";
 							box.description = "Following";
                             
                             
