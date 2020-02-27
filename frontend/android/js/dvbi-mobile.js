@@ -19,6 +19,7 @@ function channelSelected(channelId) {
     }
     closeEpg();
     newChannel.channelSelected();
+    player.attachSource(newChannel.dashUrl);
     selectedChannel = newChannel;    
 
 }
@@ -29,11 +30,16 @@ window.onload = function(){
     loadServicelist("../../backend/servicelist.php");
     uiHideTimeout = setTimeout(hideUI, 5000);
     $(".video_wrapper").on("click touchstart",resetHideTimeout);
+    var video = document.getElementById("video");
+    player = dashjs.MediaPlayer().create();
+    player.initialize(video);
+    player.setAutoPlay(true);
 }
 var selectedChannel = null;
 var channels = [];
 var epg = null;
 var uiHideTimeout = null;
+var player;
 
 function resetHideTimeout() {
     if( $(".player-ui").hasClass("hide") && $(".epg").hasClass("hide")) {

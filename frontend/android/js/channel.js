@@ -90,11 +90,7 @@ Channel.prototype.unselected = function () {
 Channel.prototype.channelSelected = function () {
     var self = this;
     self.element.classList.add("active");
-    var player = videojs('my-video');
-    player.src([{type: "application/dash+xml", src: self.dashUrl}]);
-    player.ready(function() {
-      player.play();
-    });
+
     self.selected = true;
 
     self.updateChannelInfo();
