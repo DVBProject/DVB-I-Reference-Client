@@ -518,7 +518,7 @@ function updateBannerProgram(prefix,program) {
           $("#"+prefix+'title').html(program.title);
           $("#"+prefix+'starttime').html(program.start ? program.start.create24HourTimeString()+" -" : "");
           $("#"+prefix+'endtime').html(program.end ? program.end.create24HourTimeString() : "");
-          $("#"+prefix+'image_img').attr("src",program.img);
+          $("#"+prefix+'image_img').attr("src",program.mediaimage);
     }
     else {
         $("#"+prefix+'title').html("No program");
@@ -535,7 +535,7 @@ function updateBannerProgramDVB(prefix,program) {
           var endTime = new Date((program.startTime+program.duration)*1000);
           $("#"+prefix+'starttime').html( startTime.create24HourTimeString());
           $("#"+prefix+'endtime').html( endTime.create24HourTimeString());
-          $("#"+prefix+'image_img').attr("src","fokapokfpok");
+          $("#"+prefix+'image_img').attr("src","");
     }
 }
 
@@ -547,21 +547,21 @@ function showInfobanner() {
         clearTimeout(hintTimer);
         hintTimer = null;
     }
-    var channel = _menu_.getOpenChannel();
+    var channel = getCurrentChannel();
     $('#chinfo_chname').html(channel.title);
     $('#chinfo_chnumber').html(channel.lcn);
     $('#chinfo_chicon_img').attr("src",channel.image);
    
     if(channel.epg) {
      updateBannerProgram("chinfo_now_",channel.epg.now);       
-     if (channel.epg.now && channel.epg.now.start && channel.epg.now.duration) { 
+     if (channel.epg.now && channel.epg.now.start && channel.epg.now.prglen) { 
         var now = new Date();
-        var elapsed = (now.getTime() -channel.epg.now.start_utc.toUTCDate().getTime())/10;
-        $("#chinfo_progressbarTime").css("width",elapsed/channel.epg.now.duration+"%");
+        var elapsed = (now.getTime() -channel.epg.now.start.getTime())/10;
+        $("#chinfo_progressbarTime").css("width",elapsed/(channel.epg.now.prglen*60)+"%");
       }
       updateBannerProgram("chinfo_next_",channel.epg.next); 
     }
-    else if(supervisor.currentChannel && channel.dvbChannel && supervisor.currentChannel.ccid == channel.dvbChannel.ccid){
+    else if(supervisor && supervisor.currentChannel && channel.dvbChannel && supervisor.currentChannel.ccid == channel.dvbChannel.ccid){
         var programs = supervisor.programmes;
         if(programs.length > 0) {
             updateBannerProgramDVB("chinfo_now_",programs[0]);
@@ -585,17 +585,14 @@ function showInfobanner() {
     }
 	document.getElementById("chinfo").removeClass("hide");
     document.getElementById("chinfo").addClass("show");
-    document.getElementById("channel_info").removeClass("hide");
 }
 
 function hideInfobanner() {
     document.getElementById("chinfo").addClass("hide");
     document.getElementById("chinfo").removeClass("show");
-    document.getElementById("channel_info").addClass("hide");
 }
 
 function showMenu(){
-	console.log("wrapper show()");
     menuOpen = true;
     try {
         _application_.opAppRequestForeground();
