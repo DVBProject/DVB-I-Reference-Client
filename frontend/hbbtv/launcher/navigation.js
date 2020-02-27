@@ -171,7 +171,7 @@ function onKey(keyCode)
 		if(alertDialog.open){
 			return navigateAlertDialog(keyCode);
 		}
-		
+		hideUItimer();
 		var num_key;
 		switch (keyCode) {
 		//case 82:
@@ -229,23 +229,11 @@ function onKey(keyCode)
 			// keyBrowser();
 			//keyRed();
 			if (menuOpen) {
-				hideMenu();
+				hideMenu(true);
 			} else {
 				showMenu();
 			}
 		break;
-
-		//case 71:
-		//case 404:
-        case KeyEvent.VK_SUBTITLE:
-        case KeyEvent.VK_MENU:
-		case VK_GREEN:
-            try {
-             _application_.opAppRequestForeground();
-            } catch (e) {}
-			window.location = "../epg/index.php";
-		break;
-		
 		case VK_ENTER:
 			keyEnter();
 		break;
@@ -360,6 +348,7 @@ function onKey(keyCode)
 				mute();
 		break;
 		case VK_GUIDE:
+		case VK_GREEN:
             try {     
              _application_.opAppRequestForeground();
             } catch(e) {}
@@ -369,11 +358,11 @@ function onKey(keyCode)
         case VK_BLUE:
 		case VK_INFO:
             if(menuOpen) {
-                hideMenu();
+                hideMenu(false);
             }
             if(document.getElementById("chinfo").hasClass("hide")){
                 try {
-                    _application_.opAppRequestForeground();
+                    _application_.opAppRequestTransient();
                 } catch(e) {
                 }  
 		        showInfobanner();
@@ -444,8 +433,23 @@ function mute() {
       cfg.localSystem.mute = !cfg.localSystem.mute;
 }
 
+function hideUItimer() {
+	clearTimeout(hideTimer);
+	hideTimer = null;
+	hideTimer = setTimeout(function(){
+	    console.log("wrapper hide()");
+        hideMenu(true);
+        hideInfobanner();
+        clearTimeout(hideTimer);
+	    hideTimer = null;
+	},10000);
+}
+
 function openChannel(ch_index){
-	
+	 try {
+        _application_.opAppRequestTransient();
+    } catch(e) {
+    }
 	console.log("ch_index " + ch_index);
 	console.log("keyPresses " + keyPresses);
 	
@@ -462,18 +466,6 @@ function openChannel(ch_index){
 			if(menuItem != null){
 				jumpToMenuItem(menuItem);
 				keyEnter();
-				
-				clearTimeout(hideTimer);
-				hideTimer = null;
-				hideTimer = setTimeout(function(){
-									
-									console.log("wrapper hide()");
-                                    hideMenu();
-                                    
-                                    clearTimeout(hideTimer);
-									hideTimer = null;
-								},8000);
-				
 			}else{
                 document.getElementById("channel_change").innerHTML = "<span></span>";
 				//document.getElementById("change_num").innerHTML = "";
@@ -541,16 +533,10 @@ function updateBannerProgramDVB(prefix,program) {
 
 
 function showInfobanner() {
-    var hint = document.getElementById("hint"); 
-     if(hint && !hint.hasClass("hide")){
-	    document.getElementById("hint").addClass("hide");
-        clearTimeout(hintTimer);
-        hintTimer = null;
-    }
     var channel = getCurrentChannel();
     $('#chinfo_chname').html(channel.title);
     $('#chinfo_chnumber').html(channel.lcn);
-    $('#chinfo_chicon_img').attr("src",channel.image);
+    $('#chinfo_chicon_img').attr("src",channel.image ? channel.image : "" );
    
     if(channel.epg) {
      updateBannerProgram("chinfo_now_",channel.epg.now);       
@@ -595,14 +581,8 @@ function hideInfobanner() {
 function showMenu(){
     menuOpen = true;
     try {
-        _application_.opAppRequestForeground();
+        _application_.opAppRequestTransient();
     } catch(e) {
-    }
-    var hint = document.getElementById("hint");
-    if(hint && !hint.hasClass("hide")){
-        document.getElementById("hint").addClass("hide");
-        clearTimeout(hintTimer);
-        hintTimer = null;
     }
     hideInfobanner();
 	if(document.getElementById("wrapper").hasClass("hide")){
@@ -615,7 +595,12 @@ function showMenu(){
 	}
 }
 
-function hideMenu(){
+function hideMenu(requestBackground){
+    if(requestBackground) {
+        try {
+            _application_.opAppRequestBackground();
+        } catch(e) {}
+    }
     menuOpen = false;
 	if(!document.getElementById("wrapper").hasClass("hide")){
 		document.getElementById("wrapper").addClass("hide");
@@ -636,24 +621,7 @@ function exit() {
 
 function keyBack(){
     hideInfobanner();
-    hideMenu();
-    try {
-    _application_.opAppRequestBackground();    
-    } catch(e) {}
-    /*try{
-        var url = getReturnLink(true);
-        if(url){
-            console.log( "got return link" );
-            window.location = url;
-        }
-        else
-        {
-            window.location = "../portal_new/index.php";
-        }
-    }
-    catch(e){
-        console.log(e);
-    }*/
+    hideMenu(true);
 }
 
 function channelUp(){
@@ -661,8 +629,6 @@ function channelUp(){
 		    _application_.opAppRequestTransient();
             } catch(e) {           
             }
-			clearTimeout(hideTimer);
-			hideTimer = null;
 			
             var nextChannel = _menu_.getNextChannel();
 			if(!nextChannel || menuTimer){
@@ -679,7 +645,9 @@ function channelUp(){
           
 			document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
             document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
-                     showInfobanner();
+            if(!menuOpen) {
+                showInfobanner();
+            }
 			chChangeTimer = setTimeout(function(){
                try{
                     if(channel_obj.dvbChannel) {
@@ -698,15 +666,6 @@ function channelUp(){
 				chChangeTimer = null;
 				
 			}, 1500);
-			
-			hideTimer = setTimeout(function(){
-							console.log("wrapper hide()");
-                            hideMenu();
-                            hideInfobanner();
-                            clearTimeout(hideTimer);
-							hideTimer = null;
-						},8000);
-						
 }
 
 function channelDown(){
@@ -714,9 +673,6 @@ function channelDown(){
 		    _application_.opAppRequestTransient();
             } catch(e) {
             }
-
-			clearTimeout(hideTimer);
-			hideTimer = null;
 
             var previousChannel = _menu_.getPreviousChannel();
 			if(!previousChannel || menuTimer){
@@ -736,7 +692,9 @@ function channelDown(){
             currentChIndex = channel_obj.lcn;
             document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
             document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
-            showInfobanner();
+            if(!menuOpen) {
+                showInfobanner();
+            };
 
 			chChangeTimer = setTimeout(function(){
                 try{
@@ -760,14 +718,6 @@ function channelDown(){
 				clearTimeout(chChangeTimer);
 				chChangeTimer = null;
 			}, 1500);
-			
-			hideTimer = setTimeout(function(){
-				console.log("wrapper hide()");
-                hideMenu();
-                hideInfobanner();
-                clearTimeout(hideTimer);
-				hideTimer = null;
-			},8000);
 }
 
 function playDASH(url) {
@@ -835,7 +785,7 @@ function keyEnter(){
 		var focus = getFocus();
 		var channel_obj = _menu_.getOpenChannel();
 		if(currentChIndex == channel_obj.lcn) {
-			hideMenu();
+			hideMenu(true);
 			return;
 		}
 		if(currentChIndex){
@@ -980,24 +930,12 @@ function keyLastChannel(){
 		jumpToMenuItem(lastChannel);
 		keyEnter();
 	}
-	clearTimeout(hideTimer);
-	hideTimer = null;
-	hideTimer = setTimeout(function(){
-					
-					console.log("wrapper hide()");
-                    hideMenu();
-                    clearTimeout(hideTimer);
-					hideTimer = null;
-				},8000);
 }
 
 function keyDown(){
 	if(!menuOpen){
         showMenu();
     }
-	clearTimeout(hideTimer);
-	hideTimer = null;
-	
 	var focus = getFocus();
 
 	if(activeBox instanceof Box){
@@ -1045,9 +983,6 @@ function keyUp(){
     if(!menuOpen){
         showMenu();
     }
- 
-    clearTimeout(hideTimer);
-	hideTimer = null;
 	
 	var focus = getFocus();
 	if(activeBox instanceof Box){
