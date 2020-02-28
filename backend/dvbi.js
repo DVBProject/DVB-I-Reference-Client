@@ -269,7 +269,6 @@ function generateXML() {
     doc.documentElement.setAttribute("xmlns:tva","urn:tva:metadata:2019");
 
     var lcnTableElement = doc.createElement("LCNTableList");
-    doc.documentElement.appendChild(lcnTableElement);
     var lcnTable = doc.createElement("LCNTable");
     lcnTableElement.appendChild(lcnTable);
     var targetRegionValue = document.getElementById("target_region").value;
@@ -277,8 +276,15 @@ function generateXML() {
         var targetRegion = doc.createElement("TargetRegion");
         targetRegion.appendChild(doc.createTextNode(targetRegionValue));
         lcnTable.appendChild(targetRegion);
+        var regionTable = doc.createElement("RegionList");
+        regionTable.setAttribute("version","1"); //TODO add a field or automatic update for version
+        var region =  doc.createElement("Region");
+        region.setAttribute("regionID",targetRegionValue);
+        region.setAttribute("countryCodes",targetRegionValue);
+        regionTable.appendChild(region);
+        doc.documentElement.appendChild(regionTable);
     }
-
+    doc.documentElement.appendChild(lcnTableElement);
     var scheduleEndpoint = document.getElementById("content_guide_schedule_endpoint").value;
     var contentGuideId = document.getElementById("content_guide_id").value;
     var contentProvider = document.getElementById("content_guide_provider").value;
