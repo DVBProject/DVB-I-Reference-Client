@@ -131,7 +131,8 @@ function getSchdeule( $sid,$start,$end ) {
     $schedule = New Simplexmlelement($schedule_str);
     $programs = array();
     $end_reached = false;
-    while($end_reached == false) {
+    while($end_reached == false  && count($schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent) > 0 ) {
+        $previous_count = count($programs);
         for($i = 0; $i < count($schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent);$i++) {
             $event = $schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent[$i];
             $event_start = strtotime($event->PublishedStartTime);
@@ -143,6 +144,10 @@ function getSchdeule( $sid,$start,$end ) {
                 $end_reached = true;
                 break;
             }
+        }
+        if($previous_count == count($programs)) {
+            //No new programs found, break
+            break;
         }
         if($end_reached == false) {
             $current_time += 24*60*60;
