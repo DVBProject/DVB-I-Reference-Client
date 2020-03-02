@@ -30,6 +30,7 @@
     <script type="text/javascript" src="../../common.js"></script>
     <script type="text/javascript" src="../buttonbar.js"></script>
 	<script type="text/javascript" src="../alertDialog.js"></script>
+    <script type="text/javascript" src="clientError.js"></script>
     <script type="text/javascript" src="videoplayer_basic.js"></script>
     <script type="text/javascript" src="videoplayer_html5.js"></script>
 
@@ -219,13 +220,26 @@
         else {
             _menu_.center = _menu_.getChannelIndex(current_channel_obj);
         }
+        currentChIndex = current_channel_obj.lcn;
+		_menu_.populate();
+        showMenu();
         document.getElementById("info_num").innerHTML = current_channel_obj.lcn+".";
         document.getElementById("info_name").innerHTML = current_channel_obj.title.replace('&', '&amp;');
-        currentChIndex = current_channel_obj.lcn;
-		_menu_.populate();      
-        console.log("menu created");
-        showMenu();
         hideTimer = setTimeout(function(){ hideMenu(); }, 5000);
+        var channelStr = getUrlParameter("ch");
+        if(channelStr) {
+            var menuItem = null;
+		    for(var i = 0; i < _menu_.items.length; i++){
+                if(_menu_.items[i].id == channelStr ){
+                    menuItem = _menu_.items[i];
+                    break;
+                }
+	        }
+		    if(menuItem != null){
+			    jumpToMenuItem(menuItem);
+			    keyEnter();
+            }
+        }
         
 	}
 

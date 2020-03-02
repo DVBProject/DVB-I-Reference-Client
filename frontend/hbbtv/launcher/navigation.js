@@ -358,7 +358,7 @@ function onKey(keyCode)
             try {     
              _application_.opAppRequestForeground();
             } catch(e) {}
-			window.location = "../epg/index.php";
+			window.location = "../epg/index.php?ch="+getCurrentChannel().id;
 		break;
         case 109:
         case VK_BLUE:
@@ -787,7 +787,7 @@ function keyEnter(){
     }else{
 		var focus = getFocus();
 		var channel_obj = _menu_.getOpenChannel();
-		if(currentChIndex == channel_obj.lcn) {
+		if(channel_obj && currentChIndex == channel_obj.lcn) {
 			hideMenu(true);
 			return;
 		}

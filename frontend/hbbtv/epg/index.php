@@ -45,7 +45,9 @@
     var video = null;
     var chlistdvb = null;
     var _epg_ = null;
-    var selectedChannel = null;
+    var channelToOpen = 0;
+    var firstChannel =  "";
+    
 
 
     if(channelList){
@@ -94,12 +96,20 @@
 
 	}
 
+    function compareLCN(a, b) {
+      if (a.lcn > b.lcn) return 1;
+      if (b.lcn > a.lcn) return -1;
+
+      return 0;
+    }
+
     function loadChannelList(){
         $.get( "../../../backend/servicelist.php", function( data ) {
             var vid = document.getElementById('broadcast');
             var config = vid.getChannelConfig();
             var dvbChannels = config.channelList;
             var list = parseServiceList(data,dvbChannels);
+            list.sort(compareLCN);
             channelList = {"channels" :list};
             init();
         },"text");
@@ -118,9 +128,16 @@
             var cid = encodeURIComponent(channelList.channels[i].id);
             cids.push(cid);
         }
-
+        var firstChannel = getUrlParameter("ch");
+        if(firstChannel) {
+            channelToOpen = cids.indexOf(firstChannel);
+            if(channelToOpen == -1) {
+                channelToOpen = 0;
+            }
+        }
+        
         setLoading(true);
-        _epg_ = new GridEPG("epgwrapper", channelList,0, VISIBLE_ROWS, yesterday, curTime, days,epgLoaded);
+        _epg_ = new GridEPG("epgwrapper", channelList,channelToOpen, VISIBLE_ROWS, yesterday, curTime, days,epgLoaded);
         //});
     }
 
@@ -136,7 +153,7 @@
                         document.getElementById("channels").removeClass("notransition");
                     },10);
                 });
-                _epg_.setActiveItem(_epg_.channels[0]);
+                _epg_.setActiveItem(_epg_.channels[channelToOpen]);
             }
             setLoading(false);
             
@@ -285,6 +302,7 @@
                 <div id="ffwb" class="btn"><span class="icon ffw"></span><span id="ffw" class="bb_label">+5</span></div>
                 <div id="skpbwb" class="btn"><span class="icon skpbw"></span><span id="skpbw" class="bb_label">First</span></div>
                 <div id="skpfwb" class="btn"><span class="icon skpfw"></span><span id="skpfw" class="bb_label">Last</span></div>
+                <div class="btn" id="blueb"> <span class="icon blue"></span> <span class="bb_label" id="blue">Tune to channel</span></div>    
             </div>
 
         </div>

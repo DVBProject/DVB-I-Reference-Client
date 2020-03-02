@@ -1272,3 +1272,19 @@ function parseServiceList(data,dvbChannels) {
     }
     return list;
 }
+
+function getUrlParameter(parameterName) {
+    var queryString = window.location.search;
+    var channelStr = null;
+    if(queryString.charAt(0) == "?") {
+        queryString = queryString.substr(1);
+    }
+    params = queryString.split("&");
+    for(var i = 0; i < params.length; i++){
+        var keyvalue = params[i].split("=");
+        if(keyvalue[0] == parameterName && keyvalue.length > 1) {
+            return keyvalue[1];
+        }
+    }
+    return null;
+}

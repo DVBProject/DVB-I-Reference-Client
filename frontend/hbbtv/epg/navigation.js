@@ -130,7 +130,7 @@ function onKey(keyCode)
         }
 		
 		if (keyCode == VK_BACK || keyCode == KeyEvent.VK_GUIDE ) {
-			window.location = '../launcher/index.php';
+			window.location = '../launcher/index.php?ch='+firstChannel;
 			return true;
 		}
         if (keyCode == KeyEvent.VK_SUBTITLE || keyCode == KeyEvent.VK_MENU) {
@@ -159,14 +159,6 @@ function onKey(keyCode)
             case VK_ENTER: 
                 keyEnter();
             break;
-
-            // case VK_BACK:
-            //     keyBack();
-            // break;
-
-            // case VK_MENU:
-            //     keyMenu();
-            // break;
 
             case VK_RIGHT:
                 keyRight();
@@ -308,55 +300,11 @@ function keyRed(){
 }
 
 function keyBlue(){
-    if(_epg_.activeItem.element.hasClass("hasVideo")){
-        keyEnter();
-    }
-}
-
-function keyBack(){
-     try{
-        window.location = "../launcher/index.php";
-      
-    }
-    catch(e){
-        console.log(e);
-    }
-}
-
-function keyMenu(){
-    try{
-        var url = getReturnLink(true);
-        if(url){
-            console.log( "got return link" );
-            window.location = url;
-        }
-        else
-        {
-            window.location = "../launcher/";
-        }
-    }
-    catch(e){
-        console.log(e);
-    }
+    window.location = '../launcher/index.php?ch='+_epg_.getOpenChannel().id;
 }
 
 function keyEnter(){
-    if(_epg_.activeItem && _epg_.activeItem instanceof Program){
-        if(!_epg_.activeItem.noprogram){
-            if(_epg_.activeItem.serie == null || _epg_.activeItem.serie == ""){
-                // _epg_.activeItem.serie = _epg_.activeItem.getTitle().substring(0, _epg_.activeItem.getTitle().indexOf("(")).trim();
-                _epg_.activeItem.serie = _epg_.activeItem.getTitle();
-            }
-            var keys = ["title", "serie"];
-            var key = keys[Number(Boolean(_epg_.activeItem.serie))];
-            var obj = {};
-                obj[key] = (_epg_.activeItem.serie) ? _epg_.activeItem.serie.toString() : _epg_.activeItem.getTitle();
-                obj["channel"] = _epg_.activeItem.channeltitle;
-                obj["id"] = _epg_.activeItem.code.toString();
 
-            programInfo.show(obj, _epg_.activeItem);
-        }
-    }
 }
 
 function keyRight(){
