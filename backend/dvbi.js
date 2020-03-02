@@ -84,7 +84,7 @@ function addServiceInstance(serviceId,instanceElement) {
                 changeSourceType(instanceDiv.id);
             }
             else if(children[i].nodeName === "DASHDeliveryParameters") {
-                document.getElementById("instance_"+serviceId+"_"+instanceId+"_dash_uri").value = children[i].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+                try { document.getElementById("instance_"+serviceId+"_"+instanceId+"_dash_uri").value = children[i].getElementsByTagName("URI")[0].childNodes[0].nodeValue; } catch(e) {}
             }
             else if(children[i].nodeName === "DVBTDeliveryParameters") {
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_dvb_triplet").value = parseDvbTriplet(children[i].getElementsByTagName("DVBTriplet")[0]);
@@ -209,16 +209,16 @@ function addService(serviceElement) {
         var children = serviceElement.childNodes;
         for (var i = 0; i < children.length ;i++) {
             if(children[i].nodeName === "ServiceName") {
-                document.getElementById("service_"+serviceId+"_name").value = children[i].childNodes[0].nodeValue;
+                try {document.getElementById("service_"+serviceId+"_name").value = children[i].childNodes[0].nodeValue;} catch(e) {}
             }
             else if(children[i].nodeName === "ProviderName") {
-                document.getElementById("service_"+serviceId+"_provider").value = children[i].childNodes[0].nodeValue;
+                try {document.getElementById("service_"+serviceId+"_provider").value = children[i].childNodes[0].nodeValue; } catch(e) {}
             }
             else if(children[i].nodeName === "UniqueIdentifier") {
-                document.getElementById("service_"+serviceId+"_unique_id").value = children[i].childNodes[0].nodeValue;
+                try {document.getElementById("service_"+serviceId+"_unique_id").value = children[i].childNodes[0].nodeValue; } catch(e) {}
             }
             else if(children[i].nodeName === "ContentGuideServiceRef") {
-                document.getElementById("service_"+serviceId+"_content_guide_service_reference").value = children[i].childNodes[0].nodeValue;
+                try {document.getElementById("service_"+serviceId+"_content_guide_service_reference").value = children[i].childNodes[0].nodeValue; } catch(e) {}
             }
             else if(children[i].nodeName === "RelatedMaterial") {
                 var howRelated = children[i].getElementsByTagName("tva:HowRelated")
@@ -233,7 +233,7 @@ function addService(serviceElement) {
                     addServiceInstance(serviceId,children[i]);
                 }
                 catch(e) {
-                    alert( "Error reading service instance",e.message );
+                    console.log( "Error reading service instance",e );
                 }
             }
         }
@@ -430,13 +430,17 @@ function readLCN(lcnElement) {
     var lcnTables = lcnElement.getElementsByTagName("LCNTable");
     var lcnList = {};
     for (var i = 0; i < lcnTables.length ;i++) {
-          var targetRegion = lcnTables[0].getElementsByTagName("TargetRegion")[0].childNodes[0].nodeValue;
-          var chanellList = {};
+          var targetRegion ="";
+          var targetRegionElements = lcnTables[0].getElementsByTagName("TargetRegion");
+          if(targetRegionElements.length > 0) {
+		    targetRegion =targetRegionElements[0].childNodes[0].nodeValue;
+          }
+          var channellList = {};
           var lcnElements = lcnElement.getElementsByTagName("LCN");
           for (var j = 0; j < lcnElements.length ;j++) {
-            chanellList[lcnElements[j].getAttribute("serviceRef")] = lcnElements[j].getAttribute("channelNumber");
+            channellList[lcnElements[j].getAttribute("serviceRef")] = lcnElements[j].getAttribute("channelNumber");
           }
-          lcnList[targetRegion] = chanellList;
+          lcnList[targetRegion] = channellList;
     }
     return lcnList;
 }
@@ -545,7 +549,7 @@ function loadServicelist(list) {
                     addService(children[i]);
                 } 
                 catch(e) {
-                    alert( "Error reading servicelist:"+e.message );
+                    console.log( "Error reading servicelist:",e );
                 }
             }
         }
