@@ -18,8 +18,8 @@ function channelSelected(channelId) {
         selectedChannel.unselected();
     }
     closeEpg();
-    newChannel.channelSelected();
     player.attachSource(newChannel.dashUrl);
+    newChannel.channelSelected();
     selectedChannel = newChannel;    
 
 }
@@ -40,6 +40,7 @@ var channels = [];
 var epg = null;
 var uiHideTimeout = null;
 var player;
+var streamInfoUpdate = null;
 
 function resetHideTimeout() {
     if( $(".player-ui").hasClass("hide") && $(".epg").hasClass("hide")) {
@@ -159,6 +160,45 @@ function refresh() {
 function updateOpenChannel() {
     if(selectedChannel) {
         selectedChannel.updateChannelInfo();
+    }
+}
+
+function showStreamInfo() {
+    $("#streaminfo").show();
+    updateStreamInfo();
+    streamInfoUpdate = setInterval(updateStreamInfo, 1000);
+}
+
+function hideStreamInfo() {
+    clearInterval(streamInfoUpdate);
+    $("#streaminfo").hide();
+}
+
+function updateStreamInfo() {
+    if(player) {
+        try {
+         var audioTrack = player.getBitrateInfoListFor("audio")[player.getQualityFor("audio")];
+         var videoTrack = player.getBitrateInfoListFor("video")[player.getQualityFor("video")];
+         var bestAudio = player.getTopBitrateInfoFor("audio");
+         var bestVideo = player.getTopBitrateInfoFor("video");;
+         if(audioTrack) {
+          document.getElementById("audio_bitrate").innerHTML = audioTrack.bitrate / 1000 + "kbits (max:"+ bestAudio.bitrate / 1000+"kbits)";
+         }
+         if(videoTrack) {
+            document.getElementById("video_bitrate").innerHTML = videoTrack.bitrate / 1000 + "kbits (max:"+ bestVideo.bitrate / 1000+"kbits)";
+            document.getElementById("video_resolution").innerHTML = videoTrack.width+"x"+videoTrack.height +" (max:"+ bestVideo.width+"x"+bestVideo.height+")";
+         }
+        }
+        catch(e) {
+            document.getElementById("audio_bitrate").innerHTML = "error";
+            document.getElementById("video_bitrate").innerHTML = "error";
+            document.getElementById("video_resolution").innerHTML = "error";
+        }
+    }
+    else {
+        document.getElementById("audio_bitrate").innerHTML = "unavailable";
+        document.getElementById("video_bitrate").innerHTML = "unavailable";
+        document.getElementById("video_resolution").innerHTML = "unavailable";
     }
 }
 

@@ -125,6 +125,8 @@ Channel.prototype.updateChannelInfo = function () {
         }
      }
      info += "<span class=\"menuitem_epg btn btn-outline-dark btn-small mt-1 p-1\"><a href=\"javascript:showEpg('"+self.getServiceRef()+"')\" class=\"text-white\">Open EPG</a></span>"
+     info += "&nbsp;&nbsp;&nbsp;<span class=\"menuitem_epg btn btn-outline-dark btn-small mt-1 p-1\"><a href=\"javascript:showStreamInfo()\" class=\"text-white\">Info</a></span>"
+
      channelInfo.innerHTML = info;
 }
 
