@@ -18,7 +18,15 @@ Program.prototype.populate = function(){
 		element.addClass("list-group-item ist-group-item-action row d-flex px-0 py-1");
 		element.setAttribute("href", "#");
         element.addEventListener("click", function () { openProgramInfo(self); }, false);
-
+        var now = new Date();
+        if(self.start < now) {
+            if(self.end < now) {
+                element.addClass("past");
+            }
+            else {
+                element.addClass("current");
+            }
+        }
 		var startTime = document.createElement("div");
         startTime.addClass("col-2 pl-0");
         startTime.innerHTML = self.start.create24HourTimeString();
