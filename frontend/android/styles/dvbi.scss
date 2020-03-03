@@ -232,6 +232,10 @@ body.player {
       color: #fff;
     }
   .epg_chinfo {
+    &.sticky-top {
+      top: 56px;
+      background-color: rgba(0,0,0,0.75);      
+    }
     border-bottom: 2px solid $blue-color;
     .chnumber {
       font-size: 1.5em;
@@ -245,6 +249,9 @@ body.player {
       margin-bottom: 0.5em;
       font-weight: 600;
       max-width: 80%;
+    }
+    .chicon {
+      height: 45px;
     }
   }
 }
