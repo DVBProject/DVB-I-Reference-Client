@@ -9,7 +9,23 @@ Channel.prototype.getSchedule = function(start,end,callback,earlier) {
     if(self.contentGuideURI) {
          $.get( self.contentGuideURI+"?sids[]="+self.getServiceRef()+"&start="+start+"&end="+end, function( data ) { //TODO use ContentGuideServiceRef from the service
             var newPrograms = self.parseSchedule(data);
+            if(newPrograms.length == 0) {
+                var program = {};
+                var programId = "no_program";
+                program.start = new Date(start*1000);
+                program.end  =  new Date(end*1000);
+                program.prglen = (program.end.getTime() - program.start.getTime())/(1000*60);
 
+                console.log( program.start);
+                console.log( program.end);
+                console.log( program.prglen);
+                program.title = "No programinfo available";
+                var program = new Program(program, self.element_id + "_program_0", self);
+                program.bilingual = self.bilingual;
+                program.channelimage = self.image;
+                program.channel_streamurl = self.streamurl;
+                newPrograms.push(program);
+            }
             if(earlier) {
                 for(var j=newPrograms.length-1;j>= 0;j--) {
 		           self.programs.unshift(newPrograms[j]);
@@ -58,7 +74,6 @@ Channel.prototype.setVisiblePrograms = function(start, end){
 			||  (program.start_date_obj < end && program.start_date_obj >= start)
 			||  (program.start_date_obj <= start && program.end_date_obj >= end)){
 				program.visible = true;
-
 				
 				var overlappingNoProgram = false;
 				if(program.noprogram){
