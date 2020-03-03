@@ -55,17 +55,18 @@ Channel.prototype.init = function( init_obj, channel_index){
 		if(self.element == null){			
             var newTextbox = document.createElement('a');
             newTextbox.href="javascript:channelSelected('"+self.id+"')";
+            newTextbox.classList.add("d-flex","justify-content-end");      
             
             if(self.image) {
                 var span = document.createElement('span');
-                span.classList.add("chicon");
+                span.classList.add("chicon","pl-1","order-3");
                 var img = document.createElement('img');
                 img.setAttribute("src",self.image);
                 span.appendChild(img);
                 newTextbox.appendChild(span);
             }
             var span = document.createElement('span');
-            span.classList.add("chnumber");
+            span.classList.add("chnumber","px-1");
             span.appendChild(document.createTextNode( self.lcn));
             newTextbox.appendChild(span);
             span = document.createElement('span');

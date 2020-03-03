@@ -35,12 +35,11 @@ body.player {
   margin-left: 20px; }
 
 #video {
-    width:100%;
-    max-width: 100%;
-    height:100%;
-    max-height: 100%;
-    background-color: #000;
-}
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  background-color: #000; }
 
 .video_wrapper {
   /*
@@ -83,23 +82,18 @@ body.player {
       .video_wrapper .player-ui .list-group .list-group-item a {
         color: #848484;
         text-decoration: none;
-        text-shadow: 2px 2px 2px #000; }
-      .video_wrapper .player-ui .list-group .list-group-item span.chicon {
-        float: right;
-        height: 40px;
-        line-height: 40px;
-        padding-right: 0.2em; }
-        .video_wrapper .player-ui .list-group .list-group-item span.chicon img {
-          height: 20px; }
+        text-shadow: 2px 2px 2px #000;
+        height: 40px; }
+      .video_wrapper .player-ui .list-group .list-group-item span.chicon img {
+        height: 20px; }
       .video_wrapper .player-ui .list-group .list-group-item span.chnumber {
-        font-size: 1.0em;
-        margin-right: 0.5em; }
+        font-size: 1.2em; }
       .video_wrapper .player-ui .list-group .list-group-item span.chname {
         font-size: 1.2em;
-        margin-right: 0.5em; }
-      .video_wrapper .player-ui .list-group .list-group-item.active a {
+        color: #fff; }
+      .video_wrapper .player-ui .list-group .list-group-item.active a span {
         color: #3996c9;
-        font-size: 1.2em; }
+        font-size: 1.4em; }
   .video_wrapper #channel_info span {
     text-shadow: 2px 2px 2px #000; }
     .video_wrapper #channel_info span.menuitem_chnumber {

@@ -98,29 +98,24 @@ body.player {
         a {
           color: $lightgrey-color;
           text-decoration: none;
-          text-shadow: 2px 2px 2px #000;          
+          text-shadow: 2px 2px 2px #000;
+          height: 40px;
         }
         span.chicon{
-          float: right;
-          height: 40px;
-          line-height: 40px;
-          padding-right: 0.2em;
           img {
             height: 20px;
-            //margin-top: 10px;
           }
         }
         span.chnumber{
-          font-size: 1.0em;
-          margin-right: 0.5em;
+          font-size: 1.2em;
         }
         span.chname {
           font-size: 1.2em;
-          margin-right: 0.5em;
+          color: #fff;
         }
-        &.active a {
+        &.active a span {
           color: $blue-color;
-          font-size: 1.2em;
+          font-size: 1.4em;
         }
       }
 
