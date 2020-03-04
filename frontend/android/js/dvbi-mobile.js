@@ -180,7 +180,7 @@ function updateStreamInfo() {
          var audioTrack = player.getBitrateInfoListFor("audio")[player.getQualityFor("audio")];
          var videoTrack = player.getBitrateInfoListFor("video")[player.getQualityFor("video")];
          var bestAudio = player.getTopBitrateInfoFor("audio");
-         var bestVideo = player.getTopBitrateInfoFor("video");;
+         var bestVideo = player.getTopBitrateInfoFor("video");
          if(audioTrack) {
           document.getElementById("audio_bitrate").innerHTML = audioTrack.bitrate / 1000 + "kbits (max:"+ bestAudio.bitrate / 1000+"kbits)";
          }
@@ -188,17 +188,20 @@ function updateStreamInfo() {
             document.getElementById("video_bitrate").innerHTML = videoTrack.bitrate / 1000 + "kbits (max:"+ bestVideo.bitrate / 1000+"kbits)";
             document.getElementById("video_resolution").innerHTML = videoTrack.width+"x"+videoTrack.height +" (max:"+ bestVideo.width+"x"+bestVideo.height+")";
          }
+         document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency()+"s";
         }
         catch(e) {
             document.getElementById("audio_bitrate").innerHTML = "error";
             document.getElementById("video_bitrate").innerHTML = "error";
             document.getElementById("video_resolution").innerHTML = "error";
+            document.getElementById("live_latency").innerHTML = "";
         }
     }
     else {
         document.getElementById("audio_bitrate").innerHTML = "unavailable";
         document.getElementById("video_bitrate").innerHTML = "unavailable";
         document.getElementById("video_resolution").innerHTML = "unavailable";
+        document.getElementById("live_latency").innerHTML = "unavailable";
     }
 }
 
