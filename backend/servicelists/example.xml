@@ -4,7 +4,6 @@
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
     <LCNTable>
-      <TargetRegion>FIN</TargetRegion>
       <LCN channelNumber="647" serviceRef="sid1"/>
       <LCN channelNumber="11" serviceRef="sid2"/>
       <LCN channelNumber="4" serviceRef="sid3"/>
