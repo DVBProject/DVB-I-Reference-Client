@@ -15,7 +15,7 @@ Program.prototype.populate = function(){
 
 	if(self.element == null){
 		var element = document.createElement("a");
-		element.addClass("list-group-item ist-group-item-action row d-flex px-0 py-1");
+		element.addClass("list-group-item list-group-item-action row d-flex px-2 py-1");
 		element.setAttribute("href", "#");
         element.addEventListener("click", function () { openProgramInfo(self); }, false);
         var now = new Date();
