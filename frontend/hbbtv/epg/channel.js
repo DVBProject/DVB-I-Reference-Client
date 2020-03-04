@@ -7,7 +7,8 @@ Channel.prototype.getSchedule = function(start,end,callback,earlier) {
     var self = this;
 
     if(self.contentGuideURI) {
-         $.get( self.contentGuideURI+"?sids[]="+self.getServiceRef()+"&start="+start+"&end="+end, function( data ) { //TODO use ContentGuideServiceRef from the service
+         var offset = new Date().getTimezoneOffset()*60;
+         $.get( self.contentGuideURI+"?sids[]="+self.getServiceRef()+"&start="+(start+offset)+"&end="+(end+offset), function( data ) { //TODO use ContentGuideServiceRef from the service
             var newPrograms = self.parseSchedule(data);
             if(newPrograms.length == 0) {
                 var program = {};
