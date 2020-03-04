@@ -12,19 +12,16 @@ Channel.prototype.getSchedule = function(start,end,callback,earlier) {
             var newPrograms = self.parseSchedule(data);
             if(newPrograms.length == 0) {
                 var program = {};
-                var programId = "no_program";
+                var programId = "no_program_"+start+"_"+end;
                 program.start = new Date(start*1000);
                 program.end  =  new Date(end*1000);
                 program.prglen = (program.end.getTime() - program.start.getTime())/(1000*60);
-
-                console.log( program.start);
-                console.log( program.end);
-                console.log( program.prglen);
                 program.title = "No programinfo available";
-                var program = new Program(program, self.element_id + "_program_0", self);
+                var program = new Program(program, self.element_id + "_no_program", self);
                 program.bilingual = self.bilingual;
                 program.channelimage = self.image;
                 program.channel_streamurl = self.streamurl;
+                program.noprogram = true;
                 newPrograms.push(program);
             }
             if(earlier) {
