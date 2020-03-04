@@ -310,7 +310,15 @@ function keyEnter(){
 function keyRight(){
     var channel = _epg_.getOpenChannel();
     if(channel instanceof Channel){
-        if(channel.visiblePrograms.last() != _epg_.activeItem){
+        var currentProgram = _epg_.activeItem;
+        if(currentProgram && _epg_.timelineend < currentProgram.end) {
+            _epg_.timelineend   = new Date(_epg_.timelineend.getTime() + (1000 * 60 * 30));
+            _epg_.timelinestart = new Date(_epg_.timelinestart.getTime() + (1000 * 60 * 30));
+            _epg_.populatePrograms(function(){
+                 _epg_.setActiveItem(currentProgram);
+            });
+        }
+        else if(channel.visiblePrograms.last() != _epg_.activeItem){
             var idx = channel.visiblePrograms.indexOf(_epg_.activeItem);
             _epg_.setActiveItem(channel.visiblePrograms[idx+1]);
         }
@@ -318,9 +326,15 @@ function keyRight(){
             var currentProgram = _epg_.activeItem;
             var next = channel.nextProgram(currentProgram);
             if(next != null){
-                // move forward 30 minutes
-                _epg_.timelineend   = new Date(_epg_.timelineend.getTime() + (1000 * 60 * 30));
-                _epg_.timelinestart = new Date(_epg_.timelinestart.getTime() + (1000 * 60 * 30));
+                // move forward 30 minutes or to the next program if it is not visible
+                if(next.start.getTime() > _epg_.timelineend.getTime() + (1000 * 60 * 30) ) { 
+                    _epg_.timelinestart = new Date(next.start.getTime() - (1000 * 60 * 30));
+                    _epg_.timelineend = new Date(_epg_.timelinestart.getTime() + (1000 * 60 * 180));
+                }
+                else {
+                    _epg_.timelineend   = new Date(_epg_.timelineend.getTime() + (1000 * 60 * 30));
+                    _epg_.timelinestart = new Date(_epg_.timelinestart.getTime() + (1000 * 60 * 30));
+                }
                 _epg_.populatePrograms(function(){
                     if(currentProgram){
                         var next = channel.nextProgram(currentProgram);
@@ -354,17 +368,30 @@ function keyRight(){
 function keyLeft(){
     var channel = _epg_.getOpenChannel();
     if(channel instanceof Channel){
-        if(channel.visiblePrograms[0] != _epg_.activeItem){
+        var currentProgram = _epg_.activeItem;
+        if(currentProgram && _epg_.timelinestart > currentProgram.start) {
+            _epg_.timelineend   = new Date(_epg_.timelineend.getTime() - (1000 * 60 * 30));
+            _epg_.timelinestart = new Date(_epg_.timelinestart.getTime() - (1000 * 60 * 30));
+            _epg_.populatePrograms(function(){
+                 _epg_.setActiveItem(currentProgram);
+            });
+        }
+        else if(channel.visiblePrograms[0] != _epg_.activeItem){
             var idx = channel.visiblePrograms.indexOf(_epg_.activeItem);
             _epg_.setActiveItem(channel.visiblePrograms[idx-1]);
         }
         else{
-            var currentProgram = _epg_.activeItem;
             var previous = channel.previousProgram(currentProgram);
             if(previous != null){
                 // move backward 30 minutes
-                _epg_.timelineend   = new Date(_epg_.timelineend.getTime() - (1000 * 60 * 30));
-                _epg_.timelinestart = new Date(_epg_.timelinestart.getTime() - (1000 * 60 * 30));
+                if( previous.end.getTime() < _epg_.timelineend.getTime() - (1000 * 60 * 30) ) { 
+                    _epg_.timelinestart = new Date(previous.start.getTime() - (1000 * 60 * 30));
+                    _epg_.timelineend = new Date(_epg_.timelinestart.getTime() + (1000 * 60 * 180));
+                }
+                else {
+                    _epg_.timelineend   = new Date(_epg_.timelineend.getTime() - (1000 * 60 * 30));
+                    _epg_.timelinestart = new Date(_epg_.timelinestart.getTime() - (1000 * 60 * 30));
+                }
                 _epg_.populatePrograms(function(){
                     if(currentProgram){
                         var previous = channel.previousProgram(currentProgram);
@@ -373,7 +400,7 @@ function keyLeft(){
                         }
                         if(previous instanceof Program){
                             _epg_.setActiveItem(previous);
-                        }   
+                        }
                     }
                 });
             }

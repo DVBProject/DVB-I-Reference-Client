@@ -97,7 +97,6 @@ GridEPG.prototype.initEPG = function(element_id, epgdata, firstvisible_channel, 
 }
 
 GridEPG.prototype.channelLoaded = function(){
-    console.log("Channels loaded",this.channelsLoaded);
     this.channelsLoaded++;
 
     if(this.channelsLoaded == this.channels.length && typeof(this.loadedCallback) == "function") {
@@ -520,8 +519,8 @@ GridEPG.prototype.populateProgramDetail = function(program){
 					var timeLeftText = (minsLeft == 0) ? "Ending soon" : minsLeft + " mins remaining";
 					program_time.innerHTML += ", " + timeLeftText;
 				}
-				description_text.innerHTML = "No_program";
-				title.innerHTML = "No_program";
+				description_text.innerHTML = "No programinfo available";
+				title.innerHTML = "No programinfo available";
 			}
 			else{
 				if(program.start_date_obj.getTime() <= curTime.getTime() && curTime.getTime() <= program.end_date_obj.getTime()){
