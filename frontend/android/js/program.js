@@ -28,11 +28,11 @@ Program.prototype.populate = function(){
             }
         }
 		var startTime = document.createElement("div");
-        startTime.addClass("col-2 pl-0");
+        startTime.addClass("col-4 col-md-2 col-xl-1 pl-0");
         startTime.innerHTML = self.start.create24HourTimeString();
         element.appendChild(startTime);
         var title = document.createElement("div");
-        title.addClass("col-10 pl-0 text-truncate");
+        title.addClass("col-8 col-md-10 col-xl-11 pl-0 text-truncate");
         title.innerHTML = self.title;
         element.appendChild(title);
 		self.element = element;
