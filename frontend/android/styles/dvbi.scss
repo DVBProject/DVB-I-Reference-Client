@@ -223,6 +223,7 @@ body.player {
   .navbar {
     background-color: rgba(0,0,0,0.75);
   }
+
   .epgdata {
 
   }
@@ -230,6 +231,13 @@ body.player {
       background-color: transparent;
       border-color: rgba(255,255,255,0.2) !important;
       color: #fff;
+    &.past {
+      opacity: 0.5;
+    }
+    &.current {
+      color: $blue-color;
+      background-color: rgba($blue-color, .2);
+  }
     }
   .epg_chinfo {
     &.sticky-top {
