@@ -124,6 +124,7 @@ function getSchdeule( $sid,$start,$end ) {
     if (is_int($start) === false || is_int($end) === false || strpos($sid, '/') !== false || strpos($sid, '..') !== false || file_exists("./schedule_templates/".$sid.".xml") === false) {
         return NULL;
     }
+
     $dateformat = "Y-m-d";
     $current_time = $start;
     $schedule_str= file_get_contents("./schedule_templates/".$sid.".xml");
@@ -131,8 +132,9 @@ function getSchdeule( $sid,$start,$end ) {
     $schedule = New Simplexmlelement($schedule_str);
     $programs = array();
     $end_reached = false;
+    $previous_count = -1;
     while($end_reached == false  && count($schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent) > 0 ) {
-        $previous_count = count($programs);
+
         for($i = 0; $i < count($schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent);$i++) {
             $event = $schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent[$i];
             $event_start = strtotime($event->PublishedStartTime);
@@ -149,6 +151,7 @@ function getSchdeule( $sid,$start,$end ) {
             //No new programs found, break
             break;
         }
+        $previous_count = count($programs);
         if($end_reached == false) {
             $current_time += 24*60*60;
             $schedule_str= file_get_contents("./schedule_templates/".$sid.".xml");
