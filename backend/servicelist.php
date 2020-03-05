@@ -4,6 +4,7 @@
     header( "Cache-Control: no-cache, must-revalidate" );
     header( "Pragma: no-cache" );
     header( "Content-Type: application/xml;charset=utf-8" );
+    header("Access-Control-Allow-Origin: *");
 
     echo file_get_contents("servicelists/example.xml");
 ?>
