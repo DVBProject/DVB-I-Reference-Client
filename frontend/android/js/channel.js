@@ -56,15 +56,12 @@ Channel.prototype.init = function( init_obj, channel_index){
             var newTextbox = document.createElement('a');
             newTextbox.href="javascript:channelSelected('"+self.id+"')";
             newTextbox.classList.add("d-flex");
-            
-            if(self.image) {
-                var span = document.createElement('span');
-                span.classList.add("chicon","pl-1","order-3");
-                var img = document.createElement('img');
-                img.setAttribute("src",self.image);
-                span.appendChild(img);
-                newTextbox.appendChild(span);
-            }
+            var span = document.createElement('span');
+            span.classList.add("chicon","pl-1","order-3");
+            var img = document.createElement('img');
+            img.setAttribute("src",self.image || "./images/empty.png");
+            span.appendChild(img);
+            newTextbox.appendChild(span);
             var span = document.createElement('span');
             span.classList.add("chnumber","px-1");
             span.appendChild(document.createTextNode( self.lcn));
@@ -105,9 +102,7 @@ Channel.prototype.updateChannelInfo = function () {
      var self = this;
      var channelInfo = document.getElementById("channel_info");
      var info = "";
-     if(self.image) {
-        info = "<span class=\"menuitem_chicon d-block\"><img src=\""+self.image+"\"></span>";
-     }
+     info = "<span class=\"menuitem_chicon d-block\"><img src=\""+(self.image || "./images/empty.png") +"\"></span>";
      info += "<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + self.title +"</span>";
      if(self.now_next) {
         curTime = new Date();
@@ -142,13 +137,11 @@ Channel.prototype.showEPG = function () {
         element.addClass("col-4 mx-0 px-0");
         var header = document.createElement("div");
         header.addClass("epg_chinfo align-items-center sticky-top px-2");
-        if(self.image) {
-            var logo = document.createElement("img");
-            logo.setAttribute("src",self.image);
-            logo.setAttribute("alt","channel icon");
-            logo.addClass("chicon img-fluid d-block");
-            header.appendChild(logo);
-        }
+        var logo = document.createElement("img");
+        logo.setAttribute("src",self.image || "./images/empty.png");
+        logo.setAttribute("alt","channel icon");
+        logo.addClass("chicon img-fluid d-block");
+        header.appendChild(logo);
         var number = document.createElement("span");
         number.addClass("chnumber d-inline-block float-left");
         number.innerHTML = self.lcn;

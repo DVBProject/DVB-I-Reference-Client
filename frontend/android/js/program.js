@@ -41,7 +41,7 @@ Program.prototype.populate = function(){
 }
 
 Program.prototype.populateProgramInfo = function(){
-    $("#info_chicon").attr('src',this.channel.image);
+    $("#info_chicon").attr('src',this.channel.image || "./images/empty.png");
     $("#info_chnumber").text(this.channel.lcn);
     $("#info_chname").text(this.channel.name);
     $(".title").text(this.title);
