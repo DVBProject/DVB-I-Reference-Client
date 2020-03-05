@@ -55,7 +55,7 @@ Channel.prototype.init = function( init_obj, channel_index){
 		if(self.element == null){			
             var newTextbox = document.createElement('a');
             newTextbox.href="javascript:channelSelected('"+self.id+"')";
-            newTextbox.classList.add("d-flex","justify-content-end");      
+            newTextbox.classList.add("d-flex");
             
             if(self.image) {
                 var span = document.createElement('span');
@@ -76,7 +76,10 @@ Channel.prototype.init = function( init_obj, channel_index){
             var li = document.createElement('li');
             li.classList.add("list-group-item");
             li.id = "channel_"+channel_index;
-            li.appendChild(newTextbox);
+            var container = document.createElement("div");
+            container.classList.add("d-flex","justify-content-end");
+            container.appendChild(newTextbox);
+            li.appendChild(container);
 			self.element = li;
 		}
     
