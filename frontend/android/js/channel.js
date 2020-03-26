@@ -135,6 +135,9 @@ Channel.prototype.showEPG = function () {
 	if(self.epg_element == null){
         var element = document.createElement("div");
         element.addClass("channelCol col-4 mx-0 px-0");
+        if(selectedChannel == this) {
+            element.addClass("selected");
+        }
         var header = document.createElement("div");
         header.addClass("epg_chinfo align-items-center sticky-top px-2");
         var logo = document.createElement("img");
