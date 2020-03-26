@@ -134,7 +134,7 @@ Channel.prototype.showEPG = function () {
     var programList = null;
 	if(self.epg_element == null){
         var element = document.createElement("div");
-        element.addClass("col-4 mx-0 px-0");
+        element.addClass("channelCol col-4 mx-0 px-0");
         var header = document.createElement("div");
         header.addClass("epg_chinfo align-items-center sticky-top px-2");
         var logo = document.createElement("img");

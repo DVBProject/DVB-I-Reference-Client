@@ -227,6 +227,14 @@ body.player {
   .epgdata {
 
   }
+  .channelCol {
+    &.selected {
+      
+      .chnumber, .chname,  {
+        color: $blue-color;
+      }
+    }
+  }
     .list-programs li, .list-programs .list-group-item {
       background-color: transparent;
       border-color: rgba(255,255,255,0.2) !important;
@@ -237,7 +245,10 @@ body.player {
     &.current {
       color: $blue-color;
       background-color: rgba($blue-color, .2);
-  }
+      }
+      &:hover {
+        color: $orange-color;
+      }
     }
   .epg_chinfo {
     &.sticky-top {

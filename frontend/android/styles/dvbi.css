@@ -167,6 +167,8 @@ body.player {
     cursor: default; }
   .epg .navbar {
     background-color: rgba(0, 0, 0, 0.75); }
+  .epg .channelCol.selected .chnumber, .epg .channelCol.selected .chname {
+    color: #3996c9; }
   .epg .list-programs li, .epg .list-programs .list-group-item {
     background-color: transparent;
     border-color: rgba(255, 255, 255, 0.2) !important;
@@ -176,6 +178,8 @@ body.player {
     .epg .list-programs li.current, .epg .list-programs .list-group-item.current {
       color: #3996c9;
       background-color: rgba(57, 150, 201, 0.2); }
+    .epg .list-programs li:hover, .epg .list-programs .list-group-item:hover {
+      color: #e47600; }
   .epg .epg_chinfo {
     border-bottom: 2px solid #3996c9; }
     .epg .epg_chinfo.sticky-top {
