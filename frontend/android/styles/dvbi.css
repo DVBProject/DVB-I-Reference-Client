@@ -96,6 +96,8 @@ body.player {
         font-size: 1.4em; }
   .video_wrapper #channel_info span {
     text-shadow: 2px 2px 2px #000; }
+    .video_wrapper #channel_info span.menuitem_chicon img {
+      max-height: 55px; }
     .video_wrapper #channel_info span.menuitem_chnumber {
       font-size: 1.0em;
       margin-right: 0.5em;
@@ -216,6 +218,15 @@ body.player {
     margin-right: 0.5em; }
 .programinfo .description {
   font-size: 1.2em; }
+
+#streaminfo {
+  position: absolute;
+  display: none; }
+  #streaminfo .btn {
+    font-size: 1.0em;
+    text-shadow: none; }
+    #streaminfo .btn a {
+      text-decoration: none !important; }
 
 @keyframes displaynone {
   from {

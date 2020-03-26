@@ -126,7 +126,7 @@ body.player {
         text-shadow: 2px 2px 2px #000;    
       &.menuitem_chicon {
         img {
-         
+         max-height: 55px;
         }
       }
       &.menuitem_chnumber {
@@ -306,7 +306,18 @@ body.player {
     
   }
 }
-
+// Streaminfo
+#streaminfo {
+  position: absolute;
+  display: none;
+        .btn {
+        font-size: 1.0em;
+        text-shadow: none;
+        a {
+          text-decoration: none !important;
+        }
+      }
+}
 @keyframes displaynone {
   from {display: block;}
   to {display: none;}
