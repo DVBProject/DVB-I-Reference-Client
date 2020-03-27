@@ -310,6 +310,10 @@ body.player {
 #streaminfo {
   position: absolute;
   display: none;
+
+  .streaminfoContainer {
+      background-color: rgba(0,0,0,0.5);
+  }
         .btn {
         font-size: 1.0em;
         text-shadow: none;

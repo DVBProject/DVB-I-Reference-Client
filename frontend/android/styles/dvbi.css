@@ -222,6 +222,8 @@ body.player {
 #streaminfo {
   position: absolute;
   display: none; }
+  #streaminfo .streaminfoContainer {
+    background-color: rgba(0, 0, 0, 0.5); }
   #streaminfo .btn {
     font-size: 1.0em;
     text-shadow: none; }
