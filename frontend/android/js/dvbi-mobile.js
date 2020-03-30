@@ -71,12 +71,12 @@ function hideUI() {
     }
 }
 
-function showEpg(service) {
+function showEpg() {
     $(".epg").removeClass("hide");
     $(".player-ui").addClass("hide");
     $(".epg").show();
     $(".grid").show();
-    $(".grid").append(epg.showChannel(service));
+    $(".grid").append(epg.showChannel(selectedChannel));
     var epgdate = new Date(epg.start*1000);
     $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
     if(epg.displayIndex == 0) {
