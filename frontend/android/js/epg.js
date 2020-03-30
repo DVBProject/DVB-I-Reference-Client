@@ -75,3 +75,38 @@ EPG.prototype.showPreviousDay = function() {
      this.populate();
 }
 
+function showNext() {
+    if(!epg.showNextChannel()) {
+        if(!$("#next_channel").hasClass("end")) {
+           $("#next_channel").addClass("end");
+        }
+    }
+    else if($("#previous_channel").hasClass("end")) {
+        $("#previous_channel").removeClass("end");
+    }
+}
+
+function showPrevious() {
+     if(!epg.showPreviousChannel()) {
+        if(!$("#previous_channel").hasClass("end")) {
+           $("#previous_channel").addClass("end");
+        }
+    }
+    else if($("#next_channel").hasClass("end")) {
+        $("#next_channel").removeClass("end");
+    }
+}
+
+function nextDay() {
+    epg.showNextDay();
+    var epgdate = new Date(epg.start*1000);
+    $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
+}
+
+function previousDay() {
+    epg.showPreviousDay();
+    var epgdate = new Date(epg.start*1000);
+    $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
+}
+
+
