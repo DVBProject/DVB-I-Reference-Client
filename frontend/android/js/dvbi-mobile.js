@@ -34,6 +34,21 @@ window.onload = function(){
     player = dashjs.MediaPlayer().create();
     player.initialize(video);
     player.setAutoPlay(true);
+    var ll_settings = getLocalStorage("ll_settings");
+    if(ll_settings) {
+        document.getElementById("lowLatencyEnabled").checked = ll_settings.lowLatencyEnabled;
+        document.getElementById("liveDelay").value = parseFloat(ll_settings.liveDelay);
+        document.getElementById("liveCatchUpMinDrift").value = parseFloat(ll_settings.liveCatchUpMinDrift);
+        document.getElementById("liveCatchUpPlaybackRate").value = parseFloat(ll_settings.liveCatchUpPlaybackRate);
+        player.updateSettings({
+            'streaming': {
+                'lowLatencyEnabled': ll_settings.lowLatencyEnabled,
+                'liveDelay': ll_settings.liveDelay,
+                'liveCatchUpMinDrift': ll_settings.liveCatchUpMinDrift,
+                'liveCatchUpPlaybackRate': ll_settings.liveCatchUpPlaybackRate
+            }
+        });
+    }
 }
 var selectedChannel = null;
 var channels = [];
@@ -130,20 +145,24 @@ function updateOpenChannel() {
     }
 }
 
-function showStreamInfo() {
-    $("#streaminfo").show();
-    updateStreamInfo();
-    streamInfoUpdate = setInterval(updateStreamInfo, 1000);
-}
-
-function hideStreamInfo() {
-    clearInterval(streamInfoUpdate);
-    $("#streaminfo").hide();
+function toggleStreamInfo() {
+    if($("#streaminfo").is(":visible")){
+        clearInterval(streamInfoUpdate);
+        $("#streaminfo").hide();
+    }
+    else {
+        $("#streaminfo").show();
+        updateStreamInfo();
+        streamInfoUpdate = setInterval(updateStreamInfo, 1000);
+    }
 }
 
 function updateStreamInfo() {
     if(player) {
         try {
+         var settings = player.getSettings();
+         document.getElementById("live_settings").innerHTML = "Low latency mode:"+settings.streaming.lowLatencyEnabled + " Delay:"+ settings.streaming.liveDelay + 
+                "<br/>Min drift:"+settings.streaming.liveCatchUpMinDrift + " Catchup Rate" + settings.streaming.liveCatchUpPlaybackRate;
          var audioTrack = player.getBitrateInfoListFor("audio")[player.getQualityFor("audio")];
          var videoTrack = player.getBitrateInfoListFor("video")[player.getQualityFor("video")];
          var bestAudio = player.getTopBitrateInfoFor("audio");
@@ -180,3 +199,40 @@ function compareLCN(a, b) {
 }
 
 
+function showSettings() {
+    $("#settings").show();
+}
+
+function hideSettings() {
+    $("#settings").hide();
+    saveLLParameters();
+}
+
+function updateLLSettings(element) {
+    var id = element.id;
+    if(element.id == "lowLatencyEnabled") {
+         player.updateSettings({'streaming': { "lowLatencyEnabled": element.checked}});
+    }
+    else if(element.id == "liveDelay") {
+         player.updateSettings({'streaming': { "liveDelay": parseFloat(element.value, 10)}});
+    }
+    else if(element.id == "liveCatchUpMinDrift") {
+         player.updateSettings({'streaming': { "liveCatchUpMinDrift": parseFloat(element.value, 10)}});
+    }
+    else if(element.id == "liveCatchUpPlaybackRate") {
+         player.updateSettings({'streaming': { "liveCatchUpPlaybackRate": parseFloat(element.value, 10)}});
+    }
+}
+
+function saveLLParameters() {
+    var lowLatencyEnabled =  document.getElementById("lowLatencyEnabled").checked;
+    var targetLatency = parseFloat(document.getElementById("liveDelay").value, 10);
+    var minDrift = parseFloat(document.getElementById("liveCatchUpMinDrift").value, 10);
+    var catchupPlaybackRate = parseFloat(document.getElementById("liveCatchUpPlaybackRate").value, 10);
+    setLocalStorage("ll_settings", {
+            'lowLatencyEnabled': lowLatencyEnabled,
+            'liveDelay': targetLatency,
+            'liveCatchUpMinDrift': minDrift,
+            'liveCatchUpPlaybackRate': catchupPlaybackRate
+        });
+}
