@@ -140,20 +140,20 @@ function parseServiceListProviders(data) {
   var providerslist = [];
   var parser = new DOMParser();
   var doc = parser.parseFromString(data,"text/xml");
-  var providers = doc.getElementsByTagName("sld:ProviderOffering");
+  var providers = doc.getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","ProviderOffering");
   for(var i = 0;i < providers.length;i++) {
-    var providerInfo = providers[i].getElementsByTagName("sld:Provider");
+    var providerInfo = providers[i].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","Provider");
     var info = {};
     if(providerInfo.length > 0) {
-        info["name"] = providerInfo[0].getElementsByTagName("sld:Name")[0].childNodes[0].nodeValue;
+        info["name"] = providerInfo[0].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","Name")[0].childNodes[0].nodeValue;
     }
-    var lists = providers[i].getElementsByTagName("sld:ServiceListOffering");
+    var lists = providers[i].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","ServiceListOffering");
     var servicelists = [];
     info["servicelists"] = servicelists;
     for(var j = 0;j < lists.length;j++) {
         var list = {};
-        list["name"] = lists[j].getElementsByTagName("sld:ServiceListName")[0].childNodes[0].nodeValue;
-        list["url"] = lists[j].getElementsByTagName("sld:ServiceListURI")[0].getElementsByTagName("dvbisd:URI")[0].childNodes[0].nodeValue;
+        list["name"] = lists[j].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","ServiceListName")[0].childNodes[0].nodeValue;
+        list["url"] = lists[j].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","ServiceListURI")[0].getElementsByTagNameNS("urn:dvb:metadata:servicediscovery:2019","URI")[0].childNodes[0].nodeValue;
         servicelists.push(list);
     }
     providerslist.push(info);
