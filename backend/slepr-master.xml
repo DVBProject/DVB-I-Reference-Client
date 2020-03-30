@@ -159,11 +159,5 @@
 				<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/example.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
-<sld:ServiceListOffering regulatorListFlag="false">
-		<sld:ServiceListName>DVB-I Demo Client service list </sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>https://stage.sofiadigital.fi/dvb-i-demo/backend/servicelist.php</dvbisd:URI>
-			</sld:ServiceListURI>
-		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
 </sld:ServiceListEntryPoints>
