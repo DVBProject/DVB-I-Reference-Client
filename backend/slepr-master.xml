@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sld:ServiceListEntryPoints xmlns:sld="urn:dvb:metadata:servicelistdiscovery:2019" xmlns:dvbisd="urn:dvb:metadata:servicediscovery:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicelistdiscovery:2019 dvbi_service_list_discovery_v1.0.xsd">
+	<sld:ServiceListRegistryEntity regulatorFlag="false">
+		<mpeg7:Icon>
+			<mpeg7:MediaUri>http://dvb.org/img/f/dvb-logo.png</mpeg7:MediaUri>
+		</mpeg7:Icon>
+		<sld:Name type="main" xml:lang="eng">DVB</sld:Name>
+		<sld:ContactName>
+			<mpeg7:GivenName>Andy</mpeg7:GivenName>
+			<mpeg7:FamilyName>Anderson</mpeg7:FamilyName>
+		</sld:ContactName>
+		<sld:Address>
+			<mpeg7:PostalAddress>
+				<mpeg7:AddressLine>EBU L'Ancienne Route 17A</mpeg7:AddressLine>
+				<mpeg7:AddressLine>CH-1218 Grand-Saconnex/Geneva</mpeg7:AddressLine>
+				<mpeg7:AddressLine>Switzerland</mpeg7:AddressLine>
+			</mpeg7:PostalAddress>
+		</sld:Address>
+		<sld:ElectronicAddress>
+			<mpeg7:Telephone>+41 22 7100000</mpeg7:Telephone>
+			<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
+		</sld:ElectronicAddress>
+	</sld:ServiceListRegistryEntity>
+	<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>AGCOM</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>John Doe</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>Roma, Italy</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+39 06 0000000</mpeg7:Telephone>
+				<mpeg7:Email>dvbi@agcom.it</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+		<sld:ServiceListOffering regulatorListFlag="true">
+			<sld:ServiceListName>Italian Trusted Services</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>http://dvbi.italian-authority.it/trusted-services.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Language>it</sld:Language>
+			<sld:TargetCountry>ITA,SMR</sld:TargetCountry>
+		</sld:ServiceListOffering>
+	</sld:ProviderOffering>
+	<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>TVfromTheWorld</sld:Name>
+			<sld:Name xml:lang="sv">TV från världen</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>John Jones</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>U.S.</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+1 555 0000000</mpeg7:Telephone>
+				<mpeg7:Email>dvbi_lists@TVfromTheWorld.com</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+		<sld:ServiceListOffering>
+			<sld:ServiceListName xml:lang="en">TV services from the world in English</sld:ServiceListName>		
+			<sld:ServiceListName xml:lang="de">Fernsehen aus ter Welt in Englisch</sld:ServiceListName>
+			<sld:ServiceListName xml:lang="fr">Télévision du monde en anglais</sld:ServiceListName>
+			<sld:ServiceListName xml:lang="it">TV del mondo in inglese</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>http://dvbi.TVfromTheWorld.com/engTVservices.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Language>en</sld:Language>
+			<!-- Assumption: if TargetCountry is not specified, the service list is assumed to be targeted to any country -->
+		</sld:ServiceListOffering>
+		<sld:ServiceListOffering>
+			<sld:ServiceListName xml:lang="de">TV aus Deutschland</sld:ServiceListName>
+			<sld:ServiceListName xml:lang="en">TV from Germany</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>http://dvbi.TVfromTheWorld.com/TVservices_Germany.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Language>de</sld:Language>
+			<sld:Language>en</sld:Language>
+			<sld:TargetCountry>DEU</sld:TargetCountry>
+		</sld:ServiceListOffering>
+	</sld:ProviderOffering>
+	<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>British DVB-I</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>John Doe</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>London, UK</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+44 020 00000000</mpeg7:Telephone>
+				<mpeg7:Email>dvbi@british-service-list-provider.co.uk</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+		<sld:ServiceListOffering>
+			<sld:ServiceListName>Documentaries</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>
+					http://www.british-service-list-provider.co.uk/documentaries.xml
+				</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>
+					http://alt.british-service-list-provider.co.uk/documentaries.xml
+				</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Language>en</sld:Language>
+			<sld:TargetCountry>GBR</sld:TargetCountry>
+			<sld:TargetCountry>FRA</sld:TargetCountry>
+			<sld:TargetCountry>ITA</sld:TargetCountry>
+			<sld:TargetCountry>DEU</sld:TargetCountry>
+			<sld:TargetCountry>AUT</sld:TargetCountry>
+		</sld:ServiceListOffering>
+	</sld:ProviderOffering>
+	<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>SES</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>Jan</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>Luxembourg</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+352 00000000</mpeg7:Telephone>
+				<mpeg7:Email>dvb-i@ses.com</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+		<sld:ServiceListOffering>
+			<sld:ServiceListName>Germany FTA</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>
+					http://www.satip.info/sites/satip/files/files/ASTRA_19_2_E.xml
+				</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:TargetCountry>DEU</sld:TargetCountry>
+		</sld:ServiceListOffering>
+	</sld:ProviderOffering>
+	<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>DVB</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>DVB-I contact</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>Geneva, Switzerland</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+41 22 7100000</mpeg7:Telephone>
+				<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+		<sld:ServiceListOffering regulatorListFlag="false">
+		<sld:ServiceListName>DVB-I Reference Client service list </sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/example.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+		</sld:ServiceListOffering>
+<sld:ServiceListOffering regulatorListFlag="false">
+		<sld:ServiceListName>DVB-I Demo Client service list </sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>https://stage.sofiadigital.fi/dvb-i-demo/backend/servicelist.php</dvbisd:URI>
+			</sld:ServiceListURI>
+		</sld:ServiceListOffering>
+	</sld:ProviderOffering>
+</sld:ServiceListEntryPoints>
