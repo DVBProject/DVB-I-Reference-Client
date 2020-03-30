@@ -1,4 +1,4 @@
-const SERVICE_PROVIDER_LIST = ""
+const PROVIDER_LIST = "http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelist_registry.php";
 
 function parseServiceList(data,dvbChannels) {
     var list = [];

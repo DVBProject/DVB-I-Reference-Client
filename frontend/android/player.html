@@ -122,10 +122,24 @@
     <div><label for="min-drift">Minimum drift (seconds):</label><input type="number" id="liveCatchUpMinDrift"  onchange="updateLLSettings(this)"  value="0.05" min="0.0" max="0.5" step="0.01"></div>
     <div><label for="catchup-playback-rate">Catch-up playback rate (%):</label><input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01"></div>
     <div>
+        <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:selectServiceList()" class="text-white">Select servicelist</a></span>
         <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:toggleStreamInfo()" class="text-white">Stream Info</a></span>
     </div>
     <div><span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:hideSettings()" class="text-white">Close</a></span></div>
     </div>
+
+    <div style="display:none;position:absolute;top:280px;left:30px;background-color:#0008;" class="text-white p-1 rounded" id="servicelist_filter">
+    <label style="width:100px" for="providers">Provider</label><input id="providers" name="providers" type="text" value=""/><br>
+    <label style="width:100px" for="language">Language</label><input id="language" name="language" type="text" value=""/><br>
+    <label style="width:100px" for="genre">Genre</label><input id="genre" name="genre" type="text" value=""/><br>
+    <label style="width:100px" for="country">Country</label><input id="country" name="country" type="text" value=""/><br>
+    <label style="width:100px" for="regulator">Regulator list</label><input id="regulator" name="regulator" type="checkbox" value="true"/><br>
+    <span>Multiple values can be separated by comma</span>
+    <div><span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterServiceLists()" class="text-white">Filter</a></span>
+    <span id="close_service_providers" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:closeServiceLists()" class="text-white">Close</a></span></div>
+   
+    </div>
+    <div style="display:none;position:absolute;top:150px;left:350px;background-color:#0008;" class="text-white p-1 rounded" id="servicelists"></div>
 <script src="js/popper.min.js"></script>  
 </body>
 </html>

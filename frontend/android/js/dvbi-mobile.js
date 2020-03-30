@@ -7,7 +7,6 @@ function channelSelected(channelId) {
         }
     }
     if(newChannel == selectedChannel) {
-        console.log("Same channel!");
         return;
     }
     else if(!newChannel) {
@@ -27,7 +26,13 @@ function channelSelected(channelId) {
 window.onload = function(){
     $(".epg").hide();
     $(".menubar").hide();
-    loadServicelist("../../backend/servicelist.php");
+    var serviceList = getLocalStorage("servicelist");
+    if(serviceList) {
+        listSelected(serviceList);
+    }
+    else {
+        loadServicelistProviders(PROVIDER_LIST,true);
+    }
     uiHideTimeout = setTimeout(hideUI, 5000);
     $(".video_wrapper").on("click touchstart",resetHideTimeout);
     var video = document.getElementById("video");
@@ -110,7 +115,6 @@ function openProgramInfo(program) {
     $(".programinfo").removeClass("hide");
 }
 
-
 function loadServicelist(list) {
     $.get( list, function( data ) {
         var services = parseServiceList(data,null);  
@@ -123,6 +127,72 @@ function loadServicelist(list) {
 		populate();
         epg = new EPG(channels);
     },"text");
+}
+
+function selectServiceList() {
+    $("#settings").hide();
+    $("#servicelists").show();
+    $("#servicelist_filter").show();
+    $("#buttons").hide();
+    loadServicelistProviders(PROVIDER_LIST);
+}
+
+function filterServiceLists() {
+    var providers = $("#providers").val().split(",");
+    var language = $("#language").val().split(",");
+    var genre = $("#genre").val().split(",");
+    var targetCountry = $("#country").val().split(",");
+    var regulatorListFlag = $("#regulator").is(':checked');
+    loadServicelistProviders(generateServiceListQuery(PROVIDER_LIST,providers,language,genre,targetCountry,regulatorListFlag));
+}
+
+function loadServicelistProviders(list,hideCloseButton) {
+    if(hideCloseButton) {
+        $("#close_service_providers").hide();
+    }
+    else {
+        $("#close_service_providers").show();
+    }
+    $.get( list, function( data ) {
+        var servicelists = parseServiceListProviders(data,null);
+        var listElement = document.getElementById("servicelists");
+        $(listElement).empty();
+        $(listElement).show();
+        $("#servicelist_filter").show();
+        var provider = document.createElement('h2');
+        provider.appendChild(document.createTextNode("Select service list"));
+        listElement.appendChild(provider);
+        for (var i = 0; i < servicelists.length ;i++) {
+            var provider = document.createElement('h4');
+            provider.appendChild(document.createTextNode(servicelists[i]["name"]));
+            listElement.appendChild(provider);
+                for (var j = 0; j < servicelists[i]["servicelists"].length;j++) {
+                    var container = document.createElement('div');
+                    var provider = document.createElement('a');
+                    provider.appendChild(document.createTextNode(servicelists[i]["servicelists"][j]["name"]));
+                    provider.href="javascript:listSelected('"+servicelists[i]["servicelists"][j]["url"]+"')";
+                    container.appendChild(provider);
+                    listElement.appendChild(container);
+                }
+        }
+    },"text");
+}
+
+function closeServiceLists() {
+    $("#servicelists").hide();
+    $("#servicelist_filter").hide();
+    $("#buttons").show();
+}
+
+function listSelected(list) {
+    $("#servicelists").hide();
+    $("#servicelist_filter").hide();
+    $("#buttons").show();
+    $("#channel_list").empty();
+    setLocalStorage("servicelist",list);
+    channels = [];
+    epg = null;
+    loadServicelist(list);
 }
 
 function populate() {
