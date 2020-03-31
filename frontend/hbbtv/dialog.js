@@ -14,7 +14,12 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
 	dialog.focused = (_focused!=null)? _focused : 0;
 	dialog.options = buttons.length;
 	dialog.checked = (_checked!=null)? _checked : 0;
-	dialog.buttonbar = new ButtonBar( [VK_ENTER , VK_BACK], { VK_ENTER: "Select", VK_BACK: "Back" }, "buttonbar_dialog");
+    if(dialog.cancel) {
+	    dialog.buttonbar = new ButtonBar( [VK_ENTER , VK_BACK], { VK_ENTER: "Select", VK_BACK: "Back" }, "buttonbar_dialog");
+    }
+    else {
+	    dialog.buttonbar = new ButtonBar( [VK_ENTER], { VK_ENTER: "Select" }, "buttonbar_dialog");
+    }
 	$("#dialog").removeClass();
 	$("#dialog").addClass("show");
 	$("#dialog").html("<h1>"+q+"</h1>");
@@ -162,18 +167,24 @@ function navigateDialog( keyCode )
 				break;
 
 			case VK_ENTER:
-			case VK_BACK:
-			case VK_RED:
-				dialog.open = false;
+                dialog.open = false;
 				$("#dialog").html("");
 				$("#dialog").removeClass("show");
 				$("#dialog").addClass("hide");
-				if( keyCode == VK_BACK && typeof(dialog.cancel) == "function"){
-					dialog.cancel().call();
-				}
-				if( keyCode == VK_ENTER && dialog.callback && typeof(dialog.callback) == "function"){
+				if( dialog.callback && typeof(dialog.callback) == "function"){
 					dialog.callback(dialog.focused); // call handler for response
 				}
+                break;
+			case VK_BACK:
+                if(dialog.cancel) {
+                    dialog.open = false;
+                    $("#dialog").html("");
+                    $("#dialog").removeClass("show");
+                    $("#dialog").addClass("hide");
+                    if( keyCode == VK_BACK && typeof(dialog.cancel) == "function"){
+                        dialog.cancel().call();
+                    }
+                }
 				break;
 
 			default:

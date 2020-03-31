@@ -127,11 +127,11 @@
             });
         }
         else {
-            loadServicelistProviders(PROVIDER_LIST);
+            loadServicelistProviders(PROVIDER_LIST,false);
         }
 	}
 
-    function loadServicelistProviders(url) {
+    function loadServicelistProviders(url,cancelAllowed) {
 
         $.get( url, function( data ) {
             var servicelists = parseServiceListProviders(data);
@@ -155,7 +155,7 @@
                 }, function(){
                    console.log("Error in fetching service data");
                 });
-            });
+            },cancelAllowed);
         },"text");
     }
 

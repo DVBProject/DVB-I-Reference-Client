@@ -385,7 +385,7 @@ function onKey(keyCode)
 
 		break;
         case VK_YELLOW:
-            loadServicelistProviders(PROVIDER_LIST);
+            loadServicelistProviders(PROVIDER_LIST,true);
             break;
 		case VK_PAUSE:
 		case VK_PLAY:
