@@ -19,6 +19,9 @@ Channel.prototype.getNowNext = function() {
             if(newPrograms.length > 1) {
                  epg["next"] = newPrograms[1];
             }
+            if(newPrograms.length > 0) {
+                
+            
             self.epg = epg;
 
 	        $.each( self.items, function( i, item ){
@@ -210,6 +213,7 @@ Channel.prototype.getNowNext = function() {
 		});
         self.boxes = boxes;
         self.center = 0;        
+        }
       
         self.populate(null);
         var status_wrapper = self.element.childNodes.getByClass("status_wrapper")[0];
