@@ -85,7 +85,8 @@ body.player {
         text-shadow: 2px 2px 2px #000;
         height: 40px; }
       .video_wrapper .player-ui .list-group .list-group-item span.chicon img {
-        height: 20px; }
+        max-height: 20px;
+        width: 36px; }
       .video_wrapper .player-ui .list-group .list-group-item span.chnumber {
         font-size: 1.2em; }
       .video_wrapper .player-ui .list-group .list-group-item span.chname {
@@ -118,10 +119,10 @@ body.player {
       font-weight: 600;
       color: #848484;
       display: block; }
-    .video_wrapper #buttons span.menuitem_epg {
+    .video_wrapper #channel_info span.menuitem_epg {
       font-size: 1.0em;
       text-shadow: none; }
-      .video_wrapper #buttons span.menuitem_epg a {
+      .video_wrapper #channel_info span.menuitem_epg a {
         text-decoration: none !important; }
 
 /* common styles */
