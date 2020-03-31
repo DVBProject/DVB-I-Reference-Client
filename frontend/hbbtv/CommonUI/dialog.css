@@ -70,7 +70,7 @@
 	position: relative;
 	text-align: center;
 	/*width: 390px;*/ 
-	width: 450px;
+	width: 650px;
 	margin-left: auto;
 	margin-right: auto;
 	vertical-align:middle;
@@ -123,7 +123,7 @@
  	z-index: 500;
 }
 .dialogButton span:first-child {
-	width: 390px;
+	width: 590px;
 	overflow: hidden;
 	white-space:nowrap;
 	display:inline-block;
