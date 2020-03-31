@@ -154,7 +154,7 @@ function loadServicelistProviders(list,hideCloseButton) {
         $("#close_service_providers").show();
     }
     $.get( list, function( data ) {
-        var servicelists = parseServiceListProviders(data,null);
+        var servicelists = parseServiceListProviders(data);
         var listElement = document.getElementById("servicelists");
         $(listElement).empty();
         $(listElement).show();
