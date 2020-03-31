@@ -325,6 +325,7 @@ img#logo {
 	margin-right: 20px;
 	margin-top: 20px;
 	text-align:left;
+    position: static;
 }
 .btn .icon {
 	width: 30px;
