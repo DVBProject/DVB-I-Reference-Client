@@ -72,6 +72,10 @@ div, span {
 	_border: 1px solid red;
 }
 
+
+.unlisted{
+    color: grey !important;
+}
 .menuitem{
 	display: block;
 	margin-left: 0px;

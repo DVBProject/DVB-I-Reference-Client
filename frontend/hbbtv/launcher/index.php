@@ -198,6 +198,7 @@
                     }
                 ];
                 chan.title = dvbChannel.name;
+                chan.unlisted = true;
                 chan.dvbChannel = dvbChannel;
                 chan.lcn = number++;
                 var channel_obj = new Channel(chan, "menuitem"+ (k + services.length));
