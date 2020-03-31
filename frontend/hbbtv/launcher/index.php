@@ -28,9 +28,11 @@
     <script type="text/javascript" src="../../isoduration.js"></script>
     <script type="text/javascript" src="../../channel-common.js"></script>
     <script type="text/javascript" src="../../common.js"></script>
+    <script type="text/javascript" src="../../dvbi-common.js"></script>
+    <script type="text/javascript" src="../../localstorage.js"></script>
     <script type="text/javascript" src="../buttonbar.js"></script>
 	<script type="text/javascript" src="../alertDialog.js"></script>
-    <script type="text/javascript" src="clientError.js"></script>
+	<script type="text/javascript" src="../dialog.js"></script>
     <script type="text/javascript" src="videoplayer_basic.js"></script>
     <script type="text/javascript" src="videoplayer_html5.js"></script>
 
@@ -40,10 +42,6 @@
 	<script type="text/javascript" language="javascript">
 	//<![CDATA[
 
-    var selectedChNumber = "";
-    var selectedChannel = "";
-    var broadcastChannel = "";
-    var chNumber = "";
    	// LANGUAGE
     var lang_json_array = [];
 	lang_json_array.sort();
@@ -120,29 +118,56 @@
         var progressframeopen = getStyleSheetPropertyValue(".progress_bar_frame.open", "width");
         progressOpenWidth = progressframeopen.substring(0, progressframeopen.length-2);
         
-        getServiceList("../../../backend/servicelist.php", function( epg ){
-                createMenu(epg);
-        }, function(){
-            console.log("Error in fetching service data");
-        });
-  
+        var serviceList = getLocalStorage("servicelist");
+        if(serviceList) {
+            getServiceList(serviceList, function( epg ){
+                    createMenu(epg);
+            }, function(){
+                console.log("Error in fetching service data");
+            });
+        }
+        else {
+            loadServicelistProviders(PROVIDER_LIST);
+        }
 	}
-	
+
+    function loadServicelistProviders(url) {
+
+        $.get( url, function( data ) {
+            var servicelists = parseServiceListProviders(data);
+            console.log(servicelists);
+            var buttons = [];
+            var urls = [];
+            for (var i = 0; i < servicelists.length ;i++) {
+                for (var j = 0; j < servicelists[i]["servicelists"].length;j++) {
+                    var servicelist = "";
+                    servicelist += servicelists[i]["servicelists"][j]["name"];
+                    servicelist += "("+servicelists[i]["name"]+")";
+                    buttons.push(servicelist);
+                    urls.push(servicelists[i]["servicelists"][j]["url"]);
+                }
+            }
+            showDialog("Select service provider", buttons,null,null,
+            function(checked){
+                console.log(checked);
+                setLocalStorage("servicelist",urls[checked]);
+                getServiceList(urls[checked], function( epg ){
+                    createMenu(epg);
+                }, function(){
+                   console.log("Error in fetching service data");
+                });
+            });
+        },"text");
+    }
+
 	function createMenu(data){
+        $("#menu_0").empty();
 		_menu_ = new Menu("menu_0");
 		_menu_.center = 0;
+        menuOffset = 0;
         var currentChannel = null;
         try {
             var searchSelected;
-            if(selectedChNumber.length > 0){
-                searchSelected = true;
-            }
-            else if(selectedChannel.length > 0){
-                searchSelected = true;
-            }
-            else if(broadcastChannel.length > 0){
-                searchSelected = false;
-            }
             var vid = document.getElementById('broadcast');
             var config = vid.getChannelConfig();
             var channelList = config.channelList;

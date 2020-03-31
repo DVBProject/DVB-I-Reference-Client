@@ -19,6 +19,8 @@
     <script type="text/javascript" src="../session.js"></script>
     <script type="text/javascript" src="../../isoduration.js"></script>
     <script type="text/javascript" src="../../channel-common.js"></script>
+    <script type="text/javascript" src="../../dvbi-common.js"></script>
+    <script type="text/javascript" src="../../localstorage.js"></script>
 
 	<script type="text/javascript" language="javascript">
 	//<![CDATA[
@@ -104,7 +106,9 @@
     }
 
     function loadChannelList(){
-        $.get( "../../../backend/servicelist.php", function( data ) {
+        var serviceList = getLocalStorage("servicelist");
+      
+        $.get( serviceList, function( data ) {
             var vid = document.getElementById('broadcast');
             var config = vid.getChannelConfig();
             var dvbChannels = config.channelList;

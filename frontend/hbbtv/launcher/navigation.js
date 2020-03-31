@@ -177,6 +177,10 @@ function onKey(keyCode)
 		if(alertDialog.open){
 			return navigateAlertDialog(keyCode);
 		}
+        if(dialog && dialog.open){
+            navigateDialog(keyCode);
+            return true;
+        }
 		hideUItimer();
 		var num_key;
 		switch (keyCode) {
@@ -380,6 +384,9 @@ function onKey(keyCode)
             }
 
 		break;
+        case VK_YELLOW:
+            loadServicelistProviders(PROVIDER_LIST);
+            break;
 		case VK_PAUSE:
 		case VK_PLAY:
             

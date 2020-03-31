@@ -1,0 +1,187 @@
+
+/******************************
+	DIALOG Functions
+*******************************/
+var dialog = { open : false };
+
+function showDialog( q, buttons, _checked, _focused, callback, cancel)
+{
+	console.log("showDialog");
+	dialog.open = true;
+	dialog.callback = callback;
+	dialog.cancel = cancel;
+	dialog.visibleItems = 10;
+	dialog.focused = (_focused!=null)? _focused : 0;
+	dialog.options = buttons.length;
+	dialog.checked = (_checked!=null)? _checked : 0;
+	dialog.buttonbar = new ButtonBar( [VK_ENTER , VK_BACK], { VK_ENTER: "Select", VK_BACK: "Back" }, "buttonbar_dialog");
+	$("#dialog").removeClass();
+	$("#dialog").addClass("show");
+	$("#dialog").html("<h1>"+q+"</h1>");
+	$("#dialog").append(dialog.buttonbar.bar);
+
+	var wrapper = document.createElement("div");
+	wrapper.addClass("wrapper");
+	wrapper.setAttribute("id", "dialogWrapper");
+	document.getElementById("dialog").appendChild(wrapper);
+
+	// Arrows
+	var up_arrow 	= document.createElement("div");
+	var down_arrow 	= document.createElement("div");
+	up_arrow.setAttribute("id", "dialog_up_arrow");
+	down_arrow.setAttribute("id", "dialog_down_arrow");
+	up_arrow.addClass("dialog_arrow");
+	down_arrow.addClass("dialog_arrow");
+	up_arrow.addClass("hide");
+	down_arrow.addClass("hide");
+	document.getElementById("dialog").appendChild(up_arrow);
+	document.getElementById("dialog").appendChild(down_arrow);
+
+	var dialogButtons = document.createElement("div");
+	dialogButtons.setAttribute("id", "dialogButtons");
+	wrapper.appendChild(dialogButtons);
+
+	if(buttons.length > 0){
+		$.each( buttons, function(i, label){
+			var dialogButton = document.createElement("div");
+			dialogButton.addClass("dialogButton");
+			dialogButton.innerHTML = "<span>"+label+"</span>";
+			var checkmark = document.createElement("div");
+			checkmark.addClass("checkmark");
+			dialogButton.appendChild(checkmark);
+			if(i == dialog.focused){ dialogButton.addClass("focused"); }
+			if(i == dialog.checked){ 
+				dialogButton.addClass("checked");
+			}
+			dialogButtons.appendChild(dialogButton);
+		});
+
+		var buttonElems = $(".dialogButton");
+		var firstvisible = buttonElems[0];
+		var lastvisible = null;
+		var firstvisibleIdx = 0;
+		if(dialog.focused >= dialog.visibleItems){
+			$.each( buttonElems, function(i, elem){
+				if(i == dialog.focused || i == buttonElems.length - dialog.visibleItems){
+					firstvisible = elem;
+					firstvisibleIdx = i;
+					return false;
+				}
+			});
+		}
+		buttonElems[firstvisibleIdx].addClass("firstvisible");
+		lastvisible = buttonElems[Math.min(buttonElems.length-1, firstvisibleIdx + dialog.visibleItems-1)];
+		lastvisible.addClass("lastvisible");
+		
+		var scrolltop = (($(".dialogButton:eq("+ dialog.focused +")").outerHeight(true)) * firstvisibleIdx);
+		console.log("scrolltop: ", scrolltop);
+		$("#dialogWrapper").scrollTop(scrolltop);
+	}
+	handleDialogArrows();
+}
+
+function handleDialogArrows(){
+	var up_arrow = document.getElementById("dialog_up_arrow");
+	var down_arrow = document.getElementById("dialog_down_arrow");
+	if($("#dialogWrapper").scrollTop() > 0){
+		up_arrow.removeClass("hide");
+	}
+	else{
+		up_arrow.addClass("hide");
+	}
+	if($("#dialogWrapper").scrollTop() < $("#dialogWrapper")[0].scrollHeight - $("#dialogWrapper")[0].offsetHeight){
+		down_arrow.removeClass("hide");
+	}
+	else{
+		down_arrow.addClass("hide");
+	}
+}
+
+function navigateDialog( keyCode )
+{
+	console.log( "dialog.js: navigate dialog" );
+	if(!animating){
+		switch(keyCode)
+		{
+			case VK_DOWN:
+			case VK_UP:
+				if( keyCode == VK_UP && dialog.focused ){
+					if($(".dialogButton:eq("+ dialog.focused +")").hasClass("firstvisible") && dialog.focused > 0){
+						animating = true;
+						$(".dialogButton:eq("+ dialog.focused +")").removeClass("firstvisible");
+						$(".dialogButton:eq("+ dialog.focused +")").prev().addClass("firstvisible");
+						var lastvisible = $(".dialogButton.lastvisible");
+						lastvisible.removeClass("lastvisible");
+						lastvisible.prev().addClass("lastvisible");
+						animating = true;
+						$("#dialogWrapper").animate(
+							{scrollTop: $("#dialogWrapper").scrollTop() - $(".dialogButton:eq("+ dialog.focused +")").outerHeight(true)},
+							{
+								duration:250,
+								easing:"linear",
+								complete:function(){
+									animating = false;
+									handleDialogArrows();
+								},
+								fail: function(){
+									animating = false;
+								}
+							}
+						);
+					}
+					dialog.focused--;
+				}
+				else if( keyCode == VK_DOWN && dialog.focused < dialog.options-1 ){
+					if($(".dialogButton:eq("+ dialog.focused +")").hasClass("lastvisible") && dialog.focused+1 < dialog.options){
+						animating = true;
+						$(".dialogButton:eq("+ dialog.focused +")").removeClass("lastvisible");
+						$(".dialogButton:eq("+ dialog.focused +")").next().addClass("lastvisible");
+						var firstvisible = $(".dialogButton.firstvisible");
+						firstvisible.removeClass("firstvisible");
+						firstvisible.next().addClass("firstvisible");
+						animating = true;
+						$("#dialogWrapper").animate(
+							{scrollTop: $("#dialogWrapper").scrollTop() + $(".dialogButton:eq("+ dialog.focused +")").outerHeight(true)},
+							{
+								duration:250,
+								easing:"linear",
+								complete:function(){
+									animating = false;
+									handleDialogArrows();
+								},
+								fail: function(){
+									animating = false;
+								}
+							}
+						);
+					}
+					dialog.focused++;
+				}
+				$(".dialogButton.focused").removeClass("focused");
+				$(".dialogButton:eq("+ dialog.focused +")").addClass("focused");
+				break;
+
+			case VK_ENTER:
+			case VK_BACK:
+			case VK_RED:
+				dialog.open = false;
+				$("#dialog").html("");
+				$("#dialog").removeClass("show");
+				$("#dialog").addClass("hide");
+				if( keyCode == VK_BACK && typeof(dialog.cancel) == "function"){
+					dialog.cancel().call();
+				}
+				if( keyCode == VK_ENTER && dialog.callback && typeof(dialog.callback) == "function"){
+					dialog.callback(dialog.focused); // call handler for response
+				}
+				break;
+
+			default:
+				return false;
+		}
+		return true;
+	}
+	else{
+		return false;
+	}
+}
