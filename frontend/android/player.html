@@ -128,19 +128,48 @@
         <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:hideSettings()" class="text-white float-right">Close</a></span></div>
     </div>
 
-    <div id="servicelist_registry" class="servicelist_registry" style="display:none;">
-    <div style="position:absolute;top:280px;left:30px;background-color:#0008;" class="text-white p-1 rounded" id="servicelist_filter">
-    <label style="width:100px" for="providers">Provider</label><input id="providers" name="providers" type="text" value=""/><br>
-    <label style="width:100px" for="language">Language</label><input id="language" name="language" type="text" value=""/><br>
-    <label style="width:100px" for="genre">Genre</label><input id="genre" name="genre" type="text" value=""/><br>
-    <label style="width:100px" for="country">Country</label><input id="country" name="country" type="text" value=""/><br>
-    <label style="width:100px" for="regulator">Regulator list</label><input id="regulator" name="regulator" type="checkbox" value="true"/><br>
-    <span>Multiple values can be separated by comma</span>
-    <div><span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterServiceLists()" class="text-white">Filter</a></span>
-    <span id="close_service_providers" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:closeServiceLists()" class="text-white">Close</a></span></div>
-   
+    <div id="servicelist_registry" class="servicelist_registry container-fluid h-100" style="display:none;">
+      <div class="row">
+        <div class="text-white p-1 rounded col-3" id="servicelist_filter">
+          <h2>Filter</h2>
+          <div class="form-group row">
+            <label for="providers" class="col-4 col-form-label">Provider</label>
+            <div class="col-8">
+              <input id="providers" name="providers" type="text" value="" class="form-control form-control-sm">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="language" class="col-4 col-form-label">Language</label>
+            <div class="col-8">
+              <input id="language" name="language" type="text" value="" class="form-control form-control-sm">
+            </div>
+          </div>
+          <div class="form-group row">    
+            <label for="genre" class="col-4 col-form-label">Genre</label>
+            <div class="col-8">
+              <input id="genre" name="genre" type="text" value="" class="form-control form-control-sm">
+            </div>
+          </div>
+          <div class="form-group row">   
+            <label for="country" class="col-4 col-form-label">Country</label>
+            <div class="col-8">
+                <input id="country" name="country" type="text" value="" class="form-control form-control-sm">
+             </div>
+          </div>
+          <div class="form-check">    
+            <input id="regulator" name="regulator" type="checkbox" value="true" class="form-check-input">
+            <label for="regulator" class="col-form-label">Regulator list</label>    
+          </div>
+          <span>Multiple values can be separated by comma</span>
+          <div class="d-flex">
+            <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterServiceLists()" class="text-white">Filter</a></span> 
+            <span id="close_service_providers" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:closeServiceLists()" class="text-white">Close</a></span>
+          </div>
+        </div>
+        <div class="col-6 offset-3">
+          <div class="text-white p-1 rounded" id="servicelists"></div>
+        </div>
     </div>
-    <div style="position:absolute;top:150px;left:350px;background-color:#0008;" class="text-white p-1 rounded" id="servicelists"></div>
     </div>
 <script src="js/popper.min.js"></script>  
 </body>

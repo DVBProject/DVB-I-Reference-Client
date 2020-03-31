@@ -231,6 +231,10 @@ body.player {
     #streaminfo .btn a {
       text-decoration: none !important; }
 
+.servicelist_registry {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: relative; }
+
 @keyframes displaynone {
   from {
     display: block; }
