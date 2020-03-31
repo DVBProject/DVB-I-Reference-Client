@@ -116,16 +116,16 @@
     </div>
   </div>
 
-  <div style="display:none;position:absolute;top:150px;left:150px;background-color:#0008;" class="text-white rounded p-1" id="settings">
-    <div><label for="ll_mode">Low latency mode:</label><input type="checkbox" id="lowLatencyEnabled" onchange="updateLLSettings(this)" name="ll_mode" value="ll_mode" ></div>
-    <div><label for="target-latency">Target latency:</label><input type="number"  id="liveDelay" onchange="updateLLSettings(this)" value="3" min="0"></div>
-    <div><label for="min-drift">Minimum drift (seconds):</label><input type="number" id="liveCatchUpMinDrift"  onchange="updateLLSettings(this)"  value="0.05" min="0.0" max="0.5" step="0.01"></div>
-    <div><label for="catchup-playback-rate">Catch-up playback rate (%):</label><input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01"></div>
-    <div>
-        <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:selectServiceList()" class="text-white">Select servicelist</a></span>
-        <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:toggleStreamInfo()" class="text-white">Stream Info</a></span>
-    </div>
-    <div><span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:hideSettings()" class="text-white">Close</a></span></div>
+  <div style="display:none;position:absolute;top:50px;left:170px;background-color:#0008;" class="text-white rounded p-1" id="settings">
+    <h4>Settings</h4>
+    <div class="form-check mb-2"><input type="checkbox" id="lowLatencyEnabled" onchange="updateLLSettings(this)" name="ll_mode" value="ll_mode" class="form-check-input"><label for="ll_mode" class="form-check-label">Low latency mode</label></div>
+    <div class="form-group mb-2 row"><label for="target-latency" class="col-6 col-form-label">Target latency:</label><div class="col-6"><input type="number"  id="liveDelay" onchange="updateLLSettings(this)" value="3" min="0" class="form-control form-control-sm"></div></div>
+    <div class="form-group mb-2 row"><label for="min-drift" class="col-6 col-form-label">Minimum drift (seconds):</label><div class="col-6"><input type="number" id="liveCatchUpMinDrift"  onchange="updateLLSettings(this)"  value="0.05" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm"></div></div>
+    <div class="form-group mb-2 row"><label for="catchup-playback-rate" class="col-6 col-form-label">Catch-up playback rate (%):</label><div class="col-6"><input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm"></div></div>
+    <div class="d-flex">
+        <span class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:selectServiceList()" class="text-white">Select servicelist</a></span>
+        <span class="menuitem_epg btn btn-outline-dark btn-small p-1"><a href="javascript:toggleStreamInfo()" class="text-white">Stream Info</a></span>
+        <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:hideSettings()" class="text-white float-right">Close</a></span></div>
     </div>
 
     <div style="display:none;position:absolute;top:280px;left:30px;background-color:#0008;" class="text-white p-1 rounded" id="servicelist_filter">

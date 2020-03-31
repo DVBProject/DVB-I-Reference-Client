@@ -103,7 +103,8 @@ body.player {
         }
         span.chicon{
           img {
-            height: 20px;
+            max-height: 20px;
+            width: 36px;
           }
         }
         span.chnumber{
