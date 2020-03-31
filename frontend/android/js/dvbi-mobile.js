@@ -31,6 +31,7 @@ window.onload = function(){
         listSelected(serviceList);
     }
     else {
+        $("#servicelist_registry").show();
         loadServicelistProviders(PROVIDER_LIST,true);
     }
     uiHideTimeout = setTimeout(hideUI, 5000);
@@ -131,8 +132,7 @@ function loadServicelist(list) {
 
 function selectServiceList() {
     $("#settings").hide();
-    $("#servicelists").show();
-    $("#servicelist_filter").show();
+    $("#servicelist_registry").show();
     $("#buttons").hide();
     loadServicelistProviders(PROVIDER_LIST);
 }
@@ -157,8 +157,6 @@ function loadServicelistProviders(list,hideCloseButton) {
         var servicelists = parseServiceListProviders(data);
         var listElement = document.getElementById("servicelists");
         $(listElement).empty();
-        $(listElement).show();
-        $("#servicelist_filter").show();
         var provider = document.createElement('h2');
         provider.appendChild(document.createTextNode("Select service list"));
         listElement.appendChild(provider);
@@ -179,14 +177,12 @@ function loadServicelistProviders(list,hideCloseButton) {
 }
 
 function closeServiceLists() {
-    $("#servicelists").hide();
-    $("#servicelist_filter").hide();
+    $("#servicelist_registry").hide();
     $("#buttons").show();
 }
 
 function listSelected(list) {
-    $("#servicelists").hide();
-    $("#servicelist_filter").hide();
+    $("#servicelist_registry").hide();
     $("#buttons").show();
     $("#channel_list").empty();
     setLocalStorage("servicelist",list);
