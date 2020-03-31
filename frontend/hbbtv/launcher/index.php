@@ -149,7 +149,6 @@
             }
             showDialog("Select service provider", buttons,null,null,
             function(checked){
-                console.log(checked);
                 setLocalStorage("servicelist",urls[checked]);
                 getServiceList(urls[checked], function( epg ){
                     createMenu(epg);
@@ -202,41 +201,42 @@
             }
 			_menu_.items.push(channel_obj);
         }
-        var number = 1000;
-        for(var k = 0;k<channelList.length;k++) {
-            var dvbChannel = channelList.item(k);
-            var listed = false;
-            for(var l = 0;l<listedChannels.length;l++) {
-                if(listedChannels[l].ccid == dvbChannel.ccid) {
-                    listed = true;
-                    break;
-                }
-            }
-            if(!listed) {
-                var chan = {};
-                chan.items =  [
-                    {
-                        "title": "Now Showing",
-                        "description": "Now Showing",
-                        "name": "now",
-                        "app": 0
+        if(channelList != null) {
+            var number = 1000;
+            for(var k = 0;k<channelList.length;k++) {
+                var dvbChannel = channelList.item(k);
+                var listed = false;
+                for(var l = 0;l<listedChannels.length;l++) {
+                    if(listedChannels[l].ccid == dvbChannel.ccid) {
+                        listed = true;
+                        break;
                     }
-                ];
-                chan.title = dvbChannel.name;
-                chan.unlisted = true;
-                chan.dvbChannel = dvbChannel;
-                chan.lcn = number++;
-                var channel_obj = new Channel(chan, "menuitem"+ (k + services.length));
-                for(var b = 0; b < channel_obj.boxes.length; b++){
-				    channel_obj.boxes[b].description = "";
-				    break;
-			    }
-                if(currentChannel && chan.dvbChannel.ccid == currentChannel.ccid ) {
-                     current_channel_obj = channel_obj;
                 }
-			    _menu_.items.push(channel_obj);
+                if(!listed) {
+                    var chan = {};
+                    chan.items =  [
+                        {
+                            "title": "Now Showing",
+                            "description": "Now Showing",
+                            "name": "now",
+                            "app": 0
+                        }
+                    ];
+                    chan.title = dvbChannel.name;
+                    chan.unlisted = true;
+                    chan.dvbChannel = dvbChannel;
+                    chan.lcn = number++;
+                    var channel_obj = new Channel(chan, "menuitem"+ (k + services.length));
+                    for(var b = 0; b < channel_obj.boxes.length; b++){
+				        channel_obj.boxes[b].description = "";
+				        break;
+			        }
+                    if(currentChannel && chan.dvbChannel.ccid == currentChannel.ccid ) {
+                         current_channel_obj = channel_obj;
+                    }
+			        _menu_.items.push(channel_obj);
+                }
             }
-
         }
         _menu_.items.sort(compareLCN);
         if(current_channel_obj == null) {
