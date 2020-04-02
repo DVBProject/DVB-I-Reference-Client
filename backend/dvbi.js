@@ -469,7 +469,7 @@ function listSavedServicelists() {
         newTextbox.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
         targetElement.appendChild(newTextbox);
         var newTextbox = document.createElement('a');
-        newTextbox.href=this;
+        newTextbox.href=this+"?ts="+Date.now();
         var image = document.createElement('img');
         image.classList.add("icon");
         image.src ="icons/window.svg";
@@ -506,7 +506,7 @@ function uploadServicelist() {
 }
 
 function loadServicelist(list) {
-    $.get( list, function( data ) {
+    $.get( list+"?ts="+Date.now(), function( data ) {
         var parser;
         var doc;
 
