@@ -87,7 +87,6 @@ div, span {
 	transition: all 0.2s linear;
 */
 	position:relative;
-    _background-color: #2f3892;
     width: 1280px;
 
 }
@@ -95,7 +94,6 @@ div, span {
 	/*height: 38px;*/
 	display: block;
 	height: 88px;
-	_border: 1px solid green;
 }
 .menuitem.open{
 	display: block;
@@ -104,6 +102,11 @@ div, span {
 }
 .menuitem.disabled{
 	display: none !important;
+}
+.menuitem.unlisted .menuitem_chnumber,
+.menuitem.unlisted .menuitem_chname,
+.menuitem.unlisted .sourcetype {
+  color: #aaaaaa !important;
 }
 .menuitem .menu_arrow {
 /*
@@ -381,6 +384,11 @@ div, span {
 	top: 30px;	
 	font-weight: 700;
 
+}
+.menuitem.unlisted.open .menuitem_chnumber,
+.menuitem.unlisted.open .menuitem_chname
+.menuitem.unlisted.open .sourcetype {
+  color: #aaaaaa !important;
 }
 .open .menuitem_title .sourcetype {
     font-size: 18px;
