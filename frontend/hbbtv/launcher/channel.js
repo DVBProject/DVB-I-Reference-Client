@@ -61,32 +61,9 @@ Channel.prototype.getNowNext = function() {
                                             break;
                                         }
                                     }
-                                
-                                if(now.season && now.season.indexOf("_") > -1){
-                                    var season = now.season.substring(0, now.season.indexOf("_"));
-                                    
                                 }
-                                
-                                (now.season && now.season.indexOf("_") > -1) ? " - S" + season + "EP" + now.season.substring(now.season.indexOf("_")+1): "";
-                                
-                                info += "</span>"; 
-                            }else{
-                                info += "<span class=\"horizontalAutoscroll\">";
-                                var defLang_title = XMLEscape(now.getTitle("def"));
-                                var altLang_title = XMLEscape(now.getTitle("alt"));
-                                info += defLang_title + ((defLang_title != altLang_title) ? " " + altLang_title : "");
-                                
-                                if(now.season && now.season.indexOf("_") > -1){
-                                    var season = now.season.substring(0, now.season.indexOf("_"));
-                                    
-                                }
-                                
-                                info += (now.season && now.season.indexOf("_") > -1) ? " - S" + season + "EP" + now.season.substring(now.season.indexOf("_")+1) : "";
                                 info += "</span>"; 
                             }
-                            
-                            
-                            // info += "</span>";
                             
                             if(now_end){
                                 info += "<span class=\"timeremaining\">" + Math.max(0, Math.round((now_end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
@@ -115,55 +92,6 @@ Channel.prototype.getNowNext = function() {
                      }catch(e){
                         console.log("Error updating channel info: " + e.message);
                     }
-                    
-					
-					if(following){
-						info = "";
-						var box = new Box(following, self.element_id + "_" + "following");
-						if(box){
-							
-							if(following.start && following.end){
-								var following_start = following.start;
-								var following_end = following.end;
-							}
-							
-                            box.name = "following";
-							box.parentimage = following.mediaimage || "../CommonUI/empty.png";
-							box.description = "Following";
-                            
-                            
-							//info += "<span>";
-							
-							info += "<span class=\"horizontalAutoscroll\"> ";
-							if(following_start){
-								info += following_start.create24HourTimeString() + " ";
-							}
-							
-							var defLang_title = XMLEscape(box.getTitle("def"));
-							var altLang_title = XMLEscape(box.getTitle( "alt"));
-							
-							info += defLang_title + ((defLang_title != altLang_title) ? " " + altLang_title : "");
-							
-							if(following.season && following.season.indexOf("_") > -1){
-								var season = following.season.substring(0, following.season.indexOf("_"));
-								
-							}
-							
-							info += (following.season && following.season.indexOf("_") > -1) ? " - S" + season + "EP" + following.season.substring(following.season.indexOf("_")+1) : "";
-							info += "</span>";
-							
-							if(following_start && following_end){
-								info += "<span class=\"duration\"> Duration " + Math.max(0, Math.round((following_end.getTime() - following_start.getTime()) / 1000 / 60)) + " mins</span>";
-							}
-							//info += "</span>";
-                            
-							box.info = info;
-						}	
-						
-						if(box instanceof Box){
-							boxes.push(box);
-						}
-					}
 					
 					if(next){
 						info = "";
@@ -198,13 +126,6 @@ Channel.prototype.getNowNext = function() {
                                     }
                                 }
                             }
-							
-							if(next.season && next.season.indexOf("_") > -1){
-								var season = next.season.substring(0, next.season.indexOf("_"));
-								
-							}
-							
-							info += (next.season && next.season.indexOf("_") > -1) ? " - S" + season + "EP" + next.season.substring(next.season.indexOf("_")+1) : "";
 							info += "</span>"; 
 							
 							if(next_start && next_end){
