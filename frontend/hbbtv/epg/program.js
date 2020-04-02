@@ -96,7 +96,16 @@ Program.prototype.populate = function(){
 		var element = document.createElement("div");
 		element.addClass("program");
 		element.setAttribute("id", self.element_id);
+        
 		var title = (self.bilingual) ? self.getTitle() + ((!self.noprogram) ? " " + self.getAltTitle() : "") : self.getTitle();
+        if(self.parentalRating && self.parentalRating.length > 0) {
+            for(var i = 0;i < self.parentalRating.length;i++) {
+                if(self.parentalRating[i].minimumage) {
+                     title += "("+self.parentalRating[i].minimumage+")";
+                    break;
+                }
+            }
+        }
 		element.innerHTML = "<div class=\"programTextContainer horizontalAutoscroll\"><span>" + htmlDecode(title) + "</span></div>";
 		
 		if((self.mediaurl != null && self.mediaurl.length > 0)

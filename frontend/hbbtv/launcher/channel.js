@@ -54,6 +54,13 @@ Channel.prototype.getNowNext = function() {
                                 var altLang_title = XMLEscape(now.getTitle("alt"));
                                 
                                 info += defLang_title + ((defLang_title != altLang_title) ? " " + altLang_title : "");
+                                if(now.parentalRating && now.parentalRating.length > 0) {
+                                    for(var i = 0;i < now.parentalRating.length;i++) {
+                                        if(now.parentalRating[i].minimumage) {
+                                            info += "("+now.parentalRating[i].minimumage+")";
+                                            break;
+                                        }
+                                    }
                                 
                                 if(now.season && now.season.indexOf("_") > -1){
                                     var season = now.season.substring(0, now.season.indexOf("_"));
@@ -183,6 +190,14 @@ Channel.prototype.getNowNext = function() {
 							var altLang_title = XMLEscape(box.getTitle( "alt"));
 					
 							info += defLang_title + ((defLang_title != altLang_title) ? " " + altLang_title : "");
+							if(next.parentalRating && next.parentalRating.length > 0) {
+                                for(var i = 0;i < next.parentalRating.length;i++) {
+                                    if(next.parentalRating[i].minimumage) {
+                                        info += "("+next.parentalRating[i].minimumage+")";
+                                        break;
+                                    }
+                                }
+                            }
 							
 							if(next.season && next.season.indexOf("_") > -1){
 								var season = next.season.substring(0, next.season.indexOf("_"));

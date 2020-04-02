@@ -522,7 +522,16 @@ function keyRed(){
 }
 function updateBannerProgram(prefix,program) {
       if(program) {
-          $("#"+prefix+'title').html(program.title);
+          var parental = "";
+          if(program.parentalRating && program.parentalRating.length > 0) {
+            for(var i = 0;i < program.parentalRating.length;i++) {
+              if(program.parentalRating[i].minimumage) {
+                  parental = "("+program.parentalRating[i].minimumage+")";
+                  break;
+              }
+            }
+          }
+          $("#"+prefix+'title').html(program.title+parental);
           $("#"+prefix+'starttime').html(program.start ? program.start.create24HourTimeString()+" -" : "");
           $("#"+prefix+'endtime').html(program.end ? program.end.create24HourTimeString() : "");
           $("#"+prefix+'image_img').attr("src",program.mediaimage);

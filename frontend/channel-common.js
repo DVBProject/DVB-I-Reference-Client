@@ -70,6 +70,25 @@ Channel.prototype.parseSchedule = function(data) {
                         program.genre = genreValue;
                     }
                 }
+                var parentalGuidance =  description.getElementsByTagName("ParentalGuidance");
+                var parentals = [];
+                for(var k=0;k<parentalGuidance.length;k++) {
+                    var rating = {};
+                    var minimumAge = parentalGuidance[k].getElementsByTagNameNS("urn:tva:mpeg7:2008","MinimumAge");
+                    if(minimumAge.length > 0) { //assume single element
+                        rating.minimumage = minimumAge[0].childNodes[0].nodeValue;
+                    }
+                    var parentalRating = parentalGuidance[k].getElementsByTagNameNS("urn:tva:mpeg7:2008","ParentalRating");
+                    if(parentalRating.length > 0) { //assume single element
+                        rating.parentalRating = parentalRating[0].getAttribute("href");
+                    }
+                    var explanatoryText = parentalGuidance[k].getElementsByTagName("ExplanatoryText");
+                    if(explanatoryText.length > 0) { //assume single element
+                        rating.explanatoryText = explanatoryText[0].childNodes[0].nodeValue;
+                    }
+                    parentals.push(rating);
+                }
+                program.parentalRating = parentals;
                 var relatedMaterial =  description.getElementsByTagName("RelatedMaterial");
                 for(var k=0;k<relatedMaterial.length;k++) {
                     var howRelated = relatedMaterial[k].getElementsByTagName("HowRelated")[0].getAttribute("href");

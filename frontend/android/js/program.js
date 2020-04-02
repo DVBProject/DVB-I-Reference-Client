@@ -34,6 +34,14 @@ Program.prototype.populate = function(){
         var title = document.createElement("div");
         title.addClass("col-8 col-md-10 col-xl-11 pl-0 text-truncate");
         title.innerHTML = self.title;
+        if(self.parentalRating && self.parentalRating.length > 0) {
+            for(var i = 0;i < self.parentalRating.length;i++) {
+                if(self.parentalRating[i].minimumage) {
+                     title.innerHTML += "("+self.parentalRating[i].minimumage+")";
+                    break;
+                }
+            }
+        }
         element.appendChild(title);
 		self.element = element;
 	}
@@ -51,6 +59,22 @@ Program.prototype.populateProgramInfo = function(){
     $(".starttime").text(this.start.create24HourTimeString());
     $(".endtime").text(this.end.create24HourTimeString());
     $(".duration").text(this.prglen+" mins");
+    if(this.parentalRating && this.parentalRating.length > 0) {
+
+        var parental = [];
+        for(var i = 0;i < this.parentalRating.length;i++) {
+            if(this.parentalRating[i].minimumage) {
+                parental.push("MinimumAge:"+this.parentalRating[i].minimumage);
+            }
+            if(this.parentalRating[i].parentalRating) {
+                parental.push("Rating:"+getParentalRating(this.parentalRating[i].parentalRating));
+            }
+            if(this.parentalRating[i].explanatoryText) {
+                parental.push("Reason:"+this.parentalRating[i].explanatoryText);
+            }
+        }
+        $(".parentalrating").text(parental.join(" "));
+    }
     $("#select_service_button").attr("href","javascript:channelSelected('"+this.channel.id+"')");
     
 }

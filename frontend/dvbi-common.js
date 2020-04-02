@@ -161,3 +161,15 @@ function parseServiceListProviders(data) {
   return providerslist;
  
 }
+
+getParentalRating = function(href){
+    if(href == "urn:fvc:metadata:cs:ContentRatingCS:2014-07:no_parental_controls") {
+        return "None";
+    }
+    else if(href == "urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen") {
+        return "15";
+    }
+    else {
+        return "Unknown";
+    }
+}

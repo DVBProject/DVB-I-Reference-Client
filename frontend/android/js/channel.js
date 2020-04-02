@@ -113,12 +113,29 @@ Channel.prototype.updateChannelInfo = function () {
                self.getNowNext();
                return;
             }
-            info += "<span class=\"menuitem_now\">Now: "+now.title+" ";
+            var parental = "";
+            if(now.parentalRating && now.parentalRating.length > 0) {
+                for(var i = 0;i < now.parentalRating.length;i++) {
+                    if(now.parentalRating[i].minimumage) {
+                        parental = "("+now.parentalRating[i].minimumage+")";
+                        break;
+                    }
+                }
+            }
+            info += "<span class=\"menuitem_now\">Now: "+now.title+parental+" ";
             info +=  Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
         }
         var next= self.now_next["next"];
         if(next) {
-            info += "<span class=\"menuitem_next\">Next: "+next.title+" ";
+            if(next.parentalRating && next.parentalRating.length > 0) {
+                for(var i = 0;i < next.parentalRating.length;i++) {
+                    if(next.parentalRating[i].minimumage) {
+                        parental = "("+next.parentalRating[i].minimumage+")";
+                        break;
+                    }
+                }
+            }
+            info += "<span class=\"menuitem_next\">Next: "+next.title+parental+" ";
             info +=  next.start.create24HourTimeString()+" ";
             info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
         }

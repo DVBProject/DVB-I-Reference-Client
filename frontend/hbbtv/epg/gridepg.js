@@ -496,8 +496,24 @@ GridEPG.prototype.populateProgramDetail = function(program){
 			var rating = document.getElementById("rating");
 				rating.className = "";
 				rating.innerHTML = "";
-			if(program.ratingreason){
-				rating.innerHTML = "<span id=\"ratingReason\">"+program.ratingreason.replace(/[()]/g, "") +"</span>";
+            if(program.parentalRating && program.parentalRating.length > 0) {
+                var parental = [];
+                for(var i = 0;i < program.parentalRating.length;i++) {
+                    if(program.parentalRating[i].minimumage) {
+                        parental.push(program.parentalRating[i].minimumage);
+                    }
+                    if(program.parentalRating[i].parentalRating) {
+                        parental.push(getParentalRating(program.parentalRating[i].parentalRating));
+                    }
+                    if(program.parentalRating[i].explanatoryText) {
+                        parental.push(program.parentalRating[i].explanatoryText);
+                    }
+                }
+                rating.innerHTML = "<span id=\"ratingReason\">"+parental.join(" ") +"</span>";
+				rating.removeClass("hide");
+            }
+            else {
+				rating.addClass("hide")
 			}
 
 			var programimage = document.getElementById("detail_programimage");
@@ -580,13 +596,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
 				programimage.addClass("hidden");
 			}
 
-			if(program["rating"] != null && program["rating"].length > 0){
-				rating.addClass("rating_"+program["rating"]);
-				rating.removeClass("hide");
-			}
-			else{
-				rating.addClass("hide")
-			}
+
 			if(program.genre && program.genre.length > 0){
 				genre.innerHTML = "Genre" + ": " + program.genre;
 				genre.removeClass("hide");
