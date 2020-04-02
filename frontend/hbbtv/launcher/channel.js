@@ -188,6 +188,9 @@ Channel.prototype.init = function( init_obj, element_id){
 		if(self.element == null){
 			var element = document.createElement("div");
 			element.className = "menuitem closed";
+            if(self.unlisted) {
+                 element.addClass("unlisted");
+            }
 			element.setAttribute("id", element_id);
 
 			// Arrow up
@@ -213,9 +216,6 @@ Channel.prototype.init = function( init_obj, element_id){
             menuitem_title.innerHTML = innerHtml+"<span class=\"menuitem_chnumber\">" + XMLEscape(self.lcn) +".</span><span class=\"menuitem_chname\">" + XMLEscape(self.title) +"</span><span class=\"sourcetype\">" + XMLEscape(self.sourceTypes) +"</span>";
 
             menuitem_title.addClass("menuitem_title", null);
-            if(self.unlisted) {
-                 menuitem_title.addClass("unlisted");
-            }
 			element.appendChild(menuitem_title);
             
 			// Items
