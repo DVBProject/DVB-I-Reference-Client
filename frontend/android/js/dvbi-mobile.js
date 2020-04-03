@@ -1,3 +1,11 @@
+var selectedChannel = null;
+var channels = [];
+var epg = null;
+var uiHideTimeout = null;
+var player;
+var streamInfoUpdate = null;
+var minimumAge = 0;
+
 function channelSelected(channelId) {
     var newChannel = null;
     for (var i = 0; i < channels.length; i++) {
@@ -56,12 +64,6 @@ window.onload = function(){
         });
     }
 }
-var selectedChannel = null;
-var channels = [];
-var epg = null;
-var uiHideTimeout = null;
-var player;
-var streamInfoUpdate = null;
 
 function resetHideTimeout() {
     if( $(".player-ui").hasClass("hide") && $(".epg").hasClass("hide")) {
