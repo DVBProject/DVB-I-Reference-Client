@@ -5,8 +5,10 @@ var uiHideTimeout = null;
 var player;
 var streamInfoUpdate = null;
 var minimumAge = 0;
+var programChangeTimer = null;
 
 function channelSelected(channelId) {
+    $("#notification").hide();
     var newChannel = null;
     for (var i = 0; i < channels.length; i++) {
         if(channels[i].id == channelId) {
@@ -20,12 +22,11 @@ function channelSelected(channelId) {
     else if(!newChannel) {
         return;
     }
-
+    closeEpg();
     if(selectedChannel) {
         selectedChannel.unselected();
     }
-    closeEpg();
-    player.attachSource(newChannel.dashUrl);
+    
     newChannel.channelSelected();
     selectedChannel = newChannel;    
 
@@ -62,6 +63,11 @@ window.onload = function(){
                 'liveCatchUpPlaybackRate': ll_settings.liveCatchUpPlaybackRate
             }
         });
+    }
+    var parental_settings = getLocalStorage("parental_settings");
+    if(parental_settings) {
+        minimumAge = parseFloat(parental_settings.minimumAge);
+        document.getElementById("parentalControl").value = minimumAge;
     }
 }
 
@@ -303,4 +309,12 @@ function saveLLParameters() {
             'liveCatchUpMinDrift': minDrift,
             'liveCatchUpPlaybackRate': catchupPlaybackRate
         });
+}
+
+function updateParental() {
+    minimumAge = parseFloat(document.getElementById("parentalControl").value, 10);
+    setLocalStorage("parental_settings", { "minimumAge":minimumAge});
+    if(selectedChannel) {
+        selectedChannel.parentalRatingChanged();
+    }
 }

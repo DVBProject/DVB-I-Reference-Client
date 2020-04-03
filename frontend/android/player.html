@@ -123,6 +123,7 @@
     <div class="form-group mb-2 row"><label for="liveDelay" class="col-6 col-form-label">Target latency:</label><div class="col-6"><input type="number"  id="liveDelay" onchange="updateLLSettings(this)" value="3" min="0" class="form-control form-control-sm"></div></div>
     <div class="form-group mb-2 row"><label for="liveCatchUpMinDrift" class="col-6 col-form-label">Minimum drift (seconds):</label><div class="col-6"><input type="number" id="liveCatchUpMinDrift"  onchange="updateLLSettings(this)"  value="0.05" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm"></div></div>
     <div class="form-group mb-2 row"><label for="liveCatchUpPlaybackRate" class="col-6 col-form-label">Catch-up playback rate (%):</label><div class="col-6"><input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm"></div></div>
+    <div class="form-group mb-2 row"><label for="parentalControl" class="col-6 col-form-label">Minimum Age:</label><div class="col-6"><input type="number" id="parentalControl" onchange="updateParental()"  value="0" min="0" max="18"  class="form-control form-control-sm"></div></div>
     <div class="d-flex">
         <span class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:selectServiceList()" class="text-white">Select servicelist</a></span>
         <span class="menuitem_epg btn btn-outline-dark btn-small p-1"><a href="javascript:toggleStreamInfo()" class="text-white">Stream Info</a></span>
@@ -172,6 +173,9 @@
         </div>
     </div>
     </div>
+    <div class="text-white container mt-2" id="notification" style="display:none;position:absolute;top:50px;left:170px;background-color:red;">
+    </div>
 <script src="js/popper.min.js"></script>  
+
 </body>
 </html>

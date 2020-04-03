@@ -7,10 +7,10 @@ function Channel( init_obj, element_id ){
 }
 
 
-Channel.prototype.getNowNext = function() {
+Channel.prototype.getNowNext = function(callback) {
     var self = this;
     if(self.contentGuideURI) {
-         $.get( self.contentGuideURI+"?sid="+self.getServiceRef()+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
+         $.get( self.contentGuideURI+"?sid="+self.getServiceRef()+"&now_next=true", function( data ) {
             var now_next = {};
             var boxes = [];
             var newPrograms = self.parseSchedule(data);
@@ -21,8 +21,8 @@ Channel.prototype.getNowNext = function() {
                  now_next["next"] = newPrograms[1];
             }
             self.now_next = now_next;
-            if(self.selected) {
-                self.updateChannelInfo();
+            if(typeof(callback) == "function"){
+                callback.call();
             }
 
        },"text");
@@ -35,7 +35,7 @@ Channel.prototype.getSchedule = function(callback) {
     self.programs = [];
 
     if(self.contentGuideURI) {
-         $.get( self.contentGuideURI+"?sids[]="+self.getServiceRef()+"&start="+self.epg.start+"&end="+self.epg.end, function( data ) { //TODO use ContentGuideServiceRef from the service
+         $.get( self.contentGuideURI+"?sids[]="+self.getServiceRef()+"&start="+self.epg.start+"&end="+self.epg.end, function( data ) {
                 self.programs = self.parseSchedule(data);
                 if(typeof(callback) == "function"){
                     callback.call();
@@ -50,7 +50,6 @@ Channel.prototype.init = function( init_obj, channel_index){
 			self[f] = field;
 		});
         self.getNowNext();
-        //self.getSchedule();
 		self.element = document.getElementById("channel_"+channel_index);
 		if(self.element == null){			
             var newTextbox = document.createElement('a');
@@ -91,14 +90,84 @@ Channel.prototype.unselected = function () {
 Channel.prototype.channelSelected = function () {
     var self = this;
     self.element.classList.add("active");
-
     self.selected = true;
+    var update =function () {
+        self.setProgramChangedTimer();
+        self.updateChannelInfo();
+        if(self.isProgramAllowed()) {
+            player.attachSource(self.dashUrl);
+        }
+        else {
+            player.attachSource(null);
+            $("#notification").show();
+            $("#notification").text("Content blocked by parental control");
+        }
+    };
+    if(self.nowNextUpdateRequired()) {
+        self.getNowNext(update);
+    }
+    else {
+         update.call();
+    }
 
-    self.updateChannelInfo();
+}
+
+Channel.prototype.programChanged = function() {
+    var self = this;
+    var update =function () {
+        self.updateChannelInfo();
+        if(self.isProgramAllowed()) {
+            $("#notification").hide();
+            try {
+                if(player.getSource() != self.dashUrl) {
+                    player.attachSource(self.dashUrl);
+                }
+            } catch(e) {
+                //player throws an error is there is no souce attached
+               player.attachSource(self.dashUrl);
+            }
+        }
+        else {
+            player.attachSource(null);
+            $("#notification").show();
+            $("#notification").text("Content blocked by parental control");
+        }
+        self.setProgramChangedTimer();
+    };
+    self.getNowNext(update);
+}
+
+Channel.prototype.setProgramChangedTimer = function() {
+    var self = this;
+    if(programChangeTimer) {
+         clearTimeout(programChangeTimer);
+    }
+    if(self.now_next) {
+        curTime = new Date();
+        var now = self.now_next["now"];
+        if(now) {
+            if(curTime < now.end) {
+                programChangeTimer = setTimeout(self.programChanged.bind(self), now.end -curTime);
+            }
+        }
+    }
+}
+
+Channel.prototype.nowNextUpdateRequired = function() {
+    var self = this;
+    if(self.now_next) {
+        curTime = new Date();
+        var now = self.now_next["now"];
+        if(now) {
+            if(curTime < now.end) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 Channel.prototype.updateChannelInfo = function () {
-     console.log("updateChannelInfo");
      var self = this;
      var channelInfo = document.getElementById("channel_info");
      var info = "";
@@ -108,11 +177,6 @@ Channel.prototype.updateChannelInfo = function () {
         curTime = new Date();
         var now = self.now_next["now"];
         if(now) {
-            if(curTime >= now.end) {
-               //Current program ended,update now/next information before updating info
-               self.getNowNext();
-               return;
-            }
             var parental = "";
             if(now.parentalRating && now.parentalRating.length > 0) {
                 for(var i = 0;i < now.parentalRating.length;i++) {
@@ -142,6 +206,8 @@ Channel.prototype.updateChannelInfo = function () {
      }
      channelInfo.innerHTML = info;
 }
+
+
 
 Channel.prototype.showEPG = function () {
     var self = this;
@@ -186,11 +252,48 @@ Channel.prototype.showEPG = function () {
 }
 
 
-Channel.prototype.populateEPG = function (self) {
+Channel.prototype.populateEPG = function () {
     var self = this;
     if(self.programs) {
         for(var i = 0;i<self.programs.length;i++) {
             this.programList.appendChild(self.programs[i].populate());
         }
     }
+}
+
+//Called when user changes parental rating in the settings
+//Program information should be up to date, updated with the programChangeTimer
+Channel.prototype.parentalRatingChanged = function(callback) {
+    var self = this;
+    if(self.isProgramAllowed()) {
+        $("#notification").hide();
+        try {
+            if(player.getSource() != self.dashUrl) {
+                player.attachSource(self.dashUrl);
+            }
+        } catch(e) {
+            //player throws an error is there is no souce attached
+           player.attachSource(self.dashUrl);
+        }
+    }
+    else {
+        player.attachSource(null);
+        $("#notification").show();
+        $("#notification").text("Content blocked by parental control");
+    }
+
+}
+
+Channel.prototype.isProgramAllowed = function() {
+   if(this.now_next) {
+        var now = this.now_next["now"];
+        if(now.parentalRating && now.parentalRating.length > 0) {
+            for(var i = 0;i < now.parentalRating.length;i++) {
+                if(now.parentalRating[i].minimumage && minimumAge < now.parentalRating[i].minimumage) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
 }
