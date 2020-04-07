@@ -64,8 +64,7 @@ Menu.prototype.populate = function(){
 		if(i == this.center){
 			this.items[i].setOpen(true);
 			this.items[i].element.childNodes.getByClass("items")[0].addClass("visible");
-
-            var newTop = (menuOffset  - (i * (ROW_HEIGHT - ROW_VERTICAL_MARGIN)));
+            var newTop = 300  - (i * (ROW_HEIGHT - ROW_VERTICAL_MARGIN));
             menuOffset = newTop;
             $("#menu_0").css("top", menuOffset);
 
