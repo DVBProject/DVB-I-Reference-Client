@@ -64,7 +64,8 @@
 	var progressWidth = 0;
 	var progressOpenWidth = 0;
 	var localizationLangFile = null;
-
+    var minimumAge = 7;
+    var selectedService = null;
 
 
 	var lang = "eng";
@@ -247,6 +248,7 @@
             _menu_.center = _menu_.getChannelIndex(current_channel_obj);
         }
         currentChIndex = current_channel_obj.lcn;
+        selectedService = current_channel_obj;
 		_menu_.populate();
         showMenu();
         document.getElementById("info_num").innerHTML = current_channel_obj.lcn+".";
@@ -265,6 +267,9 @@
 			    jumpToMenuItem(menuItem);
 			    keyEnter();
             }
+        }
+        else {
+            checkParental();
         }
         
 	}

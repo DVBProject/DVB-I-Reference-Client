@@ -20,9 +20,12 @@ Channel.prototype.getNowNext = function() {
                  epg["next"] = newPrograms[1];
             }
             if(newPrograms.length > 0) {
-                
-            
-            self.epg = epg;
+
+            self.epg = epg; 
+            if(self.selected) {
+                checkParental(); 
+            }
+
 
 	        $.each( self.items, function( i, item ){
 			if(self.epg && self.epg[item.name] != null){
@@ -405,4 +408,19 @@ Channel.prototype.getBoxByName = function(name){
 		}
 	});
 	return result;
+}
+
+Channel.prototype.isProgramAllowed = function() {
+   if(this.epg && this.epg["now"]) {
+        var now = this.epg["now"];
+        console.log(now);
+        if(now.parentalRating && now.parentalRating.length > 0) {
+            for(var i = 0;i < now.parentalRating.length;i++) {
+                if(now.parentalRating[i].minimumage && minimumAge < now.parentalRating[i].minimumage) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
 }

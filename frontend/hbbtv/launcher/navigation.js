@@ -28,6 +28,7 @@ var supervisor = null;
 var player = null;
 var broadcast = null;
 var playingDASH = false;
+var playing = false;
 
 if (typeof(KeyEvent)!='undefined') {
 	if (typeof(KeyEvent.VK_LEFT)!='undefined') {
@@ -666,19 +667,7 @@ function channelUp(){
                 showInfobanner();
             }
 			chChangeTimer = setTimeout(function(){
-               try{
-                    if(channel_obj.dvbChannel) {
-                        selectDVBService(channel_obj.dvbChannel);
-                    }
-                    else if(channel_obj.dashUrl) {
-                        playDASH(channel_obj.dashUrl);
-                    }
-
-				}
-				catch(e){
-					console.log(e);
-				}	
-				
+                selectService(channel_obj);
 				clearTimeout(chChangeTimer);
 				chChangeTimer = null;
 				
@@ -711,27 +700,84 @@ function channelDown(){
             };
 
 			chChangeTimer = setTimeout(function(){
-                try{
-                    if(channel_obj.dvbChannel) {
-                        selectDVBService(channel_obj.dvbChannel) ;
-                    }
-                    else if(channel_obj.dashUrl) {
-                        if(player) {
-                            player.stop();
-                        }
-                        playDASH(channel_obj.dashUrl);
-                    }
-
-				}
-				catch(e){
-					console.log(e);
-				}	
-				
-				clearTimeout(chChangeTimer);
-				chChangeTimer = null;
+                selectService(channel_obj);
 				clearTimeout(chChangeTimer);
 				chChangeTimer = null;
 			}, 1500);
+}
+
+function selectService(channel_obj) {
+     selectService.selected = false;
+     selectedService = channel_obj;
+     selectedService.selected = true;
+     if(!channel_obj.isProgramAllowed()) {
+            if(player) {
+                player.stop();
+            }
+            $( "#player" ).remove();
+            playingDASH = false;
+            playing = false;
+            try {
+            if(supervisor != null) {
+                supervisor.setChannel(null);
+            }
+            else {
+                broadcast = document.getElementById('broadcast');
+                broadcast.stop();
+                broadcast.addClass("hide_broadcast");
+            }
+            } catch(e) {}
+        $("#info").removeClass("hide");
+        $("#info").html( "Content blocked by parental rating!" );
+        return;
+     }
+     try{
+        playing= true;
+        $("#info").addClass("hide");
+        if(channel_obj.dvbChannel) {
+            selectDVBService(channel_obj.dvbChannel) ;
+        }
+        else if(channel_obj.dashUrl) {
+            if(player) {
+                player.stop();
+            }
+            playDASH(channel_obj.dashUrl);
+        }
+
+	}
+	catch(e){
+		console.log(e);
+	}
+}
+
+function checkParental() {
+    if(selectedService) {
+        if(selectedService.isProgramAllowed()) {
+            $("#info").addClass("hide");
+            if(!playing) {
+                selectService(selectedService);
+            }
+        }
+        else {
+            $("#info").removeClass("hide");
+            $("#info").html( "Content blocked by parental rating!" );
+            if(player) {
+                player.stop();
+            }
+            $( "#player" ).remove();
+            playingDASH = false;
+            playing = false;
+
+            if(supervisor != null) {
+                supervisor.setChannel(null);
+            }
+            else {
+                broadcast = document.getElementById('broadcast');
+                broadcast.stop();
+                broadcast.addClass("hide_broadcast");
+            }
+        }
+    }
 }
 
 function playDASH(url) {
@@ -779,7 +825,6 @@ function selectDVBService(channel) {
      }
     playingDASH = false;  
     requestTransient();
-
     try {
         if(supervisor != null) {
            supervisor.setChannel(channel,false,"");
@@ -816,18 +861,7 @@ function keyEnter(){
                 document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
                 document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
                 currentChIndex = channel_obj.lcn;
-                if(channel_obj.dvbChannel) {
-                   try {
-                       selectDVBService(channel_obj.dvbChannel);
-                    }
-                    catch(e) {
-                       showInfo("Error selecting channel!");
-                    }
-                }
-                else if(channel_obj.dashUrl) {
-                    playDASH(channel_obj.dashUrl);
-
-                }
+                selectService(channel_obj);
 			}
 			
 	refreshMenu();
