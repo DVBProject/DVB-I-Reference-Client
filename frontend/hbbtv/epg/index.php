@@ -132,7 +132,7 @@
             var cid = encodeURIComponent(channelList.channels[i].id);
             cids.push(cid);
         }
-        var firstChannel = getUrlParameter("ch");
+        firstChannel = getUrlParameter("ch");
         if(firstChannel) {
             channelToOpen = cids.indexOf(firstChannel);
             if(channelToOpen == -1) {
