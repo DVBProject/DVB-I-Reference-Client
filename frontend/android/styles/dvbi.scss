@@ -6,6 +6,7 @@ grey: #131313
 lightgrey: #848484
 darkblue: #011927
 */
+$red-color: #B11116;
 $orange-color: #e47600;
 $blue-color: #3996c9;
 $darkblue-color: #011927;
@@ -329,6 +330,18 @@ body.player {
   background-color: rgba(0,0,0,0.8);
   position: relative;
 }
+// Notification
+#notification {
+  background-color: $red-color;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);  
+}
+
 @keyframes displaynone {
   from {display: block;}
   to {display: none;}

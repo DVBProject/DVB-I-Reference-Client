@@ -235,6 +235,16 @@ body.player {
   background-color: rgba(0, 0, 0, 0.8);
   position: relative; }
 
+#notification {
+  background-color: #B11116;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
 @keyframes displaynone {
   from {
     display: block; }
