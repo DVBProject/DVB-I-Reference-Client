@@ -20,10 +20,7 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
     else {
 	    dialog.buttonbar = new ButtonBar( [VK_ENTER], { VK_ENTER: "Select" }, "buttonbar_dialog");
     }
-	$("#dialog").removeClass();
-	$("#dialog").addClass("show");
-	$("#dialog").html("<h1>Settings</h1>");
-	$("#dialog").append(dialog.buttonbar.bar);
+	
 
 	var wrapper = document.createElement("div");
     var title = document.createElement("h2");
@@ -31,7 +28,7 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
     wrapper.appendChild(title);
 	wrapper.addClass("wrapper");
 	wrapper.setAttribute("id", "dialogWrapper");
-	document.getElementById("dialog").appendChild(wrapper);
+	
 
 	// Arrows
 	var up_arrow 	= document.createElement("div");
@@ -64,7 +61,7 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
 			dialogButtons.appendChild(dialogButton);
 		});
 
-		var buttonElems = $(".dialogButton");
+		var buttonElems = $(dialogButtons);
 		var firstvisible = buttonElems[0];
 		var lastvisible = null;
 		var firstvisibleIdx = 0;
@@ -85,6 +82,13 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
 		console.log("scrolltop: ", scrolltop);
 		$("#dialogWrapper").scrollTop(scrolltop);
 	}
+   
+	$("#dialog").html("<h1>Settings</h1>");
+	$("#dialog").append(dialog.buttonbar.bar);
+    document.getElementById("dialog").appendChild(wrapper);
+	$("#dialog").addClass("show");
+    $("#dialog").removeClass("hide");
+
 	handleDialogArrows();
 }
 
@@ -171,21 +175,26 @@ function navigateDialog( keyCode )
 
 			case VK_ENTER:
                 dialog.open = false;
-				$("#dialog").html("");
-				$("#dialog").removeClass("show");
-				$("#dialog").addClass("hide");
+
 				if( dialog.callback && typeof(dialog.callback) == "function"){
 					dialog.callback(dialog.focused); // call handler for response
 				}
+                else {
+                    $("#dialog").html("");
+				    $("#dialog").removeClass("show");
+				    $("#dialog").addClass("hide");
+                }
                 break;
 			case VK_BACK:
                 if(dialog.cancel) {
                     dialog.open = false;
-                    $("#dialog").html("");
-                    $("#dialog").removeClass("show");
-                    $("#dialog").addClass("hide");
                     if( keyCode == VK_BACK && typeof(dialog.cancel) == "function"){
                         dialog.cancel().call();
+                    }
+                    else {
+                        $("#dialog").html("");
+				        $("#dialog").removeClass("show");
+				        $("#dialog").addClass("hide");
                     }
                 }
 				break;

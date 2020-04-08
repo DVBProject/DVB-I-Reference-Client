@@ -152,6 +152,9 @@
             function(checked){
                 setLocalStorage("servicelist",urls[checked]);
                 getServiceList(urls[checked], function( epg ){
+                    $("#dialog").html("");
+			        $("#dialog").removeClass("show");
+			        $("#dialog").addClass("hide");
                     createMenu(epg);
                 }, function(){
                    console.log("Error in fetching service data");
