@@ -20,7 +20,7 @@
 #dialog .wrapper {
   display: block;
   height: 550px;
-  line-height: 550px;
+  _line-height: 550px;
   overflow: hidden;
   position: relative;
   vertical-align: middle;
@@ -141,6 +141,7 @@
 	width: 35px;
 	background-image:url(dialog_checkmark.png);
 	background-repeat:no-repeat;
+  border: 1px solid red;
 }
 .checked .checkmark{
 	display: block !important;
