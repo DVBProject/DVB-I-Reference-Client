@@ -386,7 +386,7 @@ function onKey(keyCode)
 
 		break;
         case VK_YELLOW:
-            loadServicelistProviders(PROVIDER_LIST,true);
+            showSettings();
             break;
 		case VK_PAUSE:
 		case VK_PLAY:
@@ -424,6 +424,21 @@ function onKey(keyCode)
 		}
 		return true;
 	}
+}
+
+function showSettings() {
+    var buttons = [];
+    buttons.push("Select servicelist");
+    buttons.push("Parental settings");
+    showDialog("Select service provider", buttons,null,null,
+        function(checked){
+            if(checked == 0 ) {
+                loadServicelistProviders(PROVIDER_LIST,function() {showSettings();});
+            }
+            else if(checked == 1 ) {
+                showInfo("TODO: Show parental settings");
+            }
+     },true);
 }
 
 function volumeUp() {
