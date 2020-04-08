@@ -22,10 +22,13 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
     }
 	$("#dialog").removeClass();
 	$("#dialog").addClass("show");
-	$("#dialog").html("<h1>"+q+"</h1>");
+	$("#dialog").html("<h1>Settings</h1>");
 	$("#dialog").append(dialog.buttonbar.bar);
 
 	var wrapper = document.createElement("div");
+    var title = document.createElement("h2");
+    title.innerHTML = q;
+    wrapper.appendChild(title);
 	wrapper.addClass("wrapper");
 	wrapper.setAttribute("id", "dialogWrapper");
 	document.getElementById("dialog").appendChild(wrapper);
