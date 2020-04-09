@@ -39,8 +39,6 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
 	down_arrow.addClass("dialog_arrow");
 	up_arrow.addClass("hide");
 	down_arrow.addClass("hide");
-	document.getElementById("dialog").appendChild(up_arrow);
-	document.getElementById("dialog").appendChild(down_arrow);
 
 	var dialogButtons = document.createElement("div");
 	dialogButtons.setAttribute("id", "dialogButtons");
@@ -85,6 +83,8 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
    
 	$("#dialog").html("<h1>Settings</h1>");
 	$("#dialog").append(dialog.buttonbar.bar);
+    document.getElementById("dialog").appendChild(up_arrow);
+	document.getElementById("dialog").appendChild(down_arrow);
     document.getElementById("dialog").appendChild(wrapper);
 	$("#dialog").addClass("show");
     $("#dialog").removeClass("hide");

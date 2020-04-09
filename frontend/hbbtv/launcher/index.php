@@ -64,7 +64,7 @@
 	var progressWidth = 0;
 	var progressOpenWidth = 0;
 	var localizationLangFile = null;
-    var minimumAge = 7;
+    var minimumAge = 255;
     var selectedService = null;
 
 
@@ -118,8 +118,13 @@
         progressWidth = progressframe.substring(0, progressframe.length-2);
         var progressframeopen = getStyleSheetPropertyValue(".progress_bar_frame.open", "width");
         progressOpenWidth = progressframeopen.substring(0, progressframeopen.length-2);
+        var parental_settings = getLocalStorage("parental_settings");
+        if(parental_settings) {
+            minimumAge = parseInt(parental_settings.minimumAge);
+        }
         
         var serviceList = getLocalStorage("servicelist");
+
         if(serviceList) {
             getServiceList(serviceList, function( epg ){
                     createMenu(epg);
@@ -136,19 +141,23 @@
 
         $.get( url, function( data ) {
             var servicelists = parseServiceListProviders(data);
-            console.log(servicelists);
             var buttons = [];
             var urls = [];
+            var serviceList = getLocalStorage("servicelist");
+            var selected = null;
             for (var i = 0; i < servicelists.length ;i++) {
                 for (var j = 0; j < servicelists[i]["servicelists"].length;j++) {
                     var servicelist = "";
                     servicelist += servicelists[i]["servicelists"][j]["name"];
                     servicelist += "("+servicelists[i]["name"]+")";
                     buttons.push(servicelist);
+                    if(servicelists[i]["servicelists"][j]["url"] == serviceList) {
+                        selected = urls.length;
+                    }
                     urls.push(servicelists[i]["servicelists"][j]["url"]);
                 }
             }
-            showDialog("Select service provider", buttons,null,null,
+            showDialog("Select service provider", buttons,selected,selected,
             function(checked){
                 setLocalStorage("servicelist",urls[checked]);
                 getServiceList(urls[checked], function( epg ){

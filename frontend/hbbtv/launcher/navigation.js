@@ -427,18 +427,44 @@ function onKey(keyCode)
 }
 
 function showSettings() {
-    var buttons = [];
-    buttons.push("Select servicelist");
-    buttons.push("Parental settings");
-    showDialog("Select service provider", buttons,null,null,
+    var buttons = ["Select servicelist","Parental settings" ];
+    showDialog("Derp", buttons,null,null,
         function(checked){
             if(checked == 0 ) {
                 loadServicelistProviders(PROVIDER_LIST,function() {showSettings();});
             }
             else if(checked == 1 ) {
-                showInfo("TODO: Show parental settings");
+                showParentalSettings();
             }
      },true);
+}
+
+function showParentalSettings() {
+    var buttons = ["0","3","5","7","12","15","18","Off"];
+    var checked = 0;
+    if(minimumAge == 255) {
+        checked = buttons.length-1;
+    }
+    else {
+        var age = minimumAge.toString();
+        for(var i = 0;i<buttons.length;i++) {
+            if(age == buttons[i] ) {
+                checked = i;
+                break;
+            }
+        }
+    }
+    showDialog("Minimum age", buttons,checked,checked,
+        function(checked){
+            if(buttons[checked] == "Off") {
+                minimumAge = 255;
+            }
+            else {
+                minimumAge = parseInt(buttons[checked]);
+            }
+            setLocalStorage("parental_settings", { "minimumAge":minimumAge});
+            showSettings();
+     },function() {showSettings();});
 }
 
 function volumeUp() {
