@@ -428,7 +428,7 @@ function onKey(keyCode)
 
 function showSettings() {
     var buttons = ["Select servicelist","Parental settings" ];
-    showDialog("Derp", buttons,null,null,
+    showDialog("", buttons,null,null,
         function(checked){
             if(checked == 0 ) {
                 loadServicelistProviders(PROVIDER_LIST,function() {showSettings();});

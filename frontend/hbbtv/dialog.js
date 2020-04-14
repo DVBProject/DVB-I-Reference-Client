@@ -13,7 +13,7 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
 	dialog.visibleItems = 10;
 	dialog.focused = (_focused!=null)? _focused : 0;
 	dialog.options = buttons.length;
-	dialog.checked = (_checked!=null)? _checked : 0;
+	dialog.checked = (_checked!=null)? _checked : -1;
     if(dialog.cancel) {
 	    dialog.buttonbar = new ButtonBar( [VK_ENTER , VK_BACK], { VK_ENTER: "Select", VK_BACK: "Back" }, "buttonbar_dialog");
     }
