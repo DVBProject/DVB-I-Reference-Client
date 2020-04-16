@@ -308,6 +308,10 @@ GridEPG.prototype.populate = function(callback){
 	}
 }
 
+GridEPG.prototype.getLastChannel = function(){
+    return this.channels[this.channels.length - 1];
+}
+
 GridEPG.prototype.handleArrows = function(){
 	// Set arrows
 	if(arrow_down && arrow_up && arrow_left && arrow_right){
@@ -316,7 +320,7 @@ GridEPG.prototype.handleArrows = function(){
 		arrow_left.removeClass("hide");
 		arrow_right.removeClass("hide");
 		
-		if(this.channels.last().visible){
+		if(this.getLastChannel().visible){
 			arrow_down.addClass("hide");
 		}
 		if(this.channels[0].visible){
@@ -325,7 +329,7 @@ GridEPG.prototype.handleArrows = function(){
 		if(this.firstDay == this.minDay && this.activeItem == this.getOpenChannel().programs[0]){
 			arrow_left.addClass("hide");
 		}
-		if(this.lastDay == this.maxDay && this.activeItem == this.getOpenChannel().programs.last()){
+		if(this.lastDay == this.maxDay && this.activeItem == this.getOpenChannel().getLastProgram()){
 			arrow_right.addClass("hide");
 		}
 	}
@@ -612,7 +616,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
 				audio.addClass("hide");
 			}
 
-			if([genre, audio].hasClass("hide")){
+			if(genre.hasClass("hide") || audio.hasClass("hide")){
 				rating.addClass("no_border");
 			}
 
@@ -777,7 +781,7 @@ GridEPG.prototype.firstLoadedChannelIdx = function(){
 
 GridEPG.prototype.lastLoadedChannelIdx = function(){
 	if(_epg_.channels.length > 0){
-		return _epg_.cids.indexOf(_epg_.channels.last().id.toString());
+		return _epg_.cids.indexOf(_epg_.getLastChannel().id.toString());
 	}
 	return null;
 }

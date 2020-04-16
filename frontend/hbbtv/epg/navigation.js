@@ -318,7 +318,7 @@ function keyRight(){
                  _epg_.setActiveItem(currentProgram);
             });
         }
-        else if(channel.visiblePrograms.last() != _epg_.activeItem){
+        else if(channel.getLastVisibleProgram() != _epg_.activeItem){
             var idx = channel.visiblePrograms.indexOf(_epg_.activeItem);
             _epg_.setActiveItem(channel.visiblePrograms[idx+1]);
         }
@@ -478,7 +478,7 @@ function keyFastFwd(){
             _epg_.setActiveItem(closest);
         });
     }
-    else if(_epg_.channels.last().id.toString() != _epg_.cids.last()){
+    else if(_epg_.getLastProgram().id.toString() != _epg_.cids[_epg_.cids.length -1]){
         var idx = _epg_.cids.indexOf(_epg_.getOpenChannel().id.toString());
         var visibleIdx = _epg_.visibleChannels.indexOf(_epg_.getOpenChannel());
         var start_idx = Math.min(cids.length-1-5, idx-visibleIdx + 5);

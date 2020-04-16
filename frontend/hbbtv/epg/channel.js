@@ -286,3 +286,11 @@ Channel.prototype.previousProgram = function(item){
 	}
 	return previous;
 }
+
+Channel.prototype.getLastProgram = function() {
+    return this.programs[this.programs.length - 1];
+}
+
+Channel.prototype.getLastVisibleProgram = function() {
+    return this.visiblePrograms[this.visiblePrograms.length - 1];
+}

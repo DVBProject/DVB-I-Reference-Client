@@ -224,15 +224,6 @@ Element.prototype.hasClass = function(cls) {
 	}
 }
 
-Array.prototype.hasClass = function(cls){
-	for(var i = 0; i < this.length; i++){
-		if(!this[i].hasClass(cls)){
-			return false;
-		}
-	}
-	return true;
-}
-
 function UTCDate(){
 	return new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000);
 }
@@ -591,47 +582,6 @@ Document.prototype.getElementsByClasses = function(classes){
 	}
 }
 
-// Adds up all the numbers in the array and skips all non-numbers.
-Array.prototype.sum = function(){
-	try{
-		var result = 0;
-		for(var i = 0; i < this.length; i++){
-			if(this[i] && typeof(this[i]) == "number"){
-				result += this[i];
-			}
-		}
-		return result;
-	}
-	catch(e){
-		console.log(e);
-	}
-}
-
-Array.prototype.sortBy = function(){
-
-	var fields = arguments;
-	console.log(fields);
-	this.sort(function(a, b){
-		for( var i = 0; i < fields.length; ++i )
-		{
-			var field = fields[i];
-			var desc = false;
-			if( field[0] == "-" )
-			{
-				desc = true;
-				field = field.substring(1);
-			}
-			if (a[field] < b[field]){
-				return -1 + (2*desc);
-			}
-			if (a[field] > b[field]){
-				return 1 - (2*desc);
-			}
-		}
-		return 0;
-	});
-};
-
 Object.size = function(obj){
 	if(Object.keys(obj) == null){
 		return 0;
@@ -639,17 +589,6 @@ Object.size = function(obj){
 	return Object.keys(obj).length;
 }
 
-Array.prototype.getFirstByKeyValue = function(key, value){
-	for(var i = 0; i < this.length; i++){
-		if(this[i][key] === value){
-			return this[i];
-		}
-	}
-}
-
-Array.prototype.last = function(){
-	return this[this.length - 1];
-};
 
 function addZeroPrefix(number){
 	if(number < 10){
