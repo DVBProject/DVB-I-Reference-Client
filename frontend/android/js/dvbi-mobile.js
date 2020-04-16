@@ -6,6 +6,7 @@ var player;
 var streamInfoUpdate = null;
 var minimumAge = 0;
 var programChangeTimer = null;
+var trackSelection = null;
 
 function channelSelected(channelId) {
     $("#notification").hide();
@@ -26,11 +27,13 @@ function channelSelected(channelId) {
     if(selectedChannel) {
         selectedChannel.unselected();
     }
-    
+    $("#subtitle_button").hide();
+    $("#audio_button").hide();
     newChannel.channelSelected();
-    selectedChannel = newChannel;    
+    selectedChannel = newChannel;
 
 }
+
 
 window.onload = function(){
     $(".epg").hide();
@@ -46,9 +49,21 @@ window.onload = function(){
     uiHideTimeout = setTimeout(hideUI, 5000);
     $(".video_wrapper").on("click touchstart",resetHideTimeout);
     var video = document.getElementById("video");
+    video.addEventListener('play', (event) => {
+       var subtitles = player.getTracksFor("fragmentedText");
+       if(subtitles && subtitles.length > 0) {
+          $("#subtitle_button").show();
+       }
+       var audio = player.getTracksFor("audio");
+       if(audio && audio.length > 1) {
+          $("#audio_button").show();
+       }
+    });
+
     player = dashjs.MediaPlayer().create();
     player.initialize(video);
     player.setAutoPlay(true);
+    player.attachTTMLRenderingDiv( document.getElementById("subtitles"));
     var ll_settings = getLocalStorage("ll_settings");
     if(ll_settings) {
         document.getElementById("lowLatencyEnabled").checked = ll_settings.lowLatencyEnabled;
@@ -317,4 +332,93 @@ function updateParental() {
     if(selectedChannel) {
         selectedChannel.parentalRatingChanged();
     }
+}
+
+function showSubtitles() {
+    if(trackSelection == "subtitle" && $("#tracklist").is(":visible")){
+        $("#tracklist").empty();
+        $("#tracklist").hide();
+        trackSelection = null;
+        return;
+    }
+    var list = document.getElementById("tracklist");
+    var current = null;
+    if(player.isTextEnabled()) {
+        current = player.getCurrentTrackFor("fragmentedText");
+    }
+    $(list).empty();
+    $(list).show();
+    var header = document.createElement('h4');
+    header.appendChild(document.createTextNode("Subtitles"));
+    list.appendChild(header);
+    var subtitles = player.getTracksFor("fragmentedText");
+    for(var i = 0;i < subtitles.length;i++) {
+        var container = document.createElement('div');
+        container.classList.add("row");
+        if(subtitles[i] == current) {
+            container.classList.add("selected_track");
+        }
+        var track = document.createElement('a');
+        track.classList.add("col-5","d-inline-block");
+        track.appendChild(document.createTextNode(subtitles[i].lang +" ("+ subtitles[i].roles.join(",")+")"));
+        track.href="javascript:selectSubtitle("+i+")";
+        container.appendChild(track);
+        list.appendChild(container);
+   }
+   var container = document.createElement('div');
+   container.classList.add("row");
+    if(null == current) {
+            container.classList.add("selected_track");
+   }
+   var track = document.createElement('a');
+   track.classList.add("col-5","d-inline-block");
+   track.appendChild(document.createTextNode("Off"));
+   track.href="javascript:selectSubtitle(-1)";
+   container.appendChild(track);
+   list.appendChild(container);
+   trackSelection = "subtitle";
+}
+
+function selectSubtitle(track) {
+    player.setTextTrack(track);
+    $("#tracklist").empty();
+    $("#tracklist").hide();
+}
+
+function showAudio() {
+    if(trackSelection == "audio" && $("#tracklist").is(":visible")){
+        $("#tracklist").empty();
+        $("#tracklist").hide();
+        trackSelection = null;
+        return;
+    }
+    var list = document.getElementById("tracklist");
+    var current = player.getCurrentTrackFor("audio");
+    $(list).empty();
+    $(list).show();
+    var header = document.createElement('h4');
+    header.appendChild(document.createTextNode("Audio tracks"));
+    list.appendChild(header);
+    var audio = player.getTracksFor("audio");
+    for(var i = 0;i < audio.length;i++) {
+        var container = document.createElement('div');
+        container.classList.add("row");
+        if(audio[i] == current) {
+            container.classList.add("selected_track");
+        }
+        var track = document.createElement('a');
+        track.classList.add("col-5","d-inline-block");
+        track.appendChild(document.createTextNode(audio[i].lang +" ("+ audio[i].roles.join(",")+")"));
+        track.href="javascript:selectAudio("+i+")";
+        container.appendChild(track);
+        list.appendChild(container);
+   }
+   trackSelection = "audio";
+}
+
+function selectAudio(track) {
+    var audio = player.getTracksFor("audio");
+    player.setCurrentTrack(audio[track]);
+    $("#tracklist").empty();
+    $("#tracklist").hide();
 }

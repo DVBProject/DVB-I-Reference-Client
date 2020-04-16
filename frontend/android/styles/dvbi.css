@@ -235,6 +235,9 @@ body.player {
   background-color: rgba(0, 0, 0, 0.8);
   position: relative; }
 
+.selected_track {
+  background-color: blue;
+}
 #notification {
   background-color: #B11116;
   position: relative;

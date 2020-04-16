@@ -37,7 +37,10 @@
 </head>
 <body style="margin: 0px" class="player">
 <div class="video_wrapper overflow-hidden">
-    <div class="video text-center"> <video id="video" ></video></div>
+    <div class="video text-center">
+    <video id="video" ></video>
+    <div id="subtitles"></div>
+    </div>
     <div class="channels player-ui">
       <div class="main container h-100 mw-100">
         <div class="row h-100">
@@ -52,6 +55,8 @@
                  <div id="buttons" style="display:none">
                     <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showEpg()" class="text-white">Open EPG</a></span>
                     <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSettings()" class="text-white">Settings</a></span>
+                    <span style="display:none" id="subtitle_button" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSubtitles()" class="text-white">Subtitles</a></span>
+                    <span style="display:none" id="audio_button" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showAudio()" class="text-white">Audio</a></span>
                 </div>
               </div>
             </div>
@@ -172,6 +177,8 @@
           <div class="text-white p-1 rounded" id="servicelists"></div>
         </div>
     </div>
+    </div>
+    <div style="display:none;position:absolute;top:50px;left:170px;background-color:#0008;" id="tracklist" class="text-white p-1 rounded col-3">
     </div>
     <div class="text-white container mt-2 text-center h4 p-2 rounded align-middle" id="notification" style="display:none;">
     </div>
