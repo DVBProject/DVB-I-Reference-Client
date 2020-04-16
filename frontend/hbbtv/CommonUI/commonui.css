@@ -248,15 +248,16 @@ img#logo {
 .normal {
 	color: #fff;
 }
+/*
 .focused:not(.gridViewBox) {
-	color: #fff !important;	
+	color: #0098f4 !important;	
 	z-index:9;
 	border-bottom: 3px solid #f7921e !important;	
 }
 .focused:not(.keyboardbutton):not(#preview):not(.newsitem):not(.categoryitem){
 	
 }
-
+*/
 .selected{
 	/*color: #fff !important;*/
 }
@@ -679,6 +680,7 @@ img#logo {
 	visibility: hidden;	
 }
 /* END CatchUp / epg scrollList */
+/*
 .dialogButton span:first-child {
 	width: 330px;
 	overflow: hidden;
@@ -688,6 +690,8 @@ img#logo {
 	text-align: center; 
 	text-overflow: ellipsis;
 }
+*/
+/*
 .checkmark {
 	display: none;
 	height: inherit;
@@ -701,6 +705,7 @@ img#logo {
 .checked .checkmark{
 	display: block !important;
 }
+*/
 /* */
 #info{
 	position:absolute;

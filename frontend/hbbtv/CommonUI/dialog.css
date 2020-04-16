@@ -7,9 +7,7 @@
 	left: 0px;
 	z-index: 400;
 	text-align: center;	
-	/*background-image:url(bg_gradient.png);*/
 	background-repeat:repeat-x;	 
-	_display: none;
 }
 #dialog h1{
 	height:50px;
@@ -24,7 +22,7 @@
   overflow: hidden;
   position: relative;
   vertical-align: middle;
-  /*width: 390px;*/ width: 470px;
+  width: 470px;
   left: 445px;
 }
 #dialog .wrapper {
@@ -38,19 +36,18 @@
 
 
 #dialogButtons  {
-  	_position: relative;
  display: inline-block;
-  position: unset;
-  vertical-align: middle;	
+ position: unset;
+ vertical-align: middle;	
 
 }
 #dialogButtons.dialogButton_alert {
 	display: block;	
 }
 .dialog_btn_container {
-	height: 530px;
-    vertical-align:middle;
-    display:table-cell;
+  height: 530px;
+  vertical-align:middle;
+  display:table-cell;
 	position: relative;
 	overflow: hidden;
 }
@@ -69,13 +66,11 @@
 	margin-bottom: 11px;
 	position: relative;
 	text-align: center;
-	/*width: 390px;*/ 
 	width: 650px;
 	margin-left: auto;
 	margin-right: auto;
 	vertical-align:middle;
 	border: none;
-	_border-bottom: 3px transparent solid !important;	
 	overflow: hidden;	
   
   /*
@@ -92,19 +87,18 @@
 }
 */
 .dialogButton.checked{
-	background-color: #000;
-	_border-bottom: 3px solid #000;
+	background-color: #032c44;
+  color: #fff;
 }
 .dialogButton.focused{
-	/*
-	border-bottom: 3px #f7921e solid !important;
-	color: #b5b5b5 !important;
+	color: #0098f4 !important;
 	background-color: #38393a;
-	*/
+		/*
 	background-image:url(../epg/images/bg_program_focused.png);
 	background-size: contain;
 	border-radius: 1px;
 	border-bottom: none !important;
+  border-bottom: 3pc solid #f7921e; */   
 }
 
 .dialog_arrow{
@@ -141,7 +135,6 @@
 	width: 35px;
 	background-image:url(dialog_checkmark.png);
 	background-repeat:no-repeat;
-  border: 1px solid red;
 }
 .checked .checkmark{
 	display: block !important;
