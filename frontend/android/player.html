@@ -72,7 +72,9 @@
   <div style="display:none" id="epg" class="epg container-fluid text-white hide overflow-auto h-100">
     <div class="grid">
      <div class="navbar row sticky-top pb-0">
-      <div class="p-2"><a id="previous_channel" class="p-2" href="#" onclick="javascript:showPrevious()"><img src="images/chevron-left.svg" alt="Previous" width="32" height="32" title="Previous" class="icon-white text-primary"></a></div>
+      <div class="p-2">
+          <a id="previous_channel" class="p-2" href="#" onclick="javascript:showPrevious()"><img src="images/chevron-left.svg" alt="Previous" width="32" height="32" title="Previous" class="icon-white text-primary"></a>
+      </div>
       <div class="p-2 flex-grow-1"><div class="h4 my-0">EPG</div></div>
       <div class="p-2"><a class="p-2" href="#" onclick="javascript:previousDay()"><img src="images/chevron-left.svg" alt="Previous day" width="22" height="22" title="Previous day" class="icon-white"></a></div>
       <div class="p-2"><div id="epg_date" class="h4 my-0"></div></div>
@@ -124,16 +126,60 @@
 
   <div style="display:none;position:absolute;top:50px;left:170px;background-color:#0008;" class="text-white rounded p-1" id="settings">
     <h4>Settings</h4>
-    <div class="form-check mb-2"><input type="checkbox" id="lowLatencyEnabled" onchange="updateLLSettings(this)" name="ll_mode" value="ll_mode" class="form-check-input"><label for="lowLatencyEnabled" class="form-check-label">Low latency mode</label></div>
-    <div class="form-group mb-2 row"><label for="liveDelay" class="col-6 col-form-label">Target latency:</label><div class="col-6"><input type="number"  id="liveDelay" onchange="updateLLSettings(this)" value="3" min="0" class="form-control form-control-sm"></div></div>
-    <div class="form-group mb-2 row"><label for="liveCatchUpMinDrift" class="col-6 col-form-label">Minimum drift (seconds):</label><div class="col-6"><input type="number" id="liveCatchUpMinDrift"  onchange="updateLLSettings(this)"  value="0.05" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm"></div></div>
-    <div class="form-group mb-2 row"><label for="liveCatchUpPlaybackRate" class="col-6 col-form-label">Catch-up playback rate (%):</label><div class="col-6"><input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm"></div></div>
-    <div class="form-group mb-2 row"><label for="parentalControl" class="col-6 col-form-label">Minimum Age:</label><div class="col-6"><input type="number" id="parentalControl" onchange="updateParental()"  value="0" min="0" max="18"  class="form-control form-control-sm"></div></div>
+    <div class="form-group mb-2 row">
+        <label for="lowLatencyEnabled" class="col-6 col-form-label">Low latency mode</label>
+        <div class="col-6">
+            <input type="checkbox" id="lowLatencyEnabled" onchange="updateLLSettings(this)" name="ll_mode" value="ll_mode" class="form-check-input form-control form-control-sm">
+        </div>
+    </div>
+    <div class="form-group mb-2 row">
+        <label for="liveDelay" class="col-6 col-form-label">Target latency:</label>
+        <div class="col-6">
+            <input type="number"  id="liveDelay" onchange="updateLLSettings(this)" value="3" min="0" class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="form-group mb-2 row">
+        <label for="liveCatchUpMinDrift" class="col-6 col-form-label">Minimum drift (seconds):</label>
+        <div class="col-6">
+            <input type="number" id="liveCatchUpMinDrift"  onchange="updateLLSettings(this)"  value="0.05" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="form-group mb-2 row">
+        <label for="liveCatchUpPlaybackRate" class="col-6 col-form-label">Catch-up playback rate (%):</label>
+        <div class="col-6">
+            <input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="form-group mb-2 row">
+        <label for="parentalControl" class="col-6 col-form-label">Minimum Age:</label>
+        <div class="col-6">
+            <input type="number" id="parentalControl" onchange="updateParental()"  value="0" min="0" max="18"  class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="form-group mb-2 row">
+        <label for="subtitle_language" class="col-6 col-form-label">Subtitle language:</label>
+        <div class="col-6">
+            <input type="text" id="subtitle_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="form-group mb-2 row">
+        <label for="audio_language" class="col-6 col-form-label">Audio language:</label>
+        <div class="col-6">
+            <input type="text" id="audio_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="form-group mb-2 row">
+        <label for="ui_language" class="col-6 col-form-label">UI language:</label>
+        <div class="col-6">
+            <input type="text" id="ui_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
+        </div>
+    </div>
     <div class="d-flex">
         <span class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:selectServiceList()" class="text-white">Select servicelist</a></span>
         <span class="menuitem_epg btn btn-outline-dark btn-small p-1"><a href="javascript:toggleStreamInfo()" class="text-white">Stream Info</a></span>
         <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:hideSettings()" class="text-white float-right">Close</a></span></div>
     </div>
+  </div>
 
     <div id="servicelist_registry" class="servicelist_registry container-fluid h-100" style="display:none;">
       <div class="row">

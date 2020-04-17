@@ -27,6 +27,8 @@ function channelSelected(channelId) {
     if(selectedChannel) {
         selectedChannel.unselected();
     }
+    $("#tracklist").empty();
+    $("#tracklist").hide();
     $("#subtitle_button").hide();
     $("#audio_button").hide();
     newChannel.channelSelected();
@@ -83,6 +85,13 @@ window.onload = function(){
     if(parental_settings) {
         minimumAge = parseFloat(parental_settings.minimumAge);
         document.getElementById("parentalControl").value = minimumAge;
+    }
+    var language_settings = getLocalStorage("language_settings");
+    if(language_settings) {
+        document.getElementById("audio_language").value = language_settings.audio_language;
+        document.getElementById("subtitle_language").value = language_settings.subtitle_language;
+        document.getElementById("ui_language").value = language_settings.ui_language;
+        player.setTextDefaultLanguage(language_settings.subtitle_language);
     }
 }
 
@@ -422,3 +431,12 @@ function selectAudio(track) {
     $("#tracklist").empty();
     $("#tracklist").hide();
 }
+
+function updateLanguage() {
+    var subtitleLanguage = document.getElementById("subtitle_language").value;
+    var audioLanguage = document.getElementById("audio_language").value;
+    var uiLanguage = document.getElementById("subtitle_language").value;
+    setLocalStorage("language_settings", { "subtitle_language":subtitleLanguage,"audio_language":audioLanguage,"ui_language":uiLanguage});
+    player.setTextDefaultLanguage(subtitleLanguage);    
+}
+
