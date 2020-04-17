@@ -235,9 +235,12 @@ body.player {
   background-color: rgba(0, 0, 0, 0.8);
   position: relative; }
 
-.selected_track {
-  background-color: blue;
-}
+#tracklist .row a {
+  color: #848484; }
+#tracklist .row.selected_track a {
+  color: #3996c9;
+  font-size: 1.4em; }
+
 #notification {
   background-color: #B11116;
   position: relative;

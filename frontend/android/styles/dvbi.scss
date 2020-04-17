@@ -330,6 +330,17 @@ body.player {
   background-color: rgba(0,0,0,0.8);
   position: relative;
 }
+#tracklist {
+  .row {
+        a   {
+    color: $lightgrey-color;
+    }
+    &.selected_track a {
+          color: $blue-color;
+          font-size: 1.4em;
+        }     
+  }
+}
 // Notification
 #notification {
   background-color: $red-color;
