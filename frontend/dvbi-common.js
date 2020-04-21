@@ -1,4 +1,8 @@
-var PROVIDER_LIST = "https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelist_registry.php";
+var PROVIDER_LIST = "https://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/backend/servicelist_registry.php";
+var SOURCE_TYPE_DASH =  "urn:dvb:metadata:source:dvb-dash";
+var SOURCE_TYPE_DVB_T = "urn:dvb:metadata:source:dvb-t";
+var SOURCE_TYPE_DVB_C = "urn:dvb:metadata:source:dvb-c";
+var SOURCE_TYPE_DVB_S = "urn:dvb:metadata:source:dvb-s";
 
 function parseServiceList(data,dvbChannels) {
     var list = [];
@@ -31,16 +35,23 @@ function parseServiceList(data,dvbChannels) {
             }
         }
         var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
+        var instances = [];
         var sourceTypes = [];
         for(var j = 0;j < serviceInstances.length;j++) {
-            var sourceType =serviceInstances[j].getElementsByTagName("SourceType")[0].childNodes[0].nodeValue;
-            if(sourceType == "urn:dvb:metadata:source:dvb-dash") {
+            
+            var sourceType = serviceInstances[j].getElementsByTagName("SourceType")[0].childNodes[0].nodeValue;
+            var priority = serviceInstances[j].getAttribute("priority");
+            var instance = {};
+            instance.priority = priority;
+            if(sourceType == SOURCE_TYPE_DASH ) {
                    sourceTypes.push("DVB-DASH");
-                   try {chan.dashUrl = serviceInstances[j].getElementsByTagName("URI")[0].childNodes[0].nodeValue;}catch(e) {}
+                   instance.type = (sourceType);
+                   try {instance.dashUrl = serviceInstances[j].getElementsByTagName("URI")[0].childNodes[0].nodeValue;}catch(e) {}
+                   instances.push(instance); 
             }
-            if(dvbChannels && (sourceType == "urn:dvb:metadata:source:dvb-t" ||
-               sourceType == "urn:dvb:metadata:source:dvb-c" ||
-               sourceType == "urn:dvb:metadata:source:dvb-s" ) ) {
+            if(dvbChannels && (sourceType == SOURCE_TYPE_DVB_T ||
+               sourceType == SOURCE_TYPE_DVB_C ||
+               sourceType == SOURCE_TYPE_DVB_S ) ) {
                 //Just search for the triplet in the channel list;
                 var triplet = serviceInstances[j].getElementsByTagName("DVBTriplet")[0];
                 for(var k = 0;k<dvbChannels.length;k++) {
@@ -48,14 +59,18 @@ function parseServiceList(data,dvbChannels) {
                     if(dvbChannel.sid == triplet.getAttribute("serviceId") &&
                        dvbChannel.onid == triplet.getAttribute("origNetId") &&
                        dvbChannel.tsid == triplet.getAttribute("tsId")) {
-                         chan.dvbChannel = dvbChannel;
+                         instance.dvbChannel = dvbChannel;
+                         instance.type = sourceType;
+                         instances.push(instance);
                          sourceTypes.push("DVB-"+ sourceType.charAt(sourceType.length-1).toUpperCase());
                          break;
                        }
                 }
+
             }
+           
         }
-        if(sourceTypes.length == 0) {
+        if(instances.length == 0) {
             continue;
         }
         for(var j = 0;j < lcnList.length;j++) {
@@ -68,6 +83,7 @@ function parseServiceList(data,dvbChannels) {
             }
         }
         chan.epg = [];
+        chan.serviceInstances =instances;
         chan.sourceTypes =sourceTypes.join('/');
 	    list.push(chan);
     }

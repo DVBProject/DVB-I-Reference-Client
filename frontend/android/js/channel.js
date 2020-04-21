@@ -92,10 +92,11 @@ Channel.prototype.channelSelected = function () {
     self.element.classList.add("active");
     self.selected = true;
     var update =function () {
+        var serviceInstance = self.getServiceInstance();
         self.setProgramChangedTimer();
         self.updateChannelInfo();
         if(self.isProgramAllowed()) {
-            player.attachSource(self.dashUrl);
+            player.attachSource(serviceInstance.dashUrl);
         }
         else {
             player.attachSource(null);
@@ -116,15 +117,16 @@ Channel.prototype.programChanged = function() {
     var self = this;
     var update =function () {
         self.updateChannelInfo();
+        var serviceInstance = self.getServiceInstance();
         if(self.isProgramAllowed()) {
             $("#notification").hide();
             try {
-                if(player.getSource() != self.dashUrl) {
-                    player.attachSource(self.dashUrl);
+                if(player.getSource() != serviceInstance.dashUrl) {
+                    player.attachSource(serviceInstance.dashUrl);
                 }
             } catch(e) {
                 //player throws an error is there is no souce attached
-               player.attachSource(self.dashUrl);
+               player.attachSource(serviceInstance.dashUrl);
             }
         }
         else {
@@ -265,15 +267,16 @@ Channel.prototype.populateEPG = function () {
 //Program information should be up to date, updated with the programChangeTimer
 Channel.prototype.parentalRatingChanged = function(callback) {
     var self = this;
+    var serviceInstance = self.getServiceInstance();
     if(self.isProgramAllowed()) {
         $("#notification").hide();
         try {
-            if(player.getSource() != self.dashUrl) {
-                player.attachSource(self.dashUrl);
+            if(player.getSource() != serviceInstance.dashUrl) {
+                player.attachSource(serviceInstance.dashUrl);
             }
         } catch(e) {
             //player throws an error is there is no souce attached
-           player.attachSource(self.dashUrl);
+           player.attachSource(serviceInstance.dashUrl);
         }
     }
     else {

@@ -603,7 +603,7 @@ function showInfobanner() {
     $('#chinfo_chname').html(channel.title);
     $('#chinfo_chnumber').html(channel.lcn);
     $('#chinfo_chicon_img').attr("src",channel.image ? channel.image : "" );
-   
+    var serviceInstance = channel_obj.getServiceInstance();
     if(channel.epg) {
      updateBannerProgram("chinfo_now_",channel.epg.now);       
      if (channel.epg.now && channel.epg.now.start && channel.epg.now.prglen) { 
@@ -613,7 +613,7 @@ function showInfobanner() {
       }
       updateBannerProgram("chinfo_next_",channel.epg.next); 
     }
-    else if(supervisor && supervisor.currentChannel && channel.dvbChannel && supervisor.currentChannel.ccid == channel.dvbChannel.ccid){
+    else if(supervisor && supervisor.currentChannel && serviceInstance.dvbChannel && supervisor.currentChannel.ccid == serviceInstance.dvbChannel.ccid){
         var programs = supervisor.programmes;
         if(programs.length > 0) {
             updateBannerProgramDVB("chinfo_now_",programs[0]);
@@ -775,14 +775,15 @@ function selectService(channel_obj) {
      try{
         playing= true;
         $("#info").addClass("hide");
-        if(channel_obj.dvbChannel) {
-            selectDVBService(channel_obj.dvbChannel) ;
+        var serviceInstance = channel_obj.getServiceInstance();
+        if(serviceInstance.dvbChannel) {
+            selectDVBService(serviceInstance.dvbChannel) ;
         }
-        else if(channel_obj.dashUrl) {
+        else if(serviceInstance.dashUrl) {
             if(player) {
                 player.stop();
             }
-            playDASH(channel_obj.dashUrl);
+            playDASH(serviceInstance.dashUrl);
         }
 
 	}

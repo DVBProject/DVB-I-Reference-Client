@@ -113,3 +113,17 @@ Channel.prototype.getServiceRef = function() {
      return (this.contentGuideServiceRef) ? this.contentGuideServiceRef : this.id;
 }
 
+//Returns the service instance with the highest priority
+Channel.prototype.getServiceInstance = function() {
+    var instance = null;
+    for(var i=0;i<this.serviceInstances.length;i++) {
+        if(instance == null) {
+            instance = this.serviceInstances[i];
+        }
+        else if(instance.priority > this.serviceInstances[i].priority) {
+            instance = this.serviceInstances[i];
+        }
+    }
+    return instance;
+}
+
