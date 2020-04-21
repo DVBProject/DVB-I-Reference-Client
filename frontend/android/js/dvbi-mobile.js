@@ -7,6 +7,8 @@ var streamInfoUpdate = null;
 var minimumAge = 0;
 var programChangeTimer = null;
 var trackSelection = null;
+var i18n = null;
+var DEFAULT_LANGUAGE = "en";
 
 function channelSelected(channelId) {
     $("#notification").hide();
@@ -29,8 +31,8 @@ function channelSelected(channelId) {
     }
     $("#tracklist").empty();
     $("#tracklist").hide();
-    $("#subtitle_button").hide();
-    $("#audio_button").hide();
+    $("#subtitle").hide();
+    $("#audio").hide();
     newChannel.channelSelected();
     selectedChannel = newChannel;
 
@@ -54,14 +56,14 @@ window.onload = function(){
     video.addEventListener('play', (event) => {
        var subtitles = player.getTracksFor("fragmentedText");
        if(subtitles && subtitles.length > 0) {
-          $("#subtitle_button").show();
+          $("#subtitle").show();
        }
        var audio = player.getTracksFor("audio");
        if(audio && audio.length > 1) {
-          $("#audio_button").show();
+          $("#audio").show();
        }
     });
-
+    
     player = dashjs.MediaPlayer().create();
     player.initialize(video);
     player.setAutoPlay(true);
@@ -92,6 +94,24 @@ window.onload = function(){
         document.getElementById("subtitle_language").value = language_settings.subtitle_language;
         document.getElementById("ui_language").value = language_settings.ui_language;
         player.setTextDefaultLanguage(language_settings.subtitle_language);
+        i18n = new I18n();
+        if(!i18n.loadLanguage(language_settings.ui_language,updateUILanguage)) {
+            i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
+        }
+    }
+    else {
+       i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
+    }
+    var languages = i18n.getSupportedLanguages();
+    var select = document.getElementById("ui_language");
+    for (var i = 0; i < languages.length ;i++) {
+        var option = document.createElement('option');
+        option.value = languages[i].lang;
+        option.appendChild(document.createTextNode(languages[i].name));
+        if(i18n.getCurrentLanguage() == languages[i].lang) {
+            option.selected = true;
+        }
+        select.appendChild(option);
     }
 }
 
@@ -297,13 +317,14 @@ function compareLCN(a, b) {
 }
 
 
-function showSettings() {
-    $("#settings").show();
-}
-
-function hideSettings() {
-    $("#settings").hide();
-    saveLLParameters();
+function toggleSettings() {
+    if($("#settings").is(":visible")){
+        $("#settings").hide();
+        saveLLParameters();
+    }
+    else {
+        $("#settings").show();
+    }
 }
 
 function updateLLSettings(element) {
@@ -435,8 +456,19 @@ function selectAudio(track) {
 function updateLanguage() {
     var subtitleLanguage = document.getElementById("subtitle_language").value;
     var audioLanguage = document.getElementById("audio_language").value;
-    var uiLanguage = document.getElementById("subtitle_language").value;
+    var uiLanguage = document.getElementById("ui_language").value;
+    if(uiLanguage != i18n.getCurrentLanguage()) {
+       i18n.loadLanguage(uiLanguage, updateUILanguage);
+    }
     setLocalStorage("language_settings", { "subtitle_language":subtitleLanguage,"audio_language":audioLanguage,"ui_language":uiLanguage});
     player.setTextDefaultLanguage(subtitleLanguage);    
 }
 
+function updateUILanguage() {
+    for(var i = 0;i < i18n.texts.length;i++) {
+        var elements = document.getElementsByClassName(i18n.texts[i]);
+        for(var j = 0;j<elements.length;j++) {
+          elements[j].innerHTML = i18n.getString(i18n.texts[i]);
+        }
+    }
+}

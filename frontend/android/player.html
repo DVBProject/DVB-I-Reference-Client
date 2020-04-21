@@ -33,6 +33,7 @@
   <script src="../channel-common.js"></script>
   <script src="../dvbi-common.js"></script>
   <script src="../localstorage.js"></script>
+  <script src="../i18n/i18n.js"></script>
 
 </head>
 <body style="margin: 0px" class="player">
@@ -53,10 +54,10 @@
                  <div id="channel_info">
                  </div>
                  <div id="buttons" style="display:none">
-                    <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showEpg()" class="text-white">Open EPG</a></span>
-                    <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSettings()" class="text-white">Settings</a></span>
-                    <span style="display:none" id="subtitle_button" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSubtitles()" class="text-white">Subtitles</a></span>
-                    <span style="display:none" id="audio_button" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showAudio()" class="text-white">Audio</a></span>
+                    <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showEpg()" class="text-white epg_button"></a></span>
+                    <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:toggleSettings()" class="text-white settings"></a></span>
+                    <span style="display:none" id="subtitle" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSubtitles()" class="text-white subtitle_button"></a></span>
+                    <span style="display:none" id="audio" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showAudio()" class="text-white audio_button"></a></span>
                 </div>
               </div>
             </div>
@@ -119,13 +120,13 @@
         <div class="row"><span class="col-5 d-inline-block">Audio bitrate:</span><span id="audio_bitrate" class="col-7 d-inline-block"></span></div>
         <div class="row"><span class="col-5 d-inline-block">Latency:</span><span id="live_latency" class="col-7 d-inline-block"></span></div>
         <div class="row"><span class="col-5 d-inline-block">Settings:</span><span id="live_settings" class="col-7 d-inline-block"></span></div>
-        <div><span class="btn btn-outline-dark btn-small mt-2 p-1"><a href="javascript:toggleStreamInfo()" class="text-white">Close</a></span></div>
+        <div><span class="btn btn-outline-dark btn-small mt-2 p-1"><a href="javascript:toggleStreamInfo()" class="text-white close_button"></a></span></div>
       </div>
     </div>
   </div>
 
   <div style="display:none;position:absolute;top:50px;left:170px;background-color:#0008;" class="text-white rounded p-1" id="settings">
-    <h4>Settings</h4>
+    <h4 class="settings"></h4>
     <div class="form-group mb-2 row">
         <label for="lowLatencyEnabled" class="col-6 col-form-label">Low latency mode</label>
         <div class="col-6">
@@ -171,13 +172,14 @@
     <div class="form-group mb-2 row">
         <label for="ui_language" class="col-6 col-form-label">UI language:</label>
         <div class="col-6">
-            <input type="text" id="ui_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
+            <select id="ui_language" onchange="updateLanguage()" class="form-control form-control-sm">
+            </select>
         </div>
     </div>
     <div class="d-flex">
         <span class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:selectServiceList()" class="text-white">Select servicelist</a></span>
         <span class="menuitem_epg btn btn-outline-dark btn-small p-1"><a href="javascript:toggleStreamInfo()" class="text-white">Stream Info</a></span>
-        <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:hideSettings()" class="text-white float-right">Close</a></span></div>
+        <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:toggleSettings()" class="text-white float-right close_button"></a></span></div>
     </div>
   </div>
 
@@ -216,7 +218,7 @@
           <span>Multiple values can be separated by comma</span>
           <div class="d-flex">
             <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterServiceLists()" class="text-white">Filter</a></span> 
-            <span id="close_service_providers" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:closeServiceLists()" class="text-white">Close</a></span>
+            <span id="close_service_providers" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:closeServiceLists()" class="text-white close_button"></a></span>
           </div>
         </div>
         <div class="col-6 offset-3">

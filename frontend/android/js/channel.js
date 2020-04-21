@@ -101,7 +101,7 @@ Channel.prototype.channelSelected = function () {
         else {
             player.attachSource(null);
             $("#notification").show();
-            $("#notification").text("Content blocked by parental control");
+            $("#notification").text(i18n.getString("parental_block"));
         }
     };
     if(self.nowNextUpdateRequired()) {
@@ -132,7 +132,7 @@ Channel.prototype.programChanged = function() {
         else {
             player.attachSource(null);
             $("#notification").show();
-            $("#notification").text("Content blocked by parental control");
+            $("#notification").text(i18n.getString("parental_block"));
         }
         self.setProgramChangedTimer();
     };
@@ -282,7 +282,7 @@ Channel.prototype.parentalRatingChanged = function(callback) {
     else {
         player.attachSource(null);
         $("#notification").show();
-        $("#notification").text("Content blocked by parental control");
+        $("#notification").text(i18n.getString("parental_block"));
     }
 
 }
