@@ -1,4 +1,4 @@
-var PROVIDER_LIST = "https://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/backend/servicelist_registry.php";
+var PROVIDER_LIST = "https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelist_registry.php";
 var SOURCE_TYPE_DASH =  "urn:dvb:metadata:source:dvb-dash";
 var SOURCE_TYPE_DVB_T = "urn:dvb:metadata:source:dvb-t";
 var SOURCE_TYPE_DVB_C = "urn:dvb:metadata:source:dvb-c";
