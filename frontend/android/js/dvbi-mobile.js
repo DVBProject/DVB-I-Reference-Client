@@ -89,12 +89,13 @@ window.onload = function(){
         document.getElementById("parentalControl").value = minimumAge;
     }
     var language_settings = getLocalStorage("language_settings");
+    i18n = new I18n();
     if(language_settings) {
         document.getElementById("audio_language").value = language_settings.audio_language;
         document.getElementById("subtitle_language").value = language_settings.subtitle_language;
         document.getElementById("ui_language").value = language_settings.ui_language;
         player.setTextDefaultLanguage(language_settings.subtitle_language);
-        i18n = new I18n();
+        
         if(!i18n.loadLanguage(language_settings.ui_language,updateUILanguage)) {
             i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
         }
