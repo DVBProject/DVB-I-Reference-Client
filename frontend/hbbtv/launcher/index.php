@@ -206,11 +206,15 @@
 				channel_obj.boxes[b].description = "";
 				break;
 			}
-            if(chan.dvbChannel != null && currentChannel && chan.dvbChannel.ccid == currentChannel.ccid ) {
+            var serviceInstance = channel_obj.getServiceInstance();
+            if(serviceInstance && serviceInstance.dvbChannel != null && currentChannel && serviceInstance.dvbChannel.ccid == currentChannel.ccid ) {
                 current_channel_obj = channel_obj;
             }
-            if(chan.dvbChannel != null) {
-                listedChannels.push(chan.dvbChannel);
+
+            for(var j=0;j<channel_obj.serviceInstances.length;j++) {
+                if(channel_obj.serviceInstances[j].dvbChannel) {
+                    listedChannels.push(channel_obj.serviceInstances[j].dvbChannel);
+                }
             }
 			_menu_.items.push(channel_obj);
         }
@@ -237,6 +241,8 @@
                     ];
                     chan.title = dvbChannel.name;
                     chan.unlisted = true;
+                    chan.serviceInstances = [];
+                    chan.serviceInstances.push({"dvbChannel" :dvbChannel});
                     chan.dvbChannel = dvbChannel;
                     chan.lcn = number++;
                     var channel_obj = new Channel(chan, "menuitem"+ (k + services.length));
@@ -244,7 +250,7 @@
 				        channel_obj.boxes[b].description = "";
 				        break;
 			        }
-                    if(currentChannel && chan.dvbChannel.ccid == currentChannel.ccid ) {
+                    if(currentChannel && dvbChannel.ccid == currentChannel.ccid ) {
                          current_channel_obj = channel_obj;
                     }
 			        _menu_.items.push(channel_obj);
