@@ -511,8 +511,6 @@ function VideoPlayerBasic(element_id, profile, width, height){
 			
 			var play_position = barWidth;
 			
-			console.log(  play_position, position, duration );
-			
 			$("#playposition").css("left", play_position);
 			$("#progress_currentTime").css("left", play_position);
 
@@ -699,7 +697,6 @@ function VideoPlayerBasic(element_id, profile, width, height){
 				item = { videoid : videoid, position : time, duration : duration };
 			}
 			else if( this.current !== null ){
-				console.log("update playposition for ", this.list[ this.current ]);
 				this.list[ this.current ].position = time;
 			} else {
 				console.log( "videoid is missing" );
