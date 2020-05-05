@@ -603,7 +603,7 @@ function showInfobanner() {
     $('#chinfo_chname').html(channel.title);
     $('#chinfo_chnumber').html(channel.lcn);
     $('#chinfo_chicon_img').attr("src",channel.image ? channel.image : "" );
-    var serviceInstance = channel_obj.getServiceInstance();
+    var serviceInstance = channel.getServiceInstance();
     if(channel.epg) {
      updateBannerProgram("chinfo_now_",channel.epg.now);       
      if (channel.epg.now && channel.epg.now.start && channel.epg.now.prglen) { 
