@@ -427,7 +427,7 @@ function onKey(keyCode)
 }
 
 function showSettings() {
-    var buttons = ["Select servicelist","Parental settings" ];
+    var buttons = ["Select servicelist","Parental settings","DASH settings" ];
     showDialog("", buttons,null,null,
         function(checked){
             if(checked == 0 ) {
@@ -435,6 +435,9 @@ function showSettings() {
             }
             else if(checked == 1 ) {
                 showParentalSettings();
+            }
+            else if(checked == 2 ) {
+                showPlayerSettings();
             }
      },true);
 }
@@ -466,6 +469,26 @@ function showParentalSettings() {
             showSettings();
      },function() {showSettings();});
 }
+
+function showPlayerSettings() {
+    var buttons = ["Native","Dash.js"];
+    var checked = 0;
+    if(playerType == "mse-eme") {
+        checked = 1;
+    }
+    showDialog("DASH player settings", buttons,checked,checked,
+        function(checked){
+            if(checked == 0) {
+                playerType = "html5";
+            }
+            else if(checked == 1) {
+                playerType = "mse-eme";
+            }
+            setLocalStorage("player_settings", { "player":playerType});
+            showSettings();
+     },function() {showSettings();});
+}
+
 
 function volumeUp() {
     changeVolume(5);
@@ -755,7 +778,6 @@ function selectService(channel_obj) {
             if(player) {
                 player.stop();
             }
-            $( "#player" ).remove();
             playingDASH = false;
             playing = false;
             try {
@@ -780,9 +802,6 @@ function selectService(channel_obj) {
             selectDVBService(serviceInstance.dvbChannel) ;
         }
         else if(serviceInstance.dashUrl) {
-            if(player) {
-                player.stop();
-            }
             playDASH(serviceInstance.dashUrl);
         }
 
@@ -806,7 +825,6 @@ function checkParental() {
             if(player) {
                 player.stop();
             }
-            $( "#player" ).remove();
             playingDASH = false;
             playing = false;
 
@@ -827,7 +845,6 @@ function playDASH(url) {
         if(player) {
             player.stop();
         }
-        $( "#player" ).remove();
      }
      catch(e) {
      }
@@ -849,9 +866,14 @@ function playDASH(url) {
      }
      catch(e) {
      }
-     player = new VideoPlayerHTML5("player");
+     if(playerType == "mse-eme") {
+        player = new VideoPlayerEME("videodiv");
+     }
+     else { //html5 as default
+        player = new VideoPlayerHTML5("videodiv");
+     }
      player.populate();
-     player.createPlayer();    
+     player.createPlayer();
      player.setURL(url);
      player.startVideo(true);
 }
@@ -861,7 +883,6 @@ function selectDVBService(channel) {
         if(player) {
             player.stop();
         }
-        $( "#player" ).remove();
      }
      catch(e) {
      }

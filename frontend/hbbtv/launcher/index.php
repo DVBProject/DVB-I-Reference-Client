@@ -35,6 +35,8 @@
 	<script type="text/javascript" src="../dialog.js"></script>
     <script type="text/javascript" src="videoplayer_basic.js"></script>
     <script type="text/javascript" src="videoplayer_html5.js"></script>
+    <script type="text/javascript" src="videoplayer_mse-eme.js"></script>-
+    <script type="text/javascript" src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 
 	<script type="text/javascript">
 
@@ -66,6 +68,7 @@
 	var localizationLangFile = null;
     var minimumAge = 255;
     var selectedService = null;
+    var playerType = "html5";
 
 
 	var lang = "eng";
@@ -119,12 +122,15 @@
         var progressframeopen = getStyleSheetPropertyValue(".progress_bar_frame.open", "width");
         progressOpenWidth = progressframeopen.substring(0, progressframeopen.length-2);
         var parental_settings = getLocalStorage("parental_settings");
-        if(parental_settings) {
+        if(parental_settings && parental_settings.minimumAge) {
             minimumAge = parseInt(parental_settings.minimumAge);
         }
-        
+        var player_settings = getLocalStorage("player_settings");
+        if(player_settings && player_settings.player) {
+            playerType = player_settings.player;
+        }
         var serviceList = getLocalStorage("servicelist");
-
+        
         if(serviceList) {
             getServiceList(serviceList, function( epg ){
                     createMenu(epg);
@@ -445,6 +451,8 @@
     <!-- <div id="debug" style="position:absolute; left:100px; top:100px; display:block;"></div> -->
 	<div id="dialog" class="hide"></div>
 	<object id="broadcast" type="video/broadcast" ></object>
+    <div id="videodiv">
+    </div>
 	<div id="wrapper" class="hide">
 
 		<!-- <div id="debug" style="position:absolute; top:100px; left:100px;"></div> -->
@@ -457,8 +465,6 @@
 		</div>
 		
 	</div>
-	
-
     <div id="channel_change" class="channel_change"></div>
 	<div id="channel_info" class="channel_info hide"><span id="info_num"></span><span id="info_name"></span></div>
     <div  id="chinfo" class="hide">
