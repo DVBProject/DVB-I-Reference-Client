@@ -413,7 +413,6 @@ Channel.prototype.getBoxByName = function(name){
 Channel.prototype.isProgramAllowed = function() {
    if(this.epg && this.epg["now"]) {
         var now = this.epg["now"];
-        console.log(now);
         if(now.parentalRating && now.parentalRating.length > 0) {
             for(var i = 0;i < now.parentalRating.length;i++) {
                 if(now.parentalRating[i].minimumage && minimumAge < now.parentalRating[i].minimumage) {
