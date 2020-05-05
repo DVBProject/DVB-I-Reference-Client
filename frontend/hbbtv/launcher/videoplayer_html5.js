@@ -19,22 +19,6 @@ function VideoPlayerHTML5(element_id, profile, width, height){
 VideoPlayerHTML5.prototype.createPlayer = function(){
 	var self = this;
 
-	if( !$("#player")[0] ){
-		$("body").append( '<div id="player" class="hide">'
-			+'<div id="playposition" class="hide"></div>'
-			+'<div id="playtime" class="hide"></div>'
-			+'<div id="progress_currentTime" class="hide" style="left:130px"></div>'
-            +'<div id="progressbarbg"></div><div id="progressSeekable" style="transition03all"></div><div id="progressbar" style="transition03all"></div>'
-			+'<div id="prew"></div>'
-			+'<div id="ppauseplay" class="pause"><div class="vcrbtn"></div><span id="pauseplay"></span></div> '
-			+'<div id="pff"></div>'
-			+'<div id="subtitleButton" class="hide"><div id="subtitleButtonText">Subtitles</div></div>'
-			+'<div id="audioButton" class="hide"><div id="audioButtonText">Audio</div></div>'
-			+'</div>');
- 
-		console.log("Add player component");
-	}
-
 	try{
 		// removed type attribute
 		//this.video = $("<video id='video' type='application/dash+xml' class='fullscreen'></video>")[0];
@@ -138,7 +122,6 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 	
 	player.addEventListener('pause', function(){
 		self.setLoading(false);
-		$("#ppauseplay").removeClass("pause").addClass("play");
 	} );
 	
 	if( player.textTracks ){
@@ -182,25 +165,6 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 			}
 			
 			console.log("at addtrack nth track: " + this.length + " : set up cuechange listeners", track);
-			
-			
-			// show subtitle button label if there is a track that is not metadata 
-			if( track.kind != "metadata" ){
-				$("#subtitleButton").show();
-			}
-			
-			/*
-			// the first track is set showing
-			if( self.subtitleTrack === false ){
-				track.mode = "showing";
-				self.subtitleTrack = 0;
-				console.log("set showing track ", track.language, track.label);
-				$("#subtitleButtonText").html("Subtitles: " + track.language );
-			}
-			else{
-				track.mode = "hidden";
-			}
-			*/
 			
 			track.label = track.language;
 			console.log("text track " + track);
@@ -262,7 +226,7 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 					if( defaultSub < 0 && track.kind != "metadata" ) {
 						track.mode = "showing";
 						defaultSub = i;
-						$("#subtitleButtonText").html("Subtitles: " + track.language );
+
 					} else if( track.kind != "metadata" ){
 						track.mode = "hidden";
 					}
@@ -272,18 +236,7 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 					self.subtitleTrack = defaultSub;
 					console.log( self.video.textTracks[ defaultSub ] );
 				}
-				$("#subtitleButton").show();
-			}
-			else{
-				$("#subtitleButton").hide();
-			}
-			
-			if( self.getAudioTracks() ){
-				$("#audioButton").show();
-			}else{
-				$("#audioButton").hide();
-			}
-			
+			}			
 			// audio tracks
 			if( self.video.audioTracks && self.video.audioTracks.length ){
 				var defaultAudio = -1;
@@ -293,8 +246,6 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 					if( defaultAudio < 0 && track.kind != "metadata" ) {
 						track.mode = "showing";
 						defaultAudio = i;
-						$("#audioButtonText").html("Audio: " + track.language );
-						$("#audioButton").show();
 					} else if( track.kind != "metadata" ){
 						track.mode = "hidden";
 					}
@@ -308,7 +259,6 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 			
 		}
 		self.setLoading(false);
-		$("#ppauseplay").removeClass("play").addClass("pause");
 	} );
 	
 	
