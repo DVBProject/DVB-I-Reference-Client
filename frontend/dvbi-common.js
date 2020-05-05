@@ -45,9 +45,9 @@ function parseServiceList(data,dvbChannels) {
                    }catch(e) {}
             }
             else if(dvbChannels) {
-                var triplets = getDVBChannel(serviceInstances[j].getElementsByTagName("DVBTriplet")[0],dvbChannels);
+                var triplets = serviceInstances[j].getElementsByTagName("DVBTriplet");
                 if(triplets.length > 0 ) {
-                    var dvbChannel = getDVBChannel(serviceInstances[j].getElementsByTagName("DVBTriplet")[0],dvbChannels);
+                    var dvbChannel = getDVBChannel(triplets[0],dvbChannels);
                     if(dvbChannel) {
                         if(serviceInstances[j].getElementsByTagName("DVBTDeliveryParameters").length > 0) {
                             sourceTypes.push("DVB-T");
