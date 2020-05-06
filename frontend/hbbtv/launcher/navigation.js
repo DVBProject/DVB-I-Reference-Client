@@ -428,6 +428,17 @@ function onKey(keyCode)
 
 function showSettings() {
     var buttons = ["Select servicelist","Parental settings","DASH settings" ];
+    if(player != null) {
+        try {
+            var subtitles = player.getSubtitles();
+            if(subtitles.length > 0) {
+                buttons.push("Subtitles");
+            }
+        }
+        catch(e) {
+            console.log(e);
+        } 
+    }
     showDialog("", buttons,null,null,
         function(checked){
             if(checked == 0 ) {
@@ -438,6 +449,9 @@ function showSettings() {
             }
             else if(checked == 2 ) {
                 showPlayerSettings();
+            }
+            else if(checked == 3  ) {
+                showSubtitleSettings();
             }
      },true);
 }
@@ -486,6 +500,30 @@ function showPlayerSettings() {
             }
             setLocalStorage("player_settings", { "player":playerType});
             showSettings();
+     },function() {showSettings();});
+}
+
+function showSubtitleSettings() {
+    
+    var subtitles =player.getSubtitles();
+    var buttons = [];
+    var checked = 0;
+    for(var i = 0;i<subtitles.length;i++) {
+        if(subtitles[i].current == true ) {
+            checked = i;
+        }
+        buttons.push(subtitles[i].lang+"("+subtitles[i].type+")");
+    }
+    showDialog("Subtitle track", buttons,checked,checked,
+        function(checked){
+            if(checked == subtitles.length-1) {
+                player.selectSubtitleTrack(-1);
+            }
+            else {
+                player.selectSubtitleTrack(checked);
+            }
+            showSettings();
+
      },function() {showSettings();});
 }
 

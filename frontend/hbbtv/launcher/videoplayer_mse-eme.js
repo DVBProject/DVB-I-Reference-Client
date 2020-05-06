@@ -562,3 +562,32 @@ VideoPlayerEME.prototype.isPlaying = function(){
 	return ( this.video && !this.video.paused ); // return true/false
 };
 
+VideoPlayerEME.prototype.getSubtitles = function() {
+    var current = null;
+    if(this.player.isTextEnabled()) {
+        current = this.player.getCurrentTrackFor("fragmentedText");
+    }
+    var subtitles = this.player.getTracksFor("fragmentedText");
+    var list = [];
+    for(var i = 0;i < subtitles.length;i++) {
+        var subtitletrack = {};
+        if(subtitles[i] == current) {
+            subtitletrack.current = true;
+        }
+        subtitletrack.lang = subtitles[i].lang 
+        subtitletrack.type = subtitles[i].roles.join(",");
+        list.push(subtitletrack);
+   }
+   var subtitletrack = {};
+   subtitletrack.lang = "Subtitles Off";
+   if(current == null) {
+       subtitletrack.current = true;
+   }
+   list.push(subtitletrack);
+   return list;
+}
+
+VideoPlayerEME.prototype.selectSubtitleTrack = function(track) {
+    this.player.setTextTrack(track);
+}
+
