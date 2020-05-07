@@ -19,6 +19,9 @@ body.player {
   display: flex;
   flex-direction: column; }
 
+.icon-white {
+  filter: invert(100%); }
+
 .main {
   flex: 1; }
 
@@ -162,8 +165,6 @@ body.player {
   position: relative; }
   .epg .grid.hide {
     display: none; }
-  .epg .icon-white {
-    filter: invert(100%); }
   .epg .end .icon-white {
     filter: invert(100%);
     opacity: 0.3;
@@ -252,6 +253,11 @@ body.player {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
+
+#settings {
+  background-color: rgba(1, 25, 39, 0.8);
+  position: relative;
+  z-index: 2; }
 
 @keyframes displaynone {
   from {

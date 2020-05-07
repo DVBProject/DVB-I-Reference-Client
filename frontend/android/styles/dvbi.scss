@@ -11,6 +11,7 @@ $orange-color: #e47600;
 $blue-color: #3996c9;
 $darkblue-color: #011927;
 $lightgrey-color: #848484;
+$bgdark80-color: rgba(0,0,0,80);
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
 
@@ -27,7 +28,9 @@ body.player {
   flex-direction: column;
   //min-height: 100vh; 
 }
-
+.icon-white {
+    filter: invert(100%);
+}
 .main {
   flex: 1; }
 
@@ -207,9 +210,6 @@ body.player {
   }
   background-color: rgba(0,0,0,0.80);
   position: relative;
-    .icon-white {
-      filter: invert(100%);
-  }
     //a:hover .icon-white {
       //filter: invert(50%);
     //}
@@ -355,7 +355,12 @@ body.player {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);  
 }
-
+// Settings
+#settings {
+	background-color: rgba( $darkblue-color, .8 );
+	position: relative;
+	z-index: 2;
+}
 @keyframes displaynone {
   from {display: block;}
   to {display: none;}
