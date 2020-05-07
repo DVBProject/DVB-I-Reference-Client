@@ -184,9 +184,7 @@ function loadServicelist(list) {
 }
 
 function selectServiceList() {
-    $("#settings").hide();
-    $("#servicelist_registry").show();
-    $("#buttons").hide();
+    showSettings("servicelist_registry");
     loadServicelistProviders(PROVIDER_LIST);
 }
 
@@ -227,11 +225,6 @@ function loadServicelistProviders(list,hideCloseButton) {
                 }
         }
     },"text");
-}
-
-function closeServiceLists() {
-    $("#servicelist_registry").hide();
-    $("#buttons").show();
 }
 
 function listSelected(list) {
@@ -325,6 +318,7 @@ function toggleSettings() {
     }
     else {
         $("#settings").show();
+        showSettings("main_settings");
     }
 }
 
@@ -472,4 +466,9 @@ function updateUILanguage() {
           elements[j].innerHTML = i18n.getString(i18n.texts[i]);
         }
     }
+}
+
+function showSettings(settingspage) {
+    $(".settingspage").hide();
+    $(document.getElementById(settingspage)).show();
 }
