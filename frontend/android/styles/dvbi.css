@@ -257,7 +257,7 @@ body.player {
 #settings {
   background-color: rgba(1, 25, 39, 0.8);
   position: relative;
-  z-index: 2; }
+  z-index: 10; }
 
 @keyframes displaynone {
   from {

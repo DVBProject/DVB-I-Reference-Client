@@ -359,7 +359,7 @@ body.player {
 #settings {
 	background-color: rgba( $darkblue-color, .8 );
 	position: relative;
-	z-index: 2;
+	z-index: 10;
 }
 @keyframes displaynone {
   from {display: block;}
