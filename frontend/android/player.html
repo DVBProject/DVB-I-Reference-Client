@@ -38,199 +38,216 @@
 </head>
 <body style="margin: 0px" class="player">
 <div class="video_wrapper overflow-hidden">
-    <div class="video text-center">
+  <div class="video text-center">
     <video id="video" ></video>
     <div id="subtitles"></div>
-    </div>
-    <div class="channels player-ui">
-      <div class="main container h-100 mw-100">
-        <div class="row h-100">
+  </div>
+  <div class="channels player-ui">
+    <div class="main container h-100 mw-100">
+      <div class="row h-100">
         <div class="col-6 col-md-6 h-100 info">
-         <div class="row h-100 ">
+          <div class="row h-100 ">
             <div class="col-12 text-white header">
               <div class="mt-4"><img src="images/logo_dvbi_sofia.png" alt="logo dvb-i sofia digital" /></div>
             </div>
-              <div class="col-12 text-white footer mt-auto mb-4">
-                 <div id="channel_info">
-                 </div>
-                 <div id="buttons" style="display:none">
-                    <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1" onclick="showEpg()"><span class="text-white epg_button"></span></span>
-                    <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1" onclick="toggleSettings()"><span class="text-white settings"></span></span>
-                    <span style="display:none" id="subtitle" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSubtitles()" class="text-white subtitle_button"></a></span>
-                    <span style="display:none" id="audio" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showAudio()" class="text-white audio_button"></a></span>
-                </div>
+            <div class="col-12 text-white footer mt-auto mb-4">
+              <div id="channel_info"> </div>
+              <div id="buttons" style="display:none">
+                <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1" onclick="showEpg()">
+                  <span class="text-white epg_button"></span>
+                </span>
+                <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1" onclick="toggleSettings()">
+                  <span class="text-white settings"></span>
+                </span>
+                <span style="display:none" id="subtitle" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSubtitles()" class="text-white subtitle_button"></a></span>
+                <span style="display:none" id="audio" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showAudio()" class="text-white audio_button"></a></span>
               </div>
             </div>
-            </div>
-          <div class="col-6 col-md-6 h-100 channels">
-              <ul id="channel_list" class="list-group overflow-auto h-100 text-right">
-              </ul>                    
           </div>
         </div>
-      </div>  
-    </div>  
-  </div>
-  <div style="display:none" id="epg" class="epg container-fluid text-white hide overflow-auto h-100">
-    <div class="grid">
-     <div class="navbar row sticky-top pb-0">
-      <div class="p-2">
-          <a id="previous_channel" class="p-2" href="#" onclick="javascript:showPrevious()"><img src="images/chevron-left.svg" alt="Previous" width="32" height="32" title="Previous" class="icon-white text-primary"></a>
+        <div class="col-6 col-md-6 h-100 channels">
+          <ul id="channel_list" class="list-group overflow-auto h-100 text-right">
+          </ul>
+        </div>
       </div>
-      <div class="p-2 flex-grow-1"><div class="h4 my-0">EPG</div></div>
+    </div>
+  </div>
+</div>
+<div style="display:none" id="epg" class="epg container-fluid text-white hide overflow-auto h-100">
+  <div class="grid">
+    <div class="navbar row sticky-top pb-0">
+      <div class="p-2"> <a id="previous_channel" class="p-2" href="#" onclick="javascript:showPrevious()"><img src="images/chevron-left.svg" alt="Previous" width="32" height="32" title="Previous" class="icon-white text-primary"></a> </div>
+      <div class="p-2 flex-grow-1">
+        <div class="h4 my-0">EPG</div>
+      </div>
       <div class="p-2"><a class="p-2" href="#" onclick="javascript:previousDay()"><img src="images/chevron-left.svg" alt="Previous day" width="22" height="22" title="Previous day" class="icon-white"></a></div>
-      <div class="p-2"><div id="epg_date" class="h4 my-0"></div></div>
+      <div class="p-2">
+        <div id="epg_date" class="h4 my-0"></div>
+      </div>
       <div class="p-2"><a class="p-2" href="#" onclick="javascript:nextDay()"><img src="images/chevron-right.svg" alt="Next day" width="22" height="22" title="Next day" class="icon-white"></a></div>
       <div class="p-2"><a class="p-2" href="#" onclick="javascript:closeEpg()"><img src="images/x-circle.svg" alt="Close EPG" width="32" height="32" title="Close EPG" class="icon-white"></a></div>
-      <div class="p-2"><a id="next_channel" class="p-2" href="#" onclick="javascript:showNext()"><img src="images/chevron-right.svg" alt="Next" width="32" height="32" title="Next" class="icon-white"></a></div>      
-     </div>
+      <div class="p-2"><a id="next_channel" class="p-2" href="#" onclick="javascript:showNext()"><img src="images/chevron-right.svg" alt="Next" width="32" height="32" title="Next" class="icon-white"></a></div>
     </div>
-    <div class="hide programinfo text-white">
-      <div class="row navbar sticky-top">
-        <div class="p-2 flex-grow-1">
-          <a href="javascript:closeProgramInfo()" class="h4 text-white py-0"><img src="images/arrow-left-short.svg" alt="Back" width="42" height="42" title="Back" class="icon-white text-primary"></a>
-        </div> 
-      </div>
+  </div>
+  <div class="hide programinfo text-white">
+    <div class="row navbar sticky-top">
+      <div class="p-2 flex-grow-1"> <a href="javascript:closeProgramInfo()" class="h4 text-white py-0"><img src="images/arrow-left-short.svg" alt="Back" width="42" height="42" title="Back" class="icon-white text-primary"></a> </div>
+    </div>
     <div class="row">
       <div class="col-6 col-md-8">
-        <div class="chinfo">
-          <img id="info_chicon" src="#" alt="channel icon" class="chicon img-fluid d-block">
+        <div class="chinfo"> <img id="info_chicon" src="#" alt="channel icon" class="chicon img-fluid d-block">
           <span id="info_chnumber" class="chnumber mr-1 d-inline-block float-left"></span>
           <span id="info_chname" class="chname text-truncate d-inline-block"></span>
-        </div>        
+        </div>
         <div class="title h4"></div>
-        <div class="time"><span class="date"></span><span class="starttime"></span><span class="endtime"></span><span class="duration"></span></div>
+        <div class="time">
+          <span class="date"></span>
+          <span class="starttime"></span>
+          <span class="endtime"></span>
+          <span class="duration"></span>
+        </div>
         <div class="parentalrating"></div>
         <div class="description"></div>
-                
       </div>
       <div class="col-6 col-md-4 h-100">
-          <div class="position-fixed">
-            <img src="images/landingpage_ui.png" class="img w-75" alt="programinfo_thumbnail">
-            <div class="actionbar"><a href="#" id="select_service_button" class="btn btn-outline-light mt-4">Tune to channel</a></div>
-          </div>
+        <div class="position-fixed"> <img src="images/landingpage_ui.png" class="img w-75" alt="programinfo_thumbnail">
+          <div class="actionbar"><a href="#" id="select_service_button" class="btn btn-outline-light mt-4">Tune to channel</a></div>
         </div>
-    </div>
-   </div>
- </div>
-  <div class="text-white container mt-2" id="streaminfo">
-    <div class="row">
-      <div class="streaminfoContainer col-8 col-lg-4 offset-4 p-1 rounded">
-        <div class="row"><span class="col-5 d-inline-block">Video resolution:</span><span id="video_resolution" class="col-7 d-inline-block"></span></div>
-        <div class="row"><span class="col-5 d-inline-block">Video bitrate:</span><span id="video_bitrate" class="col-7 d-inline-block"></span></div>
-        <div class="row"><span class="col-5 d-inline-block">Audio bitrate:</span><span id="audio_bitrate" class="col-7 d-inline-block"></span></div>
-        <div class="row"><span class="col-5 d-inline-block">Latency:</span><span id="live_latency" class="col-7 d-inline-block"></span></div>
-        <div class="row"><span class="col-5 d-inline-block">Settings:</span><span id="live_settings" class="col-7 d-inline-block"></span></div>
-        <div><span class="btn btn-outline-dark btn-small mt-2 p-1"><a href="javascript:toggleStreamInfo()" class="text-white close_button"></a></span></div>
       </div>
     </div>
   </div>
-
-  <div style="display:none;position:absolute;top:50px;left:170px;background-color:#0008;" class="text-white rounded p-1" id="settings">
-    <h4 class="settings"></h4>
-    <div class="form-group mb-2 row">
-        <label for="lowLatencyEnabled" class="col-6 col-form-label">Low latency mode</label>
-        <div class="col-6">
-            <input type="checkbox" id="lowLatencyEnabled" onchange="updateLLSettings(this)" name="ll_mode" value="ll_mode" class="form-check-input form-control form-control-sm">
-        </div>
-    </div>
-    <div class="form-group mb-2 row">
-        <label for="liveDelay" class="col-6 col-form-label">Target latency:</label>
-        <div class="col-6">
-            <input type="number"  id="liveDelay" onchange="updateLLSettings(this)" value="3" min="0" class="form-control form-control-sm">
-        </div>
-    </div>
-    <div class="form-group mb-2 row">
-        <label for="liveCatchUpMinDrift" class="col-6 col-form-label">Minimum drift (seconds):</label>
-        <div class="col-6">
-            <input type="number" id="liveCatchUpMinDrift"  onchange="updateLLSettings(this)"  value="0.05" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm">
-        </div>
-    </div>
-    <div class="form-group mb-2 row">
-        <label for="liveCatchUpPlaybackRate" class="col-6 col-form-label">Catch-up playback rate (%):</label>
-        <div class="col-6">
-            <input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm">
-        </div>
-    </div>
-    <div class="form-group mb-2 row">
-        <label for="parentalControl" class="col-6 col-form-label">Minimum Age:</label>
-        <div class="col-6">
-            <input type="number" id="parentalControl" onchange="updateParental()"  value="0" min="0" max="18"  class="form-control form-control-sm">
-        </div>
-    </div>
-    <div class="form-group mb-2 row">
-        <label for="subtitle_language" class="col-6 col-form-label">Subtitle language:</label>
-        <div class="col-6">
-            <input type="text" id="subtitle_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
-        </div>
-    </div>
-    <div class="form-group mb-2 row">
-        <label for="audio_language" class="col-6 col-form-label">Audio language:</label>
-        <div class="col-6">
-            <input type="text" id="audio_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
-        </div>
-    </div>
-    <div class="form-group mb-2 row">
-        <label for="ui_language" class="col-6 col-form-label">UI language:</label>
-        <div class="col-6">
-            <select id="ui_language" onchange="updateLanguage()" class="form-control form-control-sm">
-            </select>
-        </div>
-    </div>
-    <div class="d-flex">
-        <span class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:selectServiceList()" class="text-white">Select servicelist</a></span>
-        <span class="menuitem_epg btn btn-outline-dark btn-small p-1"><a href="javascript:toggleStreamInfo()" class="text-white">Stream Info</a></span>
-        <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:toggleSettings()" class="text-white float-right close_button"></a></span></div>
+</div>
+<div class="text-white container mt-2" id="streaminfo">
+  <div class="row">
+    <div class="streaminfoContainer col-8 col-lg-4 offset-4 p-1 rounded">
+      <div class="row">
+        <span class="col-5 d-inline-block">Video resolution:</span>
+        <span id="video_resolution" class="col-7 d-inline-block"></span>
+      </div>
+      <div class="row">
+        <span class="col-5 d-inline-block">Video bitrate:</span>
+        <span id="video_bitrate" class="col-7 d-inline-block"></span>
+      </div>
+      <div class="row">
+        <span class="col-5 d-inline-block">Audio bitrate:</span>
+        <span id="audio_bitrate" class="col-7 d-inline-block"></span>
+      </div>
+      <div class="row">
+        <span class="col-5 d-inline-block">Latency:</span>
+        <span id="live_latency" class="col-7 d-inline-block"></span>
+      </div>
+      <div class="row">
+        <span class="col-5 d-inline-block">Settings:</span>
+        <span id="live_settings" class="col-7 d-inline-block"></span>
+      </div>
+      <div>
+        <span class="btn btn-outline-dark btn-small mt-2 p-1"><a href="javascript:toggleStreamInfo()" class="text-white close_button"></a></span>
+      </div>
     </div>
   </div>
-
-    <div id="servicelist_registry" class="servicelist_registry container-fluid h-100" style="display:none;">
-      <div class="row">
-        <div class="text-white p-1 rounded col-3" id="servicelist_filter">
-          <h2>Filter</h2>
-          <div class="form-group row">
-            <label for="providers" class="col-4 col-form-label">Provider</label>
-            <div class="col-8">
-              <input id="providers" name="providers" type="text" value="" class="form-control form-control-sm">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="language" class="col-4 col-form-label">Language</label>
-            <div class="col-8">
-              <input id="language" name="language" type="text" value="" class="form-control form-control-sm">
-            </div>
-          </div>
-          <div class="form-group row">    
-            <label for="genre" class="col-4 col-form-label">Genre</label>
-            <div class="col-8">
-              <input id="genre" name="genre" type="text" value="" class="form-control form-control-sm">
-            </div>
-          </div>
-          <div class="form-group row">   
-            <label for="country" class="col-4 col-form-label">Country</label>
-            <div class="col-8">
-                <input id="country" name="country" type="text" value="" class="form-control form-control-sm">
-             </div>
-          </div>
-          <div class="form-check">    
-            <input id="regulator" name="regulator" type="checkbox" value="true" class="form-check-input">
-            <label for="regulator" class="col-form-label">Regulator list</label>    
-          </div>
-          <span>Multiple values can be separated by comma</span>
-          <div class="d-flex">
-            <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterServiceLists()" class="text-white">Filter</a></span> 
-            <span id="close_service_providers" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:closeServiceLists()" class="text-white close_button"></a></span>
-          </div>
+</div>
+<div style="display:none;position:absolute;top:50px;left:170px;background-color:#0008;" class="text-white rounded p-1" id="settings">
+  <h4 class="settings"></h4>
+  <div class="form-group mb-2 row">
+    <label for="lowLatencyEnabled" class="col-6 col-form-label">Low latency mode</label>
+    <div class="col-6">
+      <input type="checkbox" id="lowLatencyEnabled" onchange="updateLLSettings(this)" name="ll_mode" value="ll_mode" class="form-check-input form-control form-control-sm">
+    </div>
+  </div>
+  <div class="form-group mb-2 row">
+    <label for="liveDelay" class="col-6 col-form-label">Target latency:</label>
+    <div class="col-6">
+      <input type="number"  id="liveDelay" onchange="updateLLSettings(this)" value="3" min="0" class="form-control form-control-sm">
+    </div>
+  </div>
+  <div class="form-group mb-2 row">
+    <label for="liveCatchUpMinDrift" class="col-6 col-form-label">Minimum drift (seconds):</label>
+    <div class="col-6">
+      <input type="number" id="liveCatchUpMinDrift"  onchange="updateLLSettings(this)"  value="0.05" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm">
+    </div>
+  </div>
+  <div class="form-group mb-2 row">
+    <label for="liveCatchUpPlaybackRate" class="col-6 col-form-label">Catch-up playback rate (%):</label>
+    <div class="col-6">
+      <input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm">
+    </div>
+  </div>
+  <div class="form-group mb-2 row">
+    <label for="parentalControl" class="col-6 col-form-label">Minimum Age:</label>
+    <div class="col-6">
+      <input type="number" id="parentalControl" onchange="updateParental()"  value="0" min="0" max="18"  class="form-control form-control-sm">
+    </div>
+  </div>
+  <div class="form-group mb-2 row">
+    <label for="subtitle_language" class="col-6 col-form-label">Subtitle language:</label>
+    <div class="col-6">
+      <input type="text" id="subtitle_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
+    </div>
+  </div>
+  <div class="form-group mb-2 row">
+    <label for="audio_language" class="col-6 col-form-label">Audio language:</label>
+    <div class="col-6">
+      <input type="text" id="audio_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
+    </div>
+  </div>
+  <div class="form-group mb-2 row">
+    <label for="ui_language" class="col-6 col-form-label">UI language:</label>
+    <div class="col-6">
+      <select id="ui_language" onchange="updateLanguage()" class="form-control form-control-sm">
+      </select>
+    </div>
+  </div>
+  <div class="d-flex">
+    <span class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:selectServiceList()" class="text-white">Select servicelist</a></span>
+    <span class="menuitem_epg btn btn-outline-dark btn-small p-1"><a href="javascript:toggleStreamInfo()" class="text-white">Stream Info</a></span>
+    <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:toggleSettings()" class="text-white float-right close_button"></a></span>
+  </div>
+</div>
+<div id="servicelist_registry" class="servicelist_registry container-fluid h-100" style="display:none;">
+  <div class="row">
+    <div class="text-white p-1 rounded col-3" id="servicelist_filter">
+      <h2>Filter</h2>
+      <div class="form-group row">
+        <label for="providers" class="col-4 col-form-label">Provider</label>
+        <div class="col-8">
+          <input id="providers" name="providers" type="text" value="" class="form-control form-control-sm">
         </div>
-        <div class="col-6 offset-3">
-          <div class="text-white p-1 rounded" id="servicelists"></div>
+      </div>
+      <div class="form-group row">
+        <label for="language" class="col-4 col-form-label">Language</label>
+        <div class="col-8">
+          <input id="language" name="language" type="text" value="" class="form-control form-control-sm">
         </div>
+      </div>
+      <div class="form-group row">
+        <label for="genre" class="col-4 col-form-label">Genre</label>
+        <div class="col-8">
+          <input id="genre" name="genre" type="text" value="" class="form-control form-control-sm">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="country" class="col-4 col-form-label">Country</label>
+        <div class="col-8">
+          <input id="country" name="country" type="text" value="" class="form-control form-control-sm">
+        </div>
+      </div>
+      <div class="form-check">
+        <input id="regulator" name="regulator" type="checkbox" value="true" class="form-check-input">
+        <label for="regulator" class="col-form-label">Regulator list</label>
+      </div>
+      <span>Multiple values can be separated by comma</span>
+      <div class="d-flex">
+        <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterServiceLists()" class="text-white">Filter</a></span>
+        <span id="close_service_providers" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1 ml-auto"><a href="javascript:closeServiceLists()" class="text-white close_button"></a></span>
+      </div>
     </div>
+    <div class="col-6 offset-3">
+      <div class="text-white p-1 rounded" id="servicelists"></div>
     </div>
-    <div style="display:none;position:absolute;top:50px;left:170px;background-color:#0008;" id="tracklist" class="text-white p-1 rounded col-3">
-    </div>
-    <div class="text-white container mt-2 text-center h4 p-2 rounded align-middle" id="notification" style="display:none;">
-    </div>
-<script src="js/popper.min.js"></script>  
-
+  </div>
+</div>
+<div style="display:none;position:absolute;top:50px;left:170px;background-color:#0008;" id="tracklist" class="text-white p-1 rounded col-3"> </div>
+<div class="text-white container mt-2 text-center h4 p-2 rounded align-middle" id="notification" style="display:none;"> </div>
+<script src="js/popper.min.js"></script>
 </body>
 </html>
