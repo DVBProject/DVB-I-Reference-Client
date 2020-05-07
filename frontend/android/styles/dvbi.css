@@ -204,6 +204,8 @@ body.player {
 
 .programinfo.hide {
   display: none; }
+.programinfo .navbar {
+  background-color: transparent; }
 .programinfo .chinfo .chnumber {
   font-size: 1.5em; }
 .programinfo .chinfo .chname {

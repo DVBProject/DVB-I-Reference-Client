@@ -281,6 +281,9 @@ body.player {
   &.hide {
     display: none;
   }
+  .navbar {
+    background-color: transparent;
+  }
   .chinfo {
     .chnumber {
       font-size: 1.5em;
