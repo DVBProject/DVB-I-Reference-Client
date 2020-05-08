@@ -47,7 +47,8 @@ window.onload = function(){
         listSelected(serviceList);
     }
     else {
-        $("#servicelist_registry").show();
+        $("#settings").show();
+        showSettings("servicelist_registry");
         loadServicelistProviders(PROVIDER_LIST,true);
     }
     uiHideTimeout = setTimeout(hideUI, 5000);
