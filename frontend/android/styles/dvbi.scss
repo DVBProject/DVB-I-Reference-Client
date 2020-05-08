@@ -315,6 +315,7 @@ body.player {
 #streaminfo {
   position: absolute;
   display: none;
+	z-index: 11;
 
   .streaminfoContainer {
       background-color: rgba(0,0,0,0.5);
@@ -330,7 +331,6 @@ body.player {
 
 // servicelist registry
 .servicelist_registry {
-  background-color: rgba(0,0,0,0.8);
   position: relative;
 }
 #tracklist {
@@ -360,6 +360,11 @@ body.player {
 	background-color: rgba( $darkblue-color, .8 );
 	position: relative;
 	z-index: 10;
+	.navbar {
+		h5 {
+			left: -32px;
+		}
+	}
 }
 @keyframes displaynone {
   from {display: block;}

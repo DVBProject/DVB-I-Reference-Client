@@ -146,14 +146,16 @@
     </div>
   </div>
 </div>
-<div style="display:none;" class="text-white rounded p-1 container-fluid h-100" id="settings">
-	<div class="navbar row pb-0">
-  	<img src="images/gear.svg" alt="Settings" width="32" height="32" title="Settings" class="icon-white float-left mr-2">
-		<h4 class="settings"></h4>
+<div style="display:none;" class="text-white container-fluid h-100 position-fixed overflow-auto" id="settings">
+	<div class="navbar row pb-0"> 	
+		<h4 class=" m-auto"><img src="images/gear.svg" alt="Settings" width="32" height="32" title="Settings" class="icon-white float-left mr-2"><span class="settings"></span></h4>
 		<a href="javascript:toggleSettings()" class=""><img src="images/x-circle.svg" alt="Close Settings" width="32" height="32" title="Close Settings" class="icon-white"></a>		
 	</div>	
   <div id="ll_settings" class="settingspage">
-		<div class="navbar">Low latency settings</div>
+		<div class="navbar my-2 px-0">
+			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
+			<h5 class="m-auto position-relative">Low latency settings</h5>
+		</div>
     <div class="form-group mb-2 row">
       <label for="lowLatencyEnabled" class="col-6 col-form-label">Low latency mode</label>
       <div class="col-6">
@@ -178,20 +180,25 @@
         <input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm">
       </div>
     </div>
-    <span class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:showSettings('main_settings')" class="text-white float-right close_button"></a></span>
   </div>
   <div id="parental_settings" class="settingspage">
-		<div class="navbar">Parental settings</div>
+		<div class="navbar my-2 px-0">
+			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
+			<h5 class="m-auto position-relative">Parental settings</h5>
+		</div>
     <div class="form-group mb-2 row">
       <label for="parentalControl" class="col-6 col-form-label">Minimum Age:</label>
       <div class="col-6">
         <input type="number" id="parentalControl" onchange="updateParental()"  value="0" min="0" max="18"  class="form-control form-control-sm">
       </div>
     </div>
-    <span class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:showSettings('main_settings')" class="text-white float-right close_button"></a></span>
+    
   </div>
   <div id="language_settings" class="settingspage">
-		<div class="navbar">Language settings</div>
+		<div class="navbar my-2 px-0">
+			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
+			<h5 class="m-auto position-relative">Language settings</h5>			
+		</div>
     <div class="form-group mb-2 row">
       <label for="subtitle_language" class="col-6 col-form-label">Subtitle language:</label>
       <div class="col-6">
@@ -211,10 +218,12 @@
         </select>
       </div>
     </div>
-    <span class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:showSettings('main_settings')" class="text-white float-right close_button"></a></span>
   </div>
-  <div id="servicelist_registry" class="servicelist_registry container-fluid h-100 settingspage" style="display:none;">
-		<div class="navbar">Service list selection</div>
+  <div id="servicelist_registry" class="servicelist_registry container-fluid settingspage" style="display:none;">
+		<div class="navbar my-2 px-0">
+			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
+			<h5 class="m-auto position-relative">Service list selection</h5>				
+		</div>
     <div class="row">
       <div class="text-white p-1 rounded col-3" id="servicelist_filter">
         <h2>Filter</h2>
@@ -249,7 +258,6 @@
         <span>Multiple values can be separated by comma</span>
         <div class="d-flex">
           <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterServiceLists()" class="text-white">Filter</a></span>
-          <span id="close_service_providers" class="menuitem_epg btn btn-outline-dark btn-small mr-2 p-1"><a href="javascript:showSettings('main_settings')" class="text-white close_button"></a></span>
         </div>
       </div>
       <div class="col-6 offset-3">
@@ -258,7 +266,7 @@
     </div>
   </div>
   <div id="main_settings" class="settingspage mt-2">
-		<div class="navbar">Navbar</div>
+		<div class="navbar"></div>
     <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1"><a href="javascript:showSettings('ll_settings')" class="text-white">Low Latency settings</a></span>
     <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1"><a href="javascript:showSettings('parental_settings')" class="text-white">Parental settings</a></span>
     <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1"><a href="javascript:showSettings('language_settings')" class="text-white">Language settings</a></span>

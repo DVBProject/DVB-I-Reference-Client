@@ -225,7 +225,8 @@ body.player {
 
 #streaminfo {
   position: absolute;
-  display: none; }
+  display: none;
+  z-index: 11; }
   #streaminfo .streaminfoContainer {
     background-color: rgba(0, 0, 0, 0.5); }
   #streaminfo .btn {
@@ -235,7 +236,6 @@ body.player {
       text-decoration: none !important; }
 
 .servicelist_registry {
-  background-color: rgba(0, 0, 0, 0.8);
   position: relative; }
 
 #tracklist .row a {
@@ -258,6 +258,8 @@ body.player {
   background-color: rgba(1, 25, 39, 0.8);
   position: relative;
   z-index: 10; }
+  #settings .navbar h5 {
+    left: -32px; }
 
 @keyframes displaynone {
   from {
