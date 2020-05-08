@@ -230,6 +230,7 @@ function loadServicelistProviders(list,hideCloseButton) {
 
 function listSelected(list) {
     $("#servicelist_registry").hide();
+    $("#settings").hide();
     $("#buttons").show();
     $("#channel_list").empty();
     setLocalStorage("servicelist",list);
