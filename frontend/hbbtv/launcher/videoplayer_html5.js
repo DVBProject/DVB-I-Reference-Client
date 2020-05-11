@@ -870,6 +870,36 @@ VideoPlayerHTML5.prototype.getAudioTracks = function(){
 	}
 }
 
+VideoPlayerHTML5.prototype.getSubtitles = function() {
+    var subtitles = this.video.textTracks
+    var list = [];
+    var current = null;
+    for(var i = 0;i < subtitles.length;i++) {
+        var subtitletrack = {};
+        if(subtitles[i].mode == "showing") {
+            subtitletrack.current = true;
+            current = subtitletrack;
+        }
+        subtitletrack.lang = subtitles[i].language;
+        subtitletrack.type = subtitles[i].kind;
+        list.push(subtitletrack);
+   }
+   var subtitletrack = {};
+   subtitletrack.lang = "Subtitles Off";
+   if(current == null) {
+       subtitletrack.current = true;
+   }
+   list.push(subtitletrack);
+   return list;
+}
+
+
+VideoPlayerHTML5.prototype.selectSubtitleTrack = function(track) {
+    this.video.textTracks[track].mode = "showing";
+}
+
+
+
 
 
 
