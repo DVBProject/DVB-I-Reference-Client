@@ -427,7 +427,7 @@ function onKey(keyCode)
 }
 
 function showSettings() {
-    var buttons = ["Select servicelist","Parental settings","DASH settings" ];
+    var buttons = ["Select servicelist","Parental settings","DASH settings","Low latency settings" ];
     if(player != null) {
         try {
             var subtitles = player.getSubtitles();
@@ -450,11 +450,119 @@ function showSettings() {
             else if(checked == 2 ) {
                 showPlayerSettings();
             }
-            else if(checked == 3  ) {
+            else if(checked == 3 ) {
+                showLLSettings();
+            }
+            else if(checked == 4  ) {
                 showSubtitleSettings();
             }
      },true);
 }
+
+function showLLSettings() {
+    var buttons = ["Low latency mode "+(llEnabled ? "(on)":"(off)"),"Target latency ("+liveDelay+"s)","Minimum drift ("+minimumDrift+"s)","Catch-up playback rate ("+catchupRate+"%)"];
+    showDialog("Low latency settings", buttons,null,null,
+        function(checked){
+            if(checked == 0) {
+                showLLModeSettings();
+            }
+            else if(checked == 1) {
+                 showTargetLatencySettings();
+            }
+            else if(checked == 2) {
+                 showMinimumDriftSettings();
+            }
+            else if(checked == 3) {
+                 showCatchupRateSettings();
+            }
+            
+     },function() {
+      setLocalStorage("ll_settings", {
+          'lowLatencyEnabled': llEnabled,
+          'liveDelay': liveDelay,
+          'liveCatchUpMinDrift': minimumDrift,
+          'liveCatchUpPlaybackRate': catchupRate
+      });
+      showSettings();
+    });
+}
+
+
+
+function showLLModeSettings() {
+    var buttons = ["Low latency mode on","Low latency mode off"];
+    var checked = 0;
+    if(llEnabled == false) {
+        checked = 1;
+    }
+    showDialog("Low latency mode", buttons,checked,checked,
+        function(checked){
+            if(checked == 0) {
+                llEnabled = true;
+            }
+            else if(checked == 1) {
+                llEnabled = false;
+            }
+            if(playerType == "mse-eme" && player != null) {
+                player.player.updateSettings({'streaming': { "lowLatencyEnabled": llEnabled}});
+            }
+            showLLSettings();
+     },function() {showLLSettings();});
+}
+
+function showTargetLatencySettings() {
+    var buttons = ["1","2","3","4","5","6","7","8","9","10"];
+    var checked = liveDelay -1;
+    showDialog("Target latency(seconds)", buttons,checked,checked,
+        function(checked){
+            liveDelay = checked +1;
+            if(playerType == "mse-eme" && player != null) {
+                player.player.updateSettings({'streaming': { "liveDelay": liveDelay}});
+            }
+            showLLSettings();
+     },function() {showLLSettings();});
+}
+
+function showMinimumDriftSettings() {
+    var buttons = ["0.00","0.05","0.10","0.15","0.20","0.25","0.30","0.35","0.40","0.45","0.50"];
+    var checked = 0;
+    for(var i = 0;i<buttons.length;i++) {
+        if(minimumDrift == parseFloat(buttons[i]) ) {
+            checked = i;
+            break;
+        }
+    }
+    showDialog("Minimum Drift(seconds)", buttons,checked,checked,
+        function(checked){
+            minimumDrift = parseFloat(buttons[checked ]);
+            if(playerType == "mse-eme" && player != null) {
+                player.player.updateSettings({'streaming': { "liveCatchUpMinDrift": minimumDrift}});
+            }
+            showLLSettings();
+     },function() {showLLSettings();});
+}
+
+function showCatchupRateSettings() {
+    var buttons = ["0.00","0.05","0.10","0.15","0.20","0.25","0.30","0.35","0.40","0.45","0.50"];
+    var checked = 0;
+    for(var i = 0;i<buttons.length;i++) {
+        if(catchupRate == parseFloat(buttons[i]) ) {
+            checked = i;
+            break;
+        }
+    }
+    showDialog("Live catchup playbackrate(%)", buttons,checked,checked,
+        function(checked){
+            catchupRate = parseFloat(buttons[checked]);
+            if(playerType == "mse-eme" && player != null) {
+                player.player.updateSettings({'streaming': { "liveCatchUpPlaybackRate": catchupRate}});
+            }
+            showLLSettings();
+     },function() {showLLSettings();});
+}
+
+
+
 
 function showParentalSettings() {
     var buttons = ["0","3","5","7","12","15","18","Off"];
@@ -903,17 +1011,28 @@ function playDASH(url) {
         }
      }
      catch(e) {
-     }
+      }
      if(playerType == "mse-eme") {
-        player = new VideoPlayerEME("videodiv");
+       player = new VideoPlayerEME("videodiv");
+       player.populate();
+       player.createPlayer();
+       player.player.updateSettings({
+            'streaming': {
+                'lowLatencyEnabled': llEnabled,
+                'liveDelay': liveDelay,
+                'liveCatchUpMinDrift': minimumDrift,
+                'liveCatchUpPlaybackRate': catchupRate
+            }
+        });
      }
      else { //html5 as default
         player = new VideoPlayerHTML5("videodiv");
+        player.populate();
+        player.createPlayer();
      }
-     player.populate();
-     player.createPlayer();
      player.setURL(url);
-     player.startVideo(true);
+       player.startVideo(true);
+
 }
 
 function selectDVBService(channel) {

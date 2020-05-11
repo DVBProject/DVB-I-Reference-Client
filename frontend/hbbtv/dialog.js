@@ -189,7 +189,7 @@ function navigateDialog( keyCode )
                 if(dialog.cancel) {
                     dialog.open = false;
                     if( keyCode == VK_BACK && typeof(dialog.cancel) == "function"){
-                        dialog.cancel().call();
+                        dialog.cancel.call();
                     }
                     else {
                         $("#dialog").html("");

@@ -66,10 +66,16 @@
 	var progressWidth = 0;
 	var progressOpenWidth = 0;
 	var localizationLangFile = null;
-    var minimumAge = 255;
-    var selectedService = null;
-    var playerType = "html5";
+  var minimumAge = 255;
+  var selectedService = null;
+  var playerType = "html5";
 
+  //Low latency settings  
+  var llEnabled = false;
+  var liveDelay= 3;
+  var minimumDrift = 0.05;
+  var catchupRate = 0.5;
+    
 
 	var lang = "eng";
 	if(localizationLangFile != "eng.json"){
@@ -128,6 +134,13 @@
         var player_settings = getLocalStorage("player_settings");
         if(player_settings && player_settings.player) {
             playerType = player_settings.player;
+        }
+        var ll_settings = getLocalStorage("ll_settings");
+        if(ll_settings) {
+           llEnabled = ll_settings.lowLatencyEnabled;
+           liveDelay = ll_settings.liveDelay;
+           minimumDrift =  ll_settings.liveCatchUpMinDrift;
+           catchupRate = ll_settings.liveCatchUpPlaybackRate;
         }
         var serviceList = getLocalStorage("servicelist");
         
