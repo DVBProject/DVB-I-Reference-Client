@@ -704,3 +704,11 @@ div, span {
 	width: 1280px;
 	height: 720px;
 }
+
+#streaminfo {
+  position: absolute;
+  top: 50px;
+  left: 250px;
+  z-index:300;
+  background-color: #0008
+}

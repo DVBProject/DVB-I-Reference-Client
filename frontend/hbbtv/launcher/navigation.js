@@ -460,7 +460,7 @@ function showSettings() {
 }
 
 function showLLSettings() {
-    var buttons = ["Low latency mode "+(llEnabled ? "(on)":"(off)"),"Target latency ("+liveDelay+"s)","Minimum drift ("+minimumDrift+"s)","Catch-up playback rate ("+catchupRate+"%)"];
+    var buttons = ["Low latency mode "+(llEnabled ? "(on)":"(off)"),"Target latency ("+liveDelay+"s)","Minimum drift ("+minimumDrift+"s)","Catch-up playback rate ("+catchupRate+"%)","Show stream info("+showStreamInfo+")"];
     showDialog("Low latency settings", buttons,null,null,
         function(checked){
             if(checked == 0) {
@@ -474,6 +474,9 @@ function showLLSettings() {
             }
             else if(checked == 3) {
                  showCatchupRateSettings();
+            }
+            else if(checked == 4) {
+                 showStreamInfoSettings();
             }
             
      },function() {
@@ -561,8 +564,28 @@ function showCatchupRateSettings() {
      },function() {showLLSettings();});
 }
 
-
-
+function showStreamInfoSettings() {
+    var buttons = ["Hide stream info","Show stream info"];
+    var checked = 0;
+    if(showStreamInfo == true) {
+        checked = 1;
+    }
+    showDialog("Stream info", buttons,checked,checked,
+        function(checked){
+            clearInterval(streamInfoUpdater);
+            if(checked == 0) {
+                showStreamInfo = false;
+                document.getElementById("streaminfo").addClass("hide");
+            }
+            else if(checked == 1) {
+                showStreamInfo = true;
+                document.getElementById("streaminfo").removeClass("hide");
+                streamInfoUpdater = setInterval(updateStreamInfo, 1000);
+            }
+            
+            showLLSettings();
+     },function() {showLLSettings();});
+}
 
 function showParentalSettings() {
     var buttons = ["0","3","5","7","12","15","18","Off"];
@@ -1402,4 +1425,38 @@ function focusBox(_box){
 		console.log(e);
 		return false;
 	}
+}
+
+function updateStreamInfo() {
+    if(player&& playerType == "mse-eme") {
+        try {
+         var settings = player.player.getSettings();
+         document.getElementById("live_settings").innerHTML = "Low latency mode:"+settings.streaming.lowLatencyEnabled + " Delay:"+ settings.streaming.liveDelay + 
+                "<br/>Min drift:"+settings.streaming.liveCatchUpMinDrift + " Catchup Rate" + settings.streaming.liveCatchUpPlaybackRate;
+         var audioTrack = player.player.getBitrateInfoListFor("audio")[player.player.getQualityFor("audio")];
+         var videoTrack = player.player.getBitrateInfoListFor("video")[player.player.getQualityFor("video")];
+         var bestAudio = player.player.getTopBitrateInfoFor("audio");
+         var bestVideo = player.player.getTopBitrateInfoFor("video");
+         if(audioTrack) {
+          document.getElementById("audio_bitrate").innerHTML = audioTrack.bitrate / 1000 + "kbits (max:"+ bestAudio.bitrate / 1000+"kbits)";
+         }
+         if(videoTrack) {
+            document.getElementById("video_bitrate").innerHTML = videoTrack.bitrate / 1000 + "kbits (max:"+ bestVideo.bitrate / 1000+"kbits)";
+            document.getElementById("video_resolution").innerHTML = videoTrack.width+"x"+videoTrack.height +" (max:"+ bestVideo.width+"x"+bestVideo.height+")";
+         }
+         document.getElementById("live_latency").innerHTML = player.player.getCurrentLiveLatency()+"s";
+        }
+        catch(e) {
+            document.getElementById("audio_bitrate").innerHTML = "error";
+            document.getElementById("video_bitrate").innerHTML = "error";
+            document.getElementById("video_resolution").innerHTML = "error";
+            document.getElementById("live_latency").innerHTML = "";
+        }
+    }
+    else {
+        document.getElementById("audio_bitrate").innerHTML = "unavailable";
+        document.getElementById("video_bitrate").innerHTML = "unavailable";
+        document.getElementById("video_resolution").innerHTML = "unavailable";
+        document.getElementById("live_latency").innerHTML = "unavailable";
+    }
 }

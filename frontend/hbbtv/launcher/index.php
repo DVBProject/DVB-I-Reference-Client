@@ -75,6 +75,8 @@
   var liveDelay= 3;
   var minimumDrift = 0.05;
   var catchupRate = 0.5;
+  var showStreamInfo = false;
+  var streamInfoUpdater = null;
     
 
 	var lang = "eng";
@@ -466,6 +468,28 @@
 	<object id="broadcast" type="video/broadcast" ></object>
     <div id="videodiv">
     </div>
+  <div id="streaminfo" class="hide">
+      <div>
+        <span>Video resolution:</span>
+        <span id="video_resolution" ></span>
+      </div>
+      <div>
+        <span>Video bitrate:</span>
+        <span id="video_bitrate" ></span>
+      </div>
+      <div>
+        <span>Audio bitrate:</span>
+        <span id="audio_bitrate"></span>
+      </div>
+      <div>
+        <span>Latency:</span>
+        <span id="live_latency" ></span>
+      </div>
+      <div>
+        <span>Settings:</span>
+        <span id="live_settings" ></span>
+      </div>
+  </div>
 	<div id="wrapper" class="hide">
 
 		<!-- <div id="debug" style="position:absolute; top:100px; left:100px;"></div> -->
