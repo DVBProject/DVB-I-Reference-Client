@@ -19,7 +19,7 @@ function VideoPlayerEME(element_id, profile, width, height){
 VideoPlayerEME.prototype.createPlayer = function(){
 	var self = this;
 	try{
-		this.video = $("<video id='video' data-dashjs-player></video>")[0];
+		this.video = $("<video id='video' data-dashjs-player=''></video>")[0];
         var subtitle = $("<div id='subtitles' ></div>")[0];
 		this.element.appendChild( this.video );
 		this.element.appendChild( subtitle );
