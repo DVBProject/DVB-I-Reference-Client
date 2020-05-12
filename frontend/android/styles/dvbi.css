@@ -226,7 +226,7 @@ body.player {
 #streaminfo {
   position: absolute;
   display: none;
-  z-index: 11; }
+  z-index: 10; }
   #streaminfo .streaminfoContainer {
     background-color: rgba(0, 0, 0, 0.5); }
   #streaminfo .btn {

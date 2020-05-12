@@ -259,16 +259,17 @@ function updateOpenChannel() {
     }
 }
 
-function toggleStreamInfo() {
-    if($("#streaminfo").is(":visible")){
+function hideStreamInfo() {
         clearInterval(streamInfoUpdate);
         $("#streaminfo").hide();
-    }
-    else {
+}
+
+function showStreamInfo() {
         $("#streaminfo").show();
+        clearInterval(streamInfoUpdate);
         updateStreamInfo();
         streamInfoUpdate = setInterval(updateStreamInfo, 1000);
-    }
+        toggleSettings();
 }
 
 function updateStreamInfo() {
