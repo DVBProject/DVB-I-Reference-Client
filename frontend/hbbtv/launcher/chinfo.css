@@ -26,6 +26,9 @@
     height: 720px;
     top: 0px;
 }
+#chinfo div {
+	position: absolute;
+}
 #chinfo.hide {
     opacity: 0;
     display: block !important;  
