@@ -146,18 +146,6 @@ img#logo {
 	height: 50px;
 	position:absolute;
 }
-.app_header img {
-	top: 0px;
-	left: 0px;
-	position:absolute;
-	width: 50px;	
-}
-.app_header span {
-	font-size: 26px;
-	left: 55px;
-	height: 50px;
-	line-height: 50px;
-}
 
 /* video */
 #videodiv {

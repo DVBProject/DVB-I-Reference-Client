@@ -1,7 +1,9 @@
 var PROVIDER_LIST = "https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelist_registry.php";
 
 function parseServiceList(data,dvbChannels) {
+    var serviceList = {}
     var list = [];
+    serviceList.services = list;
     var parser = new DOMParser();
     var doc = parser.parseFromString(data,"text/xml");
     var services = doc.getElementsByTagName("Service");
@@ -10,6 +12,13 @@ function parseServiceList(data,dvbChannels) {
 
     if(contentGuides.length > 0) {
         contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+    }
+    var relatedMaterial = doc.getElementsByTagName("RelatedMaterial");
+    for(var j = 0;j < relatedMaterial.length;j++) {
+        var howRelated = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
+        if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1") {
+            serviceList.image = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
+        }
     }
     var maxLcn = 0;
     var lcnList = doc.getElementsByTagName("LCNTable")[0].getElementsByTagName("LCN");
@@ -90,7 +99,7 @@ function parseServiceList(data,dvbChannels) {
             list[i].lcn = ++maxLcn;
         }
     }
-    return list;
+    return serviceList;
 }
 
 function getDVBChannel(tripletElement,dvbChannels) {

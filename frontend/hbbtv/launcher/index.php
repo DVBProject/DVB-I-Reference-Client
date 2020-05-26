@@ -211,8 +211,12 @@
         var current_channel_obj = null;
         var listedChannels = [];
         var services = parseServiceList(data,channelList);  
-        for (var i = 0; i < services.length ;i++) {
-            var chan = services[i];
+        if(services.image) {
+          $("#list_logo").attr("src",services.image);
+          $("#service_list_logo").attr("src",services.image);
+        }
+        for (var i = 0; i < services.services.length ;i++) {
+            var chan = services.services[i];
             chan.items =  [
                 {
                     "title": "Now Showing",
@@ -266,7 +270,7 @@
                     chan.serviceInstances.push({"dvbChannel" :dvbChannel});
                     chan.dvbChannel = dvbChannel;
                     chan.lcn = number++;
-                    var channel_obj = new Channel(chan, "menuitem"+ (k + services.length));
+                    var channel_obj = new Channel(chan, "menuitem"+ (k + services.services.length));
                     for(var b = 0; b < channel_obj.boxes.length; b++){
 				        channel_obj.boxes[b].description = "";
 				        break;
@@ -493,7 +497,7 @@
 	<div id="wrapper" class="hide">
 
 		<!-- <div id="debug" style="position:absolute; top:100px; left:100px;"></div> -->
-
+	  <img id="service_list_logo" src="../CommonUI/logo_dvbi_sofia.png" alt="logo dvb-i sofia digital" />
 		<div id="menu_0"></div>
 		
 		<div id="clock">
@@ -508,7 +512,7 @@
         <div id="chinfo_chname"></div>
         <div id="chinfo_chnumber"></div>
         <div id="chinfo_chicon"><img id="chinfo_chicon_img" src="" alt=""/></div>
-        <div id="chinfo_logo"><img src="images/logo_dvb-i.png" alt=""/></div>
+        <div id="chinfo_logo"><img id="list_logo" src="images/logo_dvb-i.png" alt=""/></div>
       
         <div id="chinfo_now">
             <div id="chinfo_now_header">NOW SHOWING</div>

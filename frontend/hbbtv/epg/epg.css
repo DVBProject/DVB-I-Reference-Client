@@ -13,21 +13,23 @@ body {
 }
 .app_header { 
 
-	top:-25px;
+	top:20px;
 	/*
 	left: 970px;
 	*/
-	left: 50px;
+	left: 70px;
 	height: 125px;
 	width: 235px;
 	/**/
-    background-image:url(images/logo.png);
-	background-repeat:no-repeat;
 	
     z-index: 10;
 	position:absolute;
 
     
+}
+
+#list_logo {
+	max-height: 70px;
 }
 #clock {
 	left: 1000px;

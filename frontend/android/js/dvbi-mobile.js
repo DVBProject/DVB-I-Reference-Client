@@ -172,10 +172,13 @@ function openProgramInfo(program) {
 
 function loadServicelist(list) {
     $.get( list, function( data ) {
-        var services = parseServiceList(data,null);  
+        var servicelist = parseServiceList(data,null);
+        if(servicelist.image) {
+          $("#list_logo").attr("src",servicelist.image);
+        }
         var channelIndex = 0;
-        for (var i = 0; i < services.length ;i++) {
-            var channel = new Channel(services[i],channelIndex++);
+        for (var i = 0; i < servicelist.services.length ;i++) {
+            var channel = new Channel(servicelist.services[i],channelIndex++);
             channels.push(channel);
         }
         channels.sort(compareLCN);

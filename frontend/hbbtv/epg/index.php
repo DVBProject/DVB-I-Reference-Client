@@ -113,8 +113,11 @@
             var config = vid.getChannelConfig();
             var dvbChannels = config.channelList;
             var list = parseServiceList(data,dvbChannels);
-            list.sort(compareLCN);
-            channelList = {"channels" :list};
+            if(list.image) {
+              $("#list_logo").attr("src",list.image);
+            }
+            list.services.sort(compareLCN);
+            channelList = {"channels" :list.services};
             init();
         },"text");
 
@@ -241,6 +244,7 @@
             <object id="broadcast" type="video/broadcast" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
 		</div>
     	<div class="app_header">
+      <img id="list_logo" src="images/logo.png">
 		</div>
 		<div id="clock">
 			<div id="clock_date"></div> 

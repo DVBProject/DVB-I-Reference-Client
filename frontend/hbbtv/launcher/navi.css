@@ -49,6 +49,13 @@ div, span {
   opacity: 1 !important;
 }
 
+#service_list_logo {
+  position: absolute;
+  top: 50px;
+  left: 70px;
+  height: 100px;
+}
+
 #menu_0{
 	position: absolute;
 	left:0px;
