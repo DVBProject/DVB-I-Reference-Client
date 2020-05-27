@@ -1,5 +1,5 @@
 <?php
-    header( "Content-Type: text/html; charset=UTF-8" );
+	header( "Content-Type: application/vnd.hbbtv.xhtml+xml;charset=utf-8" );
 	echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 ?>
 <!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
@@ -7,7 +7,7 @@
 <head> 
     <title>gridEPG</title>
 	<meta http-equiv="content-type" content="application/vnd.hbbtv.xhtml+xml; charset=utf-8" />
-    <link rel="stylesheet" href="../CommonUI/commonui.css">
+    <link rel="stylesheet" href="../CommonUI/commonui.css"/>
     <link rel="stylesheet" href="epg.css"/>
     <script type="text/javascript" src="../../../jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="gridepg.js"></script>
@@ -244,7 +244,7 @@
             <object id="broadcast" type="video/broadcast" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
 		</div>
     	<div class="app_header">
-      <img id="list_logo" src="images/logo.png">
+      <img id="list_logo" src="images/logo.png"/>
 		</div>
 		<div id="clock">
 			<div id="clock_date"></div> 

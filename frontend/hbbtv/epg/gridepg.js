@@ -283,7 +283,7 @@ GridEPG.prototype.populate = function(callback){
 			channelElement.setAttribute("id", "channel_" + i);
 			channelElement.addClass("channel");
             if(img) {
-                channelElement.innerHTML = "<img src=\"" + img + "\" alt=\"\" />";
+                channelElement.innerHTML = "<img src=\"" + img.replace(/&/g,"&amp;") + "\" alt=\"\" />";
             }
             else {
                 channelElement.innerHTML = "<span>"+channel.title+"</span>";

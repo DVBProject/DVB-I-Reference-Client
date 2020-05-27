@@ -118,17 +118,6 @@ function onKey(keyCode)
 {   
     idleTimeStart = new Date(new Date().getTime()+diffTime);
     if(!loading && !animating){        
-        // Navigate in Dialog
-        if(dialog && dialog.open){
-            navigateDialog(keyCode);
-            return true;
-        }
-        
-
-        else if( (typeof(playerOpen) != "undefined") && (playerOpen)){
-            navigatePlayer(keyCode);
-        }
-		
 		if (keyCode == VK_BACK || keyCode == KeyEvent.VK_GUIDE ) {
 			window.location = '../launcher/index.php?ch='+firstChannel;
 			return true;

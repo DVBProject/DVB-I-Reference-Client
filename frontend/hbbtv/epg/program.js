@@ -106,7 +106,7 @@ Program.prototype.populate = function(){
                 }
             }
         }
-		element.innerHTML = "<div class=\"programTextContainer horizontalAutoscroll\"><span>" + htmlDecode(title) + "</span></div>";
+		element.innerHTML = "<div class=\"programTextContainer horizontalAutoscroll\"><span>" + title.replace(/&/g,"&amp;") + "</span></div>";
 		
 		if((self.mediaurl != null && self.mediaurl.length > 0)
 		&& (self.start_date_obj != null && self.start_date_obj <= curTime)){
