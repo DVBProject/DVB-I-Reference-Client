@@ -38,6 +38,9 @@ function parseServiceList(data,dvbChannels) {
             if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
                 chan.image = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
             }
+            else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
+                chan.mediaPresentationApp = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
+            }
         }
         var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
         var instances = [];

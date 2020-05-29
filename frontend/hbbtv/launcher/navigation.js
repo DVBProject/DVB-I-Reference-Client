@@ -943,6 +943,9 @@ function selectService(channel_obj) {
      selectService.selected = false;
      selectedService = channel_obj;
      selectedService.selected = true;
+     if(mediaPresentationApp) {
+        mediaPresentationApp.destroyApplication();
+     }
      if(!channel_obj.isProgramAllowed()) {
             if(player) {
                 player.stop();
@@ -966,14 +969,19 @@ function selectService(channel_obj) {
      try{
         playing= true;
         $("#info").addClass("hide");
-        var serviceInstance = channel_obj.getServiceInstance();
-        if(serviceInstance.dvbChannel) {
-            selectDVBService(serviceInstance.dvbChannel) ;
+        if(channel_obj.mediaPresentationApp) {
+            error(channel_obj.mediaPresentationApp);
+            mediaPresentationApp = _application_.createApplication(channel_obj.mediaPresentationApp);
         }
-        else if(serviceInstance.dashUrl) {
-            playDASH(serviceInstance.dashUrl);
+        else {
+          var serviceInstance = channel_obj.getServiceInstance();
+          if(serviceInstance.dvbChannel) {
+              selectDVBService(serviceInstance.dvbChannel) ;
+          }
+          else if(serviceInstance.dashUrl) {
+              playDASH(serviceInstance.dashUrl);
+          }
         }
-
 	}
 	catch(e){
 		console.log(e);
