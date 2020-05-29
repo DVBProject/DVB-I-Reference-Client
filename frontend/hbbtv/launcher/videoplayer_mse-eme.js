@@ -569,21 +569,23 @@ VideoPlayerEME.prototype.getSubtitles = function() {
     }
     var subtitles = this.player.getTracksFor("fragmentedText");
     var list = [];
-    for(var i = 0;i < subtitles.length;i++) {
-        var subtitletrack = {};
-        if(subtitles[i] == current) {
-            subtitletrack.current = true;
-        }
-        subtitletrack.lang = subtitles[i].lang 
-        subtitletrack.type = subtitles[i].roles.join(",");
-        list.push(subtitletrack);
+    if(subtitles.length > 0) {
+      for(var i = 0;i < subtitles.length;i++) {
+          var subtitletrack = {};
+          if(subtitles[i] == current) {
+              subtitletrack.current = true;
+          }
+          subtitletrack.lang = subtitles[i].lang;
+          subtitletrack.type = subtitles[i].roles.join(",");
+          list.push(subtitletrack);
+     }
+     var subtitletrack = {};
+     subtitletrack.lang = "Subtitles Off";
+     if(current == null) {
+         subtitletrack.current = true;
+     }
+     list.push(subtitletrack);
    }
-   var subtitletrack = {};
-   subtitletrack.lang = "Subtitles Off";
-   if(current == null) {
-       subtitletrack.current = true;
-   }
-   list.push(subtitletrack);
    return list;
 }
 
@@ -591,3 +593,26 @@ VideoPlayerEME.prototype.selectSubtitleTrack = function(track) {
     this.player.setTextTrack(track);
 }
 
+VideoPlayerEME.prototype.getAudioTracks = function() {
+    var current = null;
+    if(this.player.isTextEnabled()) {
+        current = this.player.getCurrentTrackFor("audio");
+    }
+    var audioTracks = this.player.getTracksFor("audio");
+    var list = [];
+    for(var i = 0;i < audioTracks.length;i++) {
+        var audiotrack = {};
+        if(audioTracks[i] == current) {
+            audiotrack.current = true;
+        }
+        audiotrack.lang = audioTracks[i].lang;
+        audiotrack.type = audioTracks[i].roles.join(",");
+        list.push(audiotrack);
+   }
+   return list;
+}
+
+VideoPlayerEME.prototype.selectAudioTrack = function(track) {
+    var audio = this.player.getTracksFor("audio");
+    this.player.setCurrentTrack(audio[track]);
+}
