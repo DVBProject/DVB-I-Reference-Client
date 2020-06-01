@@ -970,7 +970,6 @@ function selectService(channel_obj) {
         playing= true;
         $("#info").addClass("hide");
         if(channel_obj.mediaPresentationApp) {
-            error(channel_obj.mediaPresentationApp);
             mediaPresentationApp = _application_.createApplication(channel_obj.mediaPresentationApp);
         }
         else {
