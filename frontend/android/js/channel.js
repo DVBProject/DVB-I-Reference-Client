@@ -87,6 +87,23 @@ Channel.prototype.unselected = function () {
     self.element.classList.remove("active");
 }
 
+Channel.prototype.startApp = function(aitUrl) {
+    $.get( aitUrl, function( data ) {
+        var apps = parseXmlAit(data);
+        var app = null;
+        for(var i = 0; i < apps.length;i++) {
+            if(apps[i].transportType == "mhp:HTTPTransportType") {
+                if(app == null || app.priority < apps[i].priority) {
+                    app = apps[i];
+                }
+            }
+        }
+        if(app != null) {
+          window.location = app.urlbase+app.location;
+        }
+     },"text");
+}
+
 Channel.prototype.channelSelected = function () {
     var self = this;
     self.element.classList.add("active");
@@ -95,7 +112,10 @@ Channel.prototype.channelSelected = function () {
         var serviceInstance = self.getServiceInstance();
         self.setProgramChangedTimer();
         self.updateChannelInfo();
-        if(self.isProgramAllowed()) {
+        if(self.mediaPresentationApp) {
+            self.startApp(self.mediaPresentationApp);
+        }
+        else if(self.isProgramAllowed()) {
             player.attachSource(serviceInstance.dashUrl);
         }
         else {

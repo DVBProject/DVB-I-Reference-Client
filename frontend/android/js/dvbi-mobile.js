@@ -478,3 +478,22 @@ function showSettings(settingspage) {
     $(".settingspage").hide();
     $(document.getElementById(settingspage)).show();
 }
+
+function parseXmlAit(data) {
+    var list = [];
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(data,"text/xml");
+    var applications = doc.getElementsByTagNameNS("urn:dvb:mhp:2009","Application"); 
+    for(var i = 0;i < applications.length;i++) {
+        var app = {};
+        var appDescriptor = applications[i].getElementsByTagNameNS("urn:dvb:mhp:2009","applicationDescriptor")[0];
+        app.priority = appDescriptor.getElementsByTagNameNS("urn:dvb:mhp:2009","priority")[0].childNodes[0].nodeValue;
+        app.controlCode = appDescriptor.getElementsByTagNameNS("urn:dvb:mhp:2009","controlCode")[0].childNodes[0].nodeValue;
+        var appTransport = applications[i].getElementsByTagNameNS("urn:dvb:mhp:2009","applicationTransport")[0];
+        app.transportType = appTransport.getAttributeNS("http://www.w3.org/2001/XMLSchema-instance","type");
+        app.urlbase = appTransport.getElementsByTagNameNS("urn:dvb:mhp:2009","URLBase")[0].childNodes[0].nodeValue;
+        app.location = applications[i].getElementsByTagNameNS("urn:dvb:mhp:2009","applicationLocation")[0].childNodes[0].nodeValue;
+        list.push(app);
+    }
+    return list;
+}
