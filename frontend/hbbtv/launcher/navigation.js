@@ -29,7 +29,7 @@ var player = null;
 var broadcast = null;
 var playingDASH = false;
 var playing = false;
-var mediaPresentationApp = null;
+var serviceApp = null;
 
 if (typeof(KeyEvent)!='undefined') {
 	if (typeof(KeyEvent.VK_LEFT)!='undefined') {
@@ -971,7 +971,7 @@ function selectService(channel_obj) {
         playing= true;
         $("#info").addClass("hide");
         if(channel_obj.mediaPresentationApp) {
-            mediaPresentationApp = _application_.createApplication(channel_obj.mediaPresentationApp);
+            serviceApp = _application_.createApplication(channel_obj.mediaPresentationApp);
         }
         else {
           var serviceInstance = channel_obj.getServiceInstance();
@@ -980,6 +980,9 @@ function selectService(channel_obj) {
           }
           else if(serviceInstance.dashUrl) {
               playDASH(serviceInstance.dashUrl);
+          }
+          if(channel_obj.mediaPresentationApp) {
+            serviceApp = _application_.createApplication(channel_obj.mediaPresentationApp);
           }
         }
 	}
