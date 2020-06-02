@@ -29,6 +29,7 @@ var player = null;
 var broadcast = null;
 var playingDASH = false;
 var playing = false;
+var mediaPresentationApp = null;
 
 if (typeof(KeyEvent)!='undefined') {
 	if (typeof(KeyEvent.VK_LEFT)!='undefined') {
