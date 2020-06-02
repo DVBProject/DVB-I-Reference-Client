@@ -874,22 +874,24 @@ VideoPlayerHTML5.prototype.getSubtitles = function() {
     var subtitles = this.video.textTracks
     var list = [];
     var current = null;
-    for(var i = 0;i < subtitles.length;i++) {
-        var subtitletrack = {};
-        if(subtitles[i].mode == "showing") {
-            subtitletrack.current = true;
-            current = subtitletrack;
-        }
-        subtitletrack.lang = subtitles[i].language;
-        subtitletrack.type = subtitles[i].kind;
-        list.push(subtitletrack);
+    if(subtitles.length > 0) {
+      for(var i = 0;i < subtitles.length;i++) {
+          var subtitletrack = {};
+          if(subtitles[i].mode == "showing") {
+              subtitletrack.current = true;
+              current = subtitletrack;
+          }
+          subtitletrack.lang = subtitles[i].language;
+          subtitletrack.type = subtitles[i].kind;
+          list.push(subtitletrack);
+     }
+     var subtitletrack = {};
+     subtitletrack.lang = "Subtitles Off";
+     if(current == null) {
+         subtitletrack.current = true;
+     }
+     list.push(subtitletrack);
    }
-   var subtitletrack = {};
-   subtitletrack.lang = "Subtitles Off";
-   if(current == null) {
-       subtitletrack.current = true;
-   }
-   list.push(subtitletrack);
    return list;
 }
 
@@ -898,7 +900,32 @@ VideoPlayerHTML5.prototype.selectSubtitleTrack = function(track) {
     this.video.textTracks[track].mode = "showing";
 }
 
+VideoPlayerHTML5.prototype.getAudioTracks = function() {
+    var audioTracks = this.video.audioTracks;
+    var list = [];
+    for(var i = 0;i < audioTracks.length;i++) {
+        var audiotrack = {};
+        if(audioTracks[i].enabled) {
+            audiotrack.current = true;
+        }
+        audiotrack.lang = audioTracks[i].language;
+        audiotrack.type = audioTracks[i].kind;
+        list.push(audiotrack);
+   }
+   return list;
+}
 
+}
+
+VideoPlayerHTML5.prototype.selectAudioTrack = function(track) {
+  for (i=0; i < this.video.audioTracks.length; i++) {
+      if (i == track) {
+          video.audioTracks[i].enabled = true;
+      } else {
+          video.audioTracks[i].enabled = false;
+      }
+  }
+}
 
 
 
