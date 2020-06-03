@@ -944,8 +944,8 @@ function selectService(channel_obj) {
      selectService.selected = false;
      selectedService = channel_obj;
      selectedService.selected = true;
-     if(mediaPresentationApp) {
-        mediaPresentationApp.destroyApplication();
+     if(serviceApp) {
+        serviceApp.destroyApplication();
      }
      if(!channel_obj.isProgramAllowed()) {
             if(player) {
