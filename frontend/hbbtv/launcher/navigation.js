@@ -1011,8 +1011,8 @@ function selectService(channel_obj) {
           else if(serviceInstance.dashUrl) {
               playDASH(serviceInstance.dashUrl);
           }
-          if(channel_obj.mediaPresentationApp) {
-            serviceApp = _application_.createApplication(channel_obj.mediaPresentationApp);
+          if(channel_obj.parallelApp) {
+            serviceApp = _application_.createApplication(channel_obj.parallelApp);
           }
         }
 	}
