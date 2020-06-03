@@ -83,7 +83,7 @@ function parseServiceList(data,dvbChannels) {
                 }
             }
         }
-        if(instances.length == 0) {
+        if(instances.length == 0 && chan.mediaPresentationApp == null) {
             continue;
         }
         for(var j = 0;j < lcnList.length;j++) {
@@ -98,7 +98,7 @@ function parseServiceList(data,dvbChannels) {
         chan.epg = [];
         chan.serviceInstances =instances;
         chan.sourceTypes =sourceTypes.join('/');
-	    list.push(chan);
+        list.push(chan);
     }
     for (var i = 0; i < list.length ;i++) {
         if(!list[i].lcn) {
