@@ -42,6 +42,7 @@ function addServiceInstance(serviceId,instanceElement) {
     instanceDiv.classList.add("service_"+serviceId+"_instance");
     instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_priority","Priority"));
     instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_media_presentation_app","Application controlling media presentation"));
+    instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_parallel_app","Application with media in parallel"));
     var inputDiv = document.createElement('div');
     inputDiv.classList.add("form-group","mb-1","row"); 
     var inputLabel = document.createElement('label');
@@ -108,6 +109,9 @@ function addServiceInstance(serviceId,instanceElement) {
                 if(howRelated.length > 0) {
                     if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
                         document.getElementById("instance_"+serviceId+"_"+instanceId+"_media_presentation_app").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
+                    }
+                    if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
+                        document.getElementById("instance_"+serviceId+"_"+instanceId+"_parallel_app").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
                     }
                 }
             }
@@ -200,6 +204,7 @@ function addService(serviceElement) {
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_content_guide_service_reference","Content Guide Service Reference"));
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_service_logo","Service logo URI"));
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_media_presentation_app","Application controlling media presentation"));
+    serviceDiv.appendChild(createTextInput("service_"+serviceId+"_parallel_app","Application with media in parallel"));
 
 
     var newTextbox = document.createElement('a');
@@ -237,6 +242,9 @@ function addService(serviceElement) {
                 if(howRelated.length > 0) {
                     if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
                         document.getElementById("service_"+serviceId+"_service_logo").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
+                    }
+                    else if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
+                        document.getElementById("service_"+serviceId+"_parallel_app").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
                     }
                     else if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
                         document.getElementById("service_"+serviceId+"_media_presentation_app").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
@@ -366,6 +374,20 @@ function generateXML() {
             propertyElement.appendChild(mediaLocator);
             serviceElement.appendChild(propertyElement);
         }
+        app = document.getElementById(serviceId+"_parallel_app").value;
+        if(app && app.length > 0) {
+            propertyElement = doc.createElement("RelatedMaterial");
+            var howRelated = doc.createElement("tva:HowRelated");
+            howRelated.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1");
+            propertyElement.appendChild(howRelated);
+            var mediaLocator = doc.createElement("tva:MediaLocator");
+            var mediauri = doc.createElement("tva:MediaUri");
+            mediauri.setAttribute("contentType","application/vnd.dvb.ait+xml");
+            mediauri.appendChild(doc.createTextNode(app));
+            mediaLocator.appendChild(mediauri);
+            propertyElement.appendChild(mediaLocator);
+            serviceElement.appendChild(propertyElement);
+        }
         var contentGuideServiceRef = document.getElementById(serviceId+"_content_guide_service_reference").value;
         if(contentGuideServiceRef && contentGuideServiceRef.length > 0) {
             propertyElement = doc.createElement("ContentGuideServiceRef");
@@ -390,10 +412,6 @@ function generatetServiceInstance(instance,doc) {
     var instanceElement = doc.createElement("ServiceInstance");
     var instanceId = instance.id;
     instanceElement.setAttribute("priority",document.getElementById(instanceId+"_priority").value);
-    var sourceTypeElement = doc.createElement("SourceType");
-    var sourceType = document.getElementById(instanceId+"_source_type").value;
-    sourceTypeElement.appendChild(doc.createTextNode(sourceType));
-    instanceElement.appendChild(sourceTypeElement);
     var app = document.getElementById(instanceId+"_media_presentation_app").value;
     if(app && app.length > 0) {
         propertyElement = doc.createElement("RelatedMaterial");
@@ -408,6 +426,24 @@ function generatetServiceInstance(instance,doc) {
         propertyElement.appendChild(mediaLocator);
         instanceElement.appendChild(propertyElement);
     }
+    app = document.getElementById(instanceId+"_parallel_app").value;
+    if(app && app.length > 0) {
+        propertyElement = doc.createElement("RelatedMaterial");
+        var howRelated = doc.createElement("tva:HowRelated");
+        howRelated.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1");
+        propertyElement.appendChild(howRelated);
+        var mediaLocator = doc.createElement("tva:MediaLocator");
+        var mediauri = doc.createElement("tva:MediaUri");
+        mediauri.setAttribute("contentType","application/vnd.dvb.ait+xml");
+        mediauri.appendChild(doc.createTextNode(app));
+        mediaLocator.appendChild(mediauri);
+        propertyElement.appendChild(mediaLocator);
+        instanceElement.appendChild(propertyElement);
+    }
+    var sourceTypeElement = doc.createElement("SourceType");
+    var sourceType = document.getElementById(instanceId+"_source_type").value;
+    sourceTypeElement.appendChild(doc.createTextNode(sourceType));
+    instanceElement.appendChild(sourceTypeElement);
     if(sourceType === "urn:dvb:metadata:source:dvb-dash") {
         var deliveryParametersElement = doc.createElement("DASHDeliveryParameters");
         var locationElement = doc.createElement("UriBasedLocation");
