@@ -439,6 +439,15 @@ function showSettings() {
         catch(e) {
             console.log(e);
         } 
+        try {
+            var audioTracks = player.getAudioTracks();
+            if(audioTracks.length > 0) {
+                buttons.push("Audio");
+            }
+        }
+        catch(e) {
+            console.log(e);
+        }
     }
     showDialog("", buttons,null,null,
         function(checked){
@@ -454,8 +463,11 @@ function showSettings() {
             else if(checked == 3 ) {
                 showLLSettings();
             }
-            else if(checked == 4  ) {
+            else if(buttons[checked] == "Subtitles"  ) {
                 showSubtitleSettings();
+            }
+            else if(buttons[checked] == "Audio"  ) {
+                showAudioSettings();
             }
      },true);
 }
@@ -644,7 +656,7 @@ function showSubtitleSettings() {
         if(subtitles[i].current == true ) {
             checked = i;
         }
-        buttons.push(subtitles[i].lang+"("+subtitles[i].type+")");
+        buttons.push(subtitles[i].lang+(subtitles[i].type ? "("+subtitles[i].type+")" : ""));
     }
     showDialog("Subtitle track", buttons,checked,checked,
         function(checked){
@@ -654,6 +666,24 @@ function showSubtitleSettings() {
             else {
                 player.selectSubtitleTrack(checked);
             }
+            showSettings();
+
+     },function() {showSettings();});
+}
+
+function showAudioSettings() {
+    var audioTracks =player.getAudioTracks();
+    var buttons = [];
+    var checked = 0;
+    for(var i = 0;i<audioTracks.length;i++) {
+        if(audioTracks[i].current == true ) {
+            checked = i;
+        }
+        buttons.push(audioTracks[i].lang+(audioTracks[i].type ?"("+audioTracks[i].type+")" : ""));
+    }
+    showDialog("Audio track", buttons,checked,checked,
+        function(checked){
+            player.selectAudioTrack(checked);
             showSettings();
 
      },function() {showSettings();});
