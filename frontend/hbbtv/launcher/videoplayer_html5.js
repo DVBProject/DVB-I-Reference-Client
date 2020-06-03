@@ -915,8 +915,6 @@ VideoPlayerHTML5.prototype.getAudioTracks = function() {
    return list;
 }
 
-}
-
 VideoPlayerHTML5.prototype.selectAudioTrack = function(track) {
   for (i=0; i < this.video.audioTracks.length; i++) {
       if (i == track) {
