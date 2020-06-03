@@ -106,7 +106,7 @@ function addServiceInstance(serviceId,instanceElement) {
             else if(children[i].nodeName === "RelatedMaterial") {
                 var howRelated = children[i].getElementsByTagName("tva:HowRelated")
                 if(howRelated.length > 0) {
-                    if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
+                    if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
                         document.getElementById("instance_"+serviceId+"_"+instanceId+"_media_presentation_app").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
                     }
                 }
@@ -238,7 +238,7 @@ function addService(serviceElement) {
                     if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
                         document.getElementById("service_"+serviceId+"_service_logo").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
                     }
-                    else if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
+                    else if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
                         document.getElementById("service_"+serviceId+"_media_presentation_app").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
                     }
                 }
@@ -356,7 +356,7 @@ function generateXML() {
         if(app && app.length > 0) {
             propertyElement = doc.createElement("RelatedMaterial");
             var howRelated = doc.createElement("tva:HowRelated");
-            howRelated.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1");
+            howRelated.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2");
             propertyElement.appendChild(howRelated);
             var mediaLocator = doc.createElement("tva:MediaLocator");
             var mediauri = doc.createElement("tva:MediaUri");
@@ -398,7 +398,7 @@ function generatetServiceInstance(instance,doc) {
     if(app && app.length > 0) {
         propertyElement = doc.createElement("RelatedMaterial");
         var howRelated = doc.createElement("tva:HowRelated");
-        howRelated.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1");
+        howRelated.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2");
         propertyElement.appendChild(howRelated);
         var mediaLocator = doc.createElement("tva:MediaLocator");
         var mediauri = doc.createElement("tva:MediaUri");
