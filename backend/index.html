@@ -32,31 +32,35 @@ $( document ).ready(function() {
             <div class="col-12 col-md-6 border-right border-md-none">
               <form>
                 <div class="form-group row mb-1">
-                  <label for="formGroupExampleInput" class="col-6 col-form-label col-form-label-sm">Service list version</label>
+                  <label for="version" class="col-6 col-form-label col-form-label-sm">Service list version</label>
                   <input type="text" id="version" name="version" value="" class="form-control-sm col-5" placeholder="Placeholder">
                 </div>
                 <div class="form-group row mb-1">
-                  <label for="formGroupExampleInput2" class="col-6 col-form-label col-form-label-sm">Service list name</label>
+                  <label for="name" class="col-6 col-form-label col-form-label-sm">Service list name</label>
                   <input type="text" id="name" name="name" value="" class="form-control-sm col-5" placeholder="Placeholder">
                 </div>
                 <div class="form-group row mb-1">
-                  <label for="formGroupExampleInput2" class="col-6 col-form-label col-form-label-sm">Service list provider</label>
+                  <label for="service_list_logo" class="col-6 col-form-label col-form-label-sm">Service list logo URL</label>
+                  <input type="text" id="service_list_logo" name="service_list_logo" value="" class="form-control-sm col-5" placeholder="Placeholder">
+                </div>
+                <div class="form-group row mb-1">
+                  <label for="provider" class="col-6 col-form-label col-form-label-sm">Service list provider</label>
                   <input type="text" id="provider" name="provider" value="" class="form-control-sm col-5" placeholder="Placeholder">
                 </div>
                 <div class="form-group row mb-1">
-                  <label for="formGroupExampleInput2" class="col-6 col-form-label col-form-label-sm">LCN List Target Region</label>
+                  <label for="target_region" class="col-6 col-form-label col-form-label-sm">LCN List Target Region</label>
                   <input type="text" id="target_region" name="target_region" value="" class="form-control-sm col-5" placeholder="Placeholder">
                 </div>
                 <div class="form-group row mb-1">
-                  <label for="formGroupExampleInput2" class="col-6 col-form-label col-form-label-sm">Content Guide ID</label>
+                  <label for="content_guide_id" class="col-6 col-form-label col-form-label-sm">Content Guide ID</label>
                   <input type="text" id="content_guide_id" name="target_region" value="" class="form-control-sm col-5" placeholder="Placeholder">
                 </div>
                 <div class="form-group row mb-1">
-                  <label for="formGroupExampleInput2" class="col-6 col-form-label col-form-label-sm">Content Guide Schedule Endpoint</label>
+                  <label for="content_guide_schedule_endpoint" class="col-6 col-form-label col-form-label-sm">Content Guide Schedule Endpoint</label>
                   <input type="text" id="content_guide_schedule_endpoint" name="target_region" value="" class="form-control-sm col-5" placeholder="Placeholder">
                 </div>
                 <div class="form-group row mb-1">
-                  <label for="formGroupExampleInput2" class="col-6 col-form-label col-form-label-sm">Content Guide Provider</label>
+                  <label for="content_guide_provider" class="col-6 col-form-label col-form-label-sm">Content Guide Provider</label>
                   <input type="text" id="content_guide_provider" name="target_region" value="" class="form-control-sm col-5" placeholder="Placeholder">
                 </div>
                 <input type="hidden" id="service_count" value="0"/>

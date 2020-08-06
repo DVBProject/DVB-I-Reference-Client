@@ -284,7 +284,20 @@ function generateXML() {
     var listProvider = doc.createElement("ProviderName");
     listProvider.appendChild(doc.createTextNode(document.getElementById("provider").value));
     doc.documentElement.appendChild(listProvider);
-
+    var listLogo = document.getElementById("service_list_logo").value;
+    if(listLogo && listLogo.length > 0) {
+      var relatedElement = doc.createElement("RelatedMaterial");
+      var howRelated = doc.createElement("tva:HowRelated");
+      howRelated.setAttribute("href","urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1");
+      relatedElement.appendChild(howRelated);
+      var mediaLocator = doc.createElement("tva:MediaLocator");
+      var mediauri = doc.createElement("tva:MediaUri");
+      mediauri.setAttribute("contentType",listLogo.endsWith(".jpg") ? "image/jpg": "image/png");
+      mediauri.appendChild(doc.createTextNode(listLogo));
+      mediaLocator.appendChild(mediauri);
+      relatedElement.appendChild(mediaLocator);
+      doc.documentElement.appendChild(relatedElement);
+    }
     doc.documentElement.setAttribute("version",document.getElementById("version").value);
     doc.documentElement.setAttribute("xmlns","urn:dvb:metadata:servicediscovery:2019");
     doc.documentElement.setAttribute("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance");
@@ -613,6 +626,12 @@ function loadServicelist(list) {
             }
             else if(children[i].nodeName === "ProviderName") {
                 document.getElementById("provider").value = children[i].childNodes[0].nodeValue;
+            }
+            else if(children[i].nodeName === "RelatedMaterial") {
+                var howRelated = children[i].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated");
+                if(howRelated.length > 0 && howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1") {
+                  document.getElementById("service_list_logo").value = children[i].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
+                }
             }
             else if(children[i].nodeName === "LCNTableList") {
                 lcnMap = readLCN(children[i]);
