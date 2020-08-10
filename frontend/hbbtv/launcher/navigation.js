@@ -449,6 +449,27 @@ function showSettings() {
             console.log(e);
         }
     }
+    else {
+      try {
+            var subtitles = getDVBTracks(broadcast.COMPONENT_TYPE_SUBTITLE);
+            if(subtitles && subtitles.length > 0) {
+                buttons.push("Subtitles");
+            }
+        }
+        catch(e) {
+          console.log(e);
+        }
+
+        try {
+            var audioTracks = getDVBTracks(broadcast.COMPONENT_TYPE_AUDIO);
+            if(audioTracks && audioTracks.length > 0) {
+                buttons.push("Audio");
+            }
+        }
+        catch(e) {
+          console.log(e);
+        }
+    }
     showDialog("", buttons,null,null,
         function(checked){
             if(checked == 0 ) {
@@ -881,8 +902,13 @@ function showPlayerSettings() {
 }
 
 function showSubtitleSettings() {
-    
-    var subtitles =player.getSubtitles();
+    var subtitles = null;
+    if(player) {
+      subtitles = player.getSubtitles();
+    }
+    else {
+      subtitles = getDVBTracks(broadcast.COMPONENT_TYPE_SUBTITLE);
+    }
     var buttons = [];
     var checked = 0;
     for(var i = 0;i<subtitles.length;i++) {
@@ -894,10 +920,21 @@ function showSubtitleSettings() {
     showDialog("Subtitle track", buttons,checked,checked,
         function(checked){
             if(checked == subtitles.length-1) {
-                player.selectSubtitleTrack(-1);
+                if(player) {
+                  player.selectSubtitleTrack(-1);
+                }
+                else {
+                    var broadcastElement = supervisor ? supervisor : broadcast;
+                    broadcastElement.unselectComponent(broadcast.COMPONENT_TYPE_SUBTITLE);
+                }
             }
             else {
+              if(player) {
                 player.selectSubtitleTrack(checked);
+              }
+              else {
+                selectDVBTrack(checked, broadcast.COMPONENT_TYPE_SUBTITLE) ;
+              }
             }
             showSettings();
 
@@ -905,7 +942,13 @@ function showSubtitleSettings() {
 }
 
 function showAudioSettings() {
-    var audioTracks =player.getAudioTracks();
+    var audioTracks = null;
+    if(player) {
+      audioTracks = player.getAudioTracks();
+    }
+    else {
+      audioTracks = getDVBTracks(broadcast.COMPONENT_TYPE_AUDIO);
+    }
     var buttons = [];
     var checked = 0;
     for(var i = 0;i<audioTracks.length;i++) {
@@ -916,12 +959,45 @@ function showAudioSettings() {
     }
     showDialog("Audio track", buttons,checked,checked,
         function(checked){
-            player.selectAudioTrack(checked);
+            if(player) {
+              player.selectAudioTrack(checked);
+            }
+            else {
+              selectDVBTrack(checked, broadcast.COMPONENT_TYPE_AUDIO) ;
+            }
             showSettings();
 
      },function() {showSettings();});
 }
 
+function getDVBTracks(type) {
+  var tracks = null;
+  var broadcastElement = supervisor ? supervisor : broadcast;
+
+  tracks = broadcastElement.getComponents(type);
+  var trackList = [];  
+  for(var i = 0;i<tracks.length;i++) {
+    var track = {};
+    track.lang = tracks[i].language;
+    if(tracks[i].audioDescription) {
+      track.type = "visual impaired";
+    }
+    else if(tracks[i].hearingImpaired) {
+      track.type = "hearing impaired";
+    }
+    trackList.push(track);
+  }
+  return trackList;
+}
+
+function selectDVBTrack(componentIndex, type) {
+  var tracks = null;
+  var broadcastElement = supervisor ? supervisor : broadcast;
+  
+  tracks = broadcastElement.getComponents(type);
+  broadcastElement.selectComponent(tracks[componentIndex]);
+
+}
 
 function volumeUp() {
     changeVolume(5);
