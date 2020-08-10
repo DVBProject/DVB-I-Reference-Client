@@ -9,6 +9,11 @@ var programChangeTimer = null;
 var trackSelection = null;
 var i18n = null;
 var DEFAULT_LANGUAGE = "en";
+var parentalEnabled = false;
+var parentalPin = null;
+var pinSuccessCallback = null;
+var pinFailureCallback = null;
+
 
 function channelSelected(channelId) {
     $("#notification").hide();
@@ -86,7 +91,9 @@ window.onload = function(){
     }
     var parental_settings = getLocalStorage("parental_settings");
     if(parental_settings) {
+        parentalEnabled = parental_settings.parentalEnabled || false;
         minimumAge = parseFloat(parental_settings.minimumAge);
+        parentalPin = parental_settings.parentalPin;
         document.getElementById("parentalControl").value = minimumAge;
     }
     var language_settings = getLocalStorage("language_settings");
@@ -252,8 +259,8 @@ function populate() {
 }
 
 function refresh() {
-	    updateOpenChannel();	
-        setTimeout(refresh, (60-new Date().getSeconds())*1000);
+  updateOpenChannel();	
+  setTimeout(refresh, (60-new Date().getSeconds())*1000);
 }
 
 function updateOpenChannel() {
@@ -263,16 +270,16 @@ function updateOpenChannel() {
 }
 
 function hideStreamInfo() {
-        clearInterval(streamInfoUpdate);
-        $("#streaminfo").hide();
+  clearInterval(streamInfoUpdate);
+  $("#streaminfo").hide();
 }
 
 function showStreamInfo() {
-        $("#streaminfo").show();
-        clearInterval(streamInfoUpdate);
-        updateStreamInfo();
-        streamInfoUpdate = setInterval(updateStreamInfo, 1000);
-        toggleSettings();
+  $("#streaminfo").show();
+  clearInterval(streamInfoUpdate);
+  updateStreamInfo();
+  streamInfoUpdate = setInterval(updateStreamInfo, 1000);
+  toggleSettings();
 }
 
 function updateStreamInfo() {
@@ -358,8 +365,9 @@ function saveLLParameters() {
 }
 
 function updateParental() {
+    parentalEnabled =  document.getElementById("parentalEnabled").checked;
     minimumAge = parseFloat(document.getElementById("parentalControl").value, 10);
-    setLocalStorage("parental_settings", { "minimumAge":minimumAge});
+    setLocalStorage("parental_settings", {"parentalEnabled":parentalEnabled, "minimumAge":minimumAge, "parentalPin":parentalPin});
     if(selectedChannel) {
         selectedChannel.parentalRatingChanged();
     }
@@ -477,6 +485,67 @@ function updateUILanguage() {
 function showSettings(settingspage) {
     $(".settingspage").hide();
     $(document.getElementById(settingspage)).show();
+}
+
+function showParentalSettings() {
+  checkParentalPIN("Enter PIN to access parental settings",
+    function() {
+     showSettings('parental_settings');
+    },
+    function() {
+      console.log("Incorrect PIN entered");
+    }
+  );
+}
+
+function checkParentalPIN(message,successCallback,failCallback) {
+  if(!parentalEnabled || parentalPin == null) {
+  	if(typeof(successCallback) == "function"){
+          successCallback.call();
+    }
+  }
+  else {
+    pinSuccessCallback = successCallback;
+    pinFailureCallback = failCallback;
+    $("#pin_message").text(message);
+    $("#parentalpin").show();
+  }
+}
+
+function updatePin() {
+    var pin1 = $( "#pin1" ).val();
+    if(pin1.length < 4) {
+      $("#pin_status").text("PIN too short");
+      return;
+    }
+    var pin2 = $( "#pin2" ).val();
+    if(pin1 != pin2) {
+      $("#pin_status").text("PINs do not match!");
+    }
+    else {
+       $("#pin_status").text("PIN ok!");
+       parentalPin = pin1;
+       setLocalStorage("parental_settings", {"parentalEnabled":parentalEnabled, "minimumAge":minimumAge, "parentalPin":parentalPin});
+    }
+}
+
+function pinEntered() {
+  var pin = $( "#pin" ).val();
+  if(pin.length < 4) {
+    return;
+  }
+  if(pin === parentalPin) {
+    if(typeof(pinSuccessCallback) == "function"){
+          pinSuccessCallback.call();
+    }
+  }
+  else {
+    if(typeof(pinFailureCallback) == "function"){
+          pinFailureCallback.call();
+    }
+  }
+  $( "#pin" ).val("") 
+  $("#parentalpin").hide();
 }
 
 function parseXmlAit(data) {

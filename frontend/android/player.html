@@ -187,12 +187,32 @@
 			<h5 class="m-auto position-relative">Parental settings</h5>
 		</div>
     <div class="form-group mb-2 row">
+      <label for="lowLatencyEnabled" class="col-6 col-form-label">Parental block enabled</label>
+      <div class="col-6">
+        <input type="checkbox" id="parentalEnabled" onchange="updateParental()" class="form-check-input form-control form-control-sm">
+      </div>
+    </div>
+    <div class="form-group mb-2 row">
       <label for="parentalControl" class="col-6 col-form-label">Minimum Age:</label>
       <div class="col-6">
         <input type="number" id="parentalControl" onchange="updateParental()"  value="0" min="0" max="18"  class="form-control form-control-sm">
       </div>
     </div>
-    
+    <div class="form-group mb-2 row">
+      <label for="pin1" class="col-6 col-form-label">Parental PIN:</label>
+      <div class="col-6">
+        <input type="tel" id="pin1" oninput="updatePin()" maxLength="4" minLength="4" class="form-control form-control-sm">
+      </div>
+    </div>
+    <div class="form-group mb-2 row">
+      <label for="pin2" class="col-6 col-form-label">Re-Enter Parental PIN:</label>
+      <div class="col-6">
+        <input type="tel" id="pin2" oninput="updatePin()" maxLength="4" minLength="4" class="form-control form-control-sm">
+      </div>
+    </div>
+    <div class="form-group mb-2 row">
+      <label id="pin_status" class="col-6 col-form-label"></label>
+    </div>
   </div>
   <div id="language_settings" class="settingspage">
 		<div class="navbar my-2 px-0">
@@ -268,7 +288,7 @@
   <div id="main_settings" class="settingspage mt-2">
 		<div class="navbar"></div>
     <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showSettings('ll_settings')"><span class="text-white">Low Latency settings</span></span>
-    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showSettings('parental_settings')"><span class="text-white">Parental settings</span></span>
+    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showParentalSettings()"><span class="text-white">Parental settings</span></span>
     <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showSettings('language_settings')"><span class="text-white">Language settings</span></span>
     <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="selectServiceList()"><span class="text-white">Select servicelist</span></span>
     <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showStreamInfo()"><span class="text-white">Show stream info</span></span>
@@ -276,7 +296,16 @@
 </div>
 
 <div style="display:none;position:absolute;top:50px;left:170px;background-color:#0008;" id="tracklist" class="text-white p-1 rounded col-3"> </div>
-<div class="text-white container mt-2 text-center h4 p-2 rounded align-middle" id="notification" style="display:none;"> </div>
+<div class="text-white container mt-2 text-center h4 p-2 rounded align-middle" id="notification" style="display:none;"></div>
+<div class="text-white container mt-2 text-center h4 p-2 rounded" id="parentalpin" style="display:none;">
+  <div class="form-group mb-2 row">
+      <h2 id="pin_message"></h2>
+      <label for="pin" class="col-6 col-form-label">Enter Parental PIN:</label>
+      <div class="col-6">
+        <input type="tel" id="pin" maxLength="4" minLength="4" oninput="pinEntered()" class="form-control form-control-sm">
+      </div>
+    </div>
+</div>
 <script src="js/popper.min.js"></script>
 </body>
 </html>

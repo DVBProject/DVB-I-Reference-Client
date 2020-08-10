@@ -119,9 +119,24 @@ Channel.prototype.channelSelected = function () {
             player.attachSource(serviceInstance.dashUrl);
         }
         else {
-            player.attachSource(null);
-            $("#notification").show();
-            $("#notification").text(i18n.getString("parental_block"));
+          player.attachSource(null);
+          checkParentalPIN("Enter parental PIN to watch service",
+            function() {
+                $("#notification").hide();
+                try {
+                    if(player.getSource() != serviceInstance.dashUrl) {
+                        player.attachSource(serviceInstance.dashUrl);
+                    }
+                } catch(e) {
+                    //player throws an error is there is no souce attached
+                   player.attachSource(serviceInstance.dashUrl);
+                }
+              },
+              function() {               
+                 $("#notification").show();
+                 $("#notification").text(i18n.getString("parental_block"));
+              }
+            );
         }
     };
     if(self.nowNextUpdateRequired()) {
@@ -150,9 +165,24 @@ Channel.prototype.programChanged = function() {
             }
         }
         else {
-            player.attachSource(null);
-            $("#notification").show();
-            $("#notification").text(i18n.getString("parental_block"));
+          player.attachSource(null);
+          checkParentalPIN("Enter parental PIN to watch service",
+            function() {
+              $("#notification").hide();
+              try {
+                  if(player.getSource() != serviceInstance.dashUrl) {
+                      player.attachSource(serviceInstance.dashUrl);
+                  }
+              } catch(e) {
+                  //player throws an error is there is no souce attached
+                 player.attachSource(serviceInstance.dashUrl);
+              }
+            },
+            function() {
+               $("#notification").show();
+               $("#notification").text(i18n.getString("parental_block"));
+            }
+          );
         }
         self.setProgramChangedTimer();
     };
@@ -300,15 +330,30 @@ Channel.prototype.parentalRatingChanged = function(callback) {
         }
     }
     else {
-        player.attachSource(null);
-        $("#notification").show();
-        $("#notification").text(i18n.getString("parental_block"));
+      player.attachSource(null);
+      checkParentalPIN("Enter parental PIN to watch service",
+      function() {
+          $("#notification").hide();
+          try {
+              if(player.getSource() != serviceInstance.dashUrl) {
+                  player.attachSource(serviceInstance.dashUrl);
+              }
+          } catch(e) {
+              //player throws an error is there is no souce attached
+             player.attachSource(serviceInstance.dashUrl);
+          }
+        },
+        function() {
+           $("#notification").show();
+           $("#notification").text(i18n.getString("parental_block"));
+        }
+      );
     }
 
 }
 
 Channel.prototype.isProgramAllowed = function() {
-   if(this.now_next) {
+   if(parentalEnabled && this.now_next) {
         var now = this.now_next["now"];
         if(now.parentalRating && now.parentalRating.length > 0) {
             for(var i = 0;i < now.parentalRating.length;i++) {

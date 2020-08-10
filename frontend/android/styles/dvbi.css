@@ -260,7 +260,17 @@ body.player {
   z-index: 10; }
   #settings .navbar h5 {
     left: -32px; }
-
+#parentalpin {
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0,0, 0, 0.8);
+}
+#pin,#pin1,#pin2 {
+  -webkit-text-security: disc;
+  -moz-webkit-text-security: disc;
+  -moz-text-security: disc;
+}
 @keyframes displaynone {
   from {
     display: block; }
