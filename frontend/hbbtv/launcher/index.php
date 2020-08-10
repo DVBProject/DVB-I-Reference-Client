@@ -67,6 +67,10 @@
 	var progressOpenWidth = 0;
 	var localizationLangFile = null;
   var minimumAge = 255;
+  var parentalEnabled = false;
+  var parentalPin = null;
+  var pin1 = "";
+  var pin2 = "";
   var selectedService = null;
   var playerType = "html5";
 
@@ -133,6 +137,13 @@
         if(parental_settings && parental_settings.minimumAge) {
             minimumAge = parseInt(parental_settings.minimumAge);
         }
+        if(parental_settings && parental_settings.parentalPin) {
+            parentalPin = parental_settings.parentalPin;
+        }
+        if(parental_settings && parental_settings.parentalEnabled) {
+            parentalEnabled = parental_settings.parentalEnabled;
+        }
+        
         var player_settings = getLocalStorage("player_settings");
         if(player_settings && player_settings.player) {
             playerType = player_settings.player;

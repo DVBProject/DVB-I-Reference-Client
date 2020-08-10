@@ -4,10 +4,11 @@
 *******************************/
 var dialog = { open : false };
 
-function showDialog( q, buttons, _checked, _focused, callback, cancel)
+function showDialog( q, buttons, _checked, _focused, callback, cancel,keyHandler,header)
 {
 	console.log("showDialog");
 	dialog.open = true;
+  dialog.keyHandler = keyHandler;
 	dialog.callback = callback;
 	dialog.cancel = cancel;
 	dialog.visibleItems = 10;
@@ -45,10 +46,14 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
 	wrapper.appendChild(dialogButtons);
 
 	if(buttons.length > 0){
+    dialog.buttonLabels =  [];
 		$.each( buttons, function(i, label){
 			var dialogButton = document.createElement("div");
 			dialogButton.addClass("dialogButton");
-			dialogButton.innerHTML = "<span>"+label+"</span>";
+      var labelElement = document.createElement("span");
+      labelElement.innerHTML = label;
+      dialogButton.appendChild(labelElement);
+      dialog.buttonLabels.push(labelElement);
 			var checkmark = document.createElement("div");
 			checkmark.addClass("checkmark");
 			dialogButton.appendChild(checkmark);
@@ -80,14 +85,17 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel)
 		console.log("scrolltop: ", scrolltop);
 		$("#dialogWrapper").scrollTop(scrolltop);
 	}
+  if(!header) {
+     header = "Settings";
+  }
    
-	$("#dialog").html("<h1>Settings</h1>");
+	$("#dialog").html("<h1>"+header + "</h1>");
 	$("#dialog").append(dialog.buttonbar.bar);
-    document.getElementById("dialog").appendChild(up_arrow);
+  document.getElementById("dialog").appendChild(up_arrow);
 	document.getElementById("dialog").appendChild(down_arrow);
-    document.getElementById("dialog").appendChild(wrapper);
+  document.getElementById("dialog").appendChild(wrapper);
 	$("#dialog").addClass("show");
-    $("#dialog").removeClass("hide");
+  $("#dialog").removeClass("hide");
 
 	handleDialogArrows();
 }
@@ -176,30 +184,38 @@ function navigateDialog( keyCode )
 			case VK_ENTER:
                 dialog.open = false;
 
-				if( dialog.callback && typeof(dialog.callback) == "function"){
-					dialog.callback(dialog.focused); // call handler for response
-				}
+				        if( dialog.callback && typeof(dialog.callback) == "function"){
+					        dialog.callback(dialog.focused); // call handler for response
+				        }
                 else {
                     $("#dialog").html("");
-				    $("#dialog").removeClass("show");
-				    $("#dialog").addClass("hide");
+				            $("#dialog").removeClass("show");
+				            $("#dialog").addClass("hide");
                 }
                 break;
 			case VK_BACK:
+                if( dialog.keyHandler && typeof(dialog.keyHandler) == "function"){
+					        if(dialog.keyHandler(keyCode,dialog.focused)) {
+                    return true;
+                  } // call handler for response
+				        }
                 if(dialog.cancel) {
                     dialog.open = false;
                     if( keyCode == VK_BACK && typeof(dialog.cancel) == "function"){
                         dialog.cancel.call();
                     }
                     else {
-                        $("#dialog").html("");
-				        $("#dialog").removeClass("show");
-				        $("#dialog").addClass("hide");
+                      $("#dialog").html("");
+			                $("#dialog").removeClass("show");
+      				        $("#dialog").addClass("hide");
                     }
                 }
 				break;
 
 			default:
+        if( dialog.keyHandler && typeof(dialog.keyHandler) == "function"){
+					return dialog.keyHandler(keyCode,dialog.focused); // call handler for response
+				}
 				return false;
 		}
 		return true;
@@ -207,4 +223,8 @@ function navigateDialog( keyCode )
 	else{
 		return false;
 	}
+}
+
+function updateLabel(index,label) {
+  dialog.buttonLabels[index].innerHTML = "<span>"+label+"</span>";
 }

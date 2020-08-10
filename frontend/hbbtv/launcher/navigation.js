@@ -455,7 +455,7 @@ function showSettings() {
                 loadServicelistProviders(PROVIDER_LIST,function() {showSettings();});
             }
             else if(checked == 1 ) {
-                showParentalSettings();
+                askPin(showParentalSettings,function(){ showInfo("Wrong PIN"); showSettings();});
             }
             else if(checked == 2 ) {
                 showPlayerSettings();
@@ -601,6 +601,24 @@ function showStreamInfoSettings() {
 }
 
 function showParentalSettings() {
+  var buttons = ["Parental block "+(parentalEnabled ? "(on)":"(off)"),"Minimum age ("+minimumAge+")","Set PIN"];
+    showDialog("Parental settings", buttons,null,null,
+        function(checked){
+            if(checked == 0) {
+                showParentalEnabledSettings();
+            }
+            else if(checked == 1) {
+                 showMinimumAgeSettings();
+            }
+            else if(checked == 2) {
+                 showPinSettings();
+            }
+     },function() {
+      showSettings();
+    });
+}
+
+function showMinimumAgeSettings() {
     var buttons = ["0","3","5","7","12","15","18","Off"];
     var checked = 0;
     if(minimumAge == 255) {
@@ -623,9 +641,224 @@ function showParentalSettings() {
             else {
                 minimumAge = parseInt(buttons[checked]);
             }
-            setLocalStorage("parental_settings", { "minimumAge":minimumAge});
-            showSettings();
-     },function() {showSettings();});
+            setLocalStorage("parental_settings", {"parentalEnabled":parentalEnabled, "minimumAge":minimumAge, "parentalPin":parentalPin});
+            showParentalSettings();
+     },function() {showParentalSettings();});
+}
+
+function showParentalEnabledSettings() {
+    var buttons = ["Parental block on","Parental block off"];
+    var checked = 0;
+    if(parentalEnabled == false) {
+        checked = 1;
+    }
+    showDialog("Parental block", buttons,checked,checked,
+        function(checked){
+            if(checked == 0) {
+                parentalEnabled = true;
+            }
+            else if(checked == 1) {
+                parentalEnabled = false;
+            }
+            setLocalStorage("parental_settings", {"parentalEnabled":parentalEnabled, "minimumAge":minimumAge, "parentalPin":parentalPin});
+            showParentalSettings();
+     },function() {showParentalSettings();});
+}
+
+function askPin(successCallback,failureCallback) {
+  if(parentalPin == null || parentalEnabled == false) {
+     if( successCallback && typeof(successCallback) == "function"){
+      successCallback.call();
+     }
+     return;
+  }
+  var buttons = ["Enter PIN:"];
+  var checked = 0;
+  var pin = "";
+  showDialog("", buttons,null,null,null,failureCallback,
+  function(keyCode,button) {
+      var stars = "****";
+      if(keyCode == VK_BACK) {
+           if(button == 0) {
+              if(pin.length == 0) {
+                return false;
+              }
+              else {
+                pin = pin.substring(0,pin1.length-1);
+                updateLabel(button,"Enter PIN:"+stars.substring(0,pin1.length));
+                return true;
+              }
+           }
+           else {
+            return false;
+           }
+      }
+      else {
+        var num_key = null;
+        switch(keyCode) {
+         case VK_0 :  
+			      num_key = "0";
+			      break;
+		      case VK_1 :   
+			      num_key = "1";
+			      break;
+		      case VK_2 :
+			      num_key = "2";
+			      break;
+		      case VK_3 : 
+			      num_key = "3";
+			      break;
+		      case VK_4 :     
+			      num_key = "4";
+			      break;
+		      case VK_5 :     
+			      num_key = "5";
+			      break;
+		      case VK_6 :   
+			      num_key = "6";
+			      break;
+		      case VK_7 : 
+			      num_key = "7";
+			      break;
+		      case VK_8 :  
+			      num_key = "8";
+			      break;
+		      case VK_9 :
+			      num_key = "9";
+			      break;
+       }
+       if(num_key != null) {
+         pin += num_key;
+         updateLabel(button,"Enter PIN:"+stars.substring(0,pin.length));
+         if(pin.length == 4) {
+            if(pin == parentalPin) {
+              if( successCallback && typeof(successCallback) == "function"){
+					      successCallback(); // call handler for response
+				      }
+            }
+            else {
+              if( failureCallback && typeof(failureCallback) == "function"){
+					      failureCallback(); // call handler for response
+				      }
+            }
+         }
+       }
+    } 
+  },"Parental block");
+}
+
+function showPinSettings(keep,checked) {
+  var stars = "****";  
+  if(!keep) {
+    pin1 = "";
+    pin2 = "";
+  }
+  var buttons = ["Enter PIN:"+stars.substring(0,pin1.length),"Re-enter PIN:"+stars.substring(0,pin2.length),"Save PIN"];
+  if(!checked) {
+    checked = 0;
+  }
+  showDialog("Parental PIN", buttons,null,checked,
+      function(checked){
+          if(checked == 2) {
+            if(pin1.length < 4) {
+              showInfo("PIN too short!");           
+              showPinSettings(true);
+            }
+            else if( pin1 != pin2) {
+              showInfo("PIN codes do not match!");
+              showPinSettings(true);
+            }
+            else {
+              parentalPin = pin1;
+              setLocalStorage("parental_settings", {"parentalEnabled":parentalEnabled, "minimumAge":minimumAge, "parentalPin":parentalPin});
+              showParentalSettings();
+            }
+          }
+          else {
+            showPinSettings(true,checked);
+          } 
+   },
+   function() {showParentalSettings();},
+   function(keyCode,button) {
+   
+      if(keyCode == VK_BACK) {
+           if(button == 0) {
+              if(pin1.length == 0) {
+                return false;
+              }
+              else {
+                pin1 = pin1.substring(0,pin1.length-1);
+                updateLabel(button,"Enter PIN:"+stars.substring(0,pin1.length));
+                return true;
+              }
+           }
+           else if(button == 1) {
+              if(pin2.length == 0) {
+                return false;
+              }
+              else {
+                pin2 = pin2.substring(0,pin2.length-1);
+                updateLabel(button,"Re-enter PIN:"+stars.substring(0,pin2.length));
+                return true;
+              }
+
+           }
+           else {
+            return false;
+           }
+      }
+      else {
+        var num_key = null;
+        switch(keyCode) {
+         case VK_0 :  
+			      num_key = "0";
+			      break;
+		      case VK_1 :   
+			      num_key = "1";
+			      break;
+		      case VK_2 :
+			      num_key = "2";
+			      break;
+		      case VK_3 : 
+			      num_key = "3";
+			      break;
+		      case VK_4 :     
+			      num_key = "4";
+			      break;
+		      case VK_5 :     
+			      num_key = "5";
+			      break;
+		      case VK_6 :   
+			      num_key = "6";
+			      break;
+		      case VK_7 : 
+			      num_key = "7";
+			      break;
+		      case VK_8 :  
+			      num_key = "8";
+			      break;
+		      case VK_9 :
+			      num_key = "9";
+			      break;
+       }
+       if(num_key != null) {
+       
+         if(button == 0) {
+            if(pin1.length < 4) {
+              pin1 += num_key;
+              updateLabel(button,"Enter PIN:"+stars.substring(0,pin1.length));
+            }
+         }
+         else if(button == 1) {
+             if(pin2.length < 4) {
+              pin2 += num_key;
+              updateLabel(button,"Re-enter PIN:"+stars.substring(0,pin2.length));
+            }
+         }
+       }
+      }
+     }
+    );
 }
 
 function showPlayerSettings() {
@@ -993,28 +1226,57 @@ function selectService(channel_obj) {
                 broadcast.addClass("hide_broadcast");
             }
             } catch(e) {}
-        $("#info").removeClass("hide");
-        $("#info").html( "Content blocked by parental rating!" );
+
+        dialog.pin = true;
+        askPin(function() {
+              dialog.open = false;
+              dialog.pin = false;
+              $("#dialog").html("");
+			        $("#dialog").removeClass("show");
+      				$("#dialog").addClass("hide");
+              doServiceSelection();
+            },
+            function() {
+              dialog.open = false;
+              dialog.pin = false;
+              $("#dialog").html("");
+			        $("#dialog").removeClass("show");
+      				$("#dialog").addClass("hide");
+              $("#info").removeClass("hide");
+              $("#info").html( "Content blocked by parental rating!" );
+            }
+          );
         return;
      }
-     try{
-        playing= true;
-        $("#info").addClass("hide");
-        if(channel_obj.mediaPresentationApp) {
-            serviceApp = _application_.createApplication(channel_obj.mediaPresentationApp);
+     if(dialog.open && dialog.pin) {
+      dialog.open = false;
+      dialog.pin = false;
+      $("#dialog").html("");
+      $("#dialog").removeClass("show");
+			$("#dialog").addClass("hide");
+     }
+     doServiceSelection();
+}
+
+function doServiceSelection() {
+  try{
+      playing= true;
+      $("#info").addClass("hide");
+      if(selectedService.mediaPresentationApp) {
+          serviceApp = _application_.createApplication(selectedService.mediaPresentationApp);
+      }
+      else {
+        var serviceInstance = selectedService.getServiceInstance();
+        if(serviceInstance.dvbChannel) {
+            selectDVBService(serviceInstance.dvbChannel) ;
         }
-        else {
-          var serviceInstance = channel_obj.getServiceInstance();
-          if(serviceInstance.dvbChannel) {
-              selectDVBService(serviceInstance.dvbChannel) ;
-          }
-          else if(serviceInstance.dashUrl) {
-              playDASH(serviceInstance.dashUrl);
-          }
-          if(channel_obj.parallelApp) {
-            serviceApp = _application_.createApplication(channel_obj.parallelApp);
-          }
+        else if(serviceInstance.dashUrl) {
+            playDASH(serviceInstance.dashUrl);
         }
+        if(selectedService.parallelApp) {
+          serviceApp = _application_.createApplication(selectedService.parallelApp);
+        }
+      }
 	}
 	catch(e){
 		console.log(e);
@@ -1025,13 +1287,20 @@ function checkParental() {
     if(selectedService) {
         if(selectedService.isProgramAllowed()) {
             $("#info").addClass("hide");
+            if(dialog.open && dialog.pin) {
+              dialog.open = false;
+              dialog.pin = false;
+              $("#dialog").html("");
+			        $("#dialog").removeClass("show");
+      				$("#dialog").addClass("hide");
+            }
             if(!playing) {
                 selectService(selectedService);
             }
         }
         else {
-            $("#info").removeClass("hide");
-            $("#info").html( "Content blocked by parental rating!" );
+            //$("#info").removeClass("hide");
+            //$("#info").html( "Content blocked by parental rating!" );
             if(player) {
                 player.stop();
             }
@@ -1042,10 +1311,31 @@ function checkParental() {
                 supervisor.setChannel(null);
             }
             else {
+                try {
                 broadcast = document.getElementById('broadcast');
                 broadcast.stop();
                 broadcast.addClass("hide_broadcast");
+                }
+                catch(e) {}
             }
+            dialog.pin = true;
+            askPin(function() {
+              dialog.open = false;
+              dialog.pin = false;
+              $("#dialog").html("");
+			        $("#dialog").removeClass("show");
+      				$("#dialog").addClass("hide");
+              doServiceSelection();
+            },
+            function() {
+              dialog.open = false;
+              dialog.pin = false;
+              $("#dialog").html("");
+			        $("#dialog").removeClass("show");
+      				$("#dialog").addClass("hide");
+              $("#info").removeClass("hide");
+              $("#info").html( "Content blocked by parental rating!" );
+            });
         }
     }
 }
@@ -1103,7 +1393,9 @@ function selectDVBService(channel) {
      try {
         if(player) {
             player.stop();
+            player = null;
         }
+      
      }
      catch(e) {
      }
