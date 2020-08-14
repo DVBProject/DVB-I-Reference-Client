@@ -37,7 +37,28 @@ Channel.prototype.getSchedule = function(start,end,callback,earlier) {
             if(typeof(callback) == "function") {
                 callback.call();
             }
-         },"text");
+         },"text").fail(function() {
+              var program = {};
+              var programId = "no_program_"+start+"_"+end;
+              program.start = new Date(start*1000);
+              program.end  =  new Date(end*1000);
+              program.prglen = (program.end.getTime() - program.start.getTime())/(1000*60);
+              program.title = "No programinfo available";
+              var program = new Program(program, self.element_id + "_no_program", self);
+              program.bilingual = self.bilingual;
+              program.channelimage = self.image;
+              program.channel_streamurl = self.streamurl;
+              program.noprogram = true;
+              if(earlier) {
+		             self.programs.unshift(program);
+              }
+              else {
+		             self.programs.push(program);
+              }
+            if(typeof(callback) == "function") {
+                callback.call();
+            }
+        });
     }
 }
 
