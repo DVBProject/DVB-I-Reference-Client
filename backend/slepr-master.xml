@@ -23,100 +23,6 @@
 	</sld:ServiceListRegistryEntity>
 	<sld:ProviderOffering>
 		<sld:Provider>
-			<sld:Name>AGCOM</sld:Name>
-			<sld:Address>
-				<mpeg7:Name>John Doe</mpeg7:Name>
-				<mpeg7:PostalAddress>
-					<mpeg7:AddressLine>Roma, Italy</mpeg7:AddressLine>
-				</mpeg7:PostalAddress>
-			</sld:Address>
-			<sld:ElectronicAddress>
-				<mpeg7:Telephone>+39 06 0000000</mpeg7:Telephone>
-				<mpeg7:Email>dvbi@agcom.it</mpeg7:Email>
-			</sld:ElectronicAddress>
-		</sld:Provider>
-		<sld:ServiceListOffering regulatorListFlag="true">
-			<sld:ServiceListName>Italian Trusted Services</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>http://dvbi.italian-authority.it/trusted-services.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Language>it</sld:Language>
-			<sld:TargetCountry>ITA,SMR</sld:TargetCountry>
-		</sld:ServiceListOffering>
-	</sld:ProviderOffering>
-	<sld:ProviderOffering>
-		<sld:Provider>
-			<sld:Name>TVfromTheWorld</sld:Name>
-			<sld:Name xml:lang="sv">TV från världen</sld:Name>
-			<sld:Address>
-				<mpeg7:Name>John Jones</mpeg7:Name>
-				<mpeg7:PostalAddress>
-					<mpeg7:AddressLine>U.S.</mpeg7:AddressLine>
-				</mpeg7:PostalAddress>
-			</sld:Address>
-			<sld:ElectronicAddress>
-				<mpeg7:Telephone>+1 555 0000000</mpeg7:Telephone>
-				<mpeg7:Email>dvbi_lists@TVfromTheWorld.com</mpeg7:Email>
-			</sld:ElectronicAddress>
-		</sld:Provider>
-		<sld:ServiceListOffering>
-			<sld:ServiceListName xml:lang="en">TV services from the world in English</sld:ServiceListName>		
-			<sld:ServiceListName xml:lang="de">Fernsehen aus ter Welt in Englisch</sld:ServiceListName>
-			<sld:ServiceListName xml:lang="fr">Télévision du monde en anglais</sld:ServiceListName>
-			<sld:ServiceListName xml:lang="it">TV del mondo in inglese</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>http://dvbi.TVfromTheWorld.com/engTVservices.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Language>en</sld:Language>
-			<!-- Assumption: if TargetCountry is not specified, the service list is assumed to be targeted to any country -->
-		</sld:ServiceListOffering>
-		<sld:ServiceListOffering>
-			<sld:ServiceListName xml:lang="de">TV aus Deutschland</sld:ServiceListName>
-			<sld:ServiceListName xml:lang="en">TV from Germany</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>http://dvbi.TVfromTheWorld.com/TVservices_Germany.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Language>de</sld:Language>
-			<sld:Language>en</sld:Language>
-			<sld:TargetCountry>DEU</sld:TargetCountry>
-		</sld:ServiceListOffering>
-	</sld:ProviderOffering>
-	<sld:ProviderOffering>
-		<sld:Provider>
-			<sld:Name>British DVB-I</sld:Name>
-			<sld:Address>
-				<mpeg7:Name>John Doe</mpeg7:Name>
-				<mpeg7:PostalAddress>
-					<mpeg7:AddressLine>London, UK</mpeg7:AddressLine>
-				</mpeg7:PostalAddress>
-			</sld:Address>
-			<sld:ElectronicAddress>
-				<mpeg7:Telephone>+44 020 00000000</mpeg7:Telephone>
-				<mpeg7:Email>dvbi@british-service-list-provider.co.uk</mpeg7:Email>
-			</sld:ElectronicAddress>
-		</sld:Provider>
-		<sld:ServiceListOffering>
-			<sld:ServiceListName>Documentaries</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>
-					http://www.british-service-list-provider.co.uk/documentaries.xml
-				</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>
-					http://alt.british-service-list-provider.co.uk/documentaries.xml
-				</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Language>en</sld:Language>
-			<sld:TargetCountry>GBR</sld:TargetCountry>
-			<sld:TargetCountry>FRA</sld:TargetCountry>
-			<sld:TargetCountry>ITA</sld:TargetCountry>
-			<sld:TargetCountry>DEU</sld:TargetCountry>
-			<sld:TargetCountry>AUT</sld:TargetCountry>
-		</sld:ServiceListOffering>
-	</sld:ProviderOffering>
-	<sld:ProviderOffering>
-		<sld:Provider>
 			<sld:Name>SES</sld:Name>
 			<sld:Address>
 				<mpeg7:Name>Jan</mpeg7:Name>
@@ -133,7 +39,7 @@
 			<sld:ServiceListName>Germany FTA</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>
-					http://www.satip.info/sites/satip/files/files/ASTRA_19_2_E.xml
+					https://www.satip.info/sites/satip/files/files/ASTRA_19_2_E.xml
 				</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:TargetCountry>DEU</sld:TargetCountry>
@@ -154,9 +60,15 @@
 			</sld:ElectronicAddress>
 		</sld:Provider>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		<sld:ServiceListName>DVB-I Reference Client service list </sld:ServiceListName>
+		<sld:ServiceListName>DVB-I Reference Client service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/example.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+		</sld:ServiceListOffering>
+		<sld:ServiceListOffering regulatorListFlag="false">
+		<sld:ServiceListName>DVB-I Reference Client DRM service list</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/drm.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
