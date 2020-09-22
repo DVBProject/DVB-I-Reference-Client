@@ -183,13 +183,16 @@ function loadServicelist(list) {
         if(servicelist.image) {
           $("#list_logo").attr("src",servicelist.image);
         }
+        else {
+          $("#list_logo").attr("src", "images/logo_dvbi_sofia.png");
+        }
         var channelIndex = 0;
         for (var i = 0; i < servicelist.services.length ;i++) {
             var channel = new Channel(servicelist.services[i],channelIndex++);
             channels.push(channel);
         }
         channels.sort(compareLCN);
-		populate();
+        populate();
         epg = new EPG(channels);
     },"text");
 }

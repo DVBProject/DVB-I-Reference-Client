@@ -226,6 +226,10 @@
           $("#list_logo").attr("src",services.image);
           $("#service_list_logo").attr("src",services.image);
         }
+        else {
+          $("#list_logo").attr("src","../CommonUI/logo_dvbi_sofia.png");
+          $("#service_list_logo").attr("src","../CommonUI/logo_dvbi_sofia.png");
+        }
         for (var i = 0; i < services.services.length ;i++) {
             var chan = services.services[i];
             chan.items =  [
