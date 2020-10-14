@@ -51,7 +51,7 @@
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="application/xhtml+xml">https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/linked_applications/android_drm_widevine.html</tva:MediaUri>
+        <tva:MediaUri contentType="application/xhtml+xml">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/linked_applications/android_drm_widevine.html</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
   </Service>
