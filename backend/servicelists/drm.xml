@@ -2,12 +2,6 @@
 <ServiceList xmlns="urn:dvb:metadata:servicediscovery:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tva="urn:tva:metadata:2019" version="1" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2019 ../dvbi_v1.0.xsd">
   <Name>DVB-I DRM Service list</Name>
   <ProviderName>DVB</ProviderName>
-  <RelatedMaterial>
-    <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1"/>
-    <tva:MediaLocator>
-      <tva:MediaUri contentType="image/jpg">https://sofiadigital.com/wp-content/uploads/2017/02/juho.jpg</tva:MediaUri>
-    </tva:MediaLocator>
-  </RelatedMaterial>
   <LCNTableList>
     <LCNTable>
       <LCN channelNumber="1" serviceRef="1"/>
