@@ -91,7 +91,10 @@
 
 	var miniepg = null;
 	var _menu_ = null;
-    var _application_ = null;
+  var _application_ = null;
+
+  //TODO parse supported DRM systems from XMLCapabilities, for now hardcoded Playready
+  var supportedDrmSystems = ["9a04f079-9840-4286-ab92-e65be0885f95"];
 
 	function showApplication() {
 	  try {
@@ -222,7 +225,7 @@
         }        
         var current_channel_obj = null;
         var listedChannels = [];
-        var services = parseServiceList(data,channelList);  
+        var services = parseServiceList(data,channelList,supportedDrmSystems);  
         if(services.image) {
           $("#list_logo").attr("src",services.image);
           $("#service_list_logo").attr("src",services.image);

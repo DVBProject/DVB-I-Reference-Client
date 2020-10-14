@@ -14,6 +14,10 @@ var parentalPin = null;
 var pinSuccessCallback = null;
 var pinFailureCallback = null;
 
+//TODO use MSE-EME to determine actual DRM support, although 
+//support also depends on the audio and video codecs.
+//For now, use hardcoded widevine for android client
+var supportedDrmSystems = ["edef8ba9-79d6-4ace-a3c8-27dcd51d21ed"];
 
 function channelSelected(channelId) {
     $("#notification").hide();
@@ -179,7 +183,7 @@ function openProgramInfo(program) {
 
 function loadServicelist(list) {
     $.get( list, function( data ) {
-        var servicelist = parseServiceList(data,null);
+        var servicelist = parseServiceList(data,null,supportedDrmSystems);
         if(servicelist.image) {
           $("#list_logo").attr("src",servicelist.image);
         }
@@ -568,4 +572,13 @@ function parseXmlAit(data) {
         list.push(app);
     }
     return list;
+}
+
+function isDRMSystemSupported(drmSystemId) {
+  for(var i = 0;i< supportedDrmSystems.length;i++) {
+    if(drmSystemid == supportedDrmSystems[i]) {
+      return true;
+    }
+  }
+  return false;
 }

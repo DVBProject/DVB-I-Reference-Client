@@ -1,6 +1,6 @@
 var PROVIDER_LIST = "https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelist_registry.php";
 
-function parseServiceList(data,dvbChannels) {
+function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     var serviceList = {}
     var list = [];
     serviceList.services = list;
@@ -60,6 +60,37 @@ function parseServiceList(data,dvbChannels) {
             var priority = serviceInstances[j].getAttribute("priority");
             var instance = {};
             instance.priority = priority;
+            instance.contentProtection = [];
+            var contentProtectionElements =  serviceInstances[j].getElementsByTagName("ContentProtection");
+            var drmSupported = true;
+            for(var k = 0;k < contentProtectionElements.length;k++) {
+              for(var l = 0;l < contentProtectionElements[k].childNodes.length;l++) {
+                if(contentProtectionElements[k].childNodes[l].nodeName == "DRMSystemId") {
+                  var drmSystem = contentProtectionElements[k].childNodes[l];
+                  var drm = {};
+                  drm.encryptionScheme = drmSystem.getAttribute("encryptionScheme");
+                  drm.drmSystemId = drmSystem.getElementsByTagName("DRMSystemId")[0].childNodes[0].nodeValue;
+                  instance.contentProtection.push(drm);
+                }
+              }
+            }
+            if(instance.contentProtection.length > 0) {
+              var supported = false;
+              for(var k = 0;k < instance.contentProtection.length;k++) {
+                 for(var l = 0;l < supportedDrmSystems.length;l++) {
+                    if(instance.contentProtection[k].drmSystemId == supportedDrmSystems[l]) {
+                      supported = true;
+                      break;
+                    }
+                  }
+                if(supported) {
+                  break;
+                }
+              }
+              if(!supported) {
+                continue;
+              }
+            }
             if(serviceInstances[j].getElementsByTagName("DASHDeliveryParameters").length > 0 ) {
                    try {
                     instance.dashUrl = serviceInstances[j].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
