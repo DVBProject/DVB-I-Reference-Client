@@ -193,11 +193,11 @@
             showDialog("Select service provider", buttons,selected,selected,
             function(checked){
                 setLocalStorage("servicelist",urls[checked]);
-                getServiceList(urls[checked], function( epg ){
+                getServiceList(urls[checked], function( servicelist ){
                     $("#dialog").html("");
-			        $("#dialog").removeClass("show");
-			        $("#dialog").addClass("hide");
-                    createMenu(epg);
+			              $("#dialog").removeClass("show");
+      			        $("#dialog").addClass("hide");
+                    createMenu(servicelist);
                 }, function(){
                    console.log("Error in fetching service data");
                 });
