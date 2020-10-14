@@ -24,6 +24,7 @@
     <script type="text/javascript" src="program.js"></script>
    	<script type="text/javascript" src="box.js"></script>
 	<script type="text/javascript" src="navigation.js"></script>
+  	<script type="text/javascript" src="settings.js"></script>
 	<script type="text/javascript" src="../session.js"></script>
     <script type="text/javascript" src="../../isoduration.js"></script>
     <script type="text/javascript" src="../../channel-common.js"></script>
