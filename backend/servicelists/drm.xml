@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tva="urn:tva:metadata:2019" version="1" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2019 ../dvbi_v1.0.xsd">
+  <Name>DVB-I DRM Service list</Name>
+  <ProviderName>DVB</ProviderName>
+  <RelatedMaterial>
+    <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1"/>
+    <tva:MediaLocator>
+      <tva:MediaUri contentType="image/jpg">https://sofiadigital.com/wp-content/uploads/2017/02/juho.jpg</tva:MediaUri>
+    </tva:MediaLocator>
+  </RelatedMaterial>
+  <LCNTableList>
+    <LCNTable>
+      <LCN channelNumber="1" serviceRef="1"/>
+    </LCNTable>
+  </LCNTableList>
+  <Service version="1">
+    <UniqueIdentifier>1</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <ContentProtection>
+        <DRMSystemId encryptionScheme="cenc">
+          <DRMSystemId>9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
+        </DRMSystemId>
+      </ContentProtection>
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://refapp.hbbtv.org/videos/02_gran_dillama_1080p_25f75g6sv5/drm/manifest.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>PlayReady DRM</ServiceName>
+    <ProviderName>DVB</ProviderName>
+  </Service>
+  <Service version="1">
+    <UniqueIdentifier>2</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <ContentProtection>
+        <DRMSystemId encryptionScheme="cenc">
+          <DRMSystemId>edef8ba9-79d6-4ace-a3c8-27dcd51d21ed</DRMSystemId>
+        </DRMSystemId>
+      </ContentProtection>
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/1.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>Widevine DRM</ServiceName>
+    <ProviderName>DVB</ProviderName>
+    <RelatedMaterial>
+      <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
+      <tva:MediaLocator>
+        <tva:MediaUri contentType="application/xhtml+xml">https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/linked_applications/android_drm_widevine.html</tva:MediaUri>
+      </tva:MediaLocator>
+    </RelatedMaterial>
+  </Service>
+</ServiceList>
