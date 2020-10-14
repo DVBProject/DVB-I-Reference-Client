@@ -877,6 +877,15 @@ function doServiceSelection() {
   try{
       playing= true;
       $("#info").addClass("hide");
+      var serviceInstance = selectedService.getServiceInstance();
+      if(serviceInstance.mediaPresentationApps) {
+          for(var i = 0;i< serviceInstance.mediaPresentationApps.length;i++ ) {
+            if(serviceInstance.mediaPresentationApps[i].contentType == "application/vnd.dvb.ait+xm") {
+              serviceApp = _application_.createApplication(serviceInstance.mediaPresentationApps[i].url);
+              return;
+            }
+          }
+      }
       if(selectedService.mediaPresentationApps) {
           for(var i = 0;i< selectedService.mediaPresentationApps.length;i++ ) {
             if(selectedService.mediaPresentationApps[i].contentType == "application/vnd.dvb.ait+xm") {
@@ -885,17 +894,25 @@ function doServiceSelection() {
             }
           }
       }
-      var serviceInstance = selectedService.getServiceInstance();
       if(serviceInstance.dvbChannel) {
           selectDVBService(serviceInstance.dvbChannel) ;
       }
       else if(serviceInstance.dashUrl) {
           playDASH(serviceInstance.dashUrl);
       }
+      if(serviceInstance.parallelApp) {
+        for(var i = 0;i< serviceInstance.parallelApps.length;i++ ) {
+          if(serviceInstance.parallelApps[i].contentType == "application/vnd.dvb.ait+xm") {
+            serviceApp = _application_.createApplication(serviceInstance.parallelApps[i].url);
+            return;
+          }
+        }
+      }
       if(selectedService.parallelApp) {
         for(var i = 0;i< selectedService.parallelApps.length;i++ ) {
           if(selectedService.parallelApps[i].contentType == "application/vnd.dvb.ait+xm") {
             serviceApp = _application_.createApplication(selectedService.parallelApps[i].url);
+            return;
           }
         }
       }

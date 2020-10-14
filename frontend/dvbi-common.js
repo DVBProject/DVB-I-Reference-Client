@@ -34,7 +34,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         if(cgRefs && cgRefs.length > 0) {
             chan.contentGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
         }
-        var relatedMaterial = services[i].getElementsByTagName("RelatedMaterial");
+        var relatedMaterial = services[i].querySelectorAll("RelatedMaterial");
         for(var j = 0;j < relatedMaterial.length;j++) {
             var howRelated = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
             if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
@@ -61,6 +61,8 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
             var instance = {};
             instance.priority = priority;
             instance.contentProtection = [];
+            instance.parallelApps = [];
+            instance.mediaPresentationApps = [];
             var contentProtectionElements =  serviceInstances[j].getElementsByTagName("ContentProtection");
             var drmSupported = true;
             for(var k = 0;k < contentProtectionElements.length;k++) {
@@ -90,6 +92,22 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
               if(!supported) {
                 continue;
               }
+            }
+            var relatedMaterial = serviceInstances[j].querySelectorAll("RelatedMaterial");
+            for(var k = 0;k < relatedMaterial.length;k++) {
+                var howRelated = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
+                if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
+                    var app = {};
+                    app.url = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
+                    app.contentType = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].getAttribute("contentType");
+                    instance.parallelApps.push(app);
+                }
+                else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
+                    var app = {};
+                    app.url = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
+                    app.contentType = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].getAttribute("contentType");
+                    instance.mediaPresentationApps.push(app);
+                }
             }
             if(serviceInstances[j].getElementsByTagName("DASHDeliveryParameters").length > 0 ) {
                    try {

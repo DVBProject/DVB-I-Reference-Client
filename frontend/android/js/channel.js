@@ -87,8 +87,17 @@ Channel.prototype.unselected = function () {
     self.element.classList.remove("active");
 }
 
-Channel.prototype.getMediaPresentationApp = function(mediaPresentationApp) {
+Channel.prototype.getMediaPresentationApp = function(serviceInstance) {
     var self = this;
+    if(serviceInstance.mediaPresentationApps) {
+      for(var i = 0; i < serviceInstance.mediaPresentationApps.length;i++) {
+        var mediaPresentationApp = serviceInstance.mediaPresentationApps[i];
+        if(mediaPresentationApp.contentType == "text/html" || 
+           mediaPresentationApp.contentType == "application/xhtml+xml") {
+            return mediaPresentationApp.url;
+        }
+      }
+    }
     if(self.mediaPresentationApps) {
       for(var i = 0; i < self.mediaPresentationApps.length;i++) {
         var mediaPresentationApp = self.mediaPresentationApps[i];
@@ -98,6 +107,7 @@ Channel.prototype.getMediaPresentationApp = function(mediaPresentationApp) {
         }
       }
     }
+    return null;
 }
 
 Channel.prototype.channelSelected = function () {
@@ -108,7 +118,7 @@ Channel.prototype.channelSelected = function () {
         var serviceInstance = self.getServiceInstance();
         self.setProgramChangedTimer();
         self.updateChannelInfo();
-        var mediaPresentationApp = self.getMediaPresentationApp();
+        var mediaPresentationApp = self.getMediaPresentationApp(serviceInstance);
         if(mediaPresentationApp) {
           window.location = mediaPresentationApp;
         }
