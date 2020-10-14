@@ -37,7 +37,7 @@
     <script type="text/javascript" src="videoplayer_basic.js"></script>
     <script type="text/javascript" src="videoplayer_html5.js"></script>
     <script type="text/javascript" src="videoplayer_mse-eme.js"></script>-
-    <script type="text/javascript" src="https://cdn.dashjs.org/v3.1.1/dash.all.min.js"></script>
+    <script type="text/javascript" src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 
 	<script type="text/javascript">
 
