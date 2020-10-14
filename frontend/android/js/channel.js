@@ -87,21 +87,17 @@ Channel.prototype.unselected = function () {
     self.element.classList.remove("active");
 }
 
-Channel.prototype.startApp = function(aitUrl) {
-    $.get( aitUrl, function( data ) {
-        var apps = parseXmlAit(data);
-        var app = null;
-        for(var i = 0; i < apps.length;i++) {
-            if(apps[i].transportType == "mhp:HTTPTransportType") {
-                if(app == null || app.priority < apps[i].priority) {
-                    app = apps[i];
-                }
-            }
+Channel.prototype.getMediaPresentationApp = function(mediaPresentationApp) {
+    var self = this;
+    if(self.mediaPresentationApps) {
+      for(var i = 0; i < self.mediaPresentationApps.length;i++) {
+        var mediaPresentationApp = self.mediaPresentationApps[i];
+        if(mediaPresentationApp.contentType == "text/html" || 
+           mediaPresentationApp.contentType == "application/xhtml+xml") {
+            return mediaPresentationApp.url;
         }
-        if(app != null) {
-          window.location = app.urlbase+app.location;
-        }
-     },"text");
+      }
+    }
 }
 
 Channel.prototype.channelSelected = function () {
@@ -112,8 +108,9 @@ Channel.prototype.channelSelected = function () {
         var serviceInstance = self.getServiceInstance();
         self.setProgramChangedTimer();
         self.updateChannelInfo();
-        if(self.mediaPresentationApp) {
-            self.startApp(self.mediaPresentationApp);
+        var mediaPresentationApp = self.getMediaPresentationApp();
+        if(mediaPresentationApp) {
+          window.location = mediaPresentationApp;
         }
         else if(self.isProgramAllowed()) {
             player.attachSource(serviceInstance.dashUrl);
