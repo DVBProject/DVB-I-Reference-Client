@@ -877,21 +877,29 @@ function doServiceSelection() {
   try{
       playing= true;
       $("#info").addClass("hide");
-      if(selectedService.mediaPresentationApp) {
-          serviceApp = _application_.createApplication(selectedService.mediaPresentationApp);
+      if(selectedService.mediaPresentationApps) {
+          for(var i = 0;i< selectedService.mediaPresentationApps.length;i++ ) {
+            if(selectedService.mediaPresentationApps[i].contentType == "application/vnd.dvb.ait+xm") {
+              serviceApp = _application_.createApplication(selectedService.mediaPresentationApps[i].url);
+              return;
+            }
+          }
       }
-      else {
-        var serviceInstance = selectedService.getServiceInstance();
-        if(serviceInstance.dvbChannel) {
-            selectDVBService(serviceInstance.dvbChannel) ;
-        }
-        else if(serviceInstance.dashUrl) {
-            playDASH(serviceInstance.dashUrl);
-        }
-        if(selectedService.parallelApp) {
-          serviceApp = _application_.createApplication(selectedService.parallelApp);
+      var serviceInstance = selectedService.getServiceInstance();
+      if(serviceInstance.dvbChannel) {
+          selectDVBService(serviceInstance.dvbChannel) ;
+      }
+      else if(serviceInstance.dashUrl) {
+          playDASH(serviceInstance.dashUrl);
+      }
+      if(selectedService.parallelApp) {
+        for(var i = 0;i< selectedService.parallelApps.length;i++ ) {
+          if(selectedService.parallelApps[i].contentType == "application/vnd.dvb.ait+xm") {
+            serviceApp = _application_.createApplication(selectedService.parallelApps[i].url);
+          }
         }
       }
+
 	}
 	catch(e){
 		console.log(e);
