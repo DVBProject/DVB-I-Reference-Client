@@ -9,7 +9,7 @@ function Program(programdata, element_id, channelObject){
 	
 	this.getChannel = function(){
 		return channelObject;
-	}
+	};
 }
 
 Program.prototype.init = function(programdata){
@@ -20,6 +20,6 @@ Program.prototype.init = function(programdata){
 		this.start_date_obj = this.start;
 		this.end_date_obj = this.end;
 	}
-}
+};
 
 

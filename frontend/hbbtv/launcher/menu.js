@@ -11,7 +11,7 @@ Menu.prototype.init = function(element_id){
 		element.id = element_id;
 		this.element = element;
 	}
-}
+};
 
 Menu.prototype.populate = function(){
 	_menu_.element.innerHTML = "";
@@ -73,7 +73,7 @@ Menu.prototype.populate = function(){
 			}
 		}
 	}
-}
+};
 
 Menu.prototype.getOpenChannel = function(){
 	for(var i = 0; i < this.items.length; i++){
@@ -82,7 +82,7 @@ Menu.prototype.getOpenChannel = function(){
 		}
 	}
 	return null;
-}
+};
 
 
 Menu.prototype.getOpenChannelIndex = function(){
@@ -92,7 +92,7 @@ Menu.prototype.getOpenChannelIndex = function(){
 		}
 	}
 	return 0;
-}
+};
 
 Menu.prototype.getChannelIndex = function(channel){
 	for(var i = 0; i < this.items.length; i++){
@@ -101,7 +101,7 @@ Menu.prototype.getChannelIndex = function(channel){
 		}
 	}
 	return 0;
-}
+};
 
 Menu.prototype.getPreviousChannel = function(){
 	for(var i = 1; i < this.items.length; i++){
@@ -113,7 +113,7 @@ Menu.prototype.getPreviousChannel = function(){
         return this.items[this.items.length -1];
     }
 	return null;
-}
+};
 
 Menu.prototype.getPreviousChannelIndex = function(){
 	for(var i = 1; i < this.items.length; i++){
@@ -125,7 +125,7 @@ Menu.prototype.getPreviousChannelIndex = function(){
         return this.items.length -1;
     }
 	return 0;
-}
+};
 
 Menu.prototype.getNextChannel = function(){
 	for(var i = 0; i < this.items.length-1; i++){
@@ -137,7 +137,7 @@ Menu.prototype.getNextChannel = function(){
         return this.items[0];
     }
 	return null;
-}
+};
 
 Menu.prototype.getNextChannelIndex = function(){
 	for(var i = 0; i < this.items.length-1; i++){
@@ -149,7 +149,7 @@ Menu.prototype.getNextChannelIndex = function(){
         return 0;
     }
 	return 0;
-}
+};
 
 Menu.prototype.getChannelAtIndex = function(index){	
 		var value = null;
@@ -160,7 +160,7 @@ Menu.prototype.getChannelAtIndex = function(index){
 			}
 		}
 		return value;
-}
+};
 
 
 Menu.prototype.get5minusChannel = function(){
@@ -172,7 +172,7 @@ Menu.prototype.get5minusChannel = function(){
 		}
 	}
 	return null;
-}
+};
 
 Menu.prototype.get5plusChannel = function(){
 	for(var i = 0; i < this.items.length-5; i++){
@@ -183,7 +183,7 @@ Menu.prototype.get5plusChannel = function(){
 		}
 	}
 	return null;
-}
+};
 
 function compareLCN(a, b) {
   if (a.lcn > b.lcn) return 1;

@@ -24,7 +24,7 @@ Box.prototype.init = function( init_obj, element_id ){
 		self[f] = field;
 	});
 	//self.populate();
-}
+};
 
 Box.prototype.getTitle = function(lang){
 	var self = this;
@@ -44,7 +44,7 @@ Box.prototype.getTitle = function(lang){
 		return self.title || "";
 	}
 	return "";
-}
+};
 
 Box.prototype.populate = function(callback){
 	var self = this;
@@ -104,7 +104,7 @@ Box.prototype.populate = function(callback){
 	if(typeof(callback) == "function"){
 		callback.call();
 	}
-}
+};
 
 Box.prototype.autoScrollChildren = function(){
 	var self = this;
@@ -120,7 +120,7 @@ Box.prototype.autoScrollChildren = function(){
 	}
 
 	self.scrollTimeout = setTimeout(function() { self.scrolling = true; }, 50);
-}
+};
 
 Box.prototype.autoScrollChildrenFast = function(){
 	var self = this;
@@ -131,7 +131,7 @@ Box.prototype.autoScrollChildrenFast = function(){
 		})(i, horizontalAutoscrollElems);
 	}
 	self.scrolling = true;
-}
+};
 
 Box.prototype.setUnactive = function(){
 	var self = this;
@@ -145,4 +145,4 @@ Box.prototype.setUnactive = function(){
 			$(horizontalAutoscrollElems[i]).stop(true).clearQueue().scrollLeft(0).css("opacity", 1);
 		}
 	}
-}
+};

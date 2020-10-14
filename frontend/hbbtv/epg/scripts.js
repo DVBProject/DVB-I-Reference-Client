@@ -6,7 +6,7 @@ Element.prototype.lastProgram = function(){
 		}
 	}
 	return null;
-}
+};
 
 Element.prototype.firstProgram = function(){
 	var firstprogram = null;
@@ -17,7 +17,7 @@ Element.prototype.firstProgram = function(){
 		}
 	}
 	return firstprogram;
-}
+};
 
 function htmlDecode(value) {
   return $("<textarea/>").html(value).text();

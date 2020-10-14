@@ -60,7 +60,7 @@ Channel.prototype.getSchedule = function(start,end,callback,earlier) {
             }
         });
     }
-}
+};
 
 Channel.prototype.init = function(channeldata, element_id){
 	var channel = this;
@@ -82,7 +82,7 @@ Channel.prototype.init = function(channeldata, element_id){
 	}
 
 	channel.bilingual = false;
-}
+};
 
 Channel.prototype.setVisiblePrograms = function(start, end){
 	this.visiblePrograms = [];
@@ -131,7 +131,7 @@ Channel.prototype.setVisiblePrograms = function(start, end){
 		});
 	});
 	*/
-}
+};
 
 Channel.prototype.populate = function(){
 	try{
@@ -156,7 +156,7 @@ Channel.prototype.populate = function(){
 	catch(e){
 		console.log(e);
 	}
-}
+};
 
 Channel.prototype.setFocus = function(){
 	try{
@@ -193,7 +193,7 @@ Channel.prototype.setFocus = function(){
 	catch(e){
 		console.log(e);
 	}
-}
+};
 
 Channel.prototype.getClosest = function(currentFocus){
 	var currPrgBounds = currentFocus.element.getBoundingClientRect();
@@ -235,7 +235,7 @@ Channel.prototype.getClosest = function(currentFocus){
 		}
 	});
 	return closest;
-}
+};
 
 Channel.prototype.getCurrentlyRunningProgram = function(){
 	var self = this;
@@ -250,7 +250,7 @@ Channel.prototype.getCurrentlyRunningProgram = function(){
 		}
 	}
 	return null;
-}
+};
 
 Channel.prototype.nextProgram = function(item){
 	var next = null;
@@ -278,7 +278,7 @@ Channel.prototype.nextProgram = function(item){
 		});
 	}
 	return next;
-}
+};
 
 Channel.prototype.previousProgram = function(item){
 	var previous = null;
@@ -306,12 +306,12 @@ Channel.prototype.previousProgram = function(item){
 		});
 	}
 	return previous;
-}
+};
 
 Channel.prototype.getLastProgram = function() {
     return this.programs[this.programs.length - 1];
-}
+};
 
 Channel.prototype.getLastVisibleProgram = function() {
     return this.visiblePrograms[this.visiblePrograms.length - 1];
-}
+};

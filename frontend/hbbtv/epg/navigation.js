@@ -341,7 +341,7 @@ function keyRight(){
             var currentProgram = _epg_.activeItem;
             _epg_.loadNextDay(function(){
                 if(currentProgram instanceof Program){
-                    var prg = _epg_.getProgramByKeyValue("id", currentProgram.id)
+                    var prg = _epg_.getProgramByKeyValue("id", currentProgram.id);
                     if(prg){
                         _epg_.setActiveItem(prg);
                     }

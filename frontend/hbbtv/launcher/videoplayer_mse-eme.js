@@ -120,11 +120,11 @@ VideoPlayerEME.prototype.createPlayer = function(){
 		
 		track.onerror = function(){
 			console.log("track error: ", arguments );
-		}
+		};
 		
 		track.onload = function(){
 			console.log("track loaded: ", arguments );
-		}
+		};
 		
 		
 		console.log("at addtrack nth track: " + this.length + " : set up cuechange listeners", track);
@@ -174,7 +174,7 @@ VideoPlayerEME.prototype.createPlayer = function(){
 	} );
 	
 	return true;
-}
+};
 
 VideoPlayerEME.prototype.setURL = function(url){
 	console.log("setURL(",url,")");
@@ -268,7 +268,7 @@ VideoPlayerEME.prototype.prepareAdPlayers = function(){
 	var onAdProgress = function(e){};
 	
 	var onAdTimeupdate = function(){
-		var timeLeft = Math.floor( this.duration - this.currentTime )
+		var timeLeft = Math.floor( this.duration - this.currentTime );
 		if( timeLeft != NaN ){
 			$("#adInfo").addClass("show");
 			$("#adInfo").html("Ad " + self.adCount + "/" + self.adBuffer.length + " (" + timeLeft + "s)" );
@@ -323,7 +323,7 @@ VideoPlayerEME.prototype.playAds = function(){
 		activeAdPlayer.src = self.adBuffer[ self.adCount ];
 	}
 	
-	self.adCount++
+	self.adCount++;
 	
 	// set next ad url to idle player and preload it
 	if( self.adBuffer.length > self.adCount ){
@@ -453,7 +453,7 @@ VideoPlayerEME.prototype.startVideo = function( isLive ){
 		
 		self.element.removeClass("hidden");
 		self.visible = true;
-		console.log("video.play()")
+		console.log("video.play()");
 		self.video.play();
 		self.setFullscreen(true);
 		self.displayPlayer(5);
@@ -587,11 +587,11 @@ VideoPlayerEME.prototype.getSubtitles = function() {
      list.push(subtitletrack);
    }
    return list;
-}
+};
 
 VideoPlayerEME.prototype.selectSubtitleTrack = function(track) {
     this.player.setTextTrack(track);
-}
+};
 
 VideoPlayerEME.prototype.getAudioTracks = function() {
     var current = null;
@@ -610,9 +610,9 @@ VideoPlayerEME.prototype.getAudioTracks = function() {
         list.push(audiotrack);
    }
    return list;
-}
+};
 
 VideoPlayerEME.prototype.selectAudioTrack = function(track) {
     var audio = this.player.getTracksFor("audio");
     this.player.setCurrentTrack(audio[track]);
-}
+};

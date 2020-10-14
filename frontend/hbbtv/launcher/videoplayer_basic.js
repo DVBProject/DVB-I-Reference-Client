@@ -590,7 +590,7 @@ function VideoPlayerBasic(element_id, profile, width, height){
 				return { duration : this.video.duration, position : this.video.currentTime };
 			}
 			else{
-				console.log("timedata not available")
+				console.log("timedata not available");
 				return { duration : 0, position : 0 };
 			}
 			
@@ -599,7 +599,7 @@ function VideoPlayerBasic(element_id, profile, width, height){
 			return { duration : 0, position : 0 };
 		}
 		
-	}
+	};
 	
 	/**
 	 * Perform seek operation. To be called when user presses seek button. 

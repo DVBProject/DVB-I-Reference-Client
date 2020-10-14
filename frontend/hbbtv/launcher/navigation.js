@@ -811,7 +811,7 @@ function channelDown(){
             document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
             if(!menuOpen) {
                 showInfobanner();
-            };
+            }
 
 			chChangeTimer = setTimeout(function(){
                 selectService(channel_obj);

@@ -12,7 +12,7 @@ function Program(programdata, element_id, channelObject){
 	
 	this.getChannel = function(){
 		return channelObject;
-	}
+	};
 }
 
 Program.prototype.init = function(programdata){
@@ -23,7 +23,7 @@ Program.prototype.init = function(programdata){
 		this.start_date_obj = this.start;
 		this.end_date_obj = this.end;
 	}
-}
+};
 
 Program.prototype.getTitle = function(){
 	var title =  this.title;
@@ -36,7 +36,7 @@ Program.prototype.getTitle = function(){
 		}
 	}
 	return title;
-}
+};
 
 Program.prototype.getAltTitle = function(){
 	var title =  this.title;
@@ -49,7 +49,7 @@ Program.prototype.getAltTitle = function(){
 		}
 	}
 	return title;
-}
+};
 
 Program.prototype.getDescription = function(lang){
 	var desc = this.desc || "";
@@ -62,7 +62,7 @@ Program.prototype.getDescription = function(lang){
 		}
 	}
 	return desc;
-}
+};
 
 Program.prototype.getSynopsisText = function(){
 	var text = "";
@@ -82,7 +82,7 @@ Program.prototype.getSynopsisText = function(){
 		text = "No Synopsis Available";
 	}
 	return text;
-}
+};
 
 
 
@@ -129,7 +129,7 @@ Program.prototype.populate = function(){
 
 	var programwidth = Math.max(0, (Number(self.prglen) * MINUTE_WIDTH) - (PROGRAM_MARGIN_WIDTH) - (PROGRAM_BORDER_THICKNESS));
 	self.element.style.width = programwidth + "px";
-}
+};
 
 Program.prototype.handleStarOver = function(restartOK){
 	var self = this;
@@ -150,7 +150,7 @@ Program.prototype.handleStarOver = function(restartOK){
 			self.element.removeChild(green_restart.pop());
 		}
 	}
-}
+};
 
 Program.prototype.setFocus = function(){
 	try{
@@ -174,7 +174,7 @@ Program.prototype.setFocus = function(){
 		console.log(e);
 		return false;
 	}
-}
+};
 
 Program.prototype.fadeOutScroll = function(){
 	var self = this;
@@ -186,15 +186,15 @@ Program.prototype.fadeOutScroll = function(){
 	else{
 		console.log("fadeOutScroll: this is an INACTIVE program");
 	}
-}
+};
 
 Program.prototype.unFocus = function(){
 	var self = this;  
-}
+};
 
 Program.prototype.now = function(){
 	return this.start_date_obj <= curTime && curTime <= this.end_date_obj;
-}
+};
 
 Program.prototype.setTimeClass = function(){
 	this.element.removeClass("passed");
@@ -209,12 +209,12 @@ Program.prototype.setTimeClass = function(){
 	else{
 		this.element.addClass("now");
 	}
-}
+};
 
 Program.prototype.overlaps = function(otherProgram){
 	if(otherProgram instanceof Program){
 		return (this.start_date_obj >= otherProgram.start_date_obj && this.end_date_obj <= otherProgram.end_date_obj);
 	}
 	return false;
-}
+};
 

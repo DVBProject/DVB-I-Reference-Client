@@ -178,7 +178,7 @@ Channel.prototype.getNowNext = function() {
         self.center = 0;
         self.populate(null);
     }
-}
+};
 
 
 Channel.prototype.init = function( init_obj, element_id){
@@ -247,7 +247,7 @@ Channel.prototype.init = function( init_obj, element_id){
             self.boxes.push(now);
         }
         self.getNowNext();
-}
+};
 
 Channel.prototype.update = function(epg_obj){
 		var self = this;
@@ -261,7 +261,7 @@ Channel.prototype.update = function(epg_obj){
 				self.setOpen(true, focus);
 			}
 		}
-}
+};
 
 Channel.prototype.setOpen = function(open, focus){
 	var channel = this;
@@ -329,7 +329,7 @@ Channel.prototype.setOpen = function(open, focus){
 		channel.element.addClass("closed");
 		channel.element.childNodes.getByClass("items")[0].style.left = "0px";
 	}
-}
+};
 
 Channel.prototype.populate = function(callback){
 	var self = this;
@@ -353,7 +353,7 @@ Channel.prototype.populate = function(callback){
 	if(typeof(callback) == "function"){
 		callback.call();
 	}
-}
+};
 
 Channel.prototype.getCenterBox = function(){
 	try{
@@ -368,7 +368,7 @@ Channel.prototype.getCenterBox = function(){
 	catch(e){
 		return null;
 	}
-}
+};
 
 Channel.prototype.getPreviousItem = function(){
 	var self = this;
@@ -382,7 +382,7 @@ Channel.prototype.getPreviousItem = function(){
 		}
 	});
 	return prev;
-}
+};
 
 Channel.prototype.getNextItem = function(){
 	var self = this;
@@ -394,7 +394,7 @@ Channel.prototype.getNextItem = function(){
 		}
 	});
 	return next;
-}
+};
 
 Channel.prototype.getBoxByName = function(name){
 	var self = this;
@@ -408,7 +408,7 @@ Channel.prototype.getBoxByName = function(name){
 		}
 	});
 	return result;
-}
+};
 
 Channel.prototype.isProgramAllowed = function() {
    if(this.epg && this.epg["now"]) {
@@ -422,4 +422,4 @@ Channel.prototype.isProgramAllowed = function() {
         }
     }
     return true;
-}
+};

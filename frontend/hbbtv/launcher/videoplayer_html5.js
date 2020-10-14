@@ -162,7 +162,7 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 			
 			track.onerror = track.onload = function(){
 				console.log( arguments );
-			}
+			};
 			
 			console.log("at addtrack nth track: " + this.length + " : set up cuechange listeners", track);
 			
@@ -288,7 +288,7 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 	};
 	
 	return true;
-}
+};
 
 VideoPlayerHTML5.prototype.setURL = function(url){
 	console.log("setURL(",url,")");
@@ -403,7 +403,7 @@ VideoPlayerHTML5.prototype.prepareAdPlayers = function(){
 	var onAdProgress = function(e){};
 	
 	var onAdTimeupdate = function(){
-		var timeLeft = Math.floor( this.duration - this.currentTime )
+		var timeLeft = Math.floor( this.duration - this.currentTime );
 		if( timeLeft != NaN ){
 			$("#adInfo").addClass("show");
 			$("#adInfo").html("Ad " + self.adCount + "/" + self.adBuffer.length + " (" + timeLeft + "s)" );
@@ -458,7 +458,7 @@ VideoPlayerHTML5.prototype.playAds = function(){
 		activeAdPlayer.src = self.adBuffer[ self.adCount ];
 	}
 	
-	self.adCount++
+	self.adCount++;
 	
 	// set next ad url to idle player and preload it
 	if( self.adBuffer.length > self.adCount ){
@@ -653,7 +653,7 @@ VideoPlayerHTML5.prototype.sendLicenseRequest = function(callback){
 
 VideoPlayerHTML5.prototype.startVideo = function( isLive, nthCall ){
 	console.log("startVideo()");
-	this.subtitleTrack = false
+	this.subtitleTrack = false;
 	// reset progress bar always
 	this.resetProgressBar();
 	
@@ -751,7 +751,7 @@ VideoPlayerHTML5.prototype.startVideo = function( isLive, nthCall ){
 		//self.watched.load();
 		//var position = this.watched.get( self.videoid );
 		
-		console.log("video.play()")
+		console.log("video.play()");
 		self.video.play();
 		self.setFullscreen(true);
 		self.displayPlayer(5);
@@ -868,10 +868,10 @@ VideoPlayerHTML5.prototype.getAudioTracks = function(){
 		console.log(e.message);
 		return 0;
 	}
-}
+};
 
 VideoPlayerHTML5.prototype.getSubtitles = function() {
-    var subtitles = this.video.textTracks
+    var subtitles = this.video.textTracks;
     var list = [];
     var current = null;
     if(subtitles.length > 0) {
@@ -893,12 +893,12 @@ VideoPlayerHTML5.prototype.getSubtitles = function() {
      list.push(subtitletrack);
    }
    return list;
-}
+};
 
 
 VideoPlayerHTML5.prototype.selectSubtitleTrack = function(track) {
     this.video.textTracks[track].mode = "showing";
-}
+};
 
 VideoPlayerHTML5.prototype.getAudioTracks = function() {
     var audioTracks = this.video.audioTracks;
@@ -913,7 +913,7 @@ VideoPlayerHTML5.prototype.getAudioTracks = function() {
         list.push(audiotrack);
    }
    return list;
-}
+};
 
 VideoPlayerHTML5.prototype.selectAudioTrack = function(track) {
   for (i=0; i < this.video.audioTracks.length; i++) {
@@ -923,7 +923,7 @@ VideoPlayerHTML5.prototype.selectAudioTrack = function(track) {
           video.audioTracks[i].enabled = false;
       }
   }
-}
+};
 
 
 

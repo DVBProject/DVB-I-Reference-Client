@@ -154,7 +154,7 @@ function hasStorage()
 		error("No Web Storage available");
 	else
 		console.log("No Web Storage available");
-	return false
+	return false;
 }
 
 // file urn detection

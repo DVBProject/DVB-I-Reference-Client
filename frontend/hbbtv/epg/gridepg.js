@@ -94,7 +94,7 @@ GridEPG.prototype.initEPG = function(element_id, epgdata, firstvisible_channel, 
 			self.updateVerticalTimeLine();
 		}
 	}, 50);
-}
+};
 
 GridEPG.prototype.channelLoaded = function(){
     this.channelsLoaded++;
@@ -102,7 +102,7 @@ GridEPG.prototype.channelLoaded = function(){
     if(this.channelsLoaded == this.channels.length && typeof(this.loadedCallback) == "function") {
 		this.loadedCallback.call();
     } 
-}
+};
 
 GridEPG.prototype.initCurrentTimeline = function(){
 	if(document.getElementById("currentTimelineContainer") == null){
@@ -118,7 +118,7 @@ GridEPG.prototype.initCurrentTimeline = function(){
 		var pos = ((curTime.getTime()-this.timelinestart.getTime()) / 1000 / 60 * MINUTE_WIDTH) - (this.currentTimeline.offsetWidth/2) - (vtimeline.offsetWidth/2);
 		this.currentTimeline.style.left = Number(this.containerFrame.getLeft() + pos) + "px";
 	}
-}
+};
 
 GridEPG.prototype.updateVerticalTimeLine = function(){
 	if(this.currentTimeline){
@@ -134,7 +134,7 @@ GridEPG.prototype.updateVerticalTimeLine = function(){
 			this.currentTimeline.addClass("hide");
 		}
 	}
-}
+};
 
 GridEPG.prototype.insertFirstDay = function(epgdata){
 	console.log("GridEPG.insertFirstDay");
@@ -152,7 +152,7 @@ GridEPG.prototype.insertFirstDay = function(epgdata){
 			}
 		}	
 	}
-}
+};
 
 GridEPG.prototype.insertLastDay = function(epgdata){
 	console.log("GridEPG.insertLastDay");
@@ -171,7 +171,7 @@ GridEPG.prototype.insertLastDay = function(epgdata){
 			}
 		}	
 	}
-}
+};
 
 GridEPG.prototype.removeFirstDay = function(){
 	console.log("GridEPG.removeFirstDay");
@@ -184,7 +184,7 @@ GridEPG.prototype.removeFirstDay = function(){
 			}
 		}
 	}	
-}
+};
 
 
 GridEPG.prototype.removeLastDay = function(){
@@ -198,7 +198,7 @@ GridEPG.prototype.removeLastDay = function(){
 			}
 		}
 	}	
-}
+};
 
 GridEPG.prototype.initLeftBar = function(){
 	//console.log("GridEPG.initLeftBar");
@@ -213,7 +213,7 @@ GridEPG.prototype.initLeftBar = function(){
 	var channels = document.createElement("div");
 	channels.setAttribute("id", "channels");
 	this.leftbar.appendChild(channels);
-}
+};
 
 GridEPG.prototype.initContainer = function(){
 	//console.log("GridEPG.populateContainer");
@@ -238,7 +238,7 @@ GridEPG.prototype.initContainer = function(){
 	epgRows.setAttribute("id", "epgRows");
 	this.epgRowsElement = epgRows;
 	container.appendChild(this.epgRowsElement);
-}
+};
 
 GridEPG.prototype.getOpenChannel = function(){
 	for(var i = 0; i < this.channels.length; i++){
@@ -247,7 +247,7 @@ GridEPG.prototype.getOpenChannel = function(){
 		}
 	}
 	return null;
-}
+};
 
 GridEPG.prototype.getPreviousChannel = function(){
 	for(var i = 1; i < this.channels.length; i++){
@@ -256,7 +256,7 @@ GridEPG.prototype.getPreviousChannel = function(){
 		}
 	}
 	return null;
-}
+};
 
 GridEPG.prototype.getNextChannel = function(){
 	for(var i = 0; i < this.channels.length-1; i++){
@@ -265,7 +265,7 @@ GridEPG.prototype.getNextChannel = function(){
 		}
 	}
 	return null;
-}
+};
 
 GridEPG.prototype.populate = function(callback){
 	console.log("GridEPG.populate()");
@@ -306,11 +306,11 @@ GridEPG.prototype.populate = function(callback){
 	catch(e){
 		console.log(e);
 	}
-}
+};
 
 GridEPG.prototype.getLastChannel = function(){
     return this.channels[this.channels.length - 1];
-}
+};
 
 GridEPG.prototype.handleArrows = function(){
 	// Set arrows
@@ -333,7 +333,7 @@ GridEPG.prototype.handleArrows = function(){
 			arrow_right.addClass("hide");
 		}
 	}
-}
+};
 
 /* This function populates programs and timeline only and leaves the leftbar as it is */
 GridEPG.prototype.populatePrograms = function(callback){
@@ -348,7 +348,7 @@ GridEPG.prototype.populatePrograms = function(callback){
 	if(typeof(callback) == "function"){
 		callback.call();
 	}
-}
+};
 
 GridEPG.prototype.populateTimeline = function(){
 	var timeline = document.getElementById("timeline");
@@ -426,7 +426,7 @@ GridEPG.prototype.populateTimeline = function(){
 		}
 	}
 	this.updateVerticalTimeLine();
-}
+};
 
 GridEPG.prototype.getFirstVisibleChannel = function(){
 	for(var i = 0; i < this.channels.length; i++){
@@ -434,7 +434,7 @@ GridEPG.prototype.getFirstVisibleChannel = function(){
 			return this.channels[i];
 		}
 	}
-}
+};
 
 GridEPG.prototype.getLastVisibleChannel = function(){
 	for(var i = this.channels.length-1; i >= 0; i--){
@@ -442,7 +442,7 @@ GridEPG.prototype.getLastVisibleChannel = function(){
 			return this.channels[i];
 		}
 	}
-}
+};
 
 
 GridEPG.prototype.getChannelByKeyValue = function(key, value){
@@ -455,7 +455,7 @@ GridEPG.prototype.getChannelByKeyValue = function(key, value){
 		}
 	}
 	return null;
-}
+};
 
 GridEPG.prototype.getProgramByKeyValue = function(key, value){
 	for(var j = 0; j < this.channels.length; j++){
@@ -478,7 +478,7 @@ GridEPG.prototype.getProgramByKeyValue = function(key, value){
 			}
 		}
 	}
-}
+};
 
 GridEPG.prototype.populateProgramDetail = function(program){
 	var self = this;
@@ -517,7 +517,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
 				rating.removeClass("hide");
             }
             else {
-				rating.addClass("hide")
+				rating.addClass("hide");
 			}
 
 			var programimage = document.getElementById("detail_programimage");
@@ -582,7 +582,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
 				var img = new Image();
 				img.onload = function(){
 					programimage.setAttribute("src", this.src);
-				}
+				};
 				img.onerror = function(){
 					if(imageurl_idx < imageurls.length-1){
 						imageurl_idx++;
@@ -592,7 +592,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
 					else{
 						programimage.addClass("hidden");
 					}
-				}
+				};
 				img.src = imageurls[imageurl_idx];
 			}
 			else{
@@ -626,7 +626,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
 			console.log(e);
 		}
 	}
-}
+};
 
 GridEPG.prototype.autoScrollDescriptionText = function(){
 	var delay = 5000;
@@ -666,7 +666,7 @@ GridEPG.prototype.autoScrollDescriptionText = function(){
 			}
 		);
 	}, delay));
-}
+};
 
 GridEPG.prototype.autoScrollDetailProgramTitle = function(){
 	var self = this;
@@ -718,7 +718,7 @@ GridEPG.prototype.autoScrollDetailProgramTitle = function(){
 			);
 		},delay));
 	}
-}
+};
 
 GridEPG.prototype.clearTimeouts = function(timeoutgroup){
 	var self = this;
@@ -734,7 +734,7 @@ GridEPG.prototype.clearTimeouts = function(timeoutgroup){
 			}
 		});
 	}
-}
+};
 
 GridEPG.prototype.setProgramDate = function(dateobj){
 	var date = document.getElementById("date");
@@ -747,7 +747,7 @@ GridEPG.prototype.setProgramDate = function(dateobj){
 		}
 		date.innerHTML += ", " + Number(dateobj.getDate()) + "/" +  Number(dateobj.getMonth()+1);
 	}
-}
+};
 
 
 
@@ -758,7 +758,7 @@ GridEPG.prototype.populateInfo = function(str){
 	if(this.container){
 		this.container.appendChild(noDataInfo);
 	}
-}
+};
 
 GridEPG.prototype.setActiveItem = function(item){
 	if(item){
@@ -770,21 +770,21 @@ GridEPG.prototype.setActiveItem = function(item){
 			this.activeItem.setFocus();
 		}
 	}
-}
+};
 
 GridEPG.prototype.firstLoadedChannelIdx = function(){
 	if(_epg_.channels.length > 0){
 		return _epg_.cids.indexOf(_epg_.channels[0].id.toString());
 	}
 	return null;
-}
+};
 
 GridEPG.prototype.lastLoadedChannelIdx = function(){
 	if(_epg_.channels.length > 0){
 		return _epg_.cids.indexOf(_epg_.getLastChannel().id.toString());
 	}
 	return null;
-}
+};
 
 GridEPG.prototype.loadPreviousDay = function(){
     setLoading(true);
@@ -800,7 +800,7 @@ GridEPG.prototype.loadPreviousDay = function(){
            this.channels[i].getSchedule(start,end,this.channelLoaded.bind(this),true);
     }
 
-}
+};
 
 GridEPG.prototype.loadNextDay = function(){
    setLoading(true);
@@ -816,13 +816,13 @@ GridEPG.prototype.loadNextDay = function(){
          this.channels[i].getSchedule(start,end,this.channelLoaded.bind(this),false);
    }
    console.log("loadNextDay");
-}
+};
 
 GridEPG.prototype.dayLoaded = function(){
         var ch = (this.channels.indexOf(this.getOpenChannel()) >= 0) ? this.channels.indexOf(this.getOpenChannel()) : 0;
 		this.populatePrograms();
 		this.channels[ch].setFocus();
 		setLoading(false);
-}
+};
 
 

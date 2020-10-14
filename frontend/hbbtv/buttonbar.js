@@ -137,7 +137,7 @@ ButtonBar.prototype.addButton = function( buttonCode, visible ){
 	this.config[ buttonCode ].visible = visible;
 	if( !visible )
 		$(button).hide();
-}
+};
 
 function titleScroll(element, duration){
 	$(element).delay(1000).animate(
