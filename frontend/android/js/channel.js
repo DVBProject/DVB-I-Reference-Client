@@ -207,6 +207,9 @@ Channel.prototype.setProgramChangedTimer = function() {
 
 Channel.prototype.nowNextUpdateRequired = function() {
     var self = this;
+    if(!self.contentGuideURI) {
+        return false;
+    }
     if(self.now_next) {
         curTime = new Date();
         var now = self.now_next["now"];
