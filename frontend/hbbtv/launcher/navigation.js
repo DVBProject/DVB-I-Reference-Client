@@ -378,10 +378,8 @@ function onKey(keyCode)
             }
             else if(!playingDASH) {
                 try {
-
                   _application_.opAppRequestBackground();
-                } catch(e) {;                    
-                }                    
+                } catch(e) {}
                 hideInfobanner();
             }
 
