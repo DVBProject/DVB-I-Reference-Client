@@ -28,6 +28,10 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         chan.code = i;
         chan.title = services[i].getElementsByTagName("ServiceName")[0].childNodes[0].nodeValue;
         chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
+        var providers = services[i].getElementsByTagName("ProviderName");
+        if(providers.length > 0) {
+          chan.provider = providers[0].childNodes[0].nodeValue;
+        }
         chan.parallelApps = [];
         chan.mediaPresentationApps = [];
         var cgRefs =  services[i].getElementsByTagName("ContentGuideServiceRef");

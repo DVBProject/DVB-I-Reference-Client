@@ -235,6 +235,9 @@ Channel.prototype.updateChannelInfo = function () {
      var info = "";
      info = "<span class=\"menuitem_chicon d-block\"><img src=\""+(self.image || "./images/empty.png") +"\"></span>";
      info += "<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + self.title +"</span>";
+     if(self.provider) {
+         info += "<br/><span class=\"menuitem_provider d-inline-block\">" + self.provider +"</span>";
+     }
      if(self.now_next) {
         curTime = new Date();
         var now = self.now_next["now"];

@@ -381,6 +381,12 @@ div, span {
 	line-height:  45px;
 	margin-left: 10px;
 }
+
+.menuitem_title span.provider {
+	height:  18px;
+	line-height:  18px;
+	margin-left: 10px;
+}
 .open .menuitem_title span.menuitem_chnumber {
 	color: #0090f1;
 }
@@ -390,17 +396,27 @@ div, span {
 	color: #0098f4 !important;
 	top: 30px;	
 	font-weight: 700;
-
 }
+
 .menuitem.unlisted.open .menuitem_chnumber,
 .menuitem.unlisted.open .menuitem_chname
 .menuitem.unlisted.open .sourcetype {
   color: #aaaaaa !important;
 }
-.open .menuitem_title .sourcetype {
+.open .menuitem_title .sourcetype,
+.open .menuitem_title .provider{
     font-size: 18px;
+    line-height: 18px;
+    white-space: nowrap;
 }
 
+.menuitem_title .provider{
+  display: none;
+}
+
+.open .menuitem_title .provider{
+  display: block;
+}
 .closed .menuitem_title .sourcetype {
 	font-size: 12px;
 	font-weight: 700;
@@ -669,6 +685,7 @@ div, span {
 	width: 1000px;
 	height: 45px;
   text-align: right;
+  white-space: nowrap;
 }
 .menuitem .items {
 	_border: 1px solid red;
