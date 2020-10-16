@@ -6,14 +6,21 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     serviceList.services = list;
     var parser = new DOMParser();
     var doc = parser.parseFromString(data,"text/xml");
-    var services = doc.getElementsByTagName("Service");
-    var contentGuides = doc.getElementsByTagName("ContentGuideSource");
+    var services = doc.querySelectorAll("Service");
+    var contentGuides = doc.querySelectorAll("ContentGuideSource");
     var contentGuideURI = null;
-
+    var channelmap = [];
+    if(dvbChannels) {
+      for(var i = 0;i<dvbChannels.length;i++) {
+          var dvbChannel = dvbChannels.item(i);
+          var triplet = dvbChannel.onid +"."+dvbChannel.tsid+"."+dvbChannel.sid;
+          channelmap[triplet] = dvbChannel;
+      }
+    }
     if(contentGuides.length > 0) {
         contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
     }
-    var relatedMaterial = doc.getElementsByTagName("RelatedMaterial");
+    var relatedMaterial = doc.querySelectorAll("RelatedMaterial");
     for(var j = 0;j < relatedMaterial.length;j++) {
         var howRelated = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
         if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1") {
@@ -84,7 +91,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
               var supported = false;
               for(var k = 0;k < instance.contentProtection.length;k++) {
                  for(var l = 0;l < supportedDrmSystems.length;l++) {
-                    if(instance.contentProtection[k].drmSystemId == supportedDrmSystems[l]) {
+                    if(instance.contentProtection[k].drmSystemId.toLowerCase() == (supportedDrmSystems[l].toLowerCase())) {
                       supported = true;
                       break;
                     }
@@ -123,7 +130,8 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
             else if(dvbChannels) {
                 var triplets = serviceInstances[j].getElementsByTagName("DVBTriplet");
                 if(triplets.length > 0 ) {
-                    var dvbChannel = getDVBChannel(triplets[0],dvbChannels);
+                    var triplet = triplets[0].getAttribute("origNetId")+"."+triplets[0].getAttribute("tsId")+"."+triplets[0].getAttribute("serviceId");
+                    var dvbChannel = channelmap[triplet];
                     if(dvbChannel) {
                         if(serviceInstances[j].getElementsByTagName("DVBTDeliveryParameters").length > 0) {
                             sourceTypes.push("DVB-T");
@@ -167,21 +175,6 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         }
     }
     return serviceList;
-}
-
-function getDVBChannel(tripletElement,dvbChannels) {
-    if(!dvbChannels) {
-        return null;
-    }
-    for(var i = 0;i<dvbChannels.length;i++) {
-        var dvbChannel = dvbChannels.item(i);
-        if(dvbChannel.sid == tripletElement.getAttribute("serviceId") &&
-            dvbChannel.onid == tripletElement.getAttribute("origNetId") &&
-            dvbChannel.tsid == tripletElement.getAttribute("tsId")) {
-            return dvbChannel;
-        }
-    }
-    return null;
 }
 
 function generateServiceListQuery(baseurl,providers,language,genre,targetCountry,regulatorListFlag) {
