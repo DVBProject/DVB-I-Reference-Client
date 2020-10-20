@@ -686,6 +686,7 @@ div, span {
 	height: 45px;
   text-align: right;
   white-space: nowrap;
+  top: 5px;
 }
 .menuitem .items {
 	_border: 1px solid red;
