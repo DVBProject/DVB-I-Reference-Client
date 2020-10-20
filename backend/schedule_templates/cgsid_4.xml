@@ -7,6 +7,9 @@
 					<Title type="main">Mountains</Title>
 					<Synopsis length="medium">The secretive lives of mountain animals; snow leopards come together to help a mother and cub, trapped between rival males.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>15</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -19,6 +22,9 @@
 				<BasicDescription>
 					<Title type="main">Jason Peterson's Into The Wild</Title>
 					<Synopsis length="medium">Jason Peterson hunts the most dangerous animals across North America and the around the world.</Synopsis>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>7</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -32,6 +38,9 @@
 					<Title type="main">Alone</Title>
 					<Synopsis length="medium">Bob Harte's loneliness abates when a visitor arrives at his cabin; the Seldens enjoy a major triumph; Ray Lewis begins hunting for meat.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>15</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -45,6 +54,9 @@
 					<Title type="main">Jungles</Title>
 					<Synopsis length="medium">From the jungles of Brazil to Costa Rica, animals face life in the most competitive place on Earth.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>7</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -58,6 +70,9 @@
 					<Title type="main">We Bought a Zoo</Title>
 					<Synopsis length="medium">Following his wife's untimely death, Los Angeles journalist Benjamin Mee (Matt Damon) decides to make a fresh start by quitting his job and moving his children (Colin Ford, Maggie Elizabeth Jones) to an 18-acre property containing the Rosemoor Wildlife Park. Though closed for years, Rosemoor is still home to many animals, cared for by Kelly Foster (Scarlett Johansson) and her small staff. Mee opens his heart and his checkbook as he, Kelly and the others work to renovate and reopen the zoo.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:5" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>10</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -71,6 +86,9 @@
 					<Title type="main">Airstream Dream</Title>
 					<Synopsis length="medium">The guys tap into their spirit animals to track down a lifetime picker; a bizarre totem pole catches Mike's eye; an original Airstream trailer renders Mike speechless.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>5</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -84,6 +102,9 @@
 					<Title type="main">Funnymals</Title>
 					<Synopsis length="medium">Secuencias cómicas desternillantes protagonizadas por animales. Peces cantarines, suricatas paranoicas y jirafas cuentachistes, entre otras diversiones.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:5" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>18</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -97,6 +118,9 @@
 					<Title type="main">Animal Invaders</Title>
 					<Synopsis length="medium">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>7</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -110,6 +134,9 @@
 					<Title type="main">The Pride of the Eastern Cape</Title>
 					<Synopsis length="medium">In Africa, great lengths are taken to keep the Eastern Cape lion population healthy for generations to come; protecting animals from poachers.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:9" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>4</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -123,6 +150,9 @@
 					<Title type="main">We Bought a Zoo</Title>
 					<Synopsis length="medium">Following his wife's untimely death, Los Angeles journalist Benjamin Mee (Matt Damon) decides to make a fresh start by quitting his job and moving his children (Colin Ford, Maggie Elizabeth Jones) to an 18-acre property containing the Rosemoor Wildlife Park. Though closed for years, Rosemoor is still home to many animals, cared for by Kelly Foster (Scarlett Johansson) and her small staff. Mee opens his heart and his checkbook as he, Kelly and the others work to renovate and reopen the zoo.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:5" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>10</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -136,6 +166,9 @@
 					<Title type="main">Airstream Dream</Title>
 					<Synopsis length="medium">The guys tap into their spirit animals to track down a lifetime picker; a bizarre totem pole catches Mike's eye; an original Airstream trailer renders Mike speechless.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+                    <ParentalGuidance>
+                         <mpeg7:MinimumAge>6</mpeg7:MinimumAge>
+                    </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -149,6 +182,9 @@
 					<Title type="main">Cities</Title>
 					<Synopsis length="medium">Cities serve as places of surprising opportunity for animals to thrive.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>18</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -162,6 +198,9 @@
 					<Title type="main">Jungles</Title>
 					<Synopsis length="medium">From the jungles of Brazil to Costa Rica, animals face life in the most competitive place on Earth.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>5</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -174,6 +213,9 @@
 				<BasicDescription>
 					<Title type="main">Mountains</Title>
 					<Synopsis length="medium">The secretive lives of mountain animals; snow leopards come together to help a mother and cub, trapped between rival males.</Synopsis>
+          <ParentalGuidance>
+             <mpeg7:MinimumAge>5</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -187,6 +229,9 @@
 				<BasicDescription>
 					<Title type="main">Animal Invaders</Title>
 					<Synopsis length="medium">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>12</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -201,6 +246,9 @@
 					<Title type="main">Face Ripper</Title>
 					<Synopsis length="medium">Jeremy investigates the case of a Bolivian man who had his face ripped off by a ferocious river predator, leading to a showdown with an old adversary.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+               <mpeg7:MinimumAge>3</mpeg7:MinimumAge>
+          </ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
