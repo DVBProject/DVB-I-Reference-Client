@@ -2,7 +2,7 @@
 <TVAMain xml:lang="eng" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProgramDescription>
 		<ProgramInformationTable>
-			<ProgramInformation programId="crid://dvbi-reference/11.12026821">
+			<ProgramInformation programId="crid://dvbi-reference/dvbstreams.11.12026821">
 				<BasicDescription>
 					<Title type="main">Live Clear AVC + AAC</Title>
 					<Synopsis length="medium">Live Clear AVC + AAC by Unified Streaming</Synopsis>
@@ -13,12 +13,12 @@
 		<ProgramLocationTable lang="eng">
 			<Schedule start="DATE_TEMPLATE 00:00:00" end="DATE_TEMPLATE 23:59:59" serviceIDRef="4">
 				<ScheduleEvent>
-					<Program crid="crid://dvbi-reference/11.12026821"/>
+					<Program crid="crid://dvbi-reference/dvbstreams.11.12026821"/>
 					<PublishedStartTime>DATE_TEMPLATET00:00:00Z</PublishedStartTime>
 					<PublishedDuration>PT12H</PublishedDuration>
 				</ScheduleEvent>
         <ScheduleEvent>
-					<Program crid="crid://dvbi-reference/11.12026821"/>
+					<Program crid="crid://dvbi-reference/dvbstreams.11.12026821"/>
 					<PublishedStartTime>DATE_TEMPLATET12:00:00Z</PublishedStartTime>
 					<PublishedDuration>PT12H</PublishedDuration>
 				</ScheduleEvent>
