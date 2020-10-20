@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" version="1" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../TM-I0009r17_A177v2_specification/dvbi_v2.0.xsd urn:tva:metadata:2019 ../TM-I0009r17_A177v2_specification/tva_metadata_3-1.xsd">
+
+    <!-- r1: removed non-stpp subtitles -->
+
+	<Name>DVB-DASH Reference Streams</Name>
+	<ProviderName>DVB</ProviderName>
+	<!-- see http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/overview.html -->
+	
+	<LCNTableList>
+		<LCNTable>
+			<N channelNumber="100" serviceRef="tag:dvb.org,2020:Unified-0"/>
+			<LCN channelNumber="1" serviceRef="tag:dvb.org,2020:Unified-1"/>
+			<LCN channelNumber="2" serviceRef="tag:dvb.org,2020:Unified-2"/>
+			<LCN channelNumber="3" serviceRef="tag:dvb.org,2020:Unified-3"/>
+			<LCN channelNumber="4" serviceRef="tag:dvb.org,2020:Unified-4"/>
+			<LCN channelNumber="7" serviceRef="tag:dvb.org,2020:Unified-7"/>
+			<LCN channelNumber="8" serviceRef="tag:dvb.org,2020:Unified-8"/>
+			<LCN channelNumber="11" serviceRef="tag:dvb.org,2020:Unified-mt"/>
+			<LCN channelNumber="21" serviceRef="tag:dvb.org,2020:DASHIF-LL"/>
+			<LCN channelNumber="22" serviceRef="tag:dvb.org,2020:HARMONIC-LL"/>
+			<LCN channelNumber="23" serviceRef="tag:dvb.org,2020:AKAMAI-LL"/>
+			<LCN channelNumber="24" serviceRef="tag:dvb.org,2020:UNIFIED-LL"/>
+			<LCN channelNumber="31" serviceRef="tag:dvb.org,2020:DOLBY-HDR"/>
+			<LCN channelNumber="32" serviceRef="tag:dvb.org,2020:PHILIPS-HDR"/>
+			<LCN channelNumber="33" serviceRef="tag:dvb.org,2020:SES-HDR-1"/>
+			<LCN channelNumber="34" serviceRef="tag:dvb.org,2020:SES-HDR-2"/>
+			<LCN channelNumber="41" serviceRef="tag:dvb.org,2020:CMAF-1"/>
+			<LCN channelNumber="42" serviceRef="tag:dvb.org,2020:CMAF-2"/>
+			<LCN channelNumber="43" serviceRef="tag:dvb.org,2020:CMAF-3"/>
+		</LCNTable>
+	</LCNTableList>
+  <ContentGuideSource CGSID="cgid-1">
+    <ProviderName>DVB-I Reference Application</ProviderName>
+    <ScheduleInfoEndpoint contentType="application/xml">
+      <URI>https://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/backend/schedule.php</URI>
+    </ScheduleInfoEndpoint>
+  </ContentGuideSource>
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:Unified-0</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>1</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>25</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Live Clear</ServiceName>
+		<ProviderName>Unified Streaming</ProviderName>
+	</Service>
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:Unified-1</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentProtection>
+				<DRMSystemId encryptionScheme="cbcs">
+					<DRMSystemId>EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED</DRMSystemId> <!-- Widevine -->
+				</DRMSystemId>
+			</ContentProtection>
+			<ContentProtection>
+				<DRMSystemId encryptionScheme="cbcs">
+					<DRMSystemId>9A04F079-9840-4286-AB92-E65BE0885F95</DRMSystemId> <!-- Playrerady -->
+				</DRMSystemId>
+			</ContentProtection>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>1</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>25</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes> 
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/1.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Live 'cbcs'</ServiceName>
+		<ProviderName>Unified Streaming</ProviderName>
+	</Service>
+
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:Unified-2</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.1.6"/><!-- "avc3.42c016" == H264 BaseLine Profile @ Level 2 -->
+					<tva:HorizontalSize>448</tva:HorizontalSize>
+					<tva:VerticalSize>200</tva:VerticalSize>
+					<tva:FrameRate>24</tva:FrameRate>
+				</VideoAttributes>
+				<!-- UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="en"
+				<CaptionLanguage>en</CaptionLanguage>  -->
+				<!-- TTML ->  contentType="text" lang="en" codecs="stpp.ttml.im1t"-->
+				<CaptionLanguage>en</CaptionLanguage>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/2.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>ToS Live Clear subtitles</ServiceName>
+		<ProviderName>Unified Streaming</ProviderName>
+	</Service>
+
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:Unified-3</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentProtection>
+				<DRMSystemId encryptionScheme="cbcs">
+					<DRMSystemId>EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED</DRMSystemId> <!-- Widevine -->
+				</DRMSystemId>
+			</ContentProtection>
+			<ContentProtection>
+				<DRMSystemId encryptionScheme="cbcs">
+					<DRMSystemId>9A04F079-9840-4286-AB92-E65BE0885F95</DRMSystemId> <!-- Playrerady -->
+				</DRMSystemId>
+			</ContentProtection>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>1</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>25</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes> 
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/3.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Live 'cbcs' with ads</ServiceName>
+		<ProviderName>Unified Streaming</ProviderName>
+	</Service>
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:Unified-4</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.1.6"/><!-- "avc3.42c016" == H264 BaseLine Profile @ Level 2 -->
+					<tva:HorizontalSize>448</tva:HorizontalSize>
+					<tva:VerticalSize>200</tva:VerticalSize>
+					<tva:FrameRate>24</tva:FrameRate>
+				</VideoAttributes>
+				<!-- UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="en" 
+				<CaptionLanguage>en</CaptionLanguage> -->
+				<!-- TTML ->  contentType="text" lang="en" codecs="stpp.ttml.im1t"-->
+				<CaptionLanguage>en</CaptionLanguage>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/4.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>ToS Live Clear subtitles, ads</ServiceName>
+		<ProviderName>Unified Streaming</ProviderName>
+	</Service>
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:Unified-7</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>1</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>25</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/7.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Live clear, ads inserted</ServiceName>
+		<ProviderName>Unified Streaming</ProviderName>
+	</Service>
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:Unified-8</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentProtection>
+				<DRMSystemId encryptionScheme="cbcs">
+					<DRMSystemId>EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED</DRMSystemId> <!-- Widevine -->
+				</DRMSystemId>
+			</ContentProtection>
+			<ContentProtection>
+				<DRMSystemId encryptionScheme="cbcs">
+					<DRMSystemId>9A04F079-9840-4286-AB92-E65BE0885F95</DRMSystemId> <!-- Playrerady -->
+				</DRMSystemId>
+			</ContentProtection>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>1</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>25</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes> 
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/8.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Live 'cbcs', ads inserted</ServiceName>
+		<ProviderName>Unified Streaming</ProviderName>
+	</Service>
+
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:Unified-mt</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>1</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>25</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://a09ac5ffb43c4015b4a006d2b85fa289.mediatailor.eu-central-1.amazonaws.com/v1/dash/6531e8093d869efd0cb1a0354ebd2f3411a4bb88/testmp/.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Live clear,ads via AWS MT</ServiceName>
+		<ProviderName>Unified Streaming</ProviderName>
+	</Service>
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:DASHIF-LL</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.9"/><!-- "avc1.64001E" == MPEG-4 AVC High profile level 3 -->
+					<tva:HorizontalSize>640</tva:HorizontalSize>
+					<tva:VerticalSize>360</tva:VerticalSize>
+					<tva:FrameRate>30</tva:FrameRate>
+				</VideoAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>960</tva:HorizontalSize>
+					<tva:VerticalSize>540</tva:VerticalSize>
+					<tva:FrameRate>30</tva:FrameRate>
+				</VideoAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>30</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://livesim.dashif.org/livesim-chunked/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>DASH-IF livesim LL</ServiceName>
+ 		<ProviderName>DASH Industry Forum</ProviderName>
+	</Service>
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:HARMONIC-LL</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<!-- OBS: no audio track -->
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.2.9"/><!-- "avc1.4d401e" == MPEG-4 AVC Main profile level 3 -->
+					<tva:HorizontalSize>416</tva:HorizontalSize>
+					<tva:VerticalSize>240</tva:VerticalSize>
+					<tva:FrameRate>30/1.001</tva:FrameRate>
+				</VideoAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.2.9"/><!-- "avc1.4d401e" == MPEG-4 AVC Main profile level 3 -->
+					<tva:HorizontalSize>640</tva:HorizontalSize>
+					<tva:VerticalSize>480</tva:VerticalSize>
+					<tva:FrameRate>30/1.001</tva:FrameRate>
+				</VideoAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.2.14"/><!-- "avc1.4d402a" == MPEG-4 AVC Main profile level 4.2 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>30/1.001</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(eyeq)/manifest.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Harmonic LL test</ServiceName>
+ 		<ProviderName>Harmonic</ProviderName>
+	</Service>
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:AKAMAI-LL</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>				
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>30/1.001</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Akamai LL test</ServiceName>
+ 		<ProviderName>Akamai</ProviderName>
+	</Service>
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:UNIFIED-LL</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>1</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>				
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<!-- <tva:FrameRate>30/1.001</tva:FrameRate> -->
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://live.unified-streaming.com/scte35/scte35.isml/.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Unified Streaming LL test</ServiceName>
+ 		<ProviderName>Unified Streaming</ProviderName>
+	</Service>	
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:DOLBY-HDR</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>				
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main Profile Main Tier L5.1  -->
+					<tva:HorizontalSize>3840</tva:HorizontalSize>
+					<tva:VerticalSize>2160</tva:VerticalSize>
+					<tva:FrameRate>50</tva:FrameRate>
+				</VideoAttributes>
+				<!-- UNSPECIFIED 
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:ColourPrimaries" value="9"></EssentialProperty>
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:TransferCharacteristics" value="16"></EssentialProperty>
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:MatrixCoefficients" value="9"></EssentialProperty>
+					<SupplementalProperty schemeIdUri="urn:dvb:dash:hdr-dmi" value="ST2094-10"></SupplementalProperty>
+				-->
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/dolby.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName> Dolby HDR DM</ServiceName>
+ 		<ProviderName>Dolby</ProviderName>
+	</Service>	
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:PHILIPS-HDR</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>				
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main Profile Main Tier L5.1  -->
+					<tva:HorizontalSize>3840</tva:HorizontalSize>
+					<tva:VerticalSize>2160</tva:VerticalSize>
+					<tva:FrameRate>50</tva:FrameRate>
+				</VideoAttributes>
+				<!-- UNSPECIFIED 
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:ColourPrimaries" value="9"></EssentialProperty>
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:TransferCharacteristics" value="16"></EssentialProperty>
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:MatrixCoefficients" value="9"></EssentialProperty>
+					<SupplementalProperty schemeIdUri="urn:dvb:dash:hdr-dmi" value="SL-HDR2"></SupplementalProperty>
+				-->
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/philips.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Philips HDR DM</ServiceName>
+ 		<ProviderName>Philips</ProviderName>
+	</Service>	
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:SES-HDR-1</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>				
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main Profile Main Tier L5.1  -->
+					<tva:HorizontalSize>3840</tva:HorizontalSize>
+					<tva:VerticalSize>2160</tva:VerticalSize>
+					<tva:FrameRate>50</tva:FrameRate>
+				</VideoAttributes>
+				<!-- UNSPECIFIED 
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:ColourPrimaries" value="9"></EssentialProperty>
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:TransferCharacteristics" value="16"></EssentialProperty>
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:MatrixCoefficients" value="9"></EssentialProperty>
+					<SupplementalProperty schemeIdUri="urn:dvb:dash:hdr-dmi" value="SL-HDR2"></SupplementalProperty>
+				-->
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/ses-1.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>SES HDR DM using SL-HDR2 SEI messages</ServiceName>
+ 		<ProviderName>SES</ProviderName>
+	</Service>	
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:SES-HDR-2</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>				
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main Profile Main Tier L5.1  -->
+					<tva:HorizontalSize>3840</tva:HorizontalSize>
+					<tva:VerticalSize>2160</tva:VerticalSize>
+					<tva:FrameRate>50</tva:FrameRate>
+				</VideoAttributes>
+				<!-- UNSPECIFIED 
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:ColourPrimaries" value="9"></EssentialProperty>
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:TransferCharacteristics" value="16"></EssentialProperty>
+					<EssentialProperty schemeIdUri="urn:mpeg:mpegB:cicp:MatrixCoefficients" value="9"></EssentialProperty>
+					<SupplementalProperty schemeIdUri="urn:dvb:dash:hdr-dmi" value="ST2094-10"></SupplementalProperty>
+				-->
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/ses-2.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>SES HDR DM using 2094-10 SEI messages</ServiceName>
+ 		<ProviderName>SES</ProviderName>
+	</Service>	
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:CMAF-1</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+					<tva:BitRate>64349</tva:BitRate>
+				</AudioAttributes>				
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+					<tva:BitRate>128407</tva:BitRate>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:HorizontalSize>1680</tva:HorizontalSize>
+					<tva:VerticalSize>750</tva:VerticalSize>
+					<tva:FrameRate>24</tva:FrameRate>
+					<tva:BitRate>1032000</tva:BitRate>
+				</VideoAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:HorizontalSize>2576</tva:HorizontalSize>
+					<tva:VerticalSize>1150</tva:VerticalSize>
+					<tva:FrameRate>24</tva:FrameRate>
+					<tva:BitRate>1250000</tva:BitRate>
+				</VideoAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:HorizontalSize>3360</tva:HorizontalSize>
+					<tva:VerticalSize>1500</tva:VerticalSize>
+					<tva:FrameRate>24</tva:FrameRate>
+					<tva:BitRate>1600000</tva:BitRate>
+				</VideoAttributes>
+			<!-- UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="en" 
+				<CaptionLanguage>en</CaptionLanguage>
+			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="de"
+				<CaptionLanguage>de</CaptionLanguage>
+			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="es"
+				<CaptionLanguage>es</CaptionLanguage>
+			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="fr"
+				<CaptionLanguage>fr</CaptionLanguage>
+			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="nl"
+				<CaptionLanguage>nl</CaptionLanguage>
+			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="pt-br"
+				<CaptionLanguage>pt-br</CaptionLanguage>
+			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="pt-pt"
+				<CaptionLanguage>pt-pt</CaptionLanguage>
+			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="ru"
+				<CaptionLanguage>ru</CaptionLanguage>
+			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="zh"
+				<CaptionLanguage>zh</CaptionLanguage>
+			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="zh-hans"
+				<CaptionLanguage>zh-hans</CaptionLanguage> -->
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://usp-cmaf-test.s3.eu-central-1.amazonaws.com/tears-of-steel-hevc-only.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Tears of steel HEVC</ServiceName>
+ 		<ProviderName>MPEG</ProviderName>
+	</Service>	
+
+
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:CMAF-2</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+					<tva:BitRate>64349</tva:BitRate>
+				</AudioAttributes>				
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+					<tva:BitRate>128407</tva:BitRate>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:HorizontalSize>1680</tva:HorizontalSize>
+					<tva:VerticalSize>750</tva:VerticalSize>
+					<tva:FrameRate>24</tva:FrameRate>
+					<tva:BitRate>1032000</tva:BitRate>
+				</VideoAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:HorizontalSize>2576</tva:HorizontalSize>
+					<tva:VerticalSize>1150</tva:VerticalSize>
+					<tva:FrameRate>24</tva:FrameRate>
+					<tva:BitRate>1250000</tva:BitRate>
+				</VideoAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:HorizontalSize>3360</tva:HorizontalSize>
+					<tva:VerticalSize>1500</tva:VerticalSize>
+					<tva:FrameRate>24</tva:FrameRate>
+					<tva:BitRate>1600000</tva:BitRate>
+				</VideoAttributes>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="en" -->
+				<CaptionLanguage>en</CaptionLanguage>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="de" -->
+				<CaptionLanguage>de</CaptionLanguage>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="es" -->
+				<CaptionLanguage>es</CaptionLanguage>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="fr" -->
+				<CaptionLanguage>fr</CaptionLanguage>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="nl" -->
+				<CaptionLanguage>nl</CaptionLanguage>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="pt-br" -->
+				<CaptionLanguage>pt-br</CaptionLanguage>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="pt-pt" -->
+				<CaptionLanguage>pt-pt</CaptionLanguage>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="ru" -->
+				<CaptionLanguage>ru</CaptionLanguage>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="zh" -->
+				<CaptionLanguage>zh</CaptionLanguage>
+				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="zh-hans" -->
+				<CaptionLanguage>zh-hans</CaptionLanguage>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://usp-cmaf-test.s3.eu-central-1.amazonaws.com/tears-of-steel-ttml.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Tears of steel, ttml/mp4 subtitles</ServiceName>
+ 		<ProviderName>MPEG</ProviderName>
+	</Service>	
+	
+	<Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:CMAF-3</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+					<tva:BitRate>64349</tva:BitRate>
+				</AudioAttributes>				
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:AudioLanguage>en</tva:AudioLanguage>
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+					<tva:BitRate>128407</tva:BitRate>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>224</tva:HorizontalSize>
+					<tva:VerticalSize>100</tva:VerticalSize>
+					<tva:BitRate>405000</tva:BitRate>
+				</VideoAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>448</tva:HorizontalSize>
+					<tva:VerticalSize>200</tva:VerticalSize>
+					<tva:BitRate>759000</tva:BitRate>
+				</VideoAttributes>				
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>784</tva:HorizontalSize>
+					<tva:VerticalSize>350</tva:VerticalSize>
+					<tva:BitRate>1026000</tva:BitRate>
+				</VideoAttributes>			
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.12"/><!-- "avc1.640028" == MPEG-4 AVC High profile level 4.0 -->
+					<tva:HorizontalSize>1680</tva:HorizontalSize>
+					<tva:VerticalSize>750</tva:VerticalSize>
+					<tva:BitRate>1501000</tva:BitRate>
+				</VideoAttributes>					
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.12"/><!-- "avc1.640028" == MPEG-4 AVC High profile level 4.0 -->
+					<tva:HorizontalSize>1680</tva:HorizontalSize>
+					<tva:VerticalSize>750</tva:VerticalSize>
+					<tva:BitRate>2205000</tva:BitRate>
+				</VideoAttributes>					
+			<!-- UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="en"
+				<CaptionLanguage>en</CaptionLanguage>
+			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="de"
+				<CaptionLanguage>de</CaptionLanguage>
+			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="es"
+				<CaptionLanguage>es</CaptionLanguage>
+			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="fr"
+				<CaptionLanguage>fr</CaptionLanguage>
+			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="nl"
+				<CaptionLanguage>nl</CaptionLanguage>
+			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="pt-br"
+				<CaptionLanguage>pt-br</CaptionLanguage>
+			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="pt-pt"
+				<CaptionLanguage>pt-pt</CaptionLanguage>
+			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="ru"
+				<CaptionLanguage>ru</CaptionLanguage>
+			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="zh"
+				<CaptionLanguage>zh</CaptionLanguage>
+			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="zh-hans"
+				<CaptionLanguage>zh-hans</CaptionLanguage> -->
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<URI>https://usp-cmaf-test.s3.eu-central-1.amazonaws.com/tears-of-steel.mpd</URI>
+				</UriBasedLocation>
+			</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Tears of steel,vtt/mp4 subtitles</ServiceName>
+ 		<ProviderName>MPEG</ProviderName>
+	</Service>
+	
+	
+</ServiceList>

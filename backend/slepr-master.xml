@@ -71,5 +71,11 @@
 				<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/drm.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
+    <sld:ServiceListOffering regulatorListFlag="false">
+		<sld:ServiceListName>DVB-DASH Reference Streams</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/TM-STREAM0075r1 DVB-DASH_Reference_Streams.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
 </sld:ServiceListEntryPoints>

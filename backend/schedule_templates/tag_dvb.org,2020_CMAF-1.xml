@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xml:lang="eng" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ProgramDescription>
+		<ProgramInformationTable>
+			<ProgramInformation programId="crid://12026821">
+				<BasicDescription>
+					<Title type="main">Tears of steel DASH HEVC only</Title>
+					<Synopsis length="medium">Tears of steel DASH HEVC only by MPEG</Synopsis>
+					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+				</BasicDescription>
+			</ProgramInformation>
+		</ProgramInformationTable>
+		<ProgramLocationTable lang="eng">
+			<Schedule start="DATE_TEMPLATE 00:00:00" end="DATE_TEMPLATE 23:59:59" serviceIDRef="4">
+				<ScheduleEvent>
+					<Program crid="crid://12026821"/>
+					<PublishedStartTime>DATE_TEMPLATET00:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT12H</PublishedDuration>
+				</ScheduleEvent>
+        <ScheduleEvent>
+					<Program crid="crid://12026821"/>
+					<PublishedStartTime>DATE_TEMPLATET12:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT12H</PublishedDuration>
+				</ScheduleEvent>
+      </Schedule>
+		</ProgramLocationTable>
+	</ProgramDescription>
+</TVAMain>
