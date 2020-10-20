@@ -39,7 +39,7 @@ else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sids']) ){
     $programs = "";
     $schedules = "";
     $index = 1;
-    $id = "crid://".$sid.".".$index;
+    $id = "crid://dvbi-reference/".$sid.".".$index;
     while($start < $schedule_end) {
         $schedule = file_get_contents("schedule_event_template.xml");
         $schedule =str_replace("PROGRAM_ID_TEMPLATE",$id,$schedule);
