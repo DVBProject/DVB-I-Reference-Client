@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>HbbTV playready linked applicationn</title>
+    <meta http-equiv="content-type" content="application/vnd.hbbtv.xhtml+xml; charset=utf-8" />
+		<meta name="viewport" content="width=1280" />
+    <script>
+    function onLoad() {
+      try {
+	      var app = document.getElementById('appmgr').getOwnerApplication(document);
+	      app.show();
+	      app.activate();
+
+	    } catch (e) {}
+		  var msgType = "application/vnd.ms-playready.initiator+xml";
+		  var xmlLicenceAcquisition =
+		  '<?xml version="1.0" encoding="utf-8"?>' +
+		  '<PlayReadyInitiator xmlns="http://schemas.microsoft.com/DRM/2007/03/protocols/">' +
+		    '<LicenseServerUriOverride>' +
+			  '<LA_URL>' +
+				 "https://test.playready.microsoft.com/service/rightsmanager.asmx?cfg=(kid:header,sl:2000,persist:false,contentkey:EjQSNBI0EjQSNBI0EjQSNw==)" +
+			  '</LA_URL>' +
+		    '</LicenseServerUriOverride>' +
+		  '</PlayReadyInitiator>';
+		  var DRMSysID = "urn:dvb:casystemid:19219";
+      var oipfDrm = document.getElementById("drmagent");
+    	try {
+	      oipfDrm.sendDRMMessage(msgType, xmlLicenceAcquisition, DRMSysID);
+      } catch (e) {
+      }
+
+      var video = document.getElementById("video");
+      video.src = "https://refapp.hbbtv.org/videos/tears_of_steel_1080p_25f75g6sv3/drm/manifest.mpd";
+      video.play();
+    }
+    </script>
+	</head>  
+<body onLoad="onLoad();">
+	<div style="visibility:hidden;position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;">
+		<object id="appmgr" type="application/oipfApplicationManager"></object>
+    <object id="drmagent" type="application/oipfDrmAgent" style="visibility:hidden"></object>
+	</div>
+  <video id="video" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"/>
+</body>
+</html>
