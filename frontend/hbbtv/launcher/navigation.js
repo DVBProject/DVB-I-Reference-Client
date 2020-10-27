@@ -143,14 +143,13 @@ function registerKeys() {
              
             var keys = [KeyEvent.VK_GUIDE,KeyEvent.VK_CHANNEL_UP,KeyEvent.VK_CHANNEL_DOWN,KeyEvent.VK_SUBTITLE,KeyEvent.VK_INFO,KeyEvent.VK_MENU];
             app.privateData.keyset.setValue(mask,keys);
+            app.opAppRequestForeground();
         } catch (e) {
             //Not an OpApp, register color buttons for HbbTV usage
             mask = 0x1+0x2+0x4+0x8+0x10+0x20+0x40+0x80+0x100;
             app.privateData.keyset.setValue(mask);
             broadcast.bindToCurrentChannel();
         }
-       
-        
 	} catch (e2) {
  	}
 }
@@ -384,7 +383,8 @@ function onKey(keyCode)
             }
 
 		break;
-        case VK_YELLOW:
+    case VK_YELLOW:
+    case KeyEvent.VK_SUBTITLE:
             showSettings();
             break;
 		case VK_PAUSE:
