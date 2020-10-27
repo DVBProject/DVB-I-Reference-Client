@@ -151,8 +151,11 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
                     }
                 }
             }
+            if(instance.mediaPresentationApps.length > 0 && instances.indexOf(instance) == -1) {
+                instances.push(instance);
+            }
         }
-        if(instances.length == 0 && chan.mediaPresentationApp == null) {
+        if(instances.length == 0 && chan.mediaPresentationApps.length == 0) {
             continue;
         }
         for(var j = 0;j < lcnList.length;j++) {
