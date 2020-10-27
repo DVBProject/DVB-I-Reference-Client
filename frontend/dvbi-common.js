@@ -87,7 +87,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
                 }
               }
             }
-            if(instance.contentProtection.length > 0) {
+            if(supportedDrmSystems && instance.contentProtection.length > 0) {
               var supported = false;
               for(var k = 0;k < instance.contentProtection.length;k++) {
                  for(var l = 0;l < supportedDrmSystems.length;l++) {
