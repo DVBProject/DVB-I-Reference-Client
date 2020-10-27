@@ -688,6 +688,10 @@ div, span {
   white-space: nowrap;
   top: 5px;
 }
+
+.open .menuitem_title {
+  top: 15px;
+}
 .menuitem .items {
 	_border: 1px solid red;
 	position:absolute;
