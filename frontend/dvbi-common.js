@@ -6,8 +6,8 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     serviceList.services = list;
     var parser = new DOMParser();
     var doc = parser.parseFromString(data,"text/xml");
-    var services = doc.querySelectorAll("Service");
-    var contentGuides = doc.querySelectorAll("ContentGuideSource");
+    var services = getChildElements(doc.documentElement,"Service");
+    var contentGuides = getChildElements(doc.documentElement,"ContentGuideSource");
     var contentGuideURI = null;
     var channelmap = [];
     if(dvbChannels) {
@@ -20,7 +20,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     if(contentGuides.length > 0) {
         contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
     }
-    var relatedMaterial = doc.querySelectorAll("RelatedMaterial");
+    var relatedMaterial = getChildElements(doc.documentElement,"RelatedMaterial");
     for(var j = 0;j < relatedMaterial.length;j++) {
         var howRelated = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
         if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1") {
@@ -45,7 +45,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         if(cgRefs && cgRefs.length > 0) {
             chan.contentGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
         }
-        var relatedMaterial = services[i].querySelectorAll("RelatedMaterial");
+        var relatedMaterial = getChildElements(services[i],"RelatedMaterial");
         for(var j = 0;j < relatedMaterial.length;j++) {
             var howRelated = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
             if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
@@ -74,7 +74,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
             instance.contentProtection = [];
             instance.parallelApps = [];
             instance.mediaPresentationApps = [];
-            var contentProtectionElements =  serviceInstances[j].getElementsByTagName("ContentProtection");
+            var contentProtectionElements =  getChildElements(serviceInstances[j],"ContentProtection");
             var drmSupported = true;
             for(var k = 0;k < contentProtectionElements.length;k++) {
               for(var l = 0;l < contentProtectionElements[k].childNodes.length;l++) {
@@ -104,7 +104,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
                 continue;
               }
             }
-            var relatedMaterial = serviceInstances[j].querySelectorAll("RelatedMaterial");
+            var relatedMaterial = getChildElements(serviceInstances[j],"RelatedMaterial");
             for(var k = 0;k < relatedMaterial.length;k++) {
                 var howRelated = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
                 if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
@@ -175,6 +175,17 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         }
     }
     return serviceList;
+}
+
+function getChildElements(parent,tagName) {
+  var elements= [];
+  for(i = 0; i < parent.childNodes.length; i++)
+  {
+    if(parent.childNodes[i].nodeType == 1 && parent.childNodes[i].tagName == tagName) {
+      elements.push(parent.childNodes[i]);
+    }
+  }
+  return elements;
 }
 
 function generateServiceListQuery(baseurl,providers,language,genre,targetCountry,regulatorListFlag) {
