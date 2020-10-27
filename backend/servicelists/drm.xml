@@ -28,6 +28,12 @@
   <Service version="1">
     <UniqueIdentifier>2</UniqueIdentifier>
     <ServiceInstance priority="1">
+     <RelatedMaterial>
+      <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
+      <tva:MediaLocator>
+        <tva:MediaUri contentType="application/xhtml+xml">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/linked_applications/android_drm_widevine.html</tva:MediaUri>
+      </tva:MediaLocator>
+    </RelatedMaterial>
       <ContentProtection>
         <DRMSystemId encryptionScheme="cenc">
           <DRMSystemId>edef8ba9-79d6-4ace-a3c8-27dcd51d21ed</DRMSystemId>
@@ -42,11 +48,23 @@
     </ServiceInstance>
     <ServiceName>Widevine DRM</ServiceName>
     <ProviderName>DVB</ProviderName>
-    <RelatedMaterial>
+  </Service>
+  <Service version="1">
+    <UniqueIdentifier>3</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="application/xhtml+xml">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/linked_applications/android_drm_widevine.html</tva:MediaUri>
+        <tva:MediaUri contentType="application/vnd.dvb.ait+xml">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/linked_applications/hbbtv_playready_aitx.php</tva:MediaUri>
       </tva:MediaLocator>
-    </RelatedMaterial>
+     </RelatedMaterial>
+      <ContentProtection>
+        <DRMSystemId encryptionScheme="cenc">
+          <DRMSystemId>9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
+        </DRMSystemId>
+      </ContentProtection>
+    </ServiceInstance>
+    <ServiceName>Plaready linked application DRM</ServiceName>
+    <ProviderName>DVB</ProviderName>
   </Service>
 </ServiceList>
