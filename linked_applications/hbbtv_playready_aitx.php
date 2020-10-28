@@ -1,7 +1,8 @@
 <?php  
 header( "Content-Type: application/vnd.dvb.ait+xml;charset=utf-8" );
+
+echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 ?>
-<?xml version="1.0" encoding="UTF-8"?>
 <mhp:ServiceDiscovery xmlns:mhp="urn:dvb:mhp:2009" xmlns:ipi="urn:dvb:metadata:iptv:sdns:2008-1" xmlns:tva="urn:tva:metadata:2005" xmlns:mpeg7="urn:tva:mpeg7:2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:mhp:2009 mis_xmlait.xsd">
         <mhp:ApplicationDiscovery DomainName="77.36.163.194">
                 <mhp:ApplicationList>
