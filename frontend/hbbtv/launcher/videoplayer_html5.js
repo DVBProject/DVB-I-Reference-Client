@@ -265,7 +265,7 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 	player.addEventListener('timeupdate', function(){
 		//self.watched.set( player.currentTime, player.duration, self.videoid );
 		if( self.seekTimer == null ){
-			self.updateProgressBar();
+			//self.updateProgressBar();
 			self.checkAds();
 		}
 	} );
