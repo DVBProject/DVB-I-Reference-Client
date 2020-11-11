@@ -155,7 +155,25 @@ function registerKeys() {
 }
 
 function onChannelChangeSucceeded(channel) {
-    //showInfo("onChannelChangeSucceeded:"+channel.name);
+    console.log("onChannelChangeSucceeded:"+channel.name);
+    if(languages.subtitleLanguage ) {
+      var subtitles = getDVBTracks(broadcast.COMPONENT_TYPE_SUBTITLE);
+      for(var i = 0;i < subtitles.length;i++) { 
+          if(subtitles[i].lang == languages.subtitleLanguage) {
+            selectDVBTrack(checked, supervisor.COMPONENT_TYPE_SUBTITLE);
+            break;
+          }
+      }
+    }
+    if(languages.audioLanguage ) {
+       var audioTracks = getDVBTracks(broadcast.COMPONENT_TYPE_AUDIO);
+       for(var i = 0;i < audioTracks.length;i++) { 
+          if(audioTracks[i].lang == languages.audioLanguage) {
+            selectDVBTrack(checked, supervisor.COMPONENT_TYPE_AUDIO);
+            break;
+          }
+      }
+    }
 }
 function onChannelChangeError(channel,error) {
     //showInfo("onChannelChangeError:"+channel.name+ " Error:"+error);

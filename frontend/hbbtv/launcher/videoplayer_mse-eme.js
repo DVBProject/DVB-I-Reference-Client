@@ -80,6 +80,15 @@ VideoPlayerEME.prototype.createPlayer = function(){
 	} );
 	
 	player.addEventListener('loadedmetadata', function(){
+    var audio = self.player.getTracksFor("audio");
+    if(languages.audioLanguage ) {
+      for(var i = 0;i < audio.length;i++) {
+        if(audio[i].language == languages.audioLanguage) {
+          self.player.setCurrentTrack(audio[i]);
+          break;
+        }
+      }
+    }
 		console.log("loadedmetadata");
 	} );
 	
@@ -128,10 +137,17 @@ VideoPlayerEME.prototype.createPlayer = function(){
 		
 		
 		console.log("at addtrack nth track: " + this.length + " : set up cuechange listeners", track);
+    if(languages.subtitleLanguage && track.language == languages.subtitleLanguage) {
+      for(var i = 0;i < this.length;i++) {
+        if(this[i] == track) {
+         self.player.setTextTrack(i);
+         break;
+        }
+      }
+    }
 		
 		console.log("text track ", track);
 		track.oncuechange = function(evt) {
-			
 			if( this.kind == "metadata" ){
 			
 				showInfo("cuechange! kind=" + this.kind);

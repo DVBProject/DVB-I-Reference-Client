@@ -41,6 +41,8 @@ function showSettings() {
           console.log(e);
         }
     }
+    buttons.push("Default audio language");
+    buttons.push("Default subtitle language");
     showDialog("", buttons,null,null,
         function(checked){
             if(checked == 0 ) {
@@ -60,6 +62,12 @@ function showSettings() {
             }
             else if(buttons[checked] == "Audio"  ) {
                 showAudioSettings();
+            }
+            else if(buttons[checked] == "Default audio language"  ) {
+                showDefaultAudioSettings();
+            }
+            else if(buttons[checked] == "Default subtitle language"  ) {
+                showDefaultSubtitleSettings();
             }
      },true);
 }
@@ -458,4 +466,58 @@ function showAudioSettings() {
 
      },function() {showSettings();});
 }
+
+function showDefaultAudioSettings() {
+
+    var buttons = [];
+    var checked = 0;
+    var keys = Object.keys(dvb_i_language_list);
+    buttons.push("None");
+    for (var i = 0; i < keys.length; i++) {
+        var val = dvb_i_language_list[keys[i]];
+        if(keys[i] == languages.audioLanguage) {
+           checked = i+1;
+        }
+        buttons.push(val);
+    }
+    showDialog("Default audio language", buttons,checked,checked,
+     function(checked){
+        if(checked > 0) {
+          languages.audioLanguage = Object.keys(dvb_i_language_list)[checked-1];
+        }
+        else {
+          languages.audioLanguage = undefined;
+        }
+        setLocalStorage("languages", languages);
+        showSettings();
+     },function() {showSettings();});
+}
+
+function showDefaultSubtitleSettings() {
+
+    var buttons = [];
+    
+    var checked = -1;
+    buttons.push("None");
+    var keys = Object.keys(dvb_i_language_list);
+    for (var i = 0; i < keys.length; i++) {
+        var val = dvb_i_language_list[keys[i]];
+        if(keys[i] == languages.subtitleLanguage) {
+           checked = i+1;
+        }
+        buttons.push(val);
+    }
+    showDialog("Default subtitle language", buttons,checked,checked,
+     function(checked){
+        if(checked > 0) {
+          languages.subtitleLanguage = Object.keys(dvb_i_language_list)[checked-1];
+        }
+        else {
+          languages.subtitleLanguage = undefined;
+        }
+        setLocalStorage("languages", languages);
+        showSettings();
+     },function() {showSettings();});
+}
+
 

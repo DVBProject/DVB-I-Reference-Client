@@ -82,6 +82,7 @@
   var catchupRate = 0.5;
   var showStreamInfo = false;
   var streamInfoUpdater = null;
+  var languages = null;
     
 
 	var lang = "eng";
@@ -158,6 +159,10 @@
            liveDelay = ll_settings.liveDelay;
            minimumDrift =  ll_settings.liveCatchUpMinDrift;
            catchupRate = ll_settings.liveCatchUpPlaybackRate;
+        }
+        languages = getLocalStorage("languages");
+        if(!languages) {
+          languages = {};
         }
         var serviceList = getLocalStorage("servicelist");
         

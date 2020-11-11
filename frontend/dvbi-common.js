@@ -285,3 +285,9 @@ getParentalRating = function(href){
         return "Unknown";
     }
 }
+
+var dvb_i_language_list = {
+  "eng": "English",
+  "deu" : "Deutch",
+  "fin":"Suomi"
+}
