@@ -106,7 +106,6 @@ window.onload = function(){
         document.getElementById("audio_language").value = language_settings.audio_language;
         document.getElementById("subtitle_language").value = language_settings.subtitle_language;
         document.getElementById("ui_language").value = language_settings.ui_language;
-        player.setTextDefaultLanguage(language_settings.subtitle_language);
         
         if(!i18n.loadLanguage(language_settings.ui_language,updateUILanguage)) {
             i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
@@ -115,6 +114,26 @@ window.onload = function(){
     else {
        i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
     }
+    video.addEventListener('loadedmetadata', function(){
+        if(language_settings.audio_language) {
+          var audio = player.getTracksFor("audio");
+          for(var i = 0;i < audio.length;i++) {
+            if(audio[i].language == language_settings.audio_language) {
+              player.setCurrentTrack(audio[i]);
+              break;
+            }
+          }
+         }
+         if(language_settings.subtitle_language) {
+          var subtitles = player.getTracksFor("fragmentedText");
+          for(var i = 0;i < subtitles.length;i++) {
+            if(subtitles[i].language == language_settings.subtitle_language) {
+              player.setTextTrack(subtitles[i]);
+              break;
+            }
+          }
+         }
+    });
     var languages = i18n.getSupportedLanguages();
     var select = document.getElementById("ui_language");
     for (var i = 0; i < languages.length ;i++) {
@@ -477,7 +496,6 @@ function updateLanguage() {
        i18n.loadLanguage(uiLanguage, updateUILanguage);
     }
     setLocalStorage("language_settings", { "subtitle_language":subtitleLanguage,"audio_language":audioLanguage,"ui_language":uiLanguage});
-    player.setTextDefaultLanguage(subtitleLanguage);    
 }
 
 function updateUILanguage() {
