@@ -51,7 +51,7 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel,keyHandler
 			var dialogButton = document.createElement("div");
 			dialogButton.addClass("dialogButton");
       var labelElement = document.createElement("span");
-      labelElement.innerHTML = label;
+      $(labelElement).text(label);
       dialogButton.appendChild(labelElement);
       dialog.buttonLabels.push(labelElement);
 			var checkmark = document.createElement("div");
