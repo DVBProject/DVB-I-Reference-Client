@@ -6,6 +6,11 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     serviceList.services = list;
     var parser = new DOMParser();
     var doc = parser.parseFromString(data,"text/xml");
+    var ns = doc.documentElement.namespaceURI;
+    var howRelatedNamespace = "urn:tva:metadata:2019";
+    if(ns == "urn:dvb:metadata:servicediscovery:2020") {
+      howRelatedNamespace = "urn:dvb:metadata:servicediscovery:2020";
+    }
     var services = getChildElements(doc.documentElement,"Service");
     var contentGuides = getChildElements(doc.documentElement,"ContentGuideSource");
     var contentGuideURI = null;
@@ -22,9 +27,9 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     }
     var relatedMaterial = getChildElements(doc.documentElement,"RelatedMaterial");
     for(var j = 0;j < relatedMaterial.length;j++) {
-        var howRelated = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
+        var howRelated = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"HowRelated")[0].getAttribute("href");
         if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1") {
-            serviceList.image = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
+            serviceList.image = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
         }
     }
     var maxLcn = 0;
@@ -47,20 +52,22 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         }
         var relatedMaterial = getChildElements(services[i],"RelatedMaterial");
         for(var j = 0;j < relatedMaterial.length;j++) {
-            var howRelated = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
+            var howRelated = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"HowRelated")[0].getAttribute("href");
             if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
-                chan.image = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
+                chan.image = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
             }
             else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
                 var app = {};
-                app.url = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
-                app.contentType = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].getAttribute("contentType");
+                var mediaUri =  relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0];
+                app.url = mediaUri.childNodes[0].nodeValue;
+                app.contentType = mediaUri.getAttribute("contentType");
                 chan.parallelApps.push(app);
             }
             else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
                 var app = {};
-                app.url = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
-                app.contentType = relatedMaterial[j].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].getAttribute("contentType");
+                var mediaUri =  relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0];
+                app.url = mediaUri.childNodes[0].nodeValue;
+                app.contentType = mediaUri.getAttribute("contentType");
                 chan.mediaPresentationApps.push(app);
             }
         }
@@ -129,17 +136,19 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
             }
             var relatedMaterial = getChildElements(serviceInstances[j],"RelatedMaterial");
             for(var k = 0;k < relatedMaterial.length;k++) {
-                var howRelated = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
+                var howRelated = relatedMaterial[k].getElementsByTagNameNS(howRelatedNamespace,"HowRelated")[0].getAttribute("href");
                 if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
                     var app = {};
-                    app.url = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
-                    app.contentType = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].getAttribute("contentType");
+                    var mediaUri =  relatedMaterial[k].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0];
+                    app.url = mediaUri.childNodes[0].nodeValue;
+                    app.contentType = mediaUri.getAttribute("contentType");
                     instance.parallelApps.push(app);
                 }
                 else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
                     var app = {};
-                    app.url = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
-                    app.contentType = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].getAttribute("contentType");
+                    var mediaUri =  relatedMaterial[k].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0];
+                    app.url = mediaUri.childNodes[0].nodeValue;
+                    app.contentType = mediaUri.getAttribute("contentType");
                     instance.mediaPresentationApps.push(app);
                 }
             }
