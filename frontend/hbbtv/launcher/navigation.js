@@ -30,6 +30,8 @@ var broadcast = null;
 var playingDASH = false;
 var playing = false;
 var serviceApp = null;
+var serviceInstance = null;
+var availablityTimer = null;
 
 if (typeof(KeyEvent)!='undefined') {
 	if (typeof(KeyEvent.VK_LEFT)!='undefined') {
@@ -702,7 +704,7 @@ function showInfobanner() {
       }
       updateBannerProgram("chinfo_next_",channel.epg.next); 
     }
-    else if(supervisor && supervisor.currentChannel && serviceInstance.dvbChannel && supervisor.currentChannel.ccid == serviceInstance.dvbChannel.ccid){
+    else if(supervisor && serviceInstance && supervisor.currentChannel && serviceInstance.dvbChannel && supervisor.currentChannel.ccid == serviceInstance.dvbChannel.ccid){
         var programs = supervisor.programmes;
         if(programs.length > 0) {
             updateBannerProgramDVB("chinfo_now_",programs[0]);
@@ -891,11 +893,44 @@ function selectService(channel_obj) {
      doServiceSelection();
 }
 
+function checkAvailability() {
+   console.log("checkAvailability",new Date());
+   var instance = selectedService.getServiceInstance();
+   if(instance != serviceInstance) {
+       console.log("different service instace, select service");
+      doServiceSelection();
+   }
+   availablityTimer = setTimeout(checkAvailability,60*1000);
+}
+
 function doServiceSelection() {
   try{
       playing= true;
       $("#info").addClass("hide");
-      var serviceInstance = selectedService.getServiceInstance();
+      serviceInstance = selectedService.getServiceInstance();
+      if(availablityTimer) {
+        clearInterval(availablityTimer);
+      }
+      if(selectedService.hasAvailability()) {
+        availablityTimer = setTimeout(checkAvailability,(60-new Date().getSeconds())*1000);
+      }
+
+      if(serviceInstance == null) {
+        if(player) {
+            player.stop();
+            player = null;
+        }
+        else {
+              try {
+              broadcast = document.getElementById('broadcast');
+              broadcast.stop();
+              broadcast.addClass("hide_broadcast");
+              }
+              catch(e) {}
+          }
+        showInfo("Service not available");
+        return;
+      }
       if(serviceInstance.mediaPresentationApps) {
           for(var i = 0;i< serviceInstance.mediaPresentationApps.length;i++ ) {
             if(serviceInstance.mediaPresentationApps[i].contentType == "application/vnd.dvb.ait+xml") {

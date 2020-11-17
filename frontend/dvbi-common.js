@@ -104,6 +104,29 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
                 continue;
               }
             }
+            var availability = getChildElements(serviceInstances[j],"Availability");
+            instance.availability = null;
+            if(availability.length > 0 ) {
+              instance.availability = [];
+              //Only 1 availability-element allowed
+              var periods = getChildElements(availability[0],"Period");
+              for(var k = 0;k < periods.length;k++) {
+                var period ={};
+                period.validFrom = periods[k].getAttribute("validFrom");
+                period.validTo = periods[k].getAttribute("validTo");
+                period.intervals = [];
+                var intervals = getChildElements(periods[k],"Interval");
+                for(var l = 0;l < intervals.length;l++) {
+                  var interval = {};
+                  interval.days = intervals[l].getAttribute("days");
+                  interval.recurrence = intervals[l].getAttribute("recurrence");
+                  interval.startTime = intervals[l].getAttribute("startTime");
+                  interval.endTime = intervals[l].getAttribute("endTime");
+                  period.intervals.push(interval);
+                }
+                instance.availability.push(period);
+              }
+            }
             var relatedMaterial = getChildElements(serviceInstances[j],"RelatedMaterial");
             for(var k = 0;k < relatedMaterial.length;k++) {
                 var howRelated = relatedMaterial[k].getElementsByTagNameNS("urn:tva:metadata:2019","HowRelated")[0].getAttribute("href");
@@ -284,6 +307,79 @@ getParentalRating = function(href){
     else {
         return "Unknown";
     }
+}
+
+function isServiceInstanceAvailable(instance) {
+  if(instance.availability) {
+    var now = new Date();
+    now.setMilliseconds(0);
+    for(var i = 0; i < instance.availability.length;i++) {
+      var period = instance.availability[i];
+      if(period.validFrom) {
+        if(new Date(period.validFrom) > now) {
+          continue;
+        }
+      }
+      if(period.validTo) {
+        if(new Date(period.validTo) < now) {
+          continue;
+        }
+      }
+      if(period.intervals) {
+        for(var j = 0; j < period.intervals.length;j++) {
+          var interval = period.intervals[j];
+          if(isIntervalNow(interval,now)) {
+            return true;
+          }
+        }
+      }
+      else {
+        return true;
+      }
+    }
+    return false;
+  }
+  return true;
+}
+
+function isIntervalNow(interval,now) {
+   if(interval.days) {
+    var day = now.getDay();
+    //JS days are 0..6 starting from sunday
+    //Availability days are 1..7 starting from monday
+    //So change sunday from 0 to 7
+    if(day == 0) {
+      day = 7;
+    }
+    day = day.toString();
+    if(interval.days.indexOf(day) == -1) {
+      return false;
+    }
+  }
+  if(interval.startTime) {
+    if(parseIntervalTime(interval.startTime) > now) {
+      return false;
+    }
+  }
+  if(interval.endTime) {
+    if(parseIntervalTime(interval.endTime) <= now) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function parseIntervalTime(time,day) {
+  if(time.length == 9 && time.charAt(8) == 'Z') {
+    var date = new Date();
+    var timeparts = time.substring(0,8).split(":");
+    date.setUTCHours(parseInt(timeparts[0]));
+    date.setUTCMinutes(parseInt(timeparts[1]));
+    date.setUTCSeconds(parseInt(timeparts[2]));
+    date.setMilliseconds(0);
+    return date;
+  }
+  return null;
 }
 
 var dvb_i_language_list = {

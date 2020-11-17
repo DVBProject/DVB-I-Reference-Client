@@ -118,12 +118,23 @@ Channel.prototype.getServiceInstance = function() {
     var instance = null;
     for(var i=0;i<this.serviceInstances.length;i++) {
         if(instance == null) {
-            instance = this.serviceInstances[i];
+            if( isServiceInstanceAvailable(this.serviceInstances[i])) {
+              instance = this.serviceInstances[i];
+            }
         }
-        else if(instance.priority > this.serviceInstances[i].priority) {
+        else if(instance.priority > this.serviceInstances[i].priority && isServiceInstanceAvailable(this.serviceInstances[i])) {
             instance = this.serviceInstances[i];
         }
     }
     return instance;
+}
+
+Channel.prototype.hasAvailability = function() {
+  for(var i=0;i<this.serviceInstances.length;i++) {
+    if(this.serviceInstances[i].availability) {
+      return true;
+    }
+  }
+  return false;
 }
 
