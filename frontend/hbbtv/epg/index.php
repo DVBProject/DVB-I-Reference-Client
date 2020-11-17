@@ -110,8 +110,11 @@
       
         $.get( serviceList, function( data ) {
             var vid = document.getElementById('broadcast');
-            var config = vid.getChannelConfig();
-            var dvbChannels = config.channelList;
+            var dvbChannels = null;
+            try {
+              var config = vid.getChannelConfig();
+              dvbChannels = config.channelList;
+            } catch (e) {}
             var list = parseServiceList(data,dvbChannels);
             if(list.image) {
               $("#list_logo").attr("src",list.image);
