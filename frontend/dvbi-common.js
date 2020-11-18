@@ -8,8 +8,10 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     var doc = parser.parseFromString(data,"text/xml");
     var ns = doc.documentElement.namespaceURI;
     var howRelatedNamespace = "urn:tva:metadata:2019";
+    var howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2019:";
     if(ns == "urn:dvb:metadata:servicediscovery:2020") {
       howRelatedNamespace = "urn:dvb:metadata:servicediscovery:2020";
+      howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2020:";
     }
     var services = getChildElements(doc.documentElement,"Service");
     var contentGuides = getChildElements(doc.documentElement,"ContentGuideSource");
@@ -28,7 +30,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     var relatedMaterial = getChildElements(doc.documentElement,"RelatedMaterial");
     for(var j = 0;j < relatedMaterial.length;j++) {
         var howRelated = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"HowRelated")[0].getAttribute("href");
-        if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1") {
+        if(howRelated == howRelatedHref+"1001.1") {
             serviceList.image = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
         }
     }
@@ -53,7 +55,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         var relatedMaterial = getChildElements(services[i],"RelatedMaterial");
         for(var j = 0;j < relatedMaterial.length;j++) {
             var howRelated = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"HowRelated")[0].getAttribute("href");
-            if(howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
+            if(howRelated == howRelatedHref+"1001.2") {
                 chan.image = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
             }
             else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
