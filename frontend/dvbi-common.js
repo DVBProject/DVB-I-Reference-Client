@@ -395,6 +395,6 @@ function parseIntervalTime(time,day) {
 
 var dvb_i_language_list = {
   "eng": "English",
-  "deu" : "Deutch",
+  "deu" : "Deutsch",
   "fin":"Suomi"
 }
