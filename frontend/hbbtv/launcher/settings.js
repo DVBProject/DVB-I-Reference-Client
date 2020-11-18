@@ -1,5 +1,6 @@
-function showSettings() {
-    var buttons = ["Select servicelist","Parental settings","DASH settings","Low latency settings" ];
+function showSettings(selected) {
+    var index = selected ? selected : 0;
+    var buttons = ["Select servicelist","Parental settings","DASH settings","Low latency settings","Default audio language","Accessible audio","Default subtitle language" ];
     if(player != null) {
         try {
             var subtitles = player.getSubtitles();
@@ -41,15 +42,14 @@ function showSettings() {
           console.log(e);
         }
     }
-    buttons.push("Default audio language");
-    buttons.push("Default subtitle language");
-    showDialog("", buttons,null,null,
+
+    showDialog("", buttons,null,index,
         function(checked){
             if(checked == 0 ) {
-                loadServicelistProviders(PROVIDER_LIST,function() {showSettings();});
+                loadServicelistProviders(PROVIDER_LIST,function() {showSettings(0);});
             }
             else if(checked == 1 ) {
-                askPin(showParentalSettings,function(){ showInfo("Wrong PIN"); showSettings();});
+                askPin(showParentalSettings,function(){ showInfo("Wrong PIN"); showSettings(1);});
             }
             else if(checked == 2 ) {
                 showPlayerSettings();
@@ -66,15 +66,19 @@ function showSettings() {
             else if(buttons[checked] == "Default audio language"  ) {
                 showDefaultAudioSettings();
             }
+            else if(buttons[checked] == "Accessible audio"  ) {
+                showAccessibleAudioSettings();
+            }
             else if(buttons[checked] == "Default subtitle language"  ) {
                 showDefaultSubtitleSettings();
             }
      },true);
 }
 
-function showLLSettings() {
+function showLLSettings(selected) {
+    var index = selected ? selected : 0;
     var buttons = ["Low latency mode "+(llEnabled ? "(on)":"(off)"),"Target latency ("+liveDelay+"s)","Minimum drift ("+minimumDrift+"s)","Catch-up playback rate ("+catchupRate+"%)","Show stream info("+showStreamInfo+")"];
-    showDialog("Low latency settings", buttons,null,null,
+    showDialog("Low latency settings", buttons,null,index,
         function(checked){
             if(checked == 0) {
                 showLLModeSettings();
@@ -99,7 +103,7 @@ function showLLSettings() {
           'liveCatchUpMinDrift': minimumDrift,
           'liveCatchUpPlaybackRate': catchupRate
       });
-      showSettings();
+      showSettings(3);
     });
 }
 
@@ -135,8 +139,8 @@ function showTargetLatencySettings() {
             if(playerType == "mse-eme" && player != null) {
                 player.player.updateSettings({'streaming': { "liveDelay": liveDelay}});
             }
-            showLLSettings();
-     },function() {showLLSettings();});
+            showLLSettings(1);
+     },function() {showLLSettings(1);});
 }
 
 function showMinimumDriftSettings() {
@@ -154,8 +158,8 @@ function showMinimumDriftSettings() {
             if(playerType == "mse-eme" && player != null) {
                 player.player.updateSettings({'streaming': { "liveCatchUpMinDrift": minimumDrift}});
             }
-            showLLSettings();
-     },function() {showLLSettings();});
+            showLLSettings(2);
+     },function() {showLLSettings(2);});
 }
 
 function showCatchupRateSettings() {
@@ -173,8 +177,8 @@ function showCatchupRateSettings() {
             if(playerType == "mse-eme" && player != null) {
                 player.player.updateSettings({'streaming': { "liveCatchUpPlaybackRate": catchupRate}});
             }
-            showLLSettings();
-     },function() {showLLSettings();});
+            showLLSettings(3);
+     },function() {showLLSettings(3);});
 }
 
 function showStreamInfoSettings() {
@@ -196,8 +200,8 @@ function showStreamInfoSettings() {
                 streamInfoUpdater = setInterval(updateStreamInfo, 1000);
             }
             
-            showLLSettings();
-     },function() {showLLSettings();});
+            showLLSettings(4);
+     },function() {showLLSettings(4);});
 }
 
 function showParentalSettings() {
@@ -214,7 +218,7 @@ function showParentalSettings() {
                  showPinSettings();
             }
      },function() {
-      showSettings();
+      showSettings(1);
     });
 }
 
@@ -394,8 +398,8 @@ function showPlayerSettings() {
                 playerType = "mse-eme";
             }
             setLocalStorage("player_settings", { "player":playerType});
-            showSettings();
-     },function() {showSettings();});
+            showSettings(2);
+     },function() {showSettings(2);});
 }
 
 function showSubtitleSettings() {
@@ -433,9 +437,9 @@ function showSubtitleSettings() {
                 selectDVBTrack(checked, broadcast.COMPONENT_TYPE_SUBTITLE) ;
               }
             }
-            showSettings();
+            showSettings(8);
 
-     },function() {showSettings();});
+     },function() {showSettings(8);});
 }
 
 function showAudioSettings() {
@@ -462,9 +466,29 @@ function showAudioSettings() {
             else {
               selectDVBTrack(checked, broadcast.COMPONENT_TYPE_AUDIO) ;
             }
-            showSettings();
+            showSettings(7);
 
-     },function() {showSettings();});
+     },function() {showSettings(7);});
+}
+
+function showAccessibleAudioSettings() {
+
+    var buttons = ["Off","On"];
+    var checked = 0;
+    if(languages.accessibleAudio == true) {
+        checked = 1;
+    }
+    showDialog("Accessible audio", buttons,checked,checked,
+     function(checked){
+        if(checked == 0) {
+          languages.accessibleAudio = false;
+        }
+        else {
+          languages.accessibleAudio = true;
+        }
+        setLocalStorage("languages", languages);
+        showSettings(5);
+     },function() {showSettings(5);});
 }
 
 function showDefaultAudioSettings() {
@@ -489,9 +513,10 @@ function showDefaultAudioSettings() {
           languages.audioLanguage = undefined;
         }
         setLocalStorage("languages", languages);
-        showSettings();
-     },function() {showSettings();});
+        showSettings(4);
+     },function() {showSettings(4);});
 }
+
 
 function showDefaultSubtitleSettings() {
 
@@ -516,8 +541,8 @@ function showDefaultSubtitleSettings() {
           languages.subtitleLanguage = undefined;
         }
         setLocalStorage("languages", languages);
-        showSettings();
-     },function() {showSettings();});
+        showSettings(6);
+     },function() {showSettings(6);});
 }
 
 

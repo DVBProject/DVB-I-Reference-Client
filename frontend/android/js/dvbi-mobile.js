@@ -106,7 +106,7 @@ window.onload = function(){
         document.getElementById("audio_language").value = language_settings.audio_language;
         document.getElementById("subtitle_language").value = language_settings.subtitle_language;
         document.getElementById("ui_language").value = language_settings.ui_language;
-        
+        document.getElementById("accessible_audio").checked = language_settings.accessible_audio;
         if(!i18n.loadLanguage(language_settings.ui_language,updateUILanguage)) {
             i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
         }
@@ -492,10 +492,11 @@ function updateLanguage() {
     var subtitleLanguage = document.getElementById("subtitle_language").value;
     var audioLanguage = document.getElementById("audio_language").value;
     var uiLanguage = document.getElementById("ui_language").value;
+    var accessibleAudio = document.getElementById("accessible_audio").checked;
     if(uiLanguage != i18n.getCurrentLanguage()) {
        i18n.loadLanguage(uiLanguage, updateUILanguage);
     }
-    setLocalStorage("language_settings", { "subtitle_language":subtitleLanguage,"audio_language":audioLanguage,"ui_language":uiLanguage});
+    setLocalStorage("language_settings", { "subtitle_language":subtitleLanguage,"audio_language":audioLanguage,"ui_language":uiLanguage,"accessible_audio":accessibleAudio});
 }
 
 function updateUILanguage() {
