@@ -1,4 +1,4 @@
-var PROVIDER_LIST = "https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelist_registry.php";
+var PROVIDER_LIST = "https://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/backend/servicelist_registry.php";
 
 function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     var serviceList = {}
@@ -34,6 +34,26 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
             serviceList.image = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
         }
     }
+    var regionList = getChildElements(doc.documentElement,"RegionList");
+    if(regionList.length > 0) {
+       serviceList.regions = [];
+       var regions =  getChildElements(regionList[0],"Region");
+       for (var i = 0; i < regions.length ;i++) {
+          var regionElement = regions[i];
+          serviceList.regions.push(parseRegion(regionElement));
+          var secondaryRegions =  getChildElements(regionElement,"Region");
+          for (var j = 0; j < secondaryRegions.length ;j++) {
+            var regionElement = secondaryRegions[j];
+            serviceList.regions.push(parseRegion(regionElement));
+            var tertiaryRegions =  getChildElements(regionElement,"Region");
+            for (var k = 0; k < tertiaryRegions.length ;k++) {
+              var regionElement = tertiaryRegions[k];
+              serviceList.regions.push(parseRegion(regionElement));
+            }
+          }
+       }
+    }
+
     var maxLcn = 0;
     var lcnList = doc.getElementsByTagName("LCNTable")[0].getElementsByTagName("LCN");
     for (var i = 0; i < services.length ;i++) {
@@ -212,6 +232,61 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         }
     }
     return serviceList;
+}
+
+function parseRegion(regionElement) {
+  var region = {};
+  region.countryCodes = regionElement.getAttribute("countryCodes");
+  region.regionID = regionElement.getAttribute("regionID");
+  var names = getChildElements(regionElement,"RegionName");
+  if(names.length == 1) {
+    region.regionName = names[0].childNodes[0].nodeValue;
+  }
+  else if(names.length > 1) {
+    region.regionNames = [];
+    for(var j = 0;j < names.length;j++) {
+      var name = {};
+      name.name =  names[j].childNodes[0].nodeValue;
+      name.lang = names[j].getAttributeNS("xml","lang");
+      region.regionNames.push(name);
+    }
+  }
+  var wildcardPostcodes = getChildElements(regionElement,"WildcardPostcode");
+  if(wildcardPostcodes.length > 0) {
+    region.wildcardPostcodes = [];
+    for(var j = 0;j < wildcardPostcodes.length;j++) {
+      region.wildcardPostcodes.push(wildcardPostcodes[j].childNodes[0].nodeValue);
+    }
+  }
+  var postcodes = getChildElements(regionElement,"Postcode");
+  if(postcodes.length > 0) {
+    region.postcodes = [];
+    for(var j = 0;j < postcodes.length;j++) {
+      region.postcodes.push(postcodes[j].childNodes[0].nodeValue);
+    }
+  }
+  var postcodeRanges = getChildElements(regionElement,"PostcodeRange");
+  if(postcodeRanges.length > 0) {
+    region.postcodeRanges = [];
+    for(var j = 0;j < postcodeRanges.length;j++) {
+      var range = {};
+      range.from = postcodeRanges[j].getAttribute("from");
+      range.to = postcodeRanges[j].getAttribute("to");
+      region.postcodeRanges.push(range);
+    }
+  }
+  var coordinates = getChildElements(regionElement,"Coordinates");
+  if(coordinates.length > 0) {
+    region.coordinates = [];
+    for(var j = 0;j < coordinates.length;j++) {
+      var coordinate = {};
+      coordinate.latitude = getChildElements(coordinates[j],"Latitude")[0].childNodes[0].nodeValue;
+      coordinate.longitude = getChildElements(coordinates[j],"Longitude")[0].childNodes[0].nodeValue;
+      coordinate.radius = getChildElements(coordinates[j],"Radius")[0].childNodes[0].nodeValue;
+      region.coordinates.push(coordinate);
+    }
+  }
+  return region;
 }
 
 function getChildElements(parent,tagName) {
