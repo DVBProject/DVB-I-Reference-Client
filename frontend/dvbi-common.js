@@ -55,7 +55,28 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     }
 
     var maxLcn = 0;
-    var lcnList = doc.getElementsByTagName("LCNTable")[0].getElementsByTagName("LCN");
+    var lcnTables = doc.getElementsByTagName("LCNTable");
+    var lcnList = lcnTables[0].getElementsByTagName("LCN");
+    serviceList.lcnTables = [];
+    for (var i = 0; i < lcnTables.length ;i++) {
+      var lcnTable = {};
+      lcnTable.lcn = [];
+      var targetRegions =  lcnTables[i].getElementsByTagName("TargetRegion");
+      if(targetRegions.length > 0) {
+        lcnTable.targetRegions = [];
+        for(var j = 0;j < targetRegions.length;j++) {
+           lcnTable.targetRegions.push(targetRegions[j].childNodes[0].nodeValue);
+        }
+      }
+      var lcnList = lcnTables[i].getElementsByTagName("LCN");
+      for(var j = 0; j < lcnList.length ;j++) {
+            var lcn = {};
+            lcn.serviceRef = lcnList[j].getAttribute("serviceRef");
+            lcn.channelNumber = parseInt(lcnList[j].getAttribute("channelNumber"));
+            lcnTable.lcn.push(lcn);
+      }
+      serviceList.lcnTables.push(lcnTable);
+    }
     for (var i = 0; i < services.length ;i++) {
         var chan = {};
         chan.contentGuideURI = contentGuideURI;
@@ -65,6 +86,13 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         var providers = services[i].getElementsByTagName("ProviderName");
         if(providers.length > 0) {
           chan.provider = providers[0].childNodes[0].nodeValue;
+        }
+        var targetRegions = services[i].getElementsByTagName("TargetRegion");
+        if(targetRegions.length > 0) {
+          chan.targetRegions = [];
+          for(var j = 0;j < targetRegions.length;j++) {
+             chan.targetRegions.push(targetRegions[j].childNodes[0].nodeValue);
+          }
         }
         chan.parallelApps = [];
         chan.mediaPresentationApps = [];
