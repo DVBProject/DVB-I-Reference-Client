@@ -953,7 +953,7 @@ function doServiceSelection() {
       else if(serviceInstance.dashUrl) {
           playDASH(serviceInstance.dashUrl);
       }
-      if(serviceInstance.parallelApp) {
+      if(serviceInstance.parallelApps) {
         for(var i = 0;i< serviceInstance.parallelApps.length;i++ ) {
           if(serviceInstance.parallelApps[i].contentType == "application/vnd.dvb.ait+xml") {
             serviceApp = _application_.createApplication(serviceInstance.parallelApps[i].url,true);
@@ -961,7 +961,7 @@ function doServiceSelection() {
           }
         }
       }
-      if(selectedService.parallelApp) {
+      if(selectedService.parallelApps) {
         for(var i = 0;i< selectedService.parallelApps.length;i++ ) {
           if(selectedService.parallelApps[i].contentType == "application/vnd.dvb.ait+xml") {
             serviceApp = _application_.createApplication(selectedService.parallelApps[i].url,true);
