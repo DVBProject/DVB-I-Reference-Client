@@ -24,9 +24,11 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel,keyHandler
 	
 
 	var wrapper = document.createElement("div");
+  if(q) {
     var title = document.createElement("h2");
     title.innerHTML = q;
     wrapper.appendChild(title);
+  }
 	wrapper.addClass("wrapper");
 	wrapper.setAttribute("id", "dialogWrapper");
 	
@@ -65,7 +67,7 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel,keyHandler
 		});
 
 		var buttonElems = $(dialogButtons);
-		var firstvisible = buttonElems[0];
+		var firstvisible = buttonElems[0].children[0];
 		var lastvisible = null;
 		var firstvisibleIdx = 0;
 		if(dialog.focused >= dialog.visibleItems){
@@ -77,8 +79,8 @@ function showDialog( q, buttons, _checked, _focused, callback, cancel,keyHandler
 				}
 			});
 		}
-		buttonElems[firstvisibleIdx].addClass("firstvisible");
-		lastvisible = buttonElems[Math.min(buttonElems.length-1, firstvisibleIdx + dialog.visibleItems-1)];
+		buttonElems[0].children[firstvisibleIdx].addClass("firstvisible");
+		lastvisible = buttonElems[0].children[Math.min(buttonElems.length-1, firstvisibleIdx + dialog.visibleItems-1)];
 		lastvisible.addClass("lastvisible");
 		
 		var scrolltop = (($(".dialogButton:eq("+ dialog.focused +")").outerHeight(true)) * firstvisibleIdx);
