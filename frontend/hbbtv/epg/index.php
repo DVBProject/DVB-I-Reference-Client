@@ -33,9 +33,7 @@
     var VISIBLE_ROWS = 5;
     var IDLE_TIME_THRESHOLD = 600000; // 10 minutes
     var TWENTY_FOUR_HOURS = 86400000;
-	var curTime, diffTime, prevs, prevm;
-	var refTime = <?php echo round(microtime(true)*1000); ?>;
-    var tz = <?php echo date('Z')*1000; ?>; 
+    var curTime, diffTime, prevs, prevm;
     var animating = false;
     var containerFrame = null;
     var container = null;
@@ -183,17 +181,12 @@
 	}
 
 	function initClock() {
-        var tempTime = new Date(); 
-        var timems = tempTime.getTime();
-        diffTime = refTime-timems+tempTime.getTimezoneOffset()*60000+tz;
-        curTime = new Date(timems+diffTime);
+        curTime = new Date();
         refresh();
     }
 
     function refresh() {
-        var tempTime = new Date();
-        var timems = tempTime.getTime();
-        curTime = new Date(timems+diffTime);  
+        curTime = new Date();
         if( curTime.getMinutes() != prevm){
             displayTime();
             prevm = curTime.getMinutes();
