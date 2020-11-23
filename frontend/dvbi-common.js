@@ -109,16 +109,20 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
             else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
                 var app = {};
                 var mediaUri =  relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0];
-                app.url = mediaUri.childNodes[0].nodeValue;
-                app.contentType = mediaUri.getAttribute("contentType");
-                chan.parallelApps.push(app);
+                if(mediaUri  && mediaUri.childNodes.length > 0) {
+                  app.url = mediaUri.childNodes[0].nodeValue;
+                  app.contentType = mediaUri.getAttribute("contentType");
+                  chan.parallelApps.push(app);
+                }
             }
             else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
                 var app = {};
                 var mediaUri =  relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0];
-                app.url = mediaUri.childNodes[0].nodeValue;
-                app.contentType = mediaUri.getAttribute("contentType");
-                chan.mediaPresentationApps.push(app);
+                if(mediaUri && mediaUri.childNodes.length > 0) {
+                  app.url = mediaUri.childNodes[0].nodeValue;
+                  app.contentType = mediaUri.getAttribute("contentType");
+                  chan.mediaPresentationApps.push(app);
+                }
             }
         }
         var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
@@ -190,16 +194,20 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
                 if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
                     var app = {};
                     var mediaUri =  relatedMaterial[k].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0];
-                    app.url = mediaUri.childNodes[0].nodeValue;
-                    app.contentType = mediaUri.getAttribute("contentType");
-                    instance.parallelApps.push(app);
+                    if(mediaUri && mediaUri.childNodes.length > 0) {
+                      app.url = mediaUri.childNodes[0].nodeValue;
+                      app.contentType = mediaUri.getAttribute("contentType");
+                      instance.parallelApps.push(app);
+                    }
                 }
                 else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
                     var app = {};
                     var mediaUri =  relatedMaterial[k].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0];
-                    app.url = mediaUri.childNodes[0].nodeValue;
-                    app.contentType = mediaUri.getAttribute("contentType");
-                    instance.mediaPresentationApps.push(app);
+                    if(mediaUri && mediaUri.childNodes.length > 0) {
+                      app.url = mediaUri.childNodes[0].nodeValue;
+                      app.contentType = mediaUri.getAttribute("contentType");
+                      instance.mediaPresentationApps.push(app);
+                    }
                 }
             }
             if(serviceInstances[j].getElementsByTagName("DASHDeliveryParameters").length > 0 ) {
