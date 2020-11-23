@@ -325,6 +325,51 @@ function parseRegion(regionElement) {
   return region;
 }
 
+function selectServiceListRegion(serviceList,regionId) {
+  var lcnTable = null;
+  for(var i = 0;i<serviceList.lcnTables.length;i++) {
+    var table = serviceList.lcnTables[i];
+    for(var j = 0;j<table.targetRegions.length;j++) {
+      if(table.targetRegions[j] == regionId) {
+        lcnTable = table;
+        break;
+      }
+    }
+    if(lcnTable != null) {
+      break;
+    }
+  }
+  if(lcnTable == null) {
+    throw "No LCN table found";
+  }
+  var validServices = []
+  for(var i = 0;i<serviceList.services.length;i++) {
+    var service = serviceList.services[i];
+    var valid = false;
+    if(service.targetRegions) {
+      for(var j = 0;i<service.targetRegions.length;j++) {
+        if(table.targetRegions[j] == regionId) {
+          valid = true;
+          break;
+        }
+      }
+    }
+    else {
+      valid = true;
+    }
+    if(valid) {
+      for(var j = 0;j < lcnTable.lcn.length;j++) {
+          if(lcnTable.lcn[j].serviceRef == service.id) {
+              service.lcn = lcnTable.lcn[j].channelNumber;
+              break;
+          }
+      }
+      validServices.push(service);
+    }
+  }
+  serviceList.services = validServices;
+}
+
 function getChildElements(parent,tagName) {
   var elements= [];
   for(i = 0; i < parent.childNodes.length; i++)
