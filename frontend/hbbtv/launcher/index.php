@@ -167,8 +167,8 @@
         var serviceList = getLocalStorage("servicelist");
         
         if(serviceList) {
-            getServiceList(serviceList, function( epg ){
-                    createMenu(epg);
+            getServiceList(serviceList, function( data ){
+                    selectServiceList(data);
             }, function(){
                 console.log("Error in fetching service data");
             });
@@ -201,36 +201,69 @@
             showDialog("Select service provider", buttons,selected,selected,
             function(checked){
                 setLocalStorage("servicelist",urls[checked]);
+                getLocalStorage("region",true); //New service list selected, clear region
                 getServiceList(urls[checked], function( servicelist ){
                     $("#dialog").html("");
 			              $("#dialog").removeClass("show");
       			        $("#dialog").addClass("hide");
-                    createMenu(servicelist);
+                    selectServiceList(servicelist);
                 }, function(){
                    console.log("Error in fetching service data");
                 });
             },cancelAllowed);
         },"text");
     }
+  function selectServiceList(servicelist) {
+    var currentChannel = null;
+    var channelList = null;
+    try {
+      var vid = document.getElementById('broadcast');
+      var config = vid.getChannelConfig();
+      channelList = config.channelList;
+      currentChannel  = _application_.privateData.currentChannel;
+    } catch (e) {}
+    var serviceList = parseServiceList(servicelist,channelList,supportedDrmSystems);
+    if(serviceList.regions) {
+      selectRegion(serviceList,currentChannel,channelList);
+    }
+    else {
+      createMenu(serviceList,currentChannel,channelList);
+    }
+  }
 
-	function createMenu(data){
-        $("#menu_0").empty();
-		_menu_ = new Menu("menu_0");
-		_menu_.center = 0;
-        menuOffset = 0;
-        var currentChannel = null;
-        try {
-            var searchSelected;
-            var vid = document.getElementById('broadcast');
-            var config = vid.getChannelConfig();
-            var channelList = config.channelList;
-            currentChannel  = _application_.privateData.currentChannel;
-          
-        } catch (e) {
-        }        
+  function selectRegion(serviceList,currentChannel,channelList) {
+     var region = getLocalStorage("region");
+     if(region) {
+      selectServiceListRegion(serviceList,region);
+      createMenu(serviceList,currentChannel,channelList);
+      return;
+     }
+     var buttons = [];
+     for (var i = 0; i < serviceList.regions.length ;i++) {
+        if(serviceList.regions[i].regionName) {
+          buttons.push(serviceList.regions[i].regionName);
+        }
+     }
+     var selected = null;
+     showDialog(null, buttons,null,null,
+      function(checked){
+          setLocalStorage("region",serviceList.regions[checked].regionID);
+          selectServiceListRegion(serviceList,serviceList.regions[checked].regionID);
+          createMenu(serviceList,currentChannel,channelList);
+          $("#dialog").html("");
+          $("#dialog").removeClass("show");
+          $("#dialog").addClass("hide");
+      },false,null,"Select region");
+  }
+
+	function createMenu(services,currentChannel,channelList){
         var current_channel_obj = null;
         var listedChannels = [];
-        var services = parseServiceList(data,channelList,supportedDrmSystems);  
+
+        $("#menu_0").empty();
+        _menu_ = new Menu("menu_0");
+        _menu_.center = 0;
+        menuOffset = 0;
         if(services.image) {
           $("#list_logo").attr("src",services.image);
           $("#service_list_logo").attr("src",services.image);
