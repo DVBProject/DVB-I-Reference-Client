@@ -330,6 +330,67 @@ function parseRegion(regionElement) {
   return region;
 }
 
+function findRegionFromPostCode(serviceList,postCode) {
+  for (var i = 0; i < serviceList.regions.length ;i++) {
+    var region = serviceList.regions[i];
+    if(region.postcodes) {
+      for (var j = 0; j < region.postcodes.length ;j++) { 
+        if(region.postcodes[j] == postCode) {
+          return region;
+        }
+      }
+    }
+    if(region.postcodeRanges) {
+      for (var j = 0; j < region.postcodeRanges.length ;j++) { 
+        if(matchPostcodeRange(region.postcodeRanges[j],postCode)) {
+          return region;
+        }
+      }
+    }
+    if(region.wildcardPostcodes) {
+      for (var j = 0; j < region.wildcardPostcodes.length ;j++) { 
+        if(matchPostcodeWildcard(region.wildcardPostcodes[j],postCode)) {
+          return region;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+function matchPostcodeRange(range,postCode) {
+    if(range.from > postCode || range.to < postCode) {
+      return false;
+    }
+    return true;
+}
+
+function matchPostcodeWildcard(wildcard,postCode) {
+    var wildcardIndex = wildcard.indexOf("*");
+    if(wildcardIndex == wildcard.length-1) {
+      //Wildcard is in the end, check that the postcode
+      //starts with the wildcard
+      var wildcardMatch = wildcard.substring(0,wildcard.length-1);
+      if(postCode.indexOf(wildcardMatch) == 0) {
+        return true;
+      }
+    }
+    else if (wildcardIndex == 0) {
+      var wildcardMatch = wildcard.substring(1,wildcard.length);
+      if(postCode.indexOf(wildcardMatch, postCode.length - wildcardMatch.length) !== -1) {
+        return true;
+      }
+    }
+    else if(wildcardIndex != -1) {
+      var startMatch =  wildcard.substring(0,wildcardIndex);
+      var endMatch = wildcard.substring(wildcardIndex+1,wildcard.length);
+      if(postCode.indexOf(startMatch) == 0 && postCode.indexOf(endMatch, postCode.length - endMatch.length) !== -1) {
+        return true;
+      } 
+    }
+    return false;
+}
+
 function selectServiceListRegion(serviceList,regionId) {
   var lcnTable = null;
   for(var i = 0;i<serviceList.lcnTables.length;i++) {
