@@ -291,6 +291,28 @@
       </div>
     </div>
   </div>
+  <div id="region_selection" class="region_selection container-fluid settingspage" style="display:none;">
+    <div class="navbar my-2 px-0">
+			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
+			<h5 class="m-auto position-relative">Region selection</h5>
+		</div>
+    <div class="row">
+      <div class="text-white p-1 rounded col-3" id="servicelist_filter">
+        <div class="form-group row">
+          <label for="postcode" class="col-4 col-form-label">Postcode</label>
+          <div class="col-8">
+            <input id="postcode" name="postcode" type="text" value="" class="form-control form-control-sm">
+          </div>
+        </div>
+        <div class="d-flex">
+          <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterRegions()" class="text-white">Filter</a></span>
+        </div>
+      </div>
+      <div class="col-6 offset-3">
+        <div class="text-white p-1 rounded" id="regions"></div>
+      </div>
+    </div>
+  </div>
   <div id="main_settings" class="settingspage mt-2">
 		<div class="navbar"></div>
     <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showSettings('ll_settings')"><span class="text-white">Low Latency settings</span></span>
