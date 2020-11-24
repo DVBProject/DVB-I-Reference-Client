@@ -41,14 +41,19 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
        for (var i = 0; i < regions.length ;i++) {
           var regionElement = regions[i];
           serviceList.regions.push(parseRegion(regionElement));
-          var secondaryRegions =  getChildElements(regionElement,"Region");
-          for (var j = 0; j < secondaryRegions.length ;j++) {
-            var regionElement = secondaryRegions[j];
+          var primaryRegions =  getChildElements(regionElement,"Region");
+          for (var j = 0; j < primaryRegions.length ;j++) {
+            var regionElement = primaryRegions[j];
             serviceList.regions.push(parseRegion(regionElement));
-            var tertiaryRegions =  getChildElements(regionElement,"Region");
-            for (var k = 0; k < tertiaryRegions.length ;k++) {
-              var regionElement = tertiaryRegions[k];
+            var secondaryRegions =  getChildElements(regionElement,"Region");
+            for (var k = 0; k < secondaryRegions.length ;k++) {
+              var regionElement = secondaryRegions[k];
               serviceList.regions.push(parseRegion(regionElement));
+              var tertiaryRegions =  getChildElements(regionElement,"Region");
+              for (var l = 0; l < tertiaryRegions.length ;l++) {
+                var regionElement = tertiaryRegions[l];
+                serviceList.regions.push(parseRegion(regionElement));
+              }
             }
           }
        }
