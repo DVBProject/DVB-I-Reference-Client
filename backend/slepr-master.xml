@@ -36,13 +36,22 @@
 			</sld:ElectronicAddress>
 		</sld:Provider>
 		<sld:ServiceListOffering>
-			<sld:ServiceListName>Germany FTA</sld:ServiceListName>
+			<sld:ServiceListName>ASTRA 19.2 E</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>
 					https://www.satip.info/sites/satip/files/files/ASTRA_19_2_E.xml
 				</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:TargetCountry>DEU</sld:TargetCountry>
+		</sld:ServiceListOffering>
+    <sld:ServiceListOffering>
+			<sld:ServiceListName>ASTRA 28.2 E</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>
+					https://www.satip.info/sites/satip/files/files/ASTRA_28_2_E.xml
+				</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:TargetCountry>GBR</sld:TargetCountry>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
 	<sld:ProviderOffering>
