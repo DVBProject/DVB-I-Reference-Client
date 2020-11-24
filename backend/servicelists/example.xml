@@ -286,4 +286,102 @@
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
   </Service>
+  <Service version="1">
+    <UniqueIdentifier>sid15</UniqueIdentifier>
+    <ServiceInstance priority="2">
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceInstance priority="1">
+      <Availability>
+        <Period>
+          <Interval startTime="00:00:00Z" endTime="00:10:00Z"/>
+          <Interval startTime="00:20:00Z" endTime="00:30:00Z"/>
+          <Interval startTime="00:40:00Z" endTime="00:50:00Z"/>
+          <Interval startTime="01:00:00Z" endTime="01:10:00Z"/>
+          <Interval startTime="01:20:00Z" endTime="01:30:00Z"/>
+          <Interval startTime="01:40:00Z" endTime="01:50:00Z"/>
+          <Interval startTime="02:00:00Z" endTime="02:10:00Z"/>
+          <Interval startTime="02:20:00Z" endTime="02:30:00Z"/>
+          <Interval startTime="02:40:00Z" endTime="02:50:00Z"/>
+          <Interval startTime="03:00:00Z" endTime="03:10:00Z"/>
+          <Interval startTime="03:20:00Z" endTime="03:30:00Z"/>
+          <Interval startTime="03:40:00Z" endTime="03:50:00Z"/>
+          <Interval startTime="04:00:00Z" endTime="04:10:00Z"/>
+          <Interval startTime="04:20:00Z" endTime="04:30:00Z"/>
+          <Interval startTime="04:40:00Z" endTime="04:50:00Z"/>
+          <Interval startTime="05:00:00Z" endTime="05:10:00Z"/>
+          <Interval startTime="05:20:00Z" endTime="05:30:00Z"/>
+          <Interval startTime="05:40:00Z" endTime="05:50:00Z"/>
+          <Interval startTime="06:00:00Z" endTime="06:10:00Z"/>
+          <Interval startTime="06:20:00Z" endTime="06:30:00Z"/>
+          <Interval startTime="06:40:00Z" endTime="06:50:00Z"/>
+          <Interval startTime="07:00:00Z" endTime="07:10:00Z"/>
+          <Interval startTime="07:20:00Z" endTime="07:30:00Z"/>
+          <Interval startTime="07:40:00Z" endTime="07:50:00Z"/>
+          <Interval startTime="08:00:00Z" endTime="08:10:00Z"/>
+          <Interval startTime="08:20:00Z" endTime="08:30:00Z"/>
+          <Interval startTime="08:40:00Z" endTime="08:50:00Z"/>
+          <Interval startTime="09:00:00Z" endTime="09:10:00Z"/>
+          <Interval startTime="09:20:00Z" endTime="09:30:00Z"/>
+          <Interval startTime="09:40:00Z" endTime="09:50:00Z"/>
+          <Interval startTime="10:00:00Z" endTime="10:10:00Z"/>
+          <Interval startTime="10:20:00Z" endTime="10:30:00Z"/>
+          <Interval startTime="10:40:00Z" endTime="10:50:00Z"/>
+          <Interval startTime="11:00:00Z" endTime="11:10:00Z"/>
+          <Interval startTime="11:20:00Z" endTime="11:30:00Z"/>
+          <Interval startTime="11:40:00Z" endTime="11:50:00Z"/>
+          <Interval startTime="12:00:00Z" endTime="12:10:00Z"/>
+          <Interval startTime="12:20:00Z" endTime="12:30:00Z"/>
+          <Interval startTime="12:40:00Z" endTime="12:50:00Z"/>
+          <Interval startTime="13:00:00Z" endTime="13:10:00Z"/>
+          <Interval startTime="13:20:00Z" endTime="13:30:00Z"/>
+          <Interval startTime="13:40:00Z" endTime="13:50:00Z"/>
+          <Interval startTime="14:00:00Z" endTime="14:10:00Z"/>
+          <Interval startTime="14:20:00Z" endTime="14:30:00Z"/>
+          <Interval startTime="14:40:00Z" endTime="14:50:00Z"/>
+          <Interval startTime="15:00:00Z" endTime="15:10:00Z"/>
+          <Interval startTime="15:20:00Z" endTime="15:30:00Z"/>
+          <Interval startTime="15:40:00Z" endTime="15:50:00Z"/>
+          <Interval startTime="16:00:00Z" endTime="16:10:00Z"/>
+          <Interval startTime="16:20:00Z" endTime="16:30:00Z"/>
+          <Interval startTime="16:40:00Z" endTime="16:50:00Z"/>
+          <Interval startTime="17:00:00Z" endTime="17:10:00Z"/>
+          <Interval startTime="17:20:00Z" endTime="17:30:00Z"/>
+          <Interval startTime="17:40:00Z" endTime="17:50:00Z"/>
+          <Interval startTime="18:00:00Z" endTime="18:10:00Z"/>
+          <Interval startTime="18:20:00Z" endTime="18:30:00Z"/>
+          <Interval startTime="18:40:00Z" endTime="18:50:00Z"/>
+          <Interval startTime="19:00:00Z" endTime="19:10:00Z"/>
+          <Interval startTime="19:20:00Z" endTime="19:30:00Z"/>
+          <Interval startTime="19:40:00Z" endTime="19:50:00Z"/>
+          <Interval startTime="20:00:00Z" endTime="20:10:00Z"/>
+          <Interval startTime="20:20:00Z" endTime="20:30:00Z"/>
+          <Interval startTime="20:40:00Z" endTime="20:50:00Z"/>
+          <Interval startTime="21:00:00Z" endTime="21:10:00Z"/>
+          <Interval startTime="21:20:00Z" endTime="21:30:00Z"/>
+          <Interval startTime="21:40:00Z" endTime="21:50:00Z"/>
+          <Interval startTime="22:00:00Z" endTime="22:10:00Z"/>
+          <Interval startTime="22:20:00Z" endTime="22:30:00Z"/>
+          <Interval startTime="22:40:00Z" endTime="22:50:00Z"/>
+          <Interval startTime="23:00:00Z" endTime="23:10:00Z"/>
+          <Interval startTime="23:20:00Z" endTime="23:30:00Z"/>
+          <Interval startTime="23:40:00Z" endTime="23:50:00Z"/>
+        </Period>
+      </Availability>
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>Availability window service</ServiceName>
+    <ProviderName>DVB</ProviderName>
+    <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
+  </Service>
 </ServiceList>
