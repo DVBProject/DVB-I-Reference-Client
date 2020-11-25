@@ -138,12 +138,13 @@ Channel.prototype.channelSelected = function () {
           self.availablityTimer = setTimeout(self.checkAvailability.bind(self),(60-new Date().getSeconds())*1000);
         }
         if(self.serviceInstance == null) {
+           $("#notification").show();
+           $("#notification").removeClass();
+           $("#notification").addClass("noservice");
            if(self.out_of_service_image) {
-             $("#notification").show();
              $("#notification").html("<img src=\""+self.out_of_service_image+"\"/>");
            }
            else {
-            $("#notification").show();
             $("#notification").text("Service not available");
            }
         }
@@ -174,6 +175,7 @@ Channel.prototype.channelSelected = function () {
               },
               function() {               
                  $("#notification").show();
+                 $("#notification").removeClass();
                  $("#notification").text(i18n.getString("parental_block"));
               }
             );
@@ -220,6 +222,7 @@ Channel.prototype.programChanged = function() {
             },
             function() {
                $("#notification").show();
+               $("#notification").removeClass();
                $("#notification").text(i18n.getString("parental_block"));
             }
           );
@@ -391,6 +394,7 @@ Channel.prototype.parentalRatingChanged = function(callback) {
         },
         function() {
            $("#notification").show();
+           $("#notification").removeClass();
            $("#notification").text(i18n.getString("parental_block"));
         }
       );
