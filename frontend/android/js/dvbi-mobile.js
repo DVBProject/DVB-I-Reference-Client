@@ -78,6 +78,11 @@ window.onload = function(){
     player = dashjs.MediaPlayer().create();
     player.initialize(video);
     player.setAutoPlay(true);
+    player.on('error', function(e) {
+      console.log(e);
+      $("#notification").show();
+      $("#notification").text("Error playing stream!");
+    });
     player.attachTTMLRenderingDiv( document.getElementById("subtitles"));
     var ll_settings = getLocalStorage("ll_settings");
     if(ll_settings) {
