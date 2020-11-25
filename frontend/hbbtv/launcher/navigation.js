@@ -839,6 +839,7 @@ function channelDown(){
 }
 
 function selectService(channel_obj) {
+     $("#info").addClass("hide");
      selectService.selected = false;
      selectedService = channel_obj;
      selectedService.selected = true;
@@ -1070,11 +1071,37 @@ function playDASH(url) {
                 'liveCatchUpPlaybackRate': catchupRate
             }
         });
+        player.player.on('error', function(e) {
+          console.log(e);
+          message = "Error playing stream!";
+          if(e.error && e.error.message) {
+              message += "<br/>"+e.error.message;
+          }
+          showInfo(message);
+        });
      }
      else { //html5 as default
         player = new VideoPlayerHTML5("videodiv");
         player.populate();
         player.createPlayer();
+        var errorFunction = function(e){
+          console.log("Error",e);
+          message = "Error playing stream!";
+          if(player && player.video && player.video.error) {
+              if(player.video.error.message) {
+                  message += "<br/>"+player.video.error.code;
+              }
+              message += "<br/>Error code:"+player.video.error.code;
+          }
+          else {
+            console.log(player);
+          }
+          showInfo(message);
+          if(player && player.video) {
+            player.video.removeEventListener("error",errorFunction);
+          }
+        };
+        player.video.addEventListener('error', errorFunction);
      }
      player.setURL(url);
        player.startVideo(true);
