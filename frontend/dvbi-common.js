@@ -111,6 +111,9 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
             if(howRelated == howRelatedHref+"1001.2") {
                 chan.image = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
             }
+            if(howRelated == howRelatedHref+"1000.1") {
+                chan.out_of_service_image = relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0].childNodes[0].nodeValue;
+            }
             else if(howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
                 var app = {};
                 var mediaUri =  relatedMaterial[j].getElementsByTagNameNS(howRelatedNamespace,"MediaLocator")[0].getElementsByTagNameNS("urn:tva:metadata:2019","MediaUri")[0];

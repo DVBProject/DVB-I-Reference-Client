@@ -93,7 +93,7 @@ Channel.prototype.unselected = function () {
 
 Channel.prototype.getMediaPresentationApp = function(serviceInstance) {
     var self = this;
-    if(serviceInstance.mediaPresentationApps) {
+    if(serviceInstance && serviceInstance.mediaPresentationApps) {
       for(var i = 0; i < serviceInstance.mediaPresentationApps.length;i++) {
         var mediaPresentationApp = serviceInstance.mediaPresentationApps[i];
         if(mediaPresentationApp.contentType == "text/html" || 
@@ -126,6 +126,7 @@ Channel.prototype.checkAvailability = function() {
 
 Channel.prototype.channelSelected = function () {
     var self = this;
+    $("#notification").hide();
     self.element.classList.add("active");
     self.selected = true;
     var update =function () {
@@ -136,7 +137,16 @@ Channel.prototype.channelSelected = function () {
         if(self.hasAvailability()) {
           self.availablityTimer = setTimeout(self.checkAvailability.bind(self),(60-new Date().getSeconds())*1000);
         }
-
+        if(self.serviceInstance == null) {
+           if(self.out_of_service_image) {
+             $("#notification").show();
+             $("#notification").html("<img src=\""+self.out_of_service_image+"\"/>");
+           }
+           else {
+            $("#notification").show();
+            $("#notification").text("Service not available");
+           }
+        }
         self.setProgramChangedTimer();
         self.updateChannelInfo();
         var mediaPresentationApp = self.getMediaPresentationApp(self.serviceInstance);
@@ -144,7 +154,9 @@ Channel.prototype.channelSelected = function () {
           window.location = mediaPresentationApp;
         }
         else if(self.isProgramAllowed()) {
-            player.attachSource(self.serviceInstance.dashUrl);
+            if(self.serviceInstance) {
+              player.attachSource(self.serviceInstance.dashUrl);
+            }
         }
         else {
           player.attachSource(null);

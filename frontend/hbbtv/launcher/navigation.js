@@ -921,14 +921,19 @@ function doServiceSelection() {
             player = null;
         }
         else {
-              try {
-              broadcast = document.getElementById('broadcast');
-              broadcast.stop();
-              broadcast.addClass("hide_broadcast");
-              }
-              catch(e) {}
+          try {
+          broadcast = document.getElementById('broadcast');
+          broadcast.stop();
+          broadcast.addClass("hide_broadcast");
           }
-        showInfo("Service not available");
+          catch(e) {}
+        }
+        if(selectedService.out_of_service_image) {
+          showInfo("<img src=\""+selectedService.out_of_service_image+"\"/>");
+        }
+        else {
+          showInfo("Service not available");
+        }
         return;
       }
       if(serviceInstance.mediaPresentationApps) {
