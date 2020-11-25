@@ -59,9 +59,12 @@ Channel.prototype.parseSchedule = function(data) {
             if(programs[j].getAttribute("programId") == programId) {
                 var description = programs[j].getElementsByTagName("BasicDescription")[0];
                 program.title = description.getElementsByTagName("Title")[0].childNodes[0].nodeValue;
-                var synopsis = description.getElementsByTagName("Synopsis")
+                var synopsis = description.getElementsByTagName("Synopsis");
                 if(synopsis.length > 0) {
-                    program.desc = synopsis[0].childNodes[0].nodeValue;
+                  program.desc = "";
+                  for(var k=0;k<synopsis.length;k++) {
+                      program.desc += (synopsis[k].childNodes[0].nodeValue+"<br/>");
+                  }
                 }
                 var genre = description.getElementsByTagName("Genre")
                 if(genre.length > 0) {

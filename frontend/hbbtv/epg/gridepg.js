@@ -561,7 +561,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
 						title.innerHTML += " - EP" + program["season"].substring(program["season"].indexOf("_")+1);
 					}
 				}
-				description_text.innerHTML = htmlDecode(program.getSynopsisText());
+				description_text.innerHTML = program.getSynopsisText().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 				
 				if(description_text.scrollHeight > description_text.offsetHeight){
 					this.autoScrollDescriptionText();

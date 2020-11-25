@@ -53,7 +53,7 @@ Program.prototype.populateProgramInfo = function(){
     $("#info_chnumber").text(this.channel.lcn);
     $("#info_chname").text(this.channel.title);
     $(".title").text(this.title);
-    $(".description").text(this.desc);
+    $(".description").html(this.desc);
     $(".img").attr('src',this.mediaimage);
     $(".date").text(this.start.getDate()+"."+(this.start.getMonth()+1)+".");
     $(".starttime").text(this.start.create24HourTimeString());
