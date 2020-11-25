@@ -894,7 +894,6 @@ function selectService(channel_obj) {
 }
 
 function checkAvailability() {
-   console.log("checkAvailability",new Date());
    var instance = selectedService.getServiceInstance();
    if(instance != serviceInstance) {
        console.log("different service instace, select service");
