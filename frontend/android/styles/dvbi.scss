@@ -353,7 +353,22 @@ body.player {
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
-  transform: translateY(-50%);  
+  transform: translateY(-50%);
+		&.noservice {
+			background-color: rgba( $darkblue-color, .8 );
+			position: relative;
+			width: 100%;
+			max-width: 100% !important;
+			height: 100%; 
+			padding: 0px !important;
+			margin: 0px !important;
+		}
+	img {
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);   
+	}
 }
 // Settings
 #settings {

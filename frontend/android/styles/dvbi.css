@@ -253,6 +253,19 @@ body.player {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
+  #notification.noservice {
+    background-color: rgba(1, 25, 39, 0.8);
+    position: relative;
+    width: 100%;
+    max-width: 100% !important;
+    height: 100%;
+    padding: 0px !important;
+    margin: 0px !important; }
+  #notification img {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%); }
 
 #settings {
   background-color: rgba(1, 25, 39, 0.8);
@@ -260,17 +273,7 @@ body.player {
   z-index: 10; }
   #settings .navbar h5 {
     left: -32px; }
-#parentalpin {
-  z-index: 20;
-  width: 100%;
-  height: 100%;
-  background-color:rgba(0,0, 0, 0.8);
-}
-#pin,#pin1,#pin2 {
-  -webkit-text-security: disc;
-  -moz-webkit-text-security: disc;
-  -moz-text-security: disc;
-}
+
 @keyframes displaynone {
   from {
     display: block; }

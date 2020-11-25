@@ -140,7 +140,7 @@ Channel.prototype.channelSelected = function () {
         if(self.serviceInstance == null) {
            if(self.out_of_service_image) {
              $("#notification").show();
-             $("#notification").html("<img src=\""+self.out_of_service_image+"\"/>");
+             $("#notification").html("<img src=\""+self.out_of_service_image+"\" class=\"img-fluid position-relative\"/>");
            }
            else {
             $("#notification").show();
