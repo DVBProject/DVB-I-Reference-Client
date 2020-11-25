@@ -142,10 +142,10 @@ Channel.prototype.channelSelected = function () {
            $("#notification").removeClass();
            $("#notification").addClass("noservice");
            if(self.out_of_service_image) {
-             $("#notification").html("<img src=\""+self.out_of_service_image+"\"/>");
+             $("#notification").html("<img src=\""+self.out_of_service_image+"\" class=\"img-fluid position-relative\"/>");
            }
            else {
-            $("#notification").text("Service not available");
+             $("#notification").text("Service not available");
            }
         }
         self.setProgramChangedTimer();
