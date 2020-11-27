@@ -15,7 +15,7 @@ EPG.prototype.populate = function (start,end) {
     var count = self.channels.length;
     if(self.element == null){
 		self.element = document.createElement("div");
-        self.element.addClass("row");
+        self.element.addClass("row epgchannels");
     }
     else {
         $(self.element).empty();

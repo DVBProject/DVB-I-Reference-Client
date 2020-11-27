@@ -172,6 +172,7 @@ function showEpg() {
     $(".player-ui").addClass("hide");
     $(".epg").show();
     $(".grid").show();
+    $(".epgchannels").remove();
     $(".grid").append(epg.showChannel(selectedChannel));
     var epgdate = new Date(epg.start*1000);
     $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
