@@ -756,16 +756,27 @@ String.prototype.cut = function( from, to )
 	return this.substring( ( from < 0? this.length + from : from ), (to < 0? this.length + to : to ) )
 };
 
-function showInfo( msg, timeout, inMs )
+function showInfo( msg, timeout, className )
 {
     timeout = timeout || 4; // sec
-    $("#info").removeClass("hide");
+    $("#info").removeClass();
+    if(className) {
+      $("#info").addClass(className);
+    }
     $("#info").html( msg );
     setTimeout(function(){
+        if(className) {
+          $("#info").removeClass(className);
+        }
         $("#info").addClass("hide");
-    }, timeout * ( inMs? 1 : 1000));
+    }, timeout *  1000);
 }
 
+function hideInfo()
+{
+  $("#info").removeClass();
+  $("#info").addClass("hide");
+}
 /* 
 	minimum of three
 */
