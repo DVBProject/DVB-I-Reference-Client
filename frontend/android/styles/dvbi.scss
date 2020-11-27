@@ -355,14 +355,13 @@ body.player {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 		&.noservice {
-			background-color: rgba( $darkblue-color, .8 );
-			position: relative;
-			width: 100%;
-			max-width: 100%;
-			height: 100%; 
+			background-color: transparent; 
+			width: 50%;
+			max-width: 50%;
+			height: 50%; 
 			padding: 0px;
-			margin: 0px;
 			text-align: center;
+			border: 1px soldi red;
 		}
 	img {
 		top: 50%;
