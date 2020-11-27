@@ -709,7 +709,21 @@ img#logo {
 	z-index:10001;
 	opacity : 1.0;
 }
-
+#info.noservice {
+	top: 160px;
+	height: 400px;
+	width: 800px;
+	left: 240px;
+	background: transparent !important;
+	/* for preview purposes */
+	background: rgba(0,0,0,0.5) !important;
+	border: 2px solid transparent;
+}
+#info.noservice img {
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
+}
 #info.hide{
 	opacity: 0.0 !important;
 }
