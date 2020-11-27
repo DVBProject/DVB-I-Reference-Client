@@ -128,7 +128,7 @@ body.player {
   }
   #channel_info {
     span {
-        text-shadow: 2px 2px 2px #000;    
+        text-shadow: 2px 2px 2px #000; 
       &.menuitem_chicon {
         img {
          max-height: 55px;
@@ -384,4 +384,8 @@ body.player {
 @keyframes displaynone {
   from {display: block;}
   to {display: none;}
+}
+// common fixes
+.btn {
+	cursor: pointer;
 }

@@ -279,3 +279,5 @@ body.player {
     display: block; }
   to {
     display: none; } }
+.btn {
+  cursor: pointer; }
