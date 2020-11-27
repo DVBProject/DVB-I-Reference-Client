@@ -711,13 +711,20 @@ img#logo {
 }
 #info.noservice {
 	top: 160px;
-	height: 400px;
+	max-height: 400px;
 	width: 800px;
-	left: 240px;
+	left: 238px;
 	background: transparent !important;
 	/* for preview purposes */
 	background: rgba(0,0,0,0.5) !important;
 	border: 2px solid transparent;
+  color: #fff !important;
+  font-size: 36px;
+  top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	 transform: translateY(-50%);
+  padding: 0px;
 }
 #info.noservice img {
 	object-fit: contain;
