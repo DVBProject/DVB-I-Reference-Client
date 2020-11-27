@@ -128,7 +128,7 @@ body.player {
   }
   #channel_info {
     span {
-        text-shadow: 2px 2px 2px #000;    
+        text-shadow: 2px 2px 2px #000; 
       &.menuitem_chicon {
         img {
          max-height: 55px;
@@ -355,13 +355,13 @@ body.player {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 		&.noservice {
-			background-color: rgba( $darkblue-color, .8 );
-			position: relative;
-			width: 100%;
-			max-width: 100% !important;
-			height: 100%; 
-			padding: 0px !important;
-			margin: 0px !important;
+			background-color: transparent; 
+			width: 50%;
+			max-width: 50%;
+			height: 50%; 
+			padding: 0px;
+			text-align: center;
+			border: 1px soldi red;
 		}
 	img {
 		top: 50%;
@@ -384,4 +384,8 @@ body.player {
 @keyframes displaynone {
   from {display: block;}
   to {display: none;}
+}
+// common fixes
+.btn {
+	cursor: pointer;
 }

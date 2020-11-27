@@ -312,7 +312,7 @@ div, span {
 	transition: all 0.10s linear;
 
 	display:block;
-	top: 370px;
+	top: 350px;
 	height: 350px;
   width: 650px;
 	line-height: 60px;
@@ -321,6 +321,14 @@ div, span {
 	z-index:201;
   background-image: url("../CommonUI/bg_channel_info.png");
   background-repeat: no-repeat;
+}
+#channel_info #info_num {
+	margin-left: 70px;
+	color: #0098f4;
+	top: 250px;
+	position: relative;
+	height: 40px;
+	display: inline-block;
 }
 .channel_info .menuitem_title span.menuitem_chname {
   _background-color: #222;
@@ -342,15 +350,17 @@ div, span {
   margin-left: 70px;
   margin-top: 250px;
 }
-.channel_info span:last-child {
-  margin-top: 250px;
-  color: #fff;
+.channel_info #info_name {
 	z-index: 9;
 	text-align:left;
   font-size: 28px;
   height: 40px;
   display: inline-block;
-  
+ 	margin-left: 15px;
+	color: #0098f4;
+	top: 250px;
+	position: relative;
+	
 }	
 .channel_info.hide {
   display: block !important;
