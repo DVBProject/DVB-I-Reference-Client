@@ -285,7 +285,7 @@ img#logo {
 	_box-shadow: 0px 0px 15px #000;
 	padding-left: 80px;
 	_border-top: 2px solid #101011;
-	background-color: #010101;
+	_background-color: #010101;
 }
 #buttonbar0, #buttonbar_miniepg {
 	background-color: transparent !important;
@@ -700,9 +700,9 @@ img#logo {
 	top:300px;
 	background: #fff !important;
 	border-radius:5px;
-	border: 1px solid transparent;
-	left:400px;
-	width:480px;
+	border: 2px solid #333;
+	left:289px;
+	width:700px;
 	padding:5px;
 	text-align:center;
 	color:#000 !important;
