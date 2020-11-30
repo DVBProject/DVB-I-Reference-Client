@@ -86,11 +86,20 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         var chan = {};
         chan.contentGuideURI = contentGuideURI;
         chan.code = i;
-        chan.title = services[i].getElementsByTagName("ServiceName")[0].childNodes[0].nodeValue;
+        var serviceNames = services[i].getElementsByTagName("ServiceName");
+        chan.titles = [];
+        for(var j = 0;j < serviceNames.length;j++) {
+          chan.titles.push(getText(serviceNames[j]));
+        }
+        chan.title = serviceNames[0].childNodes[0].nodeValue;
         chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
         var providers = services[i].getElementsByTagName("ProviderName");
         if(providers.length > 0) {
           chan.provider = providers[0].childNodes[0].nodeValue;
+          chan.providers = [];
+          for(var j = 0;j < providers.length;j++) {
+            chan.providers.push(getText(providers[j]));
+          }
         }
         var targetRegions = services[i].getElementsByTagName("TargetRegion");
         if(targetRegions.length > 0) {
@@ -139,6 +148,11 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         for(var j = 0;j < serviceInstances.length;j++) {
             var priority = serviceInstances[j].getAttribute("priority");
             var instance = {};
+            var displayNames = serviceInstances[j].getElementsByTagName("DisplayName");
+            instance.titles = [];
+            for(var k = 0;k < displayNames.length;k++) {
+              instance.titles.push(getText(displayNames[k]));
+            }
             instance.priority = priority;
             instance.contentProtection = [];
             instance.parallelApps = [];
@@ -278,6 +292,17 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     return serviceList;
 }
 
+function getText(element) {
+  var text = {};
+  var lang = element.getAttributeNS("http://www.w3.org/XML/1998/namespace","lang");
+  if(!lang) {
+    lang = "default";
+  }
+  text.lang = lang;
+  text.text =  element.childNodes[0].nodeValue;
+  return text;
+}
+
 function parseRegion(regionElement) {
   var region = {};
   region.countryCodes = regionElement.getAttribute("countryCodes");
@@ -289,10 +314,7 @@ function parseRegion(regionElement) {
   else if(names.length > 1) {
     region.regionNames = [];
     for(var j = 0;j < names.length;j++) {
-      var name = {};
-      name.name =  names[j].childNodes[0].nodeValue;
-      name.lang = names[j].getAttributeNS("xml","lang");
-      region.regionNames.push(name);
+      region.regionNames.push(getText(names[j]));
     }
   }
   var wildcardPostcodes = getChildElements(regionElement,"WildcardPostcode");
@@ -622,4 +644,28 @@ var dvb_i_language_list = {
   "eng": "English",
   "deu" : "Deutsch",
   "fin":"Suomi"
+}
+
+function getLocalizedText(texts,lang) {
+  if(texts.length == 1) {
+    return texts[0].text;
+  }
+  else if(texts.length > 1){
+    var defaultTitle = null;
+    for(var i = 0;i < texts.length;i++) {
+      if(texts[i].lang == lang) {
+        return texts[i].text;
+      }
+      else if(texts[i].lang == "default") {
+        defaultTitle = texts[i].text;
+      }
+    }
+    if(defaultTitle != null) {
+      return defaultTitle;
+    }
+    else {
+      return texts[0].text
+    }
+  }
+  return null;
 }

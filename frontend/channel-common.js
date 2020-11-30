@@ -58,12 +58,35 @@ Channel.prototype.parseSchedule = function(data) {
         for(var j=0;j<programs.length;j++) {
             if(programs[j].getAttribute("programId") == programId) {
                 var description = programs[j].getElementsByTagName("BasicDescription")[0];
-                program.title = description.getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+                var titles = description.getElementsByTagName("Title");
+                program.titles = [];
+                for(var j = 0;j < titles.length;j++) {
+                  var element = titles[j];
+                  var text = {};
+                  var lang = element.getAttributeNS("http://www.w3.org/XML/1998/namespace","lang");
+                  if(!lang) {
+                    lang = "default";
+                  }
+                  text.lang = lang;
+                  text.text =  element.childNodes[0].nodeValue;
+                  text.type =  element.getAttribute("type");
+                  program.titles.push(text);
+                }
+                program.title = titles[0].childNodes[0].nodeValue;
                 var synopsis = description.getElementsByTagName("Synopsis");
                 if(synopsis.length > 0) {
-                  program.desc = "";
-                  for(var k=0;k<synopsis.length;k++) {
-                      program.desc += (synopsis[k].childNodes[0].nodeValue+"<br/>");
+                   program.descriptions = [];
+                   for(var j = 0;j < synopsis.length;j++) {
+                    var element = synopsis[j];
+                    var text = {};
+                    var lang = element.getAttributeNS("http://www.w3.org/XML/1998/namespace","lang");
+                    if(!lang) {
+                      lang = "default";
+                    }
+                    text.lang = lang;
+                    text.text =  element.childNodes[0].nodeValue;
+                    text.length =  element.getAttribute("length");
+                    program.descriptions.push(text);
                   }
                 }
                 var genre = description.getElementsByTagName("Genre")
