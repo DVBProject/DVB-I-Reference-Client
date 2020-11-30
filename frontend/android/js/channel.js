@@ -52,33 +52,48 @@ Channel.prototype.init = function( init_obj, channel_index){
         self.getNowNext();
 		self.element = document.getElementById("channel_"+channel_index);
 		if(self.element == null){			
-            var newTextbox = document.createElement('a');
-            newTextbox.href="javascript:channelSelected('"+self.id+"')";
-            newTextbox.classList.add("d-flex");
-            var span = document.createElement('span');
-            span.classList.add("chicon","pl-1","order-3");
-            var img = document.createElement('img');
-            img.setAttribute("src",self.image || "./images/empty.png");
-            span.appendChild(img);
-            newTextbox.appendChild(span);
-            var span = document.createElement('span');
-            span.classList.add("chnumber","px-1");
-            span.appendChild(document.createTextNode( self.lcn));
-            newTextbox.appendChild(span);
-            span = document.createElement('span');
-            span.classList.add("chname","text-truncate");
-            span.appendChild(document.createTextNode( self.title));
-            newTextbox.appendChild(span);
-            var li = document.createElement('li');
-            li.classList.add("list-group-item");
-            li.id = "channel_"+channel_index;
-            var container = document.createElement("div");
-            container.classList.add("d-flex","justify-content-end");
-            container.appendChild(newTextbox);
-            li.appendChild(container);
+      var newTextbox = document.createElement('a');
+      newTextbox.href="javascript:channelSelected('"+self.id+"')";
+      newTextbox.classList.add("d-flex");
+      var span = document.createElement('span');
+      span.classList.add("chicon","pl-1","order-3");
+      var img = document.createElement('img');
+      img.setAttribute("src",self.image || "./images/empty.png");
+      span.appendChild(img);
+      newTextbox.appendChild(span);
+      var span = document.createElement('span');
+      span.classList.add("chnumber","px-1");
+      span.appendChild(document.createTextNode( self.lcn));
+      newTextbox.appendChild(span);
+      span = document.createElement('span');
+      span.classList.add("chname","text-truncate");
+      span.appendChild(document.createTextNode(getLocalizedText(self.titles, language_settings.ui_language)));
+      newTextbox.appendChild(span);
+      var li = document.createElement('li');
+      li.classList.add("list-group-item");
+      li.id = "channel_"+channel_index;
+      var container = document.createElement("div");
+      container.classList.add("d-flex","justify-content-end");
+      container.appendChild(newTextbox);
+      li.appendChild(container);
 			self.element = li;
 		}
     
+}
+
+Channel.prototype.languageChanged = function() {
+  var chname = this.element.getElementsByClassName("chname")[0];
+  chname.innerHTML = '';
+  chname.appendChild(document.createTextNode(getLocalizedText(this.titles, language_settings.ui_language)));
+  if(this.selected) {
+     document.getElementsByClassName("menuitem_chname")[0].innerHTML = getLocalizedText(this.titles, language_settings.ui_language);
+  }
+  this.epg_element = null;
+  if(this.programs) {
+    for(var i = 0;i<this.programs.length;i++) {
+      this.programs[i].element = null;
+    }
+  }
 }
 
 Channel.prototype.unselected = function () {
@@ -270,7 +285,7 @@ Channel.prototype.updateChannelInfo = function () {
      var channelInfo = document.getElementById("channel_info");
      var info = "";
      info = "<span class=\"menuitem_chicon d-block\"><img src=\""+(self.image || "./images/empty.png") +"\"></span>";
-     info += "<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + self.title +"</span>";
+     info += "<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + getLocalizedText(this.titles, language_settings.ui_language) +"</span>";
      if(self.provider) {
          info += "<br/><span class=\"menuitem_provider d-inline-block\">" + self.provider +"</span>";
      }
@@ -287,7 +302,7 @@ Channel.prototype.updateChannelInfo = function () {
                     }
                 }
             }
-            info += "<span class=\"menuitem_now\">Now: "+now.title+parental+" ";
+            info += "<span class=\"menuitem_now\">Now: "+now.getTitle()+parental+" ";
             info +=  Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
         }
         var next= self.now_next["next"];
@@ -300,7 +315,7 @@ Channel.prototype.updateChannelInfo = function () {
                     }
                 }
             }
-            info += "<span class=\"menuitem_next\">Next: "+next.title+parental+" ";
+            info += "<span class=\"menuitem_next\">Next: "+next.getTitle()+parental+" ";
             info +=  next.start.create24HourTimeString()+" ";
             info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
         }
@@ -332,7 +347,7 @@ Channel.prototype.showEPG = function () {
         header.appendChild(number);
         var name = document.createElement("span");
         name.addClass("chname text-truncate d-inline-block");
-        name.innerHTML = self.title;
+        name.innerHTML =  getLocalizedText(self.titles, language_settings.ui_language);
         header.appendChild(name);
         element.appendChild(header);
         this.programList = document.createElement("ul");

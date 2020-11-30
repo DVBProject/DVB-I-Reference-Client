@@ -14,6 +14,7 @@ var parentalPin = null;
 var pinSuccessCallback = null;
 var pinFailureCallback = null;
 var serviceList = null;
+var language_settings = null;
 
 //TODO use MSE-EME to determine actual DRM support, although 
 //support also depends on the audio and video codecs.
@@ -106,7 +107,7 @@ window.onload = function(){
         parentalPin = parental_settings.parentalPin;
         document.getElementById("parentalControl").value = minimumAge;
     }
-    var language_settings = getLocalStorage("language_settings");
+    language_settings = getLocalStorage("language_settings");
     i18n = new I18n();
     if(language_settings) {
         document.getElementById("audio_language").value = language_settings.audio_language;
@@ -118,6 +119,8 @@ window.onload = function(){
         }
     }
     else {
+       language_settting = {};
+       language_settings.ui_language = DEFAULT_LANGUAGE;
        i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
     }
     video.addEventListener('loadedmetadata', function(){
@@ -573,14 +576,17 @@ function selectAudio(track) {
 }
 
 function updateLanguage() {
-    var subtitleLanguage = document.getElementById("subtitle_language").value;
-    var audioLanguage = document.getElementById("audio_language").value;
-    var uiLanguage = document.getElementById("ui_language").value;
-    var accessibleAudio = document.getElementById("accessible_audio").checked;
-    if(uiLanguage != i18n.getCurrentLanguage()) {
-       i18n.loadLanguage(uiLanguage, updateUILanguage);
+    language_settings.subtitle_language = document.getElementById("subtitle_language").value;
+    language_settings.audio_language = document.getElementById("audio_language").value;
+    language_settings.ui_language = document.getElementById("ui_language").value;
+    language_settings.accessible_audio = document.getElementById("accessible_audio").checked;
+    if(language_settings.ui_language != i18n.getCurrentLanguage()) {
+       i18n.loadLanguage(language_settings.ui_language, updateUILanguage);
     }
-    setLocalStorage("language_settings", { "subtitle_language":subtitleLanguage,"audio_language":audioLanguage,"ui_language":uiLanguage,"accessible_audio":accessibleAudio});
+    for(var i = 0;i < channels.length;i++) {
+        channels[i].languageChanged();
+    }
+    setLocalStorage("language_settings",language_settings);
 }
 
 function updateUILanguage() {

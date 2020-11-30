@@ -33,7 +33,7 @@ Program.prototype.populate = function(){
         element.appendChild(startTime);
         var title = document.createElement("div");
         title.addClass("col-8 col-md-10 col-xl-11 pl-0 text-truncate");
-        title.innerHTML = self.title;
+        title.innerHTML = self.getTitle();
         if(self.parentalRating && self.parentalRating.length > 0) {
             for(var i = 0;i < self.parentalRating.length;i++) {
                 if(self.parentalRating[i].minimumage) {
@@ -45,15 +45,15 @@ Program.prototype.populate = function(){
         element.appendChild(title);
 		self.element = element;
 	}
-    return self.element;
+  return self.element;
 }
 
 Program.prototype.populateProgramInfo = function(){
     $("#info_chicon").attr('src',this.channel.image || "./images/empty.png");
     $("#info_chnumber").text(this.channel.lcn);
-    $("#info_chname").text(this.channel.title);
-    $(".title").text(this.title);
-    $(".description").html(this.desc);
+    $("#info_chname").text( getLocalizedText(this.channel.titles, language_settings.ui_language));
+    $(".title").text(this.getTitle());
+    $(".description").html( this.getDescription());
     $(".img").attr('src',this.mediaimage);
     $(".date").text(this.start.getDate()+"."+(this.start.getMonth()+1)+".");
     $(".starttime").text(this.start.create24HourTimeString());
@@ -76,5 +76,53 @@ Program.prototype.populateProgramInfo = function(){
         $(".parentalrating").text(parental.join(" "));
     }
     $("#select_service_button").attr("href","javascript:channelSelected('"+this.channel.id+"')");
+}
+
+Program.prototype.getTitle = function() {
+  if(this.titles.length == 1) {
+    return this.titles[0].text;
+  }
+  else if(this.titles.length > 1){
+    var defaultTitle = null;
+    for(var i = 0;i < this.titles.length;i++) {
+      if(this.titles[i].type == "main" && this.titles[i].lang == language_settings.ui_language) {
+        return this.titles[i].text;
+      }
+      else if(this.titles[i].type == "main" && this.titles[i].lang == "default") {
+        defaultTitle = this.titles[i].text;
+      }
+    }
+    if(defaultTitle != null) {
+      return defaultTitle;
+    }
+    else {
+      return this.titles[0].text
+    }
+  }
+  return "";
+}
+
+Program.prototype.getDescription = function() {
     
+  if(this.descriptions.length == 1) {
+    return this.descriptions[0].text;
+  }
+  else if(this.descriptions.length > 1){
+    var defaultDesc = null;
+    for(var i = 0;i < this.descriptions.length;i++) {
+      if(this.descriptions[i].lang == language_settings.ui_language) {
+        return this.descriptions[i].text;
+      }
+      else if(this.descriptions[i].lang == "default") {
+        defaultDesc = this.descriptions[i].text;
+      }
+    }
+    if(defaultDesc != null) {
+      return defaultDesc;
+    }
+    else {
+      return this.descriptions[0].text
+    }
+  }
+  return "No description";
 }
