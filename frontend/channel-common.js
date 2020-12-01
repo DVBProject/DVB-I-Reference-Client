@@ -37,8 +37,6 @@ Channel.prototype.getGenre = function(genre) {
         else if(genre == "12") {
             return "Adult";
         }
-
-
     }
     return null; 
 }
@@ -163,4 +161,3 @@ Channel.prototype.hasAvailability = function() {
   }
   return false;
 }
-
