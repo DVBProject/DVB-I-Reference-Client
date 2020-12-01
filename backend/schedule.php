@@ -141,7 +141,7 @@ function getSchdeule( $sid,$start,$end ) {
             $event = $schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent[$i];
             $event_start = strtotime($event->PublishedStartTime);
             $event_end = $event_start + ISO8601ToSeconds($event->PublishedDuration);
-            if($start < $event_start && $event_start < $end) {
+            if($start <= $event_start && $event_start < $end) {
                 array_push($programs,$event);
             }
             if($event_end > $end) {
