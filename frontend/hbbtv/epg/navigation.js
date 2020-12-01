@@ -318,6 +318,10 @@ function keyRight(){
                 // move forward 30 minutes or to the next program if it is not visible
                 if(next.start.getTime() > _epg_.timelineend.getTime() + (1000 * 60 * 30) ) { 
                     _epg_.timelinestart = new Date(next.start.getTime() - (1000 * 60 * 30));
+                    var minutes = _epg_.timelinestart.getMinutes();
+                    if(minutes % 30 != 0) {
+                       _epg_.timelinestart.setMinutes(minutes -(minutes % 30 ));
+                    }
                     _epg_.timelineend = new Date(_epg_.timelinestart.getTime() + (1000 * 60 * 180));
                 }
                 else {
@@ -373,8 +377,12 @@ function keyLeft(){
             var previous = channel.previousProgram(currentProgram);
             if(previous != null){
                 // move backward 30 minutes
-                if( previous.end.getTime() < _epg_.timelineend.getTime() - (1000 * 60 * 30) ) { 
+                if( previous.end.getTime() < _epg_.timelineend.getTime() - (1000 * 60 * 30) ) {
                     _epg_.timelinestart = new Date(previous.start.getTime() - (1000 * 60 * 30));
+                    var minutes = _epg_.timelinestart.getMinutes();
+                    if(minutes % 30 != 0) {
+                       _epg_.timelinestart.setMinutes(minutes -(minutes % 30 ));
+                    }
                     _epg_.timelineend = new Date(_epg_.timelinestart.getTime() + (1000 * 60 * 180));
                 }
                 else {
