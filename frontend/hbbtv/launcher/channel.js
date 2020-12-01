@@ -8,7 +8,7 @@ function Channel( init_obj, element_id ){
 Channel.prototype.getNowNext = function() {
     var self = this;
     if(self.contentGuideURI) {
-        $.get( self.contentGuideURI+"?sid="+self.getServiceRef()+"&now_next=true", function( data ) { //TODO use ContentGuideServiceRef from the service
+        $.get( self.contentGuideURI+"?sid="+self.getServiceRef()+"&now_next=true", function( data ) {
             var epg = {};
             var boxes = [];
             var now_next = {};
@@ -216,7 +216,7 @@ Channel.prototype.init = function( init_obj, element_id){
             if(self.image && self.image.length > 0 ) {
                 innerHtml = "<span class=\"menuitem_chicon\"><img src=\""+self.image.replace(/&/g,"&amp;")+"\"></img></span>";
             }
-            menuitem_title.innerHTML = innerHtml+"<span class=\"menuitem_chnumber\">" + XMLEscape(self.lcn) +".</span><span class=\"menuitem_chname\">" + XMLEscape(self.title) +"</span><span class=\"sourcetype\">" + XMLEscape(self.sourceTypes) +"</span>";
+            menuitem_title.innerHTML = innerHtml+"<span class=\"menuitem_chnumber\">" + XMLEscape(self.lcn) +".</span><span class=\"menuitem_chname\">" + XMLEscape(getLocalizedText(self.titles,languages.ui_language)) +"</span><span class=\"sourcetype\">" + XMLEscape(self.sourceTypes) +"</span>";
             if(self.provider) {
                menuitem_title.innerHTML = menuitem_title.innerHTML+"<div class=\"provider\">" + XMLEscape(self.provider) +"</div>";
             }
@@ -250,6 +250,10 @@ Channel.prototype.init = function( init_obj, element_id){
         }
         self.getNowNext();
 };
+
+Channel.prototype.languageChanged = function() {
+  this.element.getElementsByClassName("menuitem_chname")[0].innerHTML =  XMLEscape(getLocalizedText(this.titles,languages.ui_language));
+}
 
 Channel.prototype.update = function(epg_obj){
 		var self = this;

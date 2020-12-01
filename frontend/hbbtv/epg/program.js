@@ -26,65 +26,77 @@ Program.prototype.init = function(programdata){
 };
 
 Program.prototype.getTitle = function(){
-	var title =  this.title;
-	if(!title && this.texts){
-		for(var i = 0; i < this.texts.length; i++){
-			if(this.texts[i].lang == _epg_.lang){
-				title = this.texts[i].serietitle || this.texts[i].title;
-				break;
-			}
-		}
-	}
-	return title;
+	 if(this.titles.length == 1) {
+    return this.titles[0].text;
+  }
+  else if(this.titles.length > 1){
+    var defaultTitle = null;
+    for(var i = 0;i < this.titles.length;i++) {
+      if(this.titles[i].type == "main" && this.titles[i].lang == languages.ui_language) {
+        return this.titles[i].text;
+      }
+      else if(this.titles[i].type == "main" && this.titles[i].lang == "default") {
+        defaultTitle = this.titles[i].text;
+      }
+    }
+    if(defaultTitle != null) {
+      return defaultTitle;
+    }
+    else {
+      return this.titles[0].text
+    }
+  }
+  return "";
 };
 
 Program.prototype.getAltTitle = function(){
-	var title =  this.title;
-	if(!title && this.texts){
-		for(var i = 0; i < this.texts.length; i++){
-			if(this.texts[i].lang == "alt"){
-				title = this.texts[i].serietitle || this.texts[i].title;
-				break;
-			}
-		}
-	}
-	return title;
+ if(this.titles.length == 1) {
+    return this.titles[0].text;
+  }
+  else if(this.titles.length > 1){
+    var defaultTitle = null;
+    for(var i = 0;i < this.titles.length;i++) {
+      if(this.titles[i].type == "secondary" && this.titles[i].lang == languages.ui_language) {
+        return this.titles[i].text;
+      }
+      else if(this.titles[i].type == "secondary" && this.titles[i].lang == "default") {
+        defaultTitle = this.titles[i].text;
+      }
+    }
+    if(defaultTitle != null) {
+      return defaultTitle;
+    }
+    else {
+      return this.titles[0].text
+    }
+  }
+  return "";
 };
 
-Program.prototype.getDescription = function(lang){
-	var desc = this.desc || "";
-	if(!desc && this.texts){
-		for(var i = 0; i < this.texts.length; i++){
-			if(this.texts[i].lang == lang){
-				desc = this.texts[i].desc;
-				break;
-			}
-		}
-	}
-	return desc;
-};
 
 Program.prototype.getSynopsisText = function(){
-	var text = "";
-	var defLangDesc = this.getDescription("def");
-	var altLangDesc = this.getDescription("alt");
-	if(defLangDesc.length >= 5) {
-	// if(defLangDesc.length >= 5 && altLangDesc.length < 5){
-		text = defLangDesc;
-	// }
-	// else if(altLangDesc.length >= 5 && defLangDesc.length < 5){
-		// text = altLangDesc;
-	// }
-	// else if(defLangDesc != altLangDesc && defLangDesc.length >= 5 && altLangDesc.length >= 5){
-		// text = defLangDesc + "<br>" + altLangDesc;
-	}
-	else{
-		text = "No Synopsis Available";
-	}
-	return text;
-};
-
-
+  if(this.descriptions.length == 1) {
+    return this.descriptions[0].text;
+  }
+  else if(this.descriptions.length > 1){
+    var defaultDesc = null;
+    for(var i = 0;i < this.descriptions.length;i++) {
+      if(this.descriptions[i].lang == languages.ui_language) {
+        return this.descriptions[i].text;
+      }
+      else if(this.descriptions[i].lang == "default") {
+        defaultDesc = this.descriptions[i].text;
+      }
+    }
+    if(defaultDesc != null) {
+      return defaultDesc;
+    }
+    else {
+      return this.descriptions[0].text
+    }
+  }
+  return "No description";
+}
 
 Program.prototype.populate = function(){
 	var self = this;

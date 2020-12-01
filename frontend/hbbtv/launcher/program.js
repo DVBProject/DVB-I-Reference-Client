@@ -23,3 +23,27 @@ Program.prototype.init = function(programdata){
 };
 
 
+Program.prototype.getTitle = function() {
+  if(this.titles.length == 1) {
+    return this.titles[0].text;
+  }
+  else if(this.titles.length > 1){
+    var defaultTitle = null;
+    for(var i = 0;i < this.titles.length;i++) {
+      if(this.titles[i].type == "main" && this.titles[i].lang == languages.ui_language) {
+        return this.titles[i].text;
+      }
+      else if(this.titles[i].type == "main" && this.titles[i].lang == "default") {
+        defaultTitle = this.titles[i].text;
+      }
+    }
+    if(defaultTitle != null) {
+      return defaultTitle;
+    }
+    else {
+      return this.titles[0].text
+    }
+  }
+  return "";
+}
+

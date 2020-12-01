@@ -47,6 +47,7 @@
     var _epg_ = null;
     var channelToOpen = 0;
     var firstChannel =  "";
+    var languages = null;
     
 
 
@@ -104,6 +105,11 @@
     }
 
     function loadChannelList(){
+        languages = getLocalStorage("languages");
+        if(!languages) {
+          languages = {};
+          languages.ui_language = "eng";
+        }
         var serviceList = getLocalStorage("servicelist");
       
         $.get( serviceList, function( data ) {

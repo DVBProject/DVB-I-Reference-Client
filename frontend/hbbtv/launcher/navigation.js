@@ -405,6 +405,7 @@ function onKey(keyCode)
 		break;
     case VK_YELLOW:
     case KeyEvent.VK_SUBTITLE:
+            hideInfobanner();
             showSettings();
             break;
 		case VK_PAUSE:
@@ -664,7 +665,7 @@ function updateBannerProgram(prefix,program) {
               }
             }
           }
-          $("#"+prefix+'title').html(program.title+parental);
+          $("#"+prefix+'title').html(program.getTitle()+parental);
           $("#"+prefix+'starttime').html(program.start ? program.start.create24HourTimeString()+" -" : "");
           $("#"+prefix+'endtime').html(program.end ? program.end.create24HourTimeString() : "");
           $("#"+prefix+'image_img').attr("src",program.mediaimage);
@@ -691,7 +692,7 @@ function updateBannerProgramDVB(prefix,program) {
 
 function showInfobanner() {
     var channel = getCurrentChannel();
-    $('#chinfo_chname').html(channel.title);
+    $('#chinfo_chname').html( getLocalizedText(channel.titles,languages.ui_language));
     $('#chinfo_chnumber').html(channel.lcn);
     $('#chinfo_chicon_img').attr("src",channel.image ? channel.image : "" );
     var serviceInstance = channel.getServiceInstance();
@@ -794,7 +795,7 @@ function channelUp(){
 			currentChIndex = channel_obj.lcn;
           
 			document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
-            document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
+            document.getElementById("info_name").innerHTML =  getLocalizedText(channel_obj.titles,languages.ui_language).replace('&', '&amp;');
             if(!menuOpen) {
                 showInfobanner();
             }
@@ -826,7 +827,7 @@ function channelDown(){
 			}
             currentChIndex = channel_obj.lcn;
             document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
-            document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
+            document.getElementById("info_name").innerHTML = getLocalizedText(channel_obj.titles,languages.ui_language).replace('&', '&amp;');
             if(!menuOpen) {
                 showInfobanner();
             }
@@ -839,6 +840,7 @@ function channelDown(){
 }
 
 function selectService(channel_obj) {
+     hideInfo();
      $("#info").addClass("hide");
      selectService.selected = false;
      selectedService = channel_obj;
@@ -1159,7 +1161,7 @@ function keyEnter(){
 			
 			if(activeBox instanceof Box){
                 document.getElementById("info_num").innerHTML = channel_obj.lcn+".";
-                document.getElementById("info_name").innerHTML = channel_obj.title.replace('&', '&amp;');
+                document.getElementById("info_name").innerHTML =  getLocalizedText(channel_obj.titles,languages.ui_language).replace('&', '&amp;');
                 currentChIndex = channel_obj.lcn;
                 selectService(channel_obj);
 			}

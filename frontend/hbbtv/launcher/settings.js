@@ -1,6 +1,6 @@
 function showSettings(selected) {
     var index = selected ? selected : 0;
-    var buttons = ["Select servicelist","Parental settings","DASH settings","Low latency settings","Default audio language","Accessible audio","Default subtitle language" ];
+    var buttons = ["Select servicelist","Parental settings","DASH settings","Low latency settings","Default audio language","Accessible audio","Default subtitle language","UI language" ];
     if(player != null) {
         try {
             var subtitles = player.getSubtitles();
@@ -71,6 +71,9 @@ function showSettings(selected) {
             }
             else if(buttons[checked] == "Default subtitle language"  ) {
                 showDefaultSubtitleSettings();
+            }
+            else if(buttons[checked] == "UI language"  ) {
+                showUILanguageSettings();
             }
      },true);
 }
@@ -545,4 +548,26 @@ function showDefaultSubtitleSettings() {
      },function() {showSettings(6);});
 }
 
+function showUILanguageSettings() {
+    var buttons = [];
+    var checked = -1;
+    var keys = i18n.getSupportedLanguages();
+    for (var i = 0; i < keys.length; i++) {
+        if(keys[i].lang == languages.ui_language) {
+           checked = i;
+        }
+        buttons.push(keys[i].name);
+    }
+    showDialog("UI language", buttons,checked,checked,
+     function(checked){
+        languages.ui_language =  i18n.getSupportedLanguages()[checked].lang;
+        setLocalStorage("languages", languages);
+        for(var i = 0;i <	_menu_.items.length;i++) {
+            _menu_.items[i].languageChanged();
+        }
+        var channel_obj = _menu_.getOpenChannel();
+        document.getElementById("info_name").innerHTML =  getLocalizedText(channel_obj.titles,languages.ui_language).replace('&', '&amp;');
+        showSettings(7);
+     },function() {showSettings(7);});
+}
 

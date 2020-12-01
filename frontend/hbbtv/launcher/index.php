@@ -34,6 +34,7 @@
     <script type="text/javascript" src="../buttonbar.js"></script>
 	<script type="text/javascript" src="../alertDialog.js"></script>
 	<script type="text/javascript" src="../dialog.js"></script>
+    <script type="text/javascript" src="../../i18n/i18n.js"></script>
     <script type="text/javascript" src="videoplayer_basic.js"></script>
     <script type="text/javascript" src="videoplayer_html5.js"></script>
     <script type="text/javascript" src="videoplayer_mse-eme.js"></script>-
@@ -93,6 +94,7 @@
 	var miniepg = null;
 	var _menu_ = null;
   var _application_ = null;
+  var i18n = new I18n();
 
   //TODO parse supported DRM systems from XMLCapabilities, for now hardcoded Playready
   var supportedDrmSystems = ["9a04f079-9840-4286-ab92-e65be0885f95"];
@@ -163,7 +165,9 @@
         languages = getLocalStorage("languages");
         if(!languages) {
           languages = {};
+          languages.ui_language = "eng";
         }
+        i18n.loadLanguage(languages.ui_language);
         var serviceList = getLocalStorage("servicelist");
         
         if(serviceList) {
@@ -322,6 +326,7 @@
                         }
                     ];
                     chan.title = dvbChannel.name;
+                    chan.titles = [ {"lang":"default","text":dvbChannel.name}]
                     chan.unlisted = true;
                     chan.serviceInstances = [];
                     chan.serviceInstances.push({"dvbChannel" :dvbChannel});
@@ -352,7 +357,7 @@
 		_menu_.populate();
         showMenu();
         document.getElementById("info_num").innerHTML = current_channel_obj.lcn+".";
-        document.getElementById("info_name").innerHTML = current_channel_obj.title.replace('&', '&amp;');
+        document.getElementById("info_name").innerHTML = getLocalizedText(current_channel_obj.titles,languages.ui_language).replace('&', '&amp;');
         hideTimer = setTimeout(function(){ hideMenu(); }, 5000);
         var channelStr = getUrlParameter("ch");
         if(channelStr) {
