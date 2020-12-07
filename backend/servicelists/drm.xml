@@ -7,8 +7,14 @@
       <LCN channelNumber="1" serviceRef="1"/>
     </LCNTable>
   </LCNTableList>
+  <ContentGuideSource CGSID="cgid-1">
+    <ProviderName>DVB-I Reference Application</ProviderName>
+    <ScheduleInfoEndpoint contentType="application/xml">
+      <URI>https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/schedule.php</URI>
+    </ScheduleInfoEndpoint>
+  </ContentGuideSource>
   <Service version="1">
-    <UniqueIdentifier>1</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-1</UniqueIdentifier>
     <ServiceInstance priority="1">
       <ContentProtection>
         <DRMSystemId encryptionScheme="cenc">
@@ -26,7 +32,7 @@
     <ProviderName>DVB</ProviderName>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>2</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-2</UniqueIdentifier>
     <ServiceInstance priority="1">
      <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
@@ -50,12 +56,12 @@
     <ProviderName>DVB</ProviderName>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>3</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-3</UniqueIdentifier>
     <ServiceInstance priority="1">
       <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="application/vnd.dvb.ait+xml">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/linked_applications/hbbtv_playready_aitx.php</tva:MediaUri>
+        <tva:MediaUri contentType="application/vnd.dvb.ait+xml">https://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/linked_applications/hbbtv_playready_aitx.php</tva:MediaUri>
       </tva:MediaLocator>
      </RelatedMaterial>
       <ContentProtection>
@@ -65,6 +71,58 @@
       </ContentProtection>
     </ServiceInstance>
     <ServiceName>Plaready linked application DRM</ServiceName>
+    <ProviderName>DVB</ProviderName>
+  </Service>
+  <Service version="1">
+    <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-4</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <ContentProtection>
+        <DRMSystemId encryptionScheme="cenc" cpsIndex="drm-cp-1">
+          <DRMSystemId>9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
+        </DRMSystemId>
+      </ContentProtection>
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://refapp.hbbtv.org/videos/02_gran_dillama_1080p_25f75g6sv5/drm/manifest.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceInstance priority="2">
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://refapp.hbbtv.org/videos/tears_of_steel_1080p_25f75g6sv3/manifest.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>Partially Playready protected service</ServiceName>
+    <ProviderName>DVB</ProviderName>
+  </Service>
+  <Service version="1">
+    <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-5</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <ContentProtection>
+        <DRMSystemId encryptionScheme="cenc" cpsIndex="drm-cp-2">
+          <DRMSystemId>edef8ba9-79d6-4ace-a3c8-27dcd51d21ed</DRMSystemId>
+        </DRMSystemId>
+      </ContentProtection>
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/1.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceInstance priority="2">
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://refapp.hbbtv.org/videos/tears_of_steel_1080p_25f75g6sv3/manifest.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>Partially Widevine protected service</ServiceName>
     <ProviderName>DVB</ProviderName>
   </Service>
 </ServiceList>
