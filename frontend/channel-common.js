@@ -52,6 +52,16 @@ Channel.prototype.parseSchedule = function(data) {
         var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
         program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toUTCDate();
         program.end  = iso6801end(events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue, program.start);
+        var instanceDescriptions = events[i].getElementsByTagName("InstanceDescription");
+        if(instanceDescriptions.length > 0) {
+          var otherIdentifiers = instanceDescriptions[0].getElementsByTagName("OtherIdentifier");
+          for(var j = 0;j < otherIdentifiers.length;j++) {
+              var type = otherIdentifiers[j].getAttribute("type");
+              if(type == "CPSIndex") {
+                  program.cpsIndex = otherIdentifiers[j].childNodes[0].nodeValue;
+              }
+          }
+        }
         program.prglen = (program.end.getTime() - program.start.getTime())/(1000*60);
         for(var j=0;j<programs.length;j++) {
             if(programs[j].getAttribute("programId") == programId) {
@@ -160,4 +170,18 @@ Channel.prototype.hasAvailability = function() {
     }
   }
   return false;
+}
+
+Channel.prototype.getServiceInstanceByCPSIndex = function(cpsIndex) {
+  for(var i=0;i<this.serviceInstances.length;i++) {
+    if(this.serviceInstances[i].contentProtection) {
+      for(var j=0;j<this.serviceInstances[i].contentProtection.length;j++) {
+        var contentProtection = this.serviceInstances[i].contentProtection[j];
+        if(contentProtection.cpsIndex == cpsIndex) {
+          return this.serviceInstances[i];
+        }
+      }
+    }
+  }
+  return null;
 }

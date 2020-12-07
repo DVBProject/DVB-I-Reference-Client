@@ -158,7 +158,6 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
             instance.parallelApps = [];
             instance.mediaPresentationApps = [];
             var contentProtectionElements =  getChildElements(serviceInstances[j],"ContentProtection");
-            var drmSupported = true;
             for(var k = 0;k < contentProtectionElements.length;k++) {
               for(var l = 0;l < contentProtectionElements[k].childNodes.length;l++) {
                 if(contentProtectionElements[k].childNodes[l].nodeName == "DRMSystemId") {
@@ -166,6 +165,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
                   var drm = {};
                   drm.encryptionScheme = drmSystem.getAttribute("encryptionScheme");
                   drm.drmSystemId = drmSystem.getElementsByTagName("DRMSystemId")[0].childNodes[0].nodeValue;
+                  drm.cpsIndex = drmSystem.getAttribute("cpsIndex");
                   instance.contentProtection.push(drm);
                 }
               }
