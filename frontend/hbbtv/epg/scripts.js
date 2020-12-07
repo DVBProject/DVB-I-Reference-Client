@@ -122,23 +122,3 @@ function convertToDateObject(datestr){
 	}
 	return null;
 }
-
-function imageFadeIn(){
-	// if image not complete (not in browser cache make the div appear after image is ready)
-	if( ! $(this)[0].complete )
-	{
-		var fadeobject = $(this);
-		fadeobject.css("opacity", "0.5");
-		fadeobject.addClass("transition03all");
-		$(this).load( function(){  
-			fadeobject.css("opacity", "1"); 
-		} );
-		$(this).error( function() 
-		{ 
-			missingImages[ $(this).attr('src') ] = true;  
-			console.log("Image not found: " + $(this).attr('src') );
-			$(this).attr('src', "http://static.mtvkatsomo.fi/cms/images/33017030_550x310.jpg");
-			fadeobject.css("opacity", "1");			
-		});
-	}
-}
