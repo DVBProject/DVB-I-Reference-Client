@@ -31,6 +31,12 @@ body.player {
 .icon-white {
     filter: invert(100%);
 }
+.icon-red {
+  filter: invert(.5) sepia(1) saturate(35) hue-rotate(-15deg);
+}
+.icon-green {
+  filter: invert(.5) sepia(1) saturate(35) hue-rotate(-250deg);
+}
 .main {
   flex: 1; }
 
