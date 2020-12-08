@@ -36,6 +36,12 @@ function channelSelected(channelId) {
     else if(!newChannel) {
         return;
     }
+    if(newChannel.serviceInstances.length == 0) {
+      $("#notification").text("Service not supprted");
+      $("#notification").show();
+      setTimeout(function() { $("#notification").hide();} , 5000);
+      return;
+    }
     closeEpg();
     if(selectedChannel) {
         selectedChannel.unselected();

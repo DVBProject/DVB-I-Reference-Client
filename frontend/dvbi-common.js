@@ -267,9 +267,6 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
                 instances.push(instance);
             }
         }
-        if(instances.length == 0 && chan.mediaPresentationApps.length == 0) {
-            continue;
-        }
         for(var j = 0;j < lcnList.length;j++) {
             if(lcnList[j].getAttribute("serviceRef") == chan.id) {
                 chan.lcn = parseInt(lcnList[j].getAttribute("channelNumber"));

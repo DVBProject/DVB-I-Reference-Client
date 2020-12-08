@@ -75,6 +75,9 @@ Channel.prototype.init = function( init_obj, channel_index){
       var container = document.createElement("div");
       container.classList.add("d-flex","justify-content-end");
       container.appendChild(newTextbox);
+      if(this.serviceInstances.length ==  0) {
+        container.classList.add("unavailable");
+      }
       li.appendChild(container);
 			self.element = li;
 		}
