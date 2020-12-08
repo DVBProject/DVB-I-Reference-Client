@@ -304,9 +304,19 @@ Channel.prototype.updateChannelInfo = function () {
             }
             info += "<span class=\"menuitem_now\">Now: "+now.getTitle()+parental+" ";
             info +=  Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
+            if(now.cpsIndex) {
+              var cpsInstance = this.getServiceInstanceByCPSIndex(now.cpsIndex);
+              if(cpsInstance) {
+                  info += '<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>';
+              }
+              else {
+                   info += '<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>';
+              }
+           }
         }
         var next= self.now_next["next"];
         if(next) {
+            var parental = "";
             if(next.parentalRating && next.parentalRating.length > 0) {
                 for(var i = 0;i < next.parentalRating.length;i++) {
                     if(next.parentalRating[i].minimumage) {
@@ -318,6 +328,15 @@ Channel.prototype.updateChannelInfo = function () {
             info += "<span class=\"menuitem_next\">Next: "+next.getTitle()+parental+" ";
             info +=  next.start.create24HourTimeString()+" ";
             info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
+            if(next.cpsIndex) {
+              var cpsInstance = this.getServiceInstanceByCPSIndex(next.cpsIndex);
+              if(cpsInstance) {
+                  info += '<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>';
+              }
+              else {
+                   info += '<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>';
+              }
+           }
         }
      }
      channelInfo.innerHTML = info;
