@@ -25,6 +25,9 @@
     <ScheduleInfoEndpoint contentType="application/xml">
       <URI>https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
+    <MoreEpisodesEndpoint contentType="application/xml">
+      <URI>https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/more_episodes.php</URI>
+    </MoreEpisodesEndpoint>
   </ContentGuideSource>
   <Service version="1">
     <UniqueIdentifier>sid1</UniqueIdentifier>
