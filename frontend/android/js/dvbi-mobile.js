@@ -125,7 +125,7 @@ window.onload = function(){
         }
     }
     else {
-       language_settting = {};
+       language_setttings = {};
        language_settings.ui_language = DEFAULT_LANGUAGE;
        i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
     }
