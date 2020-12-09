@@ -50,6 +50,7 @@ function channelSelected(channelId) {
     $("#tracklist").hide();
     $("#subtitle").hide();
     $("#audio").hide();
+    $("#pause").hide();
     newChannel.channelSelected();
     selectedChannel = newChannel;
 
@@ -80,6 +81,8 @@ window.onload = function(){
        if(audio && audio.length > 1) {
           $("#audio").show();
        }
+       $("#pause a").text("Pause");
+       $("#pause").show();
     });
     
     player = dashjs.MediaPlayer().create();
@@ -696,4 +699,14 @@ function isDRMSystemSupported(drmSystemId) {
     }
   }
   return false;
+}
+
+function togglePause() {
+  if(player.isPaused()) {
+    player.play();
+  }
+  else {
+    player.pause();
+    $("#pause a").text("Play");
+  }
 }

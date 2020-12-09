@@ -409,8 +409,22 @@ function onKey(keyCode)
             showSettings();
             break;
 		case VK_PAUSE:
+      if(player) {
+        if( player.isPlaying() ){
+	        player.pause();
+        }
+        else{
+	        player.play();
+        }
+      }
+      break;
 		case VK_PLAY:
-            
+      if(player) {
+        if(! player.isPlaying() ) {
+          player.play();
+        }
+      }
+      break;
 		case VK_STOP:
 			return false;
 		break;
