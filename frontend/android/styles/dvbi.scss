@@ -105,6 +105,9 @@ body.player {
         height: 40px;
         line-height: 40px;
         padding: 0px;
+        .unavailable {
+          opacity: 0.3;
+        }
         a {
           color: $lightgrey-color;
           text-decoration: none;
