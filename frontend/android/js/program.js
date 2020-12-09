@@ -32,7 +32,7 @@ Program.prototype.populate = function(){
         startTime.innerHTML = self.start.create24HourTimeString();
         element.appendChild(startTime);
         var title = document.createElement("div");
-        title.addClass("col-8 col-md-10 col-xl-11 pl-0 text-truncate");
+        title.addClass("col-6 col-md-8 col-xl-10 px-0 text-truncate");
         title.innerHTML = self.getTitle();
         if(self.parentalRating && self.parentalRating.length > 0) {
             for(var i = 0;i < self.parentalRating.length;i++) {
@@ -46,10 +46,10 @@ Program.prototype.populate = function(){
         if(self.cpsIndex) {
           var cpsInstance = self.channel.getServiceInstanceByCPSIndex(self.cpsIndex);
           if(cpsInstance) {
-             $(element).append($('<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>'));
+             $(element).append($('<div class="chdrm col-2 col-md-2 col-xl-1 px-0 d-block text-right"><img src="images/lock.svg" class="icon-green"></div>'));
           }
           else {
-            $(element).append($('<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>'));
+            $(element).append($('<div class="chdrm col-2 col-md-2 col-xl-1 px-0 d-block text-right"><img src="images/lock.svg" class="icon-red"></div>'));
           }
         }
 		self.element = element;
