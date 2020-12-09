@@ -570,7 +570,18 @@ GridEPG.prototype.populateProgramDetail = function(program){
 					this.autoScrollDetailProgramTitle();
 				}
 			}
-
+      program.getChannel().getMoreEpisodes(program.programId, function(episodes) {
+        if(episodes) {
+          var episodeList = "<br/>More episodes:<br/>";
+          for(var i = 0;i< episodes.length;i++) {
+              episodeList += episodes[i].getTitle()+" "+episodes[i].start.getDate()+"."+(episodes[i].start.getMonth()+1)+". "+episodes[i].start.create24HourTimeString()+"-"+episodes[i].end.create24HourTimeString()+"<br/>";
+          }
+          description_text.innerHTML += episodeList;
+          if(description_text.scrollHeight > description_text.offsetHeight){
+            self.autoScrollDescriptionText();
+          }
+        }
+      });
 			var imageurls = [];
 			if(program["serieimage"]){ imageurls.push(program["serieimage"]); }
 			if(program["mediaimage"]){ imageurls.push(program["mediaimage"]); }
