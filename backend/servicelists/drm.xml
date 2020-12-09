@@ -92,7 +92,7 @@
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/videos/tears_of_steel_1080p_25f75g6sv3/manifest.mpd</URI>
+          <URI>https://refapp.hbbtv.org/livesim/02_llamav2/manifest_baseurl.mpd</URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -118,7 +118,7 @@
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/videos/tears_of_steel_1080p_25f75g6sv3/manifest.mpd</URI>
+          <URI>https://refapp.hbbtv.org/livesim/02_llamav2/manifest_baseurl.mpd</URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
