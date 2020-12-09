@@ -16,6 +16,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     var services = getChildElements(doc.documentElement,"Service");
     var contentGuides = getChildElements(doc.documentElement,"ContentGuideSource");
     var contentGuideURI = null;
+    var moreEpisodesURI = null;
     var channelmap = [];
     if(dvbChannels) {
       for(var i = 0;i<dvbChannels.length;i++) {
@@ -26,6 +27,10 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     }
     if(contentGuides.length > 0) {
         contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+        var moreEpisodes =  contentGuides[0].getElementsByTagName("MoreEpisodesEndpoint");
+        if(moreEpisodes.length > 0) {
+          moreEpisodesURI = moreEpisodes[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+        }
     }
     var relatedMaterial = getChildElements(doc.documentElement,"RelatedMaterial");
     for(var j = 0;j < relatedMaterial.length;j++) {
@@ -85,6 +90,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     for (var i = 0; i < services.length ;i++) {
         var chan = {};
         chan.contentGuideURI = contentGuideURI;
+        chan.moreEpisodesURI = moreEpisodesURI;
         chan.code = i;
         var serviceNames = services[i].getElementsByTagName("ServiceName");
         chan.titles = [];

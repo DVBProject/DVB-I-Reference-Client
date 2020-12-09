@@ -72,7 +72,7 @@ Program.prototype.populateProgramInfo = function(){
     }
     $("#info_chname").text( getLocalizedText(this.channel.titles, language_settings.ui_language));
     $(".title").text(this.getTitle());
-    $(".description").html( this.getDescription());
+    $("#description").html( this.getDescription());
     $(".img").attr('src',this.mediaimage);
     $(".date").text(this.start.getDate()+"."+(this.start.getMonth()+1)+".");
     $(".starttime").text(this.start.create24HourTimeString());
@@ -95,6 +95,18 @@ Program.prototype.populateProgramInfo = function(){
         $(".parentalrating").text(parental.join(" "));
     }
     $("#select_service_button").attr("href","javascript:channelSelected('"+this.channel.id+"')");
+    this.channel.getMoreEpisodes(this.programId, function(episodes) {
+      if(episodes) {
+        var episodeList = "More episodes<br/>";
+        for(var i = 0;i< episodes.length;i++) {
+            episodeList += episodes[i].getTitle()+" "+episodes[i].start.getDate()+"."+(episodes[i].start.getMonth()+1)+". "+episodes[i].start.create24HourTimeString()+"-"+episodes[i].end.create24HourTimeString()+"<br/>";
+        }
+         $("#more_episodes").html(episodeList);
+      }
+      else {
+        $("#more_episodes").html("");
+      }
+    });
 }
 
 Program.prototype.getTitle = function() {

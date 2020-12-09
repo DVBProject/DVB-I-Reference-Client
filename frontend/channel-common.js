@@ -50,6 +50,7 @@ Channel.prototype.parseSchedule = function(data) {
     for(var i=0;i<events.length;i++) {      
         var program = {};
         var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
+        program.programId = programId;
         program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toUTCDate();
         program.end  = iso6801end(events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue, program.start);
         var instanceDescriptions = events[i].getElementsByTagName("InstanceDescription");
@@ -184,4 +185,17 @@ Channel.prototype.getServiceInstanceByCPSIndex = function(cpsIndex) {
     }
   }
   return null;
+}
+
+Channel.prototype.getMoreEpisodes = function(programId,callback) {
+  var self = this;
+  if(this.moreEpisodesURI && typeof(callback) == "function") {
+    $.get( this.moreEpisodesURI+"?pid="+programId+"&type=ondemand", function( data ) {
+      var episodes = self.parseSchedule(data);
+      callback.call(callback,episodes);
+    },"text");
+  }
+  else if(typeof(callback) == "function"){
+   callback.call(null);
+  }
 }
