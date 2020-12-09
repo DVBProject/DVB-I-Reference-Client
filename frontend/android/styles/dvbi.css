@@ -88,6 +88,8 @@ body.player {
       height: 40px;
       line-height: 40px;
       padding: 0px; }
+      .video_wrapper .player-ui .list-group .list-group-item .unavailable {
+        opacity: 0.3; }
       .video_wrapper .player-ui .list-group .list-group-item a {
         color: #848484;
         text-decoration: none;
