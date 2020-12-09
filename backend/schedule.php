@@ -1,5 +1,4 @@
 <?php
-//TODO 
 header('Content-Type: text/xml');
 header("Access-Control-Allow-Origin: *");
 $timeformat = "Y-m-d\TH:i:s\Z";
