@@ -682,8 +682,7 @@ function updateBannerProgram(prefix,program) {
           $("#"+prefix+'title').html(program.getTitle()+parental);
           $("#"+prefix+'starttime').html(program.start ? program.start.create24HourTimeString()+" -" : "");
           $("#"+prefix+'endtime').html(program.end ? program.end.create24HourTimeString() : "");
-          $("#"+prefix+'image_img').attr("src",program.mediaimage);
-          $("#"+prefix+'protected').attr("src",program.mediaimage);
+          $("#"+prefix+'image_img').attr("src",program.mediaimage ? program.mediaimage : "" );
           if(program.cpsIndex) {
             var cpsInstance = program.getChannel().getServiceInstanceByCPSIndex(program.cpsIndex);
             if(cpsInstance) {
