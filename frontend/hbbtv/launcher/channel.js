@@ -71,6 +71,15 @@ Channel.prototype.getNowNext = function() {
                             if(now_end){
                                 info += "<span class=\"timeremaining\">" + Math.max(0, Math.round((now_end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
                             }
+                            if(now.cpsIndex) {
+                              var cpsInstance = self.getServiceInstanceByCPSIndex(now.cpsIndex);
+                              if(cpsInstance) {
+                                  info += '<span class="lock"><img src="../CommonUI/lock_green.png"/></span>';
+                              }
+                              else {
+                                  info += '<span class="lock"><img src="../CommonUI/lock_red.png"/></span>';
+                              }
+                            }
                             
                             
                             if(now_end && now_start){
@@ -134,6 +143,15 @@ Channel.prototype.getNowNext = function() {
 							if(next_start && next_end){
 								info += "<span class=\"duration\"> Duration " + Math.max(0, Math.round((next_end.getTime() - next_start.getTime()) / 1000 / 60)) + " mins</span>";
 							}
+              if(next.cpsIndex) {
+                var cpsInstance = self.getServiceInstanceByCPSIndex(now.cpsIndex);
+                if(cpsInstance) {
+                    info += '<span class="lock"><img src="../CommonUI/lock_green.png"/></span>';
+                }
+                else {
+                    info += '<span class="lock"><img src="../CommonUI/lock_red.png"/></span>';
+                }
+              }
 							//info += "</span>";
 							
                             
