@@ -7,6 +7,10 @@
 					<Title type="main">FTA program</Title>
 					<Synopsis length="medium">Live AAC + AVC + clear + ads inserted via AWS MT by Unified Streaming</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+           <mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
+           <ExplanatoryText length="long">Contains strong language and flash photography</ExplanatoryText>
+         </ParentalGuidance>
 				</BasicDescription>
 			</ProgramInformation>
 			<ProgramInformation programId="crid://dvbi-reference/dvbstreams.21.12026822">
@@ -14,21 +18,25 @@
 					<Title type="main">Widevine DRM protected program</Title>
 					<Synopsis length="medium">Live AAC + AVC + clear + ads inserted via AWS MT by Unified Streaming</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+         <ParentalGuidance>
+           <mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
+           <ExplanatoryText length="long">Contains strong language and flash photography</ExplanatoryText>
+         </ParentalGuidance>
 				</BasicDescription>
 			</ProgramInformation>
 		</ProgramInformationTable>
 		<ProgramLocationTable lang="eng">
 			<Schedule start="DATE_TEMPLATE 00:00:00" end="DATE_TEMPLATE 23:59:59" serviceIDRef="4">
 				<ScheduleEvent>
-					<Program crid="crid://dvbi-reference/dvbstreams.21.12026821"/>
-					<PublishedStartTime>DATE_TEMPLATET00:00:00Z</PublishedStartTime>
-					<PublishedDuration>PT12H</PublishedDuration>
-				</ScheduleEvent>
-        <ScheduleEvent>
 					<Program crid="crid://dvbi-reference/dvbstreams.21.12026822"/>
           <InstanceDescription>
             <OtherIdentifier type="CPSIndex">drm-cp-2</OtherIdentifier>
           </InstanceDescription>
+					<PublishedStartTime>DATE_TEMPLATET00:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT12H</PublishedDuration>
+				</ScheduleEvent>
+        <ScheduleEvent>
+					<Program crid="crid://dvbi-reference/dvbstreams.21.12026821"/>
 					<PublishedStartTime>DATE_TEMPLATET12:00:00Z</PublishedStartTime>
 					<PublishedDuration>PT12H</PublishedDuration>
 				</ScheduleEvent>
