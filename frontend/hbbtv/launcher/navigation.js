@@ -157,23 +157,31 @@ function registerKeys() {
 }
 
 function onChannelChangeSucceeded(channel) {
-    console.log("onChannelChangeSucceeded:"+channel.name);
     if(languages.subtitleLanguage ) {
       var subtitles = getDVBTracks(broadcast.COMPONENT_TYPE_SUBTITLE);
       for(var i = 0;i < subtitles.length;i++) { 
           if(subtitles[i].lang == languages.subtitleLanguage) {
-            selectDVBTrack(checked, supervisor.COMPONENT_TYPE_SUBTITLE);
+            selectDVBTrack(i, supervisor.COMPONENT_TYPE_SUBTITLE);
             break;
           }
       }
     }
     if(languages.audioLanguage ) {
        var audioTracks = getDVBTracks(broadcast.COMPONENT_TYPE_AUDIO);
-       for(var i = 0;i < audioTracks.length;i++) { 
-          if(audioTracks[i].lang == languages.audioLanguage) {
-            selectDVBTrack(checked, supervisor.COMPONENT_TYPE_AUDIO);
+       var selectedIndex = -1;
+       for(var i = 0;i < audioTracks.length;i++) {
+        if(audioTracks[i].lang == languages.audioLanguage) {
+          if(languages.accessibleAudio && audioTracks[i].type == "visual impaired") {
+            selectDVBTrack(i, broadcast.COMPONENT_TYPE_AUDIO);
             break;
           }
+          else {
+            selectedIndex = i;
+          }
+        }
+        if(selectedIndex >= 0) {
+           selectDVBTrack(selectedIndex, broadcast.COMPONENT_TYPE_AUDIO);
+        }
       }
     }
 }
@@ -549,9 +557,16 @@ function getDVBTracks(type) {
   var broadcastElement = supervisor ? supervisor : broadcast;
 
   tracks = broadcastElement.getComponents(type);
-  var trackList = [];  
+  var activeTracks = broadcastElement.getCurrentActiveComponents(type);
+  var trackList = [];
   for(var i = 0;i<tracks.length;i++) {
     var track = {};
+    for(var j = 0;j < activeTracks.length;j++) {
+      if(activeTracks[j].pid == tracks[i].pid) {
+        track.current = true;
+        break;
+      }
+    }
     track.lang = tracks[i].language;
     if(tracks[i].audioDescription) {
       track.type = "visual impaired";
