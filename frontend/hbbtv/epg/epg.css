@@ -759,9 +759,7 @@ body {
     font-weight:  700;
 }
 #detail_genre {
-	_border-right: 2px solid #606060;
 	padding-right: 5px;	
-	margin-right: 5px;
 }
 #detail_year{
 	color: #606060;	
@@ -770,8 +768,7 @@ body {
 	line-height: 20px;
 	height: 20px;
 	margin-top: 4px;
-	_border-left: 2px solid #606060;
-	padding-left: 10px;
+	_padding-left: 10px;
 	width: auto;
 	float: left;
 	display: inline-block;
@@ -1590,6 +1587,10 @@ opacity: 1;
 
 #available {
   float: left;
+  width: 20px;
+  top: 4px;
+  position: relative;
+  margin-left: 10px;
 }
 
 

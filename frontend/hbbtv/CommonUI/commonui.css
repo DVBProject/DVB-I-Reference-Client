@@ -943,14 +943,16 @@ img#logo {
 .boxitem.viewtvguide.focused .boxitem_info {
 	display: none !important;	
 }
+.boxitem_info span.horizontalAutoscroll {
+  display: block;
+	margin-bottom: 4px;	  
+}
 .boxitem_info span {
 	font-size: 16px;
 	line-height: 18px;
 	color: white;
-	display:block;
-	_margin-top: 0px !important;	
+	display:inline-block;
 }
-
 .boxitem_info span span:not(.timeremaining){
 	display:block;
 	width: 210px;
@@ -961,10 +963,10 @@ img#logo {
 }
 .boxitem_info span:first-child{
 	margin-top: 0px;
-    height: 20px;
+  height: 20px;
 }
-.boxitem_info span.horizontalAutoscroll {
-	margin-bottom: 4px;	
+.boxitem_info span.lock{
+  margin-left: 5px;
 }
 .timeremaining {
 	color: #808080 !important;
