@@ -7,6 +7,10 @@
 					<Title type="main">FTA program</Title>
 					<Synopsis length="medium">Live AAC + AVC + clear + ads inserted via AWS MT by Unified Streaming</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+           <mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
+           <ExplanatoryText length="long">Contains strong language and flash photography</ExplanatoryText>
+         </ParentalGuidance>
 				</BasicDescription>
 			</ProgramInformation>
 			<ProgramInformation programId="crid://dvbi-reference/dvbstreams.20.12026822">
@@ -14,6 +18,10 @@
 					<Title type="main">Playready DRM protected program</Title>
 					<Synopsis length="medium">Live AAC + AVC + clear + ads inserted via AWS MT by Unified Streaming</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
+          <ParentalGuidance>
+           <mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
+           <ExplanatoryText length="long">Contains strong language and flash photography</ExplanatoryText>
+         </ParentalGuidance>
 				</BasicDescription>
 			</ProgramInformation>
 		</ProgramInformationTable>

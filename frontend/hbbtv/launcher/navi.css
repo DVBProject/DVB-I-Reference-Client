@@ -751,3 +751,7 @@ div, span {
   z-index:300;
   background-color: #0008
 }
+
+.lock img {
+  height: 20px;
+}
