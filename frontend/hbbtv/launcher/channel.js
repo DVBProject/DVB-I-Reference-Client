@@ -144,7 +144,7 @@ Channel.prototype.getNowNext = function() {
 								info += "<span class=\"duration\"> Duration " + Math.max(0, Math.round((next_end.getTime() - next_start.getTime()) / 1000 / 60)) + " mins</span>";
 							}
               if(next.cpsIndex) {
-                var cpsInstance = self.getServiceInstanceByCPSIndex(now.cpsIndex);
+                var cpsInstance = self.getServiceInstanceByCPSIndex(next.cpsIndex);
                 if(cpsInstance) {
                     info += '<span class="lock"><img src="../CommonUI/lock_green.png"/></span>';
                 }
