@@ -174,12 +174,15 @@ Channel.prototype.hasAvailability = function() {
 }
 
 Channel.prototype.getServiceInstanceByCPSIndex = function(cpsIndex) {
-  for(var i=0;i<this.serviceInstances.length;i++) {
-    if(this.serviceInstances[i].contentProtection) {
-      for(var j=0;j<this.serviceInstances[i].contentProtection.length;j++) {
-        var contentProtection = this.serviceInstances[i].contentProtection[j];
-        if(contentProtection.cpsIndex == cpsIndex) {
-          return this.serviceInstances[i];
+  if(cpsIndex) {
+    for(var i=0;i<this.serviceInstances.length;i++) {
+      console.log(this.serviceInstances[i]);
+      if(this.serviceInstances[i].contentProtection) {
+        for(var j=0;j<this.serviceInstances[i].contentProtection.length;j++) {
+          var contentProtection = this.serviceInstances[i].contentProtection[j];
+          if(contentProtection.cpsIndex == cpsIndex) {
+            return this.serviceInstances[i];
+          }
         }
       }
     }

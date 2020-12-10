@@ -174,3 +174,8 @@
 #list_logo {
   width: 180px;
 }
+
+#chinfo_next_protected,#chinfo_now_protected {
+  top:32px;
+  left: 270px;
+}
