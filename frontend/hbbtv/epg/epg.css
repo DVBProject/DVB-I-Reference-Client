@@ -1582,7 +1582,15 @@ body {
 #blueb.show {
 opacity: 1;
 	
-}	
+}
+
+.lock {
+  height: 20px;
+}
+
+#available {
+  float: left;
+}
 
 
 

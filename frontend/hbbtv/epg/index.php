@@ -292,6 +292,7 @@
                                 </span><span id="detail_audio"></span>
                             </div>
                             <div id="detail_year"></div>
+                            <div id="available"></div>
                             <div id="rating"></div>
                         </div>
                         <div id="detail_programimage_container">                        

@@ -553,6 +553,18 @@ GridEPG.prototype.populateProgramDetail = function(program){
 					program_time.innerHTML += ", " + timeLeftText;
 				}
 				if(title.innerHTML != program.getTitle()){
+          if(program.cpsIndex) {
+            var cpsInstance = program.getChannel().getServiceInstanceByCPSIndex(program.cpsIndex);
+            if(cpsInstance) {
+                $("#available").html('<img class="lock" src="../CommonUI/lock_green.png"/>');
+            }
+            else {
+               $("#available").html('<img  class="lock" src="../CommonUI/lock_red.png"/>');
+            }
+          }
+          else {
+            $("#available").empty();
+          }
 					title.innerHTML = htmlDecode(program.getTitle());
 					if(program.bilingual){
 						title.innerHTML += " " + htmlDecode(program.getAltTitle()); 
