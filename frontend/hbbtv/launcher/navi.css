@@ -169,7 +169,7 @@ div, span {
 	height:7px;
 	/*width:220px;*/
 	width: 233px;
-	background-color: #353535;
+  background-color: rgba(0,0,0,0.2);
 	top:50px;
 	left:0px;
 	display: inherit;
@@ -754,4 +754,5 @@ div, span {
 
 .lock img {
   height: 20px;
+  width: 20px;
 }

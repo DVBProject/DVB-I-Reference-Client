@@ -797,7 +797,7 @@ img#logo {
 .boxitem:last-child{
 	margin-right: 90px;
 }
-
+/*
 .boxitem.focused .boxitem_image:after {
 	background: url("../CommonUI/bg_boxitem_image.png");
 	content: "";
@@ -807,7 +807,7 @@ img#logo {
   	height:10px;
   	bottom: 0px;
 }
-/**/
+
 .box-item:last-child {
 	border: 2px solid red !important;
 	padding-right: 50px;
@@ -822,9 +822,10 @@ img#logo {
   	height:10px;
   	bottom: 0px;
 }
+*/
 .boxitem img {
-  max-height: 131px;
-  max-width: 233px;
+  height: 131px;
+  width: 233px;
   text-align: center;
   vertical-align: middle;
   margin-left: auto;
@@ -833,6 +834,7 @@ img#logo {
 	-webkit-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
 	transition: all 0.2s linear; 
+  object-fit: cover;
 }
 .boxitem_image {
 	background-color: #000;	
@@ -846,6 +848,7 @@ img#logo {
 	background-size:cover;
   border: 2px solid #000;
   border-radius: 2px;
+  overflow: hidden;
 }
 .boxitem_image img:before {
   color: #8C8C8C !important;
@@ -945,13 +948,14 @@ img#logo {
 }
 .boxitem_info span.horizontalAutoscroll {
   display: block;
-	margin-bottom: 4px;	  
+	margin-bottom: 2px;	  
 }
 .boxitem_info span {
 	font-size: 16px;
-	line-height: 18px;
 	color: white;
 	display:inline-block;
+  line-height: 14px;
+  margin-bottom: 4px;
 }
 .boxitem_info span span:not(.timeremaining){
 	display:block;
@@ -971,14 +975,14 @@ img#logo {
 .timeremaining {
 	color: #808080 !important;
 	font-size: 14px !important;	
-	height: 15px;
+	height: 20px;
 	line-height: 14px !important;
 	margin-bottom: 4px;
 }
 .duration {
 	color: #808080 !important;
 	font-size: 14px !important;	
-	height: 15px;
+	height: 20px;
 	line-height: 14px !important;
 	margin-bottom: 4px;
 }
