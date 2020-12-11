@@ -107,6 +107,7 @@ Channel.prototype.unselected = function () {
     }
     self.selected = false;
     self.element.classList.remove("active");
+    player.attachSource(null);
 }
 
 Channel.prototype.getMediaPresentationApp = function(serviceInstance) {
