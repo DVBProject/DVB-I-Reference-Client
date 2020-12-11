@@ -133,24 +133,34 @@ window.onload = function(){
        i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
     }
     video.addEventListener('loadedmetadata', function(){
-        if(language_settings.audio_language) {
-          var audio = player.getTracksFor("audio");
-          for(var i = 0;i < audio.length;i++) {
-            if(audio[i].language == language_settings.audio_language) {
+      if(language_settings.audio_language) {
+        var audio = player.getTracksFor("audio");
+        var track = null;
+        for(var i = 0;i < audio.length;i++) {
+          if(audio[i].lang == language_settings.audio_language) {
+            if(language_settings.accessible_audio && audio[i].roles.includes("supplementary")) {
               player.setCurrentTrack(audio[i]);
+              track = null;
               break;
             }
-          }
-         }
-         if(language_settings.subtitle_language) {
-          var subtitles = player.getTracksFor("fragmentedText");
-          for(var i = 0;i < subtitles.length;i++) {
-            if(subtitles[i].language == language_settings.subtitle_language) {
-              player.setTextTrack(subtitles[i]);
-              break;
+            if(track == null) {
+              track = audio[i];
             }
           }
-         }
+        }
+        if(track) {
+          player.setCurrentTrack(track);
+        }
+       }
+       if(language_settings.subtitle_language) {
+        var subtitles = player.getTracksFor("fragmentedText");
+        for(var i = 0;i < subtitles.length;i++) {
+          if(subtitles[i].lang == language_settings.subtitle_language) {
+            player.setTextTrack(subtitles[i]);
+            break;
+          }
+        }
+       }
     });
     var languages = i18n.getSupportedLanguages();
     var select = document.getElementById("ui_language");
