@@ -312,6 +312,17 @@ function convertToDateObject(datestr){
     return null;
 }
 
+function arrayContains(array,value) {
+  console.log(array,value);
+  for(var i = 0;i<array.length;i++) {
+    if(array[i] == value) {
+      console.log("found!");
+      return true;
+    }
+  }
+  console.log("not found!");
+  return false;
+}
 function getMenuByName(menu, name){
     for(var item in menu["items"]){
         if(menu["items"][item]["name"] != null && menu["items"][item]["name"] == name){

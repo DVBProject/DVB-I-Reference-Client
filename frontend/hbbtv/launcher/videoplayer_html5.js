@@ -88,12 +88,21 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 	} );
 	
 	player.addEventListener('loadedmetadata', function(){
-
-    for (i=0; i < this.video.audioTracks.length; i++) {
-      if (video.audioTracks[i].language == languages.audioLanguage) {
-          video.audioTracks[i].enabled = true;
-      } else {
-          video.audioTracks[i].enabled = false;
+    if(languages.audioLanguage ) {
+      console.log(self.video.audioTracks);
+      var track = null;
+      for (i=0; i < self.video.audioTracks.length; i++) {
+        if(self.video.audioTracks[i].language == languages.audioLanguage) {
+            if(languages.accessibleAudio && elf.video.audioTracks.kind == "supplementary") {
+              self.video.audioTracks[i].enabled = true;
+            }
+            else if(track == null) {
+              track = self.video.audioTracks[i];
+            }
+        }
+      }
+      if(track != null) {
+        track.enabled = true;
       }
     }
 		console.log("loadedmetadata");
@@ -875,15 +884,6 @@ VideoPlayerHTML5.prototype.isPlaying = function(){
 	return ( this.video && !this.video.paused ); // return true/false
 };
 
-VideoPlayerHTML5.prototype.getAudioTracks = function(){
-	try{
-		var tracks = this.video.audioTracks;
-		return tracks.length;
-	} catch(e){
-		console.log(e.message);
-		return 0;
-	}
-};
 
 VideoPlayerHTML5.prototype.getSubtitles = function() {
     var subtitles = this.video.textTracks;

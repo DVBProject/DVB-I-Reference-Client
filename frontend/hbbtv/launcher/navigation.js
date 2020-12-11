@@ -173,15 +173,16 @@ function onChannelChangeSucceeded(channel) {
         if(audioTracks[i].lang == languages.audioLanguage) {
           if(languages.accessibleAudio && audioTracks[i].type == "visual impaired") {
             selectDVBTrack(i, broadcast.COMPONENT_TYPE_AUDIO);
+            selectedIndex = -1;
             break;
           }
-          else {
+          else if(selecteIndex == -1) {
             selectedIndex = i;
           }
         }
-        if(selectedIndex >= 0) {
-           selectDVBTrack(selectedIndex, broadcast.COMPONENT_TYPE_AUDIO);
-        }
+      }
+      if(selectedIndex >= 0) {
+       selectDVBTrack(selectedIndex, broadcast.COMPONENT_TYPE_AUDIO);
       }
     }
 }

@@ -82,11 +82,21 @@ VideoPlayerEME.prototype.createPlayer = function(){
 	player.addEventListener('loadedmetadata', function(){
     var audio = self.player.getTracksFor("audio");
     if(languages.audioLanguage ) {
+      var track = null;
       for(var i = 0;i < audio.length;i++) {
-        if(audio[i].language == languages.audioLanguage) {
-          self.player.setCurrentTrack(audio[i]);
-          break;
+        if(audio[i].lang == languages.audioLanguage) {
+          if(languages.accessibleAudio && arrayContains(audio[i].roles,"supplementary")) {
+            self.player.setCurrentTrack(audio[i]);
+            track = null;
+            break;
+          }
+          else if(track == null) {
+            track = audio[i];
+          }
         }
+      }
+     if(track) {
+         self.player.setCurrentTrack(track);
       }
     }
 		console.log("loadedmetadata");
