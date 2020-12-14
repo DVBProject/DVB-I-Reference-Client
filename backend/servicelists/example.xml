@@ -7,7 +7,6 @@
       <LCN channelNumber="647" serviceRef="sid1"/>
       <LCN channelNumber="11" serviceRef="sid2"/>
       <LCN channelNumber="4" serviceRef="sid3"/>
-      <LCN channelNumber="3" serviceRef="sid4"/>
       <LCN channelNumber="8" serviceRef="sid5"/>
       <LCN channelNumber="12" serviceRef="sid6"/>
       <LCN channelNumber="34" serviceRef="sid7"/>
@@ -68,26 +67,6 @@
     <ServiceName>IRT test channel</ServiceName>
     <ProviderName>IRT</ProviderName>
     <ContentGuideServiceRef>cgsid_3</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
-    <UniqueIdentifier>sid4</UniqueIdentifier>
-    <ServiceInstance priority="1">
-      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
-      <DASHDeliveryParameters>
-        <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://ftc05.akamaized.net/dash/live/2003270/ftc05/dash.mpd</URI>
-        </UriBasedLocation>
-      </DASHDeliveryParameters>
-    </ServiceInstance>
-    <ServiceName>TV Hope</ServiceName>
-    <ProviderName>freenet</ProviderName>
-    <RelatedMaterial>
-      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
-      <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_hopetv.png</tva:MediaUri>
-      </tva:MediaLocator>
-    </RelatedMaterial>
-    <ContentGuideServiceRef>cgsid_4</ContentGuideServiceRef>
   </Service>
   <Service version="1">
     <UniqueIdentifier>sid5</UniqueIdentifier>
