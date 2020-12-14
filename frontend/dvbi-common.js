@@ -17,6 +17,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     var contentGuides = getChildElements(doc.documentElement,"ContentGuideSource");
     var contentGuideURI = null;
     var moreEpisodesURI = null;
+    var programInfoURI = null;
     var channelmap = [];
     if(dvbChannels) {
       for(var i = 0;i<dvbChannels.length;i++) {
@@ -30,6 +31,10 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         var moreEpisodes =  contentGuides[0].getElementsByTagName("MoreEpisodesEndpoint");
         if(moreEpisodes.length > 0) {
           moreEpisodesURI = moreEpisodes[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+        }
+        var programInfo =  contentGuides[0].getElementsByTagName("ProgramInfoEndpoint");
+        if(programInfo.length > 0) {
+          programInfoURI = programInfo[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
         }
     }
     var relatedMaterial = getChildElements(doc.documentElement,"RelatedMaterial");
@@ -91,6 +96,7 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         var chan = {};
         chan.contentGuideURI = contentGuideURI;
         chan.moreEpisodesURI = moreEpisodesURI;
+        chan.programInfoURI = programInfoURI;
         chan.code = i;
         var serviceNames = services[i].getElementsByTagName("ServiceName");
         chan.titles = [];
@@ -671,4 +677,10 @@ function getLocalizedText(texts,lang) {
     }
   }
   return null;
+}
+
+var creditsTypes = {
+  "urn:tva:metadata:cs:TVARoleCS:2011:V20":"Production Company",
+  "urn:tva:metadata:cs:TVARoleCS:2011:AD6":"Presenter",
+  "urn:mpeg:mpeg7:cs:RoleCS:2001:ACTOR":"Actor"
 }

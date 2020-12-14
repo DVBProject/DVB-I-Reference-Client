@@ -97,7 +97,7 @@ Program.prototype.populateProgramInfo = function(){
     $("#select_service_button").attr("href","javascript:channelSelected('"+this.channel.id+"')");
     this.channel.getMoreEpisodes(this.programId, function(episodes) {
       if(episodes) {
-        var episodeList = "More episodes<br/>";
+        var episodeList = "More episodes:<br/>";
         for(var i = 0;i< episodes.length;i++) {
             episodeList += episodes[i].getTitle()+" "+episodes[i].start.getDate()+"."+(episodes[i].start.getMonth()+1)+". "+episodes[i].start.create24HourTimeString()+"-"+episodes[i].end.create24HourTimeString()+"<br/>";
         }
@@ -105,6 +105,44 @@ Program.prototype.populateProgramInfo = function(){
       }
       else {
         $("#more_episodes").html("");
+      }
+    });
+     this.channel.getProgramInfo(this.programId, function(info) {
+      if(info) {
+        var extendedData  ="";
+        if(info.creditsItems) {
+           for(var i = 0;i< info.creditsItems.length;i++) {
+              var role = creditsTypes[info.creditsItems[i].role];
+              if(role) {
+                  extendedData += (role+": ");
+              }
+              if(info.creditsItems[i].organizations && info.creditsItems[i].organizations.length > 0) {
+                  extendedData += info.creditsItems[i].organizations.join(",");
+              }
+              if(info.creditsItems[i].person) {
+                 extendedData += info.creditsItems[i].person.givenName + " " +info.creditsItems[i].person.familyName;
+              }
+              if(info.creditsItems[i].character) {
+                 extendedData += "("+info.creditsItems[i].character.givenName + " " +info.creditsItems[i].character.familyName+")";
+              }
+              extendedData += "<br/>";
+           }
+        }
+        if(info.keywords) {
+           extendedData += "Keywords:";
+           for(var i = 0;i< info.creditsItems.length;i++) {
+             extendedData += (info.keywords[i].value+",");
+           }
+           extendedData = extendedData.substring(0,extendedData.length-1);
+        }
+        $("#extended_info").html(extendedData);
+        var longDesc = info.getLongDescription();
+        if(longDesc) {
+           $("#description").html(longDesc);
+        }
+      }
+      else {
+        $("#extended_info").html("");
       }
     });
 }
@@ -156,4 +194,20 @@ Program.prototype.getDescription = function() {
     }
   }
   return "No description";
+}
+
+Program.prototype.getLongDescription = function() {
+  var defaultDesc = null;
+  for(var i = 0;i < this.descriptions.length;i++) {
+    if(this.descriptions[i].lang == language_settings.ui_language &&  this.descriptions[i].textLength == "long") {
+      return this.descriptions[i].text;
+    }
+    else if(this.descriptions[i].lang == "default" && this.descriptions[i].textLength == "long") {
+      defaultDesc = this.descriptions[i].text;
+    }
+  }
+  if(defaultDesc != null) {
+    return defaultDesc;
+  }
+  return null;
 }

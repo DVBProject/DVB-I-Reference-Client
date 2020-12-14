@@ -230,3 +230,19 @@ Program.prototype.overlaps = function(otherProgram){
 	return false;
 };
 
+Program.prototype.getLongDescription = function() {
+  var defaultDesc = null;
+  for(var i = 0;i < this.descriptions.length;i++) {
+    if(this.descriptions[i].lang == languages.ui_language &&  this.descriptions[i].textLength == "long") {
+      return this.descriptions[i].text;
+    }
+    else if(this.descriptions[i].lang == "default" && this.descriptions[i].textLength == "long") {
+      defaultDesc = this.descriptions[i].text;
+    }
+  }
+  if(defaultDesc != null) {
+    return defaultDesc;
+  }
+  return null;
+}
+

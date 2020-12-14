@@ -582,7 +582,44 @@ GridEPG.prototype.populateProgramDetail = function(program){
 					this.autoScrollDetailProgramTitle();
 				}
 			}
-      program.getChannel().getMoreEpisodes(program.programId, function(episodes) {
+      program.getChannel().getProgramInfo(program.programId, function(info) {
+        if(info) {
+          var longDesc = info.getLongDescription();
+          if(longDesc) {
+            	description_text.innerHTML = longDesc.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+          }
+          if(description_text.scrollHeight > description_text.offsetHeight){
+            self.autoScrollDescriptionText();
+          }
+          if(info.creditsItems) {
+           var extendedData = "<br/>";
+           for(var i = 0;i< info.creditsItems.length;i++) {
+              var role = creditsTypes[info.creditsItems[i].role];
+              if(role) {
+                  extendedData += (role+": ");
+              }
+              if(info.creditsItems[i].organizations && info.creditsItems[i].organizations.length > 0) {
+                  extendedData += info.creditsItems[i].organizations.join(",");
+              }
+              if(info.creditsItems[i].person) {
+                 extendedData += info.creditsItems[i].person.givenName + " " +info.creditsItems[i].person.familyName;
+              }
+              if(info.creditsItems[i].character) {
+                 extendedData += "("+info.creditsItems[i].character.givenName + " " +info.creditsItems[i].character.familyName+")";
+              }
+              extendedData += "<br/>";
+             }
+          }
+          if(info.keywords) {
+             extendedData += "Keywords:";
+             for(var i = 0;i< info.creditsItems.length;i++) {
+               extendedData += (info.keywords[i].value+",");
+             }
+             extendedData = extendedData.substring(0,extendedData.length-1);
+          }
+        	description_text.innerHTML += extendedData;
+        }
+        program.getChannel().getMoreEpisodes(program.programId, function(episodes) {
         if(episodes) {
           var episodeList = "<br/>More episodes:<br/>";
           for(var i = 0;i< episodes.length;i++) {
@@ -593,6 +630,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
             self.autoScrollDescriptionText();
           }
         }
+      });
       });
 			var imageurls = [];
 			if(program["serieimage"]){ imageurls.push(program["serieimage"]); }

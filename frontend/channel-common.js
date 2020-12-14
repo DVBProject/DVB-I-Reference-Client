@@ -94,7 +94,7 @@ Channel.prototype.parseSchedule = function(data) {
                     }
                     text.lang = lang;
                     text.text =  element.childNodes[0].nodeValue;
-                    text.length =  element.getAttribute("length");
+                    text.textLength =  element.getAttribute("length");
                     program.descriptions.push(text);
                   }
                 }
@@ -132,6 +132,59 @@ Channel.prototype.parseSchedule = function(data) {
                         break;
                     }
                 }
+                var creditsList = description.getElementsByTagName("CreditsList");
+                if(creditsList.length > 0) {
+                  program.creditsItems = [];
+                  var creditsItems = description.getElementsByTagName("CreditsItem");
+                  for(var k = 0;k < creditsItems.length; k++) {
+                    creditsItem = {};
+                    creditsItem.role = creditsItems[k].getAttribute("role");
+                    var organizations = creditsItems[k].getElementsByTagName("OrganizationName");
+                    if(organizations.length > 0) {
+                      creditsItem.organizations = [];
+                      for(var l = 0;l < organizations.length; l++) {
+                        creditsItem.organizations.push(organizations[l].childNodes[0].nodeValue);
+                      }
+                    }
+                    var persons = creditsItems[k].getElementsByTagName("PersonName");
+                    if(persons.length > 0) {
+                      var person = {};
+                      var givenNames = persons[0].getElementsByTagNameNS("urn:tva:mpeg7:2008","GivenName");
+                      if(givenNames.length > 0 ) {
+                        person.givenName = givenNames[0].childNodes[0].nodeValue;
+                      }
+                      var familyName = persons[0].getElementsByTagNameNS("urn:tva:mpeg7:2008","FamilyName");
+                      if(familyName.length > 0 ) {
+                        person.familyName = familyName[0].childNodes[0].nodeValue;
+                      }
+                      creditsItem.person = person;
+                    }
+                    persons = creditsItems[k].getElementsByTagName("Character");
+                    if(persons.length > 0) {
+                      var person = {};
+                      var givenNames = persons[0].getElementsByTagNameNS("urn:tva:mpeg7:2008","GivenName");
+                      if(givenNames.length > 0 ) {
+                        person.givenName = givenNames[0].childNodes[0].nodeValue;
+                      }
+                      var familyName = persons[0].getElementsByTagNameNS("urn:tva:mpeg7:2008","FamilyName");
+                      if(familyName.length > 0 ) {
+                        person.familyName = familyName[0].childNodes[0].nodeValue;
+                      }
+                      creditsItem.character = person;
+                    }
+                    program.creditsItems.push(creditsItem);
+                  }
+                }
+                var keywords = description.getElementsByTagName("Keyword");
+                if(keywords.length > 0) {
+                  program.keywords = [];
+                  for(var k = 0;k < keywords.length; k++) {
+                    keyword = {};
+                    keyword.type = keywords[k].getAttribute("role");
+                    keyword.value =  keywords[k].childNodes[0].nodeValue;
+                    program.keywords.push(keyword );
+                  }
+                }
                 break;
             }
         }
@@ -143,6 +196,7 @@ Channel.prototype.parseSchedule = function(data) {
     }
     return newPrograms;
 }
+
 
 Channel.prototype.getServiceRef = function() {
      return (this.contentGuideServiceRef) ? this.contentGuideServiceRef : this.id;
@@ -196,6 +250,24 @@ Channel.prototype.getMoreEpisodes = function(programId,callback) {
     $.get( this.moreEpisodesURI+"?pid="+programId+"&type=ondemand", function( data ) {
       var episodes = self.parseSchedule(data);
       callback.call(callback,episodes);
+    },"text");
+  }
+  else if(typeof(callback) == "function"){
+   callback.call(null);
+  }
+}
+
+Channel.prototype.getProgramInfo = function(programId,callback) {
+  var self = this;
+  if(this.programInfoURI && typeof(callback) == "function") {
+    $.get( this.programInfoURI+"?pid="+programId, function( data ) {
+      var episodes = self.parseSchedule(data);
+      if(episodes.length > 0) {
+        callback.call(callback,episodes[0]);
+      }
+      else {
+       callback.call(null);
+      }
     },"text");
   }
   else if(typeof(callback) == "function"){
