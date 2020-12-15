@@ -74,6 +74,12 @@
 				<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/example.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
+    <sld:ServiceListOffering regulatorListFlag="false">
+    <sld:ServiceListName>DVB-I Reference Client rev.1 service list</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/example_rev1.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
 		<sld:ServiceListName>DVB-I Reference Client DRM service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
