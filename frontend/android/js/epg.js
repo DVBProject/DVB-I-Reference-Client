@@ -8,6 +8,7 @@ function EPG(channels){
     date.setHours(0,0,0,0);
     this.start = Math.round(date.getTime() / 1000);
     this.end = this.start+24*60*60;
+    this.open = false;
 }
 
 EPG.prototype.populate = function (start,end) {

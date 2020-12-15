@@ -195,6 +195,7 @@ function showEpg() {
     $(".epg").show();
     $(".grid").show();
     $(".epgchannels").remove();
+    epg.open = true;
     $(".grid").append(epg.showChannel(selectedChannel));
     var epgdate = new Date(epg.start*1000);
     $("#epg_date").text(epgdate.getDate()+"."+(epgdate.getMonth()+1)+".");
@@ -204,10 +205,12 @@ function showEpg() {
     else if(epg.displayIndex >= (epg.channels.length-3)) {
         $("#next_channel").addClass("end");
     }
+
 }
 
 function closeEpg() {
     $(".epg").hide();
+    epg.open = false;
     if(! $(".epg").hasClass("hide") ) {
         $(".epg").addClass("hide");
     }
@@ -220,10 +223,17 @@ function closeEpg() {
 
 function closeProgramInfo() {
     $(".programinfo").addClass("hide");
-    $(".grid").show();
+    if(epg.open) {
+      $(".grid").show();
+    }
+    else {
+      closeEpg();
+    }
 }
 
 function openProgramInfo(program) {
+    $(".epg").removeClass("hide");
+    $(".epg").show();
     program.populateProgramInfo();
     $(".grid").hide();
     $(".programinfo").removeClass("hide");

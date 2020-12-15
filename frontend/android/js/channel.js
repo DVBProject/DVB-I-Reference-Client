@@ -286,12 +286,12 @@ Channel.prototype.nowNextUpdateRequired = function() {
 
 Channel.prototype.updateChannelInfo = function () {
      var self = this;
-     var channelInfo = document.getElementById("channel_info");
-     var info = "";
-     info = "<span class=\"menuitem_chicon d-block\"><img src=\""+(self.image || "./images/empty.png") +"\"></span>";
-     info += "<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + getLocalizedText(this.titles, language_settings.ui_language) +"</span>";
+     var channelInfo = $("#channel_info");
+      channelInfo.empty();
+     channelInfo.append("<span class=\"menuitem_chicon d-block\"><img src=\""+(self.image || "./images/empty.png") +"\"></span>");
+     channelInfo.append("<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + getLocalizedText(this.titles, language_settings.ui_language) +"</span>");
      if(self.provider) {
-         info += "<br/><span class=\"menuitem_provider d-inline-block\">" + self.provider +"</span>";
+         channelInfo.append( "<br/><span class=\"menuitem_provider d-inline-block\">" + self.provider +"</span>");
      }
      if(self.now_next) {
         curTime = new Date();
@@ -306,17 +306,20 @@ Channel.prototype.updateChannelInfo = function () {
                     }
                 }
             }
-            info += "<span class=\"menuitem_now\">Now: "+now.getTitle()+parental+" ";
-            info +=  Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>";
+            var info = $("<span class=\"menuitem_now\">Now: "+now.getTitle()+parental+" "+ Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>");
+            channelInfo.append(info);
             if(now.cpsIndex) {
               var cpsInstance = this.getServiceInstanceByCPSIndex(now.cpsIndex);
               if(cpsInstance) {
-                  info += '<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>';
+                  channelInfo.append('<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>');
               }
               else {
-                   info += '<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>';
+                  channelInfo.append('<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>');
               }
            }
+           info.click(function() {
+            openProgramInfo(now);
+           });
         }
         var next= self.now_next["next"];
         if(next) {
@@ -329,21 +332,23 @@ Channel.prototype.updateChannelInfo = function () {
                     }
                 }
             }
-            info += "<span class=\"menuitem_next\">Next: "+next.getTitle()+parental+" ";
-            info +=  next.start.create24HourTimeString()+" ";
-            info += "Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>";
+            var info = $("<span class=\"menuitem_next\">Next: "+next.getTitle()+parental+" "+
+               next.start.create24HourTimeString()+" Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>");
+            channelInfo.append(info);
             if(next.cpsIndex) {
               var cpsInstance = this.getServiceInstanceByCPSIndex(next.cpsIndex);
               if(cpsInstance) {
-                  info += '<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>';
+                  channelInfo.append('<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>');
               }
               else {
-                   info += '<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>';
+                   channelInfo.append('<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>');
               }
            }
+           info.click(function() {
+              openProgramInfo(next);
+           });
         }
      }
-     channelInfo.innerHTML = info;
 }
 
 
