@@ -64,10 +64,10 @@ Program.prototype.populateProgramInfo = function(){
     if(this.cpsIndex) {
       var cpsInstance = this.channel.getServiceInstanceByCPSIndex(this.cpsIndex);
       if(cpsInstance) {
-         $('<span class="chdrm chdrm_prginfo"><img src="images/lock.svg" class="icon-green mt-2"></span>').insertAfter("#info_chname");
+         $('<span class="chdrm chdrm_prginfo"><img src="images/lock.svg" class="icon-green mt-2"></span>').insertAfter(".title");
       }
       else {
-        $('<span class="chdrm chdrm_prginfo"><img src="images/lock.svg" class="icon-red mt-2"></span>').insertAfter("#info_chname");
+        $('<span class="chdrm chdrm_prginfo"><img src="images/lock.svg" class="icon-red mt-2"></span>').insertAfter(".title");
       }
     }
     $("#info_chname").text( getLocalizedText(this.channel.titles, language_settings.ui_language));
