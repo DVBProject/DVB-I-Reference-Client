@@ -288,10 +288,10 @@ Channel.prototype.updateChannelInfo = function () {
      var self = this;
      var channelInfo = $("#channel_info");
       channelInfo.empty();
-     channelInfo.append("<span class=\"menuitem_chicon d-block\"><img src=\""+(self.image || "./images/empty.png") +"\"></span>");
+     channelInfo.append("<span class=\"menuitem_chicon d-inline-block\"><img src=\""+(self.image || "./images/empty.png") +"\"></span>");
      channelInfo.append("<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + getLocalizedText(this.titles, language_settings.ui_language) +"</span>");
      if(self.provider) {
-         channelInfo.append( "<br/><span class=\"menuitem_provider d-inline-block\">" + self.provider +"</span>");
+         channelInfo.append( "<br/><span class=\"menuitem_provider d-inline-block col-12 px-0\">" + self.provider +"</span>");
      }
      if(self.now_next) {
         curTime = new Date();
@@ -306,15 +306,15 @@ Channel.prototype.updateChannelInfo = function () {
                     }
                 }
             }
-            var info = $("<span class=\"menuitem_now\">Now: "+now.getTitle()+parental+" "+ Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>");
+            var info = $("<span class=\"menuitem_now d-inline-block col-auto px-0\">Now: "+now.getTitle()+parental+" "+ Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>");
             channelInfo.append(info);
             if(now.cpsIndex) {
               var cpsInstance = this.getServiceInstanceByCPSIndex(now.cpsIndex);
               if(cpsInstance) {
-                  channelInfo.append('<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>');
+                  channelInfo.append('<span class="chdrm d-inline-block col-2 px-2"><img src="images/lock.svg" class="icon-green"></span>');
               }
               else {
-                  channelInfo.append('<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>');
+                  channelInfo.append('<span class="chdrm d-inline-block col-2 px-2"><img src="images/lock.svg" class="icon-red"></span>');
               }
            }
            info.click(function() {
@@ -332,16 +332,16 @@ Channel.prototype.updateChannelInfo = function () {
                     }
                 }
             }
-            var info = $("<span class=\"menuitem_next\">Next: "+next.getTitle()+parental+" "+
+            var info = $("<br/><span class=\"menuitem_next d-inline-block col-auto px-0\">Next: "+next.getTitle()+parental+" "+
                next.start.create24HourTimeString()+" Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>");
             channelInfo.append(info);
             if(next.cpsIndex) {
               var cpsInstance = this.getServiceInstanceByCPSIndex(next.cpsIndex);
               if(cpsInstance) {
-                  channelInfo.append('<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>');
+                  channelInfo.append('<span class="chdrm d-inline-block col-2 px-2"><img src="images/lock.svg" class="icon-green"></span>');
               }
               else {
-                   channelInfo.append('<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>');
+                   channelInfo.append('<span class="chdrm d-inline-block col-2 px-2"><img src="images/lock.svg" class="icon-red"></span>');
               }
            }
            info.click(function() {
