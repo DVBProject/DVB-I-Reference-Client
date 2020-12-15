@@ -60,14 +60,14 @@ Program.prototype.populate = function(){
 Program.prototype.populateProgramInfo = function(){
     $("#info_chicon").attr('src',this.channel.image || "./images/empty.png");
     $("#info_chnumber").text(this.channel.lcn);
-    $(".chdrm").remove();
+    $(".chdrm_prginfo").remove();
     if(this.cpsIndex) {
       var cpsInstance = this.channel.getServiceInstanceByCPSIndex(this.cpsIndex);
       if(cpsInstance) {
-         $('<span class="chdrm"><img src="images/lock.svg" class="icon-green mt-2"></span>').insertAfter("#info_chname");
+         $('<span class="chdrm chdrm_prginfo"><img src="images/lock.svg" class="icon-green mt-2"></span>').insertAfter("#info_chname");
       }
       else {
-        $('<span class="chdrm"><img src="images/lock.svg" class="icon-red mt-2"></span>').insertAfter("#info_chname");
+        $('<span class="chdrm chdrm_prginfo"><img src="images/lock.svg" class="icon-red mt-2"></span>').insertAfter("#info_chname");
       }
     }
     $("#info_chname").text( getLocalizedText(this.channel.titles, language_settings.ui_language));
