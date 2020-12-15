@@ -5,7 +5,7 @@ $timeformat = "Y-m-d\TH:i:s\Z";
 date_default_timezone_set ("Zulu");
 
 //TODO placeholder implementation, returns static programs as more episodes
-$program_id = $_GET['program_id'];
+$program_id = $_GET['pid'];
 $present_start = rand(1,45);
 $present_duration = 45;
 $following_duration = 30;
