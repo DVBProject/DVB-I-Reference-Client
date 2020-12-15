@@ -91,7 +91,12 @@ window.onload = function(){
     player.on('error', function(e) {
       console.log(e);
       $("#notification").show();
-      $("#notification").text("Error playing stream!");
+      if(e.error && e.error.message) {
+         $("#notification").text("Error playing stream: "+e.error.message);
+      }
+      else {
+        $("#notification").text("Error playing stream!");
+      }
     });
     player.attachTTMLRenderingDiv( document.getElementById("subtitles"));
     var ll_settings = getLocalStorage("ll_settings");
