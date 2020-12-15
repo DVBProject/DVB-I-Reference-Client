@@ -70,26 +70,6 @@
     <ContentGuideServiceRef>cgsid_3</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid4</UniqueIdentifier>
-    <ServiceInstance priority="1">
-      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
-      <DASHDeliveryParameters>
-        <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://ftc05.akamaized.net/dash/live/2003270/ftc05/dash.mpd</URI>
-        </UriBasedLocation>
-      </DASHDeliveryParameters>
-    </ServiceInstance>
-    <ServiceName>TV Hope</ServiceName>
-    <ProviderName>freenet</ProviderName>
-    <RelatedMaterial>
-      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>
-      <tva:MediaLocator>
-        <tva:MediaUri contentType="image/png">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/channel_icons/chicon_hopetv.png</tva:MediaUri>
-      </tva:MediaLocator>
-    </RelatedMaterial>
-    <ContentGuideServiceRef>cgsid_4</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
     <UniqueIdentifier>sid5</UniqueIdentifier>
     <ServiceInstance priority="2">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
