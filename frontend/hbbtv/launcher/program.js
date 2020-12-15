@@ -47,3 +47,42 @@ Program.prototype.getTitle = function() {
   return "";
 }
 
+Program.prototype.getLongDescription = function() {
+  var defaultDesc = null;
+  for(var i = 0;i < this.descriptions.length;i++) {
+    if(this.descriptions[i].lang == languages.ui_language &&  this.descriptions[i].textLength == "long") {
+      return this.descriptions[i].text;
+    }
+    else if(this.descriptions[i].lang == "default" && this.descriptions[i].textLength == "long") {
+      defaultDesc = this.descriptions[i].text;
+    }
+  }
+  if(defaultDesc != null) {
+    return defaultDesc;
+  }
+  return null;
+}
+
+Program.prototype.getDescription = function(){
+  if(this.descriptions.length == 1) {
+    return this.descriptions[0].text;
+  }
+  else if(this.descriptions.length > 1){
+    var defaultDesc = null;
+    for(var i = 0;i < this.descriptions.length;i++) {
+      if(this.descriptions[i].lang == languages.ui_language) {
+        return this.descriptions[i].text;
+      }
+      else if(this.descriptions[i].lang == "default") {
+        defaultDesc = this.descriptions[i].text;
+      }
+    }
+    if(defaultDesc != null) {
+      return defaultDesc;
+    }
+    else {
+      return this.descriptions[0].text
+    }
+  }
+  return "No description";
+}

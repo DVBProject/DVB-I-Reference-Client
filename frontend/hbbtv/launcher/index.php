@@ -575,31 +575,29 @@
         <div id="chinfo_chnumber"></div>
         <div id="chinfo_chicon"><img id="chinfo_chicon_img" src="" alt=""/></div>
         <div id="chinfo_logo"><img id="list_logo" src="images/logo_dvb-i.png" alt=""/></div>
-      
         <div id="chinfo_now">
             <div id="chinfo_now_header">NOW SHOWING</div>
             <div id="chinfo_now_title"></div>
             <div id="chinfo_now_starttime"></div>
             <div id="chinfo_now_endtime"></div>
+            <div id="chinfo_now_protected"><img id="chinfo_now_protected_img" src="" alt=""/></div>
             <div id="chinfo_now_image"><img id="chinfo_now_image_img" src="" alt=""/></div>
             <div id="chinfo_progressbar">
                 <div id="chinfo_progressbarbg"></div>
                 <div id="chinfo_progressbarTime" style="width: 0%;"></div>
-            </div>            
-            
+            </div>
         </div>
-
         <div id="chinfo_next">
             <div id="chinfo_next_header">FOLLOWING</div>
             <div id="chinfo_next_title"></div>
             <div id="chinfo_next_starttime"></div>
             <div id="chinfo_next_endtime"></div>
-            
+            <div id="chinfo_next_protected"><img id="chinfo_next_protected_img" src="" alt=""/></div>
             <div id="chinfo_next_image"><img id="chinfo_next_image_img" src="" alt=""/></div>
         </div>
-
+        <div id="now_info"></div>
 	</div>
-	<div id="info" class="transition03all hide"></div>
+	<div id="info" class="hide"></div>
 	<div class="hide" id="loading"></div>
 </body>
 </html>

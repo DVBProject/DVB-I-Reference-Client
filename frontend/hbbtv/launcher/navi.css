@@ -756,3 +756,10 @@ div, span {
   height: 20px;
   width: 20px;
 }
+
+#now_info {
+  left: 500px;
+  width: 600px;
+  margin: 20px;
+  background-color: #000C;
+}
