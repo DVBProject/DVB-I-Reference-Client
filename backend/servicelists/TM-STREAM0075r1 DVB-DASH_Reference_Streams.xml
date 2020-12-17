@@ -9,7 +9,7 @@
 	
 	<LCNTableList>
 		<LCNTable>
-			<N channelNumber="100" serviceRef="tag:dvb.org,2020:Unified-0"/>
+			<LCN channelNumber="100" serviceRef="tag:dvb.org,2020:Unified-0"/>
 			<LCN channelNumber="1" serviceRef="tag:dvb.org,2020:Unified-1"/>
 			<LCN channelNumber="2" serviceRef="tag:dvb.org,2020:Unified-2"/>
 			<LCN channelNumber="3" serviceRef="tag:dvb.org,2020:Unified-3"/>
