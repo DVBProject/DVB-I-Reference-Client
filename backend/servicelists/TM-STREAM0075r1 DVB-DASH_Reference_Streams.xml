@@ -33,7 +33,7 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>https://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/backend/schedule.php</URI>
+      <URI>https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
   </ContentGuideSource>
 	<Service version="1">
