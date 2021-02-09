@@ -4,20 +4,19 @@
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
     <LCNTable>
-      <LCN channelNumber="647" serviceRef="sid1"/>
-      <LCN channelNumber="11" serviceRef="sid2"/>
-      <LCN channelNumber="4" serviceRef="sid3"/>
-      <LCN channelNumber="3" serviceRef="sid4"/>
-      <LCN channelNumber="8" serviceRef="sid5"/>
-      <LCN channelNumber="12" serviceRef="sid6"/>
-      <LCN channelNumber="34" serviceRef="sid7"/>
-      <LCN channelNumber="324" serviceRef="sid8"/>
-      <LCN channelNumber="642" serviceRef="sid9"/>
-      <LCN channelNumber="640" serviceRef="sid10"/>
-      <LCN channelNumber="641" serviceRef="sid11"/>
-      <LCN channelNumber="643" serviceRef="sid12"/>
-      <LCN channelNumber="644" serviceRef="sid13"/>
-      <LCN channelNumber="645" serviceRef="sid14"/>
+      <LCN channelNumber="647" serviceRef="tag:dvb.org,2020:sid1"/>
+      <LCN channelNumber="11" serviceRef="tag:dvb.org,2020:sid2"/>
+      <LCN channelNumber="4" serviceRef="tag:dvb.org,2020:sid3"/>
+      <LCN channelNumber="8" serviceRef="tag:dvb.org,2020:sid5"/>
+      <LCN channelNumber="12" serviceRef="tag:dvb.org,2020:sid6"/>
+      <LCN channelNumber="34" serviceRef="tag:dvb.org,2020:sid7"/>
+      <LCN channelNumber="324" serviceRef="tag:dvb.org,2020:sid8"/>
+      <LCN channelNumber="642" serviceRef="tag:dvb.org,2020:sid9"/>
+      <LCN channelNumber="640" serviceRef="tag:dvb.org,2020:sid10"/>
+      <LCN channelNumber="641" serviceRef="tag:dvb.org,2020:sid11"/>
+      <LCN channelNumber="643" serviceRef="tag:dvb.org,2020:sid12"/>
+      <LCN channelNumber="644" serviceRef="tag:dvb.org,2020:sid13"/>
+      <LCN channelNumber="645" serviceRef="tag:dvb.org,2020:sid14"/>
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
@@ -30,7 +29,7 @@
     </MoreEpisodesEndpoint>
   </ContentGuideSource>
   <Service version="1">
-    <UniqueIdentifier>sid1</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid1</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-t</SourceType>
       <DVBTDeliveryParameters>
@@ -43,7 +42,7 @@
     <ContentGuideServiceRef>cgsid_1</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid2</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid2</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-t</SourceType>
       <DVBTDeliveryParameters>
@@ -56,7 +55,7 @@
     <ContentGuideServiceRef>cgsid_2</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid3</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid3</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -70,7 +69,7 @@
     <ContentGuideServiceRef>cgsid_3</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid5</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid5</UniqueIdentifier>
     <ServiceInstance priority="2">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -90,7 +89,7 @@
     <ContentGuideServiceRef>cgsid_5</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid6</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid6</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -110,7 +109,7 @@
     <ContentGuideServiceRef>cgsid_6</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid7</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid7</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -130,7 +129,7 @@
     <ContentGuideServiceRef>cgsid_7</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid8</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid8</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -150,7 +149,7 @@
     <ContentGuideServiceRef>cgsid_8</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid9</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid9</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -170,7 +169,7 @@
     <ContentGuideServiceRef>cgsid_9</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid10</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid10</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -190,7 +189,7 @@
     <ContentGuideServiceRef>cgsid_10</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid11</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid11</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -210,7 +209,7 @@
     <ContentGuideServiceRef>cgsid_11</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid12</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid12</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -230,7 +229,7 @@
     <ContentGuideServiceRef>cgsid_12</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid13</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid13</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -250,7 +249,7 @@
     <ContentGuideServiceRef>cgsid_13</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid14</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid14</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
@@ -270,7 +269,7 @@
     <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
   </Service>
   <Service version="1">
-    <UniqueIdentifier>sid15</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:sid15</UniqueIdentifier>
     <ServiceInstance priority="2">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>

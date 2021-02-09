@@ -4,7 +4,8 @@
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
     <LCNTable>
-      <LCN channelNumber="1" serviceRef="service1"></LCN>
+      <LCN channelNumber="1" serviceRef="ag:dvb.org,2020:rev1sid1"></LCN>
+      <LCN channelNumber="2" serviceRef="ag:dvb.org,2020:rev1sid2"></LCN>
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
@@ -20,7 +21,7 @@
     </ProgramInfoEndpoint>
   </ContentGuideSource>
   <Service version="1">
-    <UniqueIdentifier>rev1.service1</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:rev1sid1</UniqueIdentifier>
     <ServiceInstance priority="1">
       <Availability>
         <Period>
@@ -45,7 +46,7 @@
     <ServiceType href="urn:dvb:metadata:cs:ServiceTypeCS:2019:linear"></ServiceType>
   </Service>
  <Service version="11">
-    <UniqueIdentifier>rev1.service2</UniqueIdentifier>
+    <UniqueIdentifier>tag:dvb.org,2020:rev1sid2</UniqueIdentifier>
     <ServiceInstance priority="1">
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
