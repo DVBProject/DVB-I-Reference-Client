@@ -17,6 +17,8 @@
       <LCN channelNumber="643" serviceRef="tag:dvb.org,2020:sid12"/>
       <LCN channelNumber="644" serviceRef="tag:dvb.org,2020:sid13"/>
       <LCN channelNumber="645" serviceRef="tag:dvb.org,2020:sid14"/>
+      <LCN channelNumber="5" serviceRef="tag:dvb.org,2020:sid16"/>
+      <LCN channelNumber="6" serviceRef="tag:dvb.org,2020:sid17"/>
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
@@ -365,5 +367,33 @@
     <ServiceName>Availability window service</ServiceName>
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
+  </Service>
+  <Service version="1">
+    <UniqueIdentifier>tag:dvb.org,2020:sid16</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://dvb.ebu.io/1.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>DVB EBU DASH</ServiceName>
+    <ProviderName>DVB</ProviderName>
+    <ContentGuideServiceRef>cgsid_16</ContentGuideServiceRef>
+  </Service>
+  <Service version="1">
+    <UniqueIdentifier>tag:dvb.org,2020:sid17</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://dvb.ebu.io/ll/lowlatency.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>DVB EBU Low latency DASH</ServiceName>
+    <ProviderName>DVB</ProviderName>
+    <ContentGuideServiceRef>cgsid_17</ContentGuideServiceRef>
   </Service>
 </ServiceList>
