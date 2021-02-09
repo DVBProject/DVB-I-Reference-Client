@@ -37,7 +37,7 @@ function channelSelected(channelId) {
         return;
     }
     if(newChannel.serviceInstances.length == 0) {
-      $("#notification").text("Service not supprted");
+      $("#notification").text("Service not supported");
       $("#notification").show();
       setTimeout(function() { $("#notification").hide();} , 5000);
       return;
