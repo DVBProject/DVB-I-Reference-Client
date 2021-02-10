@@ -93,7 +93,7 @@
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>Advanced Codec Streams</sld:ServiceListName>
+		  <sld:ServiceListName>Next generation codecs service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/advanced_codecs.xml</dvbisd:URI>
 			</sld:ServiceListURI>
