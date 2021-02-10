@@ -4,8 +4,8 @@
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
     <LCNTable>
-      <LCN channelNumber="1" serviceRef="ag:dvb.org,2020:rev1sid1"></LCN>
-      <LCN channelNumber="2" serviceRef="ag:dvb.org,2020:rev1sid2"></LCN>
+      <LCN channelNumber="1" serviceRef="tag:dvb.org,2020:rev1sid1"></LCN>
+      <LCN channelNumber="2" serviceRef="tag:dvb.org,2020:rev1sid2"></LCN>
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
