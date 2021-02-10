@@ -9,7 +9,7 @@
 	
 	<LCNTableList>
 		<LCNTable>
-			<N channelNumber="100" serviceRef="tag:dvb.org,2020:Unified-0"/>
+			<LCN channelNumber="100" serviceRef="tag:dvb.org,2020:Unified-0"/>
 			<LCN channelNumber="1" serviceRef="tag:dvb.org,2020:Unified-1"/>
 			<LCN channelNumber="2" serviceRef="tag:dvb.org,2020:Unified-2"/>
 			<LCN channelNumber="3" serviceRef="tag:dvb.org,2020:Unified-3"/>
@@ -33,7 +33,7 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>https://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/backend/schedule.php</URI>
+      <URI>https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
   </ContentGuideSource>
 	<Service version="1">

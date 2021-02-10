@@ -1,3 +1,118 @@
+2.20 15 Dec 2020
+
+-Identifying DRM protected programs when the service isn't protected as a whole, HbbTV client
+-Accessible audio selection implemented
+-ProgramInfo endpoint implemented, additional program info displayed if available.
+-A177rev1 example service list added,includes out of service image example 
+
+2.19 9 Dec 2020
+
+-Support for out of service image implemented.
+-Multiple language support added for service list and content guide data
+-Identifying DRM protected programs when the service isn't protected as a whole, Android client
+-List services that have no supported service instances differently in the UI, Andrdoid client
+-MoreEpisodes-endpoint supported in the content guide
+-Pausing live DASH streams
+-Error notification when playing a DASH stream fails.
+
+2.18 24 Nov 2020
+
+-Region selection implemented, both Android and HbbTV clients. Selection by postcode implemented in the android client.
+-Added Astra 28.2 E service list
+-Added availability window service to the example service list.
+-Improved error handling in the service list parsing
+
+2.17 20 Nov 2020
+
+-Fixed launching parallel applications in HbbTV client.
+-RegionList and TargetRegions are parsed from the service list.
+-Accessible audio settings added to the Android and HbbTV client UI, accessible audio selection not implemented yet.
+
+2.16 18 Nov 2020
+
+-Fixed service logo HowRelated element href attribute values when using  A177 Rev.1 schema
+
+2.15 17 Nov 2020
+
+-Service instance availability implemented. Interval recurrence not implemented yet.
+-Support for the A177 Rev.1 schema added. 
+
+2.14 11 Nov 2020
+
+-Default audio and subtitle languages can be selected in the Android and HbbTV client
+
+2.13 28 Oct 2020
+
+-Linked applications from service and service instance are supported
+-Service provider name support added
+-Optimized DVB channel matching between the service list and the native services
+-Example service list includes parental ratings in the content guide
+-DVB reference streams service list added
+-HbbTV linked application added for playing Playready DRM stream using a licence override
+
+2.12 14 Oct 2020
+
+-Service provider list updated, placeholder lists removed, Astra and DRM  test service lists added.
+-DRM initial implementation added:
+-ContentProtection element is used to determine if service instance is supported by the client
+-Android client uses a linked media presentation application to play out a Widevine-protected stream
+-HbbTV client uses PlayReady DRM with the licence URL in the DASH manifest
+-Support for multiple linked applications with different content types added.
+-Android-client uses linked applications with "text/html" or "application/xhtml+xml" contentType.
+-HbbTV-client uses linked applications with "application/vnd.dvb.ait+xml" contentType .
+-HbbTV version uses latest Dash.js (3.1.3). Issue in Dash.js 3.1.2 ( https://github.com/Dash-Industry-Forum/dash.js/issues/3356 ) has been fixed in the latest release
+
+2.11 26 Aug 2020
+
+-Parental PIN implemented on HbbTV and Android clients
+-Broadcast audio and subtitle track selection implemented in the HbbTV client
+-HbbTV version uses Dash.js version 3.1.1 due to an issue in Dash.js 3.1.2 ( https://github.com/Dash-Industry-Forum/dash.js/issues/3356 )
+-HbbTV EPG schedule error handling improvements
+-Service list logo field added to the service list editor
+
+2.10 3 Jun 2020
+
+-Audio track selection for HbbTV client
+-Application launch support for applications signaled in the service list. Both media presentation and parallel apps supported for HbbTV/Operator Application client. Only media presentation app support for Android client.
+-Service list logo support.
+
+2.9 13 May 2020
+
+-Fix to issue #23( https://github.com/DVBproject/DVB-I-Reference-Client/issues/23 )
+
+2.8 12 May 2020
+
+-HbbTV client has the ability to use Dash.js player, supports subtitles and low latency settings
+-Android client settings UI updated
+
+2.7 22 Apr 2020
+
+ -Service provider list URL was accidentally replaced by a development version, reverted back to the production.
+
+2.6 22 Apr 2020 
+
+ -Default UI language selection fixed
+
+2.5 21 Apr 2020
+
+-Parental rating and parental blocking implemented on HbbTV and Android clients. Parental PIN not implemented yet.
+Example schedule information does not contain parental ratings at the moment, see https://bugzilla.dvb.org/show_bug.cgi?id=2706.
+-Subtitle and audio track selection implemented on Android client
+-Preferred subtitle language implemented on Android client
+-Client will select the service instance with the highest priority
+-UI language selection started, some UI texts in the Android client can be localized.
+
+2.4 31 Mar 2020
+
+- HbbTV service list selection UI improvements
+- HbbTV client service list must be selected when starting the application for the first time
+
+2.3 31 Mar 2020
+
+- HbbTV client: Service list can be selected from the service list registry, the selection is stored in the webstorage or a cookie if the device doesn't support webstorage. The service list registry can be accessed using the yellow button.
+- Android client UI improvements in settings and service list selection
+- Github issue #14: DVB services not in the DVB-I service list have a different color in the HbbTV client
+
 31 Jan 2020
 
 First release
