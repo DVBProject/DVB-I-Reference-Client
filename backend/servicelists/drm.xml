@@ -10,7 +10,7 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/schedule.php</URI>
+      <URI>http://paulhiggs.ddns.net:8118/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
   </ContentGuideSource>
   <Service version="1">
@@ -24,7 +24,7 @@
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/videos/02_gran_dillama_1080p_25f75g6sv5/drm/manifest.mpd</URI>
+          <URI>http://paulhiggs.ddns.net:8118/drm/manifest.mpd</URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -37,7 +37,7 @@
      <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="application/xhtml+xml">https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/linked_applications/android_drm_widevine.html</tva:MediaUri>
+        <tva:MediaUri contentType="application/xhtml+xml">http://paulhiggs.ddns.net:8118/linked_applications/android_drm_widevine.html</tva:MediaUri>
       </tva:MediaLocator>
     </RelatedMaterial>
       <ContentProtection>
@@ -61,7 +61,7 @@
       <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
       <tva:MediaLocator>
-        <tva:MediaUri contentType="application/vnd.dvb.ait+xml">https://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/linked_applications/hbbtv_playready_aitx.php</tva:MediaUri>
+        <tva:MediaUri contentType="application/vnd.dvb.ait+xml">http://paulhiggs.ddns.net:8118/linked_applications/hbbtv_playready_aitx.php</tva:MediaUri>
       </tva:MediaLocator>
      </RelatedMaterial>
       <ContentProtection>
