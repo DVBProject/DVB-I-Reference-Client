@@ -41,9 +41,9 @@ Replace `“http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/”` in
 
 - `backend/nownext.xml`
 - `backend/program_information_template.xml`
-- `backend/servicelists\drm.xml`
-- `backend/servicelists\example.xml`
-- `backend/servicelists\example_rev1.xml`
+- `backend/servicelists/drm.xml`
+- `backend/servicelists/example.xml`
+- `backend/servicelists/example_rev1.xml`
 - `frontend/dvbi-common.js`
 
 Change the references to the reference service lists on `raw.github` to your local server URLs
@@ -56,10 +56,10 @@ Change the references to the reference service lists on `raw.github` to your loc
 
 ## to be determined
 
-NOT SURE WHAT TO DO ABOUT THESE…
+### In 'old commented out' code
 
-`frontend\hbbtv\launcher\videoplayer_html5.js` --> /* "serverURL" : "https://mhp.sofiadigital.fi/tvportal/referenceapp/videos/laurl_ck.php", */
+`frontend\hbbtv\launcher\videoplayer_html5.js` contains /* "serverURL" : "https://mhp.sofiadigital.fi/tvportal/referenceapp/videos/laurl_ck.php", */
 
-`backend\servicelists\drm.xml` --> https://devel.sofiadigital.fi/home/tsa/dvb-i-reference-application/linked_applications/hbbtv_playready_aitx.php
+
 
 
