@@ -52,6 +52,7 @@ function channelSelected(channelId) {
     $("#subtitle").hide();
     $("#audio").hide();
     $("#pause").hide();
+    $("#play").hide();
     newChannel.channelSelected();
     selectedChannel = newChannel;
 
@@ -82,8 +83,9 @@ window.onload = function(){
        if(audio && audio.length > 1) {
           $("#audio").show();
        }
-       $("#pause a").text("Pause");
+ //      $("#pause a").text("Pause");
        $("#pause").show();
+       $("#play").hide();
     });
     
     player = dashjs.MediaPlayer().create();
@@ -731,15 +733,15 @@ function togglePause() {
   if(player.isPaused()) {
     player.play();
 //    $("#pause a").text(i18n.getString("pause_button"));
-    $("#pause a").show();
-    $("#play a").hide();
+    $("#pause").show();
+    $("#play").hide();
       }
   else {
     player.pause();
 //    $("#pause a").text("Play");
 //    $("#pause a").text(i18n.getString("play_button"));
 
-    $("#pause a").hide();
-    $("#play a").show();
-}
+    $("#pause").hide();
+    $("#play").show();
+  }
 }
