@@ -4,5 +4,7 @@
 "epg_button":"Ohjelmaopas",
 "subtitle_button":"Tekstitys",
 "audio_button":"Ääniraita",
-"close_button":"Sulje"
+"close_button":"Sulje",
+"pause_button":"Tauko",
+"play_button":"Toisto"
 }

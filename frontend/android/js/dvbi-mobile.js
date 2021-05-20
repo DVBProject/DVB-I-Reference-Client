@@ -1,3 +1,4 @@
+/* jshint esversion: 8 */
 var selectedChannel = null;
 var channels = [];
 var epg = null;
@@ -178,7 +179,7 @@ window.onload = function(){
         }
         select.appendChild(option);
     }
-}
+};
 
 function resetHideTimeout() {
     if( $(".player-ui").hasClass("hide") && $(".epg").hasClass("hide")) {
@@ -729,9 +730,11 @@ function isDRMSystemSupported(drmSystemId) {
 function togglePause() {
   if(player.isPaused()) {
     player.play();
+    $("#pause a").text(i18n.getString("pause_button"));
   }
   else {
     player.pause();
-    $("#pause a").text("Play");
-  }
+//    $("#pause a").text("Play");
+    $("#pause a").text(i18n.getString("play_button"));
+}
 }

@@ -4,5 +4,7 @@
 "epg_button":"Open EPG",
 "subtitle_button":"Subtitles",
 "audio_button":"Audio",
-"close_button":"Close"
+"close_button":"Close",
+"pause_button":"Pause",
+"play_button":"Play"
 }
