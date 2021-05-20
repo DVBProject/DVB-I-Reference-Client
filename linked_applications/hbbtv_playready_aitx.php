@@ -29,7 +29,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
                                         </mhp:mhpVersion>
                                 </mhp:applicationDescriptor>
                                 <mhp:applicationTransport xsi:type="mhp:HTTPTransportType">
-                                        <mhp:URLBase>https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/linked_applications/</mhp:URLBase>
+                                        <mhp:URLBase>http://paulhiggs.ddns.net:8118/linked_applications/</mhp:URLBase>
                                 </mhp:applicationTransport>
                                 <mhp:applicationLocation>hbbtv_playready.html</mhp:applicationLocation>
                         </mhp:Application>
