@@ -6,5 +6,6 @@
 "audio_button":"Audio",
 "close_button":"Close",
 "pause_button":"Pause",
-"play_button":"Play"
+"play_button":"Play",
+"epg_title":"EPG"
 }

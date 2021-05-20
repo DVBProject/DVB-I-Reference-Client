@@ -6,5 +6,6 @@
 "audio_button":"Ääniraita",
 "close_button":"Sulje",
 "pause_button":"Tauko",
-"play_button":"Toisto"
+"play_button":"Toisto",
+"epg_title":"EPG"
 }
