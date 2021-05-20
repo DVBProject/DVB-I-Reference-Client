@@ -730,11 +730,16 @@ function isDRMSystemSupported(drmSystemId) {
 function togglePause() {
   if(player.isPaused()) {
     player.play();
-    $("#pause a").text(i18n.getString("pause_button"));
-  }
+//    $("#pause a").text(i18n.getString("pause_button"));
+    $("#pause a").show();
+    $("#play a").hide();
+      }
   else {
     player.pause();
 //    $("#pause a").text("Play");
-    $("#pause a").text(i18n.getString("play_button"));
+//    $("#pause a").text(i18n.getString("play_button"));
+
+    $("#pause a").hide();
+    $("#play a").show();
 }
 }
