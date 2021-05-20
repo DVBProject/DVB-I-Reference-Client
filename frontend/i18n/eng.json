@@ -1,5 +1,5 @@
 {
-"settings":"Settings",
+"settings_button":"Settings",
 "parental_block":"Content blocked by parental control",
 "epg_button":"Open EPG",
 "subtitle_button":"Subtitles",
@@ -7,5 +7,5 @@
 "close_button":"Close",
 "pause_button":"Pause",
 "play_button":"Play",
-"epg_title":"EPG"
+"epg_page_title":"EPG"
 }

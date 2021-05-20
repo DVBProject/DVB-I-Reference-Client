@@ -2,7 +2,7 @@ function I18n(){
     this.languages = [{"lang":"eng","name":"English"},{"lang":"fin","name":"Suomi"},{"lang":"zhn","name":"Chinese"}];
     this.languageData = null;
     this.currentLanguage = null;
-    this.texts = ["epg_button","settings_button","subtitle_button","audio_button","settings_title","close_button","pause_button","play_button", "epg_page"];
+    this.texts = ["epg_button","settings_button","subtitle_button","audio_button","settings_title","close_button","pause_button","play_button", "epg_page_title"];
 
 }
 
