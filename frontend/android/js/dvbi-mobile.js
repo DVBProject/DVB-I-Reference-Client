@@ -1,4 +1,3 @@
-/* jshint esversion: 8 */
 var selectedChannel = null;
 var channels = [];
 var epg = null;
