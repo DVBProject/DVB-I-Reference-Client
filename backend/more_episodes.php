@@ -1,4 +1,5 @@
 <?php
+include 'configuration.php';
 header('Content-Type: text/xml');
 header("Access-Control-Allow-Origin: *");
 $timeformat = "Y-m-d\TH:i:s\Z";
@@ -18,5 +19,6 @@ $schedule =str_replace("2013-09-25T11:15:00Z",date($timeformat, $present_startti
 $schedule =str_replace("2013-09-25T12:00:00Z",date($timeformat, $following_starttime),$schedule);
 $schedule =str_replace("2013-09-25T12:30:00.000Z",date($timeformat, $following_endtime),$schedule);
 $schedule =str_replace("SERVICE_ID_TEMPLATE",$_GET['sid'],$schedule);
+$schedule =str_replace("INSTALL--LOCATION",$install_location,$schedule);
 echo $schedule;
 ?>

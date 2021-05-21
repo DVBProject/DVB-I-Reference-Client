@@ -34,31 +34,11 @@ Note that, you could also create a custom Apache site in `/etc/apache2/sites-ava
 
 ### Update files to refer to local endpoints
 
-In `/var/www/html/frontend/dvbi-common.js`, change the `PROVIDER_LIST` to the fully qualified URL to your service list registry, i.e.
-`var PROVIDER_LIST = "http://my-www-host/backend/servicelist_registry.php"`
+In `/var/www/html/frontend/dvbi-common.js`, change the `INSTALL_LOCATION` to the fully qualified URL to your service list registry, i.e.
+`var INSTALL_LOCATION = "http://my-www-host";`. Do not include the trailing slash.
 
-Replace `“http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/”` in the following files with your own paths, i.e.  `“http://my-www-host/” `
-
-- `backend/nownext.xml`
-- `backend/program_information_template.xml`
-- `backend/servicelists/drm.xml`
-- `backend/servicelists/example.xml`
-- `backend/servicelists/example_rev1.xml`
-- `frontend/dvbi-common.js`
-
-Change the references to the reference service lists on `raw.github` to your local server URLs
-
-- `backend/slepr-master.xml`
-  - `<dvbisd:URI>https://raw.githubusercontent.com/DVBproject/DVB-I-Reference-Client/master/backend/servicelists/example.xml</dvbisd:URI>`
-  - becomes
-  - `<dvbisd:URI>http://my-www-host/backend/servicelists/example.xml</dvbisd:URI>`
-
-
-## to be determined
-
-### In 'old commented out' code
-
-`frontend\hbbtv\launcher\videoplayer_html5.js` contains /* "serverURL" : "https://mhp.sofiadigital.fi/tvportal/referenceapp/videos/laurl_ck.php", */
+In `/var/www/html/vackend/configuration.php`, change the `$install_location` to the same fully qualified URL to your service list registry, i.e.
+`$install_location = "http://my-www-host";`. Do not include the trailing slash.
 
 
 

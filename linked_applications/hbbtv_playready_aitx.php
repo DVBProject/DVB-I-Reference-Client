@@ -1,8 +1,11 @@
 <?php  
+include "../backend/configuration.php";
+
 header( "Content-Type: application/vnd.dvb.ait+xml;charset=utf-8" );
 
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-?>
+
+$str = <<<EOD
 <mhp:ServiceDiscovery xmlns:mhp="urn:dvb:mhp:2009" xmlns:ipi="urn:dvb:metadata:iptv:sdns:2008-1" xmlns:tva="urn:tva:metadata:2005" xmlns:mpeg7="urn:tva:mpeg7:2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:mhp:2009 mis_xmlait.xsd">
         <mhp:ApplicationDiscovery DomainName="77.36.163.194">
                 <mhp:ApplicationList>
@@ -29,10 +32,13 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
                                         </mhp:mhpVersion>
                                 </mhp:applicationDescriptor>
                                 <mhp:applicationTransport xsi:type="mhp:HTTPTransportType">
-                                        <mhp:URLBase>http://paulhiggs.ddns.net:8118/linked_applications/</mhp:URLBase>
+                                        <mhp:URLBase>$install_location/linked_applications/</mhp:URLBase>
                                 </mhp:applicationTransport>
                                 <mhp:applicationLocation>hbbtv_playready.html</mhp:applicationLocation>
                         </mhp:Application>
                 </mhp:ApplicationList>
         </mhp:ApplicationDiscovery>
 </mhp:ServiceDiscovery>
+EOD;
+echo $str;
+?>

@@ -1,4 +1,6 @@
 <?php
+include 'configuration.php';
+
 header('Content-Type: text/xml');
 header('Access-Control-Allow-Origin: *');
 
@@ -129,6 +131,8 @@ if(isset( $_GET['TargetCountry'])) {
     }
 }
 
-echo $list->asXML();
+$processed_list =str_replace("INSTALL--LOCATION",$install_location,$list->asXML());
+
+echo $processed_list;
 
 ?>

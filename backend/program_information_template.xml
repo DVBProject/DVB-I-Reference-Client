@@ -16,7 +16,7 @@
  <RelatedMaterial>
  <HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
  <MediaLocator>
- <MediaUri contentType="image/png">http://paulhiggs.ddns.net:8118/backend/nownext.png</MediaUri>
+ <MediaUri contentType="image/png">INSTALL--LOCATION/backend/nownext.png</MediaUri>
  </MediaLocator>
  </RelatedMaterial>
  </BasicDescription>

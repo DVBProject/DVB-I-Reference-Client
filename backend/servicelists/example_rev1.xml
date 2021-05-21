@@ -11,13 +11,13 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>http://paulhiggs.ddns.net:8118/backend/schedule.php</URI>
+      <URI>INSTALL--LOCATION/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
     <MoreEpisodesEndpoint contentType="application/xml">
-      <URI>http://paulhiggs.ddns.net:8118/backend/more_episodes.php</URI>
+      <URI>INSTALL--LOCATION/backend/more_episodes.php</URI>
     </MoreEpisodesEndpoint>
     <ProgramInfoEndpoint contentType="application/xml">
-      <URI>http://paulhiggs.ddns.net:8118/backend/program_information.php</URI>
+      <URI>INSTALL--LOCATION/backend/program_information.php</URI>
     </ProgramInfoEndpoint>
   </ContentGuideSource>
   <Service version="1">
@@ -41,7 +41,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1000.1"></HowRelated>
       <MediaLocator>
-        <tva:MediaUri contentType="image/jpg">http://paulhiggs.ddns.net:8118/backend/channel_icons/outofservice_example.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/jpg">INSTALL--LOCATION/backend/channel_icons/outofservice_example.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ServiceType href="urn:dvb:metadata:cs:ServiceTypeCS:2019:linear"></ServiceType>
