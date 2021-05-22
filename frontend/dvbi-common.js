@@ -1,7 +1,7 @@
 // DVB-I Reference installation location -- also configuration.php
 var INSTALL_LOCATION="http://paulhiggs.ddns.net:8118";
 
-var PROVIDER_LIST = INSTALL_LOCATION+"backend/servicelist_registry.php";
+var PROVIDER_LIST = INSTALL_LOCATION+"/backend/servicelist_registry.php";
 
 function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     var serviceList = {};
