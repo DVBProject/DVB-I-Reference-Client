@@ -1,5 +1,6 @@
 // DVB-I Reference installation location -- also configuration.php
 var INSTALL_LOCATION="http://paulhiggs.ddns.net:8118";
+//var INSTALL_LOCATION = "http://stage.sofiadigital.fi/dvb/dvb-i-reference-application";
 
 var PROVIDER_LIST = INSTALL_LOCATION+"/backend/servicelist_registry.php";
 
