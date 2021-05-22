@@ -83,7 +83,7 @@
 		<sld:ServiceListOffering regulatorListFlag="false">
 		<sld:ServiceListName>DVB-I Reference Client DRM service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL--LOCATION/backend/servicelists/drm.xml</dvbisd:URI>
+				<dvbisd:URI>INSTALL--LOCATION/backend/localinstall.php?list=servicelists/drm.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">

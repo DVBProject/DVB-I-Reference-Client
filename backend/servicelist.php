@@ -8,7 +8,6 @@
     header( "Content-Type: application/xml;charset=utf-8" );
     header("Access-Control-Allow-Origin: *");
 
-    #echo file_get_contents("servicelists/example.xml");
     $servicelist= file_get_contents("servicelists/example.xml");
 
     $servicelist =str_replace("INSTALL--LOCATION",$install_location,$servicelist);
