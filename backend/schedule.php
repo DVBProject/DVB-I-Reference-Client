@@ -1,4 +1,5 @@
 <?php
+include 'configuration.php';
 header('Content-Type: text/xml');
 header("Access-Control-Allow-Origin: *");
 $timeformat = "Y-m-d\TH:i:s\Z";
@@ -21,6 +22,7 @@ if(isset($_GET['now_next']) && isset($_GET['sid']) && $_GET['now_next'] == "true
     $schedule =str_replace("2013-09-25T12:00:00Z",date($timeformat, $following_starttime),$schedule);
     $schedule =str_replace("2013-09-25T12:30:00.000Z",date($timeformat, $following_endtime),$schedule);
     $schedule =str_replace("SERVICE_ID_TEMPLATE",$_GET['sid'],$schedule);
+    $schedule =str_replace("INSTALL--LOCATION",$install_location,$schedule);
     echo $schedule;
 }
 else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sids']) ){
@@ -47,6 +49,7 @@ else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sids']) ){
         $schedules = $schedules.$schedule;
         $program = file_get_contents("program_information_template.xml");
         $program =str_replace("PROGRAM_ID_TEMPLATE",$id,$program);
+        $schedule =str_replace("INSTALL--LOCATION",$install_location,$schedule);
         $programs = $programs.$program;
         $index++;
         $id = "crid://".$sid.".".$index;

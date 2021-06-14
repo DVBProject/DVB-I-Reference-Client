@@ -51,6 +51,7 @@ function channelSelected(channelId) {
     $("#subtitle").hide();
     $("#audio").hide();
     $("#pause").hide();
+    $("#play").hide();
     newChannel.channelSelected();
     selectedChannel = newChannel;
 
@@ -81,8 +82,9 @@ window.onload = function(){
        if(audio && audio.length > 1) {
           $("#audio").show();
        }
-       $("#pause a").text("Pause");
+ //      $("#pause a").text("Pause");
        $("#pause").show();
+       $("#play").hide();
     });
     
     player = dashjs.MediaPlayer().create();
@@ -178,7 +180,7 @@ window.onload = function(){
         }
         select.appendChild(option);
     }
-}
+};
 
 function resetHideTimeout() {
     if( $(".player-ui").hasClass("hide") && $(".epg").hasClass("hide")) {
@@ -729,9 +731,16 @@ function isDRMSystemSupported(drmSystemId) {
 function togglePause() {
   if(player.isPaused()) {
     player.play();
-  }
+//    $("#pause a").text(i18n.getString("pause_button"));
+    $("#pause").show();
+    $("#play").hide();
+      }
   else {
     player.pause();
-    $("#pause a").text("Play");
+//    $("#pause a").text("Play");
+//    $("#pause a").text(i18n.getString("play_button"));
+
+    $("#pause").hide();
+    $("#play").show();
   }
 }
