@@ -12,8 +12,8 @@
       $list = $_GET["list"];
     }
     $servicelist = NULL;
-    if(strlen($list) ==  0 || strpos($list,"..") !== false || strpos($list,"/") !== false || !file_exists("servicelists/".$list) || strpos( $list,".xml",-4) !== 0 ) {
-     echo "ERROT";
+    if(strlen($list) ==  0 || strpos($list,"..") !== false || strpos($list,"/") !== false || strpos( $list,".xml") !== (strlen($list)-4) || !file_exists("servicelists/".$list)  ) {
+      $servicelist= file_get_contents("servicelists/example.xml");
     }
     else {
       $servicelist= file_get_contents("servicelists/".$list);
