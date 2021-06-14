@@ -7,8 +7,17 @@
     header( "Pragma: no-cache" );
     header( "Content-Type: application/xml;charset=utf-8" );
     header("Access-Control-Allow-Origin: *");
-
-    $servicelist= file_get_contents("servicelists/example.xml");
+    $list = NULL;
+    if(isset($_GET["list"])) {
+      $list = $_GET["list"];
+    }
+    $servicelist = NULL;
+    if(strlen($list) ==  0 || strpos($list,"..") !== false || strpos($list,"/") !== false || !file_exists("servicelists/".$list) || strpos( $list,".xml",-4) !== 0 ) {
+     echo "ERROT";
+    }
+    else {
+      $servicelist= file_get_contents("servicelists/".$list);
+    }
 
     $servicelist =str_replace("INSTALL--LOCATION",$install_location,$servicelist);
     echo $servicelist;

@@ -71,31 +71,31 @@
 		<sld:ServiceListOffering regulatorListFlag="false">
 		<sld:ServiceListName>DVB-I Reference Client service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL--LOCATION/backend/servicelists/example.xml</dvbisd:URI>
+				<dvbisd:URI>INSTALL--LOCATION/backend/servicelist.php?list=example.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
     <sld:ServiceListName>DVB-I Reference Client rev.1 service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL--LOCATION/backend/servicelists/example_rev1.xml</dvbisd:URI>
+				<dvbisd:URI>INSTALL--LOCATION/backend/servicelist.php?list=example_rev1.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
 		<sld:ServiceListName>DVB-I Reference Client DRM service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL--LOCATION/backend/localinstall.php?list=servicelists/drm.xml</dvbisd:URI>
+				<dvbisd:URI>INSTALL--LOCATION/backend/servicelist.php?list=drm.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
 		  <sld:ServiceListName>DVB-DASH Reference Streams</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL--LOCATION/backend/servicelists/TM-STREAM0075r1 DVB-DASH_Reference_Streams.xml</dvbisd:URI>
+				<dvbisd:URI>INSTALL--LOCATION/backend/servicelist.php?list=TM-STREAM0075r1 DVB-DASH_Reference_Streams.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
 		  <sld:ServiceListName>Next generation codecs service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL--LOCATION/backend/servicelists/advanced_codecs.xml</dvbisd:URI>
+				<dvbisd:URI>INSTALL--LOCATION/backend/servicelist.php?list=advanced_codecs.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
