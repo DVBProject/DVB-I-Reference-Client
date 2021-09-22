@@ -4,7 +4,7 @@ function I18n(){
     this.currentLanguage = null;
     this.texts = ["epg_button","settings_button","subtitle_button","audio_button","settings_title","close_button","pause_button","play_button", "epg_page_title", "tune_to_channel",
                 "stats_video_resolution", "stats_video_bitrate", "stats_audio_bitrate", "stats_latency", "stats_settings",
-                "minutes_abbrevaition", "minimum_age_label", "rating_label", "reason_label", "more_episodes_label", 
+                "minutes_abbreviation", "minimum_age_label", "rating_label", "reason_label", "more_episodes_label", 
                 "sl_select_page", "select_sl",
                 "slrquery_params_title", "slrquery_provider_field", "slrquery_language_field", "slrquery_genre_field", "slrquery_country_field",
                 "slrquery_regulator_field", "slrquery_multi_vals", "slrquery_filter_button",
