@@ -118,8 +118,14 @@ Channel.prototype.parseSchedule = function(data) {
                         rating.parentalRating = parentalRating[0].getAttribute("href");
                     }
                     var explanatoryText = parentalGuidance[k].getElementsByTagName("ExplanatoryText");
-                    if(explanatoryText.length > 0) { //assume single element
-                        rating.explanatoryText = explanatoryText[0].childNodes[0].nodeValue;
+                    if(explanatoryText.length > 0) { //multilingual
+                      rating.explanatoryText2=[];
+                      for (var l=0; l<explanatoryText.length; l++) {
+                          var t={};
+                          t.lang = elementLanguage(explanatoryText[l]);
+                          t.text = explanatoryText[l].textContent;
+                          rating.explanatoryText2.push(t);
+                      }
                     }
                     parentals.push(rating);
                 }

@@ -49,7 +49,7 @@ else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sids']) ){
         $schedules = $schedules.$schedule;
         $program = file_get_contents("program_information_template.xml");
         $program =str_replace("PROGRAM_ID_TEMPLATE",$id,$program);
-        $schedule =str_replace("INSTALL--LOCATION",$install_location,$schedule);
+        $program =str_replace("INSTALL--LOCATION",$install_location,$program);
         $programs = $programs.$program;
         $index++;
         $id = "crid://".$sid.".".$index;
