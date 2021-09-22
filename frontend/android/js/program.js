@@ -98,7 +98,7 @@ Program.prototype.populateProgramInfo = function(){
     $(".date").text(this.start.getDate()+"."+(this.start.getMonth()+1)+".");
     $(".starttime").text(this.start.create24HourTimeString());
     $(".endtime").text(this.end.create24HourTimeString());
-    $(".duration").text(this.prglen+i18n.getString("minutes_abbreviation"));
+    $(".duration").text(""+this.prglen+i18n.getString("minutes_abbreviation"));
     if(this.parentalRating && this.parentalRating.length > 0) {
 
         var parental = [];
