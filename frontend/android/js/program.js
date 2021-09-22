@@ -98,19 +98,19 @@ Program.prototype.populateProgramInfo = function(){
     $(".date").text(this.start.getDate()+"."+(this.start.getMonth()+1)+".");
     $(".starttime").text(this.start.create24HourTimeString());
     $(".endtime").text(this.end.create24HourTimeString());
-    $(".duration").text(this.prglen+" mins");
+    $(".duration").text(this.prglen+i18n.getString("minutes_abbreviation"));
     if(this.parentalRating && this.parentalRating.length > 0) {
 
         var parental = [];
         for(var i = 0;i < this.parentalRating.length;i++) {
             if(this.parentalRating[i].minimumage) {
-                parental.push("MinimumAge:"+this.parentalRating[i].minimumage);
+                parental.push(i18n.getString("minimum_age_label")+":"+this.parentalRating[i].minimumage);
             }
             if(this.parentalRating[i].parentalRating) {
-                parental.push("Rating:"+getParentalRating(this.parentalRating[i].parentalRating));
+                parental.push(i18n.getString("rating_label")+":"+getParentalRating(this.parentalRating[i].parentalRating));
             }
             if(this.parentalRating[i].explanatoryText2) {
-                parental.push("Reason:"+UseLocalisation(this.parentalRating[i].explanatoryText2,language_settings.ui_language));
+                parental.push(i18n.getString("reason_label")+":"+UseLocalisation(this.parentalRating[i].explanatoryText2,language_settings.ui_language));
             }
         }
         $(".parentalrating").text(parental.join(" "));
@@ -118,7 +118,7 @@ Program.prototype.populateProgramInfo = function(){
     $("#select_service_button").attr("href","javascript:channelSelected('"+this.channel.id+"')");
     this.channel.getMoreEpisodes(this.programId, function(episodes) {
       if(episodes) {
-        var episodeList = "More episodes:<br/>";
+        var episodeList = i18n.getString("more_episodes_label")+":<br/>";
         for(var i = 0;i< episodes.length;i++) {
             episodeList += episodes[i].getTitle()+" "+episodes[i].start.getDate()+"."+(episodes[i].start.getMonth()+1)+". "+episodes[i].start.create24HourTimeString()+"-"+episodes[i].end.create24HourTimeString()+"<br/>";
         }
@@ -150,7 +150,7 @@ Program.prototype.populateProgramInfo = function(){
            }
         }
         if(info.keywords) {
-           extendedData += "Keywords:";
+           extendedData += i18n.getString("label_keywords")+":";
            for(var i = 0;i< info.creditsItems.length;i++) {
              extendedData += (info.keywords[i].value+",");
            }

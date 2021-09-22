@@ -369,7 +369,7 @@ function loadServicelistProviders(list,hideCloseButton) {
         var listElement = document.getElementById("servicelists");
         $(listElement).empty();
         var provider = document.createElement('h2');
-        provider.appendChild(document.createTextNode("Select service list"));
+        provider.appendChild(document.createTextNode(i18n.getString("select_sl")));
         listElement.appendChild(provider);
         for (var i = 0; i < servicelists.length ;i++) {
             var provider = document.createElement('h4');
