@@ -5,7 +5,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021633">
 				<BasicDescription>
 					<Title type="main">Mobile's Monster Meals</Title>
+					<Title type="main" xml:lang="zhn">移动的怪物餐</Title>
 					<Synopsis length="medium">The Destroyer has two pounds of burger, 12 strips of bacon and a stack of cheese, all loaded into an enormous grilled doughnut; whole bacon-wrapped chicken topped with fried oysters and collard greens is piled onto pimento cheese cornbread.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">毁灭者有两磅汉堡、12 条培根和一堆奶酪，全部装入一个巨大的烤甜甜圈中； 整只培根包裹的鸡肉，上面放着炸牡蛎和羽衣甘蓝，上面堆满了多香果奶酪玉米面包。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -19,6 +21,7 @@
 				<BasicDescription>
 					<Title type="main">London</Title>
 					<Synopsis length="medium">Leslie travels to London to accept an award; Tom hunts down a businessman; Ann and Chris take their relationship to the next level.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">莱斯利前往伦敦领奖； 汤姆追捕一个商人； 安和克里斯将他们的关系提升到一个新的水平。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -30,7 +33,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021635">
 				<BasicDescription>
 					<Title type="main">Like Father, Like Sun</Title>
-					<Synopsis length="medium">Ozzy and Jack begin their travels in Key West, Fla., where they do some deep-sea fishing and pay a visit to Robert the Haunted Doll; the duo hunt for pythons in the Everglades and drive by Mar-a-Lago, President Donald Trump's&quot;Winter White House.&quot;</Synopsis>
+					<Title type="main" xml:lang="zhn">有其父必有其子</Title>
+					<Synopsis length="medium">Ozzy and Jack begin their travels in Key West, Fla., where they do some deep-sea fishing and pay a visit to Robert the Haunted Doll; the duo hunt for pythons in the Everglades and drive by Mar-a-Lago, President Donald Trump's &quot;Winter White House.&quot;</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">奥兹和杰克开始了他们在佛罗里达州基韦斯特的旅行，在那里他们进行了一些深海捕鱼并拜访了闹鬼的娃娃罗伯特； 两人在大沼泽地寻找蟒蛇，并由唐纳德特朗普总统的&quot;冬季白宫&quot;海湖庄园开车。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -43,7 +48,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021636">
 				<BasicDescription>
 					<Title type="main">International Situation</Title>
+					<Title type="main" xml:lang="zhn">国际形势</Title>
 					<Synopsis length="medium">Nick Popovich and his team travel to Turkey and France to hunt down two Airbus A320s for repossession.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">尼克波波维奇和他的团队前往土耳其和法国寻找两架空客 A320 以收回。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -56,6 +63,7 @@
 				<BasicDescription>
 					<Title type="main">Confucius</Title>
 					<Synopsis length="medium">Bettany Hughes travels to China on the trail of Confucius, a great sage of Chinese history whose ideas have fundamentally shaped the country of his birth for around 2,500 years.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">贝坦尼·休斯 (Bettany Hughes) 跟随孔子前往中国，孔子是中国历史上一位伟大的圣人，其思想从根本上塑造了他出生的国家大约 2500 年。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -68,7 +76,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021638">
 				<BasicDescription>
 					<Title type="main">The Mutilator</Title>
+					<Title type="main" xml:lang="zhn">毁灭者</Title>
 					<Synopsis length="medium">Jeremy Wade travels to the Sepik River in New Guinea to investigate a creature suspected of taking the lives of at least two fishermen.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">杰里米·韦德前往新几内亚的塞皮克河调查一种被怀疑夺走至少两名渔民生命的生物。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -81,6 +91,7 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021639">
 				<BasicDescription>
 					<Title type="main">New York, NY</Title>
+					<Synopsis length="medium" xml:lang="zhn">凯西·韦伯 (Casey Webb) 前往纽约市品尝大城市美食，其中包括一项疯狂挑战，让他在 151 盎司的奶昔、八磅重的邋遢乔或六个哈瓦那人鬼辣椒翅膀之间做出选择。</Synopsis>
 					<Synopsis length="medium">Casey Webb travels to New York City for the best in big city eats, including an insane challenge that has him choosing between a 151-ounce milkshake, an eight-pound sloppy joe or six habanero ghost chili wings.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
@@ -94,7 +105,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021640">
 				<BasicDescription>
 					<Title type="main">Friends in Wild Places</Title>
+					<Title type="main" xml:lang="zhn">野外的朋友</Title>
 					<Synopsis length="medium">Traveling the terrain of North America on inspirational adventures.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">在鼓舞人心的冒险中穿越北美的地形。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -106,7 +119,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021641">
 				<BasicDescription>
 					<Title type="main">Globetrotting with Gemstones</Title>
+					<Title type="main" xml:lang="zhn">带着宝石环游世界</Title>
 					<Synopsis length="medium">Here at Gemporia, we travel the globe to source your exquisite gemstones and we are proud to bring them to you in this hour in stunning designs and incredible prices.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">在 Gemporia，我们周游世界为您采购精美的宝石，我们很自豪能在这一小时内以令人惊叹的设计和令人难以置信的价格将它们带给您。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -120,6 +135,7 @@
 				<BasicDescription>
 					<Title type="main">Laura McKenzie's Traveler</Title>
 					<Synopsis length="medium">The award winning travel journalist takes picturesque tours around the world.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">这位屡获殊荣的旅行记者在世界各地进行风景如画的旅行。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -132,7 +148,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021643">
 				<BasicDescription>
 					<Title type="main">The Story of the South African Quaalude</Title>
+					<Title type="main" xml:lang="zhn">南非 Quaalude 的故事</Title>
 					<Synopsis length="medium">South Africa is the last place on earth Quaaludes can still be found; Hamilton travels there to study the drug and learns of a dark history of medical experimentation.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">南非是地球上最后一个仍然可以找到 Quaaludes 的地方； 汉密尔顿前往那里研究药物并了解了医学实验的黑暗历史。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -145,7 +163,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021644">
 				<BasicDescription>
 					<Title type="main">The Time Travelers</Title>
+					<Title type="main" xml:lang="zhn">时间旅行者</Title>
 					<Synopsis length="medium">Considering the possibility that sightings of alien beings or UFOs may be evidence of time travelers from the future.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">考虑到外星人或不明飞行物的目击事件可能是来自未来的时间旅行者的证据。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -158,7 +178,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021645">
 				<BasicDescription>
 					<Title type="main">Slinky Brand Fashions</Title>
+					<Title type="main" xml:lang="zhn">紧身品牌时装</Title>
 					<Synopsis length="medium">Wrinkle resistant dresses, pants, tops, and sets that are easy wear, easy care, travel companions; these flattering fashions are designed to be worn from morning to night. Made with comfort in mind and offered in multiple options of color and print.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">抗皱连衣裙、裤子、上衣和套装，易于穿着、易于打理、旅行伴侣； 这些讨人喜欢的时装专为从早到晚穿着而设计。 以舒适为理念，提供多种颜色和印刷选择。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -170,7 +192,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021646">
 				<BasicDescription>
 					<Title type="main">Pythian Castle</Title>
+					<Title type="main" xml:lang="zhn">皮提安城堡</Title>
 					<Synopsis length="medium">Zak and the crew travel to Springfield, Mo., to investigate Pythian Castle, a historic building infected with violent spirits who appear to mimic the living and deliver fatal premonitions.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">扎克和船员们前往密苏里州斯普林菲尔德调查皮提安城堡，这座历史建筑感染了暴力精神，似乎模仿生者并发出致命的预感。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -183,6 +207,7 @@
 				<BasicDescription>
 					<Title type="main">Santorini</Title>
 					<Synopsis length="medium">Bursting with beauty and culinary icons of near mythical proportion, the Greek island of Santorini is home to tomato fritters, lamb fricassee and natural delicacies like grilled octopus.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">希腊圣托里尼岛充满了近乎神话般的美丽和烹饪标志，是番茄油条、羊肉煎饼和烤章鱼等天然美食的故乡。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -196,6 +221,7 @@
 				<BasicDescription>
 					<Title type="main">Bogota</Title>
 					<Synopsis length="medium">Hearty potato soup, whole-roasted stuffed pork, egg filled arepas and cheesy hot chocolate.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">丰盛的马铃薯汤、全烤猪肉馅、鸡蛋馅饼和奶酪热巧克力。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -207,8 +233,10 @@
 			</ProgramInformation>
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021649">
 				<BasicDescription>
-					<Title type="main">Prague</Title>
+					<Title type="main">Bizarre Foods: Delicous Destinations</Title>
+					<Title type="secondary">Prague</Title>
 					<Synopsis length="medium">Andrew Zimmern visits Prague, a pilsner-lover's paradise in the Czech Republic; the city's cuisine is full of hearty comfort classics like pork knuckle marinated in lager, mushroom soup, sweet plum pastries, and a lot of dumplings.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">安德鲁·齐默恩 (Andrew Zimmern) 访问捷克共和国比尔森啤酒爱好者的天堂布拉格； 这个城市的美食充满了丰盛的舒适经典，如啤酒腌制的猪肘、蘑菇汤、甜梅糕点和许多饺子。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -221,7 +249,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021650">
 				<BasicDescription>
 					<Title type="main">Mayan Apocalypse</Title>
+					<Title type="main" xml:lang="zhn">玛雅启示录</Title>
 					<Synopsis length="medium">Unearthing human skulls and ancient Mayan sacrificial alters in the caverns underneath the jungles and ruins of Mexico.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">在墨西哥丛林和废墟下的洞穴中发掘人类头骨和古代玛雅祭祀用品。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -233,8 +263,10 @@
 			</ProgramInformation>
 			<ProgramInformation programId="crid://dvbi-reference/example.2.12021651">
 				<BasicDescription>
-					<Title type="main">Undiscovered Hawaii</Title>
+					<Title type="main">Bizarre Foods America</Title>
+					<Title type="secondary">Undiscovered Hawaii</Title>
 					<Synopsis length="medium">Andrew wants to find out what Hawaiians really like to eat; dried octopus bile sac; crispy pork intestine;and a traditional take on a raw fish salad that includes the eyeballs.</Synopsis>
+					<Synopsis length="medium" xml:lang="zhn">安德鲁想知道夏威夷人真正喜欢吃什么； 干章鱼胆囊； 脆皮猪肠；以及传统的生鱼沙拉，包括眼球。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -245,7 +277,7 @@
 				</BasicDescription>
 			</ProgramInformation>
 		</ProgramInformationTable>
-		<ProgramLocationTable lang="eng">
+		<ProgramLocationTable xml:lang="eng">
 			<Schedule end="DATE_TEMPLATE 23:59:59Z" serviceIDRef="2" start="DATE_TEMPLATE 00:00:00Z">
 				<ScheduleEvent>
 					<Program crid="crid://dvbi-reference/example.2.12021633"/>
