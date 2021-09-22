@@ -57,6 +57,27 @@ Program.prototype.populate = function(){
   return self.element;
 }
 
+/**
+ * return the localised value of an element when available. If not available, return the default 
+ * language version for the instance document
+ *
+ * @param {*} elems - array of localise values in the form {lang: , text:}
+ * @param {*} language - the language of the localised element to return - or use DEFAULT_LANGUAGE if not present
+ */
+function UseLocalisation(elems, language) {
+  var ret="";
+  for (var i=0; i<elems.length; i++)
+    if (elems[i].lang == language)
+      ret=elems[i].text;
+  if (ret=="")
+    for (var i=0; i<elems.length; i++)
+      if (elems[i].lang == DEFAULT_LANGUAGE)
+        ret=elems[i].text;
+  if (ret=="")
+    ret="****";
+  return ret;
+}
+
 Program.prototype.populateProgramInfo = function(){
     $("#info_chicon").attr('src',this.channel.image || "./images/empty.png");
     $("#info_chnumber").text(this.channel.lcn);
@@ -88,8 +109,8 @@ Program.prototype.populateProgramInfo = function(){
             if(this.parentalRating[i].parentalRating) {
                 parental.push("Rating:"+getParentalRating(this.parentalRating[i].parentalRating));
             }
-            if(this.parentalRating[i].explanatoryText) {
-                parental.push("Reason:"+this.parentalRating[i].explanatoryText);
+            if(this.parentalRating[i].explanatoryText2) {
+                parental.push("Reason:"+UseLocalisation(this.parentalRating[i].explanatoryText2,language_settings.ui_language));
             }
         }
         $(".parentalrating").text(parental.join(" "));
