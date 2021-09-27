@@ -54,15 +54,15 @@
               <div id="channel_info"> </div>
               <div id="buttons" style="display:none">
                 <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1" onclick="showEpg()">
-                  <span class="text-white epg_button"></span>
+                  <span class="text-white epg_button">Open EPG</span>
                 </span>
                 <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1" onclick="toggleSettings()">
-                  <span class="text-white settings_button"></span>
+                  <span class="text-white settings_button">Settings</span>
                 </span>
-                <span style="display:none" id="pause" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:togglePause()" class="text-white pause_button"></a></span>
-                <span style="display:none" id="play" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:togglePause()" class="text-white play_button"></a></span>
-                <span style="display:none" id="subtitle" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSubtitles()" class="text-white subtitle_button"></a></span>
-                <span style="display:none" id="audio" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showAudio()" class="text-white audio_button"></a></span>
+                <span style="display:none" id="pause" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:togglePause()" class="text-white pause_button">Pause</a></span>
+                <span style="display:none" id="play" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:togglePause()" class="text-white play_button">Play</a></span>
+                <span style="display:none" id="subtitle" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSubtitles()" class="text-white subtitle_button">Subtitles</a></span>
+                <span style="display:none" id="audio" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showAudio()" class="text-white audio_button">Audio</a></span>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@
     <div class="navbar row sticky-top pb-0">
       <div class="p-2"> <a id="previous_channel" class="p-2" href="#" onclick="javascript:showPrevious()"><img src="images/chevron-left.svg" alt="Previous" width="32" height="32" title="Previous" class="icon-white text-primary"></a> </div>
       <div class="p-2 flex-grow-1">
-        <div class="h4 my-0 epg_page_title"></div>
+        <div class="h4 my-0 epg_page_title">EPG</div>
       </div>
       <div class="p-2"><a class="p-2" href="#" onclick="javascript:previousDay()"><img src="images/chevron-left.svg" alt="Previous day" width="22" height="22" title="Previous day" class="icon-white"></a></div>
       <div class="p-2">
@@ -115,7 +115,7 @@
       </div>
       <div class="col-6 col-md-4 h-100">
         <div class="position-fixed"> <img src="images/landingpage_ui.png" class="img w-75" alt="programinfo_thumbnail">
-          <div class="actionbar"><a href="#" id="select_service_button" class="btn btn-outline-light mt-4 tune_to_channel"></a></div>
+          <div class="actionbar"><a href="#" id="select_service_button" class="btn btn-outline-light mt-4 tune_to_channel">EPG</a></div>
         </div>
       </div>
     </div>
@@ -125,27 +125,27 @@
   <div class="row">
     <div class="streaminfoContainer col-8 col-lg-4 offset-4 p-1 rounded">
       <div class="row">
-        <span class="col-5 d-inline-block stats_video_resolution"></span>
+        <span class="col-5 d-inline-block stats_video_resolution">Video resolution</span>
         <span id="video_resolution" class="col-7 d-inline-block"></span>
       </div>
       <div class="row">
-        <span class="col-5 d-inline-block stats_video_bitrate"></span>
+        <span class="col-5 d-inline-block stats_video_bitrate">Video bitrate</span>
         <span id="video_bitrate" class="col-7 d-inline-block"></span>
       </div>
       <div class="row">
-        <span class="col-5 d-inline-block stats_audio_bitrate"></span>
+        <span class="col-5 d-inline-block stats_audio_bitrate">Audio bitrate</span>
         <span id="audio_bitrate" class="col-7 d-inline-block"></span>
       </div>
       <div class="row">
-        <span class="col-5 d-inline-block stats_latency"></span>
+        <span class="col-5 d-inline-block stats_latency">Latency</span>
         <span id="live_latency" class="col-7 d-inline-block"></span>
       </div>
       <div class="row">
-        <span class="col-5 d-inline-block stats_settings"></span>
+        <span class="col-5 d-inline-block stats_settings">Settings</span>
         <span id="live_settings" class="col-7 d-inline-block"></span>
       </div>
       <div>
-        <span class="btn btn-outline-dark btn-small mt-2 p-1" onclick="hideStreamInfo()"><span class="text-white close_button"></span></span>
+        <span class="btn btn-outline-dark btn-small mt-2 p-1" onclick="hideStreamInfo()"><span class="text-white close_button">Close</span></span>
       </div>
     </div>
   </div>
