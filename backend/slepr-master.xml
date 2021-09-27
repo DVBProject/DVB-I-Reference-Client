@@ -70,6 +70,7 @@
 		</sld:Provider>
 		<sld:ServiceListOffering regulatorListFlag="false">
 		<sld:ServiceListName>DVB-I Reference Client service list</sld:ServiceListName>
+		<sld:ServiceListName xml:lang="zhn">DVB-I 参考客户端服务列表</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL--LOCATION/backend/servicelist.php?list=example.xml</dvbisd:URI>
 			</sld:ServiceListURI>

@@ -304,13 +304,31 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     return serviceList;
 }
 
+/**
+ * Return the xml:lang value for the element, recursing upward if not specified
+ * @param {DOM Element} element node in which to look for an xml:lang attribute, and if not, recurse upward
+ * @returns the xml:lang value of the element, or of the first ancestor element where it is defined, or 'default' if never speified (should not happen in TV Anytime)
+ */
+ function elementLanguage(element) {
+  if (element == null)
+    return 'default';
+  var lang=element.getAttributeNS("http://www.w3.org/XML/1998/namespace","lang");
+  if (lang)
+    return lang;
+  else 
+    return elementLanguage(element.parentElement);
+}
+
 function getText(element) {
   var text = {};
+  /*  PH: should look for a parent, grandparent etc language (thats how TV-Anytime defines it). Top <TVAMain> elment always has xml:lang
   var lang = element.getAttributeNS("http://www.w3.org/XML/1998/namespace","lang");
   if(!lang) {
     lang = "default";
   }
   text.lang = lang;
+  */
+  text.lang =  elementLanguage(element);
   text.text =  element.childNodes[0].nodeValue;
   return text;
 }

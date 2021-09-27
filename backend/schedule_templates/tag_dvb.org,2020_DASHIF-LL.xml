@@ -10,7 +10,7 @@
 				</BasicDescription>
 			</ProgramInformation>
 		</ProgramInformationTable>
-		<ProgramLocationTable lang="eng">
+		<ProgramLocationTable xml:lang="eng">
 			<Schedule start="DATE_TEMPLATE 00:00:00" end="DATE_TEMPLATE 23:59:59" serviceIDRef="4">
 				<ScheduleEvent>
 					<Program crid="crid://dvbi-reference/dvbstreams.5.12026821"/>

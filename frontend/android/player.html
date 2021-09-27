@@ -54,15 +54,15 @@
               <div id="channel_info"> </div>
               <div id="buttons" style="display:none">
                 <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1" onclick="showEpg()">
-                  <span class="text-white epg_button"></span>
+                  <span class="text-white epg_button">Open EPG</span>
                 </span>
                 <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1" onclick="toggleSettings()">
-                  <span class="text-white settings_button"></span>
+                  <span class="text-white settings_button">Settings</span>
                 </span>
-                <span style="display:none" id="pause" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:togglePause()" class="text-white pause_button"></a></span>
-                <span style="display:none" id="play" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:togglePause()" class="text-white play_button"></a></span>
-                <span style="display:none" id="subtitle" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSubtitles()" class="text-white subtitle_button"></a></span>
-                <span style="display:none" id="audio" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showAudio()" class="text-white audio_button"></a></span>
+                <span style="display:none" id="pause" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:togglePause()" class="text-white pause_button">Pause</a></span>
+                <span style="display:none" id="play" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:togglePause()" class="text-white play_button">Play</a></span>
+                <span style="display:none" id="subtitle" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showSubtitles()" class="text-white subtitle_button">Subtitles</a></span>
+                <span style="display:none" id="audio" class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:showAudio()" class="text-white audio_button">Audio</a></span>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@
     <div class="navbar row sticky-top pb-0">
       <div class="p-2"> <a id="previous_channel" class="p-2" href="#" onclick="javascript:showPrevious()"><img src="images/chevron-left.svg" alt="Previous" width="32" height="32" title="Previous" class="icon-white text-primary"></a> </div>
       <div class="p-2 flex-grow-1">
-        <div class="h4 my-0 epg_page_title"></div>
+        <div class="h4 my-0 epg_page_title">EPG</div>
       </div>
       <div class="p-2"><a class="p-2" href="#" onclick="javascript:previousDay()"><img src="images/chevron-left.svg" alt="Previous day" width="22" height="22" title="Previous day" class="icon-white"></a></div>
       <div class="p-2">
@@ -115,7 +115,7 @@
       </div>
       <div class="col-6 col-md-4 h-100">
         <div class="position-fixed"> <img src="images/landingpage_ui.png" class="img w-75" alt="programinfo_thumbnail">
-          <div class="actionbar"><a href="#" id="select_service_button" class="btn btn-outline-light mt-4">Tune to channel</a></div>
+          <div class="actionbar"><a href="#" id="select_service_button" class="btn btn-outline-light mt-4 tune_to_channel">EPG</a></div>
         </div>
       </div>
     </div>
@@ -125,27 +125,27 @@
   <div class="row">
     <div class="streaminfoContainer col-8 col-lg-4 offset-4 p-1 rounded">
       <div class="row">
-        <span class="col-5 d-inline-block">Video resolution:</span>
+        <span class="col-5 d-inline-block stats_video_resolution">Video resolution</span>
         <span id="video_resolution" class="col-7 d-inline-block"></span>
       </div>
       <div class="row">
-        <span class="col-5 d-inline-block">Video bitrate:</span>
+        <span class="col-5 d-inline-block stats_video_bitrate">Video bitrate</span>
         <span id="video_bitrate" class="col-7 d-inline-block"></span>
       </div>
       <div class="row">
-        <span class="col-5 d-inline-block">Audio bitrate:</span>
+        <span class="col-5 d-inline-block stats_audio_bitrate">Audio bitrate</span>
         <span id="audio_bitrate" class="col-7 d-inline-block"></span>
       </div>
       <div class="row">
-        <span class="col-5 d-inline-block">Latency:</span>
+        <span class="col-5 d-inline-block stats_latency">Latency</span>
         <span id="live_latency" class="col-7 d-inline-block"></span>
       </div>
       <div class="row">
-        <span class="col-5 d-inline-block">Settings:</span>
+        <span class="col-5 d-inline-block stats_settings">Settings</span>
         <span id="live_settings" class="col-7 d-inline-block"></span>
       </div>
       <div>
-        <span class="btn btn-outline-dark btn-small mt-2 p-1" onclick="hideStreamInfo()"><span class="text-white close_button"></span></span>
+        <span class="btn btn-outline-dark btn-small mt-2 p-1" onclick="hideStreamInfo()"><span class="text-white close_button">Close</span></span>
       </div>
     </div>
   </div>
@@ -158,28 +158,28 @@
   <div id="ll_settings" class="settingspage">
 		<div class="navbar my-2 px-0">
 			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
-			<h5 class="m-auto position-relative">Low latency settings</h5>
+			<h5 class="m-auto position-relative low_latency_settings_page">Low latency settings</h5>
 		</div>
     <div class="form-group mb-2 row">
-      <label for="lowLatencyEnabled" class="col-6 col-form-label">Low latency mode</label>
+      <label for="lowLatencyEnabled" class="col-6 col-form-label ll_mode">Low latency mode</label>
       <div class="col-6">
         <input type="checkbox" id="lowLatencyEnabled" onchange="updateLLSettings(this)" name="ll_mode" value="ll_mode" class="form-check-input form-control form-control-sm">
       </div>
     </div>
     <div class="form-group mb-2 row">
-      <label for="liveDelay" class="col-6 col-form-label">Target latency:</label>
+      <label for="liveDelay" class="col-6 col-form-label ll_target">Target latency:</label>
       <div class="col-6">
         <input type="number"  id="liveDelay" onchange="updateLLSettings(this)" value="3" min="0" class="form-control form-control-sm">
       </div>
     </div>
     <div class="form-group mb-2 row">
-      <label for="liveCatchUpMinDrift" class="col-6 col-form-label">Minimum drift (seconds):</label>
+      <label for="liveCatchUpMinDrift" class="col-6 col-form-label ll_min_drift">Minimum drift (seconds):</label>
       <div class="col-6">
         <input type="number" id="liveCatchUpMinDrift"  onchange="updateLLSettings(this)"  value="0.05" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm">
       </div>
     </div>
     <div class="form-group mb-2 row">
-      <label for="liveCatchUpPlaybackRate" class="col-6 col-form-label">Catch-up playback rate (%):</label>
+      <label for="liveCatchUpPlaybackRate" class="col-6 col-form-label ll_catchup_rate">Catch-up playback rate (%):</label>
       <div class="col-6">
         <input type="number" id="liveCatchUpPlaybackRate" onchange="updateLLSettings(this)"  value="0.5" min="0.0" max="0.5" step="0.01" class="form-control form-control-sm">
       </div>
@@ -188,28 +188,28 @@
   <div id="parental_settings" class="settingspage">
 		<div class="navbar my-2 px-0">
 			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
-			<h5 class="m-auto position-relative">Parental settings</h5>
+			<h5 class="m-auto position-relative parental_settings_page">Parental settings</h5>
 		</div>
     <div class="form-group mb-2 row">
-      <label for="lowLatencyEnabled" class="col-6 col-form-label">Parental block enabled</label>
+      <label for="lowLatencyEnabled" class="col-6 col-form-label parental_block_enabled">Parental block enabled</label>
       <div class="col-6">
         <input type="checkbox" id="parentalEnabled" onchange="updateParental()" class="form-check-input form-control form-control-sm">
       </div>
     </div>
     <div class="form-group mb-2 row">
-      <label for="parentalControl" class="col-6 col-form-label">Minimum Age:</label>
+      <label for="parentalControl" class="col-6 col-form-label parental_min_age">Minimum Age</label>
       <div class="col-6">
         <input type="number" id="parentalControl" onchange="updateParental()"  value="0" min="0" max="18"  class="form-control form-control-sm">
       </div>
     </div>
     <div class="form-group mb-2 row">
-      <label for="pin1" class="col-6 col-form-label">Parental PIN:</label>
+      <label for="pin1" class="col-6 col-form-label parental_pin">Parental PIN</label>
       <div class="col-6">
         <input type="tel" id="pin1" oninput="updatePin()" maxLength="4" minLength="4" class="form-control form-control-sm">
       </div>
     </div>
     <div class="form-group mb-2 row">
-      <label for="pin2" class="col-6 col-form-label">Re-Enter Parental PIN:</label>
+      <label for="pin2" class="col-6 col-form-label parental_pin_reenter">Re-Enter Parental PIN</label>
       <div class="col-6">
         <input type="tel" id="pin2" oninput="updatePin()" maxLength="4" minLength="4" class="form-control form-control-sm">
       </div>
@@ -221,28 +221,28 @@
   <div id="language_settings" class="settingspage">
 		<div class="navbar my-2 px-0">
 			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
-			<h5 class="m-auto position-relative">Language settings</h5>			
+			<h5 class="m-auto position-relative language_settings_page">Language settings</h5>			
 		</div>
     <div class="form-group mb-2 row">
-      <label for="subtitle_language" class="col-6 col-form-label">Subtitle language:</label>
+      <label for="subtitle_language" class="col-6 col-form-label language_setting_subtitle">Subtitle language</label>
       <div class="col-6">
         <input type="text" id="subtitle_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
       </div>
     </div>
     <div class="form-group mb-2 row">
-      <label for="audio_language" class="col-6 col-form-label">Audio language:</label>
+      <label for="audio_language" class="col-6 col-form-label language_setting_audio">Audio language</label>
       <div class="col-6">
         <input type="text" id="audio_language" onchange="updateLanguage()"  value="" class="form-control form-control-sm">
       </div>
     </div>
     <div class="form-group mb-2 row">
-      <label for="audio_language" class="col-6 col-form-label">Accesible Audio:</label>
+      <label for="audio_language" class="col-6 col-form-label language_setting_accessible_audio">Accessible Audio</label>
       <div class="col-6">
         <input type="checkbox" id="accessible_audio" onchange="updateLanguage()" class="form-check-input form-control form-control-sm">
       </div>
     </div>
     <div class="form-group mb-2 row">
-      <label for="ui_language" class="col-6 col-form-label">UI language:</label>
+      <label for="ui_language" class="col-6 col-form-label language_setting_ui">UI language</label>
       <div class="col-6">
         <select id="ui_language" onchange="updateLanguage()" class="form-control form-control-sm">
         </select>
@@ -252,42 +252,42 @@
   <div id="servicelist_registry" class="servicelist_registry container-fluid settingspage" style="display:none;">
 		<div class="navbar my-2 px-0">
 			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
-			<h5 class="m-auto position-relative">Service list selection</h5>				
+			<h5 class="m-auto position-relative sl_select_page">Service list selection</h5>				
 		</div>
     <div class="row">
       <div class="text-white p-1 rounded col-3" id="servicelist_filter">
-        <h2>Filter</h2>
+        <h2 class="slrquery_params_title">Filter</h2>
         <div class="form-group row">
-          <label for="providers" class="col-4 col-form-label">Provider</label>
+          <label for="providers" class="col-4 col-form-label slrquery_provider_field">Provider</label>
           <div class="col-8">
             <input id="providers" name="providers" type="text" value="" class="form-control form-control-sm">
           </div>
         </div>
         <div class="form-group row">
-          <label for="language" class="col-4 col-form-label">Language</label>
+          <label for="language" class="col-4 col-form-label slrquery_language_field">Language</label>
           <div class="col-8">
             <input id="language" name="language" type="text" value="" class="form-control form-control-sm">
           </div>
         </div>
         <div class="form-group row">
-          <label for="genre" class="col-4 col-form-label">Genre</label>
+          <label for="genre" class="col-4 col-form-label slrquery_genre_field">Genre</label>
           <div class="col-8">
             <input id="genre" name="genre" type="text" value="" class="form-control form-control-sm">
           </div>
         </div>
         <div class="form-group row">
-          <label for="country" class="col-4 col-form-label">Country</label>
+          <label for="country" class="col-4 col-form-label slrquery_country_field">Country</label>
           <div class="col-8">
             <input id="country" name="country" type="text" value="" class="form-control form-control-sm">
           </div>
         </div>
         <div class="form-check">
           <input id="regulator" name="regulator" type="checkbox" value="true" class="form-check-input">
-          <label for="regulator" class="col-form-label">Regulator list</label>
+          <label for="regulator" class="col-form-label slrquery_regulator_field">Regulator list</label>
         </div>
-        <span>Multiple values can be separated by comma</span>
+        <span class="slrquery_multi_vals">Multiple values can be separated by comma</span>
         <div class="d-flex">
-          <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterServiceLists()" class="text-white">Filter</a></span>
+          <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterServiceLists()" class="text-white slrquery_filter_button">Filter</a></span>
         </div>
       </div>
       <div class="col-6 offset-3">
@@ -298,18 +298,18 @@
   <div id="region_selection" class="region_selection container-fluid settingspage" style="display:none;">
     <div class="navbar my-2 px-0">
 			<span class="btn btn-outline-dark btn-small p-1"><a href="javascript:showSettings('main_settings')" class="text-white back_button"><img src="images/arrow-left-short.svg" alt="Back" title="Back" class="icon-white text-primary" width="32" height="32"></a></span>
-			<h5 class="m-auto position-relative">Region selection</h5>
+			<h5 class="m-auto position-relative request_region">Region selection</h5>
 		</div>
     <div class="row">
       <div class="text-white p-1 rounded col-3" id="servicelist_filter">
         <div class="form-group row">
-          <label for="postcode" class="col-4 col-form-label">Postcode</label>
+          <label for="postcode" class="col-4 col-form-label region_select_postcode">Postcode</label>
           <div class="col-8">
             <input id="postcode" name="postcode" type="text" value="" class="form-control form-control-sm">
           </div>
         </div>
         <div class="d-flex">
-          <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterRegions()" class="text-white">Filter</a></span>
+          <span class="menuitem_epg btn btn-outline-dark btn-small mt-1 p-1"><a href="javascript:filterRegions()" class="text-white region_filter_button">Filter</a></span>
         </div>
       </div>
       <div class="col-6 offset-3">
@@ -319,11 +319,11 @@
   </div>
   <div id="main_settings" class="settingspage mt-2">
 		<div class="navbar"></div>
-    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showSettings('ll_settings')"><span class="text-white">Low Latency settings</span></span>
-    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showParentalSettings()"><span class="text-white">Parental settings</span></span>
-    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showSettings('language_settings')"><span class="text-white">Language settings</span></span>
-    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="selectServiceList()"><span class="text-white">Select servicelist</span></span>
-    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showStreamInfo()"><span class="text-white">Show stream info</span></span>
+    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showSettings('ll_settings')"><span class="text-white settings_menu_latency">Low Latency settings</span></span>
+    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showParentalSettings()"><span class="text-white settings_menu_parental">Parental settings</span></span>
+    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showSettings('language_settings')"><span class="text-white settings_menu_language">Language settings</span></span>
+    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="selectServiceList()"><span class="text-white settings_menu_servicelist">Select servicelist</span></span>
+    <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showStreamInfo()"><span class="text-white settings_menu_streaminfo">Show stream info</span></span>
   </div>
 </div>
 
