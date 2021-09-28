@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TVAMain xml:lang="eng" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<TVAMain xml:lang="en" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProgramDescription>
 		<ProgramInformationTable>
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024293">
 				<BasicDescription>
 					<Title type="main">SportsNation</Title>
-					<Title type="main" xml:lang="zhn">体育国度</Title>
+					<Title type="main" xml:lang="zh">体育国度</Title>
 					<Synopsis length="medium">The topics covered in this weekday show are chosen by fans via ESPN.com's SportsNation site.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -20,9 +20,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024294">
 				<BasicDescription>
 					<Title type="main">NASCAR Race Hub</Title>
-					<Title type="main" xml:lang="zhn">纳斯卡赛车中心</Title>
+					<Title type="main" xml:lang="zh">纳斯卡赛车中心</Title>
 					<Synopsis length="medium">NASCAR news and features.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">NASCAR 新闻和功能。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">NASCAR 新闻和功能。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -34,9 +34,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024295">
 				<BasicDescription>
 					<Title type="main">TMZ Sports</Title>
-					<Title type="main" xml:lang="zhn">TMZ体育</Title>
+					<Title type="main" xml:lang="zh">TMZ体育</Title>
 					<Synopsis length="medium">Gossip and exclusive stories about athletes' personal lives.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">关于运动员个人生活的八卦和独家故事。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">关于运动员个人生活的八卦和独家故事。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -48,9 +48,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024296">
 				<BasicDescription>
 					<Title type="main">Sports Scene</Title>
-					<Title type="main" xml:lang="zhn">运动场景</Title>
+					<Title type="main" xml:lang="zh">运动场景</Title>
 					<Synopsis length="medium">No description</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">没有说明</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">没有说明</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -63,7 +63,7 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024297">
 				<BasicDescription>
 					<Title type="main">The Fantasy Show</Title>
-					<Title type="main" xml:lang="zhn">奇幻秀</Title>
+					<Title type="main" xml:lang="zh">奇幻秀</Title>
 					<Synopsis length="medium">Noted fantasy sports expert Matthew Berry provides analysis on the day's news and developments.</Synopsis>
 					<Synopsis length="medium">著名的梦幻体育专家马修·贝瑞 (Matthew Berry) 对当天的新闻和发展进行了分析。</Synopsis>
 					<RelatedMaterial>
@@ -77,9 +77,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024298">
 				<BasicDescription>
 					<Title type="main">REAL Sports With Bryant Gumbel</Title>
-					<Title type="main" xml:lang="zhn">与布莱恩特·甘贝尔的真正运动</Title>
+					<Title type="main" xml:lang="zh">与布莱恩特·甘贝尔的真正运动</Title>
 					<Synopsis length="medium">Northwestern University men's basketball coach Chris Collins; soccer development coach Tom Byer; a south Texas football team rises from the devastation of Hurricane Harvey; professional surfer Kelly Slater works to develop the perfect man-made wave.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">西北大学男篮教练克里斯柯林斯； 足球发展教练汤姆拜尔； 一支南德克萨斯足球队从飓风哈维的破坏中崛起； 专业冲浪者 Kelly Slater 致力于开发完美的人造波浪。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">西北大学男篮教练克里斯柯林斯； 足球发展教练汤姆拜尔； 一支南德克萨斯足球队从飓风哈维的破坏中崛起； 专业冲浪者 Kelly Slater 致力于开发完美的人造波浪。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -92,9 +92,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024299">
 				<BasicDescription>
 					<Title type="main">SportsNation</Title>
-					<Title type="main" xml:lang="zhn">体育国家</Title>
+					<Title type="main" xml:lang="zh">体育国家</Title>
 					<Synopsis length="medium">The topics covered in this weekday show are chosen by fans via ESPN.com's SportsNation site.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -107,9 +107,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024300">
 				<BasicDescription>
 					<Title type="main">Top Ten</Title>
-					<Title type="main" xml:lang="zhn">前十名</Title>
+					<Title type="main" xml:lang="zh">前十名</Title>
 					<Synopsis length="medium">The ten best plays of the week in sports.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">本周十佳体育比赛</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">本周十佳体育比赛</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -122,9 +122,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024301">
 				<BasicDescription>
 					<Title type="main">BYU Sports Nation</Title>
-					<Title type="main" xml:lang="zhn">杨百翰体育国家</Title>
+					<Title type="main" xml:lang="zh">杨百翰体育国家</Title>
 					<Synopsis length="medium">News and information about BYU athletics with guest interviews.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">有关 BYU 田径运动的新闻和信息以及嘉宾采访。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">有关 BYU 田径运动的新闻和信息以及嘉宾采访。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -136,9 +136,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024302">
 				<BasicDescription>
 					<Title type="main">SportsCenter With Scott Van Pelt</Title>
-					<Title type="main" xml:lang="zhn">体育中心与斯科特范佩尔特</Title>
+					<Title type="main" xml:lang="zh">体育中心与斯科特范佩尔特</Title>
 					<Synopsis length="medium">Scott Van Pelt presents the day in sports through his unique perspective with highlights, special guests and his &quot;One Big Thing&quot; commentary.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">Scott Van Pelt presents the day in sports through his unique perspective with highlights, special guests and his &quot;One Big Thing&quot; commentary.</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">Scott Van Pelt presents the day in sports through his unique perspective with highlights, special guests and his &quot;One Big Thing&quot; commentary.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -151,9 +151,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024303">
 				<BasicDescription>
 					<Title type="main">Sports Scene</Title>
-					<Title type="main" xml:lang="zhn">运动场景</Title>
+					<Title type="main" xml:lang="zh">运动场景</Title>
 					<Synopsis length="medium">No description</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">没有说明</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">没有说明</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -166,9 +166,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024304">
 				<BasicDescription>
 					<Title type="main">Top Ten</Title>
-					<Title type="main" xml:lang="zhn">前十名</Title>
+					<Title type="main" xml:lang="zh">前十名</Title>
 					<Synopsis length="medium">The ten best plays of the week in sports.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">本周十佳体育比赛</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">本周十佳体育比赛</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -181,9 +181,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024305">
 				<BasicDescription>
 					<Title type="main">Pac-12 Final Score</Title>
-					<Title type="main" xml:lang="zhn">Pac-12 最终得分</Title>
+					<Title type="main" xml:lang="zh">Pac-12 最终得分</Title>
 					<Synopsis length="medium">Relive all of the plays, hits and upsets from the biggest day in college sports.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">重温大学运动中最重要的一天的所有戏剧、打击和冷门。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">重温大学运动中最重要的一天的所有戏剧、打击和冷门。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -196,9 +196,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024306">
 				<BasicDescription>
 					<Title type="main">SportsCenter</Title>
-					<Title type="main" xml:lang="zhn">体育中心</Title>
+					<Title type="main" xml:lang="zh">体育中心</Title>
 					<Synopsis length="medium">ESPN's flagship program provides sports news, highlights and analysis.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">ESPN 的旗舰节目提供体育新闻、亮点和分析。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">ESPN 的旗舰节目提供体育新闻、亮点和分析。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -211,9 +211,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024307">
 				<BasicDescription>
 					<Title type="main">SportsNation</Title>
-					<Title type="main" xml:lang="zhn">体育国家</Title>
+					<Title type="main" xml:lang="zh">体育国家</Title>
 					<Synopsis length="medium">The topics covered in this weekday show are chosen by fans via ESPN.com's SportsNation site.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -226,9 +226,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024308">
 				<BasicDescription>
 					<Title type="main">Outside the Lines</Title>
-					<Title type="main" xml:lang="zhn">线外</Title>
+					<Title type="main" xml:lang="zh">线外</Title>
 					<Synopsis length="medium">Examining daily issues with an investigative piece followed by a debate. Hosted by Bob Ley.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">通过调查性文章检查日常问题，然后进行辩论。 由鲍勃·莱主持。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">通过调查性文章检查日常问题，然后进行辩论。 由鲍勃·莱主持。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -241,9 +241,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024309">
 				<BasicDescription>
 					<Title type="main">SportsCenter With Michael and Jemele</Title>
-					<Title type="main" xml:lang="zhn">体育中心与迈克尔和杰梅勒</Title>
+					<Title type="main" xml:lang="zh">体育中心与迈克尔和杰梅勒</Title>
 					<Synopsis length="medium">Jemele Hill and Michael Smith discuss the day in sports, interview athletes and celebrities and bring fans their &quot;Doin' Too Much&quot; countdown.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">Jemele Hill 和 Michael Smith 讨论了当天的体育赛事，采访运动员和名人，并为粉丝带来他们的“Doin' Too Much”。 倒数。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">Jemele Hill 和 Michael Smith 讨论了当天的体育赛事，采访运动员和名人，并为粉丝带来他们的“Doin' Too Much”。 倒数。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -256,13 +256,13 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024310">
 				<BasicDescription>
 					<Title type="main">Mobil 1 The Grid</Title>
-					<Title type="main" xml:lang="zhn">Mobil 1 网格</Title>
+					<Title type="main" xml:lang="zh">Mobil 1 网格</Title>
 					<Synopsis length="medium">The best motorsport features and action from the biggest race series around the world.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">来自世界各地最大的赛车系列的最佳赛车运动特色和动作。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">来自世界各地最大的赛车系列的最佳赛车运动特色和动作。</Synopsis>
 					<ParentalGuidance>
  						<mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
-						<ExplanatoryText length="long" xml:lang="eng">Contains strong language and flash photography </ExplanatoryText>
-						<ExplanatoryText length="long" xml:lang="zhn">包含强烈的语言和闪光摄影</ExplanatoryText>
+						<ExplanatoryText length="long" xml:lang="en">Contains strong language and flash photography </ExplanatoryText>
+						<ExplanatoryText length="long" xml:lang="zh">包含强烈的语言和闪光摄影</ExplanatoryText>
 					</ParentalGuidance>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -275,9 +275,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.3.12024311">
 				<BasicDescription>
 					<Title type="main">Sedona Tire RipSaw Ridge</Title>
-					<Title type="main" xml:lang="zhn">塞多纳轮胎 RipSaw Ridge</Title>
+					<Title type="main" xml:lang="zh">塞多纳轮胎 RipSaw Ridge</Title>
 					<Synopsis length="medium">Action sports athletes compete in ATV and SideXSide racing on muddy course conditions.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">极限运动运动员在泥泞的赛道条件下参加 ATV 和 SideXSide 比赛。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">极限运动运动员在泥泞的赛道条件下参加 ATV 和 SideXSide 比赛。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -287,7 +287,7 @@
 				</BasicDescription>
 			</ProgramInformation>
 		</ProgramInformationTable>
-		<ProgramLocationTable xml:lang="eng">
+		<ProgramLocationTable xml:lang="en">
 			<Schedule end="DATE_TEMPLATE 23:59:59Z" serviceIDRef="3" start="DATE_TEMPLATE 00:00:00Z">
 				<ScheduleEvent>
 					<Program crid="crid://dvbi-reference/example.3.12024293"/>

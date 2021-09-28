@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TVAMain xml:lang="eng" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<TVAMain xml:lang="en" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProgramDescription>
 		<ProgramInformationTable>
 			<ProgramInformation programId="crid://dvbi-reference/example.11.12024293">
 				<BasicDescription>
 					<Title type="main">SportsNation</Title>
-					<Title type="main" xml:lang="zhn">体育国家</Title>
+					<Title type="main" xml:lang="zh">体育国家</Title>
 					<Synopsis length="medium">The topics covered in this weekday show are chosen by fans via ESPN.com's SportsNation site.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -32,9 +32,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.11.12024295">
 				<BasicDescription>
 					<Title type="main">TMZ Sports</Title>
-					<Title type="main" xml:lang="zhn">TMZ体育</Title>
+					<Title type="main" xml:lang="zh">TMZ体育</Title>
 					<Synopsis length="medium">Gossip and exclusive stories about athletes' personal lives.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">关于运动员个人生活的八卦和独家故事。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">关于运动员个人生活的八卦和独家故事。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -84,9 +84,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.11.12024299">
 				<BasicDescription>
 					<Title type="main">SportsNation</Title>
-					<Title type="main" xml:lang="zhn">体育国家</Title>
+					<Title type="main" xml:lang="zh">体育国家</Title>
 					<Synopsis length="medium">The topics covered in this weekday show are chosen by fans via ESPN.com's SportsNation site.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -163,9 +163,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.11.12024305">
 				<BasicDescription>
 					<Title type="main">Pac-12 Final Score</Title>
-					<Title type="main" xml:lang="zhn">Pac-12 最终得分</Title>
+					<Title type="main" xml:lang="zh">Pac-12 最终得分</Title>
 					<Synopsis length="medium">Relive all of the plays, hits and upsets from the biggest day in college sports.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">重温大学运动中最重要的一天的所有戏剧、打击和冷门。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">重温大学运动中最重要的一天的所有戏剧、打击和冷门。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -191,9 +191,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.11.12024307">
 				<BasicDescription>
 					<Title type="main">SportsNation</Title>
-					<Title type="main" xml:lang="zhn">体育国家</Title>
+					<Title type="main" xml:lang="zh">体育国家</Title>
 					<Synopsis length="medium">The topics covered in this weekday show are chosen by fans via ESPN.com's SportsNation site.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">这个工作日节目中涵盖的主题是由粉丝通过 ESPN.com 的 SportsNation 网站选择的。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:4" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -244,9 +244,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.11.12024311">
 				<BasicDescription>
 					<Title type="main">Sedona Tire RipSaw Ridge</Title>
-					<Title type="main" xml:lang="zhn">塞多纳轮胎 RipSaw Ridge</Title>
+					<Title type="main" xml:lang="zh">塞多纳轮胎 RipSaw Ridge</Title>
 					<Synopsis length="medium">Action sports athletes compete in ATV and SideXSide racing on muddy course conditions.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">极限运动运动员在泥泞的赛道条件下参加 ATV 和 SideXSide 比赛。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">极限运动运动员在泥泞的赛道条件下参加 ATV 和 SideXSide 比赛。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -256,7 +256,7 @@
 				</BasicDescription>
 			</ProgramInformation>
 		</ProgramInformationTable>
-		<ProgramLocationTable xml:lang="eng">
+		<ProgramLocationTable xml:lang="en">
 			<Schedule end="DATE_TEMPLATE 23:59:59Z" serviceIDRef="3" start="DATE_TEMPLATE 00:00:00Z">
 				<ScheduleEvent>
 					<Program crid="crid://dvbi-reference/example.11.12024293"/>

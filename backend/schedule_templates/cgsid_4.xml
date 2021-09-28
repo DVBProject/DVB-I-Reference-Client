@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TVAMain xml:lang="eng" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<TVAMain xml:lang="en" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProgramDescription>
 		<ProgramInformationTable>
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026821">
 				<BasicDescription>
 					<Title type="main">Mountains</Title>
-					<Title type="main" xml:lang="zhn">山</Title>
+					<Title type="main" xml:lang="zh">山</Title>
 					<Synopsis length="medium">The secretive lives of mountain animals; snow leopards come together to help a mother and cub, trapped between rival males.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">山地动物的秘密生活； 雪豹齐心协力帮助被困在敌对雄性之间的母亲和幼崽。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">山地动物的秘密生活； 雪豹齐心协力帮助被困在敌对雄性之间的母亲和幼崽。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>15</mpeg7:MinimumAge>
@@ -23,9 +23,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026822">
 				<BasicDescription>
 					<Title type="main">Jason Peterson's Into The Wild</Title>
-					<Title type="main" xml:lang="zhn">杰森·彼得森的《荒野求生》</Title>
+					<Title type="main" xml:lang="zh">杰森·彼得森的《荒野求生》</Title>
 					<Synopsis length="medium">Jason Peterson hunts the most dangerous animals across North America and the around the world.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">杰森彼得森在北美和世界各地猎杀最危险的动物。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">杰森彼得森在北美和世界各地猎杀最危险的动物。</Synopsis>
           <ParentalGuidance>
                <mpeg7:MinimumAge>7</mpeg7:MinimumAge>
           </ParentalGuidance>
@@ -40,9 +40,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026823">
 				<BasicDescription>
 					<Title type="main">Alone</Title>
-					<Title xml:lang="zhn">独自的</Title>
+					<Title xml:lang="zh">独自的</Title>
 					<Synopsis length="medium">Bob Harte's loneliness abates when a visitor arrives at his cabin; the Seldens enjoy a major triumph; Ray Lewis begins hunting for meat.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">鲍勃·哈特 (Bob Harte) 的孤独感在客人抵达他的小屋时减弱； 塞尔登家族取得了重大胜利； 雷·刘易斯开始寻找肉类。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">鲍勃·哈特 (Bob Harte) 的孤独感在客人抵达他的小屋时减弱； 塞尔登家族取得了重大胜利； 雷·刘易斯开始寻找肉类。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>15</mpeg7:MinimumAge>
@@ -58,9 +58,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026824">
 				<BasicDescription>
 					<Title type="main">Jungles</Title>
-					<Title type="main" xml:lang="zhn">丛林</Title>
+					<Title type="main" xml:lang="zh">丛林</Title>
 					<Synopsis length="medium">From the jungles of Brazil to Costa Rica, animals face life in the most competitive place on Earth.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">从巴西的丛林到哥斯达黎加，动物们在地球上竞争最激烈的地方面临着生活。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">从巴西的丛林到哥斯达黎加，动物们在地球上竞争最激烈的地方面临着生活。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>7</mpeg7:MinimumAge>
@@ -76,9 +76,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026825">
 				<BasicDescription>
 					<Title type="main">We Bought a Zoo</Title>
-					<Title type="main" xml:lang="zhn">我们买了一个动物园</Title>
+					<Title type="main" xml:lang="zh">我们买了一个动物园</Title>
 					<Synopsis length="medium">Following his wife's untimely death, Los Angeles journalist Benjamin Mee (Matt Damon) decides to make a fresh start by quitting his job and moving his children (Colin Ford, Maggie Elizabeth Jones) to an 18-acre property containing the Rosemoor Wildlife Park. Though closed for years, Rosemoor is still home to many animals, cared for by Kelly Foster (Scarlett Johansson) and her small staff. Mee opens his heart and his checkbook as he, Kelly and the others work to renovate and reopen the zoo.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">在妻子英年早逝后，洛杉矶记者本杰明·米（Matt Damon）决定辞去工作，将孩子（Colin Ford, Maggie Elizabeth Jones）搬到占地 18 英亩的罗斯莫尔野生动物园，重新开始。 尽管多年关闭，罗斯摩尔仍然是许多动物的家园，由凯利福斯特（Scarlett Johansson）和她的小职员照顾。 当他、凯利和其他人努力翻新和重新开放动物园时，米打开了他的心和他的支票簿。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">在妻子英年早逝后，洛杉矶记者本杰明·米（Matt Damon）决定辞去工作，将孩子（Colin Ford, Maggie Elizabeth Jones）搬到占地 18 英亩的罗斯莫尔野生动物园，重新开始。 尽管多年关闭，罗斯摩尔仍然是许多动物的家园，由凯利福斯特（Scarlett Johansson）和她的小职员照顾。 当他、凯利和其他人努力翻新和重新开放动物园时，米打开了他的心和他的支票簿。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:5" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>10</mpeg7:MinimumAge>
@@ -94,9 +94,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026826">
 				<BasicDescription>
 					<Title type="main">Airstream Dream</Title>
-					<Title type="main" xml:lang="zhn">气流梦</Title>
+					<Title type="main" xml:lang="zh">气流梦</Title>
 					<Synopsis length="medium">The guys tap into their spirit animals to track down a lifetime picker; a bizarre totem pole catches Mike's eye; an original Airstream trailer renders Mike speechless.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">这些家伙利用他们的精神动物来追踪终生的采摘者； 一个奇异的图腾柱引起了迈克的注意； 原始的 Airstream 预告片让 Mike 哑口无言。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">这些家伙利用他们的精神动物来追踪终生的采摘者； 一个奇异的图腾柱引起了迈克的注意； 原始的 Airstream 预告片让 Mike 哑口无言。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>5</mpeg7:MinimumAge>
@@ -114,7 +114,7 @@
 					<Title type="main">Funnymals</Title>
 					<Synopsis length="medium">Hilarious comic sequences starring animals. Singing fish, paranoid meerkats and joke-telling giraffes, among other amusements.</Synopsis>
 					<Synopsis length="medium" xml:lang="esp">Secuencias cómicas desternillantes protagonizadas por animales. Peces cantarines, suricatas paranoicas y jirafas cuentachistes, entre otras diversiones.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">由动物主演的搞笑漫画。 唱歌鱼、偏执的猫鼬和讲笑话的长颈鹿，以及其他娱乐活动。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">由动物主演的搞笑漫画。 唱歌鱼、偏执的猫鼬和讲笑话的长颈鹿，以及其他娱乐活动。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:5" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>18</mpeg7:MinimumAge>
@@ -130,9 +130,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026828">
 				<BasicDescription>
 					<Title type="main">Animal Invaders</Title>
-					<Title type="main" xml:lang="zhn">动物入侵者</Title>
+					<Title type="main" xml:lang="zh">动物入侵者</Title>
 					<Synopsis length="medium">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>7</mpeg7:MinimumAge>
@@ -148,9 +148,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026829">
 				<BasicDescription>
 					<Title type="main">The Pride of the Eastern Cape</Title>
-					<Title type="main" xml:lang="zhn">东开普省的骄傲</Title>
+					<Title type="main" xml:lang="zh">东开普省的骄傲</Title>
 					<Synopsis length="medium">In Africa, great lengths are taken to keep the Eastern Cape lion population healthy for generations to come; protecting animals from poachers.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">在非洲，人们不遗余力地使东开普狮子种群的后代保持健康； 保护动物免受偷猎者的侵害。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">在非洲，人们不遗余力地使东开普狮子种群的后代保持健康； 保护动物免受偷猎者的侵害。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:9" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>4</mpeg7:MinimumAge>
@@ -166,9 +166,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026830">
 				<BasicDescription>
 					<Title type="main">We Bought a Zoo</Title>
-					<Title type="main" xml:lang="zhn">我们买了一个动物园</Title>
+					<Title type="main" xml:lang="zh">我们买了一个动物园</Title>
 					<Synopsis length="medium">Following his wife's untimely death, Los Angeles journalist Benjamin Mee (Matt Damon) decides to make a fresh start by quitting his job and moving his children (Colin Ford, Maggie Elizabeth Jones) to an 18-acre property containing the Rosemoor Wildlife Park. Though closed for years, Rosemoor is still home to many animals, cared for by Kelly Foster (Scarlett Johansson) and her small staff. Mee opens his heart and his checkbook as he, Kelly and the others work to renovate and reopen the zoo.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">在妻子英年早逝后，洛杉矶记者本杰明·米（Matt Damon）决定辞去工作，将孩子（Colin Ford, Maggie Elizabeth Jones）搬到占地 18 英亩的罗斯莫尔野生动物园，重新开始。 尽管多年关闭，罗斯摩尔仍然是许多动物的家园，由凯利福斯特（Scarlett Johansson）和她的小职员照顾。 当他、凯利和其他人努力翻新和重新开放动物园时，米打开了他的心和他的支票簿。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">在妻子英年早逝后，洛杉矶记者本杰明·米（Matt Damon）决定辞去工作，将孩子（Colin Ford, Maggie Elizabeth Jones）搬到占地 18 英亩的罗斯莫尔野生动物园，重新开始。 尽管多年关闭，罗斯摩尔仍然是许多动物的家园，由凯利福斯特（Scarlett Johansson）和她的小职员照顾。 当他、凯利和其他人努力翻新和重新开放动物园时，米打开了他的心和他的支票簿。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:5" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>10</mpeg7:MinimumAge>
@@ -184,9 +184,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026831">
 				<BasicDescription>
 					<Title type="main">Airstream Dream</Title>
-					<Title type="main" xml:lang="zhn">气流梦</Title>
+					<Title type="main" xml:lang="zh">气流梦</Title>
 					<Synopsis length="medium">The guys tap into their spirit animals to track down a lifetime picker; a bizarre totem pole catches Mike's eye; an original Airstream trailer renders Mike speechless.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">这些家伙利用他们的精神动物来追踪终生的采摘者； 一个奇异的图腾柱引起了迈克的注意； 原始的 Airstream 预告片让 Mike 哑口无言。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">这些家伙利用他们的精神动物来追踪终生的采摘者； 一个奇异的图腾柱引起了迈克的注意； 原始的 Airstream 预告片让 Mike 哑口无言。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
                     <ParentalGuidance>
                          <mpeg7:MinimumAge>6</mpeg7:MinimumAge>
@@ -202,9 +202,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026832">
 				<BasicDescription>
 					<Title type="main">Cities</Title>
-					<Title type="main" xml:lang="zhn">城市</Title>
+					<Title type="main" xml:lang="zh">城市</Title>
 					<Synopsis length="medium">Cities serve as places of surprising opportunity for animals to thrive.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">城市是动物繁衍生息的绝佳机会。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">城市是动物繁衍生息的绝佳机会。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>18</mpeg7:MinimumAge>
@@ -220,9 +220,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026833">
 				<BasicDescription>
 					<Title type="main">Jungles</Title>
-					<Title type="main" xml:lang="zhn">丛林</Title>
+					<Title type="main" xml:lang="zh">丛林</Title>
 					<Synopsis length="medium">From the jungles of Brazil to Costa Rica, animals face life in the most competitive place on Earth.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">从巴西的丛林到哥斯达黎加，动物们在地球上竞争最激烈的地方面临着生活。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">从巴西的丛林到哥斯达黎加，动物们在地球上竞争最激烈的地方面临着生活。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>5</mpeg7:MinimumAge>
@@ -238,9 +238,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026834">
 				<BasicDescription>
 					<Title type="main">Mountains</Title>
-					<Title type="main" xml:lang="zhn">山</Title>
+					<Title type="main" xml:lang="zh">山</Title>
 					<Synopsis length="medium">The secretive lives of mountain animals; snow leopards come together to help a mother and cub, trapped between rival males.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">山地动物的秘密生活； 雪豹齐心协力帮助被困在敌对雄性之间的母亲和幼崽。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">山地动物的秘密生活； 雪豹齐心协力帮助被困在敌对雄性之间的母亲和幼崽。</Synopsis>
           <ParentalGuidance>
              <mpeg7:MinimumAge>5</mpeg7:MinimumAge>
           </ParentalGuidance>
@@ -256,9 +256,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026835">
 				<BasicDescription>
 					<Title type="main">Animal Invaders</Title>
-					<Title type="main" xml:lang="zhn">动物入侵者</Title>
+					<Title type="main" xml:lang="zh">动物入侵者</Title>
 					<Synopsis length="medium">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">From Burmese pythons in the Everglades, to snake-like fish in the Potomac and killer bees swarming America; a lack of predators is helping these invasive species to take control.</Synopsis>
          <ParentalGuidance>
                <mpeg7:MinimumAge>12</mpeg7:MinimumAge>
           </ParentalGuidance>
@@ -274,9 +274,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.4.12026836">
 				<BasicDescription>
 					<Title type="main">Face Ripper</Title>
-					<Title type="main" xml:lang="zhn">面部开膛手</Title>
+					<Title type="main" xml:lang="zh">面部开膛手</Title>
 					<Synopsis length="medium">Jeremy investigates the case of a Bolivian man who had his face ripped off by a ferocious river predator, leading to a showdown with an old adversary.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">杰里米调查一名玻利维亚男子的脸被凶猛的河流掠食者扯掉，导致与老对手摊牌的案件。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">杰里米调查一名玻利维亚男子的脸被凶猛的河流掠食者扯掉，导致与老对手摊牌的案件。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
           <ParentalGuidance>
                <mpeg7:MinimumAge>3</mpeg7:MinimumAge>
@@ -290,7 +290,7 @@
 				</BasicDescription>
 			</ProgramInformation>
 		</ProgramInformationTable>
-		<ProgramLocationTable xml:lang="eng">
+		<ProgramLocationTable xml:lang="en">
 			<Schedule end="DATE_TEMPLATE 23:59:59" serviceIDRef="4" start="DATE_TEMPLATE 00:00:00">
 				<ScheduleEvent>
 					<Program crid="crid://dvbi-reference/example.4.12026821"/>

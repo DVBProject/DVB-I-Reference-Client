@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TVAMain xml:lang="eng" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<TVAMain xml:lang="en" xmlns="urn:tva:metadata:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProgramDescription>
 		<ProgramInformationTable>
 			<ProgramInformation programId="crid://dvbi-reference/example.6.12021633">
 				<BasicDescription>
 					<Title type="main">Mobile's Monster Meals</Title>
-					<Title type="main" xml:lang="zhn">移动的怪物餐</Title>
+					<Title type="main" xml:lang="zh">移动的怪物餐</Title>
 					<Synopsis length="medium">The Destroyer has two pounds of burger, 12 strips of bacon and a stack of cheese, all loaded into an enormous grilled doughnut; whole bacon-wrapped chicken topped with fried oysters and collard greens is piled onto pimento cheese cornbread.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">毁灭者有两磅汉堡、12 条培根和一堆奶酪，全部装入一个巨大的烤甜甜圈中； 整只培根包裹的鸡肉，上面放着炸牡蛎和羽衣甘蓝，上面堆满了多香果奶酪玉米面包。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">毁灭者有两磅汉堡、12 条培根和一堆奶酪，全部装入一个巨大的烤甜甜圈中； 整只培根包裹的鸡肉，上面放着炸牡蛎和羽衣甘蓝，上面堆满了多香果奶酪玉米面包。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -21,7 +21,7 @@
 				<BasicDescription>
 					<Title type="main">London</Title>
 					<Synopsis length="medium">Leslie travels to London to accept an award; Tom hunts down a businessman; Ann and Chris take their relationship to the next level.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">莱斯利前往伦敦领奖； 汤姆追捕一个商人； 安和克里斯将他们的关系提升到一个新的水平。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">莱斯利前往伦敦领奖； 汤姆追捕一个商人； 安和克里斯将他们的关系提升到一个新的水平。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -33,9 +33,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.6.12021635">
 				<BasicDescription>
 					<Title type="main">Like Father, Like Sun</Title>
-					<Title type="main" xml:lang="zhn">有其父必有其子</Title>
+					<Title type="main" xml:lang="zh">有其父必有其子</Title>
 					<Synopsis length="medium">Ozzy and Jack begin their travels in Key West, Fla., where they do some deep-sea fishing and pay a visit to Robert the Haunted Doll; the duo hunt for pythons in the Everglades and drive by Mar-a-Lago, President Donald Trump's &quot;Winter White House.&quot;</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">奥兹和杰克开始了他们在佛罗里达州基韦斯特的旅行，在那里他们进行了一些深海捕鱼并拜访了闹鬼的娃娃罗伯特； 两人在大沼泽地寻找蟒蛇，并由唐纳德特朗普总统的&quot;冬季白宫&quot;海湖庄园开车。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">奥兹和杰克开始了他们在佛罗里达州基韦斯特的旅行，在那里他们进行了一些深海捕鱼并拜访了闹鬼的娃娃罗伯特； 两人在大沼泽地寻找蟒蛇，并由唐纳德特朗普总统的&quot;冬季白宫&quot;海湖庄园开车。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -48,9 +48,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.6.12021636">
 				<BasicDescription>
 					<Title type="main">International Situation</Title>
-					<Title type="main" xml:lang="zhn">国际形势</Title>
+					<Title type="main" xml:lang="zh">国际形势</Title>
 					<Synopsis length="medium">Nick Popovich and his team travel to Turkey and France to hunt down two Airbus A320s for repossession.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">尼克波波维奇和他的团队前往土耳其和法国寻找两架空客 A320 以收回。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">尼克波波维奇和他的团队前往土耳其和法国寻找两架空客 A320 以收回。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -63,7 +63,7 @@
 				<BasicDescription>
 					<Title type="main">Confucius</Title>
 					<Synopsis length="medium">Bettany Hughes travels to China on the trail of Confucius, a great sage of Chinese history whose ideas have fundamentally shaped the country of his birth for around 2,500 years.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">贝坦尼·休斯 (Bettany Hughes) 跟随孔子前往中国，孔子是中国历史上一位伟大的圣人，其思想从根本上塑造了他出生的国家大约 2500 年。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">贝坦尼·休斯 (Bettany Hughes) 跟随孔子前往中国，孔子是中国历史上一位伟大的圣人，其思想从根本上塑造了他出生的国家大约 2500 年。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -76,9 +76,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.6.12021638">
 				<BasicDescription>
 					<Title type="main">The Mutilator</Title>
-					<Title type="main" xml:lang="zhn">毁灭者</Title>
+					<Title type="main" xml:lang="zh">毁灭者</Title>
 					<Synopsis length="medium">Jeremy Wade travels to the Sepik River in New Guinea to investigate a creature suspected of taking the lives of at least two fishermen.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">杰里米·韦德前往新几内亚的塞皮克河调查一种被怀疑夺走至少两名渔民生命的生物。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">杰里米·韦德前往新几内亚的塞皮克河调查一种被怀疑夺走至少两名渔民生命的生物。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -91,7 +91,7 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.6.12021639">
 				<BasicDescription>
 					<Title type="main">New York, NY</Title>
-					<Synopsis length="medium" xml:lang="zhn">凯西·韦伯 (Casey Webb) 前往纽约市品尝大城市美食，其中包括一项疯狂挑战，让他在 151 盎司的奶昔、八磅重的邋遢乔或六个哈瓦那人鬼辣椒翅膀之间做出选择。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">凯西·韦伯 (Casey Webb) 前往纽约市品尝大城市美食，其中包括一项疯狂挑战，让他在 151 盎司的奶昔、八磅重的邋遢乔或六个哈瓦那人鬼辣椒翅膀之间做出选择。</Synopsis>
 					<Synopsis length="medium">Casey Webb travels to New York City for the best in big city eats, including an insane challenge that has him choosing between a 151-ounce milkshake, an eight-pound sloppy joe or six habanero ghost chili wings.</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
@@ -105,9 +105,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.6.12021640">
 				<BasicDescription>
 					<Title type="main">Friends in Wild Places</Title>
-					<Title type="main" xml:lang="zhn">野外的朋友</Title>
+					<Title type="main" xml:lang="zh">野外的朋友</Title>
 					<Synopsis length="medium">Traveling the terrain of North America on inspirational adventures.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">在鼓舞人心的冒险中穿越北美的地形。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">在鼓舞人心的冒险中穿越北美的地形。</Synopsis>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
@@ -119,9 +119,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.6.12021641">
 				<BasicDescription>
 					<Title type="main">Globetrotting with Gemstones</Title>
-					<Title type="main" xml:lang="zhn">带着宝石环游世界</Title>
+					<Title type="main" xml:lang="zh">带着宝石环游世界</Title>
 					<Synopsis length="medium">Here at Gemporia, we travel the globe to source your exquisite gemstones and we are proud to bring them to you in this hour in stunning designs and incredible prices.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">在 Gemporia，我们周游世界为您采购精美的宝石，我们很自豪能在这一小时内以令人惊叹的设计和令人难以置信的价格将它们带给您。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">在 Gemporia，我们周游世界为您采购精美的宝石，我们很自豪能在这一小时内以令人惊叹的设计和令人难以置信的价格将它们带给您。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -135,7 +135,7 @@
 				<BasicDescription>
 					<Title type="main">Laura McKenzie's Traveler</Title>
 					<Synopsis length="medium">The award winning travel journalist takes picturesque tours around the world.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">这位屡获殊荣的旅行记者在世界各地进行风景如画的旅行。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">这位屡获殊荣的旅行记者在世界各地进行风景如画的旅行。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:10" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -148,9 +148,9 @@
 			<ProgramInformation programId="crid://dvbi-reference/example.6.12021643">
 				<BasicDescription>
 					<Title type="main">The Story of the South African Quaalude</Title>
-					<Title type="main" xml:lang="zhn">南非 Quaalude 的故事</Title>
+					<Title type="main" xml:lang="zh">南非 Quaalude 的故事</Title>
 					<Synopsis length="medium">South Africa is the last place on earth Quaaludes can still be found; Hamilton travels there to study the drug and learns of a dark history of medical experimentation.</Synopsis>
-					<Synopsis length="medium" xml:lang="zhn">南非是地球上最后一个仍然可以找到 Quaaludes 的地方； 汉密尔顿前往那里研究药物并了解了医学实验的黑暗历史。</Synopsis>
+					<Synopsis length="medium" xml:lang="zh">南非是地球上最后一个仍然可以找到 Quaaludes 的地方； 汉密尔顿前往那里研究药物并了解了医学实验的黑暗历史。</Synopsis>
 					<Genre href="urn:dvb:metadata:cs:ContentSubject:2019:2" type="main"/>
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -263,7 +263,7 @@
 				</BasicDescription>
 			</ProgramInformation>
 		</ProgramInformationTable>
-		<ProgramLocationTable xml:lang="eng">
+		<ProgramLocationTable xml:lang="en">
 			<Schedule end="DATE_TEMPLATE 23:59:59Z" serviceIDRef="2" start="DATE_TEMPLATE 00:00:00Z">
 				<ScheduleEvent>
 					<Program crid="crid://dvbi-reference/example.6.12021633"/>

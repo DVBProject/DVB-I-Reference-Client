@@ -5,14 +5,14 @@
  <ProgramInformation programId="crid://channel7.co.uk/b01myjsy">
  <BasicDescription>
  <Title type="main">Bargain Hunt</Title>
- <Title type="main" xml:lang="zhn">讨价还价</Title>
+ <Title type="main" xml:lang="zh">讨价还价</Title>
  <Title type="secondary">01/01/2014</Title>
  <Synopsis length="short">The Bargain Hunt teams head to Staffordshire's County Showground.</Synopsis>
- <Synopsis length="short" xml:lang="zhn">谈判小组前往斯塔福德郡的县陈列室。</Synopsis>
+ <Synopsis length="short" xml:lang="zh">谈判小组前往斯塔福德郡的县陈列室。</Synopsis>
  <Synopsis length="medium">The Bargain Hunt teams head to Staffordshire's County Showground, where both experts face double trouble.</Synopsis>
- <Synopsis length="medium" xml:lang="zhn">讨价还价小组前往斯塔福德郡的县展示场，两位专家都在那里面临双重麻烦。</Synopsis>
+ <Synopsis length="medium" xml:lang="zh">讨价还价小组前往斯塔福德郡的县展示场，两位专家都在那里面临双重麻烦。</Synopsis>
  <Synopsis length="long">The Bargain Hunt teams head to Staffordshire's County Showground, where both experts face double trouble. David Harper heads up two Toms for the red team, while twin sisters Elizabeth and Rachel are guided by Jonathan Pratt for the blue team. Tim Wonnacott travels to Bath to visit one of the city's greatest architectural delights.</Synopsis>
- <Synopsis length="long" xml:lang="zhn">讨价还价小组前往斯塔福德郡的县展示场，两位专家都在那里面临双重麻烦。 大卫哈珀带领红队的两个汤姆斯，而双胞胎姐妹伊丽莎白和雷切尔则由乔纳森普拉特带领蓝队。 蒂姆·沃纳科特 (Tim Wonnacott) 前往巴斯参观这座城市最伟大的建筑之一。</Synopsis>
+ <Synopsis length="long" xml:lang="zh">讨价还价小组前往斯塔福德郡的县展示场，两位专家都在那里面临双重麻烦。 大卫哈珀带领红队的两个汤姆斯，而双胞胎姐妹伊丽莎白和雷切尔则由乔纳森普拉特带领蓝队。 蒂姆·沃纳科特 (Tim Wonnacott) 前往巴斯参观这座城市最伟大的建筑之一。</Synopsis>
  <Keyword>FAMILY LIFE</Keyword>
  <Keyword>RELATIONSHIPS</Keyword>
  <Keyword type="other">Critic’s Choice</Keyword>
@@ -22,8 +22,8 @@
  </ParentalGuidance>
  <ParentalGuidance>
  <mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
- <ExplanatoryText length="long" xml:lang="eng">Contains strong language and flash photography</ExplanatoryText>
- <ExplanatoryText length="long" xml:lang="zhn">包含强烈的语言和闪光摄影</ExplanatoryText>
+ <ExplanatoryText length="long" xml:lang="en">Contains strong language and flash photography</ExplanatoryText>
+ <ExplanatoryText length="long" xml:lang="zh">包含强烈的语言和闪光摄影</ExplanatoryText>
  </ParentalGuidance>
  <CreditsList>
  <CreditsItem role="urn:tva:metadata:cs:TVARoleCS:2011:V20">
