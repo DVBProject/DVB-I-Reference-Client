@@ -668,9 +668,10 @@ function parseIntervalTime(time,day) {
 }
 
 var dvb_i_language_list = {
-  "eng": "English",
-  "deu" : "Deutsch",
-  "fin":"Suomi"
+  "en": "English",
+  "de" : "Deutsch",
+  "fi":"Suomi",
+  "zh":"Chinese"
 }
 
 function getLocalizedText(texts,lang) {

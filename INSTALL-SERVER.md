@@ -27,18 +27,17 @@ Edit ``/etc/apache2/mods-enabled/php7.3.conf`` to comment out the restrictions o
 ### Load the reference client into the Apache root directory
 
     git clone https://github.com/DVBProject/DVB-I-Reference-Client ~/dvbi/
-    sudo mv /var/www/html /var/www/html
-    sudo ln -s ~/dvbi  /var/www/html
+    sudo ln -s ~/dvbi  /var/www/html/MyDVBi
 
 Note that, you could also create a custom Apache site in `/etc/apache2/sites-available` and enable it with `a2ensite`.
 
 ### Update files to refer to local endpoints
 
-In `/var/www/html/frontend/dvbi-common.js`, change the `INSTALL_LOCATION` to the fully qualified URL to your service list registry, i.e.
-`var INSTALL_LOCATION = "http://my-www-host";`. Do not include the trailing slash.
+In `/var/www/html/frontend/configuration.js`, change the `INSTALL_LOCATION` to the fully qualified URL to your service list registry, i.e.
+`var INSTALL_LOCATION = "http://my-www-host/MyDVBi";`. Do not include the trailing slash.
 
-In `/var/www/html/vackend/configuration.php`, change the `$install_location` to the same fully qualified URL to your service list registry, i.e.
-`$install_location = "http://my-www-host";`. Do not include the trailing slash.
+In `/var/www/html/backend/configuration.php`, change the `$install_location` to the same fully qualified URL to your service list registry, i.e.
+`$install_location = "http://my-www-host/MyDVBi";`. Do not include the trailing slash.
 
 
 

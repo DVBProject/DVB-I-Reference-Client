@@ -67,7 +67,7 @@
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>IRT test channel</ServiceName>
-    <ServiceName xml:lang="zhn">IRT测试通道</ServiceName>
+    <ServiceName xml:lang="zh">IRT测试通道</ServiceName>
     <ProviderName>IRT</ProviderName>
     <ContentGuideServiceRef>cgsid_3</ContentGuideServiceRef>
   </Service>
@@ -82,7 +82,7 @@
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>Akamai Low Latency FFMPEG</ServiceName>
-    <ServiceName xml:lang="zhn">Akamai 低延迟 FFMPEG</ServiceName>
+    <ServiceName xml:lang="zh">Akamai 低延迟 FFMPEG</ServiceName>
     <ProviderName>Akamai</ProviderName>
     <RelatedMaterial>
       <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2"/>

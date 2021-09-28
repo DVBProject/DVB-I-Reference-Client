@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TVAMain xmlns="urn:tva:metadata:2019"
  xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns:xsd="http://www.w3.org/2001/XMLSchema" xml:lang="eng">
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" xml:lang="en">
  <ProgramDescription>
- <ProgramInformationTable xml:lang="eng">
+ <ProgramInformationTable xml:lang="en">
  <!--PROGRAMS-->
  </ProgramInformationTable>
- <ProgramLocationTable xml:lang="eng">
+ <ProgramLocationTable xml:lang="en">
  <Schedule serviceIDRef="SERVICE_ID_TEMPLATE" start="START_TEMPLATE" end="END_TEMPLATE">
  <!--SCHEDULES-->
  </Schedule>

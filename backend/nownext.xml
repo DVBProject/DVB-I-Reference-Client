@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TVAMain xmlns="urn:tva:metadata:2019"
  xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns:xsd="http://www.w3.org/2001/XMLSchema" xml:lang="eng">
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" xml:lang="en">
  <ProgramDescription>
- <ProgramInformationTable xml:lang="eng">
+ <ProgramInformationTable xml:lang="en">
  <ProgramInformation programId="crid://channel7.co.uk/b01myjsy">
  <BasicDescription>
  <Title type="main">Bargain Hunt</Title>
- <Title type="main" xml:lang="zhn">讨价还价</Title>
+ <Title type="main" xml:lang="zh">讨价还价</Title>
  <Title type="secondary">01/01/2014</Title>
  <Synopsis length="short">The Bargain Hunt teams head to Staffordshire's County Showground.</Synopsis>
- <Synopsis length="short" xml:lang="zhn">谈判小组前往斯塔福德郡的县陈列室。</Synopsis>
+ <Synopsis length="short" xml:lang="zh">谈判小组前往斯塔福德郡的县陈列室。</Synopsis>
  <Synopsis length="medium"> The Bargain Hunt teams head to
  Staffordshire's County Showground, where both experts face double
  trouble.</Synopsis>
- <Synopsis length="medium" xml:lang="zhn">讨价还价小组前往斯塔福德郡的县展示场，两位专家都在那里面临双重麻烦。</Synopsis>
+ <Synopsis length="medium" xml:lang="zh">讨价还价小组前往斯塔福德郡的县展示场，两位专家都在那里面临双重麻烦。</Synopsis>
  <Genre href="urn:dvb:metadata:cs:ContentSubject:2019:3" type="main"/>
  <ParentalGuidance>
  <mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
- <ExplanatoryText length="long" xml:lang="eng">Contains strong language and flash photography</ExplanatoryText>
- <ExplanatoryText length="long" xml:lang="zhn">包含强烈的语言和闪光摄影</ExplanatoryText>
+ <ExplanatoryText length="long" xml:lang="en">Contains strong language and flash photography</ExplanatoryText>
+ <ExplanatoryText length="long" xml:lang="zh">包含强烈的语言和闪光摄影</ExplanatoryText>
  </ParentalGuidance>
  <RelatedMaterial>
  <HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -39,7 +39,7 @@
  <mpeg7:ParentalRating
  href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:no_parental_controls"/>
  <ExplanatoryText length="long">Contains scenes of violence and strong language.</ExplanatoryText>
- <ExplanatoryText length="long" xml:lang="zhn">包含强烈的语言和闪光摄影</ExplanatoryText>
+ <ExplanatoryText length="long" xml:lang="zh">包含强烈的语言和闪光摄影</ExplanatoryText>
  </ParentalGuidance>
  <RelatedMaterial>
  <HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
@@ -50,7 +50,7 @@
  </BasicDescription>
  </ProgramInformation>
  </ProgramInformationTable>
- <ProgramLocationTable xml:lang="eng">
+ <ProgramLocationTable xml:lang="en">
  <Schedule serviceIDRef="SERVICE_ID_TEMPLATE" start="2013-09-25T11:15:00Z" end="2013-09-25T12:30:00.000Z">
  <ScheduleEvent>
  <Program crid="crid://channel7.co.uk/b01myjsy"/>
