@@ -49,11 +49,9 @@
 "language_setting_audio":"音频语言 (audio)",
 "language_setting_accessible_audio":"无障碍音频 (accessible audio)",
 "language_setting_ui":"界面语言 (UI)",
-
 "request_region":"区域选择",
 "region_select_postcode":"邮政编码",
 "region_filter_button":"询问",
-
 "label_keywords":"关键词",
 "label_none":"没有任何"
 }
