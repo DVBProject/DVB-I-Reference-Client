@@ -1,8 +1,7 @@
 <?php
 //
 // install_location is the installation directory
-// see also dvbi-common.js
+// see also frontend/configuration.js
 //
 $install_location = "https://stage.sofiadigital.fi/dvb/dvb-i-reference-application";
-
 ?>

@@ -29,6 +29,7 @@
     <script type="text/javascript" src="../../isoduration.js"></script>
     <script type="text/javascript" src="../../channel-common.js"></script>
     <script type="text/javascript" src="../../common.js"></script>
+    <script type="text/javascript" src="../../configuration.js"></script>
     <script type="text/javascript" src="../../dvbi-common.js"></script>
     <script type="text/javascript" src="../../localstorage.js"></script>
     <script type="text/javascript" src="../buttonbar.js"></script>

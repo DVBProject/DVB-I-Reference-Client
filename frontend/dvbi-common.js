@@ -1,6 +1,3 @@
-// DVB-I Reference installation location -- also configuration.php
-var INSTALL_LOCATION="https://stage.sofiadigital.fi/dvb/dvb-i-reference-application";
-
 var PROVIDER_LIST = INSTALL_LOCATION+"/backend/servicelist_registry.php";
 
 function parseServiceList(data,dvbChannels,supportedDrmSystems) {
