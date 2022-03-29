@@ -560,20 +560,29 @@ function parseServiceListProviders(data) {
   var providerslist = [];
   var parser = new DOMParser();
   var doc = parser.parseFromString(data,"text/xml");
-  var providers = doc.getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","ProviderOffering");
+  var ns = doc.documentElement.namespaceURI;
+  if(!ns) {
+    ns = "urn:dvb:metadata:servicelistdiscovery:2019" //Fallback value
+  }
+  var servicediscoveryNS = doc.documentElement.getAttribute("xmlns:dvbisd");
+  if(!servicediscoveryNS) {
+    servicediscoveryNS = "urn:dvb:metadata:servicediscovery:2019" //Fallback value
+  }
+  var providers = doc.getElementsByTagNameNS(ns,"ProviderOffering");
+  console.log(providers)
   for(var i = 0;i < providers.length;i++) {
-    var providerInfo = providers[i].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","Provider");
+    var providerInfo = providers[i].getElementsByTagNameNS(ns,"Provider");
     var info = {};
     if(providerInfo.length > 0) {
-        info["name"] = providerInfo[0].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","Name")[0].childNodes[0].nodeValue;
+        info["name"] = providerInfo[0].getElementsByTagNameNS(ns,"Name")[0].childNodes[0].nodeValue;
     }
-    var lists = providers[i].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","ServiceListOffering");
+    var lists = providers[i].getElementsByTagNameNS(ns,"ServiceListOffering");
     var servicelists = [];
     info["servicelists"] = servicelists;
     for(var j = 0;j < lists.length;j++) {
         var list = {};
-        list["name"] = lists[j].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","ServiceListName")[0].childNodes[0].nodeValue;
-        list["url"] = lists[j].getElementsByTagNameNS("urn:dvb:metadata:servicelistdiscovery:2019","ServiceListURI")[0].getElementsByTagNameNS("urn:dvb:metadata:servicediscovery:2019","URI")[0].childNodes[0].nodeValue;
+        list["name"] = lists[j].getElementsByTagNameNS(ns,"ServiceListName")[0].childNodes[0].nodeValue;
+        list["url"] = lists[j].getElementsByTagNameNS(ns,"ServiceListURI")[0].getElementsByTagNameNS(servicediscoveryNS,"URI")[0].childNodes[0].nodeValue;
         servicelists.push(list);
     }
     providerslist.push(info);
