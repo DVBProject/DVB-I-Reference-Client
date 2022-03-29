@@ -569,7 +569,6 @@ function parseServiceListProviders(data) {
     servicediscoveryNS = "urn:dvb:metadata:servicediscovery:2019" //Fallback value
   }
   var providers = doc.getElementsByTagNameNS(ns,"ProviderOffering");
-  console.log(providers)
   for(var i = 0;i < providers.length;i++) {
     var providerInfo = providers[i].getElementsByTagNameNS(ns,"Provider");
     var info = {};
