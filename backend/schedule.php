@@ -25,10 +25,10 @@ if(isset($_GET['now_next']) && isset($_GET['sid']) && $_GET['now_next'] == "true
     $schedule =str_replace("INSTALL--LOCATION",$install_location,$schedule);
     echo $schedule;
 }
-else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sids']) ){
+else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sid']) ){
     $schedule_start = intval($_GET['start']);
     $schedule_end = intval($_GET['end']);
-    $sid = $_GET['sids'][0];
+    $sid = $_GET['sid'];
     $schedule = getSchdeule($sid,$schedule_start,$schedule_end);
     if($schedule  != NULL) {
         echo $schedule;
@@ -57,7 +57,7 @@ else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sids']) ){
         $program_length = rand(10,60);
     }
     $schedule_document = file_get_contents("schedule_template.xml");
-    $schedule_document =str_replace( "SERVICE_ID_TEMPLATE",$_GET['sids'][0],$schedule_document);
+    $schedule_document =str_replace( "SERVICE_ID_TEMPLATE",$_GET['sid'],$schedule_document);
     $schedule_document =str_replace( "START_TEMPLATE",date($timeformat, $schedule_start),$schedule_document);
     $schedule_document =str_replace( "END_TEMPLATE",date($timeformat, $schedule_end),$schedule_document);
     $schedule_document =str_replace( "<!--PROGRAMS-->",$programs,$schedule_document);
