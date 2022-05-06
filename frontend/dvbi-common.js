@@ -465,8 +465,8 @@ function selectServiceListRegion(serviceList,regionId) {
     var service = serviceList.services[i];
     var valid = false;
     if(service.targetRegions) {
-      for(var j = 0;i<service.targetRegions.length;j++) {
-        if(table.targetRegions[j] == regionId) {
+      for(var j = 0;j<service.targetRegions.length;j++) {
+        if(service.targetRegions[j] == regionId) {
           valid = true;
           break;
         }
