@@ -1,11 +1,11 @@
 # Build a DVB-I Server
 
 ## System libraries and modules
-### Install PHP 7.3 (includes Apache 2)
+### Install PHP 7.4 (includes Apache 2)
 ``sudo apt install php``
 
 ### Configure PHP to allow execution in user directories
-Edit ``/etc/apache2/mods-enabled/php7.3.conf`` to comment out the restrictions on PHP in user directories
+Edit ``/etc/apache2/mods-enabled/php7.4.conf`` to comment out the restrictions on PHP in user directories
 
     # To re-enable php in user directories comment the following lines
     # (from <IfModule ...> to </IfModule>.) Do NOT set it to On as it
