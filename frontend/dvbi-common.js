@@ -1,5 +1,12 @@
 var PROVIDER_LIST = INSTALL_LOCATION+"/backend/servicelist_registry.php";
 
+/** LCN_services_only
+ * set to true to only include services in the selected region that are included in the reevant LCN table.
+ * setting this value to false will add all services, but those that are not in the LCN will use channel numbers starting with First_undeclared_channel
+ **/
+/* const */var LCN_services_only=false;
+/* const */var First_undeclared_channel=7000;
+
 function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     var serviceList = {};
     var list = [];
@@ -460,7 +467,9 @@ function selectServiceListRegion(serviceList,regionId) {
   if(lcnTable == null) {
     throw "No LCN table found";
   }
-  var validServices = []
+  var validServices = [];
+  var unallocatedLCN=First_undeclared_channel;
+
   for(var i = 0;i<serviceList.services.length;i++) {
     var service = serviceList.services[i];
     var valid = false;
@@ -476,13 +485,20 @@ function selectServiceListRegion(serviceList,regionId) {
       valid = true;
     }
     if(valid) {
+      var inLCN=false;
+      service.lcn = -1;
       for(var j = 0;j < lcnTable.lcn.length;j++) {
           if(lcnTable.lcn[j].serviceRef == service.id) {
               service.lcn = lcnTable.lcn[j].channelNumber;
+	      inLCN=true;
               break;
           }
       }
-      validServices.push(service);
+      if (inLCN || (!inLCN && !LCN_services_only)) {
+         if (service.lcn == -1)
+      	   service.lcn = unallocatedLCN++;
+         validServices.push(service);
+      }
     }
   }
   serviceList.services = validServices;
