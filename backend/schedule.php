@@ -97,7 +97,6 @@ function getNowNext( $sid ) {
 	if ($now != NULL || $next != NULL){
 		$groupInformationTable = new SimpleXMLElement('<GroupInformationTable/>');
 		if ($now != NULL){
-
 			$groupInformation = $groupInformationTable->addChild('GroupInformation');
 			$groupInformation->addAttribute('groupId','crid://dvb.org/metadata/schedules/now-next/now');
 			$groupInformation->addAttribute('numOfItems','1');
@@ -131,12 +130,18 @@ function getNowNext( $sid ) {
     foreach ($schedule->ProgramDescription->ProgramInformationTable->ProgramInformation as $program) {
         if((string)$program['programId'] == (string)$now->Program['crid']) {
             $now_program = $program;
+	    $member = $now_program->addChild('MemberOf');
+	    $member->addAttribute('crid','crid://dvb.org/metadata/schedules/now-next/now');
+	    $member->addAttribute('index','1');
             if($next_program != NULL) {
                 break;
             }
         }
         if((string)$program['programId'] == (string)$next->Program['crid']) {
             $next_program = $program;
+	    $member = $next_program->addChild('MemberOf');
+	    $member->addAttribute('crid','crid://dvb.org/metadata/schedules/now-next/later');
+	    $member->addAttribute('index','1');
             if($now_program != NULL) {
                 break;
             }
@@ -148,7 +153,7 @@ function getNowNext( $sid ) {
     $endtime += ISO8601ToSeconds($next->PublishedDuration);
     $schedule_document = file_get_contents("schedule_template.xml");
     $schedule_document =str_replace( "START_TEMPLATE",$now->PublishedStartTime,$schedule_document);
-   $schedule_document =str_replace( "END_TEMPLATE",date($timeformat, $endtime),$schedule_document);
+    $schedule_document =str_replace( "END_TEMPLATE",date($timeformat, $endtime),$schedule_document);
     $schedule_document =str_replace( "<!--PROGRAMS-->",$now_program->asXML().$next_program->asXML(),$schedule_document);
     $schedule_document =str_replace( "<!--GROUPS-->",$groupstr,$schedule_document);
     $schedule_document =str_replace( "<!--SCHEDULES-->",$now->asXML().$next->asXML(),$schedule_document);
