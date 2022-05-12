@@ -94,7 +94,7 @@ Program.prototype.populateProgramInfo = function(){
     $("#info_chname").text( getLocalizedText(this.channel.titles, language_settings.ui_language));
     $(".title").text(this.getTitle());
     $("#description").html( this.getDescription());
-    $(".img").attr('src',this.mediaimage);
+    $(".img").attr('src',this.mediaimage || "./images/empty.png");
     $(".date").text(this.start.getDate()+"."+(this.start.getMonth()+1)+".");
     $(".starttime").text(this.start.create24HourTimeString());
     $(".endtime").text(this.end.create24HourTimeString());
