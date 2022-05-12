@@ -26,6 +26,9 @@
     <ScheduleInfoEndpoint contentType="application/xml">
       <URI>INSTALL--LOCATION/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
+    <ProgramInfoEndpoint contentType="application/xml">
+      <URI>INSTALL--LOCATION/backend/program_information.php</URI>
+    </ProgramInfoEndpoint>
     <MoreEpisodesEndpoint contentType="application/xml">
       <URI>INSTALL--LOCATION/backend/more_episodes.php</URI>
     </MoreEpisodesEndpoint>
