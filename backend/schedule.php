@@ -61,6 +61,7 @@ else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sids']) ){
     $schedule_document =str_replace( "START_TEMPLATE",date($timeformat, $schedule_start),$schedule_document);
     $schedule_document =str_replace( "END_TEMPLATE",date($timeformat, $schedule_end),$schedule_document);
     $schedule_document =str_replace( "<!--PROGRAMS-->",$programs,$schedule_document);
+    $schedule_document =str_replace( "<!--GROUPS-->","",$schedule_document);
     $schedule_document =str_replace( "<!--SCHEDULES-->",$schedules,$schedule_document);
     echo $schedule_document;
 }
@@ -93,17 +94,54 @@ function getNowNext( $sid ) {
         $now = $schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent[count($schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent)-1];
         $next = $schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent[0];
     }
+	if ($now != NULL || $next != NULL){
+		$groupInformationTable = new SimpleXMLElement('<GroupInformationTable/>');
+		if ($now != NULL){
+			$groupInformation = $groupInformationTable->addChild('GroupInformation');
+			$groupInformation->addAttribute('groupId','crid://dvb.org/metadata/schedules/now-next/now');
+			$groupInformation->addAttribute('numOfItems','1');
+			$groupInformation->addAttribute('ordered','true');
+
+			$groupType = $groupInformation->addChild('GroupType');
+			$groupType->addAttribute('value','otherCollection');
+			$groupType->addAttribute('xsi:type','ProgramGroupTypeType','http://www.w3.org/2001/XMLSchema-instance');
+			$basicDescription = $groupInformation->addChild('BasicDescription');
+
+		}
+		if ($next != NULL){
+
+			$groupInformation = $groupInformationTable->addChild('GroupInformation');
+			$groupInformation->addAttribute('groupId','crid://dvb.org/metadata/schedules/now-next/later');
+			$groupInformation->addAttribute('numOfItems','1');
+			$groupInformation->addAttribute('ordered','true');
+
+			$groupType = $groupInformation->addChild('GroupType');
+			$groupType->addAttribute('value','otherCollection');
+			$groupType->addAttribute('xsi:type','ProgramGroupTypeType','http://www.w3.org/2001/XMLSchema-instance');
+			$basicDescription = $groupInformation->addChild('BasicDescription');
+
+		}
+		$domxml = dom_import_simplexml($groupInformationTable);
+		$groupstr = $domxml->ownerDocument->saveXML($domxml->ownerDocument->documentElement);
+	}
+
     $now_program = NULL;
     $next_program = NULL;
     foreach ($schedule->ProgramDescription->ProgramInformationTable->ProgramInformation as $program) {
         if((string)$program['programId'] == (string)$now->Program['crid']) {
             $now_program = $program;
+	    $member = $now_program->addChild('MemberOf');
+	    $member->addAttribute('crid','crid://dvb.org/metadata/schedules/now-next/now');
+	    $member->addAttribute('index','1');
             if($next_program != NULL) {
                 break;
             }
         }
         if((string)$program['programId'] == (string)$next->Program['crid']) {
             $next_program = $program;
+	    $member = $next_program->addChild('MemberOf');
+	    $member->addAttribute('crid','crid://dvb.org/metadata/schedules/now-next/later');
+	    $member->addAttribute('index','1');
             if($now_program != NULL) {
                 break;
             }
@@ -117,6 +155,7 @@ function getNowNext( $sid ) {
     $schedule_document =str_replace( "START_TEMPLATE",$now->PublishedStartTime,$schedule_document);
     $schedule_document =str_replace( "END_TEMPLATE",date($timeformat, $endtime),$schedule_document);
     $schedule_document =str_replace( "<!--PROGRAMS-->",$now_program->asXML().$next_program->asXML(),$schedule_document);
+    $schedule_document =str_replace( "<!--GROUPS-->",$groupstr,$schedule_document);
     $schedule_document =str_replace( "<!--SCHEDULES-->",$now->asXML().$next->asXML(),$schedule_document);
     $schedule_document =str_replace( "SERVICE_ID_TEMPLATE",$sid,$schedule_document);
     return $schedule_document;
@@ -186,6 +225,7 @@ function getSchdeule( $sid,$start,$end ) {
     $schedule_document =str_replace( "START_TEMPLATE",$programs[0]->PublishedStartTime,$schedule_document);
     $schedule_document =str_replace( "END_TEMPLATE",date($timeformat, $endtime),$schedule_document);
     $schedule_document =str_replace( "<!--PROGRAMS-->",$info_str,$schedule_document);
+    $schedule_document =str_replace( "<!--GROUPS-->",'',$schedule_document);
     $schedule_document =str_replace( "<!--SCHEDULES-->",$schedules,$schedule_document);
     $schedule_document =str_replace( "SERVICE_ID_TEMPLATE",$sid,$schedule_document);
 

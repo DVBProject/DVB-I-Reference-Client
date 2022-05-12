@@ -6,6 +6,7 @@
  <ProgramInformationTable xml:lang="en">
  <!--PROGRAMS-->
  </ProgramInformationTable>
+ <!--GROUPS-->
  <ProgramLocationTable xml:lang="en">
  <Schedule serviceIDRef="SERVICE_ID_TEMPLATE" start="START_TEMPLATE" end="END_TEMPLATE">
  <!--SCHEDULES-->
