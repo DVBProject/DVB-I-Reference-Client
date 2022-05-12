@@ -72,7 +72,7 @@ Channel.prototype.parseSchedule = function(data) {
                 for(var j = 0;j < titles.length;j++) {
                   var element = titles[j];
                   var text = {};
-                  var lang = element.getAttributeNS("http://www.w3.org/XML/1998/namespace","lang");
+                  var lang = elementLanguage(element);
                   if(!lang) {
                     lang = "default";
                   }
@@ -88,7 +88,7 @@ Channel.prototype.parseSchedule = function(data) {
                    for(var j = 0;j < synopsis.length;j++) {
                     var element = synopsis[j];
                     var text = {};
-                    var lang = element.getAttributeNS("http://www.w3.org/XML/1998/namespace","lang");
+                    var lang = elementLanguage(element);
                     if(!lang) {
                       lang = "default";
                     }
