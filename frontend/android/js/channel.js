@@ -35,7 +35,7 @@ Channel.prototype.getSchedule = function(callback) {
     self.programs = [];
 
     if(self.contentGuideURI) {
-         $.get( self.contentGuideURI+"?sids[]="+self.getServiceRef()+"&start="+self.epg.start+"&end="+self.epg.end, function( data ) {
+         $.get( self.contentGuideURI+"?sid="+self.getServiceRef()+"&start="+self.epg.start+"&end="+self.epg.end, function( data ) {
                 self.programs = self.parseSchedule(data);
                 if(typeof(callback) == "function"){
                     callback.call();

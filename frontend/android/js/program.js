@@ -115,6 +115,9 @@ Program.prototype.populateProgramInfo = function(){
         }
         $(".parentalrating").text(parental.join(" "));
     }
+    else {
+	$(".parentalrating").text(" ");
+    } 
     $("#select_service_button").attr("href","javascript:channelSelected('"+this.channel.id+"')");
     this.channel.getMoreEpisodes(this.programId, function(episodes) {
       if(episodes) {
