@@ -7,6 +7,24 @@ var PROVIDER_LIST = INSTALL_LOCATION+"/backend/servicelist_registry.php";
 /* const */var LCN_services_only=false;
 /* const */var First_undeclared_channel=7000;
 
+
+function parseContentGuideSource(src) {
+  var newCS={id:"", contentGuideURI:null, moreEpisodesURI:null, programInfoURI:null};
+  if (src) {
+    newCS.id=src.getAttribute("CGSID");
+    newCS.contentGuideURI = src.getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+    var moreEpisodes = src.getElementsByTagName("MoreEpisodesEndpoint");
+    if(moreEpisodes.length > 0) {
+      newCS.moreEpisodesURI = moreEpisodes[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+    }
+    var programInfo = src.getElementsByTagName("ProgramInfoEndpoint");
+    if(programInfo.length > 0) {
+      newCS.programInfoURI = programInfo[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+    }
+  }
+  return newCS;
+}
+
 function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     var serviceList = {};
     var list = [];
@@ -21,10 +39,8 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
       howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2020:";
     }
     var services = getChildElements(doc.documentElement,"Service");
-    var contentGuides = getChildElements(doc.documentElement,"ContentGuideSource");
-    var contentGuideURI = null;
-    var moreEpisodesURI = null;
-    var programInfoURI = null;
+
+    var contentGuides=[];
     var channelmap = [];
     if(dvbChannels) {
       for(var i = 0;i<dvbChannels.length;i++) {
@@ -33,16 +49,18 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
           channelmap[triplet] = dvbChannel;
       }
     }
-    if(contentGuides.length > 0) {
-        contentGuideURI = contentGuides[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
-        var moreEpisodes =  contentGuides[0].getElementsByTagName("MoreEpisodesEndpoint");
-        if(moreEpisodes.length > 0) {
-          moreEpisodesURI = moreEpisodes[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
-        }
-        var programInfo =  contentGuides[0].getElementsByTagName("ProgramInfoEndpoint");
-        if(programInfo.length > 0) {
-          programInfoURI = programInfo[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
-        }
+    var defaultContentGuide=parseContentGuideSource(null);
+    var contentGuideSource=getChildElements(doc.documentElement,"ContentGuideSource");
+    if (contentGuideSource.length>0) {
+	defaultContentGuide=parseContentGuideSource(contentGuideSource[0]);
+    }
+
+    var contentGuideSources = getChildElements(doc.documentElement,"ContentGuideSourceList");
+    if (contentGuideSources.length > 0) {
+      var guides=getChildElements(contentGuideSources[0],"ContentGuideSource");
+      for (var cs=0; cs < guides.length; cs++) {
+        contentGuides.push(parseContentGuideSource(guides[cs]));
+      }
     }
     var relatedMaterial = getChildElements(doc.documentElement,"RelatedMaterial");
     for(var j = 0;j < relatedMaterial.length;j++) {
@@ -101,9 +119,40 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
     }
     for (var i = 0; i < services.length ;i++) {
         var chan = {};
-        chan.contentGuideURI = contentGuideURI;
-        chan.moreEpisodesURI = moreEpisodesURI;
-        chan.programInfoURI = programInfoURI;
+
+	var myContentGuideSource=services[i].getElementsByTagName("ContentGuideSource");
+	if (myContentGuideSource.length > 0) {
+	  chan.contentGuideURI = myContentGuideSource[0].getElementsByTagName("ScheduleInfoEndpoint")[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+	  var moreEpisodes =  myContentGuideSource[0].getElementsByTagName("MoreEpisodesEndpoint");
+	  if(moreEpisodes.length > 0) {
+	    chan.moreEpisodesURI = moreEpisodes[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+	  }
+	  var programInfo =  myContentGuideSource[0].getElementsByTagName("ProgramInfoEndpoint");
+	  if(programInfo.length > 0) {
+	    chan.programInfoURI = programInfo[0].getElementsByTagName("URI")[0].childNodes[0].nodeValue;
+	  }	
+	}
+	else {
+          chan.contentGuideURI = defaultContentGuide.contentGuideURI;
+          chan.moreEpisodesURI = defaultContentGuide.moreEpisodesURI;
+          chan.programInfoURI = defaultContentGuide.programInfoURI;
+	}
+
+	var myContentGuideSourceRef=services[i].getElementsByTagName("ContentGuideSourceRef");
+	if (myContentGuideSourceRef.length > 0) {
+	  var idx=-1;
+	  for (var cs=0; cs < contentGuides.length; cs++) {
+	    if (contentGuides[cs].id == myContentGuideSourceRef[0].childNodes[0].nodeValue) {
+		idx=cs;
+		break;
+	    }
+	  }
+	  if (idx != -1) {
+	    chan.contentGuideURI = contentGuides[idx].contentGuideURI;
+	    chan.moreEpisodesURI = contentGuides[idx].moreEpisodesURI;
+	    chan.programInfoURI = contentGuides[idx].programInfoURI;		  
+	  }
+	}
         chan.code = i;
         var serviceNames = services[i].getElementsByTagName("ServiceName");
         chan.titles = [];
