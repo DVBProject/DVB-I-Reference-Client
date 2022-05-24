@@ -628,21 +628,21 @@
 					<tva:BitRate>128407</tva:BitRate>
 				</AudioAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>1680</tva:HorizontalSize>
 					<tva:VerticalSize>750</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1032000</tva:BitRate>
 				</VideoAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>2576</tva:HorizontalSize>
 					<tva:VerticalSize>1150</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1250000</tva:BitRate>
 				</VideoAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>3360</tva:HorizontalSize>
 					<tva:VerticalSize>1500</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
