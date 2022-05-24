@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tva="urn:tva:metadata:2019" version="1" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2019 ../dvbi_v1.0.xsd">
+<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tva="urn:tva:metadata:2019" version="1" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd">
   <Name>DVB-I DRM Service list</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
     <LCNTable>
-      <LCN channelNumber="1" serviceRef="1"/>
+      <LCN channelNumber="1" serviceRef="tag:dvb-i-refrecenceapp,2020:Drm-1"/>
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
@@ -35,10 +35,10 @@
     <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-2</UniqueIdentifier>
     <ServiceInstance priority="1">
      <RelatedMaterial>
-      <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
-      <tva:MediaLocator>
+      <HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
+      <MediaLocator>
         <tva:MediaUri contentType="application/xhtml+xml">INSTALL--LOCATION/linked_applications/android_drm_widevine.html</tva:MediaUri>
-      </tva:MediaLocator>
+      </MediaLocator>
     </RelatedMaterial>
       <ContentProtection>
         <DRMSystemId encryptionScheme="cenc">
@@ -59,18 +59,19 @@
     <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-3</UniqueIdentifier>
     <ServiceInstance priority="1">
       <RelatedMaterial>
-      <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
-      <tva:MediaLocator>
+       <HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
+       <MediaLocator>
         <tva:MediaUri contentType="application/vnd.dvb.ait+xml">INSTALL--LOCATION/linked_applications/hbbtv_playready_aitx.php</tva:MediaUri>
-      </tva:MediaLocator>
-     </RelatedMaterial>
+       </MediaLocator>
+      </RelatedMaterial>
       <ContentProtection>
         <DRMSystemId encryptionScheme="cenc">
           <DRMSystemId>9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
         </DRMSystemId>
       </ContentProtection>
+      <SourceType>urn:dvb:metadata:source:application</SourceType>
     </ServiceInstance>
-    <ServiceName>Plaready linked application DRM</ServiceName>
+    <ServiceName>Playready linked application DRM</ServiceName>
     <ProviderName>DVB</ProviderName>
   </Service>
   <Service version="1">

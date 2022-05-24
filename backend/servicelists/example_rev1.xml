@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="45" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 dvbi_v2.0.xsd">
+<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="45" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd">
   <Name>DVB-I Reference app rev.1 example</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
@@ -13,12 +13,12 @@
     <ScheduleInfoEndpoint contentType="application/xml">
       <URI>INSTALL--LOCATION/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
-    <MoreEpisodesEndpoint contentType="application/xml">
-      <URI>INSTALL--LOCATION/backend/more_episodes.php</URI>
-    </MoreEpisodesEndpoint>
     <ProgramInfoEndpoint contentType="application/xml">
       <URI>INSTALL--LOCATION/backend/program_information.php</URI>
     </ProgramInfoEndpoint>
+    <MoreEpisodesEndpoint contentType="application/xml">
+      <URI>INSTALL--LOCATION/backend/more_episodes.php</URI>
+    </MoreEpisodesEndpoint>
   </ContentGuideSource>
   <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:rev1sid1</UniqueIdentifier>
@@ -35,13 +35,13 @@
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>Not available service</ServiceName>
-    <ServiceName xml:lang="fin">Ei saatavilla palvelu</ServiceName>
+    <ServiceName xml:lang="fi">Ei saatavilla palvelu</ServiceName>
     <ServiceName xml:lang="zh">没有可用的服务</ServiceName>
     <ProviderName>DVB</ProviderName>
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1000.1"></HowRelated>
       <MediaLocator>
-        <tva:MediaUri contentType="image/jpg">INSTALL--LOCATION/backend/channel_icons/outofservice_example.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/outofservice_example.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ServiceType href="urn:dvb:metadata:cs:ServiceTypeCS:2019:linear"></ServiceType>
@@ -56,7 +56,7 @@
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>Available service</ServiceName>
-    <ServiceName xml:lang="fin">Saatavilla palvelu</ServiceName>
+    <ServiceName xml:lang="fi">Saatavilla palvelu</ServiceName>
     <ServiceName xml:lang="zh">可用服务</ServiceName>
     <ProviderName>DVB</ProviderName>
     <ServiceType href="urn:dvb:metadata:cs:ServiceTypeCS:2019:linear"></ServiceType>
