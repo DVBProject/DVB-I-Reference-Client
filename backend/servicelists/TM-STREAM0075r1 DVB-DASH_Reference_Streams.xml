@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" version="1" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../TM-I0009r17_A177v2_specification/dvbi_v2.0.xsd urn:tva:metadata:2019 ../TM-I0009r17_A177v2_specification/tva_metadata_3-1.xsd">
+<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" version="1" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd urn:tva:metadata:2019 ../tva_metadata_3-1.xsd">
 
     <!-- r1: removed non-stpp subtitles -->
 
@@ -417,7 +417,7 @@
 					<tva:SampleFrequency>48000</tva:SampleFrequency>
 				</AudioAttributes>				
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main Profile Main Tier L5.1  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2021:4.2.16"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main 10 Profile Main Tier L5.1  -->
 					<tva:HorizontalSize>3840</tva:HorizontalSize>
 					<tva:VerticalSize>2160</tva:VerticalSize>
 					<tva:FrameRate>50</tva:FrameRate>
@@ -450,7 +450,7 @@
 					<tva:SampleFrequency>48000</tva:SampleFrequency>
 				</AudioAttributes>				
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main Profile Main Tier L5.1  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2021:4.2.16"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main 10 Profile Main Tier L5.1  -->
 					<tva:HorizontalSize>3840</tva:HorizontalSize>
 					<tva:VerticalSize>2160</tva:VerticalSize>
 					<tva:FrameRate>50</tva:FrameRate>
@@ -483,7 +483,7 @@
 					<tva:SampleFrequency>48000</tva:SampleFrequency>
 				</AudioAttributes>				
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main Profile Main Tier L5.1  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2021:4.2.16"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main 10 Profile Main Tier L5.1  -->
 					<tva:HorizontalSize>3840</tva:HorizontalSize>
 					<tva:VerticalSize>2160</tva:VerticalSize>
 					<tva:FrameRate>50</tva:FrameRate>
@@ -516,7 +516,7 @@
 					<tva:SampleFrequency>48000</tva:SampleFrequency>
 				</AudioAttributes>				
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main Profile Main Tier L5.1  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2021:4.2.16"/><!-- "hev1.2.4.L153.B0" == High Efficiency Video Coding Main 10 Profile Main Tier L5.1  -->
 					<tva:HorizontalSize>3840</tva:HorizontalSize>
 					<tva:VerticalSize>2160</tva:VerticalSize>
 					<tva:FrameRate>50</tva:FrameRate>
@@ -557,21 +557,21 @@
 					<tva:BitRate>128407</tva:BitRate>
 				</AudioAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>1680</tva:HorizontalSize>
 					<tva:VerticalSize>750</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1032000</tva:BitRate>
 				</VideoAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>2576</tva:HorizontalSize>
 					<tva:VerticalSize>1150</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1250000</tva:BitRate>
 				</VideoAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding ?????  -->
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>3360</tva:HorizontalSize>
 					<tva:VerticalSize>1500</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
