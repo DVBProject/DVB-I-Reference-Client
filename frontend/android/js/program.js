@@ -136,7 +136,7 @@ Program.prototype.populateProgramInfo = function(){
         var extendedData  ="";
         if(info.creditsItems) {
            for(var i = 0;i< info.creditsItems.length;i++) {
-              var role = creditsTypes[info.creditsItems[i].role];
+              var role = i18n.getString(creditsTypes[info.creditsItems[i].role]);
               if(role) {
                   extendedData += (role+": ");
               }

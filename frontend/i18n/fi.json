@@ -55,5 +55,9 @@
 "region_filter_button":"Seuloa",
 
 "label_keywords":"Avainsanat",
-"label_none":"Ei mitään"
+"label_none":"Ei mitään",
+
+"prod_co": "Tuotantoyhtiö",
+"presenter": "Juontaja",
+"actor": "Näyttelijä"
 }

@@ -594,7 +594,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
           if(info.creditsItems) {
            var extendedData = "<br/>";
            for(var i = 0;i< info.creditsItems.length;i++) {
-              var role = creditsTypes[info.creditsItems[i].role];
+              var role = i18n.getString(creditsTypes[info.creditsItems[i].role]);
               if(role) {
                   extendedData += (role+": ");
               }
