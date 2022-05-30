@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="45" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 dvbi_v2.0.xsd">
+<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="45" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd">
   <Name>Advanced codecs Service list</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
@@ -11,10 +11,10 @@
     <UniqueIdentifier>tag:dvb.org,2021:advsid1</UniqueIdentifier>
     <ServiceInstance priority="1">
       <ContentAttributes>
-        <VideoConformancePoint href="urn:dvb:dash:player:video:hevc_uhd"/>
         <AudioAttributes>
             <tva:Coding href="urn:dvb:metadata:cs:AudioCodecCS:2020:4.1.4"/>
         </AudioAttributes>
+        <VideoConformancePoint href="urn:dvb:metadata:cs:VideoConformancePointsCS:2017:2.1.9"/>
       </ContentAttributes>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">

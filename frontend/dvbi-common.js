@@ -772,7 +772,7 @@ function getLocalizedText(texts,lang) {
 }
 
 var creditsTypes = {
-  "urn:tva:metadata:cs:TVARoleCS:2011:V20":"Production Company",
-  "urn:tva:metadata:cs:TVARoleCS:2011:AD6":"Presenter",
-  "urn:mpeg:mpeg7:cs:RoleCS:2001:ACTOR":"Actor"
+  "urn:tva:metadata:cs:TVARoleCS:2011:V20":"prod_co",
+  "urn:tva:metadata:cs:TVARoleCS:2011:AD6":"presenter",
+  "urn:mpeg:mpeg7:cs:RoleCS:2001:ACTOR":"actor"
 }

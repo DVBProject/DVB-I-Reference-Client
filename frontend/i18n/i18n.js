@@ -1,5 +1,5 @@
 function I18n(){
-    this.languages = [{"lang":"en","name":"English"},{"lang":"fi","name":"Suomi"},{"lang":"zh","name":"Chinese"}];
+    this.languages = [{"lang":"en","name":"English"},{"lang":"fi","name":"Suomi"},{"lang":"zh","name":"Chinese"},{"lang":"de","name":"German"}];
     this.languageData = null;
     this.currentLanguage = null;
     this.texts = ["epg_button","settings_button","subtitle_button","audio_button","settings_title","close_button","pause_button","play_button", "epg_page_title", "tune_to_channel",
@@ -13,7 +13,8 @@ function I18n(){
                 "parental_settings_page", "parental_block_enabled", "parental_min_age","parental_pin", "parental_pin_reenter",
                 "language_settings_page", "language_setting_subtitle", "language_setting_audio", "language_setting_accessible_audio", "language_setting_ui",
                 "request_region", "region_select_postcode", "region_filter_button",
-                "label_keywords", "label_none"
+                "label_keywords", "label_none",
+		"prod_co", "presenter", "actor"
             ];
 }
 
