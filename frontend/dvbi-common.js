@@ -503,10 +503,12 @@ function selectServiceListRegion(serviceList,regionId) {
   var lcnTable = null;
   for(var i = 0;i<serviceList.lcnTables.length;i++) {
     var table = serviceList.lcnTables[i];
-    for(var j = 0;j<table.targetRegions.length;j++) {
-      if(table.targetRegions[j] == regionId) {
-        lcnTable = table;
-        break;
+    if (table.hasOwnProperty('targetRegions')) {
+      for(var j = 0;j<table.targetRegions.length;j++) {
+        if(table.targetRegions[j] == regionId) {
+          lcnTable = table;
+          break;
+        }
       }
     }
     if(lcnTable != null) {
