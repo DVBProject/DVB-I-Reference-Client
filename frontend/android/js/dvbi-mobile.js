@@ -289,7 +289,7 @@ function selectRegion() {
   var listElement = document.getElementById("regions");
   $(listElement).empty();
   var provider = document.createElement('h2');
-  provider.appendChild(document.createTextNode("Select region"));
+  provider.appendChild(document.createTextNode(i18n.getString("select_region")));
   listElement.appendChild(provider);
   for (var i = 0; i < serviceList.regions.length ;i++) {
     var container = document.createElement('div');
@@ -305,7 +305,7 @@ function filterRegions() {
     var listElement = document.getElementById("regions");
     $(listElement).empty();
     var provider = document.createElement('h2');
-    provider.appendChild(document.createTextNode("Select region"));
+    provider.appendChild(document.createTextNode(i18n.getString("select_region")));
     listElement.appendChild(provider);
     var postCode =  $("#postcode").val();
     if(!postCode) {
