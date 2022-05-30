@@ -761,7 +761,7 @@ function updateCurrentInfo(program) {
              }
           }
           if(info.keywords) {
-             desc += "Keywords:";
+             desc += i18n.getString("label_keywords")+":";
              for(var i = 0;i< info.creditsItems.length;i++) {
                desc += (info.keywords[i].value+",");
              }
