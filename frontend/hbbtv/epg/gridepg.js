@@ -611,7 +611,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
              }
           }
           if(info.keywords) {
-             extendedData += "Keywords:";
+             extendedData += i18n.getString("label_keywords")+":";
              for(var i = 0;i< info.creditsItems.length;i++) {
                extendedData += (info.keywords[i].value+",");
              }
