@@ -55,5 +55,9 @@
 "region_filter_button":"Filter",
 
 "label_keywords":"Keywords",
-"label_none":"None"
+"label_none":"None",
+
+"prod_co": "Production Company",
+"presenter": "Presenter",
+"actor": "Actor"
 }
