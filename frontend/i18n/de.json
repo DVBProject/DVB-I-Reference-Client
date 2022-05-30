@@ -55,5 +55,9 @@
 "region_filter_button":"Filter",
 
 "label_keywords":"Stichworte",
-"label_none":"Keine"
+"label_none":"Keine",
+
+"prod_co": "Produktionsfirma",
+"presenter": "Moderator",
+"actor": "Schauspieler"
 }
