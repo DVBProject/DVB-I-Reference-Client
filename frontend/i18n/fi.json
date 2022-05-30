@@ -22,6 +22,7 @@
 "sl_select_page":"Palveluluettelon valinta",
 "select_sl":"Valitse palveluluettelo",
 "select_region":"Valitse alue",
+"default_region":"oletuksena",
 "slrquery_params_title":"Seuloa",
 "slrquery_provider_field":"Toimittaja",
 "slrquery_language_field":"Keili",

@@ -22,6 +22,7 @@
 "sl_select_page":"服务列表选择",
 "select_sl":"选择服务列表",
 "select_region":"选择地区",
+"default_region":"默认",
 "slrquery_params_title":"过滤值",
 "slrquery_provider_field":"提供者",
 "slrquery_language_field":"语",

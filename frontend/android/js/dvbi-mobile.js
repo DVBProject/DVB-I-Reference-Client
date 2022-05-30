@@ -299,6 +299,18 @@ function selectRegion() {
     container.appendChild(provider);
     listElement.appendChild(container);
   }
+  for (var j=0; j<serviceList.lcnTables.length; j++) {
+    var table=serviceList.lcnTables[j];
+    if (table.defaultRegion==true) {
+	var container2 = document.createElement('div');
+	var provider2 = document.createElement('a');
+	var label=i18n.getString('default_region');
+	provider2.appendChild(document.createTextNode(label));
+	provider2.href="javascript:regionSelected('!"+label+"!')";
+	container2.appendChild(provider2);
+	listElement.appendChild(container2);     
+    }
+  }
 }
 
 function filterRegions() {

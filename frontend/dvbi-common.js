@@ -107,6 +107,10 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         for(var j = 0;j < targetRegions.length;j++) {
            lcnTable.targetRegions.push(targetRegions[j].childNodes[0].nodeValue);
         }
+	lcnTable.defaultRegion=false;
+      }
+      else {
+        lcnTable.defaultRegion=true;    
       }
       var lcnList = lcnTables[i].getElementsByTagName("LCN");
       for(var j = 0; j < lcnList.length ;j++) {
@@ -501,8 +505,13 @@ function matchPostcodeWildcard(wildcard,postCode) {
 
 function selectServiceListRegion(serviceList,regionId) {
   var lcnTable = null;
+  var defaultName="!"+i18n.getString('default_region')+"!";
   for(var i = 0;i<serviceList.lcnTables.length;i++) {
     var table = serviceList.lcnTables[i];
+    if (regionId==defaultName && table.defaultRegion==true) {
+      lcnTable = table;
+      break;	
+    }
     if (table.hasOwnProperty('targetRegions')) {
       for(var j = 0;j<table.targetRegions.length;j++) {
         if(table.targetRegions[j] == regionId) {
