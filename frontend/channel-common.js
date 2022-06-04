@@ -2,40 +2,40 @@ Channel.prototype.getGenre = function(genre) {
     if(typeof genre === 'string' && genre.substring(0,  "urn:dvb:metadata:cs:ContentSubject:2019:".length) == "urn:dvb:metadata:cs:ContentSubject:2019:") {
         var genre2 = genre.substring(genre.lastIndexOf(":")+1);
         if(genre2 == "1") {
-            return I18n.getString("genre_movie");
+            return i18n.getString("genre_movie");
         }
         else if(genre2 == "2") {
-            return I18n.getString("genre_news");
+            return i18n.getString("genre_news");
         }
         else if(genre2 == "3") {
-            return I18n.getString("genre_game");
+            return i18n.getString("genre_game");
         }
         else if(genre2 == "4") {
-            return I18n.getString("genre_sports");
+            return i18n.getString("genre_sports");
         }
         else if(genre2 == "5") {
-            return I18n.getString("genre_childrens");
+            return i18n.getString("genre_childrens");
         }
         else if(genre2 == "6") {
-            return I18n.getString("genre_music");
+            return i18n.getString("genre_music");
         }
         else if(genre2 == "7") {
-            return I18n.getString("genre_arts");
+            return i18n.getString("genre_arts");
         }
         else if(genre2 == "8") {
-            return I18n.getString("genre_social");
+            return i18n.getString("genre_social");
         }
         else if(genre2 == "9") {
-            return I18n.getString("genre_education");
+            return i18n.getString("genre_education");
         }
         else if(genre2 == "10") {
-            return I18n.getString("genre_leisure");
+            return i18n.getString("genre_leisure");
         }
         else if(genre2 == "11") {
-            return I18n.getString("genre_special");
+            return i18n.getString("genre_special");
         }
         else if(genre2 == "12") {
-            return I18n.getString("genre_adult");
+            return i18n.getString("genre_adult");
         }
     }
     return null; 
@@ -94,7 +94,7 @@ Channel.prototype.parseSchedule = function(data) {
                     }
                     text2.lang = lang2;
                     text2.text =  element2.childNodes[0].nodeValue;
-                    explanatoryText2.textLength =  element2.getAttribute("length");
+                    text2.textLength =  element2.getAttribute("length");
                     program.descriptions.push(text2);
                   }
                 }
