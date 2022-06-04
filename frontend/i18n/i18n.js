@@ -14,7 +14,8 @@ function I18n(){
                 "language_settings_page", "language_setting_subtitle", "language_setting_audio", "language_setting_accessible_audio", "language_setting_ui",
                 "request_region", "region_select_postcode", "region_filter_button",
                 "label_keywords", "label_none",
-		"prod_co", "presenter", "actor"
+		"prod_co", "presenter", "actor",
+		"genre_movie", "genre_news", "genre_game", "genre_sports", "genre_childrens", "genre_music", "genre_arts", "genre_social", "genre_education", "genre_leisure", "genre_special", "genre_adult", 
             ];
 }
 

@@ -2,40 +2,40 @@ Channel.prototype.getGenre = function(genre) {
     if(typeof genre === 'string' && genre.substring(0,  "urn:dvb:metadata:cs:ContentSubject:2019:".length) == "urn:dvb:metadata:cs:ContentSubject:2019:") {
         var genre2 = genre.substring(genre.lastIndexOf(":")+1);
         if(genre2 == "1") {
-            return "Movie/Drama";
+            return I18n.getString("genre_movie");
         }
         else if(genre2 == "2") {
-            return "News/Current affairs";
+            return I18n.getString("genre_news");
         }
         else if(genre2 == "3") {
-            return "Show/Game show";
+            return I18n.getString("genre_game");
         }
         else if(genre2 == "4") {
-            return "Sports";
+            return I18n.getString("genre_sports");
         }
         else if(genre2 == "5") {
-            return "Children's/Youth programmes";
+            return I18n.getString("genre_childrens");
         }
         else if(genre2 == "6") {
-            return "Music/Ballet/Dance";
+            return I18n.getString("genre_music");
         }
         else if(genre2 == "7") {
-            return "Arts/Culture";
+            return I18n.getString("genre_arts");
         }
         else if(genre2 == "8") {
-            return "Social/Political issues/Economics";
+            return I18n.getString("genre_social");
         }
         else if(genre2 == "9") {
-            return "Education/Science/Factual topics";
+            return I18n.getString("genre_education");
         }
         else if(genre2 == "10") {
-            return "Leisure hobbies";
+            return I18n.getString("genre_leisure");
         }
         else if(genre2 == "11") {
-            return "Special characteristics";
+            return I18n.getString("genre_special");
         }
         else if(genre2 == "12") {
-            return "Adult";
+            return I18n.getString("genre_adult");
         }
     }
     return null; 

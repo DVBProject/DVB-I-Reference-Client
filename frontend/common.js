@@ -226,7 +226,7 @@ Element.prototype.hasClass = function(cls) {
 
 function UTCDate(){
 	return new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000);
-};
+}
 
 Number.prototype.toOrdinalNumber = function(){
 	var numStr = this.toString();

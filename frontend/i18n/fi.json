@@ -61,5 +61,18 @@
 
 "prod_co": "Tuotantoyhtiö",
 "presenter": "Juontaja",
-"actor": "Näyttelijä"
+"actor": "Näyttelijä",
+
+"genre_movie": "Elokuva/Draama",
+"genre_news": "Uutiset/Ajankohtaista", 
+"genre_game": "Show/Peli show",
+"genre_sports": "Urheilu",
+"genre_childrens": "Lasten/nuorten ohjelmia", 
+"genre_music": "Musiikki/baletti/tanssi", 
+"genre_arts": "Taide/Kulttuuri", 
+"genre_social": "Yhteiskunnalliset/poliittiset kysymykset/taloustiede", 
+"genre_education": "Koulutus/Tiede/Tosiasiat", 
+"genre_leisure": "Vapaa-ajan harrastukset", 
+"genre_special": "Erikoisominaisuudet",
+"genre_adult": "Aikuinen"
 }

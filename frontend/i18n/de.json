@@ -61,5 +61,18 @@
 
 "prod_co": "Produktionsfirma",
 "presenter": "Moderator",
-"actor": "Schauspieler"
+"actor": "Schauspieler",
+
+"genre_movie": "Film/Drama",
+"genre_news": "Nachrichten/Aktuelles", 
+"genre_game": "Show/Spielshow",
+"genre_sports": "Sport",
+"genre_childrens": "Kinder-/Jugendprogramme", 
+"genre_music": "Musik/Ballett/Tanz", 
+"genre_arts": "Kunst/Kultur", 
+"genre_social": "Soziales/Politische Themen/Wirtschaft", 
+"genre_education": "Bildung/Wissenschaft/Faktenthemen", 
+"genre_leisure": "Freizeithobbys", 
+"genre_special": "Besondere Merkmale",
+"genre_adult": "Erwachsene"
 }

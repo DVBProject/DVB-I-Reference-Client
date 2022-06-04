@@ -59,5 +59,18 @@
 
 "prod_co": "制作公司",
 "presenter": "主持人",
-"actor": "主持人"
+"actor": "主持人",
+
+"genre_movie": "电影/戏剧",
+"genre_news": "新闻/时事", 
+"genre_game": "节目/游戏节目", 
+"genre_sports": "运动的",
+"genre_childrens": "儿童/青少年节目", 
+"genre_music": "音乐/芭蕾/舞蹈", 
+"genre_arts": "艺术/文化", 
+"genre_social": "社会/政治问题/经济", 
+"genre_education": "教育/科学/事实主题", 
+"genre_leisure": "休闲爱好", 
+"genre_special": "特色",
+"genre_adult": "成人"
 }
