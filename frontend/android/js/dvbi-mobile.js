@@ -59,6 +59,7 @@ function channelSelected(channelId) {
 
 
 window.onload = function(){
+    var i;
     $(".epg").hide();
     $(".menubar").hide();
     var serviceList = getLocalStorage("servicelist");
@@ -143,7 +144,7 @@ window.onload = function(){
       if(language_settings.audio_language) {
         var audio = player.getTracksFor("audio");
         var track = null;
-        for(var i = 0;i < audio.length;i++) {
+        for(i = 0;i < audio.length;i++) {
           if(audio[i].lang == language_settings.audio_language) {
             if(language_settings.accessible_audio && audio[i].roles.includes("supplementary")) {
               player.setCurrentTrack(audio[i]);
@@ -161,7 +162,7 @@ window.onload = function(){
        }
        if(language_settings.subtitle_language) {
         var subtitles = player.getTracksFor("fragmentedText");
-        for(var i = 0;i < subtitles.length;i++) {
+        for(i = 0;i < subtitles.length;i++) {
           if(subtitles[i].lang == language_settings.subtitle_language) {
             player.setTextTrack(subtitles[i]);
             break;
@@ -171,7 +172,7 @@ window.onload = function(){
     });
     var languages = i18n.getSupportedLanguages();
     var select = document.getElementById("ui_language");
-    for (var i = 0; i < languages.length ;i++) {
+    for (i = 0; i < languages.length ;i++) {
         var option = document.createElement('option');
         option.value = languages[i].lang;
         option.appendChild(document.createTextNode(languages[i].name));
@@ -293,10 +294,10 @@ function selectRegion() {
   listElement.appendChild(provider);
   for (var i = 0; i < serviceList.regions.length ;i++) {
     var container = document.createElement('div');
-    var provider = document.createElement('a');
-    provider.appendChild(document.createTextNode(serviceList.regions[i]["regionName"]));
-    provider.href="javascript:regionSelected('"+serviceList.regions[i]["regionID"]+"')";
-    container.appendChild(provider);
+    var provider3 = document.createElement('a');
+    provider3.appendChild(document.createTextNode(serviceList.regions[i]["regionName"]));
+    provide3r.href="javascript:regionSelected('"+serviceList.regions[i]["regionID"]+"')";
+    container.appendChild(provider3);
     listElement.appendChild(container);
   }
   for (var j=0; j<serviceList.lcnTables.length; j++) {
@@ -322,28 +323,28 @@ function filterRegions() {
     var postCode =  $("#postcode").val();
     if(!postCode) {
       for (var i = 0; i < serviceList.regions.length ;i++) {
-        var container = document.createElement('div');
-        var provider = document.createElement('a');
-        provider.appendChild(document.createTextNode(serviceList.regions[i]["regionName"]));
-        provider.href="javascript:regionSelected('"+serviceList.regions[i]["regionID"]+"')";
-        container.appendChild(provider);
-        listElement.appendChild(container);
+        var container1 = document.createElement('div');
+        var provider1 = document.createElement('a');
+        provider1.appendChild(document.createTextNode(serviceList.regions[i]["regionName"]));
+        provider1.href="javascript:regionSelected('"+serviceList.regions[i]["regionID"]+"')";
+        container1.appendChild(provider1);
+        listElement.appendChild(container1);
       }
     }
     else {
       var region = findRegionFromPostCode(serviceList,postCode);
       if(region) {
         var container = document.createElement('div');
-        var provider = document.createElement('a');
-        provider.appendChild(document.createTextNode(region["regionName"]));
-        provider.href="javascript:regionSelected('"+region["regionID"]+"')";
-        container.appendChild(provider);
+        var provider2 = document.createElement('a');
+        provider2.appendChild(document.createTextNode(region["regionName"]));
+        provider2.href="javascript:regionSelected('"+region["regionID"]+"')";
+        container.appendChild(provider2);
         listElement.appendChild(container);
       }
       else {
-         var provider = document.createElement('h3');
-        provider.appendChild(document.createTextNode("No region found!"));
-        listElement.appendChild(provider);
+         var provider3 = document.createElement('h3');
+        provider3.appendChild(document.createTextNode("No region found!"));
+        listElement.appendChild(provider3);
       }
     }
 }
@@ -389,10 +390,10 @@ function loadServicelistProviders(list,hideCloseButton) {
             listElement.appendChild(provider);
                 for (var j = 0; j < servicelists[i]["servicelists"].length;j++) {
                     var container = document.createElement('div');
-                    var provider = document.createElement('a');
-                    provider.appendChild(document.createTextNode(servicelists[i]["servicelists"][j]["name"]));
-                    provider.href="javascript:listSelected('"+servicelists[i]["servicelists"][j]["url"]+"')";
-                    container.appendChild(provider);
+                    var provider2 = document.createElement('a');
+                    provider2.appendChild(document.createTextNode(servicelists[i]["servicelists"][j]["name"]));
+                    provider2.href="javascript:listSelected('"+servicelists[i]["servicelists"][j]["url"]+"')";
+                    container.appendChild(provider2);
                     listElement.appendChild(container);
                 }
         }
@@ -565,17 +566,17 @@ function showSubtitles() {
         container.appendChild(track);
         list.appendChild(container);
    }
-   var container = document.createElement('div');
-   container.classList.add("row");
+   var container2 = document.createElement('div');
+   container2.classList.add("row");
     if(null == current) {
-            container.classList.add("selected_track");
+            container2.classList.add("selected_track");
    }
-   var track = document.createElement('a');
-   track.classList.add("col-5","d-inline-block");
-   track.appendChild(document.createTextNode("Off"));
-   track.href="javascript:selectSubtitle(-1)";
-   container.appendChild(track);
-   list.appendChild(container);
+   var track2 = document.createElement('a');
+   track2.classList.add("col-5","d-inline-block");
+   track2.appendChild(document.createTextNode("Off"));
+   track2.href="javascript:selectSubtitle(-1)";
+   container2.appendChild(track2);
+   list.appendChild(container2);
    trackSelection = "subtitle";
 }
 
@@ -708,7 +709,7 @@ function pinEntered() {
           pinFailureCallback.call();
     }
   }
-  $( "#pin" ).val("") 
+  $( "#pin" ).val("");
   $("#parentalpin").hide();
 }
 

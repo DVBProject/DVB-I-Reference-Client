@@ -8,7 +8,7 @@ Program.prototype.init = function(programdata,channel){
 		this[field] = programdata[field];
 	}
     this.channel = channel;
-}
+};
 
 Program.prototype.populate = function(){
 	var self = this;
@@ -55,7 +55,7 @@ Program.prototype.populate = function(){
 		self.element = element;
 	}
   return self.element;
-}
+};
 
 /**
  * return the localised value of an element when available. If not available, return the default 
@@ -65,12 +65,12 @@ Program.prototype.populate = function(){
  * @param {*} language - the language of the localised element to return - or use DEFAULT_LANGUAGE if not present
  */
 function UseLocalisation(elems, language) {
-  var ret="";
-  for (var i=0; i<elems.length; i++)
+  var ret="", includes;
+  for (i=0; i<elems.length; i++)
     if (elems[i].lang == language)
       ret=elems[i].text;
   if (ret=="")
-    for (var i=0; i<elems.length; i++)
+    for (i=0; i<elems.length; i++)
       if (elems[i].lang == DEFAULT_LANGUAGE)
         ret=elems[i].text;
   if (ret=="")
@@ -79,6 +79,7 @@ function UseLocalisation(elems, language) {
 }
 
 Program.prototype.populateProgramInfo = function(){
+    var i;
     $("#info_chicon").attr('src',this.channel.image || "./images/empty.png");
     $("#info_chnumber").text(this.channel.lcn);
     $(".chdrm_prginfo").remove();
@@ -102,7 +103,7 @@ Program.prototype.populateProgramInfo = function(){
     if(this.parentalRating && this.parentalRating.length > 0) {
 
         var parental = [];
-        for(var i = 0;i < this.parentalRating.length;i++) {
+        for(i = 0;i < this.parentalRating.length;i++) {
             if(this.parentalRating[i].minimumage) {
                 parental.push(i18n.getString("minimum_age_label")+":"+this.parentalRating[i].minimumage);
             }
@@ -122,7 +123,7 @@ Program.prototype.populateProgramInfo = function(){
     this.channel.getMoreEpisodes(this.programId, function(episodes) {
       if(episodes) {
         var episodeList = i18n.getString("more_episodes_label")+":<br/>";
-        for(var i = 0;i< episodes.length;i++) {
+        for(i = 0;i< episodes.length;i++) {
             episodeList += episodes[i].getTitle()+" "+episodes[i].start.getDate()+"."+(episodes[i].start.getMonth()+1)+". "+episodes[i].start.create24HourTimeString()+"-"+episodes[i].end.create24HourTimeString()+"<br/>";
         }
          $("#more_episodes").html(episodeList);
@@ -132,10 +133,11 @@ Program.prototype.populateProgramInfo = function(){
       }
     });
      this.channel.getProgramInfo(this.programId, function(info) {
+      var i;
       if(info) {
         var extendedData  ="";
         if(info.creditsItems) {
-           for(var i = 0;i< info.creditsItems.length;i++) {
+           for(i = 0;i< info.creditsItems.length;i++) {
               var role = i18n.getString(creditsTypes[info.creditsItems[i].role]);
               if(role) {
                   extendedData += (role+": ");
@@ -154,7 +156,7 @@ Program.prototype.populateProgramInfo = function(){
         }
         if(info.keywords) {
            extendedData += i18n.getString("label_keywords")+":";
-           for(var i = 0;i< info.creditsItems.length;i++) {
+           for(i = 0;i< info.creditsItems.length;i++) {
              extendedData += (info.keywords[i].value+",");
            }
            extendedData = extendedData.substring(0,extendedData.length-1);
@@ -169,7 +171,7 @@ Program.prototype.populateProgramInfo = function(){
         $("#extended_info").html("");
       }
     });
-}
+};
 
 Program.prototype.getTitle = function() {
   if(this.titles.length == 1) {
@@ -189,11 +191,11 @@ Program.prototype.getTitle = function() {
       return defaultTitle;
     }
     else {
-      return this.titles[0].text
+      return this.titles[0].text;
     }
   }
   return "";
-}
+};
 
 Program.prototype.getDescription = function() {
     
@@ -214,11 +216,11 @@ Program.prototype.getDescription = function() {
       return defaultDesc;
     }
     else {
-      return this.descriptions[0].text
+      return this.descriptions[0].text;
     }
   }
   return "No description";
-}
+};
 
 Program.prototype.getLongDescription = function() {
   var defaultDesc = null;
@@ -234,4 +236,4 @@ Program.prototype.getLongDescription = function() {
     return defaultDesc;
   }
   return null;
-}
+};

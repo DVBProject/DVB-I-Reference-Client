@@ -26,7 +26,7 @@ function parseISO8601(durationString) {
     prev[objMap[idx]] = parseFloat(next) || 0;
     return prev;
   }, {});
-};
+}
 
 /**
  * Convert ISO8601 duration object to an end Date.
@@ -52,7 +52,7 @@ function iso6801end(durationString, startDate) {
   then.setDate(then.getDate() + duration.weeks * 7);
 
   return then;
-};
+}
 
 /**
  * Convert ISO8601 duration object to seconds
