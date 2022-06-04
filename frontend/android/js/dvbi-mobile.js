@@ -296,7 +296,7 @@ function selectRegion() {
     var container = document.createElement('div');
     var provider3 = document.createElement('a');
     provider3.appendChild(document.createTextNode(serviceList.regions[i]["regionName"]));
-    provide3r.href="javascript:regionSelected('"+serviceList.regions[i]["regionID"]+"')";
+    provider3.href="javascript:regionSelected('"+serviceList.regions[i]["regionID"]+"')";
     container.appendChild(provider3);
     listElement.appendChild(container);
   }
@@ -385,9 +385,9 @@ function loadServicelistProviders(list,hideCloseButton) {
         provider.appendChild(document.createTextNode(i18n.getString("select_sl")));
         listElement.appendChild(provider);
         for (var i = 0; i < servicelists.length ;i++) {
-            var provider = document.createElement('h4');
-            provider.appendChild(document.createTextNode(servicelists[i]["name"]));
-            listElement.appendChild(provider);
+            var provider3 = document.createElement('h4');
+            provider3.appendChild(document.createTextNode(servicelists[i]["name"]));
+            listElement.appendChild(provider3);
                 for (var j = 0; j < servicelists[i]["servicelists"].length;j++) {
                     var container = document.createElement('div');
                     var provider2 = document.createElement('a');
