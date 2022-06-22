@@ -258,7 +258,7 @@
           $("#dialog").html("");
           $("#dialog").removeClass("show");
           $("#dialog").addClass("hide");
-      },false,null,"Select region");
+      },false,null,i18n.getString("select_region"));
   }
 
 	function createMenu(services,currentChannel,channelList){

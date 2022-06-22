@@ -21,6 +21,8 @@
 "more_episodes_label":"More Episodes",
 "sl_select_page":"Service list selection",
 "select_sl":"Select service list",
+"select_region":"Select region",
+"default_region":"default",
 "slrquery_params_title":"Filter",
 "slrquery_provider_field":"Provider",
 "slrquery_language_field":"Language",
@@ -59,5 +61,18 @@
 
 "prod_co": "Production Company",
 "presenter": "Presenter",
-"actor": "Actor"
+"actor": "Actor",
+
+"genre_movie": "Movie/Drama",
+"genre_news": "News/Current affairs", 
+"genre_game": "Show/Game show", 
+"genre_sports": "Sports",
+"genre_childrens": "Children's/Youth programmes", 
+"genre_music": "Music/Ballet/Dance", 
+"genre_arts": "Arts/Culture", 
+"genre_social": "Social/Political issues/Economics", 
+"genre_education": "Education/Science/Factual topics", 
+"genre_leisure": "Leisure hobbies", 
+"genre_special": "Special characteristics",
+"genre_adult": "Adult"
 }

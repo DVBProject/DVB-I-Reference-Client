@@ -21,6 +21,8 @@
 "more_episodes_label":"Lisää jaksoja",
 "sl_select_page":"Palveluluettelon valinta",
 "select_sl":"Valitse palveluluettelo",
+"select_region":"Valitse alue",
+"default_region":"oletuksena",
 "slrquery_params_title":"Seuloa",
 "slrquery_provider_field":"Toimittaja",
 "slrquery_language_field":"Keili",
@@ -59,5 +61,18 @@
 
 "prod_co": "Tuotantoyhtiö",
 "presenter": "Juontaja",
-"actor": "Näyttelijä"
+"actor": "Näyttelijä",
+
+"genre_movie": "Elokuva/Draama",
+"genre_news": "Uutiset/Ajankohtaista", 
+"genre_game": "Show/Peli show",
+"genre_sports": "Urheilu",
+"genre_childrens": "Lasten/nuorten ohjelmia", 
+"genre_music": "Musiikki/baletti/tanssi", 
+"genre_arts": "Taide/Kulttuuri", 
+"genre_social": "Yhteiskunnalliset/poliittiset kysymykset/taloustiede", 
+"genre_education": "Koulutus/Tiede/Tosiasiat", 
+"genre_leisure": "Vapaa-ajan harrastukset", 
+"genre_special": "Erikoisominaisuudet",
+"genre_adult": "Aikuinen"
 }

@@ -20,7 +20,7 @@ function createElement(tag, id, classes, attributes){
 		}
 	}
 	return element;
-};
+}
 
 Date.prototype.format = function(template){
 	/****************************************************************************************
@@ -115,17 +115,17 @@ Date.prototype.format = function(template){
 		}
 	}
 	return result;
-}
+};
 
 Date.prototype.getDayString = function(){
 	var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	return days[this.getDay()];
-}
+};
 
 Date.prototype.getMonthString = function(){
 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	return months[this.getMonth()];
-}
+};
 
 Number.prototype.ordinalNumberSuffix = function(){
 	var numStr = this.toString();
@@ -147,14 +147,14 @@ Number.prototype.ordinalNumberSuffix = function(){
 		}
 	}
 	return suffix;
-}
+};
 
 Date.prototype.create12HourTimeString = function(){
 	var hour = this.getHours();
 	var hour12 = hour % 12;
 	var minutes = this.getMinutes();
 	return (hour12 ? hour12 : 12) + ("."+addZeroPrefix(minutes)) + ((hour >= 12) ? "PM" : "AM");
-}
+};
 
 Date.prototype.getDayOfYear = function(){
 	var year = this.getFullYear();
@@ -166,7 +166,7 @@ Date.prototype.getDayOfYear = function(){
 	}
 	dayOfYear += date;
 	return dayOfYear;
-}
+};
 
 function getNumberOfDaysInMonth(month, year){
 	switch(month){
@@ -202,7 +202,7 @@ HTMLCollection.prototype.hasClass = function(cls){
 		}
 	}
 	return true;
-}
+};
 
 NodeList.prototype.hasClass = function(cls){
 	for(var i = 0; i < this.length; i++){
@@ -211,7 +211,7 @@ NodeList.prototype.hasClass = function(cls){
 		}
 	}
 	return true;
-}
+};
 
 Element.prototype.hasClass = function(cls) {
 	try{
@@ -222,7 +222,7 @@ Element.prototype.hasClass = function(cls) {
 	catch(e){
 		console.log(e);
 	}
-}
+};
 
 function UTCDate(){
 	return new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000);
@@ -253,20 +253,20 @@ Number.prototype.toOrdinalNumber = function(){
 		break;
 	}
 	return this.toString() + suffix;
-}
+};
 
 Date.prototype.create12HourTimeString = function(){
 	var hour = this.getHours();
 	var hour12 = hour % 12;
 	var minutes = this.getMinutes();
 	return (hour12 ? hour12 : 12) + (":"+addZeroPrefix(minutes)) + ((hour >= 12) ? "PM" : "AM");
-}
+};
 
 Date.prototype.create24HourTimeString = function(){
 	var hour = this.getHours();
 	var minutes = this.getMinutes();
 	return addZeroPrefix(hour) + ":" + addZeroPrefix(minutes);
-}
+};
 
 Date.prototype.createDateString = function(){
 	var dayIdx = this.getDay();
@@ -274,7 +274,7 @@ Date.prototype.createDateString = function(){
 	var month = this.getMonth()+1;
 	var dayStr = DAYS_ENGL[dayIdx].toUpperCase().substring(0,3);
 	return dayStr + ", " + month + "/" + date;
-}
+};
 
 /* String extensions */
 String.prototype.replaceAll = function(replaceable, replacement){
@@ -283,19 +283,19 @@ String.prototype.replaceAll = function(replaceable, replacement){
 		result = result.replace(replaceable, replacement);
 	}
 	return result;
-}
+};
 
 String.prototype.toUTCDate = function(){
 	return convertToUTCDateObject(this);
-}
+};
 
 String.prototype.toDate = function(){
 	return convertToDateObject(this);
-}
+};
 
 String.prototype.contains = function(pattern){
 	return this.indexOf(pattern) > -1;
-}
+};
 
 function convertToDateObject(datestr){
     if(datestr != null){
@@ -354,7 +354,7 @@ NodeList.prototype.getByAttributeValue = function(attr, value){
 		}
 	}
 	return result;
-}
+};
 
 HTMLCollection.prototype.getByAttributeValue = function(attr, value){
 	var result = [];
@@ -364,7 +364,7 @@ HTMLCollection.prototype.getByAttributeValue = function(attr, value){
 		}
 	}
 	return result;
-}
+};
 
 NodeList.prototype.getByClass = function(cls){
 	var result = [];
@@ -374,7 +374,7 @@ NodeList.prototype.getByClass = function(cls){
 		}
 	}
 	return result;
-}
+};
 
 HTMLCollection.prototype.getByClass = function(cls){
     var result = [];
@@ -384,7 +384,7 @@ HTMLCollection.prototype.getByClass = function(cls){
         }
     }
     return result;
-}
+};
 
 
 NodeList.prototype.rangeFromTo = function(first, last){
@@ -400,7 +400,7 @@ NodeList.prototype.rangeFromTo = function(first, last){
 		}
 	}
 	return [];
-}
+};
 
 /* Element extensions */
 
@@ -411,7 +411,7 @@ Element.prototype.setImageURL = function(success, error, errorFunction){
 			var img = new Image();
 			img.onload = function(){
 				self.setAttribute("src", success);
-			}
+			};
 			img.onerror = function(){
 				console.log(success);
 				console.log("error");
@@ -420,7 +420,7 @@ Element.prototype.setImageURL = function(success, error, errorFunction){
 				if(errorFunction && typeof(errorFunction) == "function"){
 					errorFunction.call();
 				}
-			}
+			};
 			img.src = success;
 		}
 		else{
@@ -434,7 +434,7 @@ Element.prototype.setImageURL = function(success, error, errorFunction){
 		console.log("setImageURL: The element is not img!");
 		console.log(self);
 	}
-}
+};
 
 Element.prototype.siblingsByClass = function(cls){
     var nodes = this.parentNode.childNodes;
@@ -445,7 +445,7 @@ Element.prototype.siblingsByClass = function(cls){
         }
     }
     return result;
-}
+};
 
 Element.prototype.addClass = function(cls, callback){
     try{
@@ -465,7 +465,7 @@ Element.prototype.addClass = function(cls, callback){
     catch(e){
         console.log(e);
     }
-}
+};
 
 Element.prototype.removeClass = function(cls, callback){
     try{
@@ -483,7 +483,7 @@ Element.prototype.removeClass = function(cls, callback){
     catch(e){
         console.log(e);
     }
-}
+};
 
 Element.prototype.hasClass = function(cls) {
 	try{
@@ -494,7 +494,8 @@ Element.prototype.hasClass = function(cls) {
 	catch(e){
 		console.log(e);
 	}
-}
+};
+
 Element.prototype.hasID = function(id){
 	try{
 		if(this != null){
@@ -504,7 +505,8 @@ Element.prototype.hasID = function(id){
 	catch(e){
 		console.log(e);
 	}
-}
+};
+
 Element.prototype.getIndex = function(){
 	try{
 		if(this.getAttribute("data-idx") != null){
@@ -515,25 +517,29 @@ Element.prototype.getIndex = function(){
 	catch(e){
 		console.log(e);
 	}
-}
+};
+
 Element.prototype.getWidth = function(){
 	if(!isNaN(parseInt(this.style.width))){
 		return parseInt(this.style.width);
 	}
 	return this.offsetWidth;
-}
+};
+
 Element.prototype.getLeft = function(){
 	if(!isNaN(parseInt(this.style.left))){
 		return parseInt(this.style.left);
 	}
 	return this.offsetLeft;
-}
+};
+
 Element.prototype.getTop = function(){
 	if(!isNaN(parseInt(this.style.top))){
 		return parseInt(this.style.top);
 	}
 	return this.offsetTop;
-}
+};
+
 Element.prototype.isLittleSiblingOf = function(bigsibling){
 	if(bigsibling != null){
 		var iter = bigsibling;
@@ -545,7 +551,8 @@ Element.prototype.isLittleSiblingOf = function(bigsibling){
 		}
 	}
 	return false;
-}
+};
+
 Element.prototype.isBigSiblingOf = function(littlesibling){
 	if(littlesibling != null){
 		var iter = littlesibling;
@@ -559,7 +566,7 @@ Element.prototype.isBigSiblingOf = function(littlesibling){
 		}
 	}
 	return false;
-}
+};
 
 Element.prototype.getSuccessorsByClass = function(cls){
     var elements = [];
@@ -574,7 +581,7 @@ Element.prototype.getSuccessorsByClass = function(cls){
         }
     }
     return elements;
-}
+};
 
 Document.prototype.getElementsByClasses = function(classes){
 	if(classes != null){
@@ -591,14 +598,14 @@ Document.prototype.getElementsByClasses = function(classes){
 			return elements;
 		}
 	}
-}
+};
 
 Object.size = function(obj){
 	if(Object.keys(obj) == null){
 		return 0;
 	}
 	return Object.keys(obj).length;
-}
+};
 
 
 function addZeroPrefix(number){
@@ -764,7 +771,7 @@ String.prototype.grep = function( needle, nomatch, bytes )
 // like substring, capable to index negative numbers as indexes from the end.
 String.prototype.cut = function( from, to )
 {
-	return this.substring( ( from < 0? this.length + from : from ), (to < 0? this.length + to : to ) )
+	return this.substring( ( from < 0? this.length + from : from ), (to < 0? this.length + to : to ) );
 };
 
 function showInfo( msg, timeout, className )

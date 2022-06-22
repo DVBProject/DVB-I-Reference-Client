@@ -1,0 +1,8 @@
+{
+	"esversion":6,
+	"-W069": false, /* ['xxxx'] is better written in dot notation. */
+	"-W107": false, /* Script URL. */
+	"-W027": false, /* unreachab;e 'break' after 'return' */
+	"-W014": false, /* Misleading line break before '||'; readers may interpret this as an expression boundary. */
+	"-W021": false  /* Reassignment of 'showInfo', which is a function. Use 'var' or 'let' to declare bindings that may change. */
+}

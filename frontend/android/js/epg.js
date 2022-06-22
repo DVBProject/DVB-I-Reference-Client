@@ -27,7 +27,7 @@ EPG.prototype.populate = function (start,end) {
     }
 
     return self.element;
-}
+};
 
 EPG.prototype.showChannel = function(service,start,end) {
     var serviceIndex = 0;
@@ -44,7 +44,7 @@ EPG.prototype.showChannel = function(service,start,end) {
         this.displayIndex = 0;
     }
     return this.populate(start,end);
-}
+};
 
 EPG.prototype.showNextChannel = function(start,end) {
     if(this.displayIndex < this.channels.length-3) {
@@ -52,7 +52,7 @@ EPG.prototype.showNextChannel = function(start,end) {
         this.populate();
     }
     return this.displayIndex < this.channels.length-3;
-}
+};
 
 EPG.prototype.showPreviousChannel = function(start,end) {
     if(this.displayIndex >0) {
@@ -61,7 +61,7 @@ EPG.prototype.showPreviousChannel = function(start,end) {
        
     }
     return this.displayIndex > 0;
-}
+};
 
 EPG.prototype.showNextDay = function() {
      for(var i = 0 ;i<this.channels.length;i++) {
@@ -70,7 +70,7 @@ EPG.prototype.showNextDay = function() {
      this.start = this.start + (24*60*60);
      this.end = this.start+24*60*60;
      this.populate(this.start, (this.start+24*60*60));
-}
+};
 
 EPG.prototype.showPreviousDay = function() {
      for(var i = 0 ;i<this.channels.length;i++) {
@@ -79,7 +79,7 @@ EPG.prototype.showPreviousDay = function() {
      this.start = this.start - (24*60*60);
      this.end = this.start+24*60*60;
      this.populate();
-}
+};
 
 function showNext() {
     if(!epg.showNextChannel()) {

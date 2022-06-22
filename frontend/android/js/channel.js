@@ -24,10 +24,9 @@ Channel.prototype.getNowNext = function(callback) {
             if(typeof(callback) == "function"){
                 callback.call();
             }
-
        },"text");
     }
-}
+};
 
 
 Channel.prototype.getSchedule = function(callback) {
@@ -42,25 +41,25 @@ Channel.prototype.getSchedule = function(callback) {
                 }
          },"text");
     }
-}
+};
 
 Channel.prototype.init = function( init_obj, channel_index){
-		var self = this;
-		$.each( init_obj, function( f, field ){
-			self[f] = field;
-		});
-        self.getNowNext();
-		self.element = document.getElementById("channel_"+channel_index);
-		if(self.element == null){			
+   var self = this;
+   $.each( init_obj, function( f, field ){
+      self[f] = field;
+   });
+   self.getNowNext();
+   self.element = document.getElementById("channel_"+channel_index);
+   if(self.element == null){			
       var newTextbox = document.createElement('a');
       newTextbox.href="javascript:channelSelected('"+self.id+"')";
       newTextbox.classList.add("d-flex");
-      var span = document.createElement('span');
-      span.classList.add("chicon","pl-1","order-3");
+      var span1 = document.createElement('span');
+      span1.classList.add("chicon","pl-1","order-3");
       var img = document.createElement('img');
       img.setAttribute("src",self.image || "./images/empty.png");
-      span.appendChild(img);
-      newTextbox.appendChild(span);
+      span1.appendChild(img);
+      newTextbox.appendChild(span1);
       var span = document.createElement('span');
       span.classList.add("chnumber","px-1");
       span.appendChild(document.createTextNode( self.lcn));
@@ -79,10 +78,9 @@ Channel.prototype.init = function( init_obj, channel_index){
         container.classList.add("unavailable");
       }
       li.appendChild(container);
-			self.element = li;
-		}
-    
-}
+      self.element = li;
+   }   
+};
 
 Channel.prototype.languageChanged = function() {
   var chname = this.element.getElementsByClassName("chname")[0];
@@ -97,7 +95,7 @@ Channel.prototype.languageChanged = function() {
       this.programs[i].element = null;
     }
   }
-}
+};
 
 Channel.prototype.unselected = function () {
     var self = this;
@@ -108,30 +106,30 @@ Channel.prototype.unselected = function () {
     self.selected = false;
     self.element.classList.remove("active");
     player.attachSource(null);
-}
+};
 
 Channel.prototype.getMediaPresentationApp = function(serviceInstance) {
-    var self = this;
+    var self = this, i, mediaPresentationApp;
     if(serviceInstance && serviceInstance.mediaPresentationApps) {
-      for(var i = 0; i < serviceInstance.mediaPresentationApps.length;i++) {
-        var mediaPresentationApp = serviceInstance.mediaPresentationApps[i];
-        if(mediaPresentationApp.contentType == "text/html" || 
+      for(i = 0; i < serviceInstance.mediaPresentationApps.length;i++) {
+        mediaPresentationApp = serviceInstance.mediaPresentationApps[i];
+        if(mediaPresentationApp.contentType == "text/html" ||
            mediaPresentationApp.contentType == "application/xhtml+xml") {
             return mediaPresentationApp.url;
         }
       }
     }
     if(self.mediaPresentationApps) {
-      for(var i = 0; i < self.mediaPresentationApps.length;i++) {
-        var mediaPresentationApp = self.mediaPresentationApps[i];
-        if(mediaPresentationApp.contentType == "text/html" || 
+      for(i = 0; i < self.mediaPresentationApps.length;i++) {
+        mediaPresentationApp = self.mediaPresentationApps[i];
+        if(mediaPresentationApp.contentType == "text/html" ||
            mediaPresentationApp.contentType == "application/xhtml+xml") {
             return mediaPresentationApp.url;
         }
       }
     }
     return null;
-}
+};
 
 Channel.prototype.checkAvailability = function() {
    console.log("checkAvailability",new Date());
@@ -141,7 +139,7 @@ Channel.prototype.checkAvailability = function() {
       this.channelSelected();
    }
    this.availablityTimer = setTimeout(this.checkAvailability.bind(this),60*1000);
-}
+};
 
 Channel.prototype.channelSelected = function () {
     var self = this;
@@ -206,8 +204,7 @@ Channel.prototype.channelSelected = function () {
     else {
          update.call();
     }
-
-}
+};
 
 Channel.prototype.programChanged = function() {
     var self = this;
@@ -249,7 +246,7 @@ Channel.prototype.programChanged = function() {
         self.setProgramChangedTimer();
     };
     self.getNowNext(update);
-}
+};
 
 Channel.prototype.setProgramChangedTimer = function() {
     var self = this;
@@ -265,7 +262,7 @@ Channel.prototype.setProgramChangedTimer = function() {
             }
         }
     }
-}
+};
 
 Channel.prototype.nowNextUpdateRequired = function() {
     var self = this;
@@ -282,12 +279,12 @@ Channel.prototype.nowNextUpdateRequired = function() {
         }
     }
     return true;
-}
+};
 
 Channel.prototype.updateChannelInfo = function () {
-     var self = this;
+     var self = this, i, parental, info, cpsInstance;
      var channelInfo = $("#channel_info");
-      channelInfo.empty();
+     channelInfo.empty();
      channelInfo.append("<span class=\"menuitem_chicon d-inline-block\"><img src=\""+(self.image || "./images/empty.png") +"\"></span>");
      channelInfo.append("<span class=\"menuitem_chnumber d-inline-block\">" + self.lcn +".</span><span class=\"menuitem_chname d-inline-block\">" + getLocalizedText(this.titles, language_settings.ui_language) +"</span>");
      if(self.provider) {
@@ -297,19 +294,19 @@ Channel.prototype.updateChannelInfo = function () {
         curTime = new Date();
         var now = self.now_next["now"];
         if(now) {
-            var parental = "";
+            parental = "";
             if(now.parentalRating && now.parentalRating.length > 0) {
-                for(var i = 0;i < now.parentalRating.length;i++) {
+                for(i = 0;i < now.parentalRating.length;i++) {
                     if(now.parentalRating[i].minimumage) {
                         parental = "("+now.parentalRating[i].minimumage+")";
                         break;
                     }
                 }
             }
-            var info = $("<span class=\"menuitem_now d-inline-block col-auto px-0\">Now: "+now.getTitle()+parental+" "+ Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>");
+            info = $("<span class=\"menuitem_now d-inline-block col-auto px-0\">Now: "+now.getTitle()+parental+" "+ Math.max(0, Math.round((now.end.getTime() - curTime.getTime()) / 1000 / 60)) + " mins remaining</span>");
             channelInfo.append(info);
             if(now.cpsIndex) {
-              var cpsInstance = this.getServiceInstanceByCPSIndex(now.cpsIndex);
+              cpsInstance = this.getServiceInstanceByCPSIndex(now.cpsIndex);
               if(cpsInstance) {
                   channelInfo.append('<span class="chdrm d-inline-block col-2 px-2"><img src="images/lock.svg" class="icon-green"></span>');
               }
@@ -323,20 +320,20 @@ Channel.prototype.updateChannelInfo = function () {
         }
         var next= self.now_next["next"];
         if(next) {
-            var parental = "";
+            parental = "";
             if(next.parentalRating && next.parentalRating.length > 0) {
-                for(var i = 0;i < next.parentalRating.length;i++) {
+                for(i = 0;i < next.parentalRating.length;i++) {
                     if(next.parentalRating[i].minimumage) {
                         parental = "("+next.parentalRating[i].minimumage+")";
                         break;
                     }
                 }
             }
-            var info = $("<br/><span class=\"menuitem_next d-inline-block col-auto px-0\">Next: "+next.getTitle()+parental+" "+
+            info = $("<br/><span class=\"menuitem_next d-inline-block col-auto px-0\">Next: "+next.getTitle()+parental+" "+
                next.start.create24HourTimeString()+" Duration " + Math.max(0, Math.round((next.end.getTime() - next.start.getTime()) / 1000 / 60)) + " mins</span>");
             channelInfo.append(info);
             if(next.cpsIndex) {
-              var cpsInstance = this.getServiceInstanceByCPSIndex(next.cpsIndex);
+              cpsInstance = this.getServiceInstanceByCPSIndex(next.cpsIndex);
               if(cpsInstance) {
                   channelInfo.append('<span class="chdrm d-inline-block col-2 px-2"><img src="images/lock.svg" class="icon-green"></span>');
               }
@@ -349,7 +346,7 @@ Channel.prototype.updateChannelInfo = function () {
            });
         }
      }
-}
+};
 
 
 
@@ -393,7 +390,7 @@ Channel.prototype.showEPG = function () {
         this.populateEPG();
     }
     return self.epg_element;
-}
+};
 
 
 Channel.prototype.populateEPG = function () {
@@ -403,7 +400,7 @@ Channel.prototype.populateEPG = function () {
             this.programList.appendChild(self.programs[i].populate());
         }
     }
-}
+};
 
 //Called when user changes parental rating in the settings
 //Program information should be up to date, updated with the programChangeTimer
@@ -442,13 +439,12 @@ Channel.prototype.parentalRatingChanged = function(callback) {
         }
       );
     }
-
-}
+};
 
 Channel.prototype.isProgramAllowed = function() {
    if(parentalEnabled && this.now_next) {
         var now = this.now_next["now"];
-        if(now.parentalRating && now.parentalRating.length > 0) {
+        if(now && now.parentalRating && now.parentalRating.length > 0) {
             for(var i = 0;i < now.parentalRating.length;i++) {
                 if(now.parentalRating[i].minimumage && minimumAge < now.parentalRating[i].minimumage) {
                     return false;
@@ -457,4 +453,4 @@ Channel.prototype.isProgramAllowed = function() {
         }
     }
     return true;
-}
+};

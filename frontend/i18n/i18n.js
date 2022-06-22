@@ -5,7 +5,7 @@ function I18n(){
     this.texts = ["epg_button","settings_button","subtitle_button","audio_button","settings_title","close_button","pause_button","play_button", "epg_page_title", "tune_to_channel",
                 "stats_video_resolution", "stats_video_bitrate", "stats_audio_bitrate", "stats_latency", "stats_settings",
                 "minutes_abbreviation", "minimum_age_label", "rating_label", "reason_label", "more_episodes_label", 
-                "sl_select_page", "select_sl",
+                "sl_select_page", "select_sl", "select_region", "default_region",
                 "slrquery_params_title", "slrquery_provider_field", "slrquery_language_field", "slrquery_genre_field", "slrquery_country_field",
                 "slrquery_regulator_field", "slrquery_multi_vals", "slrquery_filter_button",
                 "settings_menu_latency", "settings_menu_parental", "settings_menu_language", "settings_menu_servicelist", "settings_menu_streaminfo",
@@ -14,7 +14,8 @@ function I18n(){
                 "language_settings_page", "language_setting_subtitle", "language_setting_audio", "language_setting_accessible_audio", "language_setting_ui",
                 "request_region", "region_select_postcode", "region_filter_button",
                 "label_keywords", "label_none",
-		"prod_co", "presenter", "actor"
+		"prod_co", "presenter", "actor",
+		"genre_movie", "genre_news", "genre_game", "genre_sports", "genre_childrens", "genre_music", "genre_arts", "genre_social", "genre_education", "genre_leisure", "genre_special", "genre_adult", 
             ];
 }
 
