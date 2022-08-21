@@ -1,5 +1,5 @@
 function I18n(){
-    this.languages = [{"lang":"en","name":"English"},{"lang":"zh","name":"Chinese"},{"lang":"de","name":"German"},{"lang":"fi","name":"Suomi"}];
+    this.languages = [{"lang":"en","name":"English"},{"lang":"zh","name":"Chinese"},{"lang":"de","name":"German"},{"lang":"fi","name":"Suomi"},{"lang":"it","name":"Italian"}];
     this.languageData = null;
     this.currentLanguage = null;
     this.texts = ["epg_button","settings_button","subtitle_button","audio_button","settings_title","close_button","pause_button","play_button", "epg_page_title", "tune_to_channel",
