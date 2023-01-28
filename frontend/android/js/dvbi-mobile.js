@@ -95,9 +95,10 @@ window.onload = function(){
       console.log(e);
       $("#notification").show();
       if(e.error && e.error.message) {
-	 var errMessage="Error playing stream: "+e.error.message;
+	 var errMessage="Error playing stream "
 	 if (e.error.data && e.error.data.response)
-	    errMessage+="<br/>Status: "+e.error.data.response.status+" "+e.error.data.response.statusText;
+	    errMessage+="("+e.error.data.response.status+":"+e.error.data.response.statusText+") ";
+	 errMessage+=e.error.message;
          $("#notification").text(errMessage);
       }
       else {
