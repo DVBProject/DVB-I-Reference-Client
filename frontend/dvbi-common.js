@@ -341,8 +341,10 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
                 instances.push(instance);
             }
         }
+	var inLCNtable=false;
         for(j = 0;j < lcnList.length;j++) {
             if(lcnList[j].getAttribute("serviceRef") == chan.id) {
+		inLCNtable=true;
                 chan.lcn = parseInt(lcnList[j].getAttribute("channelNumber"));
                 if(chan.lcn > maxLcn) {
                     maxLcn = chan.lcn;
@@ -353,7 +355,8 @@ function parseServiceList(data,dvbChannels,supportedDrmSystems) {
         chan.epg = [];
         chan.serviceInstances =instances;
         chan.sourceTypes =sourceTypes.join('/');
-        list.push(chan);
+        if (inLCNtable || (!inLCNtable && INCLUDE_NON_LCN_CHANNELS))
+		list.push(chan);
     }
     for (i = 0; i < list.length ;i++) {
         if(!list[i].lcn) {
