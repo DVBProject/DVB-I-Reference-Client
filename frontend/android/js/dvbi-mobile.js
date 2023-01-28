@@ -62,6 +62,22 @@ window.onload = function(){
     var i;
     $(".epg").hide();
     $(".menubar").hide();
+    language_settings = getLocalStorage("language_settings");
+    i18n = new I18n();
+    if(language_settings) {
+        document.getElementById("audio_language").value = language_settings.audio_language;
+        document.getElementById("subtitle_language").value = language_settings.subtitle_language;
+        document.getElementById("ui_language").value = language_settings.ui_language;
+        document.getElementById("accessible_audio").checked = language_settings.accessible_audio;
+        if(!i18n.loadLanguage(language_settings.ui_language,updateUILanguage)) {
+            i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
+        }
+    }
+    else {
+       language_settings = {};
+       language_settings.ui_language = DEFAULT_LANGUAGE;
+       i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
+    }
     var serviceList = getLocalStorage("servicelist");
     if(serviceList) {
         listSelected(serviceList);
@@ -131,22 +147,6 @@ window.onload = function(){
         minimumAge = parseFloat(parental_settings.minimumAge);
         parentalPin = parental_settings.parentalPin;
         document.getElementById("parentalControl").value = minimumAge;
-    }
-    language_settings = getLocalStorage("language_settings");
-    i18n = new I18n();
-    if(language_settings) {
-        document.getElementById("audio_language").value = language_settings.audio_language;
-        document.getElementById("subtitle_language").value = language_settings.subtitle_language;
-        document.getElementById("ui_language").value = language_settings.ui_language;
-        document.getElementById("accessible_audio").checked = language_settings.accessible_audio;
-        if(!i18n.loadLanguage(language_settings.ui_language,updateUILanguage)) {
-            i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
-        }
-    }
-    else {
-       language_settings = {};
-       language_settings.ui_language = DEFAULT_LANGUAGE;
-       i18n.loadLanguage(DEFAULT_LANGUAGE,updateUILanguage);
     }
     video.addEventListener('loadedmetadata', function(){
       if(language_settings.audio_language) {
