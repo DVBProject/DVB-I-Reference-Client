@@ -43,11 +43,11 @@ Channel.prototype.getNowNext = function() {
                         var following = self.epg["following"];
                         
                         if(now){
-                            
+                            var now_start=null, now_end=null;
                             //   info += "<span>";
                             if(now.start && now.end){
-                                var now_start = now.start;
-                                var now_end = now.end;
+                                now_start = now.start;
+                                now_end = now.end;
                             }
                             
                             if(now_start){
@@ -58,9 +58,9 @@ Channel.prototype.getNowNext = function() {
                                 
                                 info += defLang_title + ((defLang_title != altLang_title) ? " " + altLang_title : "");
                                 if(now.parentalRating && now.parentalRating.length > 0) {
-                                    for(var i = 0;i < now.parentalRating.length;i++) {
-                                        if(now.parentalRating[i].minimumage) {
-                                            info += "("+now.parentalRating[i].minimumage+")";
+                                    for(var i2 = 0;i2 < now.parentalRating.length;i2++) {
+                                        if(now.parentalRating[i2].minimumage) {
+                                            info += "("+now.parentalRating[i2].minimumage+")";
                                             break;
                                         }
                                     }
@@ -131,9 +131,9 @@ Channel.prototype.getNowNext = function() {
 					
 							info += defLang_title + ((defLang_title != altLang_title) ? " " + altLang_title : "");
 							if(next.parentalRating && next.parentalRating.length > 0) {
-                                for(var i = 0;i < next.parentalRating.length;i++) {
-                                    if(next.parentalRating[i].minimumage) {
-                                        info += "("+next.parentalRating[i].minimumage+")";
+                                for(var i3 = 0;i3 < next.parentalRating.length;i3++) {
+                                    if(next.parentalRating[i3].minimumage) {
+                                        info += "("+next.parentalRating[i3].minimumage+")";
                                         break;
                                     }
                                 }
@@ -271,7 +271,7 @@ Channel.prototype.init = function( init_obj, element_id){
 
 Channel.prototype.languageChanged = function() {
   this.element.getElementsByClassName("menuitem_chname")[0].innerHTML =  XMLEscape(getLocalizedText(this.titles,languages.ui_language));
-}
+};
 
 Channel.prototype.update = function(epg_obj){
 		var self = this;
@@ -288,7 +288,7 @@ Channel.prototype.update = function(epg_obj){
 };
 
 Channel.prototype.setOpen = function(open, focus){
-	var channel = this;
+	var i, channel = this;
 	channel.open = open;
 	if(channel.open){
 		var box = focus;
@@ -304,7 +304,7 @@ Channel.prototype.setOpen = function(open, focus){
 				var itemsElem = channel.element.childNodes.getByClass("items")[0];
 				if(itemsElem){
 					var left = 930;
-					for(var i = 0; i < itemsElem.childNodes.length; i++){
+					for(i = 0; i < itemsElem.childNodes.length; i++){
 						if(itemsElem.childNodes[i] == box.element){
 							break;
 						}
@@ -320,7 +320,7 @@ Channel.prototype.setOpen = function(open, focus){
 		var catchups = channel.element.getSuccessorsByClass("catchup");
 		var related_videos = channel.element.getSuccessorsByClass("related_video");
         if(catchups != null){
-            for(var i = 0; i < catchups.length; i++){
+            for(i = 0; i < catchups.length; i++){
                 var desc = catchups[i].getSuccessorsByClass("boxitem_description");
                 if(desc.length > 0){
                     desc = desc[0];
@@ -334,7 +334,7 @@ Channel.prototype.setOpen = function(open, focus){
             }
         }
         if(related_videos != null){
-            for(var i = 0; i < related_videos.length; i++){
+            for(i = 0; i < related_videos.length; i++){
                 var desc = related_videos[i].getSuccessorsByClass("boxitem_description");
                 if(desc.length > 0){
                     desc = desc[0];

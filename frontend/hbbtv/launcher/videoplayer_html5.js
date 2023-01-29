@@ -36,7 +36,7 @@ VideoPlayerHTML5.prototype.createPlayer = function(){
 		self.stop();
 	} );
 	
-	player.addEventListener('error', function(e){
+	player.addEventListener('error', function(err){
 		self.setLoading(false);
 		if( !self.video ){
 			return;
@@ -428,7 +428,7 @@ VideoPlayerHTML5.prototype.prepareAdPlayers = function(){
 	
 	var onAdTimeupdate = function(){
 		var timeLeft = Math.floor( this.duration - this.currentTime );
-		if( timeLeft != NaN ){
+		if( !isNaN(timeLeft) ){
 			$("#adInfo").addClass("show");
 			$("#adInfo").html("Ad " + self.adCount + "/" + self.adBuffer.length + " (" + timeLeft + "s)" );
 		}
@@ -512,21 +512,21 @@ VideoPlayerHTML5.prototype.clearLicenseRequest = function(callback){
 	}
 	
 	var self = this;
+	var msgType = "", xmlLicenceAcquisition="", DRMSysID="";
 	if( this.drm.system == "playready" ){
-		var msgType = "application/vnd.ms-playready.initiator+xml";
-		var xmlLicenceAcquisition =
+		msgType = "application/vnd.ms-playready.initiator+xml";
+		xmlLicenceAcquisition =
 		'<?xml version="1.0" encoding="utf-8"?>' +
 		'<PlayReadyInitiator xmlns="http://schemas.microsoft.com/DRM/2007/03/protocols/">' +
 		'</PlayReadyInitiator>';
-		var DRMSysID = "urn:dvb:casystemid:19219";
-		
+		DRMSysID = "urn:dvb:casystemid:19219";
 	}
 	else if( this.drm.system == "marlin" ){
-		var msgType = "application/vnd.marlin.drm.actiontoken+xml";
-		var xmlLicenceAcquisition =
+		msgType = "application/vnd.marlin.drm.actiontoken+xml";
+		xmlLicenceAcquisition =
 		'<?xml version="1.0" encoding="utf-8"?>' +
 		'<Marlin xmlns="http://marlin-drm.com/epub"><Version>1.1</Version><RightsURL><RightsIssuer><URL></URL></RightsIssuer></RightsURL></Marlin>';
-		var DRMSysID = "urn:dvb:casystemid:19188";
+		DRMSysID = "urn:dvb:casystemid:19188";
 	}
 	else if( this.drm.system == "clearkey" ){
 		self.player.setProtectionData({
@@ -570,11 +570,12 @@ VideoPlayerHTML5.prototype.sendLicenseRequest = function(callback){
 	this.oipfDrm = $("#oipfDrm")[0];
 	this.drm.successCallback = callback;
 	var self = this;
+	var msgType="", xmlLicenceAcquisition="", DRMSysID="";
 	// Case Playready
 	// TODO: other DRMs
 	if( this.drm.system == "playready" ){
-		var msgType = "application/vnd.ms-playready.initiator+xml";
-		var xmlLicenceAcquisition =
+		msgType = "application/vnd.ms-playready.initiator+xml";
+		xmlLicenceAcquisition =
 		'<?xml version="1.0" encoding="utf-8"?>' +
 		'<PlayReadyInitiator xmlns="http://schemas.microsoft.com/DRM/2007/03/protocols/">' +
 		  '<LicenseServerUriOverride>' +
@@ -583,15 +584,15 @@ VideoPlayerHTML5.prototype.sendLicenseRequest = function(callback){
 			'</LA_URL>' +
 		  '</LicenseServerUriOverride>' +
 		'</PlayReadyInitiator>';
-		var DRMSysID = "urn:dvb:casystemid:19219";
+		DRMSysID = "urn:dvb:casystemid:19219";
 		
 	}
 	else if( this.drm.system == "marlin" ){
-		var msgType = "application/vnd.marlin.drm.actiontoken+xml";
-		var xmlLicenceAcquisition =
+		msgType = "application/vnd.marlin.drm.actiontoken+xml";
+		xmlLicenceAcquisition =
 		'<?xml version="1.0" encoding="utf-8"?>' +
 		'<Marlin xmlns="http://marlin-drm.com/epub"><Version>1.1</Version><RightsURL><RightsIssuer><URL>'+ this.drm.la_url +'</URL></RightsIssuer></RightsURL></Marlin>';
-		var DRMSysID = "urn:dvb:casystemid:19188";
+		DRMSysID = "urn:dvb:casystemid:19188";
 	}
 	else if( this.drm.system == "clearkey" ){
 		self.player.setProtectionData({
@@ -697,7 +698,7 @@ VideoPlayerHTML5.prototype.startVideo = function( isLive, nthCall ){
 	}
 	
 
-	var self = this;
+	//var self = this;
 	this.onAdBreak = false;
 	this.firstPlay = true;
 	
@@ -891,14 +892,14 @@ VideoPlayerHTML5.prototype.getSubtitles = function() {
     var current = null;
     if(subtitles.length > 0) {
       for(var i = 0;i < subtitles.length;i++) {
-          var subtitletrack = {};
+          var subtitletrack1 = {};
           if(subtitles[i].mode == "showing") {
-              subtitletrack.current = true;
-              current = subtitletrack;
+              subtitletrack1.current = true;
+              current = subtitletrack1;
           }
-          subtitletrack.lang = subtitles[i].language;
-          subtitletrack.type = subtitles[i].kind;
-          list.push(subtitletrack);
+          subtitletrack1.lang = subtitles[i].language;
+          subtitletrack1.type = subtitles[i].kind;
+          list.push(subtitletrack1);
      }
      var subtitletrack = {};
      subtitletrack.lang = "Subtitles Off";

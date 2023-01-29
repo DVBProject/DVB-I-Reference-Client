@@ -43,7 +43,7 @@ Program.prototype.getTitle = function(){
       return defaultTitle;
     }
     else {
-      return this.titles[0].text
+      return this.titles[0].text;
     }
   }
   return "";
@@ -67,7 +67,7 @@ Program.prototype.getAltTitle = function(){
       return defaultTitle;
     }
     else {
-      return this.titles[0].text
+      return this.titles[0].text;
     }
   }
   return "";
@@ -92,11 +92,11 @@ Program.prototype.getSynopsisText = function(){
       return defaultDesc;
     }
     else {
-      return this.descriptions[0].text
+      return this.descriptions[0].text;
     }
   }
   return "No description";
-}
+};
 
 Program.prototype.populate = function(){
 	var self = this;
@@ -244,5 +244,5 @@ Program.prototype.getLongDescription = function() {
     return defaultDesc;
   }
   return null;
-}
+};
 

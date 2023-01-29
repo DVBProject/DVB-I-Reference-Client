@@ -175,7 +175,8 @@ function onKey(keyCode)
 
             case VK_STOP:
                 clearVideo();
-
+                break;
+		
             case 34:
             case VK_FAST_FWD:
                 keyFastFwd();

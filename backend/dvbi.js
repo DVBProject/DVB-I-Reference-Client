@@ -52,7 +52,7 @@ function addServiceInstance(serviceId,instanceElement) {
 
     newTextbox = document.createElement('select');
     newTextbox.classList.add("form-control","form-control-sm","col-5","my-auto");
-    newTextbox.onchange = function() {changeSourceType(instanceDiv.id)};
+    newTextbox.onchange = function() {changeSourceType(instanceDiv.id);};
     newTextbox.name="instance_"+serviceId+"_"+instanceId+"_source_type";
     newTextbox.id="instance_"+serviceId+"_"+instanceId+"_source_type";
     
@@ -105,7 +105,7 @@ function addServiceInstance(serviceId,instanceElement) {
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_orbital_position").value = children[i].getElementsByTagName("OrbitalPosition")[0].childNodes[0].nodeValue;
             }
             else if(children[i].nodeName === "RelatedMaterial") {
-                var howRelated = children[i].getElementsByTagName("tva:HowRelated")
+                var howRelated = children[i].getElementsByTagName("tva:HowRelated");
                 if(howRelated.length > 0) {
                     if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
                         document.getElementById("instance_"+serviceId+"_"+instanceId+"_media_presentation_app").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
@@ -207,17 +207,17 @@ function addService(serviceElement) {
     serviceDiv.appendChild(createTextInput("service_"+serviceId+"_parallel_app","Application with media in parallel"));
 
 
-    var newTextbox = document.createElement('a');
-    newTextbox.href="javascript:addServiceInstance('"+serviceId+"')";
-    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","mr-1","mt-2");
-    newTextbox.appendChild(document.createTextNode("Add service instance"));
-    serviceDiv.appendChild(newTextbox);
+    var newTextbox1 = document.createElement('a');
+    newTextbox1.href="javascript:addServiceInstance('"+serviceId+"')";
+    newTextbox1.classList.add("btn","btn-outline-blue","btn-sm","mr-1","mt-2");
+    newTextbox1.appendChild(document.createTextNode("Add service instance"));
+    serviceDiv.appendChild(newTextbox1);
 
-    var newTextbox = document.createElement('a');
-    newTextbox.href="javascript:removeElement('service_"+serviceId+"')";
-    newTextbox.appendChild(document.createTextNode("Remove service"));
-    newTextbox.classList.add("btn","btn-outline-blue","btn-sm","float-right","mt-2");
-    serviceDiv.appendChild(newTextbox);
+    var newTextbox2 = document.createElement('a');
+    newTextbox2.href="javascript:removeElement('service_"+serviceId+"')";
+    newTextbox2.appendChild(document.createTextNode("Remove service"));
+    newTextbox2.classList.add("btn","btn-outline-blue","btn-sm","float-right","mt-2");
+    serviceDiv.appendChild(newTextbox2);
 
     services.appendChild(serviceDiv);
 
@@ -238,7 +238,7 @@ function addService(serviceElement) {
                 try {document.getElementById("service_"+serviceId+"_content_guide_service_reference").value = children[i].childNodes[0].nodeValue; } catch(e) {}
             }
             else if(children[i].nodeName === "RelatedMaterial") {
-                var howRelated = children[i].getElementsByTagName("tva:HowRelated")
+                var howRelated = children[i].getElementsByTagName("tva:HowRelated");
                 if(howRelated.length > 0) {
                     if(howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2") {
                         document.getElementById("service_"+serviceId+"_service_logo").value =  children[i].getElementsByTagName("tva:MediaLocator")[0].getElementsByTagName("tva:MediaUri")[0].childNodes[0].nodeValue;
@@ -362,43 +362,43 @@ function generateXML() {
         var logo = document.getElementById(serviceId+"_service_logo").value;
         if(logo && logo.length > 0) {
             propertyElement = doc.createElement("RelatedMaterial");
-            var howRelated = doc.createElement("tva:HowRelated");
-            howRelated.setAttribute("href","urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2");
-            propertyElement.appendChild(howRelated);
-            var mediaLocator = doc.createElement("tva:MediaLocator");
-            var mediauri = doc.createElement("tva:MediaUri");
-            mediauri.setAttribute("contentType",logo.endsWith(".jpg") ? "image/jpg": "image/png");
-            mediauri.appendChild(doc.createTextNode(logo));
-            mediaLocator.appendChild(mediauri);
-            propertyElement.appendChild(mediaLocator);
+            var howRelated1 = doc.createElement("tva:HowRelated");
+            howRelated1.setAttribute("href","urn:dvb:metadata:cs:HowRelatedCS:2019:1001.2");
+            propertyElement.appendChild(howRelated1);
+            var mediaLocator1 = doc.createElement("tva:MediaLocator");
+            var mediauri1 = doc.createElement("tva:MediaUri");
+            mediauri1.setAttribute("contentType",logo.endsWith(".jpg") ? "image/jpg": "image/png");
+            mediauri1.appendChild(doc.createTextNode(logo));
+            mediaLocator1.appendChild(mediauri1);
+            propertyElement.appendChild(mediaLocator1);
             serviceElement.appendChild(propertyElement);
         }
         var app = document.getElementById(serviceId+"_media_presentation_app").value;
         if(app && app.length > 0) {
             propertyElement = doc.createElement("RelatedMaterial");
-            var howRelated = doc.createElement("tva:HowRelated");
-            howRelated.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2");
-            propertyElement.appendChild(howRelated);
-            var mediaLocator = doc.createElement("tva:MediaLocator");
-            var mediauri = doc.createElement("tva:MediaUri");
-            mediauri.setAttribute("contentType","application/vnd.dvb.ait+xml");
-            mediauri.appendChild(doc.createTextNode(app));
-            mediaLocator.appendChild(mediauri);
-            propertyElement.appendChild(mediaLocator);
+            var howRelated2 = doc.createElement("tva:HowRelated");
+            howRelated2.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2");
+            propertyElement.appendChild(howRelated2);
+            var mediaLocator2 = doc.createElement("tva:MediaLocator");
+            var mediauri2 = doc.createElement("tva:MediaUri");
+            mediauri2.setAttribute("contentType","application/vnd.dvb.ait+xml");
+            mediauri2.appendChild(doc.createTextNode(app));
+            mediaLocator2.appendChild(mediauri2);
+            propertyElement.appendChild(mediaLocator2);
             serviceElement.appendChild(propertyElement);
         }
         app = document.getElementById(serviceId+"_parallel_app").value;
         if(app && app.length > 0) {
             propertyElement = doc.createElement("RelatedMaterial");
-            var howRelated = doc.createElement("tva:HowRelated");
-            howRelated.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1");
-            propertyElement.appendChild(howRelated);
-            var mediaLocator = doc.createElement("tva:MediaLocator");
-            var mediauri = doc.createElement("tva:MediaUri");
-            mediauri.setAttribute("contentType","application/vnd.dvb.ait+xml");
-            mediauri.appendChild(doc.createTextNode(app));
-            mediaLocator.appendChild(mediauri);
-            propertyElement.appendChild(mediaLocator);
+            var howRelated3 = doc.createElement("tva:HowRelated");
+            howRelated3.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1");
+            propertyElement.appendChild(howRelated3);
+            var mediaLocator3 = doc.createElement("tva:MediaLocator");
+            var mediauri3 = doc.createElement("tva:MediaUri");
+            mediauri3.setAttribute("contentType","application/vnd.dvb.ait+xml");
+            mediauri3.appendChild(doc.createTextNode(app));
+            mediaLocator3.appendChild(mediauri3);
+            propertyElement.appendChild(mediaLocator3);
             serviceElement.appendChild(propertyElement);
         }
         var contentGuideServiceRef = document.getElementById(serviceId+"_content_guide_service_reference").value;
@@ -442,15 +442,15 @@ function generatetServiceInstance(instance,doc) {
     app = document.getElementById(instanceId+"_parallel_app").value;
     if(app && app.length > 0) {
         propertyElement = doc.createElement("RelatedMaterial");
-        var howRelated = doc.createElement("tva:HowRelated");
-        howRelated.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1");
-        propertyElement.appendChild(howRelated);
-        var mediaLocator = doc.createElement("tva:MediaLocator");
-        var mediauri = doc.createElement("tva:MediaUri");
-        mediauri.setAttribute("contentType","application/vnd.dvb.ait+xml");
-        mediauri.appendChild(doc.createTextNode(app));
-        mediaLocator.appendChild(mediauri);
-        propertyElement.appendChild(mediaLocator);
+        var howRelated1 = doc.createElement("tva:HowRelated");
+        howRelated1.setAttribute("href","urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1");
+        propertyElement.appendChild(howRelated1);
+        var mediaLocator1 = doc.createElement("tva:MediaLocator");
+        var mediauri1 = doc.createElement("tva:MediaUri");
+        mediauri1.setAttribute("contentType","application/vnd.dvb.ait+xml");
+        mediauri1.appendChild(doc.createTextNode(app));
+        mediaLocator1.appendChild(mediauri1);
+        propertyElement.appendChild(mediaLocator1);
         instanceElement.appendChild(propertyElement);
     }
     var sourceTypeElement = doc.createElement("SourceType");
@@ -468,39 +468,38 @@ function generatetServiceInstance(instance,doc) {
         instanceElement.appendChild(deliveryParametersElement);
     }
     else if(sourceType === "urn:dvb:metadata:source:dvb-t") {
-        var deliveryParametersElement = doc.createElement("DVBTDeliveryParameters");
-        deliveryParametersElement.appendChild(generateDVBTriplet(document.getElementById(instanceId+"_dvb_triplet").value,doc));
+        var deliveryParametersElement1 = doc.createElement("DVBTDeliveryParameters");
+        deliveryParametersElement1.appendChild(generateDVBTriplet(document.getElementById(instanceId+"_dvb_triplet").value,doc));
         var targetCountry = doc.createElement("TargetCountry");
         targetCountry.appendChild(doc.createTextNode(document.getElementById(instanceId+"_target_country").value));
-        deliveryParametersElement.appendChild(targetCountry);
-        instanceElement.appendChild(deliveryParametersElement);
+        deliveryParametersElement1.appendChild(targetCountry);
+        instanceElement.appendChild(deliveryParametersElement1);
     }
     else if(sourceType === "urn:dvb:metadata:source:dvb-c") {
-        var deliveryParametersElement = doc.createElement("DVBCDeliveryParameters");
-        deliveryParametersElement.appendChild(generateDVBTriplet(document.getElementById(instanceId+"_dvb_triplet").value,doc));
-        var targetCountry = doc.createElement("TargetCountry");
-        targetCountry.appendChild(doc.createTextNode(document.getElementById(instanceId+"_target_country").value));
-        deliveryParametersElement.appendChild(targetCountry);
+        var deliveryParametersElement2 = doc.createElement("DVBCDeliveryParameters");
+        deliveryParametersElement2.appendChild(generateDVBTriplet(document.getElementById(instanceId+"_dvb_triplet").value,doc));
+        var targetCountry2 = doc.createElement("TargetCountry");
+        targetCountry2.appendChild(doc.createTextNode(document.getElementById(instanceId+"_target_country").value));
+        deliveryParametersElement2.appendChild(targetCountry2);
         var networkId = doc.createElement("NetworkID");
         networkId.appendChild(doc.createTextNode(document.getElementById(instanceId+"_network_id").value));
-        deliveryParametersElement.appendChild(networkId);
-        instanceElement.appendChild(deliveryParametersElement);
+        deliveryParametersElement2.appendChild(networkId);
+        instanceElement.appendChild(deliveryParametersElement2);
     }
     else if(sourceType === "urn:dvb:metadata:source:dvb-s") {
-        var deliveryParametersElement = doc.createElement("DVBSDeliveryParameters");
-        deliveryParametersElement.appendChild(generateDVBTriplet(document.getElementById(instanceId+"_dvb_triplet").value,doc));
+        var deliveryParametersElement3 = doc.createElement("DVBSDeliveryParameters");
+        deliveryParametersElement3.appendChild(generateDVBTriplet(document.getElementById(instanceId+"_dvb_triplet").value,doc));
         var parameter = doc.createElement("OrbitalPosition");
         parameter.appendChild(doc.createTextNode(document.getElementById(instanceId+"_orbital_position").value));
-        deliveryParametersElement.appendChild(parameter);
-        var parameter = doc.createElement("Frequency");
+        deliveryParametersElement3.appendChild(parameter);
+        var parameter1 = doc.createElement("Frequency");
         var freq = parseFloat(document.getElementById(instanceId+"_frequency").value)*100000;
-        parameter.appendChild(doc.createTextNode(freq));
-        deliveryParametersElement.appendChild(parameter);
-        var parameter = doc.createElement("Polarization");
-        parameter.appendChild(doc.createTextNode(document.getElementById(instanceId+"_polarization").value));
-        deliveryParametersElement.appendChild(parameter);
-
-        instanceElement.appendChild(deliveryParametersElement);
+        parameter1.appendChild(doc.createTextNode(freq));
+        deliveryParametersElement3.appendChild(parameter1);
+        var parameter2 = doc.createElement("Polarization");
+        parameter2.appendChild(doc.createTextNode(document.getElementById(instanceId+"_polarization").value));
+        deliveryParametersElement3.appendChild(parameter2);
+        instanceElement.appendChild(deliveryParametersElement3);
     }
     return instanceElement;
 }
@@ -549,36 +548,39 @@ function listSavedServicelists() {
         newTextbox.classList.add("p-2","flex-grow-1","bd-highlight","overflow-hidden","text-nowrap-sm","mb-1");
         newTextbox.appendChild(document.createTextNode( this.substr("./servicelists/".length)));
         targetElement.appendChild(newTextbox);
-        var newTextbox = document.createElement('a');
-        newTextbox.href="javascript:loadServicelist('"+this+"')";
+
+        var newTextbox1 = document.createElement('a');
+        newTextbox1.href="javascript:loadServicelist('"+this+"')";
         var image = document.createElement('img');
         image.classList.add("icon");
         image.src ="icons/pencil.svg";
         image.alt ="Edit";
         image.title ="Edit";
-        newTextbox.appendChild(image);
-        newTextbox.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
-        targetElement.appendChild(newTextbox);
-        var newTextbox = document.createElement('a');
-        newTextbox.href=this+"?ts="+Date.now();
-        var image = document.createElement('img');
-        image.classList.add("icon");
-        image.src ="icons/window.svg";
-        image.alt ="Open";
-        image.title ="Open";
-        newTextbox.appendChild(image);
-        newTextbox.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
-        targetElement.appendChild(newTextbox);
-        var newTextbox = document.createElement('a');
-        newTextbox.href="javascript:deleteServicelist('"+this.substr("./servicelists/".length)+"')";
-        var image = document.createElement('img');
-        image.classList.add("icon");
-        image.src ="icons/trash.svg";
-        image.alt ="Delete";
-        image.title ="Delete";
-        newTextbox.appendChild(image);
-        newTextbox.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
-        targetElement.appendChild(newTextbox);
+        newTextbox1.appendChild(image);
+        newTextbox1.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
+        targetElement.appendChild(newTextbox1);
+
+        var newTextbox2 = document.createElement('a');
+        newTextbox2.href=this+"?ts="+Date.now();
+        var image2 = document.createElement('img');
+        image2.classList.add("icon");
+        image2.src ="icons/window.svg";
+        image2.alt ="Open";
+        image2.title ="Open";
+        newTextbox2.appendChild(image2);
+        newTextbox2.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
+        targetElement.appendChild(newTextbox2);
+
+        var newTextbox3 = document.createElement('a');
+        newTextbox3.href="javascript:deleteServicelist('"+this.substr("./servicelists/".length)+"')";
+        var image3 = document.createElement('img');
+        image3.classList.add("icon");
+        image3.src ="icons/trash.svg";
+        image3.alt ="Delete";
+        image3.title ="Delete";
+        newTextbox3.appendChild(image3);
+        newTextbox3.classList.add("btn","btn-sm","mb-1","mr-0","pr-0","d-flex","align-items-center");
+        targetElement.appendChild(newTextbox3);
         targetElement.appendChild(document.createElement('hr'));
         listElement.appendChild(targetElement);
       });
@@ -618,9 +620,9 @@ function loadServicelist(list) {
         document.getElementById('service_count').value = 0;
         document.getElementById("version").value = doc.documentElement.getAttribute("version");
         var children = doc.documentElement.childNodes;
-        var lcnMap = null;
+        var i, lcnMap = null;
 
-        for (var i = 0; i < children.length ;i++) {
+        for (i = 0; i < children.length ;i++) {
             if(children[i].nodeName === "Name") {
                 document.getElementById("name").value = children[i].childNodes[0].nodeValue;
             }
@@ -656,7 +658,7 @@ function loadServicelist(list) {
                 document.getElementById("target_region").value = lcnRegion;
                 var lcnList = lcnMap[lcnRegion];
                 for (var channelRef in lcnList) {
-                    for(var i=0; i<services.length;i++) {
+                    for(i=0; i<services.length;i++) {
                         var serviceId = services[i].id;
                         if(document.getElementById(serviceId+"_unique_id").value === channelRef) {
                             document.getElementById(serviceId+"_lcn").value = lcnList[channelRef];

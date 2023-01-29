@@ -23,8 +23,8 @@ function showSettings(selected) {
     }
     else {
       try {
-            var subtitles = getDVBTracks(broadcast.COMPONENT_TYPE_SUBTITLE);
-            if(subtitles && subtitles.length > 0) {
+            var subtitles2 = getDVBTracks(broadcast.COMPONENT_TYPE_SUBTITLE);
+            if(subtitles2 && subtitles2.length > 0) {
                 buttons.push("Subtitles");
             }
         }
@@ -33,8 +33,8 @@ function showSettings(selected) {
         }
 
         try {
-            var audioTracks = getDVBTracks(broadcast.COMPONENT_TYPE_AUDIO);
-            if(audioTracks && audioTracks.length > 0) {
+            var audioTracks2 = getDVBTracks(broadcast.COMPONENT_TYPE_AUDIO);
+            if(audioTrack2s && audioTracks2.length > 0) {
                 buttons.push("Audio");
             }
         }

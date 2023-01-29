@@ -41,11 +41,11 @@ Program.prototype.getTitle = function() {
       return defaultTitle;
     }
     else {
-      return this.titles[0].text
+      return this.titles[0].text;
     }
   }
   return "";
-}
+};
 
 Program.prototype.getLongDescription = function() {
   var defaultDesc = null;
@@ -61,7 +61,7 @@ Program.prototype.getLongDescription = function() {
     return defaultDesc;
   }
   return null;
-}
+};
 
 Program.prototype.getDescription = function(){
   if(this.descriptions.length == 1) {
@@ -81,8 +81,8 @@ Program.prototype.getDescription = function(){
       return defaultDesc;
     }
     else {
-      return this.descriptions[0].text
+      return this.descriptions[0].text;
     }
   }
   return "No description";
-}
+};
