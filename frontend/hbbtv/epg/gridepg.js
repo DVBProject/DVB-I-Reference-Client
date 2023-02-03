@@ -459,8 +459,9 @@ GridEPG.prototype.getChannelByKeyValue = function(key, value){
 
 GridEPG.prototype.getProgramByKeyValue = function(key, value){
 	for(var j = 0; j < this.channels.length; j++){
+		var k;
 		if(this.channels[j].visiblePrograms){
-			for(var k = 0; k < this.channels[j].visiblePrograms.length; k++){
+			for(k = 0; k < this.channels[j].visiblePrograms.length; k++){
 				if(this.channels[j].visiblePrograms[k] && this.channels[j].visiblePrograms[k][key]){
 					if(this.channels[j].visiblePrograms[k][key] == value){
 						return this.channels[j].visiblePrograms[k];
@@ -469,7 +470,7 @@ GridEPG.prototype.getProgramByKeyValue = function(key, value){
 			}
 		}
 		if(this.channels[j].programs){
-			for(var k = 0; k < this.channels[j].programs.length; k++){
+			for(k = 0; k < this.channels[j].programs.length; k++){
 				if(this.channels[j].programs[k] && this.channels[j].programs[k][key]){
 					if(this.channels[j].programs[k][key] == value){
 						return this.channels[j].programs[k];
@@ -549,8 +550,8 @@ GridEPG.prototype.populateProgramDetail = function(program){
 				program_time.innerHTML = program.start_date_obj.format("H:i") + " - ";
 				program_time.innerHTML += program.end_date_obj.format("H:i");
 				if(minsLeft != null && minsLeft >= 0){
-					var timeLeftText = (minsLeft == 0) ? "Ending soon" : minsLeft + " mins remaining";
-					program_time.innerHTML += ", " + timeLeftText;
+					var timeLeftText2 = (minsLeft == 0) ? "Ending soon" : minsLeft + " mins remaining";
+					program_time.innerHTML += ", " + timeLeftText2;
 				}
 				if(title.innerHTML != program.getTitle()){
           if(program.cpsIndex) {
@@ -584,16 +585,16 @@ GridEPG.prototype.populateProgramDetail = function(program){
 			}
       program.getChannel().getProgramInfo(program.programId, function(info) {
         if(info) {
-          var longDesc = info.getLongDescription();
+          var i, longDesc = info.getLongDescription();
           if(longDesc) {
             	description_text.innerHTML = longDesc.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
           }
           if(description_text.scrollHeight > description_text.offsetHeight){
             self.autoScrollDescriptionText();
           }
+	  var extendedData = "<br/>";
           if(info.creditsItems) {
-           var extendedData = "<br/>";
-           for(var i = 0;i< info.creditsItems.length;i++) {
+           for(i = 0;i< info.creditsItems.length;i++) {
               var role = i18n.getString(creditsTypes[info.creditsItems[i].role]);
               if(role) {
                   extendedData += (role+": ");
@@ -612,7 +613,7 @@ GridEPG.prototype.populateProgramDetail = function(program){
           }
           if(info.keywords) {
              extendedData += i18n.getString("label_keywords")+":";
-             for(var i = 0;i< info.creditsItems.length;i++) {
+             for(i = 0;i< info.creditsItems.length;i++) {
                extendedData += (info.keywords[i].value+",");
              }
              extendedData = extendedData.substring(0,extendedData.length-1);

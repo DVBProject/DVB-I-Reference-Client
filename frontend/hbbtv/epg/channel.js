@@ -9,15 +9,15 @@ Channel.prototype.getSchedule = function(start,end,callback,earlier) {
     if(self.contentGuideURI) {
          var offset = new Date().getTimezoneOffset()*60;
          $.get( self.contentGuideURI+"?sid="+self.getServiceRef()+"&start="+(start+offset)+"&end="+(end+offset), function( data ) { //TODO use ContentGuideServiceRef from the service
-            var newPrograms = self.parseSchedule(data);
+            var j, newPrograms = self.parseSchedule(data);
             if(newPrograms.length == 0) {
-                var program = {};
+                var program0 = {};
                 var programId = "no_program_"+start+"_"+end;
-                program.start = new Date(start*1000);
-                program.end  =  new Date(end*1000);
-                program.prglen = (program.end.getTime() - program.start.getTime())/(1000*60);
-                program.title = "No programinfo available";
-                var program = new Program(program, self.element_id + "_no_program", self);
+                program0.start = new Date(start*1000);
+                program0.end  =  new Date(end*1000);
+                program0.prglen = (program0.end.getTime() - program0.start.getTime())/(1000*60);
+                program0.title = "No programinfo available";
+                var program = new Program(program0, self.element_id + "_no_program", self);
                 program.bilingual = self.bilingual;
                 program.channelimage = self.image;
                 program.channel_streamurl = self.streamurl;
@@ -25,12 +25,12 @@ Channel.prototype.getSchedule = function(start,end,callback,earlier) {
                 newPrograms.push(program);
             }
             if(earlier) {
-                for(var j=newPrograms.length-1;j>= 0;j--) {
+                for(j=newPrograms.length-1;j>= 0;j--) {
 		           self.programs.unshift(newPrograms[j]);
                 }
             }
             else {
-                for(var j= 0;j < newPrograms.length;j++) {
+                for(j= 0;j < newPrograms.length;j++) {
 		           self.programs.push(newPrograms[j]);
                 }
             }
@@ -38,13 +38,13 @@ Channel.prototype.getSchedule = function(start,end,callback,earlier) {
                 callback.call();
             }
          },"text").fail(function() {
-              var program = {};
+              var program0 = {};
               var programId = "no_program_"+start+"_"+end;
-              program.start = new Date(start*1000);
-              program.end  =  new Date(end*1000);
-              program.prglen = (program.end.getTime() - program.start.getTime())/(1000*60);
-              program.title = "No programinfo available";
-              var program = new Program(program, self.element_id + "_no_program", self);
+              program0.start = new Date(start*1000);
+              program0.end  =  new Date(end*1000);
+              program0.prglen = (program0.end.getTime() - program0.start.getTime())/(1000*60);
+              program0.title = "No programinfo available";
+              var program = new Program(program0, self.element_id + "_no_program", self);
               program.bilingual = self.bilingual;
               program.channelimage = self.image;
               program.channel_streamurl = self.streamurl;
@@ -238,13 +238,13 @@ Channel.prototype.getClosest = function(currentFocus){
 };
 
 Channel.prototype.getCurrentlyRunningProgram = function(){
-	var self = this;
-	for(var i = 0; i < self.visiblePrograms.length; i++){
+	var i, self = this;
+	for(i = 0; i < self.visiblePrograms.length; i++){
 		if(self.visiblePrograms[i].now()){
 			return self.visiblePrograms[i];
 		}
 	}
-	for(var i = 0; i < self.programs.length; i++){
+	for(i = 0; i < self.programs.length; i++){
 		if(self.programs[i].now()){
 			return self.programs[i];
 		}

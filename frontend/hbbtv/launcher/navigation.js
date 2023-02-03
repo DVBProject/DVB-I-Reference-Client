@@ -159,9 +159,9 @@ function registerKeys() {
 function onChannelChangeSucceeded(channel) {
     if(languages.subtitleLanguage ) {
       var subtitles = getDVBTracks(broadcast.COMPONENT_TYPE_SUBTITLE);
-      for(var i = 0;i < subtitles.length;i++) { 
-          if(subtitles[i].lang == languages.subtitleLanguage) {
-            selectDVBTrack(i, supervisor.COMPONENT_TYPE_SUBTITLE);
+      for(var i1 = 0;i1 < subtitles.length;i1++) { 
+          if(subtitles[i1].lang == languages.subtitleLanguage) {
+            selectDVBTrack(i1, supervisor.COMPONENT_TYPE_SUBTITLE);
             break;
           }
       }
@@ -447,19 +447,19 @@ function onKey(keyCode)
 		//case 33:
 		case VK_REWIND:
 			if(!scrolling){
-				var menuItem = _menu_.get5minusChannel();
-				jumpToMenuItem(menuItem);
+				var menuItem2 = _menu_.get5minusChannel();
+				jumpToMenuItem(menuItem2);
 			}
 		break;
 		
         case VK_TRACK_PREV : 
-			var menuItem = _menu_.items[0];
-			jumpToMenuItem(menuItem);
+			var menuItem3 = _menu_.items[0];
+			jumpToMenuItem(menuItem3);
 		break;
         
 		case VK_TRACK_NEXT :
-			var menuItem = _menu_.items[_menu_.items.length-1];
-			jumpToMenuItem(menuItem);
+			var menuItem4 = _menu_.items[_menu_.items.length-1];
+			jumpToMenuItem(menuItem4);
 		break;
 		
 		default:
@@ -762,8 +762,8 @@ function updateCurrentInfo(program) {
           }
           if(info.keywords) {
              desc += i18n.getString("label_keywords")+":";
-             for(var i = 0;i< info.creditsItems.length;i++) {
-               desc += (info.keywords[i].value+",");
+             for(var i2 = 0;i2< info.creditsItems.length;i2++) {
+               desc += (info.keywords[i2].value+",");
              }
              desc = desc.substring(0,desc.length-1);
           }
@@ -793,9 +793,9 @@ function showInfobanner() {
         var programs = supervisor.programmes;
         if(programs.length > 0) {
             updateBannerProgramDVB("chinfo_now_",programs[0]);
-            var now = new Date();
-            var elapsed = (now.getTime() - programs[0].startTime*1000)/10;
-            $("#chinfo_progressbarTime").css("width",elapsed/programs[0].duration+"%");       
+            var now2 = new Date();
+            var elapsed2 = (now2.getTime() - programs[0].startTime*1000)/10;
+            $("#chinfo_progressbarTime").css("width",elapsed2/programs[0].duration+"%");       
         }
         else {
             updateBannerProgram("chinfo_now_",null);
@@ -1022,8 +1022,9 @@ function doServiceSelection() {
         }
         return;
       }
+      var i;
       if(serviceInstance.mediaPresentationApps) {
-          for(var i = 0;i< serviceInstance.mediaPresentationApps.length;i++ ) {
+          for(i = 0;i< serviceInstance.mediaPresentationApps.length;i++ ) {
             if(serviceInstance.mediaPresentationApps[i].contentType == "application/vnd.dvb.ait+xml") {
               serviceApp = _application_.createApplication(serviceInstance.mediaPresentationApps[i].url,true);
               return;
@@ -1031,7 +1032,7 @@ function doServiceSelection() {
           }
       }
       if(selectedService.mediaPresentationApps) {
-          for(var i = 0;i< selectedService.mediaPresentationApps.length;i++ ) {
+          for(i = 0;i< selectedService.mediaPresentationApps.length;i++ ) {
             if(selectedService.mediaPresentationApps[i].contentType == "application/vnd.dvb.ait+xml") {
               serviceApp = _application_.createApplication(selectedService.mediaPresentationApps[i].url,true);
               return;
@@ -1045,7 +1046,7 @@ function doServiceSelection() {
           playDASH(serviceInstance.dashUrl);
       }
       if(serviceInstance.parallelApps) {
-        for(var i = 0;i< serviceInstance.parallelApps.length;i++ ) {
+        for(i = 0;i< serviceInstance.parallelApps.length;i++ ) {
           if(serviceInstance.parallelApps[i].contentType == "application/vnd.dvb.ait+xml") {
             serviceApp = _application_.createApplication(serviceInstance.parallelApps[i].url,true);
             return;
@@ -1053,7 +1054,7 @@ function doServiceSelection() {
         }
       }
       if(selectedService.parallelApps) {
-        for(var i = 0;i< selectedService.parallelApps.length;i++ ) {
+        for(i = 0;i< selectedService.parallelApps.length;i++ ) {
           if(selectedService.parallelApps[i].contentType == "application/vnd.dvb.ait+xml") {
             serviceApp = _application_.createApplication(selectedService.parallelApps[i].url,true);
             return;
@@ -1533,8 +1534,8 @@ function focusBox(_box){
 
 				if(_box.element.hasClass("related_video")){
 					_box.element.childNodes.getByClass("boxitem_description")[0].removeClass("hide");
-					var openChannel = _menu_.getOpenChannel();
-					$.each(openChannel.boxes, function(b, box){
+					var openChannel2 = _menu_.getOpenChannel();
+					$.each(openChannel2.boxes, function(b, box){
 						if(box.element.hasClass("related_video") && box != _box){
 							var desc = box.element.childNodes.getByClass("boxitem_description")[0];
 							desc.addClass("hide");

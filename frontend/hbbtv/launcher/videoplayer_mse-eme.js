@@ -35,7 +35,7 @@ VideoPlayerEME.prototype.createPlayer = function(){
 	
 	var player = this.video;
 	
-	player.addEventListener('error', function(e){
+	player.addEventListener('error', function(err){
 		self.setLoading(false);
 		if( !self.video ){
 			return;
@@ -295,7 +295,7 @@ VideoPlayerEME.prototype.prepareAdPlayers = function(){
 	
 	var onAdTimeupdate = function(){
 		var timeLeft = Math.floor( this.duration - this.currentTime );
-		if( timeLeft != NaN ){
+		if( !isNaN(timeLeft) ){
 			$("#adInfo").addClass("show");
 			$("#adInfo").html("Ad " + self.adCount + "/" + self.adBuffer.length + " (" + timeLeft + "s)" );
 		}
@@ -597,13 +597,13 @@ VideoPlayerEME.prototype.getSubtitles = function() {
     var list = [];
     if(subtitles.length > 0) {
       for(var i = 0;i < subtitles.length;i++) {
-          var subtitletrack = {};
+          var subtitletrack1 = {};
           if(subtitles[i] == current) {
-              subtitletrack.current = true;
+              subtitletrack1.current = true;
           }
-          subtitletrack.lang = subtitles[i].lang;
-          subtitletrack.type = subtitles[i].roles.join(",");
-          list.push(subtitletrack);
+          subtitletrack1.lang = subtitles[i].lang;
+          subtitletrack1.type = subtitles[i].roles.join(",");
+          list.push(subtitletrack1);
      }
      var subtitletrack = {};
      subtitletrack.lang = "Subtitles Off";

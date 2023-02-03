@@ -34,10 +34,10 @@ Menu.prototype.populate = function(){
 		var program_title = document.createElement("span");
 		program_title.addClass("program_title");
 		program_title.innerHTML = defLang_title ? XMLEscape(defLang_title) : XMLEscape(altLang_title);
-		var pb_width = 0;
+		var pb_width = 0, start=null, end=null;
 		if(item.boxes[0].start && item.boxes[0].end){
-			var start = item.boxes[0].start;
-			var end = item.boxes[0].end;
+			start = item.boxes[0].start;
+			end = item.boxes[0].end;
 			pb_width = Math.floor(Math.max(0, Math.round((curTime.getTime() - start.getTime()) / 1000 / 60)) / Math.max(0, Math.round((end.getTime() - start.getTime()) / 1000 / 60)) * progressWidth);
 		}
 		

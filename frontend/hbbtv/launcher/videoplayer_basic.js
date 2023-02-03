@@ -229,15 +229,15 @@ function VideoPlayerBasic(element_id, profile, width, height){
 						if( this.video.audioTracks ){
 							console.log("switch audio Track");
 							
-							var tracks = this.video.audioTracks.length;
-							console.log("audiotracks " + tracks );
+							var tracks2 = this.video.audioTracks.length;
+							console.log("audiotracks " + tracks2 );
 							
 							if( this.audioTrack === false )
 							{
 								this.audioTrack = 0;
 							}
 							console.log("Current audio track index " + this.audioTrack);
-							if( this.audioTrack >= tracks ){
+							if( this.audioTrack >= tracks2 ){
 								this.audioTrack = 0; // was off, select first
 							}
 							else{
@@ -245,17 +245,17 @@ function VideoPlayerBasic(element_id, profile, width, height){
 								this.audioTrack++;
 							}
 							
-							for (var i = 0; i < this.video.audioTracks.length; i += 1) {
-								this.video.audioTracks[i].enabled = false;
+							for (var i2 = 0; i2 < this.video.audioTracks.length; i2 += 1) {
+								this.video.audioTracks[i2].enabled = false;
 							}
-							var muted = ( this.audioTrack == tracks );
+							var muted = ( this.audioTrack == tracks2 );
 							if( !muted ){
 								this.video.audioTracks[this.audioTrack].enabled = true;
 							}
-							var lang = (muted? "Muted" : this.video.audioTracks[this.audioTrack].language );
+							var lang2 = (muted? "Muted" : this.video.audioTracks[this.audioTrack].language );
 							
-							$("#audioButtonText").html( "Audio: " + lang );
-							console.log("Audio: " + lang);
+							$("#audioButtonText").html( "Audio: " + lang2 );
+							console.log("Audio: " + lang2);
 							
 						}
 						else{
@@ -271,6 +271,7 @@ function VideoPlayerBasic(element_id, profile, width, height){
 				} catch( e ){
 					console.log( e.description );
 				}
+				break;
 			default:
 			break;
 		}
@@ -473,7 +474,7 @@ function VideoPlayerBasic(element_id, profile, width, height){
 			else{
 				// <video> object used
 				
-				var time = this.time();
+				var time2 = this.time();
 				
 				
 				if( this.video.duration ){
