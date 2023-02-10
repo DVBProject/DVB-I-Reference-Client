@@ -285,9 +285,13 @@ function showXML() {
      document.getElementById("xml").value = generateXML();
 }
 
-function generateXML(version) {
+function generateXML() {
 
     var doc = document.implementation.createDocument(null, "ServiceList", null);
+    var version = "r1";
+    if(document.getElementById("r4").checked == true) {
+        version = "r4";
+    }
 
     var services = document.getElementsByClassName("service");
     var listName = doc.createElement("Name");
@@ -314,7 +318,14 @@ function generateXML(version) {
     if(version == "r4") {
         doc.documentElement.setAttribute("xmlns","urn:dvb:metadata:servicediscovery:2022b");
         doc.documentElement.setAttribute("xsi:schemaLocation","urn:dvb:metadata:servicediscovery:2022b ../dvbi_v4.0.xsd");
-        doc.documentElement.setAttribute("xml:lang","en");
+        var lang = document.getElementById("service_list_language").value;
+        console.log(lang);
+        if(!lang || lang.length != 2) {
+            alert("Invalid service list language!")
+            document.getElementById("service_list_language").focus();
+            return null;
+        }
+        doc.documentElement.setAttribute("xml:lang",lang);
     }
     else {
         doc.documentElement.setAttribute("xmlns","urn:dvb:metadata:servicediscovery:2020");
@@ -611,14 +622,17 @@ function listSavedServicelists() {
 }
 
 function uploadServicelist() {
-    $.post( "upload_servicelist.php", { servicelist: generateXML(), filename: document.getElementById('filename').value })
-      .done(function( data ) {
-        alert( "Servicelist saved!" );
-        listSavedServicelists();
-      })
-      .fail(function(data) {
-        alert( "Error saving servicelist:"+data.responseText );
-      });
+    var xml = generateXML();
+    if(xml) {
+        $.post( "upload_servicelist.php", { servicelist: xml, filename: document.getElementById('filename').value })
+        .done(function( data ) {
+            alert( "Servicelist saved!" );
+            listSavedServicelists();
+        })
+        .fail(function(data) {
+            alert( "Error saving servicelist:"+data.responseText );
+        });
+    }
 }
 
 function loadServicelist(list) {
@@ -644,9 +658,11 @@ function loadServicelist(list) {
         document.getElementById("version").value = doc.documentElement.getAttribute("version");
         if(doc.documentElement.getAttribute("xmlns") == "urn:dvb:metadata:servicediscovery:2022b") {
             document.getElementById("r4").checked = true;
+            document.getElementById("service_list_language").value = doc.documentElement.getAttribute("xml:lang")
         }
         else {
             document.getElementById("r1").checked = true;
+            document.getElementById("service_list_language").value = "";
         }
         document.getElementById("filename").value = list.replace("./servicelists/","");
         var children = doc.documentElement.childNodes;
