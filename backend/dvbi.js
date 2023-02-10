@@ -41,6 +41,7 @@ function addServiceInstance(serviceId,instanceElement) {
     instanceDiv.classList.add("serviceinstance");
     instanceDiv.classList.add("service_"+serviceId+"_instance");
     instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_priority","Priority"));
+    instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_displayname","Display Name (r4)"));
     instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_media_presentation_app","Application controlling media presentation"));
     instanceDiv.appendChild(createTextInput("instance_"+serviceId+"_"+instanceId+"_parallel_app","Application with media in parallel"));
     var inputDiv = document.createElement('div');
@@ -86,19 +87,26 @@ function addServiceInstance(serviceId,instanceElement) {
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_source_type").value = children[i].childNodes[0].nodeValue;
                 changeSourceType(instanceDiv.id);
             }
+            else if(children[i].nodeName === "DisplayName") {
+                document.getElementById("instance_"+serviceId+"_"+instanceId+"_displayname").value = children[i].childNodes[0].nodeValue;
+            }
             else if(children[i].nodeName === "DASHDeliveryParameters") {
+                changeSourceType(instanceDiv.id,"urn:dvb:metadata:source:dvb-dash");
                 try { document.getElementById("instance_"+serviceId+"_"+instanceId+"_dash_uri").value = children[i].getElementsByTagName("URI")[0].childNodes[0].nodeValue; } catch(e) {}
             }
             else if(children[i].nodeName === "DVBTDeliveryParameters") {
+                changeSourceType(instanceDiv.id,"urn:dvb:metadata:source:dvb-t");
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_dvb_triplet").value = parseDvbTriplet(children[i].getElementsByTagName("DVBTriplet")[0]);
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_target_country").value = children[i].getElementsByTagName("TargetCountry")[0].childNodes[0].nodeValue;
             }
             else if(children[i].nodeName === "DVBCDeliveryParameters") {
+                changeSourceType(instanceDiv.id,"urn:dvb:metadata:source:dvb-c");
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_dvb_triplet").value = parseDvbTriplet(children[i].getElementsByTagName("DVBTriplet")[0]);
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_target_country").value = children[i].getElementsByTagName("TargetCountry")[0].childNodes[0].nodeValue;
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_network_id").value = children[i].getElementsByTagName("NetworkID")[0].childNodes[0].nodeValue;
             }
             else if(children[i].nodeName === "DVBSDeliveryParameters") {
+                hangeSourceType(instanceDiv.id,"urn:dvb:metadata:source:dvb-s");
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_dvb_triplet").value = parseDvbTriplet(children[i].getElementsByTagName("DVBTriplet")[0]);
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_frequency").value = parseFloat(children[i].getElementsByTagName("Frequency")[0].childNodes[0].nodeValue)/100000.0;
                 document.getElementById("instance_"+serviceId+"_"+instanceId+"_polarization").value = children[i].getElementsByTagName("Polarization")[0].childNodes[0].nodeValue;
@@ -129,8 +137,13 @@ function parseDvbTriplet(tripletElement) {
     return orgid+"."+tsid+"."+sid;
 }
 
-function changeSourceType(serviceInstanceId) {
-    var type = document.getElementById(serviceInstanceId+"_source_type").value;
+function changeSourceType(serviceInstanceId,type) {
+    if(!type) {
+        type = document.getElementById(serviceInstanceId+"_source_type").value;
+    }
+    else {
+        document.getElementById(serviceInstanceId+"_source_type").value = type;
+    }
     var params = document.getElementById(serviceInstanceId+"_deliveryparameters");
     //Remove previous content
     while (params.firstChild) {
@@ -272,7 +285,7 @@ function showXML() {
      document.getElementById("xml").value = generateXML();
 }
 
-function generateXML() {
+function generateXML(version) {
 
     var doc = document.implementation.createDocument(null, "ServiceList", null);
 
@@ -298,10 +311,17 @@ function generateXML() {
       relatedElement.appendChild(mediaLocator);
       doc.documentElement.appendChild(relatedElement);
     }
+    if(version == "r4") {
+        doc.documentElement.setAttribute("xmlns","urn:dvb:metadata:servicediscovery:2022b");
+        doc.documentElement.setAttribute("xsi:schemaLocation","urn:dvb:metadata:servicediscovery:2022b ../dvbi_v4.0.xsd");
+        doc.documentElement.setAttribute("xml:lang","en");
+    }
+    else {
+        doc.documentElement.setAttribute("xmlns","urn:dvb:metadata:servicediscovery:2020");
+        doc.documentElement.setAttribute("xsi:schemaLocation","urn:dvb:metadata:servicediscovery:2020 ../dvbi_v1.0.xsd");
+    }
     doc.documentElement.setAttribute("version",document.getElementById("version").value);
-    doc.documentElement.setAttribute("xmlns","urn:dvb:metadata:servicediscovery:2019");
     doc.documentElement.setAttribute("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance");
-    doc.documentElement.setAttribute("xsi:schemaLocation","urn:dvb:metadata:servicediscovery:2019 ../dvbi_v1.0.xsd");
     doc.documentElement.setAttribute("xmlns:tva","urn:tva:metadata:2019");
 
     var lcnTableElement = doc.createElement("LCNTableList");
@@ -349,7 +369,7 @@ function generateXML() {
         
         var instances = document.getElementsByClassName(serviceId+"_instance");
         for(var j=0; j<instances.length;j++) {
-            var instanceElement = generatetServiceInstance(instances[j],doc);
+            var instanceElement = generateServiceInstance(instances[j],doc,version);
             serviceElement.appendChild(instanceElement);
         }
        
@@ -421,10 +441,16 @@ function generateXML() {
 }
 
 
-function generatetServiceInstance(instance,doc) {
+function generateServiceInstance(instance,doc,version) {
     var instanceElement = doc.createElement("ServiceInstance");
     var instanceId = instance.id;
     instanceElement.setAttribute("priority",document.getElementById(instanceId+"_priority").value);
+    var displayName = document.getElementById(instanceId+"_displayname").value
+    if(displayName && version == "r4") {
+        var displayNameElement = doc.createElement("DisplayName");
+        displayNameElement.appendChild(doc.createTextNode(displayName));
+        instanceElement.appendChild(displayNameElement);
+    }
     var app = document.getElementById(instanceId+"_media_presentation_app").value;
     if(app && app.length > 0) {
         propertyElement = doc.createElement("RelatedMaterial");
@@ -453,10 +479,7 @@ function generatetServiceInstance(instance,doc) {
         propertyElement.appendChild(mediaLocator1);
         instanceElement.appendChild(propertyElement);
     }
-    var sourceTypeElement = doc.createElement("SourceType");
     var sourceType = document.getElementById(instanceId+"_source_type").value;
-    sourceTypeElement.appendChild(doc.createTextNode(sourceType));
-    instanceElement.appendChild(sourceTypeElement);
     if(sourceType === "urn:dvb:metadata:source:dvb-dash") {
         var deliveryParametersElement = doc.createElement("DASHDeliveryParameters");
         var locationElement = doc.createElement("UriBasedLocation");
@@ -619,6 +642,13 @@ function loadServicelist(list) {
 
         document.getElementById('service_count').value = 0;
         document.getElementById("version").value = doc.documentElement.getAttribute("version");
+        if(doc.documentElement.getAttribute("xmlns") == "urn:dvb:metadata:servicediscovery:2022b") {
+            document.getElementById("r4").checked = true;
+        }
+        else {
+            document.getElementById("r1").checked = true;
+        }
+        document.getElementById("filename").value = list.replace("./servicelists/","");
         var children = doc.documentElement.childNodes;
         var i, lcnMap = null;
 

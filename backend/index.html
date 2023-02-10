@@ -26,7 +26,6 @@ $( document ).ready(function() {
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Edit Service list</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Subtitle</h6>
           <p class="card-text"><style>div, label, input {_border: 1px solid red;} </style>
           <div class="row">
             <div class="col-12 col-md-6 border-right border-md-none">
@@ -72,9 +71,13 @@ $( document ).ready(function() {
               <h5 class="card-title">Save servicelist</h5>              
               <form action="javascript:uploadServicelist()" method="post">
                 <div class="form-group">
-                  <label for="formGroupExampleInput" class="small col-6 px-0">Service list title</label>
+                  <label for="r1" class="small col-6 px-0">Generate A177r1 compatible service list</label>
+                  <input type="radio" name="version" id="r1" checked class="form-check-input col-5 small">
+                  <label for="r4" class="small col-6 px-0">Generate A177r4 compatible service list</label>
+                  <input type="radio" name="version" id="r4" class="form-check-input col-5 small">
+                  <label for="formGroupExampleInput" class="small col-6 px-0">Service list filename</label>
                   <input type="text" name="filename" id="filename" class="form-control-sm col-5 small mb-3">
-                  <input type="submit" value="Save Servicelist" name="submit"  class="btn btn-orange btn-sm">
+                  <input type="submit" value="Save Servicelist" name="submit"  class="btn btn-orange">
                 </div>
               </form>
               <hr>
@@ -90,8 +93,7 @@ $( document ).ready(function() {
     <div class="col-12 col-lg-4 mb-2">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="card-title">Servicelist</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Subtitle</h6>
+          <h5 class="card-title">Servicelists</h5>
           <p class="card-text">
           <div id="saved_servicelists"> </div>
           </p>
