@@ -22,6 +22,7 @@
     <script type="text/javascript" src="../../configuration.js"></script>
     <script type="text/javascript" src="../../dvbi-common.js"></script>
     <script type="text/javascript" src="../../localstorage.js"></script>
+    <script type="text/javascript" src="../../i18n/i18n.js"></script>
 
 	<script type="text/javascript" language="javascript">
 	//<![CDATA[
@@ -50,8 +51,7 @@
     var firstChannel =  "";
     var languages = null;
     var supportedDrmSystems = ["9a04f079-9840-4286-ab92-e65be0885f95"];
-
-
+    var i18n = new I18n();
 
     if(channelList){
         if(typeof(channelList) == "string"){
