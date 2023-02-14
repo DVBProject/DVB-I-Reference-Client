@@ -1,16 +1,16 @@
 /**
-  * Edited from ISO8601-duration from https://github.com/tolu/ISO8601-duration
-  * under MIT licence
-  */
+ * Edited from ISO8601-duration from https://github.com/tolu/ISO8601-duration
+ * under MIT licence
+ */
 
 // PnYnMnDTnHnMnS
-var numbers = '\\d+(?:[\\.,]\\d{0,3})?';
-var weekPattern = '(' + numbers + 'W)';
-var datePattern = '(' + numbers + 'Y)?(' + numbers + 'M)?(' + numbers + 'D)?';
-var timePattern = 'T(' + numbers + 'H)?(' + numbers + 'M)?(' + numbers + 'S)?';
+var numbers = "\\d+(?:[\\.,]\\d{0,3})?";
+var weekPattern = "(" + numbers + "W)";
+var datePattern = "(" + numbers + "Y)?(" + numbers + "M)?(" + numbers + "D)?";
+var timePattern = "T(" + numbers + "H)?(" + numbers + "M)?(" + numbers + "S)?";
 
-var iso8601 = 'P(?:' + weekPattern + '|' + datePattern + '(?:' + timePattern + ')?)';
-var objMap = ['weeks', 'years', 'months', 'days', 'hours', 'minutes', 'seconds'];
+var iso8601 = "P(?:" + weekPattern + "|" + datePattern + "(?:" + timePattern + ")?)";
+var objMap = ["weeks", "years", "months", "days", "hours", "minutes", "seconds"];
 
 /**
  * The ISO8601 regex for matching / testing durations
@@ -22,10 +22,13 @@ var pattern = new RegExp(iso8601);
  */
 function parseISO8601(durationString) {
   // Slice away first entry in match-array
-  return durationString.match(pattern).slice(1).reduce(function (prev, next, idx) {
-    prev[objMap[idx]] = parseFloat(next) || 0;
-    return prev;
-  }, {});
+  return durationString
+    .match(pattern)
+    .slice(1)
+    .reduce(function (prev, next, idx) {
+      prev[objMap[idx]] = parseFloat(next) || 0;
+      return prev;
+    }, {});
 }
 
 /**
@@ -70,4 +73,3 @@ var iso6801toSeconds = function toSeconds(durationString, startDate) {
   var seconds = (then.getTime() - now.getTime()) / 1000;
   return seconds;
 };
-
