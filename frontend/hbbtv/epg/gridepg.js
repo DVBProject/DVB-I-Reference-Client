@@ -1,3 +1,23 @@
+var DAYS_ENGL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var MONTHS_ENGL = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+var VISIBLE_ROWS = 5;
+var IDLE_TIME_THRESHOLD = 600000; // 10 minutes
+var TWENTY_FOUR_HOURS = 86400000;
+var cids = [];
+
 /********** GridEPG ***********/
 function GridEPG(
   element_id,
@@ -31,14 +51,7 @@ function GridEPG(
   this.nextDayIsAvailable = true;
   this.channel_margin_bottom = 3;
   this.channel_element_height = 55;
-  this.firstDay = firstday;
-  this.firstDay = new Date(this.firstDay.setHours(4));
-  this.firstDay = new Date(this.firstDay.setMinutes(0));
-  this.firstDay = new Date(this.firstDay.setSeconds(0));
-  this.firstDay = new Date(this.firstDay.setMilliseconds(0));
-  this.lastDay = new Date(this.firstDay.getTime() + (days - 1) * TWENTY_FOUR_HOURS);
-  this.minDay = new Date(this.firstDay.getTime() - 2 * TWENTY_FOUR_HOURS);
-  this.maxDay = new Date(this.lastDay.getTime() + 6 * TWENTY_FOUR_HOURS);
+
   this.timeouts = {
     autoScrollDescriptionTimeouts: [],
     autoScrollDetailProgramTitleTimeouts: [],
@@ -58,16 +71,17 @@ GridEPG.prototype.initEPG = function (
   days
 ) {
   this.days = days;
-  this.firstDay = firstday;
-  this.firstDay = new Date(this.firstDay.setHours(4));
-  this.firstDay = new Date(this.firstDay.setMinutes(0));
-  this.firstDay = new Date(this.firstDay.setSeconds(0));
-  this.firstDay = new Date(this.firstDay.setMilliseconds(0));
-  this.lastDay = new Date(this.firstDay);
+  this.currentDay = firstday;
+  this.currentDay.setHours(4);
+  this.currentDay.setMinutes(0);
+  this.currentDay.setSeconds(0);
+  this.currentDay.setMilliseconds(0);
+  this.minDay = new Date(this.currentDay.getTime() - 2 * TWENTY_FOUR_HOURS);
+  this.maxDay = new Date(this.currentDay.getTime() + 6 * TWENTY_FOUR_HOURS);
   this.timelinestart = new Date(timelinestart);
-  this.timelinestart = new Date(this.timelinestart.setMinutes(0));
-  this.timelinestart = new Date(this.timelinestart.setSeconds(0));
-  this.timelinestart = new Date(this.timelinestart.setMilliseconds(0));
+  this.timelinestart.setMinutes(0);
+  this.timelinestart.setSeconds(0);
+  this.timelinestart.setMilliseconds(0);
   this.timelineend = new Date(this.timelinestart.getTime() + 1000 * 60 * 180); // start + 3 hours
   this.firstvisible_channel = firstvisible_channel;
   this.visible_channels = visible_channels;
@@ -83,10 +97,10 @@ GridEPG.prototype.initEPG = function (
   }
 
   this.channels = [];
-  var start = this.firstDay.getTime() / 1000;
+  var start = this.currentDay.getTime() / 1000;
   var end = start + 24 * 60 * 60;
-  for (var i = 0; i < epgdata["channels"].length; i++) {
-    var channel = new Channel(epgdata["channels"][i], "epgRow" + i);
+  for (var i = 0; i < epgdata["services"].length; i++) {
+    var channel = new EPGChannel(epgdata["services"][i], "epgRow" + i);
     if (i >= firstvisible_channel && i < firstvisible_channel + this.visible_channels) {
       channel.visible = true;
     } else {
@@ -95,10 +109,9 @@ GridEPG.prototype.initEPG = function (
     channel.getSchedule(start, end, this.channelLoaded.bind(this), false);
     this.channels.push(channel);
   }
-
+  this.channels.sort(compareLCN);
   this.initLeftBar();
   this.initContainer();
-
   var self = this;
   setTimeout(function () {
     if (document.getElementById("currentTimelineContainer") == null) {
@@ -160,7 +173,7 @@ GridEPG.prototype.insertFirstDay = function (epgdata) {
   for (var i = 0; i < epgdata.channels.length; i++) {
     for (var j = 0; j < this.channels.length; j++) {
       if (epgdata.channels[i].id == this.channels[j].id) {
-        var tempchannel = new Channel(epgdata.channels[i], "temp");
+        var tempchannel = new EPGChannel(epgdata.channels[i], "temp");
         this.channels[j].programs = tempchannel.programs.concat(this.channels[j].programs);
         for (var k = 0; k < this.channels[j].programs.length; k++) {
           if (this.channels[j].programs[k] != null) {
@@ -179,7 +192,7 @@ GridEPG.prototype.insertLastDay = function (epgdata) {
   for (var i = 0; i < epgdata.channels.length; i++) {
     for (var j = 0; j < this.channels.length; j++) {
       if (epgdata.channels[i].id == this.channels[j].id) {
-        var tempchannel = new Channel(epgdata.channels[i], "temp");
+        var tempchannel = new EPGChannel(epgdata.channels[i], "temp");
         this.channels[j].programs = this.channels[j].programs.concat(tempchannel.programs);
         for (var k = 0; k < this.channels[j].programs.length; k++) {
           if (this.channels[j].programs[k] != null) {
@@ -197,7 +210,7 @@ GridEPG.prototype.removeFirstDay = function () {
 
   for (var j = 0; j < this.channels.length; j++) {
     for (var k = 0; k < this.channels[j].programs.length; k++) {
-      if (this.channels[j].programs[k] != null && this.channels[j].programs[k].start_date_obj >= this.firstDay) {
+      if (this.channels[j].programs[k] != null && this.channels[j].programs[k].start_date_obj >= this.currentDay) {
         this.channels[j].programs.splice(0, Math.max(0, k - 1));
         break;
       }
@@ -210,7 +223,7 @@ GridEPG.prototype.removeLastDay = function () {
 
   for (var j = 0; j < this.channels.length; j++) {
     for (var k = this.channels[j].programs.length - 1; k >= 0; k--) {
-      if (this.channels[j].programs[k] != null && this.channels[j].programs[k].start_date_obj > this.lastDay) {
+      if (this.channels[j].programs[k] != null && this.channels[j].programs[k].start_date_obj > this.currentDay) {
         this.channels[j].programs.splice(k, this.channels[j].programs.length - k);
         break;
       }
@@ -341,10 +354,10 @@ GridEPG.prototype.handleArrows = function () {
     if (this.channels[0].visible) {
       arrow_up.addClass("hide");
     }
-    if (this.firstDay == this.minDay && this.activeItem == this.getOpenChannel().programs[0]) {
+    if (this.currentDay == this.minDay && this.activeItem == this.getOpenChannel().programs[0]) {
       arrow_left.addClass("hide");
     }
-    if (this.lastDay == this.maxDay && this.activeItem == this.getOpenChannel().getLastProgram()) {
+    if (this.currentDay == this.maxDay && this.activeItem == this.getOpenChannel().getLastProgram()) {
       arrow_right.addClass("hide");
     }
   }
@@ -497,7 +510,7 @@ GridEPG.prototype.populateProgramDetail = function (program) {
   var self = this;
   self.clearTimeouts();
 
-  if (program instanceof Program) {
+  if (program instanceof EPGProgram) {
     try {
       var title = document.getElementById("detail_program_title");
       var description = document.getElementById("detail_description");
@@ -870,9 +883,47 @@ GridEPG.prototype.populateInfo = function (str) {
   }
 };
 
+GridEPG.prototype.setActiveChannel = function (channelID) {
+  for (var j = 0; j < this.channels.length; j++) {
+    if (this.channels[j].id) {
+      if (this.channels[j].id == channelID) {
+        for (var i = 0; i < this.channels.length; i++) {
+          if (i >= j && i < j + this.visible_channels) {
+            this.channels[i].visible = true;
+          } else {
+            this.channels[i].visible = false;
+          }
+        }
+        this.setActiveItem(this.channels[j]);
+        _epg_.getOpenChannel().open = false;
+        this.channels[j].open = true;
+        CSSscroll(
+          document.getElementById("epgRows"),
+          j * (_epg_.channel_element_height + _epg_.channel_margin_bottom),
+          ANIMATION_DURATION,
+          null
+        );
+        CSSscroll(
+          document.getElementById("channels"),
+          j * (_epg_.channel_element_height + _epg_.channel_margin_bottom),
+          ANIMATION_DURATION,
+          null
+        );
+        setTimeout(function () {
+          document.getElementById("epgRows").removeClass("notransition");
+          document.getElementById("channels").removeClass("notransition");
+        }, 10);
+
+        this.handleArrows();
+        return;
+      }
+    }
+  }
+};
+
 GridEPG.prototype.setActiveItem = function (item) {
   if (item) {
-    if (this.activeItem != null && this.activeItem instanceof Program) {
+    if (this.activeItem != null && this.activeItem instanceof EPGProgram) {
       this.activeItem.unFocus();
     }
     this.activeItem = item;
@@ -898,9 +949,9 @@ GridEPG.prototype.lastLoadedChannelIdx = function () {
 
 GridEPG.prototype.loadPreviousDay = function () {
   setLoading(true);
-  this.firstDay = new Date(this.firstDay.getTime() - TWENTY_FOUR_HOURS);
+  this.currentDay = new Date(this.currentDay.getTime() - TWENTY_FOUR_HOURS);
   this.channelsLoaded = 0;
-  var start = this.firstDay.getTime() / 1000;
+  var start = this.currentDay.getTime() / 1000;
   var end = start + 24 * 60 * 60;
   this.loadedCallback = this.dayLoaded.bind(this);
   this.timelineend = new Date(this.timelineend.getTime() - 1000 * 60 * 30);
@@ -913,9 +964,9 @@ GridEPG.prototype.loadPreviousDay = function () {
 
 GridEPG.prototype.loadNextDay = function () {
   setLoading(true);
-  this.lastDay = new Date(this.lastDay.getTime() + TWENTY_FOUR_HOURS);
+  this.currentDay = new Date(this.currentDay.getTime() + TWENTY_FOUR_HOURS);
   this.channelsLoaded = 0;
-  var start = this.lastDay.getTime() / 1000;
+  var start = this.currentDay.getTime() / 1000;
   var end = start + 24 * 60 * 60;
   this.timelineend = new Date(this.timelineend.getTime() + 1000 * 60 * 30);
   this.timelinestart = new Date(this.timelinestart.getTime() + 1000 * 60 * 30);
@@ -925,6 +976,32 @@ GridEPG.prototype.loadNextDay = function () {
     this.channels[i].getSchedule(start, end, this.channelLoaded.bind(this), false);
   }
   console.log("loadNextDay");
+};
+
+GridEPG.prototype.loadToday = function () {
+  var currentDay = new Date();
+  currentDay.setHours(4);
+  currentDay.setMinutes(0);
+  currentDay.setSeconds(0);
+  currentDay.setMilliseconds(0);
+  /*if (this.currentDay.getTime() != currentDay.getTime()) {
+    setLoading(true);
+    this.channelsLoaded = 0;
+    this.currentDay = currentDay;
+    var start = this.currentDay.getTime() / 1000;
+    var end = start + 24 * 60 * 60;
+    this.loadedCallback = this.dayLoaded.bind(this);
+    for (var i = 0; i < this.channels.length; i++) {
+      this.channels[i].getSchedule(start, end, this.channelLoaded.bind(this), false);
+    }
+    console.log("loadToday");
+  }*/
+
+  this.timelinestart = new Date();
+  this.timelinestart.setMinutes(0);
+  this.timelinestart.setSeconds(0);
+  this.timelinestart.setMilliseconds(0);
+  this.timelineend = new Date(this.timelinestart.getTime() + 1000 * 60 * 180); // start + 3 hours
 };
 
 GridEPG.prototype.dayLoaded = function () {

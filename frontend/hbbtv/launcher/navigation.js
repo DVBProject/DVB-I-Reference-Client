@@ -215,6 +215,10 @@ function onKey(keyCode) {
       navigateDialog(keyCode);
       return true;
     }
+    if (epg_visible) {
+      _epg_.onKey(keyCode);
+      return true;
+    }
     hideUItimer();
     var num_key;
     switch (keyCode) {
@@ -395,7 +399,29 @@ function onKey(keyCode) {
         try {
           _application_.opAppRequestForeground();
         } catch (e) {}
-        window.location = "../epg/index.php?ch=" + getCurrentChannel().id;
+        clearTimeout(hideTimer);
+        menuOpen = false;
+        if (!document.getElementById("wrapper").hasClass("hide")) {
+          document.getElementById("wrapper").addClass("hide");
+          document.getElementById("channel_info").addClass("hide");
+          if (currentChIndex) {
+            var menuItem = _menu_.getChannelAtIndex(currentChIndex);
+            jumpToMenuItem(menuItem, true);
+            clearTimeout(selectionChangeTimer);
+            selectionChangeTimer = null;
+          }
+        }
+        if (!_epg_) {
+          initEPG();
+        } else {
+          $("#epgwrapper").removeClass("hide");
+          _epg_.loadToday();
+          _epg_.populatePrograms(function () {
+            _epg_.setActiveChannel(getCurrentChannel().id);
+            _epg_.activeItem.setFocus();
+          });
+          epg_visible = true;
+        }
         break;
       case 109:
       case VK_BLUE:

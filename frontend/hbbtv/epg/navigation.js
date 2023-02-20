@@ -85,7 +85,7 @@ if (typeof VK_LEFT == "undefined") {
   var VK_TELETEXT = 459;
 }
 
-function registerKeyListener() {
+GridEPG.prototype.registerKeyListener = function () {
   document.addEventListener(
     "keydown",
     function (e) {
@@ -95,9 +95,9 @@ function registerKeyListener() {
     },
     false
   );
-}
+};
 
-function registerKeys(mode) {
+GridEPG.prototype.registerKeys = function (mode) {
   var mask;
   // ui hidden, only red and green registered
   if (mode == 0) {
@@ -131,98 +131,95 @@ function registerKeys(mode) {
       cfg.configuration.UI_EPG,
     ]);
   } catch (e2) {}
-}
+};
 
-function onKey(keyCode) {
-  idleTimeStart = new Date(new Date().getTime() + diffTime);
+GridEPG.prototype.onKey = function (keyCode) {
+  console.log("GridEPG.prototype.onKey", keyCode, loading, animating);
   if (!loading && !animating) {
     if (keyCode == VK_BACK || keyCode == KeyEvent.VK_GUIDE) {
-      window.location = "../launcher/index.php?ch=" + firstChannel;
+      $("#epgwrapper").addClass("hide");
+      showMenu();
+      epg_visible = false;
       return true;
     }
-    if (keyCode == KeyEvent.VK_SUBTITLE || keyCode == KeyEvent.VK_MENU) {
-      window.location = "../portal_atlas/index.php";
-      return true;
-    }
-
     var focus = getFocus();
     switch (keyCode) {
       case 82:
       //case 403:
 
       case VK_RED:
-        keyRed();
+        this.keyRed();
         break;
 
       case 406:
       case 66:
 
       case VK_BLUE:
-        keyBlue();
+        this.keyBlue();
         break;
 
       case KeyEvent.VK_INFO:
       case VK_ENTER:
-        keyEnter();
+        this.keyEnter();
         break;
 
       case VK_RIGHT:
-        keyRight();
+        this.keyRight();
         break;
 
       case VK_LEFT:
-        keyLeft();
+        this.keyLeft();
         break;
 
       case VK_DOWN:
-        keyDown();
+        this.keyDown();
         break;
 
       case VK_UP:
-        keyUp();
+        this.keyUp();
         break;
 
       case VK_PAUSE:
-        pauseVideo();
+        this.pauseVideo();
         break;
 
       case VK_PLAY:
-        keyPlay();
+        this.keyPlay();
         break;
 
       case VK_STOP:
-        clearVideo();
+        this.clearVideo();
         break;
 
       case 34:
       case VK_FAST_FWD:
-        keyFastFwd();
+        this.keyFastFwd();
         break;
 
       case 33:
       case VK_REWIND:
-        keyRewind();
+        this.keyRewind();
         break;
 
       case VK_TRACK_PREV:
-        keyTrackPrev();
+        this.keyTrackPrev();
         break;
       default:
         return false;
     }
     return true;
   }
-}
+};
 
-function keyTrackPrev() {
+GridEPG.prototype.keyTrackPrev = function () {
   var loadableCids = [];
   for (var i = 0; i <= Math.min(cids.length - 1, CHANNEL_BUFFER_SIZE - 1); i++) {
     loadableCids.push(cids[i]);
   }
   var datestr =
-    _epg_.firstDay.getFullYear() +
-    addZeroPrefix(_epg_.firstDay.getMonth() + 1) +
-    addZeroPrefix(_epg_.firstDay.getDate());
+    _epg_.currentDay.getFullYear() +
+    addZeroPrefix(_epg_.currentDay.getMonth() + 1) +
+    addZeroPrefix(_epg_.currentDay.getDate());
   setLoading(true);
   getData(datestr, loadableCids.toString(), _epg_.days, _epg_.lang, function (epg_response) {
     if (epg_response.channels.length > 0) {
@@ -230,7 +227,7 @@ function keyTrackPrev() {
       _epg_.channels = [];
       _epg_.visibleChannels = [];
       for (var i = 0; i < epg_response.channels.length; i++) {
-        var channel = new Channel(
+        var channel = new EPGChannel(
           epg_response.channels[i],
           "epgRow" + _epg_.cids.indexOf(epg_response.channels[i].id.toString())
         );
@@ -254,17 +251,17 @@ function keyTrackPrev() {
       setLoading(false);
     }
   });
-}
+};
 
-function keyTrackNext() {
+GridEPG.prototype.keyTrackNext = function () {
   var loadableCids = [];
   for (var i = _epg_.cids.length - 10; i <= _epg_.cids.length; i++) {
     loadableCids.push(cids[i]);
   }
   var datestr =
-    _epg_.firstDay.getFullYear() +
-    addZeroPrefix(_epg_.firstDay.getMonth() + 1) +
-    addZeroPrefix(_epg_.firstDay.getDate());
+    _epg_.currentDay.getFullYear() +
+    addZeroPrefix(_epg_.currentDay.getMonth() + 1) +
+    addZeroPrefix(_epg_.currentDay.getDate());
   setLoading(true);
   getData(datestr, loadableCids.toString(), _epg_.days, _epg_.lang, function (epg_response) {
     if (epg_response.channels.length > 0) {
@@ -272,7 +269,7 @@ function keyTrackNext() {
       _epg_.channels = [];
       _epg_.visibleChannels = [];
       for (var i = 0; i < epg_response.channels.length; i++) {
-        var channel = new Channel(
+        var channel = new EPGChannel(
           epg_response.channels[i],
           "epgRow" + _epg_.cids.indexOf(epg_response.channels[i].id.toString())
         );
@@ -296,9 +293,9 @@ function keyTrackNext() {
       setLoading(false);
     }
   });
-}
+};
 
-function keyRed() {
+GridEPG.prototype.keyRed = function () {
   var buttons = [];
   var day = curTime;
   for (var i = -3; i < 8; i++) {
@@ -320,15 +317,20 @@ function keyRed() {
     _epg_.dayIdx,
     3
   );
-}
+};
 
-function keyBlue() {
-  window.location = "../launcher/index.php?ch=" + _epg_.getOpenChannel().id;
-}
+GridEPG.prototype.keyBlue = function () {
+  var currentChannel = _menu_.getChannelAtIndex(this.getOpenChannel().lcn);
+  $("#epgwrapper").addClass("hide");
+  showMenu();
+  epg_visible = false;
+  jumpToMenuItem(currentChannel);
+  keyEnter();
+};
 
-function keyEnter() {}
+GridEPG.prototype.keyEnter = function () {};
 
-function keyRight() {
+GridEPG.prototype.keyRight = function () {
   var channel = _epg_.getOpenChannel();
   if (channel instanceof Channel) {
     var currentProgram = _epg_.activeItem;
@@ -368,7 +370,7 @@ function keyRight() {
             }
           }
         });
-      } else if (_epg_.nextDayIsAvailable && _epg_.lastDay < _epg_.maxDay) {
+      } else if (_epg_.nextDayIsAvailable && _epg_.currentDay < _epg_.maxDay) {
         // load the previous day
         var currentProgram = _epg_.activeItem;
         _epg_.loadNextDay(function () {
@@ -382,9 +384,9 @@ function keyRight() {
       }
     }
   }
-}
+};
 
-function keyLeft() {
+GridEPG.prototype.keyLeft = function () {
   var channel = _epg_.getOpenChannel();
   if (channel instanceof Channel) {
     var currentProgram = _epg_.activeItem;
@@ -423,15 +425,15 @@ function keyLeft() {
             }
           }
         });
-      } else if (_epg_.previousDayIsAvailable && _epg_.firstDay > _epg_.minDay) {
+      } else if (_epg_.previousDayIsAvailable && _epg_.currentDay > _epg_.minDay) {
         // load the previous day
         _epg_.loadPreviousDay();
       }
     }
   }
-}
+};
 
-function keyRewind() {
+GridEPG.prototype.keyRewind = function () {
   var currChan = _epg_.getOpenChannel();
   var currChanIdx = _epg_.channels.indexOf(currChan);
   if (currChanIdx - 5 >= 0) {
@@ -448,9 +450,9 @@ function keyRewind() {
     var start_idx = Math.max(0, idx - visibleIdx - 5);
     var loadableCids = cids.slice(start_idx, start_idx + CHANNEL_BUFFER_SIZE);
     var datestr =
-      _epg_.firstDay.getFullYear() +
-      addZeroPrefix(_epg_.firstDay.getMonth() + 1) +
-      addZeroPrefix(_epg_.firstDay.getDate());
+      _epg_.currentDay.getFullYear() +
+      addZeroPrefix(_epg_.currentDay.getMonth() + 1) +
+      addZeroPrefix(_epg_.currentDay.getDate());
     setLoading(true);
     getData(datestr, loadableCids.toString(), _epg_.days, _epg_.lang, function (epg_response) {
       if (epg_response.channels.length > 0) {
@@ -459,7 +461,7 @@ function keyRewind() {
         _epg_.visibleChannels = [];
         var visibleCount = 0;
         for (var i = 0; i < epg_response.channels.length; i++) {
-          var channel = new Channel(
+          var channel = new EPGChannel(
             epg_response.channels[i],
             "epgRow" + _epg_.cids.indexOf(epg_response.channels[i].id.toString())
           );
@@ -486,9 +488,9 @@ function keyRewind() {
       }
     });
   }
-}
+};
 
-function keyFastFwd() {
+GridEPG.prototype.keyFastFwd = function () {
   var currChan = _epg_.getOpenChannel();
   var currChanIdx = _epg_.channels.indexOf(currChan);
   if (currChanIdx + 5 + _epg_.numberOfVisibleChannels < _epg_.channels.length) {
@@ -505,9 +507,9 @@ function keyFastFwd() {
     var start_idx = Math.min(cids.length - 1 - 5, idx - visibleIdx + 5);
     var loadableCids = cids.slice(start_idx, start_idx + CHANNEL_BUFFER_SIZE);
     var datestr =
-      _epg_.firstDay.getFullYear() +
-      addZeroPrefix(_epg_.firstDay.getMonth() + 1) +
-      addZeroPrefix(_epg_.firstDay.getDate());
+      _epg_.currentDay.getFullYear() +
+      addZeroPrefix(_epg_.currentDay.getMonth() + 1) +
+      addZeroPrefix(_epg_.currentDay.getDate());
     setLoading(true);
     getData(datestr, loadableCids.toString(), _epg_.days, _epg_.lang, function (epg_response) {
       if (epg_response.channels.length > 0) {
@@ -517,7 +519,7 @@ function keyFastFwd() {
 
         var visibleCount = 0;
         for (var i = 0; i < epg_response.channels.length; i++) {
-          var channel = new Channel(
+          var channel = new EPGChannel(
             epg_response.channels[i],
             "epgRow" + _epg_.cids.indexOf(epg_response.channels[i].id.toString())
           );
@@ -543,9 +545,9 @@ function keyFastFwd() {
       }
     });
   }
-}
+};
 
-function keyDown() {
+GridEPG.prototype.keyDown = function () {
   var nextChannel = _epg_.getNextChannel();
   if (nextChannel && _epg_.activeItem) {
     var closest = nextChannel.getClosest(_epg_.activeItem);
@@ -574,9 +576,9 @@ function keyDown() {
       }
     }
   }
-}
+};
 
-function keyUp() {
+GridEPG.prototype.keyUp = function () {
   var prevChannel = _epg_.getPreviousChannel();
   if (prevChannel && _epg_.activeItem) {
     var closest = prevChannel.getClosest(_epg_.activeItem);
@@ -604,7 +606,7 @@ function keyUp() {
       }
     }
   }
-}
+};
 
 function CSSscrollDown(element, length, duration, callback) {
   try {
@@ -627,6 +629,19 @@ function CSSscrollUp(element, length, duration, callback) {
   if (element != null) {
     animating = true;
     element.style.top = Number(element.getTop() + length) + "px";
+    setTimeout(function () {
+      animating = false;
+      if (typeof callback == "function") {
+        callback.call();
+      }
+    }, duration);
+  }
+}
+
+function CSSscroll(element, length, duration, callback) {
+  if (element != null) {
+    animating = true;
+    element.style.top = -length + "px";
     setTimeout(function () {
       animating = false;
       if (typeof callback == "function") {

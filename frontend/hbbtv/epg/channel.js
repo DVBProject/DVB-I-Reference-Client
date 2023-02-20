@@ -1,9 +1,11 @@
 /********* Channel ***********/
-function Channel(channeldata, element_id) {
+function EPGChannel(channeldata, element_id) {
   this.init(channeldata, element_id);
 }
 
-Channel.prototype.getSchedule = function (start, end, callback, earlier) {
+Object.setPrototypeOf(EPGChannel.prototype, Channel.prototype);
+
+EPGChannel.prototype.getSchedule = function (start, end, callback, earlier) {
   var self = this;
 
   if (self.contentGuideURI) {
@@ -13,7 +15,15 @@ Channel.prototype.getSchedule = function (start, end, callback, earlier) {
       function (data) {
         //TODO use ContentGuideServiceRef from the service
         var j,
-          newPrograms = self.parseSchedule(data);
+          programData = self.parseSchedule(data);
+        var newPrograms = [];
+        for (var i = 0; i < programData.length; i++) {
+          var program2 = new EPGProgram(programData[i], self.element_id + "_program_" + i, self);
+          program2.bilingual = self.bilingual;
+          program2.channelimage = self.image;
+          program2.channel_streamurl = self.streamurl;
+          newPrograms.push(program2);
+        }
         if (newPrograms.length == 0) {
           var program0 = {};
           var programId = "no_program_" + start + "_" + end;
@@ -21,7 +31,7 @@ Channel.prototype.getSchedule = function (start, end, callback, earlier) {
           program0.end = new Date(end * 1000);
           program0.prglen = (program0.end.getTime() - program0.start.getTime()) / (1000 * 60);
           program0.title = "No programinfo available";
-          var program = new Program(program0, self.element_id + "_no_program", self);
+          var program = new EPGProgram(program0, self.element_id + "_no_program", self);
           program.bilingual = self.bilingual;
           program.channelimage = self.image;
           program.channel_streamurl = self.streamurl;
@@ -49,7 +59,7 @@ Channel.prototype.getSchedule = function (start, end, callback, earlier) {
       program0.end = new Date(end * 1000);
       program0.prglen = (program0.end.getTime() - program0.start.getTime()) / (1000 * 60);
       program0.title = "No programinfo available";
-      var program = new Program(program0, self.element_id + "_no_program", self);
+      var program = new EPGProgram(program0, self.element_id + "_no_program", self);
       program.bilingual = self.bilingual;
       program.channelimage = self.image;
       program.channel_streamurl = self.streamurl;
@@ -66,7 +76,7 @@ Channel.prototype.getSchedule = function (start, end, callback, earlier) {
   }
 };
 
-Channel.prototype.init = function (channeldata, element_id) {
+EPGChannel.prototype.init = function (channeldata, element_id) {
   var channel = this;
   channel.programs = [];
   channel.open = false;
@@ -88,11 +98,11 @@ Channel.prototype.init = function (channeldata, element_id) {
   channel.bilingual = false;
 };
 
-Channel.prototype.setVisiblePrograms = function (start, end) {
+EPGChannel.prototype.setVisiblePrograms = function (start, end) {
   this.visiblePrograms = [];
   var self = this;
   $.each(self.programs, function (i, program) {
-    if (program && program instanceof Program) {
+    if (program && program instanceof EPGProgram) {
       if (
         (program.end_date_obj > start && program.end_date_obj <= end) ||
         (program.start_date_obj < end && program.start_date_obj >= start) ||
@@ -139,7 +149,7 @@ Channel.prototype.setVisiblePrograms = function (start, end) {
 	*/
 };
 
-Channel.prototype.populate = function () {
+EPGChannel.prototype.populate = function () {
   try {
     var self = this;
     self.element.innerHTML = "";
@@ -163,7 +173,7 @@ Channel.prototype.populate = function () {
   }
 };
 
-Channel.prototype.setFocus = function () {
+EPGChannel.prototype.setFocus = function () {
   try {
     var nowProgram = null;
     var firstVisible = null;
@@ -178,7 +188,7 @@ Channel.prototype.setFocus = function () {
         firstVisible = program;
       }
       if (
-        _epg_.activeItem instanceof Program &&
+        _epg_.activeItem instanceof EPGProgram &&
         program.title == _epg_.activeItem.title &&
         program.start.getTime() == _epg_.activeItem.start.getTime() &&
         program.end.getTime() == _epg_.activeItem.end.getTime()
@@ -202,7 +212,7 @@ Channel.prototype.setFocus = function () {
   }
 };
 
-Channel.prototype.getClosest = function (currentFocus) {
+EPGChannel.prototype.getClosest = function (currentFocus) {
   var currPrgBounds = currentFocus.element.getBoundingClientRect();
   var ax = currPrgBounds.left + currPrgBounds.width / 2;
   var ay = currPrgBounds.top + currPrgBounds.height / 2;
@@ -248,7 +258,7 @@ Channel.prototype.getClosest = function (currentFocus) {
   return closest;
 };
 
-Channel.prototype.getCurrentlyRunningProgram = function () {
+EPGChannel.prototype.getCurrentlyRunningProgram = function () {
   var i,
     self = this;
   for (i = 0; i < self.visiblePrograms.length; i++) {
@@ -264,13 +274,13 @@ Channel.prototype.getCurrentlyRunningProgram = function () {
   return null;
 };
 
-Channel.prototype.nextProgram = function (item) {
+EPGChannel.prototype.nextProgram = function (item) {
   var next = null;
   var self = this;
   $.each(self.visiblePrograms, function (i, program) {
     if (program == item) {
       if (i + 1 < self.visiblePrograms.length) {
-        if (self.visiblePrograms[i + 1] instanceof Program) {
+        if (self.visiblePrograms[i + 1] instanceof EPGProgram) {
           next = self.visiblePrograms[i + 1];
           return false;
         }
@@ -281,7 +291,7 @@ Channel.prototype.nextProgram = function (item) {
     $.each(self.programs, function (i, program) {
       if (program == item) {
         if (i + 1 < self.programs.length) {
-          if (self.programs[i + 1] instanceof Program) {
+          if (self.programs[i + 1] instanceof EPGProgram) {
             next = self.programs[i + 1];
             return false;
           }
@@ -292,13 +302,13 @@ Channel.prototype.nextProgram = function (item) {
   return next;
 };
 
-Channel.prototype.previousProgram = function (item) {
+EPGChannel.prototype.previousProgram = function (item) {
   var previous = null;
   var self = this;
   $.each(self.visiblePrograms, function (i, program) {
     if (program == item) {
       if (i > 0) {
-        if (self.visiblePrograms[i - 1] instanceof Program) {
+        if (self.visiblePrograms[i - 1] instanceof EPGProgram) {
           previous = self.visiblePrograms[i - 1];
           return false;
         }
@@ -309,7 +319,7 @@ Channel.prototype.previousProgram = function (item) {
     $.each(self.programs, function (i, program) {
       if (program == item) {
         if (i > 0) {
-          if (self.programs[i - 1] instanceof Program) {
+          if (self.programs[i - 1] instanceof EPGProgram) {
             previous = self.programs[i - 1];
             return false;
           }
@@ -320,10 +330,10 @@ Channel.prototype.previousProgram = function (item) {
   return previous;
 };
 
-Channel.prototype.getLastProgram = function () {
+EPGChannel.prototype.getLastProgram = function () {
   return this.programs[this.programs.length - 1];
 };
 
-Channel.prototype.getLastVisibleProgram = function () {
+EPGChannel.prototype.getLastVisibleProgram = function () {
   return this.visiblePrograms[this.visiblePrograms.length - 1];
 };

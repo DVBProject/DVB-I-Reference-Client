@@ -1,11 +1,3 @@
-function Channel(init_obj, element_id) {
-  this.center = 1;
-  this.open = false;
-  this.element_id = element_id;
-  this.init(init_obj, element_id);
-  this.selected = false;
-}
-
 Channel.prototype.getNowNext = function (callback) {
   var self = this;
   if (self.contentGuideURI) {
@@ -13,13 +5,20 @@ Channel.prototype.getNowNext = function (callback) {
       self.contentGuideURI + "?sid=" + self.getServiceRef() + "&now_next=true",
       function (data) {
         var now_next = {};
-        var boxes = [];
         var newPrograms = self.parseSchedule(data);
         if (newPrograms.length > 0) {
-          now_next["now"] = newPrograms[0];
+          var program = new Program(newPrograms[0], this.element_id + "_program_" + 0, this);
+          program.bilingual = this.bilingual;
+          program.channelimage = this.image;
+          program.channel_streamurl = this.streamurl;
+          now_next["now"] = program;
         }
         if (newPrograms.length > 1) {
-          now_next["next"] = newPrograms[1];
+          var program = new Program(newPrograms[1], this.element_id + "_program_" + 0, this);
+          program.bilingual = this.bilingual;
+          program.channelimage = this.image;
+          program.channel_streamurl = this.streamurl;
+          now_next["next"] = program;
         }
         self.now_next = now_next;
         if (typeof callback == "function") {
@@ -39,7 +38,15 @@ Channel.prototype.getSchedule = function (callback) {
     $.get(
       self.contentGuideURI + "?sid=" + self.getServiceRef() + "&start=" + self.epg.start + "&end=" + self.epg.end,
       function (data) {
-        self.programs = self.parseSchedule(data);
+        var programData = self.parseSchedule(data);
+        self.programs = [];
+        for (var i = 0; i < programData.length; i++) {
+          var program2 = new Program(programData[i], this.element_id + "_program_" + i, this);
+          program2.bilingual = this.bilingual;
+          program2.channelimage = this.image;
+          program2.channel_streamurl = this.streamurl;
+          self.programs.push(program2);
+        }
         if (typeof callback == "function") {
           callback.call();
         }
@@ -50,6 +57,10 @@ Channel.prototype.getSchedule = function (callback) {
 };
 
 Channel.prototype.init = function (init_obj, channel_index) {
+  this.center = 1;
+  this.open = false;
+  this.element_id = channel_index;
+  this.selected = false;
   var self = this;
   $.each(init_obj, function (f, field) {
     self[f] = field;
@@ -147,7 +158,6 @@ Channel.prototype.getMediaPresentationApp = function (serviceInstance) {
 };
 
 Channel.prototype.checkAvailability = function () {
-  console.log("checkAvailability", new Date());
   var instance = this.getServiceInstance();
   if (instance != this.serviceInstance) {
     console.log("different service instace, select service");

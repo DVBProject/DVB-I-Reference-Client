@@ -1,3 +1,5 @@
+function Channel() {}
+
 Channel.prototype.getGenre = function (genre) {
   if (
     typeof genre === "string" &&
@@ -193,11 +195,7 @@ Channel.prototype.parseSchedule = function (data) {
         break;
       }
     }
-    var program2 = new Program(program, this.element_id + "_program_" + i, this);
-    program2.bilingual = this.bilingual;
-    program2.channelimage = this.image;
-    program2.channel_streamurl = this.streamurl;
-    newPrograms.push(program2);
+    newPrograms.push(program);
   }
   return newPrograms;
 };
@@ -236,7 +234,6 @@ Channel.prototype.hasAvailability = function () {
 Channel.prototype.getServiceInstanceByCPSIndex = function (cpsIndex) {
   if (cpsIndex) {
     for (var i = 0; i < this.serviceInstances.length; i++) {
-      console.log(this.serviceInstances[i]);
       if (this.serviceInstances[i].contentProtection) {
         for (var j = 0; j < this.serviceInstances[i].contentProtection.length; j++) {
           var contentProtection = this.serviceInstances[i].contentProtection[j];

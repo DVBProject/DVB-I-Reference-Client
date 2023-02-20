@@ -271,7 +271,8 @@ function serviceListSelected() {
   }
   var channelIndex = 0;
   for (var i = 0; i < serviceList.services.length; i++) {
-    var channel = new Channel(serviceList.services[i], channelIndex++);
+    var channel = new Channel();
+    channel.init(serviceList.services[i], channelIndex++);
     channels.push(channel);
   }
   channels.sort(compareLCN);

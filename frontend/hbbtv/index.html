@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Launcher</title>
+    <meta http-equiv="content-type" content="application/vnd.hbbtv.xhtml+xml; charset=utf-8" />
+    <link rel="stylesheet" href="CommonUI/commonui.css" />
+    <link rel="stylesheet" href="launcher/navi.css" />
+    <link rel="stylesheet" href="CommonUI/dialog.css" />
+    <link rel="stylesheet" href="launcher/chinfo.css" />
+    <link rel="stylesheet" href="epg/epg.css" />
+    <script src="../../jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../channel-common.js"></script>
+    <script type="text/javascript" src="launcher/menu.js"></script>
+    <script type="text/javascript" src="launcher/channel.js"></script>
+    <script type="text/javascript" src="launcher/program.js"></script>
+    <script type="text/javascript" src="launcher/box.js"></script>
+    <script type="text/javascript" src="launcher/navigation.js"></script>
+    <script type="text/javascript" src="launcher/settings.js"></script>
+    <script type="text/javascript" src="session.js"></script>
+    <script type="text/javascript" src="epg/gridepg.js"></script>
+    <script type="text/javascript" src="epg/channel.js"></script>
+    <script type="text/javascript" src="epg/program.js"></script>
+    <script type="text/javascript" src="epg/navigation.js"></script>
+    <script type="text/javascript" src="epg/scripts.js"></script>
+    <script type="text/javascript" src="../isoduration.js"></script>
+    <script type="text/javascript" src="../common.js"></script>
+    <script type="text/javascript" src="../configuration.js"></script>
+    <script type="text/javascript" src="../dvbi-common.js"></script>
+    <script type="text/javascript" src="../localstorage.js"></script>
+    <script type="text/javascript" src="buttonbar.js"></script>
+    <script type="text/javascript" src="alertDialog.js"></script>
+    <script type="text/javascript" src="dialog.js"></script>
+    <script type="text/javascript" src="../i18n/i18n.js"></script>
+    <script type="text/javascript" src="launcher/videoplayer_basic.js"></script>
+    <script type="text/javascript" src="launcher/videoplayer_html5.js"></script>
+    <script type="text/javascript" src="launcher/videoplayer_mse-eme.js"></script>
+    <script type="text/javascript" src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <script type="text/javascript" src="dialog.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+  <body id="body" onload="onLoad();">
+    <div style="visibility: hidden; width: 0px; height: 0px">
+      <object
+        id="appmgr"
+        type="application/oipfApplicationManager"
+        style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px"
+      ></object>
+      <object
+        id="oipfcfg"
+        type="application/oipfConfiguration"
+        style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px"
+      ></object>
+    </div>
+
+    <!-- <div id="debug" style="position:absolute; left:100px; top:100px; display:block;"></div> -->
+    <div id="dialog" class="hide"></div>
+    <object id="broadcast" type="video/broadcast"></object>
+    <div id="videodiv"> </div>
+    <div id="streaminfo" class="hide">
+      <div>
+        <span>Video resolution:</span>
+        <span id="video_resolution"></span>
+      </div>
+      <div>
+        <span>Video bitrate:</span>
+        <span id="video_bitrate"></span>
+      </div>
+      <div>
+        <span>Audio bitrate:</span>
+        <span id="audio_bitrate"></span>
+      </div>
+      <div>
+        <span>Latency:</span>
+        <span id="live_latency"></span>
+      </div>
+      <div>
+        <span>Settings:</span>
+        <span id="live_settings"></span>
+      </div>
+    </div>
+    <div id="wrapper" class="hide">
+      <!-- <div id="debug" style="position:absolute; top:100px; left:100px;"></div> -->
+      <img id="service_list_logo" src="CommonUI/logo_dvbi_sofia.png" alt="logo dvb-i sofia digital" />
+      <div id="menu_0"></div>
+
+      <div id="clock">
+        <div id="clock_time"> </div>
+      </div>
+    </div>
+    <div id="channel_change" class="channel_change"></div>
+    <div id="channel_info" class="channel_info hide"><span id="info_num"></span><span id="info_name"></span></div>
+    <div id="chinfo" class="hide">
+      <div id="chinfo_chname"></div>
+      <div id="chinfo_chnumber"></div>
+      <div id="chinfo_chicon"><img id="chinfo_chicon_img" src="" alt="" /></div>
+      <div id="chinfo_logo"><img id="list_logo" src="launcher/images/logo_dvb-i.png" alt="" /></div>
+      <div id="chinfo_now">
+        <div id="chinfo_now_header">NOW SHOWING</div>
+        <div id="chinfo_now_title"></div>
+        <div id="chinfo_now_starttime"></div>
+        <div id="chinfo_now_endtime"></div>
+        <div id="chinfo_now_protected"><img id="chinfo_now_protected_img" src="" alt="" /></div>
+        <div id="chinfo_now_image"><img id="chinfo_now_image_img" src="" alt="" /></div>
+        <div id="chinfo_progressbar">
+          <div id="chinfo_progressbarbg"></div>
+          <div id="chinfo_progressbarTime" style="width: 0%"></div>
+        </div>
+      </div>
+      <div id="chinfo_next">
+        <div id="chinfo_next_header">FOLLOWING</div>
+        <div id="chinfo_next_title"></div>
+        <div id="chinfo_next_starttime"></div>
+        <div id="chinfo_next_endtime"></div>
+        <div id="chinfo_next_protected"><img id="chinfo_next_protected_img" src="" alt="" /></div>
+        <div id="chinfo_next_image"><img id="chinfo_next_image_img" src="" alt="" /></div>
+      </div>
+      <div id="now_info"></div>
+    </div>
+    <div id="info" class="hide"></div>
+    <div class="hide" id="loading"></div>
+    <div id="epgwrapper" class="hide">
+      <div id="epg_clock">
+        <div id="epg_clock_time"></div>
+      </div>
+      <div id="arrow_up" class="hide"></div>
+      <div id="arrow_down" class="hide"></div>
+      <div id="arrow_left" class="hide"></div>
+      <div id="arrow_right" class="hide"></div>
+
+      <div id="date"></div>
+
+      <div id="leftbarFrame">
+        <div id="channels"></div>
+      </div>
+
+      <div id="containerFrame">
+        <div id="container"></div>
+      </div>
+
+      <div id="detail">
+        <div id="detailMenu"></div>
+        <div id="detail_programtext">
+          <div id="detail_description" class="verticalAutoscroll">
+            <div id="detail_progressBarFrame" class="progressBarFrame">
+              <div id="detail_progressBar" class="progressBar"></div>
+            </div>
+            <div id="detail_header">
+              <span id="detail_program_title"></span>
+              <span id="detail_program_time"></span>
+              <div> <span id="detail_genre"> </span><span id="detail_audio"></span> </div>
+              <div id="detail_year"></div>
+              <div id="available"></div>
+              <div id="rating"></div>
+            </div>
+            <div id="detail_programimage_container">
+              <img id="detail_programimage" src="" alt="" />
+            </div>
+            <div id="detail_description_text"></div>
+          </div>
+          <div id="detailDescriptionVbar"></div>
+          <div id="detailDescriptionScroller"></div>
+        </div>
+        <div id="detailMenuVbar"></div>
+        <div id="detailMenuScroller"></div>
+      </div>
+
+      <div id="buttonbar">
+        <div class="btn" id="okb"> <span class="icon ok"></span> <span class="bb_label" id="ok">Select</span></div>
+        <div id="fbwb" class="btn"><span class="icon fbw"></span><span id="fbw" class="bb_label">-5</span></div>
+        <div id="ffwb" class="btn"><span class="icon ffw"></span><span id="ffw" class="bb_label">+5</span></div>
+        <div id="skpbwb" class="btn"
+          ><span class="icon skpbw"></span><span id="skpbw" class="bb_label">First</span></div
+        >
+        <div id="skpfwb" class="btn"><span class="icon skpfw"></span><span id="skpfw" class="bb_label">Last</span></div>
+        <div class="btn" id="blueb">
+          <span class="icon blue"></span> <span class="bb_label" id="blue">Tune to channel</span></div
+        >
+      </div>
+    </div>
+  </body>
+</html>
