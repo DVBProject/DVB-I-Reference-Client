@@ -19,6 +19,6 @@
       $servicelist= file_get_contents("servicelists/".$list);
     }
 
-    $servicelist =str_replace("INSTALL--LOCATION",$install_location,$servicelist);
+    $servicelist =str_replace("INSTALL~~LOCATION",$install_location,$servicelist);
     echo $servicelist;
 ?>
