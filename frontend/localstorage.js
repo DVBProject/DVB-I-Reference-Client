@@ -17,6 +17,7 @@ var thisUrl = thisUrl || window.location.href;
 // get data with $name from session storage
 // $clear = clear data after retreived
 function getLocalStorage(name, clear) {
+  name = window.location.pathname + ":" + name;
   clear = clear || false;
   if (hasLocalStorage()) {
     try {
@@ -40,6 +41,7 @@ function getLocalStorage(name, clear) {
 //               setStorage( "item", "new value", true )
 // In storage:   item : [ "value", "new value" ]
 function setLocalStorage(name, value, append) {
+  name = window.location.pathname + ":" + name;
   append = append || false;
 
   if (hasLocalStorage()) {
