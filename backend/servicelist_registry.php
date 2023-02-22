@@ -131,7 +131,7 @@ if(isset( $_GET['TargetCountry'])) {
     }
 }
 
-$processed_list =str_replace("INSTALL--LOCATION",$install_location,$list->asXML());
+$processed_list =str_replace("INSTALL~~LOCATION",$install_location,$list->asXML());
 
 echo $processed_list;
 
