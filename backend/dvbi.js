@@ -354,7 +354,6 @@ function generateXML() {
     doc.documentElement.setAttribute("xmlns", "urn:dvb:metadata:servicediscovery:2022b");
     doc.documentElement.setAttribute("xsi:schemaLocation", "urn:dvb:metadata:servicediscovery:2022b ../dvbi_v4.0.xsd");
     var lang = document.getElementById("service_list_language").value;
-    console.log(lang);
     if (!lang || lang.length != 2) {
       alert("Invalid service list language!");
       document.getElementById("service_list_language").focus();

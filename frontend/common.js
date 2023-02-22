@@ -321,7 +321,6 @@ function convertToDateObject(datestr) {
 }
 
 function arrayContains(array, value) {
-  console.log(array, value);
   for (var i = 0; i < array.length; i++) {
     if (array[i] == value) {
       console.log("found!");
