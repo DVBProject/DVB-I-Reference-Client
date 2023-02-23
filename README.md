@@ -5,6 +5,8 @@ Project consists of a backend and frontend parts.
 Backend allows generation and editing of DVB-I service lists.
 In the future it will allow also generation of TV Anytime programme information to be used in the EPG.
 
+## Frontend
+
 The frontend is a HbbTV OpApp implementation of a DVB-I compatible Client.
 It offers Service list navigation, selection/tuning of services, info banner and a simple EPG.
 A separate client is offered for Android devices. Android client is a PWA application, offering roughly the 
@@ -28,6 +30,22 @@ https://cloud.sofiadigital.fi/index.php/s/qrB6MoFH5cPCDoN
 Note that this version runs as a "Normal HbbTV" version and might lack some of the functionalities
 of the OpApp version, and might display some inconsistent UI behavior.
 
+### Operator application package
+
+- Example operator application package is available at:
+http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/opapp.pkg
+
+NOTE: This is an unencrypted package
+
+To create your own opapp.pkg, run the following commands in the project root directory:
+```
+npm init
+node opapp_package.js
+```
+This will create opapp.pkg in the project root directory. Edit the [XML AIT](frontend/hbbtv/opapp.xait) to change the application id, organization id and the pakcage location as needed. The opapp.pkg needs to be encrypted according to the Operator application specification.
+
+
+## Backend
 - Backend:
 http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/
 
