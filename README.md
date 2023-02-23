@@ -42,7 +42,7 @@ To create your own opapp.pkg, run the following commands in the project root dir
 npm init
 node opapp_package.js
 ```
-This will create opapp.pkg in the project root directory. Edit the [XML AIT](frontend/hbbtv/opapp.xait) to change the application id, organization id and the pakcage location as needed. The opapp.pkg needs to be encrypted according to the Operator application specification.
+This will create opapp.pkg in the project root directory. Edit the [XML AIT](frontend/hbbtv/opapp.aitx) to change the application id, organization id and the pakcage location as needed. The opapp.pkg needs to be encrypted according to the Operator application specification.
 
 
 ## Backend
