@@ -14,7 +14,7 @@ same functionality.
 
 Demo installations available at:
 - HbbTV Frontend:
-    http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/launcher/
+    http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/
 - Android PWA Frontend on a tablet/smartphone:
     http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/
 - Android PWA for testing on a PC browser
