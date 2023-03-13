@@ -260,6 +260,9 @@
 					<Synopsis length="medium">The best motorsport features and action from the biggest race series around the world.</Synopsis>
 					<Synopsis length="medium" xml:lang="zh">来自世界各地最大的赛车系列的最佳赛车运动特色和动作。</Synopsis>
 					<ParentalGuidance>
+						<mpeg7:MinimumAge>15</mpeg7:MinimumAge>
+					</ParentalGuidance>
+					<ParentalGuidance>
  						<mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
 						<ExplanatoryText length="long" xml:lang="en">Contains strong language and flash photography </ExplanatoryText>
 						<ExplanatoryText length="long" xml:lang="zh">包含强烈的语言和闪光摄影</ExplanatoryText>
