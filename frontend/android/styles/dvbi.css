@@ -356,6 +356,10 @@ body.player {
   left: -32px;
 }
 
+#parentalpin {
+  z-index: 15;
+}
+
 @keyframes displaynone {
   from {
     display: block;
