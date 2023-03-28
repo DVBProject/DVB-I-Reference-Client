@@ -761,7 +761,7 @@ function parseXmlAit(data) {
 
 function isDRMSystemSupported(drmSystemId) {
   for (var i = 0; i < supportedDrmSystems.length; i++) {
-    if (drmSystemid == supportedDrmSystems[i]) {
+    if (drmSystemId == supportedDrmSystems[i]) {
       return true;
     }
   }
