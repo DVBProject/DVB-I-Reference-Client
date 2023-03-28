@@ -1,10 +1,3 @@
-function Channel(init_obj, element_id) {
-  this.center = 1;
-  this.open = false;
-  this.element_id = element_id;
-  this.init(init_obj, element_id);
-}
-
 Channel.prototype.getNowNext = function () {
   var self = this;
   if (self.contentGuideURI) {
@@ -14,7 +7,15 @@ Channel.prototype.getNowNext = function () {
         var epg = {};
         var boxes = [];
         var now_next = {};
-        var newPrograms = self.parseSchedule(data);
+        var programData = self.parseSchedule(data);
+        var newPrograms = [];
+        for (var i = 0; i < programData.length; i++) {
+          var program2 = new Program(programData[i], this.element_id + "_program_" + i, self);
+          program2.bilingual = self.bilingual;
+          program2.channelimage = self.image;
+          program2.channel_streamurl = self.streamurl;
+          newPrograms.push(program2);
+        }
         if (newPrograms.length > 0) {
           epg["now"] = newPrograms[0];
         }
@@ -211,6 +212,10 @@ Channel.prototype.getNowNext = function () {
 };
 
 Channel.prototype.init = function (init_obj, element_id) {
+  this.center = 1;
+  this.open = false;
+  this.element_id = element_id;
+
   var self = this;
   self.boxes = [];
   $.each(init_obj, function (f, field) {

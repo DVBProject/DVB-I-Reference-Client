@@ -98,7 +98,6 @@ function showAlertDialog(q1, q2, buttons, _checked, _focused, callback, cancel) 
     lastvisible.addClass("lastvisible");
 
     var scrolltop = $(".dialogButton:eq(" + alertDialog.focused + ")").outerHeight(true) * firstvisibleIdx;
-    console.log("scrolltop: ", scrolltop);
     $("#dialogWrapper").scrollTop(scrolltop);
   }
   //handleAlertDialogArrows();
@@ -120,7 +119,6 @@ function handleAlertDialogArrows() {
 }
 
 function navigateAlertDialog(keyCode) {
-  console.log("alertDialog.js: navigate alertDialog");
   if (!animating) {
     switch (keyCode) {
       case VK_DOWN:

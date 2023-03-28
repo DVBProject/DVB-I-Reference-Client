@@ -24,13 +24,13 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>INSTALL--LOCATION/backend/schedule.php</URI>
+      <URI>INSTALL~~LOCATION/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
     <ProgramInfoEndpoint contentType="application/xml">
-      <URI>INSTALL--LOCATION/backend/program_information.php</URI>
+      <URI>INSTALL~~LOCATION/backend/program_information.php</URI>
     </ProgramInfoEndpoint>
     <MoreEpisodesEndpoint contentType="application/xml">
-      <URI>INSTALL--LOCATION/backend/more_episodes.php</URI>
+      <URI>INSTALL~~LOCATION/backend/more_episodes.php</URI>
     </MoreEpisodesEndpoint>
   </ContentGuideSource>
   <Service version="1">
@@ -90,7 +90,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_akamai.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_akamai.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_5</ContentGuideServiceRef>
@@ -110,7 +110,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_br_1.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_br_1.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_6</ContentGuideServiceRef>
@@ -130,7 +130,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_br_hd.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_br_hd.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_7</ContentGuideServiceRef>
@@ -150,7 +150,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_8</ContentGuideServiceRef>
@@ -170,7 +170,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_9</ContentGuideServiceRef>
@@ -190,7 +190,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_10</ContentGuideServiceRef>
@@ -210,7 +210,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_11</ContentGuideServiceRef>
@@ -230,7 +230,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_12</ContentGuideServiceRef>
@@ -250,7 +250,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_13</ContentGuideServiceRef>
@@ -270,7 +270,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
@@ -400,5 +400,18 @@
     <ServiceName>DVB EBU Low latency DASH</ServiceName>
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_17</ContentGuideServiceRef>
+  </Service>
+  <Service version="11">
+    <UniqueIdentifier>tag:dvb.org,2020:sid18</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>Parental rating service</ServiceName>
+    <ProviderName>DVB</ProviderName>
+    <ContentGuideServiceRef>cgsid_4</ContentGuideServiceRef>
   </Service>
 </ServiceList>

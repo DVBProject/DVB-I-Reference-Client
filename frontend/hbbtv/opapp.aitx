@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mhp:ServiceDiscovery
+	xmlns:mhp="urn:dvb:mhp:2009"
+	xmlns:hbb="urn:hbbtv:opapp_application_descriptor:2017"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<mhp:ApplicationDiscovery DomainName="operator.example.com">
+		<mhp:ApplicationList>
+			<mhp:Application>
+				<mhp:appName Language="eng">DVB-I Reference Application</mhp:appName>
+				<mhp:applicationIdentifier>
+					<mhp:orgId>123</mhp:orgId>
+					<mhp:appId>456</mhp:appId>
+				</mhp:applicationIdentifier>
+				<mhp:applicationDescriptor xsi:type="hbb:HbbTVOpAppApplicationDescriptor">
+					<mhp:type>
+						<mhp:OtherApp>application/vnd.hbbtv.opapp.pkg</mhp:OtherApp>
+					</mhp:type>
+					<mhp:controlCode>AUTOSTART</mhp:controlCode>
+					<mhp:visibility>VISIBLE_ALL</mhp:visibility>
+					<mhp:serviceBound>false</mhp:serviceBound>
+					<mhp:priority>1</mhp:priority>
+					<mhp:version>1</mhp:version>
+					<mhp:mhpVersion>
+						<mhp:profile>0</mhp:profile>
+						<mhp:versionMajor>1</mhp:versionMajor>
+						<mhp:versionMinor>3</mhp:versionMinor>
+						<mhp:versionMicro>1</mhp:versionMicro>
+					</mhp:mhpVersion>
+					<hbb:MinimumApplicationVersion>8</hbb:MinimumApplicationVersion>
+				</mhp:applicationDescriptor>
+				<mhp:applicationUsageDescriptor>
+					<mhp:ApplicationUsage>urn:hbbtv:opapp:privileged:2017</mhp:ApplicationUsage>
+				</mhp:applicationUsageDescriptor>
+				<mhp:applicationTransport xsi:type="mhp:HTTPTransportType">
+					<mhp:URLBase>https://operator.example.com/</mhp:URLBase>
+				</mhp:applicationTransport>
+				<mhp:applicationLocation>dvb-i-reference-application/frontend/hbbtv/opapp.pkg</mhp:applicationLocation>
+			</mhp:Application>
+		</mhp:ApplicationList>
+	</mhp:ApplicationDiscovery>
+</mhp:ServiceDiscovery>

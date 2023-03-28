@@ -10,6 +10,9 @@
  <Synopsis length="medium" xml:lang="zh">讨价还价小组前往斯塔福德郡的县展示场，两位专家都在那里面临双重麻烦。</Synopsis>
  <Genre href="urn:dvb:metadata:cs:ContentSubject:2019:3" type="main"/>
  <ParentalGuidance>
+  <mpeg7:MinimumAge>15</mpeg7:MinimumAge>
+</ParentalGuidance>
+ <ParentalGuidance>
  <mpeg7:ParentalRating href="urn:fvc:metadata:cs:ContentRatingCS:2014-07:fifteen"/>
  <ExplanatoryText length="long" xml:lang="en">Contains strong language and flash photography </ExplanatoryText>
  <ExplanatoryText length="long" xml:lang="zh">包含强烈的语言和闪光摄影</ExplanatoryText>

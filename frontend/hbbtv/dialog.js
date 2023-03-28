@@ -81,7 +81,6 @@ function showDialog(q, buttons, _checked, _focused, callback, cancel, keyHandler
     lastvisible.addClass("lastvisible");
 
     var scrolltop = $(".dialogButton:eq(" + dialog.focused + ")").outerHeight(true) * firstvisibleIdx;
-    console.log("scrolltop: ", scrolltop);
     $("#dialogWrapper").scrollTop(scrolltop);
   }
   if (!header) {

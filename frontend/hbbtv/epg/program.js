@@ -2,8 +2,8 @@ var MINUTE_WIDTH = 6;
 var PROGRAM_MARGIN_WIDTH = 1;
 var PROGRAM_BORDER_THICKNESS = 1;
 
-/********* Program ***********/
-function Program(programdata, element_id, channelObject) {
+/********* EPGProgram ***********/
+function EPGProgram(programdata, element_id, channelObject) {
   this.element_id = element_id;
   this.init(programdata);
   this.visible = false;
@@ -15,7 +15,7 @@ function Program(programdata, element_id, channelObject) {
   };
 }
 
-Program.prototype.init = function (programdata) {
+EPGProgram.prototype.init = function (programdata) {
   for (var field in programdata) {
     this[field] = programdata[field];
   }
@@ -25,7 +25,7 @@ Program.prototype.init = function (programdata) {
   }
 };
 
-Program.prototype.getTitle = function () {
+EPGProgram.prototype.getTitle = function () {
   if (this.titles.length == 1) {
     return this.titles[0].text;
   } else if (this.titles.length > 1) {
@@ -46,7 +46,7 @@ Program.prototype.getTitle = function () {
   return "";
 };
 
-Program.prototype.getAltTitle = function () {
+EPGProgram.prototype.getAltTitle = function () {
   if (this.titles.length == 1) {
     return this.titles[0].text;
   } else if (this.titles.length > 1) {
@@ -67,7 +67,7 @@ Program.prototype.getAltTitle = function () {
   return "";
 };
 
-Program.prototype.getSynopsisText = function () {
+EPGProgram.prototype.getSynopsisText = function () {
   if (this.descriptions.length == 1) {
     return this.descriptions[0].text;
   } else if (this.descriptions.length > 1) {
@@ -88,7 +88,7 @@ Program.prototype.getSynopsisText = function () {
   return "No description";
 };
 
-Program.prototype.populate = function () {
+EPGProgram.prototype.populate = function () {
   var self = this;
 
   self.element = document.getElementById(self.element_id);
@@ -138,7 +138,7 @@ Program.prototype.populate = function () {
   self.element.style.width = programwidth + "px";
 };
 
-Program.prototype.handleStarOver = function (restartOK) {
+EPGProgram.prototype.handleStarOver = function (restartOK) {
   var self = this;
   if (restartOK) {
     var green = document.createElement("div");
@@ -158,7 +158,7 @@ Program.prototype.handleStarOver = function (restartOK) {
   }
 };
 
-Program.prototype.setFocus = function () {
+EPGProgram.prototype.setFocus = function () {
   try {
     var self = this;
 
@@ -180,7 +180,7 @@ Program.prototype.setFocus = function () {
   }
 };
 
-Program.prototype.fadeOutScroll = function () {
+EPGProgram.prototype.fadeOutScroll = function () {
   var self = this;
 
   if (_epg_.activeItem != null && self == _epg_.activeItem) {
@@ -191,15 +191,15 @@ Program.prototype.fadeOutScroll = function () {
   }
 };
 
-Program.prototype.unFocus = function () {
+EPGProgram.prototype.unFocus = function () {
   var self = this;
 };
 
-Program.prototype.now = function () {
+EPGProgram.prototype.now = function () {
   return this.start_date_obj <= curTime && curTime <= this.end_date_obj;
 };
 
-Program.prototype.setTimeClass = function () {
+EPGProgram.prototype.setTimeClass = function () {
   this.element.removeClass("passed");
   this.element.removeClass("now");
   this.element.removeClass("upcoming");
@@ -212,14 +212,14 @@ Program.prototype.setTimeClass = function () {
   }
 };
 
-Program.prototype.overlaps = function (otherProgram) {
-  if (otherProgram instanceof Program) {
+EPGProgram.prototype.overlaps = function (otherProgram) {
+  if (otherProgram instanceof EPGProgram) {
     return this.start_date_obj >= otherProgram.start_date_obj && this.end_date_obj <= otherProgram.end_date_obj;
   }
   return false;
 };
 
-Program.prototype.getLongDescription = function () {
+EPGProgram.prototype.getLongDescription = function () {
   var defaultDesc = null;
   for (var i = 0; i < this.descriptions.length; i++) {
     if (this.descriptions[i].lang == languages.ui_language && this.descriptions[i].textLength == "long") {
