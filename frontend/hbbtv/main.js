@@ -313,7 +313,8 @@ function createMenu(services, currentChannel, channelList) {
         chan.serviceInstances.push({ dvbChannel: dvbChannel });
         chan.dvbChannel = dvbChannel;
         chan.lcn = number++;
-        var channel_obj = new EPGChannel(chan, "menuitem" + (k + services.services.length));
+        var channel_obj = new Channel();
+        channel_obj.init(chan, "menuitem" + (k + services.services.length));
         for (var b = 0; b < channel_obj.boxes.length; b++) {
           channel_obj.boxes[b].description = "";
           break;
