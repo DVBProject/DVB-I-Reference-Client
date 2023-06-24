@@ -10,7 +10,7 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>INSTALL--LOCATION/backend/schedule.php</URI>
+      <URI>INSTALL~~LOCATION/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
   </ContentGuideSource>
   <Service version="1">
@@ -24,7 +24,7 @@
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>INSTALL--LOCATION/drm/manifest.mpd</URI>
+          <URI>INSTALL~~LOCATION/drm/manifest.mpd</URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -37,7 +37,7 @@
      <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
       <MediaLocator>
-        <tva:MediaUri contentType="application/xhtml+xml">INSTALL--LOCATION/linked_applications/android_drm_widevine.html</tva:MediaUri>
+        <tva:MediaUri contentType="application/xhtml+xml">INSTALL~~LOCATION/linked_applications/android_drm_widevine.html</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
       <ContentProtection>
@@ -61,7 +61,7 @@
       <RelatedMaterial>
        <HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
        <MediaLocator>
-        <tva:MediaUri contentType="application/vnd.dvb.ait+xml">INSTALL--LOCATION/linked_applications/hbbtv_playready_aitx.php</tva:MediaUri>
+        <tva:MediaUri contentType="application/vnd.dvb.ait+xml">INSTALL~~LOCATION/linked_applications/hbbtv_playready_aitx.php</tva:MediaUri>
        </MediaLocator>
       </RelatedMaterial>
       <ContentProtection>
