@@ -4,6 +4,21 @@ Project consists of a backend and frontend parts.
 
 Backend allows generation and editing of DVB-I service lists and generates mockup TV Anytime programme information to be used in the EPG.
 
+## Getting Started
+
+Welcome to DVB's open source HTML5 reference client implementation of DVB-I.
+
+- If you are looking for more information on what DVB-I is and how it can help, please see [here](https://dvb-i.tv/).
+- If you are looking for a DVB-I client for Android phones and tablets, please see [here](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/). Note this is a Persistent Web App and you can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app on your device.
+- If you are looking for a DVB-I client for regular HbbTV TV sets, please download the transport stream from [here](https://github.com/DVBProject/DVB-I-Reference-Client#operator-application-package) and play it into your TV set. The password is "dvbi2023ts". Note this has limitations as it's a regular HbbTV application. A version packaged as an HbbTV operator application has fewer limitations - please see the instructions [here](https://github.com/DVBProject/DVB-I-Reference-Client#operator-application-package).
+- If you are looking for a generic HTML5 DVB-I client (e.g. for desktop PCs), please see [here](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html).
+- If you are looking for a DVB-I client for iOS devices, the generic HTML5 client should work on iPads. DVB's reference client relies on features not yet supported on iPhones. For iPhones please [join the DVB-I Forum discord server](https://discord.gg/2jhVnDqQ3U) and ask there.
+- If you are looking for a DVB-I client for Smart TVs excluding HbbTV and have a way to directly enter URLs, the generic HTML5 client may work. This is not a supported configuration.
+- For bug reports, feature requests and pull requests for this DVB-I reference client, please use the regular features of github.
+- For anything else relating to DVB-I and DVB-I clients, please [join the DVB-I Forum discord server](https://discord.gg/2jhVnDqQ3U) and ask there.
+
+Features common to most versions are service list navigation, selection/tuning of services, an info banner on changing service and a simple EPG.
+
 ## Frontend
 
 The frontend is a HbbTV OpApp implementation of a DVB-I compatible Client.
