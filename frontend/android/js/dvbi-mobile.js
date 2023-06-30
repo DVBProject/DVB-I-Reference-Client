@@ -15,6 +15,7 @@ var pinSuccessCallback = null;
 var pinFailureCallback = null;
 var serviceList = null;
 var language_settings = null;
+var modalClosedCallback = null;
 
 //TODO use MSE-EME to determine actual DRM support, although
 //support also depends on the audio and video codecs.
@@ -30,9 +31,7 @@ function channelSelected(channelId) {
       break;
     }
   }
-  if (newChannel == selectedChannel) {
-    return;
-  } else if (!newChannel) {
+  if (!newChannel) {
     return;
   }
   if (newChannel.serviceInstances.length == 0) {
@@ -76,13 +75,35 @@ window.onload = function () {
     language_settings.ui_language = DEFAULT_LANGUAGE;
     i18n.loadLanguage(DEFAULT_LANGUAGE, updateUILanguage);
   }
+  var paramList = getUrlParameter("servicelist");
   var serviceList = getLocalStorage("servicelist");
-  if (serviceList) {
+  if (paramList) {
+    paramList = decodeURIComponent(paramList);
+    showModalDialog(
+      "<img src='images/icons-128.png'/><br/>" +
+        "Welcome to the DVB Project's DVB-I reference application.<br/>" +
+        "You are using " +
+        paramList +
+        "<br/>" +
+        "You can select another service list from the settings.",
+      function () {
+        listSelected(paramList);
+      }
+    );
+  } else if (serviceList) {
     listSelected(serviceList);
   } else {
-    $("#settings").show();
-    showSettings("servicelist_registry");
-    loadServicelistProviders(PROVIDER_LIST, true);
+    showModalDialog(
+      "<img src='images/icons-128.png'/><br/>" +
+        "Welcome to the DVB Project's DVB-I reference application.<br/>" +
+        "You have no service list selected.<br/>" +
+        "After clicking ok, please select a service list from the list",
+      function () {
+        $("#settings").show();
+        showSettings("servicelist_registry");
+        loadServicelistProviders(PROVIDER_LIST, true);
+      }
+    );
   }
   uiHideTimeout = setTimeout(hideUI, 5000);
   $(".video_wrapper").on("click touchstart", resetHideTimeout);
@@ -258,7 +279,14 @@ function loadServicelist(list) {
       }
     },
     "text"
-  );
+  ).fail(function () {
+    $("#notification").text("Error loading service list. You can select a new service list from the settings.");
+    $("#notification").show();
+    setTimeout(function () {
+      $("#notification").hide();
+    }, 5000);
+    return;
+  });
 }
 
 function serviceListSelected() {
@@ -278,6 +306,7 @@ function serviceListSelected() {
   channels.sort(compareLCN);
   populate();
   epg = new EPG(channels);
+  channelSelected(channels[0].id);
 }
 
 function selectRegion() {
@@ -782,5 +811,19 @@ function togglePause() {
 
     $("#pause").hide();
     $("#play").show();
+  }
+}
+
+function showModalDialog(text, callBack) {
+  modalClosedCallback = callBack;
+  $("#modal_content").html(text);
+  $("#modal").show();
+}
+
+function modalClosed() {
+  $("#modal").hide();
+  if (modalClosedCallback && typeof modalClosedCallback == "function") {
+    modalClosedCallback.call();
+    modalClosedCallback = null;
   }
 }
