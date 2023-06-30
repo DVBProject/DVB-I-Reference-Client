@@ -7,18 +7,21 @@
       <LCN channelNumber="647" serviceRef="tag:dvb.org,2020:sid1"/>
       <LCN channelNumber="11" serviceRef="tag:dvb.org,2020:sid2"/>
       <LCN channelNumber="4" serviceRef="tag:dvb.org,2020:sid3"/>
-      <LCN channelNumber="8" serviceRef="tag:dvb.org,2020:sid5"/>
-      <LCN channelNumber="12" serviceRef="tag:dvb.org,2020:sid6"/>
-      <LCN channelNumber="34" serviceRef="tag:dvb.org,2020:sid7"/>
-      <LCN channelNumber="324" serviceRef="tag:dvb.org,2020:sid8"/>
-      <LCN channelNumber="642" serviceRef="tag:dvb.org,2020:sid9"/>
-      <LCN channelNumber="640" serviceRef="tag:dvb.org,2020:sid10"/>
-      <LCN channelNumber="641" serviceRef="tag:dvb.org,2020:sid11"/>
-      <LCN channelNumber="643" serviceRef="tag:dvb.org,2020:sid12"/>
-      <LCN channelNumber="644" serviceRef="tag:dvb.org,2020:sid13"/>
-      <LCN channelNumber="645" serviceRef="tag:dvb.org,2020:sid14"/>
-      <LCN channelNumber="5" serviceRef="tag:dvb.org,2020:sid16"/>
-      <LCN channelNumber="6" serviceRef="tag:dvb.org,2020:sid17"/>
+<!--      <LCN channelNumber="8" serviceRef="tag:dvb.org,2020:sid5"/> -->
+<!--      <LCN channelNumber="12" serviceRef="tag:dvb.org,2020:sid6"/> -->
+<!--      <LCN channelNumber="34" serviceRef="tag:dvb.org,2020:sid7"/> -->
+<!--      <LCN channelNumber="324" serviceRef="tag:dvb.org,2020:sid8"/> -->
+<!--      <LCN channelNumber="642" serviceRef="tag:dvb.org,2020:sid9"/> -->
+<!--      <LCN channelNumber="640" serviceRef="tag:dvb.org,2020:sid10"/> -->
+<!--      <LCN channelNumber="641" serviceRef="tag:dvb.org,2020:sid11"/> -->
+<!--      <LCN channelNumber="643" serviceRef="tag:dvb.org,2020:sid12"/> -->
+<!--      <LCN channelNumber="644" serviceRef="tag:dvb.org,2020:sid13"/> -->
+<!--      <LCN channelNumber="645" serviceRef="tag:dvb.org,2020:sid14"/>-->
+<!--      <LCN channelNumber="5" serviceRef="tag:dvb.org,2020:sid16"/> -->
+<!--      <LCN channelNumber="6" serviceRef="tag:dvb.org,2020:sid17"/> -->
+      <LCN channelNumber="647" serviceRef="tag:dvb.org,2020:sid15"/>
+      <LCN channelNumber="648" serviceRef="tag:dvb.org,2020:sid18"/>
+
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
@@ -74,7 +77,7 @@
     <ProviderName>IRT</ProviderName>
     <ContentGuideServiceRef>cgsid_3</ContentGuideServiceRef>
   </Service>
-  <Service version="1">
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid5</UniqueIdentifier>
     <ServiceInstance priority="2">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -94,8 +97,8 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_5</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid6</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -114,8 +117,8 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_6</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid7</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -134,8 +137,8 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_7</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+ <!-- <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid8</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -154,8 +157,8 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_8</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid9</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -174,8 +177,8 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_9</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid10</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -194,8 +197,8 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_10</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid11</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -214,8 +217,8 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_11</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid12</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -234,8 +237,8 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_12</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid13</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -254,8 +257,8 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_13</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid14</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -274,7 +277,7 @@
       </MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
-  </Service>
+  </Service> -->
   <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid15</UniqueIdentifier>
     <ServiceInstance priority="2">
@@ -373,7 +376,7 @@
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
   </Service>
-  <Service version="1">
+  <!-- <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid16</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -386,8 +389,8 @@
     <ServiceName>DVB EBU DASH</ServiceName>
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_16</ContentGuideServiceRef>
-  </Service>
-  <Service version="1">
+  </Service> -->
+<!--  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid17</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
@@ -400,7 +403,7 @@
     <ServiceName>DVB EBU Low latency DASH</ServiceName>
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_17</ContentGuideServiceRef>
-  </Service>
+  </Service> -->
   <Service version="11">
     <UniqueIdentifier>tag:dvb.org,2020:sid18</UniqueIdentifier>
     <ServiceInstance priority="1">

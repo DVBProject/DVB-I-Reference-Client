@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="45" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd">
-  <Name>DVB-I Reference app rev.1 example</Name>
+  <Name>DVB-I Reference app availability example</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
     <LCNTable>
@@ -11,13 +11,13 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>INSTALL--LOCATION/backend/schedule.php</URI>
+      <URI>INSTAL~~LOCATION/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
     <ProgramInfoEndpoint contentType="application/xml">
-      <URI>INSTALL--LOCATION/backend/program_information.php</URI>
+      <URI>INSTALL~~LOCATION/backend/program_information.php</URI>
     </ProgramInfoEndpoint>
     <MoreEpisodesEndpoint contentType="application/xml">
-      <URI>INSTALL--LOCATION/backend/more_episodes.php</URI>
+      <URI>INSTALL~~LOCATION/backend/more_episodes.php</URI>
     </MoreEpisodesEndpoint>
   </ContentGuideSource>
   <Service version="1">
@@ -41,7 +41,7 @@
     <RelatedMaterial>
       <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1000.1"></HowRelated>
       <MediaLocator>
-        <tva:MediaUri contentType="image/png">INSTALL--LOCATION/backend/channel_icons/outofservice_example.png</tva:MediaUri>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/outofservice_example.png</tva:MediaUri>
       </MediaLocator>
     </RelatedMaterial>
     <ServiceType href="urn:dvb:metadata:cs:ServiceTypeCS:2019:linear"></ServiceType>
