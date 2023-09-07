@@ -45,6 +45,10 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
     howRelatedNamespace = "urn:dvb:metadata:servicediscovery:2020";
     howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2020:";
   }
+  if (ns == "urn:dvb:metadata:servicediscovery:2022b") {
+    howRelatedNamespace = "urn:dvb:metadata:servicediscovery:2022b";
+    howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2020:";
+  }
   var services = getChildElements(doc.documentElement, "Service");
 
   var contentGuides = [];
