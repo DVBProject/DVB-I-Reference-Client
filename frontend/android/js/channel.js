@@ -7,14 +7,14 @@ Channel.prototype.getNowNext = function (callback) {
         var now_next = {};
         var newPrograms = self.parseSchedule(data);
         if (newPrograms.length > 0) {
-          var program = new Program(newPrograms[0], this.element_id + "_program_" + 0, this);
+          var program = new Program(newPrograms[0], this.element_id + "_program_" + 0, self);
           program.bilingual = this.bilingual;
           program.channelimage = this.image;
           program.channel_streamurl = this.streamurl;
           now_next["now"] = program;
         }
         if (newPrograms.length > 1) {
-          var program = new Program(newPrograms[1], this.element_id + "_program_" + 0, this);
+          var program = new Program(newPrograms[1], this.element_id + "_program_" + 0, self);
           program.bilingual = this.bilingual;
           program.channelimage = this.image;
           program.channel_streamurl = this.streamurl;
@@ -41,7 +41,7 @@ Channel.prototype.getSchedule = function (callback) {
         var programData = self.parseSchedule(data);
         self.programs = [];
         for (var i = 0; i < programData.length; i++) {
-          var program2 = new Program(programData[i], this.element_id + "_program_" + i, this);
+          var program2 = new Program(programData[i], this.element_id + "_program_" + i, self);
           program2.bilingual = this.bilingual;
           program2.channelimage = this.image;
           program2.channel_streamurl = this.streamurl;
