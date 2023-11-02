@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sld:ServiceListEntryPoints xmlns:sld="urn:dvb:metadata:servicelistdiscovery:2019" xmlns:dvbisd="urn:dvb:metadata:servicediscovery:2019" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicelistdiscovery:2019 dvbi_service_list_discovery_v1.0.xsd">
+<sld:ServiceListEntryPoints xml:lang="en" xmlns:sld="urn:dvb:metadata:servicelistdiscovery:2023" xmlns:dvbisd="urn:dvb:metadata:servicediscovery:2023" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicelistdiscovery:2023 dvbi_service_list_discovery_v1.5.xsd">
 	<sld:ServiceListRegistryEntity regulatorFlag="false">
 		<mpeg7:Icon>
 			<mpeg7:MediaUri>http://dvb.org/img/f/dvb-logo.png</mpeg7:MediaUri>
@@ -42,6 +42,10 @@
 					https://www.satip.info/sites/satip/files/files/ASTRA_19_2_E.xml
 				</dvbisd:URI>
 			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+				<sld:DVBTDelivery/>
+			</sld:Delivery>
 			<sld:TargetCountry>DEU</sld:TargetCountry>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering>
@@ -51,6 +55,8 @@
 					https://www.satip.info/sites/satip/files/files/ASTRA_28_2_E.xml
 				</dvbisd:URI>
 			</sld:ServiceListURI>
+			<sld:Delivery>
+			</sld:Delivery>
 			<sld:TargetCountry>GBR</sld:TargetCountry>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
@@ -74,30 +80,40 @@
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example.xml</dvbisd:URI>
 			</sld:ServiceListURI>
+			<sld:Delivery>
+			</sld:Delivery>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
     <sld:ServiceListName>DVB-I Reference Client Availability service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example_rev1.xml</dvbisd:URI>
 			</sld:ServiceListURI>
+			<sld:Delivery>
+			</sld:Delivery>
 		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
 		<sld:ServiceListName>DVB-I Reference Client DRM service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=drm.xml</dvbisd:URI>
 			</sld:ServiceListURI>
+			<sld:Delivery>
+			</sld:Delivery>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
 		  <sld:ServiceListName>DVB-DASH Reference Streams</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=TM-STREAM0075r1 DVB-DASH_Reference_Streams.xml</dvbisd:URI>
 			</sld:ServiceListURI>
+			<sld:Delivery>
+			</sld:Delivery>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
 		  <sld:ServiceListName>Next generation codecs service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=advanced_codecs.xml</dvbisd:URI>
 			</sld:ServiceListURI>
+			<sld:Delivery>
+			</sld:Delivery>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
 </sld:ServiceListEntryPoints>
