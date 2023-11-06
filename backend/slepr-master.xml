@@ -56,6 +56,7 @@
 				</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
+				<sld:DVBSDelivery/>
 			</sld:Delivery>
 			<sld:TargetCountry>GBR</sld:TargetCountry>
 		</sld:ServiceListOffering>
@@ -81,6 +82,7 @@
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
+				<sld:DASHDelivery/>
 			</sld:Delivery>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
@@ -89,6 +91,7 @@
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example_rev1.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
+				<sld:DASHDelivery/>
 			</sld:Delivery>
 		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
@@ -97,6 +100,7 @@
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=drm.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
+				<sld:DASHDelivery/>
 			</sld:Delivery>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
@@ -105,6 +109,7 @@
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=TM-STREAM0075r1 DVB-DASH_Reference_Streams.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
+				<sld:DASHDelivery/>
 			</sld:Delivery>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
@@ -113,6 +118,7 @@
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=advanced_codecs.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
+				<sld:DASHDelivery/>
 			</sld:Delivery>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
