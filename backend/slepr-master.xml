@@ -56,7 +56,9 @@
 				</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
-				<sld:DVBSDelivery/>
+				<sld:DVBSDelivery>
+					<sld:OrbitalPosition>28.2</sld:OrbitalPosition>
+				</sld:DVBSDelivery>
 			</sld:Delivery>
 			<sld:TargetCountry>GBR</sld:TargetCountry>
 		</sld:ServiceListOffering>
