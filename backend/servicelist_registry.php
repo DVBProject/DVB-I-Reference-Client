@@ -131,6 +131,52 @@ if(isset( $_GET['TargetCountry'])) {
     }
 }
 
+
+if(isset( $_GET['Delivery'])) {
+    $types = array("dvb-dash" => array("DASHDelivery"),"dvb-t" => array("DVBTDelivery"),"dvb-c" => array("DVBCDelivery"),"dvb-s" => array("DVBSDelivery"),"dvb-iptv" => array("MulticastTSDelivery","RTSPDelivery"), "application" => array("ApplicationDelivery"));
+
+    $delivery = $_GET['Delivery'];
+    if(!is_array($delivery)) {
+        $delivery = array($delivery);
+    }
+    $deliveryElements = array();
+    for($h =0; $h < count($delivery);$h++) {
+        if(array_key_exists($delivery[$h],$types)) {
+            $deliveryElements = array_merge($deliveryElements,$types[$delivery[$h]]);
+        }
+    }
+    for($i = 0; $i < count($entries->ProviderOffering);$i++) {
+        for($j = 0; $j < count($entries->ProviderOffering[$i]->ServiceListOffering);$j++) {
+            //Delivery element is mandatory
+            if( count($entries->ProviderOffering[$i]->ServiceListOffering[$j]->Delivery) > 0) {
+                $keep = false;
+                $deliveryList = $entries->ProviderOffering[$i]->ServiceListOffering[$j]->Delivery[0];
+                foreach ($deliveryList->children("urn:dvb:metadata:servicelistdiscovery:2023") as $child)
+                {
+                    for($l =0; $l < count($deliveryElements);$l++) {
+                        if($deliveryElements[$l] == $child->getName()) {
+                            $keep = true;
+                            break;
+                        }
+                    }
+                }
+                if($keep) {
+                    break;
+                }
+
+                if(!$keep) {
+                    unset($entries->ProviderOffering[$i]->ServiceListOffering[$j]);
+                    $j--;
+                }
+            }
+        }
+        if(count($entries->ProviderOffering[$i]->ServiceListOffering) == 0) {
+            unset($entries->ProviderOffering[$i]);
+            $i--;
+        }
+    }
+}
+
 $processed_list =str_replace("INSTALL~~LOCATION",$install_location,$list->asXML());
 
 echo $processed_list;
