@@ -396,8 +396,13 @@ function filterServiceLists() {
   var genre = $("#genre").val().split(",");
   var targetCountry = $("#country").val().split(",");
   var regulatorListFlag = $("#regulator").is(":checked");
+  var delivery = $(".delivery:checked")
+    .map(function (i, e) {
+      return e.value;
+    })
+    .toArray();
   loadServicelistProviders(
-    generateServiceListQuery(PROVIDER_LIST, providers, language, genre, targetCountry, regulatorListFlag)
+    generateServiceListQuery(PROVIDER_LIST, providers, language, genre, targetCountry, regulatorListFlag, delivery)
   );
 }
 

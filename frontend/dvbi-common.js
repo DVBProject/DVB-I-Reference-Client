@@ -619,7 +619,7 @@ function getChildElements(parent, tagName) {
   return elements;
 }
 
-function generateServiceListQuery(baseurl, providers, language, genre, targetCountry, regulatorListFlag) {
+function generateServiceListQuery(baseurl, providers, language, genre, targetCountry, regulatorListFlag, delivery) {
   var query = baseurl;
   var parameters = [],
     i;
@@ -661,6 +661,16 @@ function generateServiceListQuery(baseurl, providers, language, genre, targetCou
     }
   } else if (targetCountry != null && targetCountry !== "") {
     parameters.push("TargetCountry=" + targetCountry);
+  }
+
+  if (Array.isArray(delivery) && delivery.length > 0) {
+    for (i = 0; i < delivery.length; i++) {
+      if (delivery[i] !== "") {
+        parameters.push("Delivery[]=" + delivery[i]);
+      }
+    }
+  } else if (delivery != null && delivery !== "") {
+    parameters.push("Delivery=" + delivery);
   }
 
   if (regulatorListFlag === true) {
