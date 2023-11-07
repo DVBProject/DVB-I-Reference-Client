@@ -69,14 +69,15 @@ if(isset( $_GET['Language'])) {
 if(isset( $_GET['Genre'])) {
     $genre = $_GET['Genre'];
     if(!is_array($genre)) {
-        $targetcountry = array($targetcountry);
+        $genre = array($genre);
     }
+    $attr = 'href';
     for($i = 0; $i < count($entries->ProviderOffering);$i++) {
         for($j = 0; $j < count($entries->ProviderOffering[$i]->ServiceListOffering);$j++) {
             $keep = false;
-            for($k = 0; $k < count($entries->ProviderOffering[$i]->ServiceListOffering[$j]->TargetCountry);$k++) {
-                for($l =0; $l < count($targetcountry);$l++) {
-                    if(strpos($entries->ProviderOffering[$i]->ServiceListOffering[$j]->TargetCountry[$k],$targetcountry[$l]) !== false) {
+            for($k = 0; $k < count($entries->ProviderOffering[$i]->ServiceListOffering[$j]->Genre);$k++) {
+                for($l =0; $l < count($genre);$l++) {
+                    if(strpos($entries->ProviderOffering[$i]->ServiceListOffering[$j]->Genre[$k]->attributes()->$attr,$genre[$l]) !== false) {
                         $keep = true;
                         break;
                     }
