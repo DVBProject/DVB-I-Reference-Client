@@ -28,7 +28,7 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>https://devel.sofiadigital.fi/home/tomi.sarparanta/dvb-i-reference-application/backend/schedule.php</URI>
+      <URI>INSTALL~~LOCATION/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
     <ProgramInfoEndpoint contentType="application/xml">
       <URI>INSTALL~~LOCATION/backend/program_information.php</URI>
