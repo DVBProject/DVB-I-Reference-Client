@@ -195,6 +195,7 @@ Channel.prototype.channelSelected = function () {
     if (mediaPresentationApp) {
       window.location = mediaPresentationApp;
     } else if (self.isProgramAllowed()) {
+      $("#parentalpin").hide();
       if (self.serviceInstance) {
         player.attachSource(self.serviceInstance.dashUrl);
       }
@@ -234,6 +235,7 @@ Channel.prototype.programChanged = function () {
     self.updateChannelInfo();
     var serviceInstance = self.getServiceInstance();
     if (self.isProgramAllowed()) {
+      $("#parentalpin").hide();
       $("#notification").hide();
       try {
         if (player.getSource() != serviceInstance.dashUrl) {
@@ -458,6 +460,7 @@ Channel.prototype.parentalRatingChanged = function (callback) {
   var self = this;
   var serviceInstance = self.getServiceInstance();
   if (self.isProgramAllowed()) {
+    $("#parentalpin").hide();
     $("#notification").hide();
     try {
       if (player.getSource() != serviceInstance.dashUrl) {
