@@ -21,13 +21,14 @@
 <!--      <LCN channelNumber="6" serviceRef="tag:dvb.org,2020:sid17"/> -->
       <LCN channelNumber="647" serviceRef="tag:dvb.org,2020:sid15"/>
       <LCN channelNumber="648" serviceRef="tag:dvb.org,2020:sid18"/>
+      <LCN channelNumber="649" serviceRef="tag:dvb-i-referenceapp,2023:Parental-1"/>
 
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>INSTALL~~LOCATION/backend/schedule.php</URI>
+      <URI>https://devel.sofiadigital.fi/home/tomi.sarparanta/dvb-i-reference-application/backend/schedule.php</URI>
     </ScheduleInfoEndpoint>
     <ProgramInfoEndpoint contentType="application/xml">
       <URI>INSTALL~~LOCATION/backend/program_information.php</URI>
@@ -417,4 +418,17 @@
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_4</ContentGuideServiceRef>
   </Service>
+  <Service version="1">
+    <UniqueIdentifier>tag:dvb-i-referenceapp,2023:Parental-1</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>Parental rating service 2</ServiceName>
+    <ProviderName>DVB</ProviderName>
+  </Service>
+
 </ServiceList>

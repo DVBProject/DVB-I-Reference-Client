@@ -68,16 +68,15 @@ else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sid']) ){
 
 function getNowNext( $sid ) {
     global $timeformat;
-    $sid = str_replace(":","_",$sid);
-    if (strpos($sid, '/') !== false || strpos($sid, '..') !== false || file_exists("./schedule_templates/".$sid.".xml") === false) {
+    $sid_file = str_replace(":","_",$sid);
+    if (strpos($sid_file, '/') !== false || strpos($sid_file, '..') !== false || file_exists("./schedule_templates/".$sid_file.".xml") === false) {
         return NULL;
     }
     $dateformat = "Y-m-d";
     $current_time = time();
-    $schedule_str= file_get_contents("./schedule_templates/".$sid.".xml");
+    $schedule_str= file_get_contents("./schedule_templates/".$sid_file.".xml");
     $schedule_str =str_replace( "DATE_TEMPLATE",date($dateformat,$current_time),$schedule_str);
     $schedule = new SimpleXMLElement($schedule_str);
-    $next = NULL;
     $next = NULL;
     for($i = 0; $i < count($schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent);$i++) {
         $event = $schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent[$i];
@@ -163,14 +162,14 @@ function getNowNext( $sid ) {
 
 function getSchdeule( $sid,$start,$end ) {
     global $timeformat;
-    $sid = str_replace(":","_",$sid);
-    if (is_int($start) === false || is_int($end) === false || strpos($sid, '/') !== false || strpos($sid, '..') !== false || file_exists("./schedule_templates/".$sid.".xml") === false) {
+    $sid_file = str_replace(":","_",$sid);
+    if (is_int($start) === false || is_int($end) === false || strpos($sid_file, '/') !== false || strpos($sid_file, '..') !== false || file_exists("./schedule_templates/".$sid_file.".xml") === false) {
         return NULL;
     }
 
     $dateformat = "Y-m-d";
     $current_time = $start;
-    $schedule_str= file_get_contents("./schedule_templates/".$sid.".xml");
+    $schedule_str= file_get_contents("./schedule_templates/".$sid_file.".xml");
     $schedule_str =str_replace( "DATE_TEMPLATE",date($dateformat,$current_time),$schedule_str);
     $schedule = New Simplexmlelement($schedule_str);
     $programs = array();
@@ -197,7 +196,7 @@ function getSchdeule( $sid,$start,$end ) {
         $previous_count = count($programs);
         if($end_reached == false) {
             $current_time += 24*60*60;
-            $schedule_str= file_get_contents("./schedule_templates/".$sid.".xml");
+            $schedule_str= file_get_contents("./schedule_templates/".$sid_file.".xml");
             $schedule_str =str_replace( "DATE_TEMPLATE",date($dateformat,$current_time),$schedule_str);
             $schedule = New Simplexmlelement($schedule_str);
         }
