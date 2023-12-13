@@ -134,6 +134,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
       lcnTable.defaultRegion = false;
     } else {
       lcnTable.defaultRegion = true;
+      lcnList = lcnTables[i].getElementsByTagName("LCN");
     }
     var lcnList2 = lcnTables[i].getElementsByTagName("LCN");
     for (j = 0; j < lcnList2.length; j++) {
@@ -558,11 +559,15 @@ function selectServiceListRegion(serviceList, regionId) {
     i,
     j;
   var defaultName = "!" + i18n.getString("default_region") + "!";
+  var defaultTable = null;
   for (i = 0; i < serviceList.lcnTables.length; i++) {
     var table = serviceList.lcnTables[i];
-    if (regionId == defaultName && table.defaultRegion == true) {
-      lcnTable = table;
-      break;
+    if (table.defaultRegion == true) {
+      if (regionId == defaultName) {
+        lcnTable = table;
+        break;
+      }
+      defaultTable = table;
     }
     if (table.hasOwnProperty("targetRegions")) {
       for (j = 0; j < table.targetRegions.length; j++) {
@@ -577,7 +582,10 @@ function selectServiceListRegion(serviceList, regionId) {
     }
   }
   if (lcnTable == null) {
-    throw "No LCN table found";
+    if (defaultTable == null) {
+      throw "No LCN table found";
+    }
+    lcnTable = defaultTable;
   }
   var validServices = [];
   var unallocatedLCN = First_undeclared_channel;
