@@ -212,15 +212,27 @@ function selectRegion(serviceList, currentChannel, channelList) {
       buttons.push(serviceList.regions[i].regionName);
     }
   }
+  for (var j = 0; j < serviceList.lcnTables.length; j++) {
+    var table = serviceList.lcnTables[j];
+    if (table.defaultRegion == true) {
+      var label = i18n.getString("default_region");
+      console.log("default_region", label);
+      buttons.push(label);
+    }
+  }
   var selected = null;
   showDialog(
-    null,
+    "Select region",
     buttons,
     null,
     null,
     function (checked) {
-      setLocalStorage("region", serviceList.regions[checked].regionID);
-      selectServiceListRegion(serviceList, serviceList.regions[checked].regionID);
+      if (checked >= serviceList.regions.length) {
+        getLocalStorage("region", true);
+      } else {
+        setLocalStorage("region", serviceList.regions[checked].regionID);
+        selectServiceListRegion(serviceList, serviceList.regions[checked].regionID);
+      }
       createMenu(serviceList, currentChannel, channelList);
       $("#dialog").html("");
       $("#dialog").removeClass("show");
