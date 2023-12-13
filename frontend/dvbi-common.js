@@ -98,19 +98,20 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
     var regions = getChildElements(regionList[0], "Region");
     for (i = 0; i < regions.length; i++) {
       var regionElement = regions[i];
-      serviceList.regions.push(parseRegion(regionElement));
+      var counrtyRegion = parseRegion(regionElement);
+      serviceList.regions.push(counrtyRegion);
       var primaryRegions = getChildElements(regionElement, "Region");
       for (j = 0; j < primaryRegions.length; j++) {
         var regionElement2 = primaryRegions[j];
-        serviceList.regions.push(parseRegion(regionElement2));
+        serviceList.regions.push(parseRegion(regionElement2, counrtyRegion.countryCodes));
         var secondaryRegions = getChildElements(regionElement2, "Region");
         for (k = 0; k < secondaryRegions.length; k++) {
           var regionElement3 = secondaryRegions[k];
-          serviceList.regions.push(parseRegion(regionElement3));
+          serviceList.regions.push(parseRegion(regionElement3, counrtyRegion.countryCodes));
           var tertiaryRegions = getChildElements(regionElement3, "Region");
           for (l = 0; l < tertiaryRegions.length; l++) {
             var regionElement4 = tertiaryRegions[l];
-            serviceList.regions.push(parseRegion(regionElement4));
+            serviceList.regions.push(parseRegion(regionElement4, counrtyRegion.countryCodes));
           }
         }
       }
@@ -436,10 +437,14 @@ function getText(element) {
   return text;
 }
 
-function parseRegion(regionElement) {
+function parseRegion(regionElement, countryCodes) {
   var region = {},
     j;
-  region.countryCodes = regionElement.getAttribute("countryCodes");
+  if (!countryCodes) {
+    region.countryCodes = regionElement.getAttribute("countryCodes");
+  } else {
+    region.countryCodes = countryCodes;
+  }
   region.regionID = regionElement.getAttribute("regionID");
   var names = getChildElements(regionElement, "RegionName");
   if (names.length == 1) {
