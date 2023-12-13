@@ -18,7 +18,6 @@ var menuOffset;
 var analogClock;
 var progressWidth = 0;
 var progressOpenWidth = 0;
-var localizationLangFile = null;
 var minimumAge = 255;
 var parentalEnabled = false;
 var parentalPin = null;
@@ -39,10 +38,7 @@ var _epg_ = null;
 var epgServiceList = null;
 var epg_visible = false;
 
-var lang = "eng";
-if (localizationLangFile != "eng.json") {
-  lang = "alt";
-}
+var lang = "en";
 
 var miniepg = null;
 var _menu_ = null;
@@ -117,7 +113,7 @@ function init() {
   languages = getLocalStorage("languages");
   if (!languages) {
     languages = {};
-    languages.ui_language = "eng";
+    languages.ui_language = "en";
   }
   i18n.loadLanguage(languages.ui_language);
   var serviceList = getLocalStorage("servicelist");
