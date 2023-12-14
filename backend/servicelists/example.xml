@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tva="urn:tva:metadata:2019" version="1" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd">
+<ServiceList xml:lang="en" xmlns="urn:dvb:metadata:servicediscovery:2023" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tva="urn:tva:metadata:2023" version="1" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2023 ../dvbi_v5.0.xsd">
   <Name>DVB-I example service list</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
     <LCNTable>
-      <LCN channelNumber="647" serviceRef="tag:dvb.org,2020:sid1"/>
+      <LCN channelNumber="646" serviceRef="tag:dvb.org,2020:sid1"/>
       <LCN channelNumber="11" serviceRef="tag:dvb.org,2020:sid2"/>
       <LCN channelNumber="4" serviceRef="tag:dvb.org,2020:sid3"/>
 <!--      <LCN channelNumber="8" serviceRef="tag:dvb.org,2020:sid5"/> -->
@@ -40,7 +40,6 @@
   <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid1</UniqueIdentifier>
     <ServiceInstance priority="1">
-      <SourceType>urn:dvb:metadata:source:dvb-t</SourceType>
       <DVBTDeliveryParameters>
         <DVBTriplet origNetId="8916" tsId="4097" serviceId="74"/>
         <TargetCountry>FIN</TargetCountry>
@@ -53,7 +52,6 @@
   <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid2</UniqueIdentifier>
     <ServiceInstance priority="1">
-      <SourceType>urn:dvb:metadata:source:dvb-t</SourceType>
       <DVBTDeliveryParameters>
         <DVBTriplet origNetId="8916" tsId="4097" serviceId="62"/>
         <TargetCountry>FIN</TargetCountry>
@@ -66,14 +64,13 @@
   <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid3</UniqueIdentifier>
     <ServiceInstance priority="1">
-      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
           <URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
-    <ServiceName>IRT test channel</ServiceName>
+    <ServiceName xml:lang="en">IRT test channel</ServiceName>
     <ServiceName xml:lang="zh">IRT测试通道</ServiceName>
     <ProviderName>IRT</ProviderName>
     <ContentGuideServiceRef>cgsid_3</ContentGuideServiceRef>
@@ -282,7 +279,6 @@
   <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid15</UniqueIdentifier>
     <ServiceInstance priority="2">
-      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
           <URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</URI>
@@ -366,7 +362,6 @@
           <Interval startTime="23:40:00Z" endTime="23:50:00Z"/>
         </Period>
       </Availability>
-      <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
           <URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</URI>
