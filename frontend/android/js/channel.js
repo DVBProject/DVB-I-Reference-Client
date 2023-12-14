@@ -89,6 +89,18 @@ Channel.prototype.init = function (init_obj, channel_index) {
     li.classList.add("list-group-item");
     li.id = "channel_" + channel_index;
     var container = document.createElement("div");
+    var ranking = this.getRanking();
+    if (ranking) {
+      if (ranking <= 10) {
+        newTextbox.classList.add("ranking_" + ranking);
+      } else if (ranking <= 100) {
+        newTextbox.classList.add("ranking_100");
+      } else if (ranking <= 1000) {
+        newTextbox.classList.add("ranking_1000");
+      } else {
+        newTextbox.classList.add("ranking_10000");
+      }
+    }
     container.classList.add("d-flex", "justify-content-end");
     container.appendChild(newTextbox);
     if (this.serviceInstances.length == 0) {

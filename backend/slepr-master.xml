@@ -125,5 +125,14 @@
 				<sld:DASHDelivery/>
 			</sld:Delivery>
 		</sld:ServiceListOffering>
+		<sld:ServiceListOffering regulatorListFlag="false">
+		  <sld:ServiceListName>Service prominence list(r5)</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=prominence_r5.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+			</sld:Delivery>
+		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
 </sld:ServiceListEntryPoints>

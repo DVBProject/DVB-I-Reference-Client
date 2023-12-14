@@ -282,3 +282,47 @@ Channel.prototype.getProgramInfo = function (programId, callback) {
     callback.call(null);
   }
 };
+
+Channel.prototype.getRanking = function () {
+  if (!this.prominences || this.prominences.length == 0) {
+    return null;
+  }
+  var region = getLocalStorage("region");
+  var countryList = null;
+  var i = 0;
+  if (region && serviceList && serviceList.regions) {
+    for (i = 0; i < serviceList.regions.length; i++) {
+      if (serviceList.regions[i].regionID === region) {
+        countryList = serviceList.regions[i].countryCodes;
+        break;
+      }
+    }
+  }
+  if (region) {
+    //Region should be unque, no need to check the country
+    for (i = 0; i < this.prominences.length; i++) {
+      if (this.prominences[i].region === region) {
+        return this.prominences[i].ranking;
+      }
+    }
+  }
+  if (countryList) {
+    //no region specific prominence found, try country specific
+    for (i = 0; i < this.prominences.length; i++) {
+      if (
+        this.prominences[i].country &&
+        countryList.indexOf(this.prominences[i].country) != -1 &&
+        !this.prominences[i].region
+      ) {
+        return this.prominences[i].ranking;
+      }
+    }
+  }
+  //general prominence, no country or region specified
+  for (i = 0; i < this.prominences.length; i++) {
+    if (!this.prominences[i].country && !this.prominences[i].region) {
+      return this.prominences[i].ranking;
+    }
+  }
+  return null;
+};

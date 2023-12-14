@@ -250,11 +250,26 @@ Channel.prototype.init = function (init_obj, element_id) {
     if (self.image && self.image.length > 0) {
       innerHtml = '<span class="menuitem_chicon"><img src="' + self.image.replace(/&/g, "&amp;") + '"></img></span>';
     }
+    var ranking = this.getRanking();
+    var rankingClass = "";
+    if (ranking) {
+      if (ranking <= 10) {
+        rankingClass = " ranking_" + ranking;
+      } else if (ranking <= 100) {
+        rankingClass = " ranking_100";
+      } else if (ranking <= 1000) {
+        rankingClass = " ranking_1000";
+      } else {
+        rankingClass = " ranking_10000";
+      }
+    }
     menuitem_title.innerHTML =
       innerHtml +
       '<span class="menuitem_chnumber">' +
       XMLEscape(self.lcn) +
-      '.</span><span class="menuitem_chname">' +
+      '.</span><span class="menuitem_chname' +
+      rankingClass +
+      '">' +
       XMLEscape(getLocalizedText(self.titles, languages.ui_language)) +
       '</span><span class="sourcetype">' +
       XMLEscape(self.sourceTypes) +
@@ -264,6 +279,7 @@ Channel.prototype.init = function (init_obj, element_id) {
         menuitem_title.innerHTML + '<div class="provider">' + XMLEscape(self.provider) + "</div>";
     }
     menuitem_title.addClass("menuitem_title", null);
+
     element.appendChild(menuitem_title);
 
     // Items

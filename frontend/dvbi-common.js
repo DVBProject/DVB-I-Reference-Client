@@ -251,6 +251,23 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         console.log(e);
       }
     }
+    var prominenceList = services[i].getElementsByTagName("ProminenceList");
+    if (prominenceList && prominenceList.length > 0) {
+      var prominences = getChildElements(prominenceList[0], "Prominence");
+      chan.prominences = [];
+      for (j = 0; j < prominences.length; j++) {
+        var prominence = {};
+        prominence.country = prominences[j].getAttribute("country");
+        prominence.region = prominences[j].getAttribute("region");
+        try {
+          var ranking = parseInt(prominences[j].getAttribute("ranking"));
+          if (!isNaN(ranking)) {
+            prominence.ranking = ranking;
+            chan.prominences.push(prominence);
+          }
+        } catch {}
+      }
+    }
     var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
     var instances = [];
     var sourceTypes = [];

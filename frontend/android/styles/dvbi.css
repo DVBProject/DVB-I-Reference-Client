@@ -99,9 +99,10 @@ body.player {
 .video_wrapper .player-ui .list-group .list-group-item {
   background-color: transparent;
   border: none;
-  height: 40px;
+  height: 38px;
   line-height: 40px;
   padding: 0px;
+  margin: 1px 0 1px 0;
 }
 .video_wrapper .player-ui .list-group .list-group-item .unavailable {
   opacity: 0.3;
@@ -381,4 +382,54 @@ body.player {
 }
 .btn {
   cursor: pointer;
+}
+
+.ranking_1 {
+  font-size: 1.7em;
+  background-color: #ff0000e0;
+}
+.ranking_2 {
+  background-color: #ff0000d0;
+  font-size: 1.65em;
+}
+.ranking_3 {
+  background-color: #ff0000c0;
+  font-size: 1.6em;
+}
+.ranking_4 {
+  background-color: #ff0000b0;
+  font-size: 1.55em;
+}
+.ranking_5 {
+  background-color: #ff0000a0;
+  font-size: 1.5em;
+}
+.ranking_6 {
+  background-color: #ff000090;
+  font-size: 1.45em;
+}
+.ranking_7 {
+  background-color: #ff000080;
+  font-size: 1.4em;
+}
+.ranking_8 {
+  background-color: #ff000070;
+  font-size: 1.35em;
+}
+.ranking_9 {
+  background-color: #ff000060;
+  font-size: 1.3em;
+}
+.ranking_10 {
+  background-color: #ff000050;
+  font-size: 1.25em;
+}
+.ranking_100 {
+  background-color: #ff7b0050;
+}
+.ranking_1000 {
+  background-color: #ffff0030;
+}
+.ranking_10000 {
+  background-color: #0000ff30;
 }
