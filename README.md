@@ -10,7 +10,7 @@ Welcome to DVB's open source HTML5 reference client implementation of DVB-I.
 
 - If you are looking for more information on what DVB-I is and how it can help, please see [here](https://dvb-i.tv/).
 
-- If you are looking for a DVB-I client for Android phones and tablets, please see [here](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/).
+- If you are looking for a DVB-I client for Android phones and tablets, please see [here](https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/).
 
     Note this is a Persistent Web App and you can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app on your device.
 
@@ -18,7 +18,7 @@ Welcome to DVB's open source HTML5 reference client implementation of DVB-I.
 
     Note this has limitations as it's a regular HbbTV application. A version packaged as an HbbTV operator application has fewer limitations - please see the instructions [here](https://github.com/DVBProject/DVB-I-Reference-Client#operator-application-package).
 
-- If you are looking for a generic HTML5 DVB-I client (e.g. for desktop PCs), please see [here](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html).
+- If you are looking for a generic HTML5 DVB-I client (e.g. for desktop PCs), please see [here](https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html).
 
 - If you are looking for a DVB-I client for iOS devices, the generic HTML5 client should work on iPads. DVB's reference client relies on features not yet supported on iPhones. For iPhones please [join the DVB-I Forum discord server](https://discord.gg/2jhVnDqQ3U) and ask there.
 
@@ -40,13 +40,13 @@ same functionality.
 Demo installations available at:
 
 - HbbTV Frontend:
-    [http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/)
+    [https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/)
 
 - Android PWA Frontend on a tablet/smartphone:
-    [http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/)
+    [https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/)
 
 - Android PWA for testing on a PC browser
-    [http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html)
+    [https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html)
 
 (one can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app) 
 
@@ -65,7 +65,7 @@ of the OpApp version, and might display some inconsistent UI behavior.
 ### Operator application package
 
 - Example operator application package is available at:
-[http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/opapp.pkg](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/opapp.pkg)
+[https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/opapp.pkg](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/opapp.pkg)
 
 NOTE: This is an unencrypted and unsigned package
 
@@ -79,11 +79,11 @@ This will create opapp.pkg in the project root directory. Edit the [XML AIT](fro
 
 ## Backend
 - Backend:
-[http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/)
+[https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/)
 
 Backend is deployable to any web server with PHP support. Make sure that the "servicelists" directory is writable. The backend
 stores new servicelists there.
 
 NOTE: The frontend uses "example.xml" as the service list. It can be browsed in the 
 Backend editor as well, but not modified. 
-[http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelists/example.xml](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelists/example.xml)
+[https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelists/example.xml](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelists/example.xml)
