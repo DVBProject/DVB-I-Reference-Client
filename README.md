@@ -40,13 +40,13 @@ same functionality.
 Demo installations available at:
 
 - HbbTV Frontend:
-    [https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/)
+    [https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/](https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/hbbtv/)
 
 - Android PWA Frontend on a tablet/smartphone:
-    [https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/)
+    [https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/](https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/)
 
 - Android PWA for testing on a PC browser
-    [https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html)
+    [https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html](https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/frontend/android/player.html)
 
 (one can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app) 
 
@@ -65,7 +65,7 @@ of the OpApp version, and might display some inconsistent UI behavior.
 ### Operator application package
 
 - Example operator application package is available at:
-[https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/opapp.pkg](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/opapp.pkg)
+[https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/opapp.pkg](https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/opapp.pkg)
 
 NOTE: This is an unencrypted and unsigned package
 
@@ -79,11 +79,11 @@ This will create opapp.pkg in the project root directory. Edit the [XML AIT](fro
 
 ## Backend
 - Backend:
-[https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/)
+[https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/](https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/)
 
 Backend is deployable to any web server with PHP support. Make sure that the "servicelists" directory is writable. The backend
 stores new servicelists there.
 
 NOTE: The frontend uses "example.xml" as the service list. It can be browsed in the 
 Backend editor as well, but not modified. 
-[https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelists/example.xml](http://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelists/example.xml)
+[https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelists/example.xml](https://stage.sofiadigital.fi/dvb/dvb-i-reference-application/backend/servicelists/example.xml)
