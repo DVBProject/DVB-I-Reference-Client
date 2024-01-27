@@ -18,14 +18,14 @@ function parseContentGuideSource(src) {
     newCS.id = src.getAttribute("CGSID");
     newCS.contentGuideURI = src
       .getElementsByTagName("ScheduleInfoEndpoint")[0]
-      .getElementsByTagName("dvbi-types:URI")[0].childNodes[0].nodeValue;
+      .getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
     var moreEpisodes = src.getElementsByTagName("MoreEpisodesEndpoint");
     if (moreEpisodes.length > 0) {
-      newCS.moreEpisodesURI = moreEpisodes[0].getElementsByTagName("dvbi-types:URI")[0].childNodes[0].nodeValue;
+      newCS.moreEpisodesURI = moreEpisodes[0].getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
     }
     var programInfo = src.getElementsByTagName("ProgramInfoEndpoint");
     if (programInfo.length > 0) {
-      newCS.programInfoURI = programInfo[0].getElementsByTagName("dvbi-types:URI")[0].childNodes[0].nodeValue;
+      newCS.programInfoURI = programInfo[0].getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
     }
   }
   return newCS;
@@ -69,13 +69,11 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   var relatedMaterial1 = getChildElements(doc.documentElement, "RelatedMaterial");
   for (j = 0; j < relatedMaterial1.length; j++) {
     try {
-      var howRelated1 = relatedMaterial1[j]
-        .getElementsByTagNameNS(howRelatedNamespace, "tva:HowRelated")[0]
-        .getAttribute("href");
+      var howRelated1 = relatedMaterial1[j].getElementsByTagNameNS("*", "HowRelated")[0].getAttribute("href");
       if (howRelated1 == howRelatedHref + "1001.1") {
         serviceList.image = relatedMaterial1[j]
-          .getElementsByTagNameNS(howRelatedNamespace, "tva:MediaLocator")[0]
-          .getElementsByTagNameNS(mediaUriNs, "tva:MediaUri")[0].childNodes[0].nodeValue;
+          .getElementsByTagNameNS("*", "MediaLocator")[0]
+          .getElementsByTagNameNS("*", "MediaUri")[0].childNodes[0].nodeValue;
       }
     } catch (e) {
       console.log(e);
@@ -141,14 +139,14 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
     if (myContentGuideSource.length > 0) {
       chan.contentGuideURI = myContentGuideSource[0]
         .getElementsByTagName("ScheduleInfoEndpoint")[0]
-        .getElementsByTagName("dvbi-types:URI")[0].childNodes[0].nodeValue;
+        .getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
       var moreEpisodes = myContentGuideSource[0].getElementsByTagName("MoreEpisodesEndpoint");
       if (moreEpisodes.length > 0) {
-        chan.moreEpisodesURI = moreEpisodes[0].getElementsByTagName("dvbi-types:URI")[0].childNodes[0].nodeValue;
+        chan.moreEpisodesURI = moreEpisodes[0].getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
       }
       var programInfo = myContentGuideSource[0].getElementsByTagName("ProgramInfoEndpoint");
       if (programInfo.length > 0) {
-        chan.programInfoURI = programInfo[0].getElementsByTagName("dvbi-types:URI")[0].childNodes[0].nodeValue;
+        chan.programInfoURI = programInfo[0].getElementsByTagName("*", "URI")[0].childNodes[0].nodeValue;
       }
     } else {
       chan.contentGuideURI = defaultContentGuide.contentGuideURI;
@@ -204,17 +202,17 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
     for (j = 0; j < relatedMaterial.length; j++) {
       try {
         var howRelated = relatedMaterial[j]
-          .getElementsByTagNameNS(howRelatedNamespace, "tva:HowRelated")[0]
+          .getElementsByTagNameNS(howRelatedNamespace, "HowRelated")[0]
           .getAttribute("href");
         if (howRelated == howRelatedHref + "1001.2") {
           chan.image = relatedMaterial[j]
-            .getElementsByTagNameNS(howRelatedNamespace, "tva:MediaLocator")[0]
+            .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
             .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0].childNodes[0].nodeValue;
         }
         if (howRelated == howRelatedHref + "1000.1") {
           chan.out_of_service_image = relatedMaterial[j]
-            .getElementsByTagNameNS(howRelatedNamespace, "tva:MediaLocator")[0]
-            .getElementsByTagNameNS(mediaUriNs, "tva:MediaUri")[0].childNodes[0].nodeValue;
+            .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
+            .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0].childNodes[0].nodeValue;
         } else if (howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
           var app = {};
           var mediaUri = relatedMaterial[j]
@@ -228,8 +226,8 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         } else if (howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
           var app2 = {};
           var mediaUri2 = relatedMaterial[j]
-            .getElementsByTagNameNS(howRelatedNamespace, "tva:MediaLocator")[0]
-            .getElementsByTagNameNS(mediaUriNs, "tva:MediaUri")[0];
+            .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
+            .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0];
           if (mediaUri2 && mediaUri2.childNodes.length > 0) {
             app2.url = mediaUri2.childNodes[0].nodeValue;
             app2.contentType = mediaUri2.getAttribute("contentType");
@@ -329,14 +327,14 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
       for (k = 0; k < relatedMaterial3.length; k++) {
         try {
           var howRelated3 = relatedMaterial3[k]
-            .getElementsByTagNameNS(howRelatedNamespace, "tva:HowRelated")[0]
+            .getElementsByTagNameNS(howRelatedNamespace, "HowRelated")[0]
             .getAttribute("href");
           var app3, mediaUri3;
           if (howRelated3 == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
             app3 = {};
             mediaUri3 = relatedMaterial3[k]
-              .getElementsByTagNameNS(howRelatedNamespace, "tva:MediaLocator")[0]
-              .getElementsByTagNameNS(mediaUriNs, "tva:MediaUri")[0];
+              .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
+              .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0];
             if (mediaUri3 && mediaUri3.childNodes.length > 0) {
               app3.url = mediaUri3.childNodes[0].nodeValue;
               app3.contentType = mediaUri3.getAttribute("contentType");
@@ -345,8 +343,8 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
           } else if (howRelated3 == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
             app3 = {};
             mediaUri3 = relatedMaterial3[k]
-              .getElementsByTagNameNS(howRelatedNamespace, "tva:MediaLocator")[0]
-              .getElementsByTagNameNS(mediaUriNs, "tva:MediaUri")[0];
+              .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
+              .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0];
             if (mediaUri3 && mediaUri3.childNodes.length > 0) {
               app3.url = mediaUri3.childNodes[0].nodeValue;
               app3.contentType = mediaUri3.getAttribute("contentType");
@@ -359,7 +357,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
       }
       if (serviceInstances[j].getElementsByTagName("DASHDeliveryParameters").length > 0) {
         try {
-          instance.dashUrl = serviceInstances[j].getElementsByTagName("dvbi-types:URI")[0].childNodes[0].nodeValue;
+          instance.dashUrl = serviceInstances[j].getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
           sourceTypes.push("DVB-DASH");
           instances.push(instance);
         } catch (e) {}
