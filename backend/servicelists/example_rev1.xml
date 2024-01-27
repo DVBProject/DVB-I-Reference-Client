@@ -1,64 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="45" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd">
-  <Name>DVB-I Reference app availability example</Name>
-  <ProviderName>DVB</ProviderName>
-  <LCNTableList>
-    <LCNTable>
-      <LCN channelNumber="1" serviceRef="tag:dvb.org,2020:rev1sid1"></LCN>
-      <LCN channelNumber="2" serviceRef="tag:dvb.org,2020:rev1sid2"></LCN>
-    </LCNTable>
-  </LCNTableList>
-  <ContentGuideSource CGSID="cgid-1">
-    <ProviderName>DVB-I Reference Application</ProviderName>
-    <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>INSTAL~~LOCATION/backend/schedule.php</URI>
-    </ScheduleInfoEndpoint>
-    <ProgramInfoEndpoint contentType="application/xml">
-      <URI>INSTALL~~LOCATION/backend/program_information.php</URI>
-    </ProgramInfoEndpoint>
-    <MoreEpisodesEndpoint contentType="application/xml">
-      <URI>INSTALL~~LOCATION/backend/more_episodes.php</URI>
-    </MoreEpisodesEndpoint>
-  </ContentGuideSource>
-  <Service version="1">
-    <UniqueIdentifier>tag:dvb.org,2020:rev1sid1</UniqueIdentifier>
-    <ServiceInstance priority="1">
-      <Availability>
-        <Period>
-          <Interval startTime="00:00:00Z" endTime="00:10:00Z"/>
-        </Period>
-      </Availability>
-      <DASHDeliveryParameters>
-        <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</URI>
-        </UriBasedLocation>
-      </DASHDeliveryParameters>
-    </ServiceInstance>
-    <ServiceName>Not available service</ServiceName>
-    <ServiceName xml:lang="fi">Ei saatavilla palvelu</ServiceName>
-    <ServiceName xml:lang="zh">没有可用的服务</ServiceName>
-    <ProviderName>DVB</ProviderName>
-    <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1000.1"></HowRelated>
-      <MediaLocator>
+<dvbi:ServiceList version="45" id="tag:dvb.org,2024:ref-example_rev1" xml:lang="en"
+    xmlns:dvbi="urn:dvb:metadata:servicediscovery:2023b" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:tva="urn:tva:metadata:2024"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2023b ../dvbi_v6.0.xsd">
+  <dvbi:Name>DVB-I Reference app availability example</dvbi:Name>
+  <dvbi:ProviderName>DVB</dvbi:ProviderName>
+  <dvbi:LCNTableList>
+    <dvbi:LCNTable>
+      <dvbi:LCN channelNumber="1" serviceRef="tag:dvb.org,2020:rev1sid1"></dvbi:LCN>
+      <dvbi:LCN channelNumber="2" serviceRef="tag:dvb.org,2020:rev1sid2"/>
+    </dvbi:LCNTable>
+  </dvbi:LCNTableList>
+  <dvbi:ContentGuideSource CGSID="cgid-1">
+    <dvbi:ProviderName>DVB-I Reference Application</dvbi:ProviderName>
+    <dvbi:ScheduleInfoEndpoint contentType="application/xml">
+      <dvbi-types:URI>INSTAL~~LOCATION/backend/schedule.php</dvbi-types:URI>
+    </dvbi:ScheduleInfoEndpoint>
+    <dvbi:ProgramInfoEndpoint contentType="application/xml">
+      <dvbi-types:URI>INSTALL~~LOCATION/backend/program_information.php</dvbi-types:URI>
+    </dvbi:ProgramInfoEndpoint>
+    <dvbi:MoreEpisodesEndpoint contentType="application/xml">
+      <dvbi-types:URI>INSTALL~~LOCATION/backend/more_episodes.php</dvbi-types:URI>
+    </dvbi:MoreEpisodesEndpoint>
+  </dvbi:ContentGuideSource>
+  <dvbi:Service version="1">
+    <dvbi:UniqueIdentifier>tag:dvb.org,2020:rev1sid1</dvbi:UniqueIdentifier>
+    <dvbi:ServiceInstance priority="1">
+      <dvbi:Availability>
+        <dvbi:Period>
+          <dvbi:Interval startTime="00:00:00Z" endTime="00:10:00Z"/>
+        </dvbi:Period>
+      </dvbi:Availability>
+      <dvbi:DASHDeliveryParameters>
+        <dvbi:UriBasedLocation contentType="application/dash+xml">
+          <dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+        </dvbi:UriBasedLocation>
+      </dvbi:DASHDeliveryParameters>
+    </dvbi:ServiceInstance>
+    <dvbi:ServiceName xml:lang="en">Not available service</dvbi:ServiceName>
+    <dvbi:ServiceName xml:lang="fi">Ei saatavilla palvelu</dvbi:ServiceName>
+    <dvbi:ServiceName xml:lang="zh">没有可用的服务</dvbi:ServiceName>
+    <dvbi:ProviderName>DVB</dvbi:ProviderName>
+    <dvbi:RelatedMaterial>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1000.1"></tva:HowRelated>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/outofservice_example.png</tva:MediaUri>
-      </MediaLocator>
-    </RelatedMaterial>
-    <ServiceType href="urn:dvb:metadata:cs:ServiceTypeCS:2019:linear"></ServiceType>
-  </Service>
- <Service version="11">
-    <UniqueIdentifier>tag:dvb.org,2020:rev1sid2</UniqueIdentifier>
-    <ServiceInstance priority="1">
-      <DASHDeliveryParameters>
-        <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</URI>
-        </UriBasedLocation>
-      </DASHDeliveryParameters>
-    </ServiceInstance>
-    <ServiceName>Available service</ServiceName>
-    <ServiceName xml:lang="fi">Saatavilla palvelu</ServiceName>
-    <ServiceName xml:lang="zh">可用服务</ServiceName>
-    <ProviderName>DVB</ProviderName>
-    <ServiceType href="urn:dvb:metadata:cs:ServiceTypeCS:2019:linear"></ServiceType>
-  </Service>
-</ServiceList>
+      </tva:MediaLocator>
+    </dvbi:RelatedMaterial>
+    <dvbi:ServiceType href="urn:dvb:metadata:cs:ServiceTypeCS:2019:linear"></dvbi:ServiceType>
+  </dvbi:Service>
+ <dvbi:Service version="11">
+    <dvbi:UniqueIdentifier>tag:dvb.org,2020:rev1sid2</dvbi:UniqueIdentifier>
+    <dvbi:ServiceInstance priority="1">
+      <dvbi:DASHDeliveryParameters>
+        <dvbi:UriBasedLocation contentType="application/dash+xml">
+          <dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+        </dvbi:UriBasedLocation>
+      </dvbi:DASHDeliveryParameters>
+    </dvbi:ServiceInstance>
+    <dvbi:ServiceName xml:lang="en">Available service</dvbi:ServiceName>
+    <dvbi:ServiceName xml:lang="fi">Saatavilla palvelu</dvbi:ServiceName>
+    <dvbi:ServiceName xml:lang="zh">可用服务</dvbi:ServiceName>
+    <dvbi:ProviderName>DVB</dvbi:ProviderName>
+    <dvbi:ServiceType href="urn:dvb:metadata:cs:ServiceTypeCS:2019:linear"></dvbi:ServiceType>
+  </dvbi:Service>
+</dvbi:ServiceList>

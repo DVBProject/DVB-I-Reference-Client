@@ -39,20 +39,9 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   var parser = new DOMParser();
   var doc = parser.parseFromString(data, "text/xml");
   var ns = doc.documentElement.namespaceURI;
-  var howRelatedNamespace = "urn:tva:metadata:2019";
-  var howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2019:";
-  var mediaUriNs = "urn:tva:metadata:2019";
-  if (ns == "urn:dvb:metadata:servicediscovery:2020") {
-    howRelatedNamespace = "urn:dvb:metadata:servicediscovery:2020";
-    howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2020:";
-  } else if (ns == "urn:dvb:metadata:servicediscovery:2022b") {
-    howRelatedNamespace = "urn:dvb:metadata:servicediscovery:2022b";
-    howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2020:";
-  } else if (ns == "urn:dvb:metadata:servicediscovery:2023") {
-    howRelatedNamespace = "urn:tva:metadata:2023";
-    howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2020:";
-    mediaUriNs = "urn:tva:metadata:2023";
-  }
+  var howRelatedNamespace = "urn:tva:metadata:2024";
+  var howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2021:";
+  var mediaUriNs = "urn:tva:metadata:2024";
   var services = getChildElements(doc.documentElement, "Service");
 
   var contentGuides = [];
@@ -290,7 +279,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
             var drmSystem = contentProtectionElements[k].childNodes[l];
             var drm = {};
             drm.encryptionScheme = drmSystem.getAttribute("encryptionScheme");
-            drm.drmSystemId = drmSystem.getElementsByTagName("DRMSystemId")[0].childNodes[0].nodeValue;
+            drm.drmSystemId = drmSystem.nodeValue;
             drm.cpsIndex = drmSystem.getAttribute("cpsIndex");
             instance.contentProtection.push(drm);
           }
@@ -718,11 +707,11 @@ function parseServiceListProviders(data) {
   var doc = parser.parseFromString(data, "text/xml");
   var ns = doc.documentElement.namespaceURI;
   if (!ns) {
-    ns = "urn:dvb:metadata:servicelistdiscovery:2019"; //Fallback value
+    ns = "urn:dvb:metadata:servicelistdiscovery:2023b"; //Fallback value
   }
   var servicediscoveryNS = doc.documentElement.getAttribute("xmlns:dvbisd");
   if (!servicediscoveryNS) {
-    servicediscoveryNS = "urn:dvb:metadata:servicediscovery:2019"; //Fallback value
+    servicediscoveryNS = "urn:dvb:metadata:servicediscovery:2023b"; //Fallback value
   }
   var providers = doc.getElementsByTagNameNS(ns, "ProviderOffering");
   for (var i = 0; i < providers.length; i++) {

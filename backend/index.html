@@ -63,7 +63,7 @@ $( document ).ready(function() {
                   <input type="text" id="content_guide_provider" name="target_region" value="" class="form-control-sm col-5" placeholder="Placeholder">
                 </div>
                 <div class="form-group row mb-1">
-                  <label for="content_guide_provider" class="col-6 col-form-label col-form-label-sm">Service list language (r4)</label>
+                  <label for="content_guide_provider" class="col-6 col-form-label col-form-label-sm">Service list language</label>
                   <input type="text" id="service_list_language" name="service_list_language" value="" class="form-control-sm col-5" placeholder="Placeholder">
                 </div>
                 <input type="hidden" id="service_count" value="0"/>
@@ -72,13 +72,6 @@ $( document ).ready(function() {
               </form>
             </div>
             <div class="col-12 col-md-6">
-              <h5 class="card-title">XML version</h5>
-              <div class="form-group">
-                <label for="r1" class="small col-6 px-0">Generate A177r1 compatible service list</label>
-                <input type="radio" name="version" id="r1" checked class="form-check-input col-5 small">
-                <label for="r4" class="small col-6 px-0">Generate A177r4 compatible service list</label>
-                <input type="radio" name="version" id="r4" class="form-check-input col-5 small">
-              </div>
               <h5 class="card-title">Save servicelist</h5>
               <form action="javascript:uploadServicelist()" method="post">
                 <div class="form-group">

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" version="1" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd urn:tva:metadata:2019 ../tva_metadata_3-1.xsd">
+<ServiceList version="1" id="tag:dvb.org,2024:ref-dvb-dash" xml:lang="en"
+  xmlns="urn:dvb:metadata:servicediscovery:2023b" xmlns:tva="urn:tva:metadata:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2023b ../dvbi_v6.0.xsd urn:tva:metadata:2024 ../tva_metadata_3-1.xsd">
 
     <!-- r1: removed non-stpp subtitles -->
 
@@ -33,7 +36,7 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>INSTALL~~LOCATION/backend/schedule.php</URI>
+      <dvbi-types:URI>INSTALL~~LOCATION/backend/schedule.php</dvbi-types:URI>
     </ScheduleInfoEndpoint>
   </ContentGuideSource>
 	<Service version="1">
@@ -54,7 +57,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/.mpd</URI>
+					<dvbi-types:URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -66,14 +69,10 @@
 		<UniqueIdentifier>tag:dvb.org,2020:Unified-1</UniqueIdentifier>
 		<ServiceInstance>
 			<ContentProtection>
-				<DRMSystemId encryptionScheme="cbcs">
-					<DRMSystemId>EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED</DRMSystemId> <!-- Widevine -->
-				</DRMSystemId>
+				<DRMSystemId encryptionScheme="cbcs">EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED</DRMSystemId> <!-- Widevine -->
 			</ContentProtection>
 			<ContentProtection>
-				<DRMSystemId encryptionScheme="cbcs">
-					<DRMSystemId>9A04F079-9840-4286-AB92-E65BE0885F95</DRMSystemId> <!-- Playrerady -->
-				</DRMSystemId>
+				<DRMSystemId encryptionScheme="cbcs">9A04F079-9840-4286-AB92-E65BE0885F95</DRMSystemId> <!-- Playrerady -->
 			</ContentProtection>
 			<ContentAttributes>
 				<AudioAttributes>
@@ -90,7 +89,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/1.mpd</URI>
+					<dvbi-types:URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/1.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -113,14 +112,26 @@
 					<tva:VerticalSize>200</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 				</VideoAttributes>
-				<!-- UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="en"
-				<CaptionLanguage>en</CaptionLanguage>  -->
-				<!-- TTML ->  contentType="text" lang="en" codecs="stpp.ttml.im1t"-->
-				<CaptionLanguage>en</CaptionLanguage>
+        <AccessibilityAttributes>
+          <!-- WVTT -> contentType="text" codecs="wvtt" lang="en" -->
+          <tva:SubtitleAttributes>
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>en</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <!-- TTML ->  contentType="text" lang="en" codecs="stpp.ttml.im1t"-->
+          <tva:SubtitleAttributes>
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:2"/> <!--DVB TTML-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:3.6.1.1"/>  <!--ISMC Text 1.0-->
+            <tva:SubtitleLanguage>en</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+        </AccessibilityAttributes>
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/2.mpd</URI>
+					<dvbi-types:URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/2.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -132,14 +143,10 @@
 		<UniqueIdentifier>tag:dvb.org,2020:Unified-3</UniqueIdentifier>
 		<ServiceInstance>
 			<ContentProtection>
-				<DRMSystemId encryptionScheme="cbcs">
-					<DRMSystemId>EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED</DRMSystemId> <!-- Widevine -->
-				</DRMSystemId>
+				<DRMSystemId encryptionScheme="cbcs">EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED</DRMSystemId> <!-- Widevine -->
 			</ContentProtection>
 			<ContentProtection>
-				<DRMSystemId encryptionScheme="cbcs">
-					<DRMSystemId>9A04F079-9840-4286-AB92-E65BE0885F95</DRMSystemId> <!-- Playrerady -->
-				</DRMSystemId>
+				<DRMSystemId encryptionScheme="cbcs">9A04F079-9840-4286-AB92-E65BE0885F95</DRMSystemId> <!-- Playrerady -->
 			</ContentProtection>
 			<ContentAttributes>
 				<AudioAttributes>
@@ -156,7 +163,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/3.mpd</URI>
+					<dvbi-types:URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/3.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -179,14 +186,26 @@
 					<tva:VerticalSize>200</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 				</VideoAttributes>
-				<!-- UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="en"
-				<CaptionLanguage>en</CaptionLanguage> -->
-				<!-- TTML ->  contentType="text" lang="en" codecs="stpp.ttml.im1t"-->
-				<CaptionLanguage>en</CaptionLanguage>
+        <AccessibilityAttributes>
+          <!-- WVTT -> contentType="text" codecs="wvtt" lang="en" -->
+          <tva:SubtitleAttributes>
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>en</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <!-- TTML ->  contentType="text" lang="en" codecs="stpp.ttml.im1t"-->
+          <tva:SubtitleAttributes>
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:2"/>  <!--DVB TTML-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:3.6.1.1"/>  <!--ISMC Text v1-->
+            <tva:SubtitleLanguage>en</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+        </AccessibilityAttributes>
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/4.mpd</URI>
+					<dvbi-types:URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/4.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -212,7 +231,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/7.mpd</URI>
+					<dvbi-types:URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/7.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -224,14 +243,10 @@
 		<UniqueIdentifier>tag:dvb.org,2020:Unified-8</UniqueIdentifier>
 		<ServiceInstance>
 			<ContentProtection>
-				<DRMSystemId encryptionScheme="cbcs">
-					<DRMSystemId>EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED</DRMSystemId> <!-- Widevine -->
-				</DRMSystemId>
+				<DRMSystemId encryptionScheme="cbcs">EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED</DRMSystemId> <!-- Widevine -->
 			</ContentProtection>
 			<ContentProtection>
-				<DRMSystemId encryptionScheme="cbcs">
-					<DRMSystemId>9A04F079-9840-4286-AB92-E65BE0885F95</DRMSystemId> <!-- Playrerady -->
-				</DRMSystemId>
+				<DRMSystemId encryptionScheme="cbcs">9A04F079-9840-4286-AB92-E65BE0885F95</DRMSystemId> <!-- Playrerady -->
 			</ContentProtection>
 			<ContentAttributes>
 				<AudioAttributes>
@@ -248,7 +263,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/8.mpd</URI>
+					<dvbi-types:URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/8.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -274,7 +289,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://a09ac5ffb43c4015b4a006d2b85fa289.mediatailor.eu-central-1.amazonaws.com/v1/dash/6531e8093d869efd0cb1a0354ebd2f3411a4bb88/testmp/.mpd</URI>
+					<dvbi-types:URI>https://a09ac5ffb43c4015b4a006d2b85fa289.mediatailor.eu-central-1.amazonaws.com/v1/dash/6531e8093d869efd0cb1a0354ebd2f3411a4bb88/testmp/.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -312,7 +327,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://livesim.dashif.org/livesim-chunked/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd</URI>
+					<dvbi-types:URI>https://livesim.dashif.org/livesim-chunked/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -346,7 +361,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(eyeq)/manifest.mpd</URI>
+					<dvbi-types:URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(eyeq)/manifest.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -372,7 +387,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</URI>
+					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -398,7 +413,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://live.unified-streaming.com/scte35/scte35.isml/.mpd</URI>
+					<dvbi-types:URI>https://live.unified-streaming.com/scte35/scte35.isml/.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -431,7 +446,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/dolby.mpd</URI>
+					<dvbi-types:URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/dolby.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -464,7 +479,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/philips.mpd</URI>
+					<dvbi-types:URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/philips.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -497,7 +512,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/ses-1.mpd</URI>
+					<dvbi-types:URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/ses-1.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -530,7 +545,7 @@
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/ses-2.mpd</URI>
+					<dvbi-types:URI>http://dvb-2017-dm.s3.eu-central-1.amazonaws.com/ses-2.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -557,50 +572,102 @@
 					<tva:BitRate>128407</tva:BitRate>
 				</AudioAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
+					<!--<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/>--><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>1680</tva:HorizontalSize>
 					<tva:VerticalSize>750</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1032000</tva:BitRate>
 				</VideoAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
+					<!--<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/>--><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>2576</tva:HorizontalSize>
 					<tva:VerticalSize>1150</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1250000</tva:BitRate>
 				</VideoAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
+					<!--<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/>--><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>3360</tva:HorizontalSize>
 					<tva:VerticalSize>1500</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1600000</tva:BitRate>
 				</VideoAttributes>
-			<!-- UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="en"
-				<CaptionLanguage>en</CaptionLanguage>
-			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="de"
-				<CaptionLanguage>de</CaptionLanguage>
-			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="es"
-				<CaptionLanguage>es</CaptionLanguage>
-			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="fr"
-				<CaptionLanguage>fr</CaptionLanguage>
-			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="nl"
-				<CaptionLanguage>nl</CaptionLanguage>
-			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="pt-br"
-				<CaptionLanguage>pt-br</CaptionLanguage>
-			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="pt-pt"
-				<CaptionLanguage>pt-pt</CaptionLanguage>
-			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="ru"
-				<CaptionLanguage>ru</CaptionLanguage>
-			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="zh"
-				<CaptionLanguage>zh</CaptionLanguage>
-			UNSPECIFIED WVTT -> contentType="text" codecs="wvtt" lang="zh-hans"
-				<CaptionLanguage>zh-hans</CaptionLanguage> -->
+        <AccessibilityAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="en" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>en</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="de" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>de</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="es" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>es</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="fr" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>fr</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="nl" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>nl</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="pt-br" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>pt-br</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="pt-pt" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>pt-pt</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="ru" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>ru</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="zh" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>zh</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="text" codecs="wvtt" lang="zh-hans" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>zh-hans</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+        </AccessibilityAttributes>
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://usp-cmaf-test.s3.eu-central-1.amazonaws.com/tears-of-steel-hevc-only.mpd</URI>
+					<dvbi-types:URI>https://usp-cmaf-test.s3.eu-central-1.amazonaws.com/tears-of-steel-hevc-only.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -628,50 +695,103 @@
 					<tva:BitRate>128407</tva:BitRate>
 				</AudioAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
+					<!--<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/>--><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>1680</tva:HorizontalSize>
 					<tva:VerticalSize>750</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1032000</tva:BitRate>
 				</VideoAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
+					<!--<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/>--><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>2576</tva:HorizontalSize>
 					<tva:VerticalSize>1150</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1250000</tva:BitRate>
 				</VideoAttributes>
 				<VideoAttributes>
-					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
+					<!--<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:UNSPECIFIED"/>--><!-- "hev1.1.6.H150.90" == High Efficiency Video Coding Main profile High tier Level 5  -->
 					<tva:HorizontalSize>3360</tva:HorizontalSize>
 					<tva:VerticalSize>1500</tva:VerticalSize>
 					<tva:FrameRate>24</tva:FrameRate>
 					<tva:BitRate>1600000</tva:BitRate>
 				</VideoAttributes>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="en" -->
-				<CaptionLanguage>en</CaptionLanguage>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="de" -->
-				<CaptionLanguage>de</CaptionLanguage>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="es" -->
-				<CaptionLanguage>es</CaptionLanguage>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="fr" -->
-				<CaptionLanguage>fr</CaptionLanguage>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="nl" -->
-				<CaptionLanguage>nl</CaptionLanguage>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="pt-br" -->
-				<CaptionLanguage>pt-br</CaptionLanguage>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="pt-pt" -->
-				<CaptionLanguage>pt-pt</CaptionLanguage>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="ru" -->
-				<CaptionLanguage>ru</CaptionLanguage>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="zh" -->
-				<CaptionLanguage>zh</CaptionLanguage>
-				<!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="zh-hans" -->
-				<CaptionLanguage>zh-hans</CaptionLanguage>
+
+        <AccessibilityAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="en" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>en</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="de" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>de</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="es" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>es</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="fr" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>fr</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="nl" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>nl</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="pt-br" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>pt-br</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="pt-pt" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>pt-pt</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="ru" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>ru</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="zh" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>zh</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="zh-hans" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:SubtitleLanguage>zh-hans</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+        </AccessibilityAttributes>
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://usp-cmaf-test.s3.eu-central-1.amazonaws.com/tears-of-steel-ttml.mpd</URI>
+					<dvbi-types:URI>https://usp-cmaf-test.s3.eu-central-1.amazonaws.com/tears-of-steel-ttml.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -727,30 +847,82 @@
 					<tva:VerticalSize>750</tva:VerticalSize>
 					<tva:BitRate>2205000</tva:BitRate>
 				</VideoAttributes>
-			<!-- UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="en"
-				<CaptionLanguage>en</CaptionLanguage>
-			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="de"
-				<CaptionLanguage>de</CaptionLanguage>
-			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="es"
-				<CaptionLanguage>es</CaptionLanguage>
-			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="fr"
-				<CaptionLanguage>fr</CaptionLanguage>
-			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="nl"
-				<CaptionLanguage>nl</CaptionLanguage>
-			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="pt-br"
-				<CaptionLanguage>pt-br</CaptionLanguage>
-			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="pt-pt"
-				<CaptionLanguage>pt-pt</CaptionLanguage>
-			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="ru"
-				<CaptionLanguage>ru</CaptionLanguage>
-			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="zh"
-				<CaptionLanguage>zh</CaptionLanguage>
-			UNSPECIFIED WVTT -> mimeType="application/mp4" codecs="wvtt" lang="zh-hans"
-				<CaptionLanguage>zh-hans</CaptionLanguage> -->
+        <AccessibilityAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="en" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>en</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="de" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>de</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="es" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>es</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="fr" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>fr</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="nl" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>nl</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="pt-br" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>pt-br</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="pt-pt" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>pt-pt</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="ru" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>ru</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="zh" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>zh</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+          <tva:SubtitleAttributes>
+            <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="zh-hans" -->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
+            <tva:SubtitleLanguage>zh-hans</tva:SubtitleLanguage>
+            <tva:SuitableForTTS>false</tva:SuitableForTTS>
+          </tva:SubtitleAttributes>
+        </AccessibilityAttributes>
 			</ContentAttributes>
 			<DASHDeliveryParameters>
 				<UriBasedLocation contentType="application/dash+xml">
-					<URI>https://usp-cmaf-test.s3.eu-central-1.amazonaws.com/tears-of-steel.mpd</URI>
+					<dvbi-types:URI>https://usp-cmaf-test.s3.eu-central-1.amazonaws.com/tears-of-steel.mpd</dvbi-types:URI>
 				</UriBasedLocation>
 			</DASHDeliveryParameters>
 		</ServiceInstance>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2019" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="45" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd">
+<ServiceList version="45" id="tag:dvb.org,2024:ref-advanced-codecs" xml:lang="en"
+    xmlns="urn:dvb:metadata:servicediscovery:2023b" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:tva="urn:tva:metadata:2024"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2023b ../dvbi_v6.0.xsd">
   <Name>Advanced codecs Service list</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
@@ -18,7 +20,7 @@
       </ContentAttributes>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://d3tsbu4e72p918.cloudfront.net/dolbyac4/manifest.mpd</URI>
+          <dvbi-types:URI>https://d3tsbu4e72p918.cloudfront.net/dolbyac4/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>

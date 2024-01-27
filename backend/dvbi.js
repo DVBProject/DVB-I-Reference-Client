@@ -40,9 +40,7 @@ function addServiceInstance(serviceId, instanceElement) {
   instanceDiv.classList.add("serviceinstance");
   instanceDiv.classList.add("service_" + serviceId + "_instance");
   instanceDiv.appendChild(createTextInput("instance_" + serviceId + "_" + instanceId + "_priority", "Priority"));
-  instanceDiv.appendChild(
-    createTextInput("instance_" + serviceId + "_" + instanceId + "_displayname", "Display Name (r4)")
-  );
+  instanceDiv.appendChild(createTextInput("instance_" + serviceId + "_" + instanceId + "_displayname", "Display Name"));
   instanceDiv.appendChild(
     createTextInput(
       "instance_" + serviceId + "_" + instanceId + "_media_presentation_app",
@@ -323,11 +321,6 @@ function showXML() {
 
 function generateXML() {
   var doc = document.implementation.createDocument(null, "ServiceList", null);
-  var version = "r1";
-  if (document.getElementById("r4").checked == true) {
-    version = "r4";
-  }
-
   var services = document.getElementsByClassName("service");
   var listName = doc.createElement("Name");
   listName.appendChild(doc.createTextNode(document.getElementById("name").value));
@@ -350,23 +343,21 @@ function generateXML() {
     relatedElement.appendChild(mediaLocator);
     doc.documentElement.appendChild(relatedElement);
   }
-  if (version == "r4") {
-    doc.documentElement.setAttribute("xmlns", "urn:dvb:metadata:servicediscovery:2022b");
-    doc.documentElement.setAttribute("xsi:schemaLocation", "urn:dvb:metadata:servicediscovery:2022b ../dvbi_v4.0.xsd");
-    var lang = document.getElementById("service_list_language").value;
-    if (!lang || lang.length != 2) {
-      alert("Invalid service list language!");
-      document.getElementById("service_list_language").focus();
-      return null;
-    }
-    doc.documentElement.setAttribute("xml:lang", lang);
-  } else {
-    doc.documentElement.setAttribute("xmlns", "urn:dvb:metadata:servicediscovery:2020");
-    doc.documentElement.setAttribute("xsi:schemaLocation", "urn:dvb:metadata:servicediscovery:2020 ../dvbi_v1.0.xsd");
+
+  doc.documentElement.setAttribute("xmlns", "urn:dvb:metadata:servicediscovery:2023b");
+  doc.documentElement.setAttribute("xsi:schemaLocation", "urn:dvb:metadata:servicediscovery:2023b ../dvbi_v6.0.xsd");
+  var lang = document.getElementById("service_list_language").value;
+  if (!lang || lang.length != 2) {
+    alert("Invalid service list language!");
+    document.getElementById("service_list_language").focus();
+    return null;
   }
-  doc.documentElement.setAttribute("version", document.getElementById("version").value);
+  doc.documentElement.setAttribute("xml:lang", lang);
+
+  doc.documentElement.setAttribute("version", "2");
+  doc.documentElement.setAttribute("id", "tag:dvb.org,2023:example-a");
   doc.documentElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-  doc.documentElement.setAttribute("xmlns:tva", "urn:tva:metadata:2019");
+  doc.documentElement.setAttribute("xmlns:tva", "urn:tva:metadata:2024");
 
   var lcnTableElement = doc.createElement("LCNTableList");
   var lcnTable = doc.createElement("LCNTable");
@@ -377,7 +368,7 @@ function generateXML() {
     targetRegion.appendChild(doc.createTextNode(targetRegionValue));
     lcnTable.appendChild(targetRegion);
     var regionTable = doc.createElement("RegionList");
-    regionTable.setAttribute("version", "1"); //TODO add a field or automatic update for version
+    regionTable.setAttribute("version", "1");
     var region = doc.createElement("Region");
     region.setAttribute("regionID", targetRegionValue);
     region.setAttribute("countryCodes", targetRegionValue);
@@ -420,7 +411,7 @@ function generateXML() {
 
     var instances = document.getElementsByClassName(serviceId + "_instance");
     for (var j = 0; j < instances.length; j++) {
-      var instanceElement = generateServiceInstance(instances[j], doc, version);
+      var instanceElement = generateServiceInstance(instances[j], doc);
       serviceElement.appendChild(instanceElement);
     }
 
@@ -491,12 +482,12 @@ function generateXML() {
   return '<?xml version="1.0" encoding="UTF-8"?>' + new XMLSerializer().serializeToString(doc.documentElement);
 }
 
-function generateServiceInstance(instance, doc, version) {
+function generateServiceInstance(instance, doc) {
   var instanceElement = doc.createElement("ServiceInstance");
   var instanceId = instance.id;
   instanceElement.setAttribute("priority", document.getElementById(instanceId + "_priority").value);
   var displayName = document.getElementById(instanceId + "_displayname").value;
-  if (displayName && version == "r4") {
+  if (displayName) {
     var displayNameElement = doc.createElement("DisplayName");
     displayNameElement.appendChild(doc.createTextNode(displayName));
     instanceElement.appendChild(displayNameElement);
@@ -703,13 +694,7 @@ function loadServicelist(list) {
 
       document.getElementById("service_count").value = 0;
       document.getElementById("version").value = doc.documentElement.getAttribute("version");
-      if (doc.documentElement.getAttribute("xmlns") == "urn:dvb:metadata:servicediscovery:2022b") {
-        document.getElementById("r4").checked = true;
-        document.getElementById("service_list_language").value = doc.documentElement.getAttribute("xml:lang");
-      } else {
-        document.getElementById("r1").checked = true;
-        document.getElementById("service_list_language").value = "";
-      }
+      document.getElementById("service_list_language").value = doc.documentElement.getAttribute("xml:lang");
       document.getElementById("filename").value = list.replace("./servicelists/", "");
       var children = doc.documentElement.childNodes;
       var i,
@@ -721,13 +706,13 @@ function loadServicelist(list) {
         } else if (children[i].nodeName === "ProviderName") {
           document.getElementById("provider").value = children[i].childNodes[0].nodeValue;
         } else if (children[i].nodeName === "RelatedMaterial") {
-          var howRelated = children[i].getElementsByTagNameNS("urn:tva:metadata:2019", "HowRelated");
+          var howRelated = children[i].getElementsByTagNameNS("urn:tva:metadata:2024", "HowRelated");
           if (
             howRelated.length > 0 &&
             howRelated[0].getAttribute("href") == "urn:dvb:metadata:cs:HowRelatedCS:2019:1001.1"
           ) {
             document.getElementById("service_list_logo").value = children[i].getElementsByTagNameNS(
-              "urn:tva:metadata:2019",
+              "urn:tva:metadata:2024",
               "MediaUri"
             )[0].childNodes[0].nodeValue;
           }
