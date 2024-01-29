@@ -1,0 +1,8 @@
+Frontend
+ - display accessibility related information
+ 
+Backend
+ - include the following in the service list editor
+    ~ <ServiceProminence>
+	~ <AccessibilityAttributes>
+	

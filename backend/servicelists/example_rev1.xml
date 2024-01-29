@@ -14,7 +14,7 @@
   <dvbi:ContentGuideSource CGSID="cgid-1">
     <dvbi:ProviderName>DVB-I Reference Application</dvbi:ProviderName>
     <dvbi:ScheduleInfoEndpoint contentType="application/xml">
-      <dvbi-types:URI>INSTAL~~LOCATION/backend/schedule.php</dvbi-types:URI>
+      <dvbi-types:URI>INSTALL~~LOCATION/backend/schedule.php</dvbi-types:URI>
     </dvbi:ScheduleInfoEndpoint>
     <dvbi:ProgramInfoEndpoint contentType="application/xml">
       <dvbi-types:URI>INSTALL~~LOCATION/backend/program_information.php</dvbi-types:URI>

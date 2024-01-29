@@ -4,6 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DVB-I Servicelist generator</title>
+<script type="text/javascript" src="../identifiers.js"></script>
+<script type="text/javascript" src="../namespaces.js"></script>
 <script type="text/javascript" src="dvbi.js"></script>
 <script type="text/javascript" src="../jquery-3.4.1.min.js"></script>
 
@@ -30,6 +32,10 @@ $( document ).ready(function() {
           <div class="row">
             <div class="col-12 col-md-6 border-right border-md-none">
               <form>
+                <div class="form-group row mb-1">
+                  <label for="videntifier" class="col-6 col-form-label col-form-label-sm">Service list identifier</label>
+                  <input type="text" id="service_list_identifier" name="identifier" value="" class="form-control-sm col-5" placeholder="Placeholder">
+                </div>
                 <div class="form-group row mb-1">
                   <label for="version" class="col-6 col-form-label col-form-label-sm">Service list version</label>
                   <input type="text" id="version" name="version" value="" class="form-control-sm col-5" placeholder="Placeholder">

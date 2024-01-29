@@ -147,10 +147,7 @@ Channel.prototype.getMediaPresentationApp = function (serviceInstance) {
   if (serviceInstance && serviceInstance.mediaPresentationApps) {
     for (i = 0; i < serviceInstance.mediaPresentationApps.length; i++) {
       mediaPresentationApp = serviceInstance.mediaPresentationApps[i];
-      if (
-        mediaPresentationApp.contentType == "text/html" ||
-        mediaPresentationApp.contentType == "application/xhtml+xml"
-      ) {
+      if (mediaPresentationApp.contentType == XML_MIME || mediaPresentationApp.contentType == XHTML_MIMR) {
         return mediaPresentationApp.url;
       }
     }
@@ -158,10 +155,7 @@ Channel.prototype.getMediaPresentationApp = function (serviceInstance) {
   if (self.mediaPresentationApps) {
     for (i = 0; i < self.mediaPresentationApps.length; i++) {
       mediaPresentationApp = self.mediaPresentationApps[i];
-      if (
-        mediaPresentationApp.contentType == "text/html" ||
-        mediaPresentationApp.contentType == "application/xhtml+xml"
-      ) {
+      if (mediaPresentationApp.contentType == XML_MIME || mediaPresentationApp.contentType == XHTML_MIME) {
         return mediaPresentationApp.url;
       }
     }

@@ -17,15 +17,15 @@ function parseContentGuideSource(src) {
   if (src) {
     newCS.id = src.getAttribute("CGSID");
     newCS.contentGuideURI = src
-      .getElementsByTagName("ScheduleInfoEndpoint")[0]
-      .getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
-    var moreEpisodes = src.getElementsByTagName("MoreEpisodesEndpoint");
+      .getElementsByTagNameNS(DVBi_ns, "ScheduleInfoEndpoint")[0]
+      .getElementsByTagNameNS(DVBi_TYPES_ns, "URI")[0].childNodes[0].nodeValue;
+    var moreEpisodes = src.getElementsByTagNameNS(DVBi_ns, "MoreEpisodesEndpoint");
     if (moreEpisodes.length > 0) {
-      newCS.moreEpisodesURI = moreEpisodes[0].getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
+      newCS.moreEpisodesURI = moreEpisodes[0].getElementsByTagNameNS(DVBi_TYPES_ns, "URI")[0].childNodes[0].nodeValue;
     }
-    var programInfo = src.getElementsByTagName("ProgramInfoEndpoint");
+    var programInfo = src.getElementsByTagNameNS(DVBi_ns, "ProgramInfoEndpoint");
     if (programInfo.length > 0) {
-      newCS.programInfoURI = programInfo[0].getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
+      newCS.programInfoURI = programInfo[0].getElementsByTagNameNS(DVBi_TYPES_ns, "URI")[0].childNodes[0].nodeValue;
     }
   }
   return newCS;
@@ -37,11 +37,8 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   var list = [];
   serviceList.services = list;
   var parser = new DOMParser();
-  var doc = parser.parseFromString(data, "text/xml");
-  var ns = doc.documentElement.namespaceURI;
-  var howRelatedNamespace = "urn:tva:metadata:2024";
-  var howRelatedHref = "urn:dvb:metadata:cs:HowRelatedCS:2021:";
-  var mediaUriNs = "urn:tva:metadata:2024";
+  var doc = parser.parseFromString(data, XML_MIME);
+  // var ns = doc.documentElement.namespaceURI;
   var services = getChildElements(doc.documentElement, "Service");
 
   var contentGuides = [];
@@ -69,11 +66,11 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   var relatedMaterial1 = getChildElements(doc.documentElement, "RelatedMaterial");
   for (j = 0; j < relatedMaterial1.length; j++) {
     try {
-      var howRelated1 = relatedMaterial1[j].getElementsByTagNameNS("*", "HowRelated")[0].getAttribute("href");
-      if (howRelated1 == howRelatedHref + "1001.1") {
+      var howRelated1 = relatedMaterial1[j].getElementsByTagNameNS(TVA_ns, "HowRelated")[0].getAttribute("href");
+      if (howRelated1 == DVBi_Service_List_Logo) {
         serviceList.image = relatedMaterial1[j]
-          .getElementsByTagNameNS("*", "MediaLocator")[0]
-          .getElementsByTagNameNS("*", "MediaUri")[0].childNodes[0].nodeValue;
+          .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
+          .getElementsByTagNameNS(TVA_ns, "MediaUri")[0].childNodes[0].nodeValue;
       }
     } catch (e) {
       console.log(e);
@@ -106,13 +103,13 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   }
 
   var maxLcn = 0;
-  var lcnTables = doc.getElementsByTagName("LCNTable");
-  var lcnList = lcnTables[0].getElementsByTagName("LCN");
+  var lcnTables = doc.getElementsByTagNameNS(DVBi_ns, "LCNTable");
+  var lcnList = lcnTables[0].getElementsByTagNameNS(DVBi_ns, "LCN");
   serviceList.lcnTables = [];
   for (i = 0; i < lcnTables.length; i++) {
     var lcnTable = {};
     lcnTable.lcn = [];
-    var targetRegions = lcnTables[i].getElementsByTagName("TargetRegion");
+    var targetRegions = lcnTables[i].getElementsByTagNameNS(DVBi_ns, "TargetRegion");
     if (targetRegions.length > 0) {
       lcnTable.targetRegions = [];
       for (j = 0; j < targetRegions.length; j++) {
@@ -121,9 +118,9 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
       lcnTable.defaultRegion = false;
     } else {
       lcnTable.defaultRegion = true;
-      lcnList = lcnTables[i].getElementsByTagName("LCN");
+      lcnList = lcnTables[i].getElementsByTagNameNS(DVBi_ns, "LCN");
     }
-    var lcnList2 = lcnTables[i].getElementsByTagName("LCN");
+    var lcnList2 = lcnTables[i].getElementsByTagNameNS(DVBi_ns, "LCN");
     for (j = 0; j < lcnList2.length; j++) {
       var lcn = {};
       lcn.serviceRef = lcnList2[j].getAttribute("serviceRef");
@@ -135,18 +132,18 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   for (i = 0; i < services.length; i++) {
     var chan = {};
 
-    var myContentGuideSource = services[i].getElementsByTagName("ContentGuideSource");
+    var myContentGuideSource = services[i].getElementsByTagNameNS(DVBi_ns, "ContentGuideSource");
     if (myContentGuideSource.length > 0) {
       chan.contentGuideURI = myContentGuideSource[0]
-        .getElementsByTagName("ScheduleInfoEndpoint")[0]
-        .getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
-      var moreEpisodes = myContentGuideSource[0].getElementsByTagName("MoreEpisodesEndpoint");
+        .getElementsByTagNameNS(DVBi_ns, "ScheduleInfoEndpoint")[0]
+        .getElementsByTagNameNS(DVBi_TYPES_ns, "URI")[0].childNodes[0].nodeValue;
+      var moreEpisodes = myContentGuideSource[0].getElementsByTagNameNS(DVBi_ns, "MoreEpisodesEndpoint");
       if (moreEpisodes.length > 0) {
-        chan.moreEpisodesURI = moreEpisodes[0].getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
+        chan.moreEpisodesURI = moreEpisodes[0].getElementsByTagNameNS(DVBi_TYPES_ns, "URI")[0].childNodes[0].nodeValue;
       }
-      var programInfo = myContentGuideSource[0].getElementsByTagName("ProgramInfoEndpoint");
+      var programInfo = myContentGuideSource[0].getElementsByTagNameNS(DVBi_ns, "ProgramInfoEndpoint");
       if (programInfo.length > 0) {
-        chan.programInfoURI = programInfo[0].getElementsByTagName("*", "URI")[0].childNodes[0].nodeValue;
+        chan.programInfoURI = programInfo[0].getElementsByTagNameNS(DVBi_TYPES_ns, "URI")[0].childNodes[0].nodeValue;
       }
     } else {
       chan.contentGuideURI = defaultContentGuide.contentGuideURI;
@@ -154,7 +151,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
       chan.programInfoURI = defaultContentGuide.programInfoURI;
     }
 
-    var myContentGuideSourceRef = services[i].getElementsByTagName("ContentGuideSourceRef");
+    var myContentGuideSourceRef = services[i].getElementsByTagNameNS(DVBi_ns, "ContentGuideSourceRef");
     if (myContentGuideSourceRef.length > 0) {
       var idx = -1;
       for (var cs2 = 0; cs2 < contentGuides.length; cs2++) {
@@ -170,14 +167,14 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
       }
     }
     chan.code = i;
-    var serviceNames = services[i].getElementsByTagName("ServiceName");
+    var serviceNames = services[i].getElementsByTagNameNS(DVBi_ns, "ServiceName");
     chan.titles = [];
     for (j = 0; j < serviceNames.length; j++) {
       chan.titles.push(getText(serviceNames[j]));
     }
     chan.title = serviceNames[0].childNodes[0].nodeValue;
-    chan.id = services[i].getElementsByTagName("UniqueIdentifier")[0].childNodes[0].nodeValue;
-    var providers = services[i].getElementsByTagName("ProviderName");
+    chan.id = services[i].getElementsByTagNameNS(DVBi_ns, "UniqueIdentifier")[0].childNodes[0].nodeValue;
+    var providers = services[i].getElementsByTagNameNS(DVBi_ns, "ProviderName");
     if (providers.length > 0) {
       chan.provider = providers[0].childNodes[0].nodeValue;
       chan.providers = [];
@@ -185,7 +182,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         chan.providers.push(getText(providers[j]));
       }
     }
-    var targetRegions2 = services[i].getElementsByTagName("TargetRegion");
+    var targetRegions2 = services[i].getElementsByTagNameNS(DVBi_ns, "TargetRegion");
     if (targetRegions2.length > 0) {
       chan.targetRegions = [];
       for (j = 0; j < targetRegions2.length; j++) {
@@ -194,40 +191,38 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
     }
     chan.parallelApps = [];
     chan.mediaPresentationApps = [];
-    var cgRefs = services[i].getElementsByTagName("ContentGuideServiceRef");
+    var cgRefs = services[i].getElementsByTagNameNS(DVBi_ns, "ContentGuideServiceRef");
     if (cgRefs && cgRefs.length > 0) {
       chan.contentGuideServiceRef = cgRefs[0].childNodes[0].nodeValue;
     }
     var relatedMaterial = getChildElements(services[i], "RelatedMaterial");
     for (j = 0; j < relatedMaterial.length; j++) {
       try {
-        var howRelated = relatedMaterial[j]
-          .getElementsByTagNameNS(howRelatedNamespace, "HowRelated")[0]
-          .getAttribute("href");
-        if (howRelated == howRelatedHref + "1001.2") {
+        var howRelated = relatedMaterial[j].getElementsByTagNameNS(TVA_ns, "HowRelated")[0].getAttribute("href");
+        if (howRelated == DVBi_Service_Logo) {
           chan.image = relatedMaterial[j]
-            .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
-            .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0].childNodes[0].nodeValue;
+            .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
+            .getElementsByTagNameNS(TVA_ns, "MediaUri")[0].childNodes[0].nodeValue;
         }
-        if (howRelated == howRelatedHref + "1000.1") {
+        if (howRelated == DVBi_Out_Of_Service_Logo) {
           chan.out_of_service_image = relatedMaterial[j]
-            .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
-            .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0].childNodes[0].nodeValue;
-        } else if (howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
+            .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
+            .getElementsByTagNameNS(TVA_ns, "MediaUri")[0].childNodes[0].nodeValue;
+        } else if (howRelated == DVBi_App_In_Parallel) {
           var app = {};
           var mediaUri = relatedMaterial[j]
-            .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
-            .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0];
+            .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
+            .getElementsByTagNameNS(TVA_ns, "MediaUri")[0];
           if (mediaUri && mediaUri.childNodes.length > 0) {
             app.url = mediaUri.childNodes[0].nodeValue;
             app.contentType = mediaUri.getAttribute("contentType");
             chan.parallelApps.push(app);
           }
-        } else if (howRelated == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
+        } else if (howRelated == DVBi_App_Controlling_Media) {
           var app2 = {};
           var mediaUri2 = relatedMaterial[j]
-            .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
-            .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0];
+            .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
+            .getElementsByTagNameNS(TVA_ns, "MediaUri")[0];
           if (mediaUri2 && mediaUri2.childNodes.length > 0) {
             app2.url = mediaUri2.childNodes[0].nodeValue;
             app2.contentType = mediaUri2.getAttribute("contentType");
@@ -238,7 +233,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         console.log(e);
       }
     }
-    var prominenceList = services[i].getElementsByTagName("ProminenceList");
+    var prominenceList = services[i].getElementsByTagNameNS(DVBi_ns, "ProminenceList");
     if (prominenceList && prominenceList.length > 0) {
       var prominences = getChildElements(prominenceList[0], "Prominence");
       chan.prominences = [];
@@ -255,13 +250,13 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         } catch {}
       }
     }
-    var serviceInstances = services[i].getElementsByTagName("ServiceInstance");
+    var serviceInstances = services[i].getElementsByTagNameNS(DVBi_ns, "ServiceInstance");
     var instances = [];
     var sourceTypes = [];
     for (j = 0; j < serviceInstances.length; j++) {
       var priority = serviceInstances[j].getAttribute("priority");
       var instance = {};
-      var displayNames = serviceInstances[j].getElementsByTagName("DisplayName");
+      var displayNames = serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DisplayName");
       instance.titles = [];
       for (k = 0; k < displayNames.length; k++) {
         instance.titles.push(getText(displayNames[k]));
@@ -287,7 +282,10 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         var supported = false;
         for (k = 0; k < instance.contentProtection.length; k++) {
           for (l = 0; l < supportedDrmSystems.length; l++) {
-            if (instance.contentProtection[k].drmSystemId.toLowerCase() == supportedDrmSystems[l].toLowerCase()) {
+            if (
+              instance.contentProtection[k].drmSystemId &&
+              instance.contentProtection[k].drmSystemId.toLowerCase() == supportedDrmSystems[l].toLowerCase()
+            ) {
               supported = true;
               break;
             }
@@ -326,25 +324,23 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
       var relatedMaterial3 = getChildElements(serviceInstances[j], "RelatedMaterial");
       for (k = 0; k < relatedMaterial3.length; k++) {
         try {
-          var howRelated3 = relatedMaterial3[k]
-            .getElementsByTagNameNS(howRelatedNamespace, "HowRelated")[0]
-            .getAttribute("href");
+          var howRelated3 = relatedMaterial3[k].getElementsByTagNameNS(TVA_ns, "HowRelated")[0].getAttribute("href");
           var app3, mediaUri3;
-          if (howRelated3 == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.1") {
+          if (howRelated3 == DVBi_App_In_Parallel) {
             app3 = {};
             mediaUri3 = relatedMaterial3[k]
-              .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
-              .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0];
+              .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
+              .getElementsByTagNameNS(TVA_ns, "MediaUri")[0];
             if (mediaUri3 && mediaUri3.childNodes.length > 0) {
               app3.url = mediaUri3.childNodes[0].nodeValue;
               app3.contentType = mediaUri3.getAttribute("contentType");
               instance.parallelApps.push(app3);
             }
-          } else if (howRelated3 == "urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2") {
+          } else if (howRelated3 == DVBi_App_Controlling_Media) {
             app3 = {};
             mediaUri3 = relatedMaterial3[k]
-              .getElementsByTagNameNS(howRelatedNamespace, "MediaLocator")[0]
-              .getElementsByTagNameNS(mediaUriNs, "MediaUri")[0];
+              .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
+              .getElementsByTagNameNS(TVA_ns, "MediaUri")[0];
             if (mediaUri3 && mediaUri3.childNodes.length > 0) {
               app3.url = mediaUri3.childNodes[0].nodeValue;
               app3.contentType = mediaUri3.getAttribute("contentType");
@@ -355,14 +351,17 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
           console.log(e);
         }
       }
-      if (serviceInstances[j].getElementsByTagName("DASHDeliveryParameters").length > 0) {
+      if (serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DASHDeliveryParameters").length > 0) {
         try {
-          instance.dashUrl = serviceInstances[j].getElementsByTagNameNS("*", "URI")[0].childNodes[0].nodeValue;
+          instance.dashUrl = serviceInstances[j].getElementsByTagNameNS(
+            DVBi_TYPES_ns,
+            "URI"
+          )[0].childNodes[0].nodeValue;
           sourceTypes.push("DVB-DASH");
           instances.push(instance);
         } catch (e) {}
       } else if (dvbChannels) {
-        var triplets = serviceInstances[j].getElementsByTagName("DVBTriplet");
+        var triplets = serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DVBTriplet");
         if (triplets.length > 0) {
           var triplet2 =
             triplets[0].getAttribute("origNetId") +
@@ -372,15 +371,15 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
             triplets[0].getAttribute("serviceId");
           var dvbChannel2 = channelmap[triplet2];
           if (dvbChannel2) {
-            if (serviceInstances[j].getElementsByTagName("DVBTDeliveryParameters").length > 0) {
+            if (serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DVBTDeliveryParameters").length > 0) {
               sourceTypes.push("DVB-T");
               instance.dvbChannel = dvbChannel2;
               instances.push(instance);
-            } else if (serviceInstances[j].getElementsByTagName("DVBSDeliveryParameters").length > 0) {
+            } else if (serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DVBSDeliveryParameters").length > 0) {
               sourceTypes.push("DVB-S");
               instance.dvbChannel = dvbChannel2;
               instances.push(instance);
-            } else if (serviceInstances[j].getElementsByTagName("DVBCDeliveryParameters").length > 0) {
+            } else if (serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DVBCDeliveryParameters").length > 0) {
               sourceTypes.push("DVB-C");
               instance.dvbChannel = dvbChannel2;
               instances.push(instance);
@@ -629,7 +628,8 @@ function selectServiceListRegion(serviceList, regionId) {
 function getChildElements(parent, tagName) {
   var elements = [];
   for (var i = 0; i < parent.childNodes.length; i++) {
-    if (parent.childNodes[i].nodeType == 1 && parent.childNodes[i].tagName == tagName) {
+    if (parent.childNodes[i].nodeType == 1 && parent.childNodes[i].localName == tagName) {
+      // localName property does not include the prefix
       elements.push(parent.childNodes[i]);
     }
   }
@@ -702,15 +702,16 @@ function generateServiceListQuery(baseurl, providers, language, genre, targetCou
 function parseServiceListProviders(data) {
   var providerslist = [];
   var parser = new DOMParser();
-  var doc = parser.parseFromString(data, "text/xml");
-  var ns = doc.documentElement.namespaceURI;
+  var doc = parser.parseFromString(data, XML_MIME);
+  var ns = /*doc.documentElement.namespaceURI*/ "*";
   if (!ns) {
-    ns = "urn:dvb:metadata:servicelistdiscovery:2023b"; //Fallback value
+    ns = DVBi_Service_List_Discovery_Schema; //Fallback value
   }
-  var servicediscoveryNS = doc.documentElement.getAttribute("xmlns:dvbisd");
+  var servicediscoveryNS = /*doc.documentElement.getAttribute("xmlns:dvbisd")*/ "*";
   if (!servicediscoveryNS) {
-    servicediscoveryNS = "urn:dvb:metadata:servicediscovery:2023b"; //Fallback value
+    servicediscoveryNS = DVBi_Service_Discovery_Schema; //Fallback value
   }
+
   var providers = doc.getElementsByTagNameNS(ns, "ProviderOffering");
   for (var i = 0; i < providers.length; i++) {
     var providerInfo = providers[i].getElementsByTagNameNS(ns, "Provider");
