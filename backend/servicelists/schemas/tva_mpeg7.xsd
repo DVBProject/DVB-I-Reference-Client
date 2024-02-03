@@ -1,0 +1,1701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************************
+
+    This XML document was originally developed in the course of development of the ISO/IEC
+    15938 standard (MPEG-7). This XML document contains either a part of the MPEG-7 schema
+    implementation for one or more MPEG-7 tools as specified by the MPEG-7 Requirements or
+    MPEG-7 description examples conformant to the MPEG-7 schema.
+
+    ISO/IEC gives users of MPEG-7 free license to this XML document or modifications thereof
+    for use in hardware or software products claiming conformance to MPEG-7.
+
+    Those intending to use this XML document in hardware or software products are advised that
+    its use may infringe existing patents. The original developers of this XML document and his/her
+    company, the subsequent editors and their companies, and ISO/IEC have no liability for use of
+    this XML document or modifications thereof in an implementation.
+
+    Copyright is not released for non MPEG-7 conforming products. The organizations who
+    contributed to this XML document retain the full right to use the code for their own purpose,
+    assign or donate their contribution to a third party and inhibit third parties from using their
+    contribution for non MPEG-7 conforming products.
+
+    Copyright (c) 1999-2002 ISO/IEC. 
+
+    This XML document is provided for informative purposes only. If any parts of this XML
+    document contradict the normative part of the corresponding standard document then the
+    normative part should be used as the definitive specification.
+
+    This notice must be included in all copies or derivative works.
+************************************************************************************* -->
+<schema targetNamespace="urn:tva:mpeg7:2008" xmlns:mpeg7="urn:tva:mpeg7:2008"
+	xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<annotation>
+		<documentation> This schema is composed of description tools in the MPEG-7 User Description
+			(UD) Profile that are used by ETSI TS 102 822-3-1 and ETSI TS 102 822-3-3 Metadata
+			Schemas. Constraints on these tools called for by the UD profile have been implemented
+			by removal of restricted elements and attributes. The UserActionType has been extended
+			in the ETSI TS 102 822-3-1 metadata schema. Constraints are indicated by embedded
+			comments. The schema is divided into three modules: Module 1 contains schema components
+			used both for content description and user description; Module 2 contains schema
+			components used for content description only; Module 3 contains schema components for
+			user description only and Module 4 contains datatypes only used by the ETSI TS 102
+			822-3-3 extended Metadata Schema. </documentation>
+	</annotation>
+	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<!-- #################################################################### -->
+	<annotation>
+		<documentation> MODULE 1. MPEG-7 SCHEMA COMPONENTS USED BY TVA BOTH FOR CONTENT DESCRIPTION
+			AND FOR USER DESCRIPTION </documentation>
+	</annotation>
+	<!-- #################################################################### -->
+	<annotation>
+		<documentation> 1A. GLOBAL ATTRIBUTE GROUPS USED BY TVA BOTH FOR CONTENT DESCRIPTION AND FOR
+			USER DESCRIPTION </documentation>
+	</annotation>
+	<!--  mediaTimePropertyGrp attribute group removed -->
+	<!-- Definition of referenceGrp attribute group (ISO/IEC 15938-5: 6.2.1) -->
+	<attributeGroup name="referenceGrp">
+		<attribute name="idref" type="IDREF" use="optional"/>
+		<!--  xpath attribute removed -->
+		<attribute name="href" type="anyURI" use="optional"/>
+	</attributeGroup>
+	<!-- Definition of timePropertyGrp attribute group (ISO/IEC 15938-5: 6.4.8) -->
+	<attributeGroup name="timePropertyGrp">
+		<attribute name="timeBase" type="mpeg7:xPathRefType" use="optional"/>
+		<attribute name="timeUnit" type="mpeg7:durationType" use="optional"/>
+	</attributeGroup>
+	<!-- #################################################################### -->
+	<annotation>
+		<documentation> 1B. SIMPLE TYPES USED BY TVA BOTH FOR CONTENT DESCRIPTION AND FOR USER
+			DESCRIPTION </documentation>
+	</annotation>
+	<!-- definition of basicDuration datatype (ISO/IEC 15938-2) -->
+	<simpleType name="basicDurationType">
+		<restriction base="string">
+			<pattern
+				value="\-?P(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?(\d+N)?(\d{2}f)?)?(\d+F)?((\-|\+)\d{2}:\d{2}Z)?"
+			/>
+		</restriction>
+	</simpleType>
+	<!-- definition of basicTimePoint datatype (ISO/IEC 15938-2) -->
+	<simpleType name="basicTimePointType">
+		<restriction base="string">
+			<pattern
+				value="\-?(\d+(\-\d{2}(\-\d{2})?)?)?(T\d{2}(:\d{2}(:\d{2}(:\d+(\.\d{2})?)?)?)?)?(F\d+)?((\-|\+)\d{2}:\d{2})?"
+			/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of countryCode datatype (ISO/IEC 15938-5: 5.6.3) -->
+	<simpleType name="countryCode">
+		<restriction base="string">
+			<whiteSpace value="collapse"/>
+			<pattern value="[a-zA-Z]{2}"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of duration datatype (ISO/IEC 15938-5: 6.4.4) -->
+	<simpleType name="durationType">
+		<restriction base="mpeg7:basicDurationType">
+			<pattern
+				value="\-?P(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?(\d+N)?)?(\d+F)?((\-|\+)\d{2}:\d{2}Z)?"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of mediaDuration datatype (ISO/IEC 15938-5: 6.4.12) -->
+	<simpleType name="mediaDurationType">
+		<restriction base="mpeg7:basicDurationType">
+			<pattern value="\-?P(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?(\d+N)?)?(\d+F)?"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of mediaTimeOffset datatype (ISO/IEC 15938-5: 6.4.14) -->
+	<simpleType name="mediaTimeOffsetType">
+		<restriction base="mpeg7:basicDurationType">
+			<pattern value="\-?P(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?(\d+N)?)?(\d+F)?"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of mediaTimePoint datatype (ISO/IEC 15938-5: 6.4.11) -->
+	<simpleType name="mediaTimePointType">
+		<restriction base="mpeg7:basicTimePointType">
+			<pattern value="(\-?\d+(\-\d{2}(\-\d{2})?)?)?(T\d{2}(:\d{2}(:\d{2}(:\d+)?)?)?)?(F\d+)?"
+			/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of mimeType datatype (ISO/IEC 15938-5: 5.6.2) -->
+	<simpleType name="mimeType">
+		<restriction base="string">
+			<whiteSpace value="collapse"/>
+			<pattern
+				value="[&#x21;-&#x7f;-[\(\)&lt;&gt;@,;:\\&quot;/\[\]\?=]]+/[&#x21;-&#x7f;-[\(\)&lt;&gt;@,;:\\&quot;/\[\]\?=]]+"
+			/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of regionCode datatype (ISO/IEC 15938-5: 5.6.4) -->
+	<simpleType name="regionCode">
+		<restriction base="string">
+			<whiteSpace value="collapse"/>
+			<pattern value="[a-zA-Z]{2}(-[a-zA-Z0-9]{1,3})?"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of termReference datatype (ISO/IEC 15938-5: 7.3.6) -->
+	<simpleType name="termReferenceType">
+		<union>
+			<simpleType>
+				<restriction base="NMTOKEN">
+					<whiteSpace value="collapse"/>
+					<pattern value=":[^:]+:[^:]+"/>
+				</restriction>
+			</simpleType>
+			<simpleType>
+				<restriction base="anyURI"/>
+			</simpleType>
+		</union>
+	</simpleType>
+	<!-- Definition of termRelationQualifier datatype (ISO/IEC 15938-5) -->
+	<simpleType name="termRelationQualifierType">
+		<union>
+			<simpleType>
+				<restriction base="NMTOKEN">
+					<enumeration value="NT"/>
+					<enumeration value="BT"/>
+					<enumeration value="RT"/>
+					<enumeration value="US"/>
+					<enumeration value="UF"/>
+				</restriction>
+			</simpleType>
+			<simpleType>
+				<restriction base="mpeg7:termReferenceType"/>
+			</simpleType>
+		</union>
+	</simpleType>
+	<!-- Definition of timeOffsetType datatype (ISO/IEC 15938-5: 6.4.6) -->
+	<simpleType name="timeOffsetType">
+		<restriction base="mpeg7:basicDurationType">
+			<pattern
+				value="\-?P(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?(\d+N)?)?(\d+F)?((\-|\+)\d{2}:\d{2}Z)?"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of timePoint datatype (ISO/IEC 15938-5: 6.4.3) -->
+	<simpleType name="timePointType">
+		<restriction base="mpeg7:basicTimePointType">
+			<pattern
+				value="(\-?\d+(\-\d{2}(\-\d{2})?)?)?(T\d{2}(:\d{2}(:\d{2}(:\d+)?)?)?)?(F\d+)?((\-|\+)\d{2}:\d{2})?"
+			/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of xPathAbsoluteSelector datatype (ISO/IEC 15938-5: 6.2.2) -->
+	<simpleType name="xPathAbsoluteSelectorType">
+		<restriction base="mpeg7:xPathSelectorType">
+			<pattern
+				value="(/|((//|/)(((child::)?((\i\c*:)?(\i\c*|\*)))|\.))*)(\|(/|((//|/)(((child::)?((\i\c*:)?(\i\c*|\*)))|\.))*))*"
+			/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of xPathRef datatype (ISO/IEC 15938-5: 6.2.2) -->
+	<simpleType name="xPathRefType">
+		<restriction base="mpeg7:xPathType">
+			<pattern
+				value="/?((((child::)?((\i\c*:)?(\i\c*)(\[\d+\])?))|\.|(\.\.))/)*((((child::)?((\i\c*:)?(\i\c*)(\[\d+\])?))|\.)|((attribute::|@)((\i\c*:)?(\i\c*|\*))))"
+			/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of xPathSelector datatype (ISO/IEC 15938-5: 6.2.2) -->
+	<simpleType name="xPathSelectorType">
+		<restriction base="mpeg7:xPathType">
+			<pattern
+				value="(/|((//|/)?(((child::)?((\i\c*:)?(\i\c*|\*)))|\.|\.\.)((//|/)(((child::)?((\i\c*:)?(\i\c*|\*)))|\.|\.\.))*))(\|/|((//|/)?(((child::)?((\i\c*:)?(\i\c*|\*)))|\.|\.\.)((//|/)(((child::)?((\i\c*:)?(\i\c*|\*)))|\.|\.\.))*))*"
+			/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of xPath datatype (ISO/IEC 15938-5: 6.2.2) -->
+	<simpleType name="xPathType">
+		<restriction base="token"/>
+	</simpleType>
+	<!-- #################################################################### -->
+	<annotation>
+		<documentation> 1C. COMPLEX TYPES USED BY TVA BOTH FOR CONTENT DESCRIPTION AND FOR USER
+			DESCRIPTION </documentation>
+	</annotation>
+	<!-- Definition of ClassificationSchemeAlias datatype (ISO/IEC 15938-5: 7.3.7) -->
+	<complexType name="ClassificationSchemeAliasType">
+		<complexContent>
+			<extension base="mpeg7:HeaderType">
+				<attribute name="alias" type="NMTOKEN" use="required"/>
+				<attribute name="href" type="anyURI" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of ClassificationSchemeBase DS (ISO/IEC 15938-5: 7.3.2) -->
+	<complexType name="ClassificationSchemeBaseType" abstract="true">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="Import" type="mpeg7:ReferenceType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="uri" type="anyURI" use="required"/>
+				<attribute name="domain" use="optional">
+					<simpleType>
+						<list itemType="mpeg7:xPathAbsoluteSelectorType"/>
+					</simpleType>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of ClassificationScheme DS (ISO/IEC 15938-5: 7.3.2) -->
+	<complexType name="ClassificationSchemeType">
+		<complexContent>
+			<extension base="mpeg7:ClassificationSchemeBaseType">
+				<sequence>
+					<element name="Term" type="mpeg7:TermDefinitionType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of ControlledTermUse datatype (ISO/IEC 15938-5: 7.3.5) -->
+	<complexType name="ControlledTermUseType">
+		<complexContent>
+			<extension base="mpeg7:InlineTermDefinitionType">
+				<attribute name="href" type="mpeg7:termReferenceType" use="required"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of generic DS(ISO/IEC 15938-5) -->
+	<complexType name="DSType" abstract="true">
+		<complexContent>
+			<extension base="mpeg7:Mpeg7BaseType">
+				<sequence>
+					<!-- Header element removed -->
+				</sequence>
+				<attribute name="id" type="ID" use="optional"/>
+				<!-- timePropertyGrp attribute group removed -->
+				<attributeGroup ref="mpeg7:timePropertyGrp"/>
+				<!-- mediaTimePropertyGrp attribute group removed -->
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of generic D (ISO/IEC 15938-5) -->
+	<complexType name="DType" abstract="true">
+		<complexContent>
+			<extension base="mpeg7:Mpeg7BaseType"/>
+		</complexContent>
+	</complexType>
+	<!-- Definition of ExtendedLanguage datatype (ISO/IEC 15938-5) -->
+	<complexType name="ExtendedLanguageType">
+		<simpleContent>
+			<extension base="language">
+				<attribute name="type" use="optional" default="original">
+					<simpleType>
+						<restriction base="NMTOKEN">
+							<enumeration value="original"/>
+							<enumeration value="dubbed"/>
+							<enumeration value="background"/>
+						</restriction>
+					</simpleType>
+				</attribute>
+				<attribute name="supplemental" type="boolean" use="optional" default="false"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of Header datatype (ISO/IEC 15938-5: 4.2) -->
+	<complexType name="HeaderType" abstract="true">
+		<complexContent>
+			<extension base="mpeg7:Mpeg7BaseType">
+				<!-- id attribute removed -->
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of ImageLocator datatype (ISO/IEC 15938-5: 6.5.5) -->
+	<complexType name="ImageLocatorType">
+		<complexContent>
+			<extension base="mpeg7:MediaLocatorType">
+				<choice minOccurs="0">
+					<element name="MediaTimePoint" type="mpeg7:mediaTimePointType"/>
+					<!-- MediaRelTimePoint and MediaRelIncrTimePoint elements removed -->
+					<element name="BytePosition">
+						<complexType>
+							<attribute name="offset" type="nonNegativeInteger" use="required"/>
+							<attribute name="length" type="positiveInteger" use="optional"/>
+						</complexType>
+					</element>
+				</choice>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of IncrDuration datatype (ISO/IEC 15938-5: 6.4.5) -->
+	<complexType name="IncrDurationType">
+		<simpleContent>
+			<extension base="integer">
+				<attribute name="timeUnit" type="mpeg7:durationType" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of InlineMedia datatype (ISO/IEC 15938-5: 6.5.3) -->
+	<complexType name="InlineMediaType">
+		<choice>
+			<element name="MediaData16" type="hexBinary"/>
+			<element name="MediaData64" type="base64Binary"/>
+		</choice>
+		<attribute name="type" type="mpeg7:mimeType" use="required"/>
+	</complexType>
+	<!-- Definition of InlineTermDefinition datatype (ISO/IEC 15938-5: 7.3.4) -->
+	<complexType name="InlineTermDefinitionType" abstract="true">
+		<sequence>
+			<element name="Name" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="mpeg7:TextualType">
+							<attribute name="preferred" type="boolean" use="optional"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="Definition" type="mpeg7:TextualType" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Term element removed -->
+		</sequence>
+	</complexType>
+	<!-- Definition of MediaIncrDuration datatype (ISO/IEC 15938-5: 6.4.13) -->
+	<complexType name="MediaIncrDurationType">
+		<simpleContent>
+			<extension base="integer">
+				<attribute name="mediaTimeUnit" type="mpeg7:mediaDurationType" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of MediaLocator datatype (ISO/IEC 15938-5: 6.5.2) -->
+	<complexType name="MediaLocatorType">
+		<sequence>
+			<choice minOccurs="0">
+				<element name="MediaUri" type="anyURI"/>
+				<element name="InlineMedia" type="mpeg7:InlineMediaType"/>
+			</choice>
+			<element name="StreamID" type="nonNegativeInteger" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!-- Definition of MediaRelIncrTimePoint datatype (ISO/IEC 15938-5: 6.4.15) -->
+	<complexType name="MediaRelIncrTimePointType">
+		<simpleContent>
+			<extension base="integer">
+				<attribute name="mediaTimeUnit" type="mpeg7:mediaDurationType" use="optional"/>
+				<!-- mediaTimeBase attribute removed -->
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of MediaRelTimePoint datatype (ISO/IEC 15938-5: 6.4.13) -->
+	<complexType name="MediaRelTimePointType">
+		<simpleContent>
+			<extension base="mpeg7:mediaTimeOffsetType">
+				<!-- mediaTimeBase attribute removed -->
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of MediaTime datatype (ISO/IEC 15938-5: 6.4.10) -->
+	<complexType name="MediaTimeType">
+		<sequence>
+			<choice>
+				<element name="MediaTimePoint" type="mpeg7:mediaTimePointType"/>
+				<!-- MediaRelTimePoint and MediaRelIncrTimePoint elements removed -->
+			</choice>
+			<choice minOccurs="0">
+				<element name="MediaDuration" type="mpeg7:mediaDurationType"/>
+				<element name="MediaIncrDuration" type="mpeg7:MediaIncrDurationType"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<!-- Definition of MPEG-7 base type (ISO/IEC 15938-5: 4.2) -->
+	<complexType name="Mpeg7BaseType" abstract="true">
+		<complexContent>
+			<restriction base="anyType"/>
+		</complexContent>
+	</complexType>
+	<!-- Definition of NameComponent datatype (ISO/IEC 15938-5: 7.4.6) -->
+	<complexType name="NameComponentType">
+		<simpleContent>
+			<extension base="mpeg7:TextualBaseType">
+				<attribute name="initial" type="string" use="optional"/>
+				<attribute name="abbrev" type="string" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of ParentalGuidance datatype (ISO/IEC 15938-5) -->
+	<complexType name="ParentalGuidanceType">
+		<sequence>
+			<choice>
+				<element name="ParentalRating" type="mpeg7:ControlledTermUseType"/>
+				<element name="MinimumAge" type="nonNegativeInteger"/>
+			</choice>
+			<element name="Region" type="mpeg7:regionCode" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!-- ########################################### -->
+	<!-- Definition of PersonName datatype (7.5.6) -->
+	<!-- ########################################### -->
+	<!-- Definition of PersonName datatype (AMD/2)-->
+	<complexType name="PersonNameType">
+		<sequence>
+			<choice maxOccurs="unbounded">
+				<element name="GivenName" type="mpeg7:NameComponentType"/>
+				<element name="LinkingName" type="mpeg7:NameComponentType" minOccurs="0"/>
+				<element name="FamilyName" type="mpeg7:NameComponentType" minOccurs="0"/>
+				<element name="Title" type="mpeg7:NameComponentType" minOccurs="0"/>
+				<element name="Salutation" type="mpeg7:NameComponentType" minOccurs="0"/>
+				<element name="Numeration" type="string" minOccurs="0"/>
+			</choice>
+		</sequence>
+		<attribute name="dateFrom" type="mpeg7:timePointType" use="optional"/>
+		<attribute name="dateTo" type="mpeg7:timePointType" use="optional"/>
+		<attribute name="type" use="optional">
+			<simpleType>
+				<restriction base="NMTOKEN">
+					<enumeration value="former"/>
+					<enumeration value="variant"/>
+					<enumeration value="main"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute ref="xml:lang" use="optional"/>
+	</complexType>
+	<!-- Definition of Place DS (ISO/IEC 15938-5: 7.5.2) -->
+	<complexType name="PlaceType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="Name" type="mpeg7:TextualType" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<element name="NameTerm" type="mpeg7:ControlledTermUseType" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<element name="Role" type="mpeg7:TermUseType" minOccurs="0"/>
+					<element name="GeographicPosition" minOccurs="0">
+						<complexType>
+							<sequence>
+								<element name="Point" type="mpeg7:GeographicPointType"/>
+							</sequence>
+							<attribute name="datum" type="string" use="optional"/>
+						</complexType>
+					</element>
+					<!-- AstronomicalBody" element removed  -->
+					<element name="Region" type="mpeg7:regionCode" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<element name="AdministrativeUnit" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="type" type="string" use="optional"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="PostalAddress" minOccurs="0">
+						<complexType>
+							<sequence>
+								<element name="AddressLine" type="mpeg7:TextualType"
+									maxOccurs="unbounded"/>
+								<element name="PostingIdentifier" type="mpeg7:TextualType"
+									minOccurs="0"/>
+							</sequence>
+							<attribute ref="xml:lang" use="optional"/>
+						</complexType>
+					</element>
+					<element name="InternalCoordinates" type="string" minOccurs="0"/>
+				</sequence>
+				<attribute ref="xml:lang" use="optional"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of Rating datatype (ISO/IEC 15938-5) -->
+	<complexType name="RatingType">
+		<sequence>
+			<element name="RatingValue" type="float"/>
+			<element name="RatingScheme">
+				<complexType>
+					<complexContent>
+						<extension base="mpeg7:TermUseType">
+							<attribute name="best" type="float" use="optional"/>
+							<attribute name="worst" type="float" use="optional"/>
+							<attribute name="style" use="required">
+								<simpleType>
+									<restriction base="NMTOKEN">
+										<enumeration value="higherBetter"/>
+										<enumeration value="lowerBetter"/>
+									</restriction>
+								</simpleType>
+							</attribute>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<!-- Definition of Reference datatype (ISO/IEC 15938-5: 6.2.10) -->
+	<complexType name="ReferenceType">
+		<attributeGroup ref="mpeg7:referenceGrp"/>
+	</complexType>
+	<!-- Definition of RelIncrTimePointType datatype (ISO/IEC 15938-5: 6.4.7) -->
+	<complexType name="RelIncrTimePointType">
+		<simpleContent>
+			<extension base="integer">
+				<attribute name="timeUnit" type="mpeg7:durationType" use="optional"/>
+				<attribute name="timeBase" type="mpeg7:xPathRefType" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of RelTimePointType datatype (ISO/IEC 15938-5) -->
+	<complexType name="RelTimePointType">
+		<simpleContent>
+			<extension base="mpeg7:timeOffsetType">
+				<attribute name="timeBase" type="mpeg7:xPathRefType" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of TemporalSegmentLocator datatype (ISO/IEC 15938-5: 6.5.4) -->
+	<complexType name="TemporalSegmentLocatorType">
+		<complexContent>
+			<extension base="mpeg7:MediaLocatorType">
+				<choice minOccurs="0">
+					<element name="MediaTime" type="mpeg7:MediaTimeType"/>
+					<element name="BytePosition">
+						<complexType>
+							<attribute name="offset" type="nonNegativeInteger" use="required"/>
+							<attribute name="length" type="positiveInteger" use="optional"/>
+						</complexType>
+					</element>
+				</choice>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of TermDefinitionBase DS (ISO/IEC 15938-5: 7.3.3) -->
+	<complexType name="TermDefinitionBaseType" abstract="true">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="Name" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:TextualType">
+									<attribute name="preferred" type="boolean" use="optional"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="Definition" type="mpeg7:TextualType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="termID" type="NMTOKEN"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of TermDefinition DS (ISO/IEC 15938-5: 7.3.3) -->
+	<complexType name="TermDefinitionType">
+		<complexContent>
+			<extension base="mpeg7:TermDefinitionBaseType">
+				<sequence>
+					<element name="Term" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TermDefinitionType">
+									<attribute name="relation"
+										type="mpeg7:termRelationQualifierType" use="optional"
+										default="NT"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of TermUse datatype (ISO/IEC 15938-5: 7.3.3) -->
+	<complexType name="TermUseType">
+		<complexContent>
+			<extension base="mpeg7:InlineTermDefinitionType">
+				<attribute name="href" type="mpeg7:termReferenceType" use="optional"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of TextualBase datatype (ISO/IEC 15938-5: 7.2.2) -->
+	<complexType name="TextualBaseType" abstract="true">
+		<simpleContent>
+			<extension base="string">
+				<attribute ref="xml:lang" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of Textual datatype (ISO/IEC 15938-5: 7.2.2) -->
+	<complexType name="TextualType">
+		<simpleContent>
+			<extension base="mpeg7:TextualBaseType"/>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of Time datatype (ISO/IEC 15938-5: 6.4.2) -->
+	<complexType name="TimeType">
+		<sequence>
+			<choice>
+				<element name="TimePoint" type="mpeg7:timePointType"/>
+				<element name="RelTimePoint" type="mpeg7:RelTimePointType"/>
+				<element name="RelIncrTimePoint" type="mpeg7:RelIncrTimePointType"/>
+			</choice>
+			<choice minOccurs="0">
+				<element name="Duration" type="mpeg7:durationType"/>
+				<element name="IncrDuration" type="mpeg7:IncrDurationType"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<!-- Definition of Title datatype (ISO/IEC 15938-5) -->
+	<complexType name="TitleType">
+		<simpleContent>
+			<extension base="mpeg7:TextualBaseType">
+				<attribute name="type" use="optional" default="main">
+					<simpleType>
+						<union>
+							<simpleType>
+								<restriction base="NMTOKEN">
+									<enumeration value="main"/>
+									<enumeration value="secondary"/>
+									<enumeration value="alternative"/>
+									<enumeration value="original"/>
+									<enumeration value="popular"/>
+									<enumeration value="opusNumber"/>
+									<enumeration value="songTitle"/>
+									<enumeration value="albumTitle"/>
+									<enumeration value="seriesTitle"/>
+									<enumeration value="episodeTitle"/>
+								</restriction>
+							</simpleType>
+							<simpleType>
+								<restriction base="mpeg7:termReferenceType"/>
+							</simpleType>
+						</union>
+					</simpleType>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- Definition of UniqueID datatype (ISO/IEC 15938-5: 6.3.1) -->
+	<complexType name="UniqueIDType">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="type" type="NMTOKEN" use="optional" default="URI"/>
+				<attribute name="organization" type="NMTOKEN" use="optional"/>
+				<attribute name="authority" type="NMTOKEN" use="optional"/>
+				<attribute name="encoding" use="optional" default="text">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="text"/>
+							<enumeration value="base16"/>
+							<enumeration value="base64"/>
+						</restriction>
+					</simpleType>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<!-- #################################################################### -->
+	<annotation>
+		<documentation> MODULE 2. MPEG-7 SCHEMA COMPONENTS USED BY TVA FOR CONTENT DESCRIPTION ONLY
+		</documentation>
+	</annotation>
+	<!-- #################################################################### -->
+	<!-- Definition of TitleMedia datatype (ISO/IEC 15938-5) -->
+	<complexType name="TitleMediaType">
+		<sequence>
+			<element name="TitleImage" type="mpeg7:ImageLocatorType" minOccurs="0"/>
+			<element name="TitleVideo" type="mpeg7:TemporalSegmentLocatorType" minOccurs="0"/>
+			<element name="TitleAudio" type="mpeg7:TemporalSegmentLocatorType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!-- #################################################################### -->
+	<annotation>
+		<documentation> MODULE 3. MPEG-7 SCHEMA COMPONENTS USED BY TVA FOR USER DESCRIPTION ONLY
+		</documentation>
+	</annotation>
+	<!-- #################################################################### -->
+	<annotation>
+		<documentation> 3A. SIMPLE DATATYPES USED BY TVA FOR USER DESCRIPTION ONLY </documentation>
+	</annotation>
+	<!-- Definition of auxiliaryLanguage datatype (ISO/IEC 15938-5) -->
+	<simpleType name="auxiliaryLanguageType">
+		<union>
+			<simpleType>
+				<restriction base="NMTOKEN">
+					<enumeration value="dubbed"/>
+					<enumeration value="closedCaptions"/>
+					<enumeration value="subTitles"/>
+					<enumeration value="signLanguage"/>
+					<enumeration value="audioDescription"/>
+				</restriction>
+			</simpleType>
+			<simpleType>
+				<restriction base="mpeg7:termReferenceType"/>
+			</simpleType>
+		</union>
+	</simpleType>
+	<!-- Definition of nonNegativeReal datatype (ISO/IEC 15938-5: 5.3.4) -->
+	<simpleType name="nonNegativeReal">
+		<restriction base="double">
+			<minInclusive value="0.0"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of preferenceValue datatype (ISO/IEC 15938-5) -->
+	<simpleType name="preferenceValueType">
+		<restriction base="integer">
+			<minInclusive value="-100"/>
+			<maxInclusive value="100"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of summaryComponent datatype (ISO/IEC 15938-5) -->
+	<simpleType name="summaryComponentType">
+		<union>
+			<simpleType>
+				<restriction base="NMTOKEN">
+					<enumeration value="audio"/>
+					<enumeration value="visual"/>
+					<enumeration value="audioVisual"/>
+					<enumeration value="textual"/>
+					<enumeration value="keyAudioClips"/>
+					<enumeration value="keyVideoClips"/>
+					<enumeration value="keyAudioVisualClips"/>
+					<enumeration value="keyFrames"/>
+					<enumeration value="keySounds"/>
+					<enumeration value="keyThemes"/>
+				</restriction>
+			</simpleType>
+			<simpleType>
+				<restriction base="mpeg7:termReferenceType"/>
+			</simpleType>
+		</union>
+	</simpleType>
+	<!-- Definition of userChoice datatype (ISO/IEC 15938-5) -->
+	<simpleType name="userChoiceType">
+		<restriction base="NMTOKEN">
+			<enumeration value="true"/>
+			<enumeration value="false"/>
+			<enumeration value="user"/>
+		</restriction>
+	</simpleType>
+	<!-- #################################################################### -->
+	<annotation>
+		<documentation> 3B. COMPLEX DATATYPES USED BY TVA FOR USER DESCRIPTION ONLY </documentation>
+	</annotation>
+	<!-- Definition of Agent DS (ISO/IEC 15938-5: 7.4.2) -->
+	<complexType name="AgentType" abstract="true">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="Icon" type="mpeg7:MediaLocatorType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of BrowsingPreferences DS (ISO/IEC 15938-5: 15.2.9) -->
+	<complexType name="BrowsingPreferencesType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="SummaryPreferences" type="mpeg7:SummaryPreferencesType"
+						minOccurs="0" maxOccurs="unbounded"/>
+					<element name="PreferenceCondition" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:PreferenceConditionType">
+									<sequence>
+										<element name="Genre" type="mpeg7:TermUseType" minOccurs="0"
+										/>
+									</sequence>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+				<attribute name="protected" type="mpeg7:userChoiceType" use="optional"
+					default="true"/>
+				<attribute name="preferenceValue" type="mpeg7:preferenceValueType" use="optional"
+					default="10"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of ClassificationPreferences DS (ISO/IEC 15938-5: 15.2.7) -->
+	<complexType name="ClassificationPreferencesType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="Country" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:countryCode">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="DatePeriod" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TimeType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="LanguageFormat" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:auxiliaryLanguageType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="Language" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:ExtendedLanguageType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="CaptionLanguage" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="language">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="Form" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TermUseType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="Genre" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TermUseType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="Subject" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:TextualType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="Review" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<element name="Rating" type="mpeg7:RatingType" minOccurs="0"/>
+								<element name="Reviewer" type="mpeg7:AgentType" minOccurs="0"/>
+							</sequence>
+							<attribute name="preferenceValue" type="mpeg7:preferenceValueType"
+								use="optional" default="10"/>
+						</complexType>
+					</element>
+					<element name="ParentalGuidance" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:ParentalGuidanceType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+				<attribute name="preferenceValue" type="mpeg7:preferenceValueType" use="optional"
+					default="10"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of CreationPreferences DS (ISO/IEC 15938-5: 15.2.6) -->
+	<complexType name="CreationPreferencesType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="Title" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:TitleType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="Creator" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:CreatorType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="Keyword" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:TextualType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="Location" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:PlaceType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="DatePeriod" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TimeType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="Tool" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TermUseType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+				<attribute name="preferenceValue" type="mpeg7:preferenceValueType" use="optional"
+					default="10"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of Creator datatype (ISO/IEC 15938-5) -->
+	<complexType name="CreatorType">
+		<complexContent>
+			<extension base="mpeg7:MediaAgentType">
+				<sequence>
+					<element name="Character" type="mpeg7:PersonNameType" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<!-- Instrument element removed -->
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of ElectronicAddress datatype (7.5.7) -->
+	<!-- ################################################## -->
+	<!-- Definition of ElectronicAddress datatype (AMD/2) -->
+	<complexType name="ElectronicAddressType">
+		<sequence>
+			<element name="Telephone" minOccurs="0" maxOccurs="unbounded">
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="type" use="optional">
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="central"/>
+										<enumeration value="secondary"/>
+									</restriction>
+								</simpleType>
+							</attribute>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="Fax" type="string" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Email" type="string" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Url" type="anyURI" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<!-- Definition of FilteringAndSearchPreferences DS (ISO/IEC 15938-5: 15.2.5) -->
+	<complexType name="FilteringAndSearchPreferencesType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="CreationPreferences" type="mpeg7:CreationPreferencesType"
+						minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ClassificationPreferences"
+						type="mpeg7:ClassificationPreferencesType" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<element name="SourcePreferences" type="mpeg7:SourcePreferencesType"
+						minOccurs="0" maxOccurs="unbounded"/>
+					<element name="PreferenceCondition" type="mpeg7:PreferenceConditionType"
+						minOccurs="0" maxOccurs="unbounded"/>
+					<element name="FilteringAndSearchPreferences"
+						type="mpeg7:FilteringAndSearchPreferencesType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="protected" type="mpeg7:userChoiceType" use="optional"
+					default="true"/>
+				<attribute name="preferenceValue" type="mpeg7:preferenceValueType" use="optional"
+					default="10"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of MediaAgent datatype (ISO/IEC 15938-5) -->
+	<complexType name="MediaAgentType">
+		<sequence>
+			<element name="Role" type="mpeg7:ControlledTermUseType"/>
+			<choice>
+				<element name="Agent" type="mpeg7:AgentType"/>
+				<element name="AgentRef" type="mpeg7:ReferenceType"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<!-- Definition of MediaFormat D (ISO/IEC 15938-5: 8.2.4) -->
+	<complexType name="MediaFormatType">
+		<complexContent>
+			<extension base="mpeg7:DType">
+				<sequence>
+					<element name="Content" type="mpeg7:ControlledTermUseType"/>
+					<element name="Medium" type="mpeg7:ControlledTermUseType" minOccurs="0"/>
+					<element name="FileFormat" type="mpeg7:ControlledTermUseType" minOccurs="0"/>
+					<element name="FileSize" type="nonNegativeInteger" minOccurs="0"/>
+					<element name="System" type="mpeg7:ControlledTermUseType" minOccurs="0"/>
+					<element name="BitRate" minOccurs="0">
+						<complexType>
+							<simpleContent>
+								<extension base="nonNegativeInteger">
+									<attribute name="variable" type="boolean" use="optional"
+										default="false"/>
+									<attribute name="minimum" type="nonNegativeInteger"
+										use="optional"/>
+									<attribute name="average" type="nonNegativeInteger"
+										use="optional"/>
+									<attribute name="maximum" type="nonNegativeInteger"
+										use="optional"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="VisualCoding" minOccurs="0">
+						<complexType>
+							<sequence>
+								<element name="Format" minOccurs="0">
+									<complexType>
+										<complexContent>
+											<extension base="mpeg7:ControlledTermUseType">
+												<attribute name="colorDomain" use="optional"
+												default="color">
+												<simpleType>
+												<union>
+												<simpleType>
+												<restriction base="NMTOKEN">
+												<enumeration value="binary"/>
+												<enumeration value="color"/>
+												<enumeration value="graylevel"/>
+												<enumeration value="colorized"/>
+												</restriction>
+												</simpleType>
+												<simpleType>
+												<restriction base="mpeg7:termReferenceType"/>
+												</simpleType>
+												</union>
+												</simpleType>
+												</attribute>
+											</extension>
+										</complexContent>
+									</complexType>
+								</element>
+								<element name="Pixel" minOccurs="0">
+									<complexType>
+										<attribute name="resolution" type="nonNegativeInteger"
+											use="optional"/>
+										<attribute name="aspectRatio" type="mpeg7:nonNegativeReal"
+											use="optional"/>
+										<attribute name="bitsPer" type="nonNegativeInteger"
+											use="optional"/>
+									</complexType>
+								</element>
+								<element name="Frame" minOccurs="0">
+									<complexType>
+										<attribute name="height" type="nonNegativeInteger"
+											use="optional"/>
+										<attribute name="width" type="nonNegativeInteger"
+											use="optional"/>
+										<attribute name="aspectRatio" type="mpeg7:nonNegativeReal"
+											use="optional"/>
+										<attribute name="rate" type="mpeg7:nonNegativeReal"
+											use="optional"/>
+										<attribute name="structure" use="optional">
+											<simpleType>
+												<restriction base="NMTOKEN">
+												<enumeration value="progressive"/>
+												<enumeration value="interlaced"/>
+												</restriction>
+											</simpleType>
+										</attribute>
+									</complexType>
+								</element>
+								<!-- ColorSampling" element removed -->
+							</sequence>
+						</complexType>
+					</element>
+					<element name="AudioCoding" minOccurs="0">
+						<complexType>
+							<sequence>
+								<element name="Format" type="mpeg7:ControlledTermUseType"
+									minOccurs="0"/>
+								<element name="AudioChannels" minOccurs="0">
+									<complexType>
+										<simpleContent>
+											<extension base="nonNegativeInteger">
+												<attribute name="front" type="nonNegativeInteger"
+												use="optional"/>
+												<attribute name="side" type="nonNegativeInteger"
+												use="optional"/>
+												<attribute name="rear" type="nonNegativeInteger"
+												use="optional"/>
+												<attribute name="lfe" type="nonNegativeInteger"
+												use="optional"/>
+												<attribute name="track" type="nonNegativeInteger"
+												use="optional"/>
+											</extension>
+										</simpleContent>
+									</complexType>
+								</element>
+								<element name="Sample" minOccurs="0">
+									<complexType>
+										<attribute name="rate" type="mpeg7:nonNegativeReal"
+											use="optional"/>
+										<attribute name="bitsPer" type="nonNegativeInteger"
+											use="optional"/>
+									</complexType>
+								</element>
+								<element name="Emphasis" minOccurs="0">
+									<simpleType>
+										<union>
+											<simpleType>
+												<restriction base="NMTOKEN">
+												<enumeration value="none"/>
+												<enumeration value="50over15Microseconds"/>
+												<enumeration value="ccittJ17"/>
+												</restriction>
+											</simpleType>
+											<simpleType>
+												<restriction base="mpeg7:termReferenceType"/>
+											</simpleType>
+										</union>
+									</simpleType>
+								</element>
+								<element name="Presentation" type="mpeg7:ControlledTermUseType"
+									minOccurs="0"/>
+							</sequence>
+						</complexType>
+					</element>
+					<element name="SceneCodingFormat" type="mpeg7:ControlledTermUseType"
+						minOccurs="0"/>
+					<element name="GraphicsCodingFormat" type="mpeg7:ControlledTermUseType"
+						minOccurs="0"/>
+					<element name="OtherCodingFormat" type="mpeg7:ControlledTermUseType"
+						minOccurs="0"/>
+					<!-- Bandwidth element removed -->
+					<!-- TargetChannelBitRate" element removed -->
+					<!-- ScalableCoding" element removed       -->
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of Organization DS (ISO/IEC 15938-5: 7.4.5) -->
+	<complexType name="OrganizationType">
+		<complexContent>
+			<extension base="mpeg7:AgentType">
+				<sequence>
+					<element name="Name" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:TextualType">
+									<attribute name="type" use="optional">
+										<simpleType>
+											<restriction base="NMTOKEN">
+												<enumeration value="former"/>
+												<enumeration value="variant"/>
+												<enumeration value="main"/>
+											</restriction>
+										</simpleType>
+									</attribute>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="NameTerm" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:ControlledTermUseType">
+									<attribute name="type" use="optional">
+										<simpleType>
+											<restriction base="NMTOKEN">
+												<enumeration value="former"/>
+												<enumeration value="variant"/>
+												<enumeration value="main"/>
+											</restriction>
+										</simpleType>
+									</attribute>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="Kind" type="mpeg7:TermUseType" minOccurs="0"/>
+					<choice minOccurs="0" maxOccurs="unbounded">
+						<element name="Contact" type="mpeg7:AgentType"/>
+						<element name="ContactRef" type="mpeg7:ReferenceType"/>
+					</choice>
+					<choice minOccurs="0">
+						<element name="Jurisdiction" type="mpeg7:PlaceType"/>
+						<element name="JurisdictionRef" type="mpeg7:ReferenceType"/>
+					</choice>
+					<choice minOccurs="0">
+						<element name="Address" type="mpeg7:PlaceType"/>
+						<element name="AddressRef" type="mpeg7:ReferenceType"/>
+					</choice>
+					<element name="ElectronicAddress" type="mpeg7:ElectronicAddressType"
+						minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of PersonGroup DS (ISO/IEC 15938-5: 7.4.4) -->
+	<complexType name="PersonGroupType">
+		<complexContent>
+			<extension base="mpeg7:AgentType">
+				<sequence>
+					<element name="Name" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:TextualType">
+									<attribute name="type" use="optional">
+										<simpleType>
+											<restriction base="NMTOKEN">
+												<enumeration value="former"/>
+												<enumeration value="variant"/>
+												<enumeration value="main"/>
+											</restriction>
+										</simpleType>
+									</attribute>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="NameTerm" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:ControlledTermUseType">
+									<attribute name="type" use="optional">
+										<simpleType>
+											<restriction base="NMTOKEN">
+												<enumeration value="former"/>
+												<enumeration value="variant"/>
+												<enumeration value="main"/>
+											</restriction>
+										</simpleType>
+									</attribute>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="Kind" type="mpeg7:TermUseType" minOccurs="0"/>
+					<choice minOccurs="0" maxOccurs="unbounded">
+						<element name="Member" type="mpeg7:PersonType"/>
+						<element name="MemberRef" type="mpeg7:ReferenceType"/>
+					</choice>
+					<choice minOccurs="0">
+						<element name="Jurisdiction" type="mpeg7:PlaceType"/>
+						<element name="JurisdictionRef" type="mpeg7:ReferenceType"/>
+					</choice>
+					<choice minOccurs="0">
+						<element name="Address" type="mpeg7:PlaceType"/>
+						<element name="AddressRef" type="mpeg7:ReferenceType"/>
+					</choice>
+					<element name="ElectronicAddress" type="mpeg7:ElectronicAddressType"
+						minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ################################# -->
+	<!-- Definition of Person DS (7.5.3) -->
+	<!-- ################################# -->
+	<!-- Definition of Person DS (AMD/2) -->
+	<complexType name="PersonType">
+		<complexContent>
+			<extension base="mpeg7:AgentType">
+				<sequence>
+					<choice maxOccurs="unbounded">
+						<element name="Name" type="mpeg7:PersonNameType"/>
+						<element name="NameTerm" type="mpeg7:ControlledTermUseType"/>
+					</choice>
+					<element name="Affiliation" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<choice>
+								<element name="Organization" type="mpeg7:OrganizationType"/>
+								<element name="OrganizationRef" type="mpeg7:ReferenceType"/>
+								<element name="PersonGroup" type="mpeg7:PersonGroupType"/>
+								<element name="PersonGroupRef" type="mpeg7:ReferenceType"/>
+							</choice>
+						</complexType>
+					</element>
+					<element name="Citizenship" type="mpeg7:countryCode" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<choice minOccurs="0">
+						<element name="Address" type="mpeg7:PlaceType"/>
+						<element name="AddressRef" type="mpeg7:ReferenceType"/>
+					</choice>
+					<element name="ElectronicAddress" type="mpeg7:ElectronicAddressType"
+						minOccurs="0" maxOccurs="unbounded"/>
+					<element name="PersonDescription" type="mpeg7:TextualType" minOccurs="0"/>
+					<element name="Nationality" type="mpeg7:countryCode" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of PreferenceCondition D (ISO/IEC 15938-5: 15.2.2) -->
+	<complexType name="PreferenceConditionType">
+		<complexContent>
+			<extension base="mpeg7:DType">
+				<sequence>
+					<element name="Place" type="mpeg7:PlaceType" minOccurs="0"/>
+					<element name="Time" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TimeType">
+									<attribute name="recurrence" use="optional" default="none">
+										<simpleType>
+											<union>
+												<simpleType>
+												<restriction base="NMTOKEN">
+												<enumeration value="none"/>
+												<enumeration value="daily"/>
+												<enumeration value="weekly"/>
+												<enumeration value="monthly"/>
+												<enumeration value="annually"/>
+												</restriction>
+												</simpleType>
+												<simpleType>
+												<restriction base="mpeg7:termReferenceType"/>
+												</simpleType>
+											</union>
+										</simpleType>
+									</attribute>
+									<attribute name="numOfRecurrences" type="positiveInteger"
+										use="optional"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of SourcePreferences DS (ISO/IEC 15938-5: 15.2.8) -->
+	<complexType name="SourcePreferencesType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="DisseminationFormat" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TermUseType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="DisseminationSource" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:TextualType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="DisseminationLocation" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:PlaceType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="DisseminationDate" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TimeType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="Disseminator" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:MediaAgentType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="MediaFormat" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:MediaFormatType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+				<attribute name="noRepeat" type="boolean" use="optional"/>
+				<attribute name="noEncryption" type="boolean" use="optional"/>
+				<attribute name="noPayPerUse" type="boolean" use="optional"/>
+				<attribute name="preferenceValue" type="mpeg7:preferenceValueType" use="optional"
+					default="10"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of SummaryPreferences DS (ISO/IEC 15938-5: 15.2.8) -->
+	<complexType name="SummaryPreferencesType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="SummaryType" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:summaryComponentType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="SummaryTheme" minOccurs="0" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="mpeg7:TextualType">
+									<attribute name="preferenceValue"
+										type="mpeg7:preferenceValueType" use="optional" default="10"
+									/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="SummaryDuration" type="mpeg7:mediaDurationType" minOccurs="0"/>
+					<element name="MinSummaryDuration" type="mpeg7:mediaDurationType" minOccurs="0"/>
+					<element name="MaxSummaryDuration" type="mpeg7:mediaDurationType" minOccurs="0"/>
+					<element name="NumOfKeyFrames" type="positiveInteger" minOccurs="0"/>
+					<element name="MinNumOfKeyFrames" type="positiveInteger" minOccurs="0"/>
+					<element name="MaxNumOfKeyFrames" type="positiveInteger" minOccurs="0"/>
+					<element name="NumOfChars" type="positiveInteger" minOccurs="0"/>
+					<element name="MinNumOfChars" type="positiveInteger" minOccurs="0"/>
+					<element name="MaxNumOfChars" type="positiveInteger" minOccurs="0"/>
+				</sequence>
+				<attribute name="preferenceValue" type="mpeg7:preferenceValueType" use="optional"
+					default="10"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of UsageHistory DS (ISO/IEC 15938-5: 15.3.2) -->
+	<complexType name="UsageHistoryType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="UserIdentifier" type="mpeg7:UserIdentifierType" minOccurs="0"/>
+					<element name="UserActionHistory" type="mpeg7:UserActionHistoryType"
+						maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="allowCollection" type="mpeg7:userChoiceType" use="optional"
+					default="false"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of UserActionHistory DS (ISO/IEC 15938-5: 15.3.3) -->
+	<complexType name="UserActionHistoryType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="ObservationPeriod" type="mpeg7:TimeType" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<element name="UserActionList" type="mpeg7:UserActionListType"
+						maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="protected" type="mpeg7:userChoiceType" use="optional"
+					default="true"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of UserActionList DS (ISO/IEC 15938-5: 15.3.4) -->
+	<complexType name="UserActionListType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence minOccurs="0">
+					<element name="ActionType" type="mpeg7:TermUseType"/>
+					<element name="UserAction" type="mpeg7:UserActionType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="numOfInstances" type="nonNegativeInteger" use="optional"/>
+				<attribute name="totalDuration" type="mpeg7:durationType" use="optional"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of UserAction DS (ISO/IEC 15938-5: 15.3.5) -->
+	<complexType name="UserActionType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="ActionTime" minOccurs="0">
+						<complexType>
+							<sequence>
+								<element name="MediaTime" type="mpeg7:MediaTimeType" minOccurs="0"/>
+								<element name="GeneralTime" type="mpeg7:TimeType" minOccurs="0"/>
+							</sequence>
+						</complexType>
+					</element>
+					<element name="ProgramIdentifier" type="mpeg7:UniqueIDType"/>
+					<element name="ActionDataItem" type="mpeg7:ReferenceType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- Definition of UserIdentifier datatype (ISO/IEC 15938-5: 15.2.4)-->
+	<complexType name="UserIdentifierType">
+		<sequence>
+			<element name="Name" type="mpeg7:TextualType"/>
+		</sequence>
+		<attribute name="protected" type="mpeg7:userChoiceType" use="optional" default="true"/>
+	</complexType>
+	<!-- Definition of UserPreferences DS (ISO/IEC 15938-5: 15.2.3) -->
+	<complexType name="UserPreferencesType">
+		<complexContent>
+			<extension base="mpeg7:DSType">
+				<sequence>
+					<element name="UserIdentifier" type="mpeg7:UserIdentifierType" minOccurs="0"/>
+					<element name="FilteringAndSearchPreferences"
+						type="mpeg7:FilteringAndSearchPreferencesType" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<element name="BrowsingPreferences" type="mpeg7:BrowsingPreferencesType"
+						minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+				<attribute name="allowAutomaticUpdate" type="mpeg7:userChoiceType" use="optional"
+					default="false"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- #################################################################### -->
+	<annotation>
+		<documentation>4. DATATYPES USED BY mpeg21_tva.xsd</documentation>
+	</annotation>
+	<!-- Definition of characterSetCode datatype (DIA only) -->
+	<simpleType name="characterSetCode">
+		<restriction base="string"/>
+	</simpleType>
+	<!-- Definition of floatVector datatype (DIA only) -->
+	<simpleType name="floatVector">
+		<list itemType="float"/>
+	</simpleType>
+	<!-- Definition of GeographicPoint datatype -->
+	<complexType name="GeographicPointType">
+		<attribute name="longitude" use="required">
+			<simpleType>
+				<restriction base="double">
+					<minInclusive value="-180.0"/>
+					<maxInclusive value="180.0"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="latitude" use="required">
+			<simpleType>
+				<restriction base="double">
+					<minInclusive value="-90.0"/>
+					<maxInclusive value="90.0"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="altitude" type="double" use="optional"/>
+	</complexType>
+	<simpleType name="probabilityVector">
+		<list>
+			<simpleType>
+				<restriction base="float">
+					<minInclusive value="0.0"/>
+					<maxInclusive value="1.0"/>
+				</restriction>
+			</simpleType>
+		</list>
+	</simpleType>
+	<!-- Definition of unsigned8 datatype (DIA only) -->
+	<simpleType name="unsigned8">
+		<restriction base="nonNegativeInteger">
+			<minInclusive value="0"/>
+			<maxInclusive value="255"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of unsigned12 datatype (DIA only) -->
+	<simpleType name="unsigned12">
+		<restriction base="nonNegativeInteger">
+			<minInclusive value="0"/>
+			<maxInclusive value="4095"/>
+		</restriction>
+	</simpleType>
+	<!-- Definition of zeroToOne datatype (DIA only) -->
+	<simpleType name="zeroToOneType">
+		<restriction base="float">
+			<minInclusive value="0.0"/>
+			<maxInclusive value="1.0"/>
+		</restriction>
+	</simpleType>
+</schema>

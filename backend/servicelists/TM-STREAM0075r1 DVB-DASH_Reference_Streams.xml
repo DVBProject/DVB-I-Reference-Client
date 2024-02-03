@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ServiceList version="1" id="tag:dvb.org,2024:ref-dvb-dash" xml:lang="en"
-  xmlns="urn:dvb:metadata:servicediscovery:2023b" xmlns:tva="urn:tva:metadata:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023"
+  xmlns="urn:dvb:metadata:servicediscovery:2024" xmlns:tva="urn:tva:metadata:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2023b ../dvbi_v6.0.xsd urn:tva:metadata:2024 ../tva_metadata_3-1.xsd">
+  xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2024 schemas/dvbi_v6.0.xsd urn:tva:metadata:2024 schemas/tva_metadata_3-1.xsd">
 
     <!-- r1: removed non-stpp subtitles -->
 

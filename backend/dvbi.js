@@ -351,7 +351,7 @@ function generateXML() {
   }
 
   doc.documentElement.setAttribute("xmlns", DVBi_Service_Discovery_Schema);
-  doc.documentElement.setAttribute("xsi:schemaLocation", DVBi_Service_Discovery_Schema + " ../dvbi_v6.0.xsd");
+  doc.documentElement.setAttribute("xsi:schemaLocation", DVBi_Service_Discovery_Schema + " schemas/dvbi_v6.0.xsd");
   var lang = document.getElementById("service_list_language").value;
   if (!lang || lang.length != 2) {
     alert("Invalid service list language!");

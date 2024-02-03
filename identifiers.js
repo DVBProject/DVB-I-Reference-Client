@@ -31,7 +31,7 @@ var SOURCE_DVB_DASH = SouceTypes + ":dvb-dash";
 var SOURCE_DVB_IPTV = SouceTypes + ":dvb-iptv";
 var SOURCE_DVB_APPLICATION = SouceTypes + ":application";
 
-var DVBi_Service_Discovery_Schema = "urn:dvb:metadata:servicediscovery:2023b";
-var DVBi_Service_Discovery_Types_Schema = "urn:dvb:metadata:servicediscovery-types:2023";
-var DVBi_Service_List_Discovery_Schema = "urn:dvb:metadata:servicelistdiscovery:2023";
 var TVA_Schema = "urn:tva:metadata:2024";
+var DVBi_Service_Discovery_Types_Schema = "urn:dvb:metadata:servicediscovery-types:2023";
+var DVBi_Service_List_Discovery_Schema = "urn:dvb:metadata:servicelistdiscovery:2024";
+var DVBi_Service_Discovery_Schema = "urn:dvb:metadata:servicediscovery:2024";

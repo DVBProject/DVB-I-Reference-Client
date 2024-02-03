@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dvbi:ServiceList version="45" id="tag:dvb.org,2024:ref-example_rev1" xml:lang="en"
-    xmlns:dvbi="urn:dvb:metadata:servicediscovery:2023b" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:tva="urn:tva:metadata:2024"
+    xmlns:dvbi="urn:dvb:metadata:servicediscovery:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:tva="urn:tva:metadata:2024"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2023b ../dvbi_v6.0.xsd">
+    xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2024 schemas/dvbi_v6.0.xsd">
   <dvbi:Name>DVB-I Reference app availability example</dvbi:Name>
   <dvbi:ProviderName>DVB</dvbi:ProviderName>
   <dvbi:LCNTableList>
