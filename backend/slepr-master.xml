@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sld:ServiceListEntryPoints xml:lang="en" xmlns:sld="urn:dvb:metadata:servicelistdiscovery:2023" xmlns:dvbisd="urn:dvb:metadata:servicediscovery:2023" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicelistdiscovery:2023 dvbi_service_list_discovery_v1.5.xsd">
+<sld:ServiceListEntryPoints xml:lang="en" xmlns:sld="urn:dvb:metadata:servicelistdiscovery:2024" xmlns:dvbisd="urn:dvb:metadata:servicediscovery:2024" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicelistdiscovery:2024 dvbi_service_list_discovery_v1.6.xsd">
 	<sld:ServiceListRegistryEntity regulatorFlag="false">
 		<mpeg7:Icon>
 			<mpeg7:MediaUri>http://dvb.org/img/f/dvb-logo.png</mpeg7:MediaUri>
@@ -126,9 +126,9 @@
 			</sld:Delivery>
 		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>Service prominence list(r5)</sld:ServiceListName>
+		  <sld:ServiceListName>Service prominence list(r6)</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=prominence_r5.xml</dvbisd:URI>
+				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=prominence_r6.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
 				<sld:DASHDelivery/>

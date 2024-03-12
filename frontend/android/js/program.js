@@ -155,6 +155,7 @@ Program.prototype.populateProgramInfo = function () {
   this.channel.getProgramInfo(this.programId, function (info) {
     var i;
     if (info) {
+      console.log(typeof info);
       var extendedData = "";
       if (info.creditsItems) {
         for (i = 0; i < info.creditsItems.length; i++) {

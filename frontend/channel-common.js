@@ -1,10 +1,7 @@
 function Channel() {}
 
 Channel.prototype.getGenre = function (genre) {
-  if (
-    typeof genre === "string" &&
-    genre.substring(0, "urn:dvb:metadata:cs:ContentSubject:2019:".length) == "urn:dvb:metadata:cs:ContentSubject:2019:"
-  ) {
+  if (typeof genre === "string" && genre.substring(0, DVB_Content_Subject_CS.length) == DVB_Content_Subject_CS) {
     var genre2 = genre.substring(genre.lastIndexOf(":") + 1);
     if (genre2 == "1") {
       return i18n.getString("genre_movie");
@@ -38,21 +35,23 @@ Channel.prototype.getGenre = function (genre) {
 Channel.prototype.parseSchedule = function (data) {
   var newPrograms = [];
   var parser = new DOMParser();
-  var doc = parser.parseFromString(data, "text/xml");
-  var events = doc.getElementsByTagName("ScheduleEvent");
-  var programs = doc.getElementsByTagName("ProgramInformation");
+  var doc = parser.parseFromString(data, XML_MIME);
+  var events = doc.getElementsByTagNameNS(TVA_ns, "ScheduleEvent");
+  var programs = doc.getElementsByTagNameNS(TVA_ns, "ProgramInformation");
   for (var i = 0; i < events.length; i++) {
     var program = {};
-    var programId = events[i].getElementsByTagName("Program")[0].getAttribute("crid");
+    var programId = events[i].getElementsByTagNameNS(TVA_ns, "Program")[0].getAttribute("crid");
     program.programId = programId;
-    program.start = events[i].getElementsByTagName("PublishedStartTime")[0].childNodes[0].nodeValue.toUTCDate();
+    program.start = events[i]
+      .getElementsByTagNameNS(TVA_ns, "PublishedStartTime")[0]
+      .childNodes[0].nodeValue.toUTCDate();
     program.end = iso6801end(
-      events[i].getElementsByTagName("PublishedDuration")[0].childNodes[0].nodeValue,
+      events[i].getElementsByTagNameNS(TVA_ns, "PublishedDuration")[0].childNodes[0].nodeValue,
       program.start
     );
-    var instanceDescriptions = events[i].getElementsByTagName("InstanceDescription");
+    var instanceDescriptions = events[i].getElementsByTagNameNS(TVA_ns, "InstanceDescription");
     if (instanceDescriptions.length > 0) {
-      var otherIdentifiers = instanceDescriptions[0].getElementsByTagName("OtherIdentifier");
+      var otherIdentifiers = instanceDescriptions[0].getElementsByTagNameNS(TVA_ns, "OtherIdentifier");
       for (var j2 = 0; j2 < otherIdentifiers.length; j2++) {
         var type = otherIdentifiers[j2].getAttribute("type");
         if (type == "CPSIndex") {
@@ -63,8 +62,8 @@ Channel.prototype.parseSchedule = function (data) {
     program.prglen = (program.end.getTime() - program.start.getTime()) / (1000 * 60);
     for (var j1 = 0; j1 < programs.length; j1++) {
       if (programs[j1].getAttribute("programId") == programId) {
-        var description = programs[j1].getElementsByTagName("BasicDescription")[0];
-        var titles = description.getElementsByTagName("Title");
+        var description = programs[j1].getElementsByTagNameNS(TVA_ns, "BasicDescription")[0];
+        var titles = description.getElementsByTagNameNS(TVA_ns, "Title");
         program.titles = [];
         for (var j = 0; j < titles.length; j++) {
           var element = titles[j];
@@ -79,7 +78,7 @@ Channel.prototype.parseSchedule = function (data) {
           program.titles.push(text);
         }
         program.title = titles[0].childNodes[0].nodeValue;
-        var synopsis = description.getElementsByTagName("Synopsis");
+        var synopsis = description.getElementsByTagNameNS(TVA_ns, "Synopsis");
         if (synopsis.length > 0) {
           program.descriptions = [];
           for (var j3 = 0; j3 < synopsis.length; j3++) {
@@ -95,28 +94,28 @@ Channel.prototype.parseSchedule = function (data) {
             program.descriptions.push(text2);
           }
         }
-        var genre = description.getElementsByTagName("Genre");
+        var genre = description.getElementsByTagNameNS(TVA_ns, "Genre");
         if (genre.length > 0) {
           var genreValue = this.getGenre(genre[0].getAttribute("href"));
           if (genreValue != null) {
             program.genre = genreValue;
           }
         }
-        var parentalGuidance = description.getElementsByTagName("ParentalGuidance");
+        var parentalGuidance = description.getElementsByTagNameNS(TVA_ns, "ParentalGuidance");
         var parentals = [];
         for (var k = 0; k < parentalGuidance.length; k++) {
           var rating = {};
-          var minimumAge = parentalGuidance[k].getElementsByTagNameNS("urn:tva:mpeg7:2008", "MinimumAge");
+          var minimumAge = parentalGuidance[k].getElementsByTagNameNS(MPEG7_ns, "MinimumAge");
           if (minimumAge.length > 0) {
             //assume single element
             rating.minimumage = minimumAge[0].childNodes[0].nodeValue;
           }
-          var parentalRating = parentalGuidance[k].getElementsByTagNameNS("urn:tva:mpeg7:2008", "ParentalRating");
+          var parentalRating = parentalGuidance[k].getElementsByTagNameNS(MPEG7_ns, "ParentalRating");
           if (parentalRating.length > 0) {
             //assume single element
             rating.parentalRating = parentalRating[0].getAttribute("href");
           }
-          var explanatoryText = parentalGuidance[k].getElementsByTagName("ExplanatoryText");
+          var explanatoryText = parentalGuidance[k].getElementsByTagNameNS("*", "ExplanatoryText");
           if (explanatoryText.length > 0) {
             //multilingual
             rating.explanatoryText2 = [];
@@ -130,50 +129,53 @@ Channel.prototype.parseSchedule = function (data) {
           parentals.push(rating);
         }
         program.parentalRating = parentals;
-        var relatedMaterial = description.getElementsByTagName("RelatedMaterial");
+        var relatedMaterial = description.getElementsByTagNameNS(TVA_ns, "RelatedMaterial");
         for (var k1 = 0; k1 < relatedMaterial.length; k1++) {
-          var howRelated = relatedMaterial[k1].getElementsByTagName("HowRelated")[0].getAttribute("href");
-          if (howRelated == "urn:tva:metadata:cs:HowRelatedCS:2012:19") {
+          var howRelated = relatedMaterial[k1].getElementsByTagNameNS(TVA_ns, "HowRelated")[0].getAttribute("href");
+          if (howRelated == TVA_Promotional_Still_Image) {
             //Program still image
-            program.mediaimage = relatedMaterial[k1].getElementsByTagName("MediaUri")[0].childNodes[0].nodeValue;
+            program.mediaimage = relatedMaterial[k1].getElementsByTagNameNS(
+              TVA_ns,
+              "MediaUri"
+            )[0].childNodes[0].nodeValue;
             break;
           }
         }
-        var creditsList = description.getElementsByTagName("CreditsList");
+        var creditsList = description.getElementsByTagNameNS(TVA_ns, "CreditsList");
         if (creditsList.length > 0) {
           program.creditsItems = [];
-          var creditsItems = description.getElementsByTagName("CreditsItem");
+          var creditsItems = description.getElementsByTagNameNS(TVA_ns, "CreditsItem");
           for (var k2 = 0; k2 < creditsItems.length; k2++) {
             creditsItem = {};
             creditsItem.role = creditsItems[k2].getAttribute("role");
-            var organizations = creditsItems[k2].getElementsByTagName("OrganizationName");
+            var organizations = creditsItems[k2].getElementsByTagNameNS(TVA_ns, "OrganizationName");
             if (organizations.length > 0) {
               creditsItem.organizations = [];
               for (var l2 = 0; l2 < organizations.length; l2++) {
                 creditsItem.organizations.push(organizations[l2].childNodes[0].nodeValue);
               }
             }
-            var persons = creditsItems[k].getElementsByTagName("PersonName");
+            var persons = creditsItems[k].getElementsByTagNameNS(TVA_ns, "PersonName");
             if (persons.length > 0) {
               var person = {};
-              var givenNames = persons[0].getElementsByTagNameNS("urn:tva:mpeg7:2008", "GivenName");
+              var givenNames = persons[0].getElementsByTagNameNS(MPEG7_ns, "GivenName");
               if (givenNames.length > 0) {
                 person.givenName = givenNames[0].childNodes[0].nodeValue;
               }
-              var familyName = persons[0].getElementsByTagNameNS("urn:tva:mpeg7:2008", "FamilyName");
+              var familyName = persons[0].getElementsByTagNameNS(MPEG7_ns, "FamilyName");
               if (familyName.length > 0) {
                 person.familyName = familyName[0].childNodes[0].nodeValue;
               }
               creditsItem.person = person;
             }
-            persons = creditsItems[k].getElementsByTagName("Character");
+            persons = creditsItems[k].getElementsByTagNameNS(TVA_ns, "Character");
             if (persons.length > 0) {
               var person2 = {};
-              var givenNames2 = persons[0].getElementsByTagNameNS("urn:tva:mpeg7:2008", "GivenName");
+              var givenNames2 = persons[0].getElementsByTagNameNS(MPEG7_ns, "GivenName");
               if (givenNames2.length > 0) {
                 person2.givenName = givenNames2[0].childNodes[0].nodeValue;
               }
-              var familyName2 = persons[0].getElementsByTagNameNS("urn:tva:mpeg7:2008", "FamilyName");
+              var familyName2 = persons[0].getElementsByTagNameNS(MPEG7_ns, "FamilyName");
               if (familyName2.length > 0) {
                 person2.familyName = familyName2[0].childNodes[0].nodeValue;
               }
@@ -182,7 +184,7 @@ Channel.prototype.parseSchedule = function (data) {
             program.creditsItems.push(creditsItem);
           }
         }
-        var keywords = description.getElementsByTagName("Keyword");
+        var keywords = description.getElementsByTagNameNS(TVA_ns, "Keyword");
         if (keywords.length > 0) {
           program.keywords = [];
           for (var k3 = 0; k3 < keywords.length; k3++) {

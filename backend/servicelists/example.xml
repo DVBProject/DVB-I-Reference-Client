@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xml:lang="en" xmlns="urn:dvb:metadata:servicediscovery:2023" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tva="urn:tva:metadata:2023" version="1" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2023 ../dvbi_v5.0.xsd">
+<ServiceList xml:lang="en" version="1" id="tag:dvb.org,2024:ref-example"
+    xmlns="urn:dvb:metadata:servicediscovery:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:tva="urn:tva:metadata:2024"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2024 schemas/dvbi_v6.0.xsd">
   <Name>DVB-I example service list</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
@@ -28,13 +31,13 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>INSTALL~~LOCATION/backend/schedule.php</URI>
+      <dvbi-types:URI>INSTALL~~LOCATION/backend/schedule.php</dvbi-types:URI>
     </ScheduleInfoEndpoint>
     <ProgramInfoEndpoint contentType="application/xml">
-      <URI>INSTALL~~LOCATION/backend/program_information.php</URI>
+      <dvbi-types:URI>INSTALL~~LOCATION/backend/program_information.php</dvbi-types:URI>
     </ProgramInfoEndpoint>
     <MoreEpisodesEndpoint contentType="application/xml">
-      <URI>INSTALL~~LOCATION/backend/more_episodes.php</URI>
+      <dvbi-types:URI>INSTALL~~LOCATION/backend/more_episodes.php</dvbi-types:URI>
     </MoreEpisodesEndpoint>
   </ContentGuideSource>
   <Service version="1">
@@ -66,7 +69,7 @@
     <ServiceInstance priority="1">
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</URI>
+          <dvbi-types:URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -75,213 +78,213 @@
     <ProviderName>IRT</ProviderName>
     <ContentGuideServiceRef>cgsid_3</ContentGuideServiceRef>
   </Service>
-<!--  <Service version="1">
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid5</UniqueIdentifier>
     <ServiceInstance priority="2">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://cmafref.akamaized.net/cmaf/live-ull/2009972/test9/out.mpd</URI>
+          <dvbi-types:URI>https://cmafref.akamaized.net/cmaf/live-ull/2009972/test9/out.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
-    <ServiceName>Akamai Low Latency FFMPEG</ServiceName>
+    <ServiceName xml:lang="en">Akamai Low Latency FFMPEG</ServiceName>
     <ServiceName xml:lang="zh">Akamai 低延迟 FFMPEG</ServiceName>
     <ProviderName>Akamai</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_akamai.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_5</ContentGuideServiceRef>
-  </Service> -->
-<!--  <Service version="1">
+  </Service>
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid6</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://irtdashreference-i.akamaihd.net/dash/live/901161/keepixo1/manifestBR.mpd</URI>
+          <dvbi-types:URI>https://irtdashreference-i.akamaihd.net/dash/live/901161/keepixo1/manifestBR.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>BR</ServiceName>
     <ProviderName>Bayerischer Rundfunk</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_br_1.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_6</ContentGuideServiceRef>
-  </Service> -->
-<!--  <Service version="1">
+  </Service>
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid7</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://irtdashreference-i.akamaihd.net/dash/live/901161/keepixo1/manifestBR2.mpd</URI>
+          <dvbi-types:URI>https://irtdashreference-i.akamaihd.net/dash/live/901161/keepixo1/manifestBR2.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>BR2</ServiceName>
     <ProviderName>Bayerischer Rundfunk</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_br_hd.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_7</ContentGuideServiceRef>
-  </Service> -->
- <!-- <Service version="1">
+  </Service>
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid8</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(cbr)/manifest.mpd</URI>
+          <dvbi-types:URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(cbr)/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>DASH CBR</ServiceName>
     <ProviderName>Harmonic</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_8</ContentGuideServiceRef>
-  </Service> -->
-<!--  <Service version="1">
+  </Service>
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid9</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(eyeq)/manifest.mpd</URI>
+          <dvbi-types:URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(eyeq)/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>EyeQ</ServiceName>
     <ProviderName>Harmonic</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_9</ContentGuideServiceRef>
-  </Service> -->
-<!--  <Service version="1">
+  </Service>
+ <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid10</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(dash_ll_number)/manifest.mpd</URI>
+          <dvbi-types:URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(dash_ll_number)/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>LL-DASH(number)</ServiceName>
     <ProviderName>Harmonic</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_10</ContentGuideServiceRef>
-  </Service> -->
-<!--  <Service version="1">
+  </Service>
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid11</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(dash_ll_time)/manifest.mpd</URI>
+          <dvbi-types:URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(dash_ll_time)/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>LL-DASH(time)</ServiceName>
     <ProviderName>Harmonic</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_11</ContentGuideServiceRef>
-  </Service> -->
-<!--  <Service version="1">
+  </Service>
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid12</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ3)/manifest.mpd</URI>
+          <dvbi-types:URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ3)/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>EyeQ3</ServiceName>
     <ProviderName>Harmonic</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_12</ContentGuideServiceRef>
-  </Service> -->
-<!--  <Service version="1">
+  </Service>
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid13</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ4)/manifest.mpd</URI>
+          <dvbi-types:URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ4)/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>EyeQ4</ServiceName>
     <ProviderName>Harmonic</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_13</ContentGuideServiceRef>
-  </Service> -->
-<!--  <Service version="1">
+  </Service>
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid14</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ5)/manifest.mpd</URI>
+          <dvbi-types:URI>https://testlowlat.harmonicinc.com/Content/DASH/Live/channel(EyeQ5)/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>EyeQ5</ServiceName>
     <ProviderName>Harmonic</ProviderName>
     <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/channel_icons/chicon_harmonic.png</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
-  </Service> -->
+  </Service>
   <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid15</UniqueIdentifier>
     <ServiceInstance priority="2">
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</URI>
+          <dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -364,7 +367,7 @@
       </Availability>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</URI>
+          <dvbi-types:URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -372,40 +375,40 @@
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_14</ContentGuideServiceRef>
   </Service>
-  <!-- <Service version="1">
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid16</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://dvb.ebu.io/1.mpd</URI>
+          <dvbi-types:URI>https://dvb.ebu.io/1.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>DVB EBU DASH</ServiceName>
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_16</ContentGuideServiceRef>
-  </Service> -->
-<!--  <Service version="1">
+  </Service>
+  <Service version="1">
     <UniqueIdentifier>tag:dvb.org,2020:sid17</UniqueIdentifier>
     <ServiceInstance priority="1">
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://dvb.ebu.io/ll/lowlatency.mpd</URI>
+          <dvbi-types:URI>https://dvb.ebu.io/ll/lowlatency.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName>DVB EBU Low latency DASH</ServiceName>
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_17</ContentGuideServiceRef>
-  </Service> -->
+  </Service>
   <Service version="11">
     <UniqueIdentifier>tag:dvb.org,2020:sid18</UniqueIdentifier>
     <ServiceInstance priority="1">
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</URI>
+          <dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -418,7 +421,7 @@
     <ServiceInstance priority="1">
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</URI>
+          <dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>

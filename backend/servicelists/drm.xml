@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2020" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tva="urn:tva:metadata:2019" version="1" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2020 ../dvbi_v2.0.xsd">
+<ServiceList version="1" id="tag:dvb.org,2023:ref-drm" xml:lang="en"
+    xmlns="urn:dvb:metadata:servicediscovery:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:tva="urn:tva:metadata:2024"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2024 schemas/dvbi_v6.0.xsd">
   <Name>DVB-I DRM Service list</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
@@ -10,21 +12,19 @@
   <ContentGuideSource CGSID="cgid-1">
     <ProviderName>DVB-I Reference Application</ProviderName>
     <ScheduleInfoEndpoint contentType="application/xml">
-      <URI>INSTALL~~LOCATION/backend/schedule.php</URI>
+      <dvbi-types:URI>INSTALL~~LOCATION/backend/schedule.php</dvbi-types:URI>
     </ScheduleInfoEndpoint>
   </ContentGuideSource>
   <Service version="1">
     <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-1</UniqueIdentifier>
     <ServiceInstance priority="1">
       <ContentProtection>
-        <DRMSystemId encryptionScheme="cenc">
-          <DRMSystemId>9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
-        </DRMSystemId>
+        <DRMSystemId encryptionScheme="cenc">9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
       </ContentProtection>
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>INSTALL~~LOCATION/drm/manifest.mpd</URI>
+          <dvbi-types:URI>INSTALL~~LOCATION/drm/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -35,20 +35,18 @@
     <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-2</UniqueIdentifier>
     <ServiceInstance priority="1">
      <RelatedMaterial>
-      <HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
-      <MediaLocator>
+      <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
+      <tva:MediaLocator>
         <tva:MediaUri contentType="application/xhtml+xml">INSTALL~~LOCATION/linked_applications/android_drm_widevine.html</tva:MediaUri>
-      </MediaLocator>
+      </tva:MediaLocator>
     </RelatedMaterial>
       <ContentProtection>
-        <DRMSystemId encryptionScheme="cenc">
-          <DRMSystemId>edef8ba9-79d6-4ace-a3c8-27dcd51d21ed</DRMSystemId>
-        </DRMSystemId>
+        <DRMSystemId encryptionScheme="cenc">edef8ba9-79d6-4ace-a3c8-27dcd51d21ed</DRMSystemId>
       </ContentProtection>
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/1.mpd</URI>
+          <dvbi-types:URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/1.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -59,15 +57,13 @@
     <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-3</UniqueIdentifier>
     <ServiceInstance priority="1">
       <RelatedMaterial>
-       <HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
-       <MediaLocator>
+       <tva:HowRelated href="urn:dvb:metadata:cs:LinkedApplicationCS:2019:1.2"/>
+       <tva:MediaLocator>
         <tva:MediaUri contentType="application/vnd.dvb.ait+xml">INSTALL~~LOCATION/linked_applications/hbbtv_playready_aitx.php</tva:MediaUri>
-       </MediaLocator>
+       </tva:MediaLocator>
       </RelatedMaterial>
       <ContentProtection>
-        <DRMSystemId encryptionScheme="cenc">
-          <DRMSystemId>9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
-        </DRMSystemId>
+        <DRMSystemId encryptionScheme="cenc">9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
       </ContentProtection>
       <SourceType>urn:dvb:metadata:source:application</SourceType>
     </ServiceInstance>
@@ -78,14 +74,12 @@
     <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-4</UniqueIdentifier>
     <ServiceInstance priority="1">
       <ContentProtection>
-        <DRMSystemId encryptionScheme="cenc" cpsIndex="drm-cp-1">
-          <DRMSystemId>9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
-        </DRMSystemId>
+        <DRMSystemId encryptionScheme="cenc" cpsIndex="drm-cp-1">9a04f079-9840-4286-ab92-e65be0885f95</DRMSystemId>
       </ContentProtection>
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/videos/02_gran_dillama_1080p_25f75g6sv5/drm/manifest.mpd</URI>
+          <dvbi-types:URI>https://refapp.hbbtv.org/videos/02_gran_dillama_1080p_25f75g6sv5/drm/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -93,7 +87,7 @@
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/livesim/02_llamav2/manifest_baseurl.mpd</URI>
+          <dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamav2/manifest_baseurl.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -104,14 +98,12 @@
     <UniqueIdentifier>tag:dvb-i-refrecenceapp,2020:Drm-5</UniqueIdentifier>
     <ServiceInstance priority="1">
       <ContentProtection>
-        <DRMSystemId encryptionScheme="cenc" cpsIndex="drm-cp-2">
-          <DRMSystemId>edef8ba9-79d6-4ace-a3c8-27dcd51d21ed</DRMSystemId>
-        </DRMSystemId>
+        <DRMSystemId encryptionScheme="cenc" cpsIndex="drm-cp-2">edef8ba9-79d6-4ace-a3c8-27dcd51d21ed</DRMSystemId>
       </ContentProtection>
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/1.mpd</URI>
+          <dvbi-types:URI>https://pl8q5ug7b6.execute-api.eu-central-1.amazonaws.com/1.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -119,7 +111,7 @@
       <SourceType>urn:dvb:metadata:source:dvb-dash</SourceType>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <URI>https://refapp.hbbtv.org/livesim/02_llamav2/manifest_baseurl.mpd</URI>
+          <dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamav2/manifest_baseurl.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>

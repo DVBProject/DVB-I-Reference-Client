@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dvbisld="urn:dvb:metadata:servicelistdiscovery:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2024" targetNamespace="urn:dvb:metadata:servicelistdiscovery:2024" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<import namespace="urn:tva:metadata:2024" schemaLocation="tva_metadata_3-1.xsd"/>
+	<import namespace="urn:tva:mpeg7:2008" schemaLocation="tva_mpeg7.xsd"/>
+	<import namespace="urn:dvb:metadata:servicediscovery-types:2023" schemaLocation="dvbi_types_v1.0.xsd"/>
+	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<element name="ServiceListEntryPoints" type="dvbisld:ServiceListEntryPointsType"/>
+	<complexType name="ServiceListEntryPointsType">
+		<sequence>
+			<element name="ServiceListRegistryEntity" type="dvbisld:OrganizationType"/>
+			<element name="ProviderOffering" type="dvbisld:ProviderOfferingType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Extension" type="dvbi-types:ExtensionBaseType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="version" type="positiveInteger"/>
+		<attribute ref="xml:lang" use="required"/>
+	</complexType>
+	<complexType name="OrganizationType">
+		<complexContent>
+			<extension base="mpeg7:AgentType">
+				<sequence>
+					<element name="Name" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="mpeg7:TextualType">
+									<attribute name="type" use="optional">
+										<simpleType>
+											<restriction base="NMTOKEN">
+												<enumeration value="former"/>
+												<enumeration value="variant"/>
+												<enumeration value="main"/>
+											</restriction>
+										</simpleType>
+									</attribute>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="Kind" type="mpeg7:TermUseType" minOccurs="0"/>
+					<element name="ContactName" type="mpeg7:PersonNameType" minOccurs="0"/>
+					<element name="Jurisdiction" type="mpeg7:PlaceType" minOccurs="0"/>
+					<element name="Address" type="mpeg7:PlaceType" minOccurs="0"/>
+					<element name="ElectronicAddress" type="mpeg7:ElectronicAddressType" minOccurs="0"/>
+				</sequence>
+				<attribute name="regulatorFlag" type="boolean" default="false"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProviderOfferingType">
+		<sequence>
+			<element name="Provider" type="dvbisld:OrganizationType"/>
+			<element name="ServiceListOffering" type="dvbi-types:ServiceListOfferingType" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute ref="xml:lang"/>
+	</complexType>
+</schema>

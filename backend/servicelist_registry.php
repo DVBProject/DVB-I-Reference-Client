@@ -5,7 +5,7 @@ header('Content-Type: text/xml');
 header('Access-Control-Allow-Origin: *');
 
 $list = new Simplexmlelement(file_get_contents("./slepr-master.xml"));
-$entries  = $list->children("urn:dvb:metadata:servicelistdiscovery:2023",false);
+$entries  = $list->children("urn:dvb:metadata:servicelistdiscovery:2024",false);
 if(isset( $_GET['regulatorListFlag'])) {
     $regulatorListFlag = $_GET['regulatorListFlag'];
     for($i = 0; $i < count($entries->ProviderOffering);$i++) {
@@ -152,7 +152,7 @@ if(isset( $_GET['Delivery'])) {
             if( count($entries->ProviderOffering[$i]->ServiceListOffering[$j]->Delivery) > 0) {
                 $keep = false;
                 $deliveryList = $entries->ProviderOffering[$i]->ServiceListOffering[$j]->Delivery[0];
-                foreach ($deliveryList->children("urn:dvb:metadata:servicelistdiscovery:2023") as $child)
+                foreach ($deliveryList->children("urn:dvb:metadata:servicelistdiscovery:2024") as $child)
                 {
                     for($l =0; $l < count($deliveryElements);$l++) {
                         if($deliveryElements[$l] == $child->getName()) {
