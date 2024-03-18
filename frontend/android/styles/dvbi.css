@@ -7,6 +7,11 @@ lightgrey: #848484
 darkblue: #011927
 */
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+
+html {
+  min-height: 100%;
+}
+
 body {
   font-size: 12px;
   background-color: #333;
@@ -193,12 +198,15 @@ body.player {
 .landingPage {
   background-color: #000;
   height: auto;
+  background: linear-gradient(180deg, #555 0%, #000000 25%, #000 100%), fixed;
 }
 .landingPage .jumbotron {
   background-color: #000;
-  background-image: url("../images/landinpage_banner.jpg");
+  background-image: url("../images/landingpage_banner.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: center top;
+  background-color: transparent;
 }
 .landingPage li {
   font-size: 2em;
