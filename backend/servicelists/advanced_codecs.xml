@@ -20,7 +20,7 @@
       </ContentAttributes>
       <DASHDeliveryParameters>
         <UriBasedLocation contentType="application/dash+xml">
-          <dvbi-types:URI>https://d3tsbu4e72p918.cloudfront.net/dolbyac4/manifest.mpd</dvbi-types:URI>
+          <dvbi-types:URI>https://d311iqjvb3q514.cloudfront.net/dolbyac4/manifest.mpd</dvbi-types:URI>
         </UriBasedLocation>
       </DASHDeliveryParameters>
     </ServiceInstance>
