@@ -1184,3 +1184,18 @@ function getUrlParameter(parameterName) {
   }
   return null;
 }
+
+/**
+ * return the type of the argument passed
+ * @param {any} arg the argument whose type we are interested in
+ * @param {string} requiredType  the desired tyoe
+ * @returns {boolean or string} the type of the argument or a boolean if the type matches the requiredType
+ */
+function datatypeIs(arg, requiredType = null) {
+  if (!arg)
+    // ensure null is not identified as an object
+    return undefined;
+  if (Array.isArray(arg)) return requiredType ? requiredType == "array" : "array";
+  let typ = typeof arg;
+  return requiredType ? requiredType == typ : typ;
+}

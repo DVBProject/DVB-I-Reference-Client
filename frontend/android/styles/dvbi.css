@@ -163,6 +163,12 @@ body.player {
   color: #848484;
   display: block;
 }
+.video_wrapper #channel_info span.menuitem_accessibility {
+  font-size: 1em;
+  font-weight: 500;
+  color: #ffcccb;
+  display: block;
+}
 .video_wrapper #channel_info span.menuitem_epg {
   font-size: 1em;
   text-shadow: none;

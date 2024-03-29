@@ -31,6 +31,38 @@ function parseContentGuideSource(src) {
   return newCS;
 }
 
+function getChildValue(element, childElementName, attrib = null) {
+  var x = getChildValues(element, childElementName, attrib);
+  return x.length > 0 ? x[0] : null;
+}
+
+function getChildValues(element, childElementName, attrib = null) {
+  var res = [];
+  var kids = getChildElements(element, childElementName);
+  for (var i = 0; i < kids.length; i++) {
+    if (attrib) {
+      if (kids[i].hasAttribute(attrib)) res.push(kids[i].getAttribute(attrib));
+    } else res.push(kids[i].childNodes[0].nodeValue);
+  }
+  return res;
+}
+
+function parseTVAAudioAttributesType(audio_attributes_element) {
+  var res = {},
+    se;
+  se = getChildElements(audio_attributes_element, "Coding");
+  res.coding = se.length > 0 ? AudioCodingCS(getChildValue(audio_attributes_element, "Coding", "href")) : null;
+  res.num_channels = getChildValue(audio_attributes_element, "NumOfChannels");
+  se = getChildElements(audio_attributes_element, "MixType");
+  res.mix_type = se.length > 0 ? AudioPresentationCS(getChildValue(audio_attributes_element, "MixType", "href")) : null;
+  res.language = getChildValue(audio_attributes_element, "AudioLanguage");
+  res.sample_frequency = getChildValue(audio_attributes_element, "SampleFrequency");
+  res.sample_size = getChildValue(audio_attributes_element, "BitsPerSample");
+  se = getChildElements(audio_attributes_element, "BitRate");
+  res.bit_rate = se.length > 0 ? getChildValue(audio_attributes_element, "BitRate") : null;
+  return res;
+}
+
 function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   var i, j, k, l;
   var serviceList = {};
@@ -250,6 +282,8 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         } catch {}
       }
     }
+
+    chan.accessibility_attributes = {};
     var serviceInstances = services[i].getElementsByTagNameNS(DVBi_ns, "ServiceInstance");
     var instances = [];
     var sourceTypes = [];
@@ -296,6 +330,66 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         }
         if (!supported) {
           continue;
+        }
+      }
+      var content_attributes = getChildElements(serviceInstances[j], "ContentAttributes");
+      if (content_attributes.length > 0) {
+        // only 1 <ContentAttributes> element is permitted
+        var accessibility_attributes = getChildElements(content_attributes[0], "AccessibilityAttributes");
+        if (accessibility_attributes.length > 0) {
+          // only 1 <AccessibilityAttributes> element is permitted
+          var sub_attributes = getChildElements(accessibility_attributes[0], "SubtitleAttributes");
+          if (sub_attributes.length > 0) {
+            chan.accessibility_attributes.subtitles = [];
+            for (k = 0; k < sub_attributes.length; k++) {
+              var subt = {};
+              subt.language = getChildValue(sub_attributes[k], "SubtitleLanguage");
+              subt.carriage = SubtitleCarriageCS(getChildValues(sub_attributes[k], "Carriage", "href"));
+              subt.coding = SubtitleCodingCS(getChildValues(sub_attributes[k], "Coding", "href"));
+              chan.accessibility_attributes.subtitles.push(subt);
+            }
+          }
+          var ad_attributes = getChildElements(accessibility_attributes[0], "AudioDescriptionAttributes");
+          if (ad_attributes.length > 0) {
+            chan.accessibility_attributes.audio_descriptions = [];
+            for (k = 0; k < ad_attributes.length; k++) {
+              var ad = { mix: false };
+              var audio_attributes = getChildElements(ad_attributes[k], "AudioAttributes");
+              if (audio_attributes.length > 0) ad.audio_attributes = parseTVAAudioAttributesType(audio_attributes[0]);
+              chan.accessibility_attributes.audio_descriptions.push(ad);
+            }
+          }
+          var sign_attributes = getChildElements(accessibility_attributes[0], "SigningAttributes");
+          if (sign_attributes.length > 0) {
+            chan.accessibility_attributes.signings = [];
+            for (k = 0; k < sign_attributes.length; k++) {
+              var sa = {};
+              sa.coding = VideoCodecCS(getChildValue(sign_attributes[k], "Coding", "href"));
+              sa.language = getChildValue(sign_attributes[k], "SignLanguage");
+              sa.closed = getChildValue(sign_attributes[k], "Closed");
+              chan.accessibility_attributes.signings.push(sa);
+            }
+          }
+          var de_attributes = getChildElements(accessibility_attributes[0], "DialogueEnhancementAttributes");
+          if (de_attributes.length > 0) {
+            chan.accessibility_attributes.dialogue_enhancements = [];
+            for (k = 0; k < de_attributes.length; k++) {
+              var audio_attributes = getChildElements(de_attributes[k], "AudioAttributes");
+              chan.accessibility_attributes.dialogue_enhancements.push({
+                audio_attributes: parseTVAAudioAttributesType(audio_attributes),
+              });
+            }
+          }
+          var spoken_sub_attributes = getChildElements(accessibility_attributes[0], "SpokenSubtitlesAttributes");
+          if (spoken_sub_attributes.length > 0) {
+            chan.accessibility_attributes.spoken_subtitles = [];
+            for (k = 0; k < spoken_sub_attributes.length; k++) {
+              var audio_attributes = getChildElements(spoken_sub_attributes[k], "AudioAttributes");
+              chan.accessibility_attributes.spoken_subtitles.push({
+                audio_attributes: parseTVAAudioAttributesType(audio_attributes),
+              });
+            }
+          }
         }
       }
       var availability = getChildElements(serviceInstances[j], "Availability");

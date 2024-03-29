@@ -14,26 +14,26 @@ $darkblue-color: #011927;
 $lightgrey-color: #848484;
 
 html {
-      height: 100vh;
+  height: 100vh;
 }
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 .main {
-    flex: 1;
+  flex: 1;
 }
 .service {
-	border: 1px solid $lightgrey-color;
+  border: 1px solid $lightgrey-color;
   border-radius: 8px;
   margin-bottom: 2em;
   padding: 0.5em;
-  box-shadow: 0px 0px 15px rgba(0,0,0,0.1);  
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   .serviceinstance {
-	  border-top: 1px solid $lightgrey-color;
+    border-top: 1px solid $lightgrey-color;
     margin: 1em 0em 0em 0em;
-    padding: 1em 0.5em; 
+    padding: 1em 0.5em;
   }
 }
 #saved_servicelists {
@@ -41,7 +41,8 @@ body {
     width: 26px;
     height: 26px;
   }
-  .btn:focus, .btn.focus {
+  .btn:focus,
+  .btn.focus {
     box-shadow: none;
   }
 }
@@ -49,29 +50,28 @@ body {
   border: 1px solid $blue-color;
   border-radius: 0px;
   color: $blue-color;
-    -webkit-transition: all .3s;
-    transition: all .3s;  
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   &:hover {
     background-color: $blue-color;
     color: #fff;
-    }
+  }
 }
 .card {
-  box-shadow: 0px 0px 35px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.1);
 }
 .btn-orange {
   background-color: $orange-color;
   border-color: $orange-color;
   color: #fff;
   &:hover {
-    background-color: lighten( $orange-color, 10% );
+    background-color: lighten($orange-color, 10%);
     color: #fff;
   }
 }
 
 .footer {
-  height: 15vh;  
+  height: 15vh;
   background-color: $darkblue-color;
   color: #fff;
-}  
-
+}
