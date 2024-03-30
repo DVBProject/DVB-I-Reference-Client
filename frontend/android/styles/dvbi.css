@@ -6,6 +6,7 @@ grey: #131313
 lightgrey: #848484
 darkblue: #011927
 */
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 
 html {
@@ -307,7 +308,11 @@ body.player {
 .programinfo .description {
   font-size: 1.2em;
 }
-
+.programinfo .accessibility {
+  font-size: 1em;
+  font-weight: 300;
+  color: #ffcccb;
+}
 #streaminfo {
   position: absolute;
   display: none;

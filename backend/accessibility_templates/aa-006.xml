@@ -1,0 +1,9 @@
+<AccessibilityAttributes>
+ <AudioDescriptionAttributes>
+  <AudioAttributes>
+   <AudioLanguage>bhp</AudioLanguage>
+   <BitRate>3000</BitRate>
+  </AudioAttributes>
+  <ReceiverMix>true</ReceiverMix>
+ </AudioDescriptionAttributes>
+</AccessibilityAttributes>

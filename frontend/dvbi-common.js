@@ -63,6 +63,124 @@ function parseTVAAudioAttributesType(audio_attributes_element) {
   return res;
 }
 
+function ParseTVAAccessibilityAttributes(accessibility_element) {
+  var res = {};
+  var sub_attributes = getChildElements(accessibility_element, "SubtitleAttributes");
+  if (sub_attributes.length > 0) {
+    res.subtitles = [];
+    for (k = 0; k < sub_attributes.length; k++) {
+      var subt = {};
+      subt.language = getChildValue(sub_attributes[k], "SubtitleLanguage");
+      subt.carriage = SubtitleCarriageCS(getChildValues(sub_attributes[k], "Carriage", "href"));
+      subt.coding = SubtitleCodingCS(getChildValues(sub_attributes[k], "Coding", "href"));
+      res.subtitles.push(subt);
+    }
+  }
+  var ad_attributes = getChildElements(accessibility_element, "AudioDescriptionAttributes");
+  if (ad_attributes.length > 0) {
+    res.audio_descriptions = [];
+    for (k = 0; k < ad_attributes.length; k++) {
+      var ad = { mix: false };
+      var audio_attributes = getChildElements(ad_attributes[k], "AudioAttributes");
+      if (audio_attributes.length > 0) ad.audio_attributes = parseTVAAudioAttributesType(audio_attributes[0]);
+      res.audio_descriptions.push(ad);
+    }
+  }
+  var sign_attributes = getChildElements(accessibility_element, "SigningAttributes");
+  if (sign_attributes.length > 0) {
+    res.signings = [];
+    for (k = 0; k < sign_attributes.length; k++) {
+      var sa = {};
+      sa.coding = VideoCodecCS(getChildValue(sign_attributes[k], "Coding", "href"));
+      sa.language = getChildValue(sign_attributes[k], "SignLanguage");
+      sa.closed = getChildValue(sign_attributes[k], "Closed");
+      res.signings.push(sa);
+    }
+  }
+  var de_attributes = getChildElements(accessibility_element, "DialogueEnhancementAttributes");
+  if (de_attributes.length > 0) {
+    res.dialogue_enhancements = [];
+    for (k = 0; k < de_attributes.length; k++) {
+      var audio_attributes = getChildElements(de_attributes[k], "AudioAttributes");
+      res.dialogue_enhancements.push({
+        audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
+      });
+    }
+  }
+  var spoken_sub_attributes = getChildElements(accessibility_element, "SpokenSubtitlesAttributes");
+  if (spoken_sub_attributes.length > 0) {
+    res.spoken_subtitles = [];
+    for (k = 0; k < spoken_sub_attributes.length; k++) {
+      var audio_attributes = getChildElements(spoken_sub_attributes[k], "AudioAttributes");
+      res.spoken_subtitles.push({
+        audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
+      });
+    }
+  }
+  return res;
+}
+
+function formatAccessibilityAttributes(accessibility_attributes) {
+  if (!accessibility_attributes) return "";
+  // include any accessibility items
+  var aa = [];
+  if (accessibility_attributes.subtitles) {
+    for (i = 0; i < accessibility_attributes.subtitles.length; i++) {
+      var sub = accessibility_attributes.subtitles[i];
+      aa.push(
+        "<i>Subtitle:</i> language=" +
+          (sub.language ? sub.language : "unknown") +
+          "; carriage=" +
+          (sub.carriage ? sub.carriage : "unknown") +
+          "; coding=" +
+          (sub.coding ? sub.coding : "uknown")
+      );
+    }
+  }
+  if (accessibility_attributes.audio_descriptions) {
+    for (i = 0; i < accessibility_attributes.audio_descriptions.length; i++) {
+      var ad = accessibility_attributes.audio_descriptions[i];
+      aa.push(
+        "<i>Audio Description:</i> rx-mix=" +
+          ad.mix +
+          "; " +
+          (ad.audio_attributes ? AudioAttributesString(ad.audio_attributes) : "!no-audio!")
+      );
+    }
+  }
+  if (accessibility_attributes.signings) {
+    for (i = 0; i < accessibility_attributes.signings.length; i++) {
+      var sa = accessibility_attributes.signings[i];
+      aa.push(
+        "<i>Signing:</i> coding=" +
+          (sa.coding ? sa.coding : "!unknown!") +
+          "; language=" +
+          (sa.language ? sa.language : "!unspecified!") +
+          "; closed=" +
+          (sa.closed ? sa.closed : "!unspecified!")
+      );
+    }
+  }
+  if (accessibility_attributes.dialogue_enhancements) {
+    for (i = 0; i < accessibility_attributes.dialogue_enhancements.length; i++) {
+      var de = accessibility_attributes.dialogue_enhancements[i];
+      aa.push(
+        "<i>Dialog Enhancement:</i> " +
+          (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "!no-audio!")
+      );
+    }
+  }
+  if (accessibility_attributes.spoken_subtitles) {
+    for (i = 0; i < accessibility_attributes.spoken_subtitles.length; i++) {
+      var ss = accessibility_attributes.spoken_subtitles[i];
+      aa.push(
+        "<i>Spoken Subtitles:</i> " + (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "!no-audio!")
+      );
+    }
+  }
+  return aa.join("<br/>");
+}
+
 function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   var i, j, k, l;
   var serviceList = {};
@@ -338,58 +456,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         var accessibility_attributes = getChildElements(content_attributes[0], "AccessibilityAttributes");
         if (accessibility_attributes.length > 0) {
           // only 1 <AccessibilityAttributes> element is permitted
-          var sub_attributes = getChildElements(accessibility_attributes[0], "SubtitleAttributes");
-          if (sub_attributes.length > 0) {
-            chan.accessibility_attributes.subtitles = [];
-            for (k = 0; k < sub_attributes.length; k++) {
-              var subt = {};
-              subt.language = getChildValue(sub_attributes[k], "SubtitleLanguage");
-              subt.carriage = SubtitleCarriageCS(getChildValues(sub_attributes[k], "Carriage", "href"));
-              subt.coding = SubtitleCodingCS(getChildValues(sub_attributes[k], "Coding", "href"));
-              chan.accessibility_attributes.subtitles.push(subt);
-            }
-          }
-          var ad_attributes = getChildElements(accessibility_attributes[0], "AudioDescriptionAttributes");
-          if (ad_attributes.length > 0) {
-            chan.accessibility_attributes.audio_descriptions = [];
-            for (k = 0; k < ad_attributes.length; k++) {
-              var ad = { mix: false };
-              var audio_attributes = getChildElements(ad_attributes[k], "AudioAttributes");
-              if (audio_attributes.length > 0) ad.audio_attributes = parseTVAAudioAttributesType(audio_attributes[0]);
-              chan.accessibility_attributes.audio_descriptions.push(ad);
-            }
-          }
-          var sign_attributes = getChildElements(accessibility_attributes[0], "SigningAttributes");
-          if (sign_attributes.length > 0) {
-            chan.accessibility_attributes.signings = [];
-            for (k = 0; k < sign_attributes.length; k++) {
-              var sa = {};
-              sa.coding = VideoCodecCS(getChildValue(sign_attributes[k], "Coding", "href"));
-              sa.language = getChildValue(sign_attributes[k], "SignLanguage");
-              sa.closed = getChildValue(sign_attributes[k], "Closed");
-              chan.accessibility_attributes.signings.push(sa);
-            }
-          }
-          var de_attributes = getChildElements(accessibility_attributes[0], "DialogueEnhancementAttributes");
-          if (de_attributes.length > 0) {
-            chan.accessibility_attributes.dialogue_enhancements = [];
-            for (k = 0; k < de_attributes.length; k++) {
-              var audio_attributes = getChildElements(de_attributes[k], "AudioAttributes");
-              chan.accessibility_attributes.dialogue_enhancements.push({
-                audio_attributes: parseTVAAudioAttributesType(audio_attributes),
-              });
-            }
-          }
-          var spoken_sub_attributes = getChildElements(accessibility_attributes[0], "SpokenSubtitlesAttributes");
-          if (spoken_sub_attributes.length > 0) {
-            chan.accessibility_attributes.spoken_subtitles = [];
-            for (k = 0; k < spoken_sub_attributes.length; k++) {
-              var audio_attributes = getChildElements(spoken_sub_attributes[k], "AudioAttributes");
-              chan.accessibility_attributes.spoken_subtitles.push({
-                audio_attributes: parseTVAAudioAttributesType(audio_attributes),
-              });
-            }
-          }
+          chan.accessibility_attributes = ParseTVAAccessibilityAttributes(accessibility_attributes[0]);
         }
       }
       var availability = getChildElements(serviceInstances[j], "Availability");

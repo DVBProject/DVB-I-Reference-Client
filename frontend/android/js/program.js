@@ -155,7 +155,7 @@ Program.prototype.populateProgramInfo = function () {
   this.channel.getProgramInfo(this.programId, function (info) {
     var i;
     if (info) {
-      console.log(typeof info);
+      //console.log(typeof info);
       var extendedData = "";
       if (info.creditsItems) {
         for (i = 0; i < info.creditsItems.length; i++) {
@@ -188,8 +188,14 @@ Program.prototype.populateProgramInfo = function () {
       if (longDesc) {
         $("#description").html(longDesc);
       }
+      if (info.accessibility_attributes) {
+        $("#accessibility_info").html(
+          "Accessibility:<br/>" + formatAccessibilityAttributes(info.accessibility_attributes)
+        );
+      }
     } else {
       $("#extended_info").html("");
+      $("#accessibility_info").html("");
     }
   });
 };

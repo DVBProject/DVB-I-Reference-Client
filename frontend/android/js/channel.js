@@ -423,65 +423,10 @@ Channel.prototype.updateChannelInfo = function () {
     }
   }
   if (self.accessibility_attributes) {
-    // include any accessibility items
-    var aa = [];
-    if (self.accessibility_attributes.subtitles) {
-      for (i = 0; i < self.accessibility_attributes.subtitles.length; i++) {
-        var sub = self.accessibility_attributes.subtitles[i];
-        aa.push(
-          "<i>Subtitle:</i> language=" +
-            (sub.language ? sub.language : "unknown") +
-            "; carriage=" +
-            (sub.carriage ? sub.carriage : "unknown") +
-            "; coding=" +
-            (sub.coding ? sub.coding : "uknown")
-        );
-      }
-    }
-    if (self.accessibility_attributes.audio_descriptions) {
-      for (i = 0; i < self.accessibility_attributes.audio_descriptions.length; i++) {
-        var ad = self.accessibility_attributes.audio_descriptions[i];
-        aa.push(
-          "<i>Audio Description:</i> rx-mix=" +
-            ad.mix +
-            "; " +
-            (ad.audio_attributes ? AudioAttributesString(ad.audio_attributes) : "!no-audio!")
-        );
-      }
-    }
-    if (self.accessibility_attributes.signings) {
-      for (i = 0; i < self.accessibility_attributes.signings.length; i++) {
-        var sa = self.accessibility_attributes.signings[i];
-        aa.push(
-          "<i>Signing:</i> coding=" +
-            (sa.coding ? sa.coding : "!unknown!") +
-            "; language=" +
-            (sa.language ? sa.language : "!unspecified!") +
-            "; closed=" +
-            (sa.closed ? sa.closed : "!unspecified!")
-        );
-      }
-    }
-    if (self.accessibility_attributes.dialogue_enhancements) {
-      for (i = 0; i < self.accessibility_attributes.dialogue_enhancements.length; i++) {
-        var de = self.accessibility_attributes.dialogue_enhancements[i];
-        aa.push(
-          "<i>Dialog Enhancement:</i> " +
-            (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "!no-audio!")
-        );
-      }
-    }
-    if (self.accessibility_attributes.spoken_subtitles) {
-      for (i = 0; i < self.accessibility_attributes.spoken_subtitles.length; i++) {
-        var ss = self.accessibility_attributes.spoken_subtitles[i];
-        aa.push(
-          "<i>Spoken Subtitles:</i> " +
-            (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "!no-audio!")
-        );
-      }
-    }
     channelInfo.append(
-      '<br/><span class="menuitem_accessibility d-inline-block col-auto px-0">' + aa.join("<br/>") + "</span>"
+      '<br/><span class="menuitem_accessibility d-inline-block col-auto px-0">' +
+        formatAccessibilityAttributes(self.accessibility_attributes) +
+        "</span>"
     );
   }
 };

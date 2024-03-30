@@ -322,6 +322,11 @@ body.player {
   .description {
     font-size: 1.2em;
   }
+  .programinfo .accessibility {
+    font-size: 1em;
+    font-weight: 300;
+    color: $lightred-color;
+  }
   .img {
   }
 }
