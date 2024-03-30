@@ -197,7 +197,7 @@ Channel.prototype.parseSchedule = function (data) {
         break;
       }
     }
-    newPrograms.push(program);
+    newPrograms.push(new Program(program, null, this));
   }
   return newPrograms;
 };
