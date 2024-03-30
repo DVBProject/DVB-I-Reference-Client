@@ -178,7 +178,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       );
     }
   }
-  return aa.join("<br/>");
+  return aa.length ? aa.join("<br/>") : "none";
 }
 
 function parseServiceList(data, dvbChannels, supportedDrmSystems) {
@@ -788,10 +788,12 @@ function selectServiceListRegion(serviceList, regionId) {
 
 function getChildElements(parent, tagName) {
   var elements = [];
-  for (var i = 0; i < parent.childNodes.length; i++) {
-    if (parent.childNodes[i].nodeType == 1 && parent.childNodes[i].localName == tagName) {
-      // localName property does not include the prefix
-      elements.push(parent.childNodes[i]);
+  if (parent.childNodes) {
+    for (var i = 0; i < parent.childNodes.length; i++) {
+      if (parent.childNodes[i].nodeType == 1 && parent.childNodes[i].localName == tagName) {
+        // localName property does not include the prefix
+        elements.push(parent.childNodes[i]);
+      }
     }
   }
   return elements;
