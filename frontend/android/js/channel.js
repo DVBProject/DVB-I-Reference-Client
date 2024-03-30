@@ -431,9 +431,9 @@ Channel.prototype.updateChannelInfo = function () {
         aa.push(
           "<i>Subtitle:</i> language=" +
             (sub.language ? sub.language : "unknown") +
-            "; carriage= " +
+            "; carriage=" +
             (sub.carriage ? sub.carriage : "unknown") +
-            "; coding= " +
+            "; coding=" +
             (sub.coding ? sub.coding : "uknown")
         );
       }
