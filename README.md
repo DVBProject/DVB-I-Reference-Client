@@ -18,7 +18,7 @@ Welcome to DVB's open source HTML5 reference client implementation of DVB-I.
 
   Note this has limitations as it's a regular HbbTV application. A version packaged as an HbbTV operator application has fewer limitations - please see the instructions [here](https://github.com/DVBProject/DVB-I-Reference-Client#operator-application-package).
 
-- If you are looking for a generic HTML5 DVB-I client (e.g. for desktop PCs), please see [here](https://dvb-i-refernce.dvb.org/client/frontend/android/player.html).
+- If you are looking for a generic HTML5 DVB-I client (e.g. for desktop PCs), please see [here](https://dvb-i-reference.dvb.org/client/frontend/android/player.html).
 
 - If you are looking for a DVB-I client for iOS devices, the generic HTML5 client should work on iPads. DVB's reference client relies on features not yet supported on iPhones. For iPhones please [join the DVB-I Forum discord server](https://discord.gg/2jhVnDqQ3U) and ask there.
 
