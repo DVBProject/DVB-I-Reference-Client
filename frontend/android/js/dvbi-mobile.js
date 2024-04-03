@@ -109,7 +109,7 @@ window.onload = function () {
   $(".video_wrapper").on("click touchstart", resetHideTimeout);
   var video = document.getElementById("video");
   video.addEventListener("play", (event) => {
-    var subtitles = player.getTracksFor("fragmentedText");
+    var subtitles = player.getTracksFor("text");
     if (subtitles && subtitles.length > 0) {
       $("#subtitle").show();
     }
@@ -185,7 +185,7 @@ window.onload = function () {
       }
     }
     if (language_settings.subtitle_language) {
-      var subtitles = player.getTracksFor("fragmentedText");
+      var subtitles = player.getTracksFor("text");
       for (i = 0; i < subtitles.length; i++) {
         if (subtitles[i].lang == language_settings.subtitle_language) {
           player.setTextTrack(subtitles[i]);
@@ -599,18 +599,18 @@ function showSubtitles() {
   var list = document.getElementById("tracklist");
   var current = null;
   if (player.isTextEnabled()) {
-    current = player.getCurrentTrackFor("fragmentedText");
+    current = player.getCurrentTrackFor("text");
   }
   $(list).empty();
   $(list).show();
   var header = document.createElement("h4");
   header.appendChild(document.createTextNode("Subtitles"));
   list.appendChild(header);
-  var subtitles = player.getTracksFor("fragmentedText");
+  var subtitles = player.getTracksFor("text");
   for (var i = 0; i < subtitles.length; i++) {
     var container = document.createElement("div");
     container.classList.add("row");
-    if (subtitles[i] == current) {
+    if (subtitles[i].id == current.id) {
       container.classList.add("selected_track");
     }
     var track = document.createElement("a");
