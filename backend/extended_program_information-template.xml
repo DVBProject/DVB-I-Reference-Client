@@ -55,6 +55,9 @@
  </MediaLocator>
  </RelatedMaterial>
  </BasicDescription>
+  <AVAttributes>
+    <!--!!ACCESSIBILITY_TEMPLATE!!-->
+ </AVAttributes>
  </ProgramInformation>
  </ProgramInformationTable>
  <ProgramLocationTable xml:lang="en">

@@ -6,60 +6,62 @@ grey: #131313
 lightgrey: #848484
 darkblue: #011927
 */
-$red-color: #B11116;
+$red-color: #b11116;
 $orange-color: #e47600;
 $blue-color: #3996c9;
 $darkblue-color: #011927;
 $lightgrey-color: #848484;
-$bgdark80-color: rgba(0,0,0,80);
+$lightred-color: #ffcccb;
+$bgdark80-color: rgba(0, 0, 0, 80);
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 
 body {
   font-size: 12px;
   background-color: #333;
-  font-family: 'Roboto', sans-serif;  
+  font-family: "Roboto", sans-serif;
 }
 body.player {
   margin: 0px;
-  padding: 0px;   
-  height: 100vh;  
+  padding: 0px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  //min-height: 100vh; 
+  //min-height: 100vh;
 }
 .icon-white {
-    filter: invert(100%);
+  filter: invert(100%);
 }
 .icon-red {
-  filter: invert(.5) sepia(1) saturate(35) hue-rotate(-15deg);
+  filter: invert(0.5) sepia(1) saturate(35) hue-rotate(-15deg);
 }
 .icon-green {
-  filter: invert(.5) sepia(1) saturate(35) hue-rotate(-250deg);
+  filter: invert(0.5) sepia(1) saturate(35) hue-rotate(-250deg);
 }
 .main {
-  flex: 1; }
+  flex: 1;
+}
 
 .menubar {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background-color: white;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: white;
 }
 
 .menuitem {
-    float:left;
-    margin-left:20px;
+  float: left;
+  margin-left: 20px;
 }
 
 #video {
-    width:100%;
-    max-width: 100%;
-    height:100%;
-    max-height: 100%;
-    background-color: #000;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  background-color: #000;
 }
 
 .video_wrapper {
@@ -86,7 +88,7 @@ body.player {
     -moz-transition: all 0.2s linear;
     -webkit-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
-    transition: all 0.2s linear;	    
+    transition: all 0.2s linear;
     .channels {
       background-image: url("../images/bg_chinfo.png");
       background-position: right;
@@ -96,7 +98,7 @@ body.player {
       background-image: url("../images/bg_info.png");
       background-position: left;
       background-size: 100% 100%;
-    }    
+    }
     .list-group {
       //border: 1px solid red;
       .list-group-item {
@@ -114,13 +116,13 @@ body.player {
           text-shadow: 2px 2px 2px #000;
           height: 40px;
         }
-        span.chicon{
+        span.chicon {
           img {
             max-height: 20px;
             width: 36px;
           }
         }
-        span.chnumber{
+        span.chnumber {
           font-size: 1.2em;
         }
         span.chname {
@@ -132,146 +134,150 @@ body.player {
           font-size: 1.4em;
         }
       }
-
     }
   }
   #channel_info {
     span {
-        text-shadow: 2px 2px 2px #000; 
+      text-shadow: 2px 2px 2px #000;
       &.menuitem_chicon {
         img {
-         max-height: 55px;
+          max-height: 55px;
         }
       }
       &.menuitem_chnumber {
-          font-size: 1.0em;
-          margin-right: 0.5em;
-          color: $blue-color;
-          display: block;
+        font-size: 1em;
+        margin-right: 0.5em;
+        color: $blue-color;
+        display: block;
       }
       &.menuitem_chname {
-          font-size: 1.5em;
-          font-weight: 600;
-          color: $blue-color;
-          display: block;        
+        font-size: 1.5em;
+        font-weight: 600;
+        color: $blue-color;
+        display: block;
       }
       &.menuitem_now {
-          font-size: 1.0em;
-          font-weight: 600;
-          color: $lightgrey-color;
-          display: block;          
+        font-size: 1em;
+        font-weight: 600;
+        color: $lightgrey-color;
+        display: block;
       }
       &.menuitem_next {
-          font-size: 1.0em;
-          font-weight: 600;
-          color: $lightgrey-color; 
-          display: block;         
+        font-size: 1em;
+        font-weight: 600;
+        color: $lightgrey-color;
+        display: block;
+      }
+      &.menuitem_accessibility {
+        font-size: 1em;
+        font-weight: 600;
+        color: $lightred-color;
+        display: block;
       }
       &.menuitem_epg {
-        font-size: 1.0em;
+        font-size: 1em;
         text-shadow: none;
         a {
           text-decoration: none !important;
         }
       }
+    }
   }
-}
 }
 /* common styles */
 .hide {
   opacity: 0 !important;
-	-moz-transition: all 0.2s linear;
-	-webkit-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
-	transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
   animation-name: displaynone;
-  animation-duration: 0.2s;  
+  animation-duration: 0.2s;
 }
 .show {
   opacity: 1 !important;
-	-moz-transition: all 0.2s linear;
-	-webkit-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
-	transition: all 0.2s linear;	  
+  -moz-transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
 .color-blue {
   color: $blue-color;
 }
 /* landing page */
 .landingPage {
-  background-color:  #000;
-  height: auto;  
+  background-color: #000;
+  height: auto;
   .jumbotron {
-  background-color:  #000;    
-  background-image: url("../images/landinpage_banner.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-color: #000;
+    background-image: url("../images/landinpage_banner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   li {
     font-size: 2em;
   }
-  
 }
 // EPG styles
 .epg {
   .grid.hide {
     display: none;
   }
-  background-color: rgba(0,0,0,0.80);
+  background-color: rgba(0, 0, 0, 0.8);
   position: relative;
-    //a:hover .icon-white {
-      //filter: invert(50%);
-    //}
+  //a:hover .icon-white {
+  //filter: invert(50%);
+  //}
   .end,
   //a.end:hover .icon-white
   {
     .icon-white {
-     filter: invert(100%);      
+      filter: invert(100%);
       opacity: 0.3;
       cursor: default;
     }
   }
   .navbar {
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0, 0, 0, 0.75);
   }
 
   .epgdata {
-
   }
   .channelCol {
     &.selected {
-      
-      .chnumber, .chname,  {
+      .chnumber,
+      .chname {
         color: $blue-color;
       }
     }
   }
-    .list-programs li, .list-programs .list-group-item {
-      background-color: transparent;
-      border-color: rgba(255,255,255,0.2) !important;
-      color: #fff;
+  .list-programs li,
+  .list-programs .list-group-item {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #fff;
     &.past {
       opacity: 0.5;
     }
     &.current {
       color: $blue-color;
-      background-color: rgba($blue-color, .2);
-      }
-      &:hover {
-        color: $orange-color;
-      }
+      background-color: rgba($blue-color, 0.2);
     }
+    &:hover {
+      color: $orange-color;
+    }
+  }
   .epg_chinfo {
     &.sticky-top {
       top: 56px;
-      background-color: rgba(0,0,0,0.75);      
+      background-color: rgba(0, 0, 0, 0.75);
     }
     border-bottom: 2px solid $blue-color;
     .chnumber {
       font-size: 1.5em;
       margin-top: 0.5em;
       margin-bottom: 0.5em;
-      padding-right: 0.2em;     
+      padding-right: 0.2em;
     }
     .chname {
       font-size: 1.5em;
@@ -299,7 +305,7 @@ body.player {
     }
     .chname {
       font-weight: 700;
-      font-size: 1.5em;      
+      font-size: 1.5em;
     }
   }
   .title {
@@ -316,26 +322,30 @@ body.player {
   .description {
     font-size: 1.2em;
   }
+  .programinfo .accessibility {
+    font-size: 1em;
+    font-weight: 300;
+    color: $lightred-color;
+  }
   .img {
-    
   }
 }
 // Streaminfo
 #streaminfo {
   position: absolute;
   display: none;
-	z-index: 10;
+  z-index: 10;
 
   .streaminfoContainer {
-      background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
   }
-        .btn {
-        font-size: 1.0em;
-        text-shadow: none;
-        a {
-          text-decoration: none !important;
-        }
-      }
+  .btn {
+    font-size: 1em;
+    text-shadow: none;
+    a {
+      text-decoration: none !important;
+    }
+  }
 }
 
 // servicelist registry
@@ -344,13 +354,13 @@ body.player {
 }
 #tracklist {
   .row {
-        a   {
-    color: $lightgrey-color;
+    a {
+      color: $lightgrey-color;
     }
     &.selected_track a {
-          color: $blue-color;
-          font-size: 1.4em;
-        }     
+      color: $blue-color;
+      font-size: 1.4em;
+    }
   }
 }
 // Notification
@@ -363,38 +373,42 @@ body.player {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-		&.noservice {
-			background-color: transparent; 
-			width: 50%;
-			max-width: 50%;
-			height: 50%; 
-			padding: 0px;
-			text-align: center;
-			border: 1px soldi red;
-		}
-	img {
-		top: 50%;
-		-webkit-transform: translateY(-50%);
-		-ms-transform: translateY(-50%);
-		transform: translateY(-50%);   
-	}
+  &.noservice {
+    background-color: transparent;
+    width: 50%;
+    max-width: 50%;
+    height: 50%;
+    padding: 0px;
+    text-align: center;
+    border: 1px soldi red;
+  }
+  img {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
 }
 // Settings
 #settings {
-	background-color: rgba( $darkblue-color, .8 );
-	position: relative;
-	z-index: 10;
-	.navbar {
-		h5 {
-			left: -32px;
-		}
-	}
+  background-color: rgba($darkblue-color, 0.8);
+  position: relative;
+  z-index: 10;
+  .navbar {
+    h5 {
+      left: -32px;
+    }
+  }
 }
 @keyframes displaynone {
-  from {display: block;}
-  to {display: none;}
+  from {
+    display: block;
+  }
+  to {
+    display: none;
+  }
 }
 // common fixes
 .btn {
-	cursor: pointer;
+  cursor: pointer;
 }

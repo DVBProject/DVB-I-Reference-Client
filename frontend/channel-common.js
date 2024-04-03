@@ -64,6 +64,7 @@ Channel.prototype.parseSchedule = function (data) {
       if (programs[j1].getAttribute("programId") == programId) {
         var description = programs[j1].getElementsByTagNameNS(TVA_ns, "BasicDescription")[0];
         var titles = description.getElementsByTagNameNS(TVA_ns, "Title");
+        var AVAttributes = programs[j1].getElementsByTagNameNS(TVA_ns, "AVAttributes")[0];
         program.titles = [];
         for (var j = 0; j < titles.length; j++) {
           var element = titles[j];
@@ -194,10 +195,15 @@ Channel.prototype.parseSchedule = function (data) {
             program.keywords.push(keyword);
           }
         }
+        if (AVAttributes) {
+          var accessibility_attributes = AVAttributes.getElementsByTagNameNS(TVA_ns, "AccessibilityAttributes");
+          if (accessibility_attributes)
+            program.accessibility_attributes = ParseTVAAccessibilityAttributes(accessibility_attributes[0]);
+        }
         break;
       }
     }
-    newPrograms.push(program);
+    newPrograms.push(new Program(program, null, this));
   }
   return newPrograms;
 };

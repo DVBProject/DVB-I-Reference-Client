@@ -1,0 +1,13 @@
+<AccessibilityAttributes>
+ <DialogueEnhancementAttributes>
+  <AudioAttributes>
+   <Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:1"/>
+   <NumOfChannels>1</NumOfChannels>
+   <MixType href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2007:2"/>
+   <AudioLanguage>mi</AudioLanguage>
+   <SampleFrequency>12000</SampleFrequency>
+   <BitsPerSample>12</BitsPerSample>
+   <BitRate>1200</BitRate>
+  </AudioAttributes>
+ </DialogueEnhancementAttributes>
+</AccessibilityAttributes>

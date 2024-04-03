@@ -311,6 +311,19 @@ Channel.prototype.nowNextUpdateRequired = function () {
   return true;
 };
 
+function AudioAttributesString(aa) {
+  if (!aa) return "";
+  var res = [];
+  if (aa.coding) res.push("coding=" + aa.coding);
+  if (aa.num_channels) res.push("channels=" + aa.num_channels);
+  if (aa.mix_type) res.push("mix=" + aa.mix_type);
+  if (aa.language) res.push("language=" + aa.language);
+  if (aa.sample_frequency) res.push("freq=" + aa.sample_frequency);
+  if (aa.sample_size) res.push("size=" + aa.sample_size);
+  if (aa.bit_rate) res.push("rate=" + aa.bit_rate);
+  return res.join("; ");
+}
+
 Channel.prototype.updateChannelInfo = function () {
   var self = this,
     i,
@@ -408,6 +421,13 @@ Channel.prototype.updateChannelInfo = function () {
         openProgramInfo(next);
       });
     }
+  }
+  if (self.accessibility_attributes) {
+    channelInfo.append(
+      '<br/><span class="menuitem_accessibility d-inline-block col-auto px-0">' +
+        formatAccessibilityAttributes(self.accessibility_attributes) +
+        "</span>"
+    );
   }
 };
 

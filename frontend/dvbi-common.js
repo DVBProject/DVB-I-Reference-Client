@@ -31,6 +31,156 @@ function parseContentGuideSource(src) {
   return newCS;
 }
 
+function getChildValue(element, childElementName, attrib = null) {
+  var x = getChildValues(element, childElementName, attrib);
+  return x.length > 0 ? x[0] : null;
+}
+
+function getChildValues(element, childElementName, attrib = null) {
+  var res = [];
+  var kids = getChildElements(element, childElementName);
+  for (var i = 0; i < kids.length; i++) {
+    if (attrib) {
+      if (kids[i].hasAttribute(attrib)) res.push(kids[i].getAttribute(attrib));
+    } else res.push(kids[i].childNodes[0].nodeValue);
+  }
+  return res;
+}
+
+function parseTVAAudioAttributesType(audio_attributes_element) {
+  var res = {},
+    se;
+  se = getChildElements(audio_attributes_element, "Coding");
+  res.coding = se.length > 0 ? AudioCodingCS(getChildValue(audio_attributes_element, "Coding", "href")) : null;
+  res.num_channels = getChildValue(audio_attributes_element, "NumOfChannels");
+  se = getChildElements(audio_attributes_element, "MixType");
+  res.mix_type = se.length > 0 ? AudioPresentationCS(getChildValue(audio_attributes_element, "MixType", "href")) : null;
+  res.language = getChildValue(audio_attributes_element, "AudioLanguage");
+  res.sample_frequency = getChildValue(audio_attributes_element, "SampleFrequency");
+  res.sample_size = getChildValue(audio_attributes_element, "BitsPerSample");
+  se = getChildElements(audio_attributes_element, "BitRate");
+  res.bit_rate = se.length > 0 ? getChildValue(audio_attributes_element, "BitRate") : null;
+  return res;
+}
+
+function ParseTVAAccessibilityAttributes(accessibility_element) {
+  var res = {};
+  var sub_attributes = getChildElements(accessibility_element, "SubtitleAttributes");
+  if (sub_attributes.length > 0) {
+    res.subtitles = [];
+    for (k = 0; k < sub_attributes.length; k++) {
+      var subt = {};
+      subt.language = getChildValue(sub_attributes[k], "SubtitleLanguage");
+      subt.carriage = SubtitleCarriageCS(getChildValues(sub_attributes[k], "Carriage", "href"));
+      subt.coding = SubtitleCodingCS(getChildValues(sub_attributes[k], "Coding", "href"));
+      res.subtitles.push(subt);
+    }
+  }
+  var ad_attributes = getChildElements(accessibility_element, "AudioDescriptionAttributes");
+  if (ad_attributes.length > 0) {
+    res.audio_descriptions = [];
+    for (k = 0; k < ad_attributes.length; k++) {
+      var ad = { mix: false };
+      var audio_attributes = getChildElements(ad_attributes[k], "AudioAttributes");
+      if (audio_attributes.length > 0) ad.audio_attributes = parseTVAAudioAttributesType(audio_attributes[0]);
+      res.audio_descriptions.push(ad);
+    }
+  }
+  var sign_attributes = getChildElements(accessibility_element, "SigningAttributes");
+  if (sign_attributes.length > 0) {
+    res.signings = [];
+    for (k = 0; k < sign_attributes.length; k++) {
+      var sa = {};
+      sa.coding = VideoCodecCS(getChildValue(sign_attributes[k], "Coding", "href"));
+      sa.language = getChildValue(sign_attributes[k], "SignLanguage");
+      sa.closed = getChildValue(sign_attributes[k], "Closed");
+      res.signings.push(sa);
+    }
+  }
+  var de_attributes = getChildElements(accessibility_element, "DialogueEnhancementAttributes");
+  if (de_attributes.length > 0) {
+    res.dialogue_enhancements = [];
+    for (k = 0; k < de_attributes.length; k++) {
+      var audio_attributes = getChildElements(de_attributes[k], "AudioAttributes");
+      res.dialogue_enhancements.push({
+        audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
+      });
+    }
+  }
+  var spoken_sub_attributes = getChildElements(accessibility_element, "SpokenSubtitlesAttributes");
+  if (spoken_sub_attributes.length > 0) {
+    res.spoken_subtitles = [];
+    for (k = 0; k < spoken_sub_attributes.length; k++) {
+      var audio_attributes = getChildElements(spoken_sub_attributes[k], "AudioAttributes");
+      res.spoken_subtitles.push({
+        audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
+      });
+    }
+  }
+  return res;
+}
+
+function formatAccessibilityAttributes(accessibility_attributes) {
+  if (!accessibility_attributes) return "";
+  // include any accessibility items
+  var aa = [];
+  if (accessibility_attributes.subtitles) {
+    for (i = 0; i < accessibility_attributes.subtitles.length; i++) {
+      var sub = accessibility_attributes.subtitles[i];
+      aa.push(
+        "<i>Subtitle:</i> language=" +
+          (sub.language ? sub.language : "unknown") +
+          "; carriage=" +
+          (sub.carriage ? sub.carriage : "unknown") +
+          "; coding=" +
+          (sub.coding ? sub.coding : "uknown")
+      );
+    }
+  }
+  if (accessibility_attributes.audio_descriptions) {
+    for (i = 0; i < accessibility_attributes.audio_descriptions.length; i++) {
+      var ad = accessibility_attributes.audio_descriptions[i];
+      aa.push(
+        "<i>Audio Description:</i> rx-mix=" +
+          ad.mix +
+          "; " +
+          (ad.audio_attributes ? AudioAttributesString(ad.audio_attributes) : "!no-audio!")
+      );
+    }
+  }
+  if (accessibility_attributes.signings) {
+    for (i = 0; i < accessibility_attributes.signings.length; i++) {
+      var sa = accessibility_attributes.signings[i];
+      aa.push(
+        "<i>Signing:</i> coding=" +
+          (sa.coding ? sa.coding : "!unknown!") +
+          "; language=" +
+          (sa.language ? sa.language : "!unspecified!") +
+          "; closed=" +
+          (sa.closed ? sa.closed : "!unspecified!")
+      );
+    }
+  }
+  if (accessibility_attributes.dialogue_enhancements) {
+    for (i = 0; i < accessibility_attributes.dialogue_enhancements.length; i++) {
+      var de = accessibility_attributes.dialogue_enhancements[i];
+      aa.push(
+        "<i>Dialog Enhancement:</i> " +
+          (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "!no-audio!")
+      );
+    }
+  }
+  if (accessibility_attributes.spoken_subtitles) {
+    for (i = 0; i < accessibility_attributes.spoken_subtitles.length; i++) {
+      var ss = accessibility_attributes.spoken_subtitles[i];
+      aa.push(
+        "<i>Spoken Subtitles:</i> " + (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "!no-audio!")
+      );
+    }
+  }
+  return aa.length ? aa.join("<br/>") : "none";
+}
+
 function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   var i, j, k, l;
   var serviceList = {};
@@ -250,6 +400,8 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         } catch {}
       }
     }
+
+    chan.accessibility_attributes = {};
     var serviceInstances = services[i].getElementsByTagNameNS(DVBi_ns, "ServiceInstance");
     var instances = [];
     var sourceTypes = [];
@@ -296,6 +448,15 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         }
         if (!supported) {
           continue;
+        }
+      }
+      var content_attributes = getChildElements(serviceInstances[j], "ContentAttributes");
+      if (content_attributes.length > 0) {
+        // only 1 <ContentAttributes> element is permitted
+        var accessibility_attributes = getChildElements(content_attributes[0], "AccessibilityAttributes");
+        if (accessibility_attributes.length > 0) {
+          // only 1 <AccessibilityAttributes> element is permitted
+          chan.accessibility_attributes = ParseTVAAccessibilityAttributes(accessibility_attributes[0]);
         }
       }
       var availability = getChildElements(serviceInstances[j], "Availability");
@@ -627,10 +788,12 @@ function selectServiceListRegion(serviceList, regionId) {
 
 function getChildElements(parent, tagName) {
   var elements = [];
-  for (var i = 0; i < parent.childNodes.length; i++) {
-    if (parent.childNodes[i].nodeType == 1 && parent.childNodes[i].localName == tagName) {
-      // localName property does not include the prefix
-      elements.push(parent.childNodes[i]);
+  if (parent.childNodes) {
+    for (var i = 0; i < parent.childNodes.length; i++) {
+      if (parent.childNodes[i].nodeType == 1 && parent.childNodes[i].localName == tagName) {
+        // localName property does not include the prefix
+        elements.push(parent.childNodes[i]);
+      }
     }
   }
   return elements;

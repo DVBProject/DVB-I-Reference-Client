@@ -1,0 +1,13 @@
+<AccessibilityAttributes>
+ <SpokenSubtitlesAttributes>
+  <AudioAttributes>
+   <Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:8"/>
+   <NumOfChannels>2</NumOfChannels>
+   <MixType href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2007:3"/>
+   <AudioLanguage>mhy</AudioLanguage>
+   <SampleFrequency>48000</SampleFrequency>
+   <BitsPerSample>8</BitsPerSample>
+   <BitRate>3000</BitRate>
+  </AudioAttributes>
+ </SpokenSubtitlesAttributes>
+</AccessibilityAttributes>
