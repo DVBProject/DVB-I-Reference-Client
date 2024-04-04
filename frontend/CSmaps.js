@@ -171,7 +171,7 @@ var DVBAudioCodecCSmap = [
   { value: `${DVBAudioCodecCSuri}:6.1.3`, definition: "MPEG-H 3D LC-3" },
 ];
 function AudioCodingCS(vals) {
-  return mapValues(vals, MPEG7AudioCodingCSmap) || mapValues(vals, DVBAudioCodecCSmap);
+  return mapValues(vals, MPEG7AudioCodingCSmap.concat(DVBAudioCodecCSmap));
 }
 
 var DVBVideoCodecCSuri = "urn:dvb:metadata:cs:VideoCodecCS:2022";
