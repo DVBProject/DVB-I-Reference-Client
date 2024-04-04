@@ -140,8 +140,38 @@ var MPEG7AudioCodingCSmap = [
   { value: `${MPEG7AudioCodingCSuri}:11`, definition: "ATRAC2" },
   { value: `${MPEG7AudioCodingCSuri}:12`, definition: "ATRAC3" },
 ];
+var DVBAudioCodecCSuri = "urn:dvb:metadata:cs:AudioCodecCS:2020";
+var DVBAudioCodecCSmap = [
+  { value: `${DVBAudioCodecCSuri}:1.1.1`, definition: "MP4-Adv-L1" },
+  { value: `${DVBAudioCodecCSuri}:1.1.2`, definition: "MP4-Adv-L2" },
+  { value: `${DVBAudioCodecCSuri}:1.1.3`, definition: "MP4-Adv-L4" },
+  { value: `${DVBAudioCodecCSuri}:1.1.4`, definition: "MP4-Adv-L5" },
+  { value: `${DVBAudioCodecCSuri}:1.2.2`, definition: "MP4-HE-L2" },
+  { value: `${DVBAudioCodecCSuri}:1.2.3`, definition: "MP4-HE-L3" },
+  { value: `${DVBAudioCodecCSuri}:1.2.4`, definition: "MP4-HE-L4" },
+  { value: `${DVBAudioCodecCSuri}:1.2.5`, definition: "MP4-HE-L5" },
+  { value: `${DVBAudioCodecCSuri}:1.3.2`, definition: "MP4-HEv2-L2" },
+  { value: `${DVBAudioCodecCSuri}:1.3.3`, definition: "MP4-HEv2-L3" },
+  { value: `${DVBAudioCodecCSuri}:1.3.4`, definition: "MP4-HEv2-L4" },
+  { value: `${DVBAudioCodecCSuri}:1.3.5`, definition: "MP4-HEv2-L5" },
+  { value: `${DVBAudioCodecCSuri}:2.1`, definition: "AMR-WB+" },
+  { value: `${DVBAudioCodecCSuri}:3.1`, definition: "E-AC3" },
+  { value: `${DVBAudioCodecCSuri}:4.1.1`, definition: "AC4-CIP-L0" },
+  { value: `${DVBAudioCodecCSuri}:4.1.2`, definition: "AC4-CIP-L1" },
+  { value: `${DVBAudioCodecCSuri}:4.1.3`, definition: "AC4-CIP-L2" },
+  { value: `${DVBAudioCodecCSuri}:4.1.4`, definition: "AC4-CIP-L3" },
+  { value: `${DVBAudioCodecCSuri}:5.1.1`, definition: "DTS-HD Core" },
+  { value: `${DVBAudioCodecCSuri}:5.1.2`, definition: "DTS-HD LBR" },
+  { value: `${DVBAudioCodecCSuri}:5.1.3`, definition: "DTS-HD Core+Ext" },
+  { value: `${DVBAudioCodecCSuri}:5.1.4`, definition: "DTS-HD Lossless" },
+  { value: `${DVBAudioCodecCSuri}:5.2.1`, definition: "DTS-UHD 2" },
+  { value: `${DVBAudioCodecCSuri}:5.2.2`, definition: "DTS-UHD 3" },
+  { value: `${DVBAudioCodecCSuri}:6.1.1`, definition: "MPEG-H 3D LC-1" },
+  { value: `${DVBAudioCodecCSuri}:6.1.2`, definition: "MPEG-H 3D LC-2" },
+  { value: `${DVBAudioCodecCSuri}:6.1.3`, definition: "MPEG-H 3D LC-3" },
+];
 function AudioCodingCS(vals) {
-  return mapValues(vals, MPEG7AudioCodingCSmap);
+  return mapValues(vals, MPEG7AudioCodingCSmap) || mapValues(vals, DVBAudioCodecCSmap);
 }
 
 var DVBVideoCodecCSuri = "urn:dvb:metadata:cs:VideoCodecCS:2022";
