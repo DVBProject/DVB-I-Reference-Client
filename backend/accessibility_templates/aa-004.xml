@@ -1,21 +1,21 @@
 <AccessibilityAttributes>
  <SubtitleAttributes>
-  <Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023::3"/>
-  <Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>
-  <Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>
+  <Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/> <!-- Subtitles in ISOBMFF -->
+  <Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:3.2.2"/> <!-- EBU-TT-D Version 1.0.1 -->
+  <Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:3.6.2.2"/> <!-- IMSC Subtitles Image Profile Version 1.0.1 -->
   <SubtitleLanguage>zh-hans</SubtitleLanguage>
+  <Purpose href="urn:tva:metadata:cs:SubtitlePurposeCS:2023:1"/> <!-- Translation -->
   <SuitableForTTS>false</SuitableForTTS>
  </SubtitleAttributes>
  <AudioDescriptionAttributes>
   <AudioAttributes>
-   <AudioLanguage>tgr</AudioLanguage>
-   <BitRate>3000</BitRate>
+   <AudioLanguage>hun</AudioLanguage>
   </AudioAttributes>
-  <ReceiverMix>true</ReceiverMix>
+  <ReceiverMix>false</ReceiverMix>
  </AudioDescriptionAttributes>
   <SigningAttributes>
   <Coding href="urn:dvb:metadata:cs:VideoCodecCS:2022:5.1.10"/>
   <SignLanguage>sgn</SignLanguage>
-  <Closed>true</Closed>
+  <Closed>false</Closed>
  </SigningAttributes>
 </AccessibilityAttributes>
