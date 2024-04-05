@@ -73,6 +73,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       subt.language = getChildValue(sub_attributes[k], "SubtitleLanguage");
       subt.carriage = SubtitleCarriageCS(getChildValues(sub_attributes[k], "Carriage", "href"));
       subt.coding = SubtitleCodingCS(getChildValues(sub_attributes[k], "Coding", "href"));
+      subt.purpose = SubtitlePurposeCS(getChildValues(sub_attributes[k], "Purpose", "href"));
       res.subtitles.push(subt);
     }
   }
@@ -133,7 +134,8 @@ function formatAccessibilityAttributes(accessibility_attributes) {
           "; carriage=" +
           (sub.carriage ? sub.carriage : "unknown") +
           "; coding=" +
-          (sub.coding ? sub.coding : "uknown")
+          (sub.coding ? sub.coding : "uknown") +
+          (sub.purpose ? ` (${sub.purpose})` : "")
       );
     }
   }

@@ -387,3 +387,16 @@ var DVBVideoCodecCSmap = [
 function VideoCodecCS(vals) {
   return mapValues(vals, DVBVideoCodecCSmap);
 }
+
+var TVASubtitlePurposeCSuri = "urn:tva:metadata:cs:SubtitlePurposeCS:2023";
+var TVASubtitlePurposeCSmap = [
+  { value: `${TVASubtitlePurposeCSuri}:1`, definition: "Translation" },
+  { value: `${TVASubtitlePurposeCSuri}:2`, definition: "Hard of Hearing" },
+  { value: `${TVASubtitlePurposeCSuri}:3`, definition: "Audio Description" },
+  { value: `${TVASubtitlePurposeCSuri}:4`, definition: "Commentary" },
+  { value: `${TVASubtitlePurposeCSuri}:5`, definition: "Forced Narrative" },
+];
+
+function SubtitlePurposeCS(vals) {
+  return mapValues(vals, TVASubtitlePurposeCSmap);
+}
