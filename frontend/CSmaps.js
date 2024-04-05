@@ -5,11 +5,12 @@ function mapValues(vals, map) {
   }
   var typ = datatypeIs(vals);
   if (typ == "array") {
+    if (vals.length == 0) return null;
     let res = [];
     for (var i = 0; i < vals.length; i++) res.push(mapValue(vals[i]));
     return res.join(",");
   } else if (typ == "string") {
-    return mapValue(vals);
+    return vals == "" ? null : mapValue(vals);
   }
   return null;
 }
