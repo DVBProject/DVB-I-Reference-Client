@@ -595,70 +595,70 @@
         <AccessibilityAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="en" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>eng</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="de" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>deu</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="es" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>esp</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="fr" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>fra</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="nl" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>nld</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="pt-br" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>pt-br</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="pt-pt" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>por</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="ru" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>rus</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="zh" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>zha</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="text" codecs="wvtt" lang="zh-hans" -->
-            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:99"/>  <!--other-->
+            <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
             <tva:SubtitleLanguage>zh-hans</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
@@ -720,70 +720,70 @@
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="en" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>eng</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="de" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>deu</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="es" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>esp</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="fr" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>fra</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="nl" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>nld</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="pt-br" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>pt-br</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="pt-pt" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>por</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="ru" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>rus</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="zh" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>zha</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- STPP -> mimeType="application/mp4" codecs="stpp" lang="zh-hans" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
-            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--other-->
+            <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:99"/>  <!--other-->
             <tva:SubtitleLanguage>zh-hans</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
