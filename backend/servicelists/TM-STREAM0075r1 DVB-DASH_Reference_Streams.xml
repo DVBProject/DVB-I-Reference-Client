@@ -852,35 +852,35 @@
             <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="en" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
-            <tva:SubtitleLanguage>en</tva:SubtitleLanguage>
+            <tva:SubtitleLanguage>eng</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="de" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
-            <tva:SubtitleLanguage>de</tva:SubtitleLanguage>
+            <tva:SubtitleLanguage>deu</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="es" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
-            <tva:SubtitleLanguage>es</tva:SubtitleLanguage>
+            <tva:SubtitleLanguage>esp</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="fr" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
-            <tva:SubtitleLanguage>fr</tva:SubtitleLanguage>
+            <tva:SubtitleLanguage>fra</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="nl" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
-            <tva:SubtitleLanguage>nl</tva:SubtitleLanguage>
+            <tva:SubtitleLanguage>nld</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
@@ -894,21 +894,21 @@
             <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="pt-pt" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
-            <tva:SubtitleLanguage>pt-pt</tva:SubtitleLanguage>
+            <tva:SubtitleLanguage>por</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="ru" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
-            <tva:SubtitleLanguage>ru</tva:SubtitleLanguage>
+            <tva:SubtitleLanguage>rus</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
             <!-- WVTT -> contentType="application/mp4" codecs="wvtt" lang="zh" -->
             <tva:Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/>  <!--ISOBMFF-->
             <tva:Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:4"/>  <!--WebVTT-->
-            <tva:SubtitleLanguage>zh</tva:SubtitleLanguage>
+            <tva:SubtitleLanguage>zhn</tva:SubtitleLanguage>
             <tva:SuitableForTTS>false</tva:SuitableForTTS>
           </tva:SubtitleAttributes>
           <tva:SubtitleAttributes>
