@@ -126,64 +126,85 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
 function formatAccessibilityAttributes(accessibility_attributes) {
   if (!accessibility_attributes) return "";
   // include any accessibility items
-  var aa = [],
+  var res = "<table id='accessibility-info'>",
+    count = 0,
     i;
+
   if (accessibility_attributes.subtitles) {
+    count += accessibility_attributes.subtitles.length;
+    res += `<tr><td rowspan=${accessibility_attributes.subtitles.length}><img class="colorize-icon" src="${CAPTIONS_ICON}" height="20" alt="Subtitle"/></td>`;
     for (i = 0; i < accessibility_attributes.subtitles.length; i++) {
       var sub = accessibility_attributes.subtitles[i];
-      aa.push(
-        "<i>Subtitle:</i> language=" +
-          (sub.language ? sub.language : "unknown") +
-          "; carriage=" +
-          (sub.carriage ? sub.carriage : "unknown") +
-          "; coding=" +
-          (sub.coding ? sub.coding : "uknown") +
-          (sub.purpose ? ` (${sub.purpose})` : "")
-      );
+      res +=
+        (i != 0 ? "<tr>" : "") +
+        "<td>" +
+        "language=" +
+        (sub.language ? sub.language : "unknown") +
+        "; carriage=" +
+        (sub.carriage ? sub.carriage : "unknown") +
+        "; coding=" +
+        (sub.coding ? sub.coding : "uknown") +
+        (sub.purpose ? ` (${sub.purpose})` : "") +
+        "</td></tr>";
     }
   }
   if (accessibility_attributes.audio_descriptions) {
+    count += accessibility_attributes.audio_descriptions.length;
+    res += `<tr><td rowspan=${accessibility_attributes.audio_descriptions.length}><img class="colorize-icon" src="${AUDIO_DESCRIPTION_ICON}" height="20" alt="Audio Description"/></td>`;
     for (i = 0; i < accessibility_attributes.audio_descriptions.length; i++) {
       var ad = accessibility_attributes.audio_descriptions[i];
-      aa.push(
-        "<i>Audio Description:</i> rx-mix=" +
-          ad.mix +
-          "; " +
-          (ad.audio_attributes ? AudioAttributesString(ad.audio_attributes) : "!no-audio!")
-      );
+      res +=
+        (i != 0 ? "<tr>" : "") +
+        "<td>" +
+        "rx-mix=" +
+        ad.mix +
+        "; " +
+        (ad.audio_attributes ? AudioAttributesString(ad.audio_attributes) : "!no-audio!") +
+        "</td></tr>";
     }
+    res += "";
   }
   if (accessibility_attributes.signings) {
+    count += accessibility_attributes.signings.length;
+    res += `<tr><td rowspan=${accessibility_attributes.signings.length}><img class="colorize-icon" src="${SIGNIMG_ICON}" height="20" alt="Signing"/></td>`;
     for (i = 0; i < accessibility_attributes.signings.length; i++) {
       var sa = accessibility_attributes.signings[i];
-      aa.push(
-        "<i>Signing:</i> coding=" +
-          (sa.coding ? sa.coding : "!unknown!") +
-          "; language=" +
-          (sa.language ? sa.language : "!unspecified!") +
-          "; closed=" +
-          (sa.closed ? sa.closed : "!unspecified!")
-      );
+      res +=
+        (i != 0 ? "<tr>" : "") +
+        "<td>" +
+        "coding=" +
+        (sa.coding ? sa.coding : "!unknown!") +
+        "; language=" +
+        (sa.language ? sa.language : "!unspecified!") +
+        "; closed=" +
+        (sa.closed ? sa.closed : "!unspecified!") +
+        "</td></tr>";
     }
   }
   if (accessibility_attributes.dialogue_enhancements) {
+    count += accessibility_attributes.dialogue_enhancements.length;
+    res += `<tr><td rowspan=${accessibility_attributes.dialogue_enhancements.length}><img class="colorize-icon" src="${DIALOG_ENHANCEMENT_ICON}" height="20" alt="Dialog Enhancement"/></td>`;
     for (i = 0; i < accessibility_attributes.dialogue_enhancements.length; i++) {
       var de = accessibility_attributes.dialogue_enhancements[i];
-      aa.push(
-        "<i>Dialog Enhancement:</i> " +
-          (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "!no-audio!")
-      );
+      res += "<td>" + (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "!no-audio!") + "</td>";
     }
+    res += "</tr>";
   }
   if (accessibility_attributes.spoken_subtitles) {
+    count += accessibility_attributes.spoken_subtitles.length;
+    res += `<tr><td rowspan=${accessibility_attributes.spoken_subtitles.length}><img class="colorize-icon" src="${SPOKEN_SUBTITLES_ICON}" height="20" alt="Spoken Subtitles"/></td>`;
     for (i = 0; i < accessibility_attributes.spoken_subtitles.length; i++) {
       var ss = accessibility_attributes.spoken_subtitles[i];
-      aa.push(
-        "<i>Spoken Subtitles:</i> " + (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "!no-audio!")
-      );
+      res +=
+        (i != 0 ? "<tr>" : "") +
+        "<td>" +
+        (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "!no-audio!") +
+        "</td></tr>";
     }
   }
-  return aa.length ? aa.join("<br/>") : "none";
+  res += "</table>";
+  return count ? res : "none";
+  // return aa.length ? aa.join("<br/>") : "none";
 }
 
 function parseServiceList(data, dvbChannels, supportedDrmSystems) {
@@ -793,7 +814,7 @@ function selectServiceListRegion(serviceList, regionId) {
 
 function getChildElements(parent, tagName) {
   var elements = [];
-  if (parent.childNodes) {
+  if (parent && parent.childNodes) {
     for (var i = 0; i < parent.childNodes.length; i++) {
       if (parent.childNodes[i].nodeType == 1 && parent.childNodes[i].localName == tagName) {
         // localName property does not include the prefix
