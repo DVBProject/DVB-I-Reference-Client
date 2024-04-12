@@ -92,7 +92,7 @@
     <sld:ServiceListOffering regulatorListFlag="false">
     <sld:ServiceListName>DVB-I Reference Client Availability service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example_rev1.xml</dvbisd:URI>
+				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example_availability.xml</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
 				<sld:DASHDelivery/>
@@ -129,6 +129,32 @@
 		  <sld:ServiceListName>Service prominence list(r6)</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=prominence_r6.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+			</sld:Delivery>
+		</sld:ServiceListOffering>
+	</sld:ProviderOffering>
+
+
+	<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>BMT</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>BMT</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>Germany</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+41 22 7100000</mpeg7:Telephone>
+				<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+		<sld:ServiceListOffering regulatorListFlag="false">
+		  <sld:ServiceListName>German service list</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>https://dvb-i-staging.bmt-technik.de/service-list</dvbisd:URI>
 			</sld:ServiceListURI>
 			<sld:Delivery>
 				<sld:DASHDelivery/>

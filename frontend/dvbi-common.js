@@ -73,6 +73,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       subt.language = getChildValue(sub_attributes[k], "SubtitleLanguage");
       subt.carriage = SubtitleCarriageCS(getChildValues(sub_attributes[k], "Carriage", "href"));
       subt.coding = SubtitleCodingCS(getChildValues(sub_attributes[k], "Coding", "href"));
+      subt.purpose = SubtitlePurposeCS(getChildValues(sub_attributes[k], "Purpose", "href"));
       res.subtitles.push(subt);
     }
   }
@@ -80,9 +81,11 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
   if (ad_attributes.length > 0) {
     res.audio_descriptions = [];
     for (k = 0; k < ad_attributes.length; k++) {
-      var ad = { mix: false };
+      var ad = {};
       var audio_attributes = getChildElements(ad_attributes[k], "AudioAttributes");
       if (audio_attributes.length > 0) ad.audio_attributes = parseTVAAudioAttributesType(audio_attributes[0]);
+      var receiver_mix = getChildValue(ad_attributes[k], "ReceiverMix");
+      ad.mix = receiver_mix ? receiver_mix.toLowerCase() == "true" : false;
       res.audio_descriptions.push(ad);
     }
   }
@@ -123,7 +126,8 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
 function formatAccessibilityAttributes(accessibility_attributes) {
   if (!accessibility_attributes) return "";
   // include any accessibility items
-  var aa = [];
+  var aa = [],
+    i;
   if (accessibility_attributes.subtitles) {
     for (i = 0; i < accessibility_attributes.subtitles.length; i++) {
       var sub = accessibility_attributes.subtitles[i];
@@ -133,7 +137,8 @@ function formatAccessibilityAttributes(accessibility_attributes) {
           "; carriage=" +
           (sub.carriage ? sub.carriage : "unknown") +
           "; coding=" +
-          (sub.coding ? sub.coding : "uknown")
+          (sub.coding ? sub.coding : "uknown") +
+          (sub.purpose ? ` (${sub.purpose})` : "")
       );
     }
   }
