@@ -63,6 +63,23 @@ function parseTVAAudioAttributesType(audio_attributes_element) {
   return res;
 }
 
+function AccessibilityApplication(element) {
+  var res = null;
+  var apps = element.getElementsByTagNameNS(TVA_ns, "AppInformation");
+  if (apps.length) {
+    var req_std = apps[0].getElementsByTagNameNS(TVA_ns, "RequiredStandardVersion");
+    var req_opts = apps[0].getElementsByTagNameNS(TVA_ns, "RequiredOptionalFeature");
+
+    res = req_std ? StandardVersion(req_std[0].childNodes[0].nodeValue) : "unspecified platform";
+    var feat = [];
+    for (var i = 0; i < req_opts.length; i++) {
+      feat.push(OptionalFeature(req_opts[i].childNodes[0].nodeValue));
+    }
+    res += (feat.length ? "; " : "") + feat.join(", ");
+  }
+  return res;
+}
+
 function ParseTVAAccessibilityAttributes(accessibility_element) {
   var res = {};
   var sub_attributes = getChildElements(accessibility_element, "SubtitleAttributes");
@@ -74,6 +91,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       subt.carriage = SubtitleCarriageCS(getChildValues(sub_attributes[k], "Carriage", "href"));
       subt.coding = SubtitleCodingCS(getChildValues(sub_attributes[k], "Coding", "href"));
       subt.purpose = SubtitlePurposeCS(getChildValues(sub_attributes[k], "Purpose", "href"));
+      subt.app = AccessibilityApplication(sub_attributes[k]);
       res.subtitles.push(subt);
     }
   }
@@ -86,6 +104,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       if (audio_attributes.length > 0) ad.audio_attributes = parseTVAAudioAttributesType(audio_attributes[0]);
       var receiver_mix = getChildValue(ad_attributes[k], "ReceiverMix");
       ad.mix = receiver_mix ? receiver_mix.toLowerCase() == "true" : false;
+      ad.app = AccessibilityApplication(ad_attributes[k]);
       res.audio_descriptions.push(ad);
     }
   }
@@ -97,6 +116,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       sa.coding = VideoCodecCS(getChildValue(sign_attributes[k], "Coding", "href"));
       sa.language = getChildValue(sign_attributes[k], "SignLanguage");
       sa.closed = getChildValue(sign_attributes[k], "Closed");
+      sa.app = AccessibilityApplication(sign_attributes[k]);
       res.signings.push(sa);
     }
   }
@@ -107,6 +127,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       var audio_attributes = getChildElements(de_attributes[k], "AudioAttributes");
       res.dialogue_enhancements.push({
         audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
+        app: AccessibilityApplication(audio_attributes[k]),
       });
     }
   }
@@ -117,6 +138,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       var audio_attributes = getChildElements(spoken_sub_attributes[k], "AudioAttributes");
       res.spoken_subtitles.push({
         audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
+        app: AccessibilityApplication(audio_attributes[k]),
       });
     }
   }
@@ -138,6 +160,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       res +=
         (i != 0 ? "<tr>" : "") +
         "<td>" +
+        (sub.app ? sub.app + "<br/>" : "") +
         "language=" +
         (sub.language ? sub.language : "unknown") +
         "; carriage=" +
@@ -156,6 +179,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       res +=
         (i != 0 ? "<tr>" : "") +
         "<td>" +
+        (ad.app ? ad.app + "<br/>" : "") +
         "rx-mix=" +
         ad.mix +
         "; " +
@@ -166,12 +190,13 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   }
   if (accessibility_attributes.signings) {
     count += accessibility_attributes.signings.length;
-    res += `<tr><td rowspan=${accessibility_attributes.signings.length}><img class="colorize-icon" src="${SIGNIMG_ICON}" height="20" alt="Signing"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.signings.length}><img class="colorize-icon" src="${SIGNING_ICON}" height="20" alt="Signing"/></td>`;
     for (i = 0; i < accessibility_attributes.signings.length; i++) {
       var sa = accessibility_attributes.signings[i];
       res +=
         (i != 0 ? "<tr>" : "") +
         "<td>" +
+        (sa.app ? sa.app + "<br/>" : "") +
         "coding=" +
         (sa.coding ? sa.coding : "!unknown!") +
         "; language=" +
@@ -186,7 +211,12 @@ function formatAccessibilityAttributes(accessibility_attributes) {
     res += `<tr><td rowspan=${accessibility_attributes.dialogue_enhancements.length}><img class="colorize-icon" src="${DIALOG_ENHANCEMENT_ICON}" height="20" alt="Dialog Enhancement"/></td>`;
     for (i = 0; i < accessibility_attributes.dialogue_enhancements.length; i++) {
       var de = accessibility_attributes.dialogue_enhancements[i];
-      res += "<td>" + (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "!no-audio!") + "</td>";
+      res +=
+        (i != 0 ? "<tr>" : "") +
+        "<td>" +
+        (de.app ? de.app + "<br/>" : "") +
+        (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "!no-audio!") +
+        "</td>";
     }
     res += "</tr>";
   }
@@ -198,13 +228,13 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       res +=
         (i != 0 ? "<tr>" : "") +
         "<td>" +
+        (ss.app ? ss.app + "<br/>" : "") +
         (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "!no-audio!") +
         "</td></tr>";
     }
   }
   res += "</table>";
   return count ? res : "none";
-  // return aa.length ? aa.join("<br/>") : "none";
 }
 
 function parseServiceList(data, dvbChannels, supportedDrmSystems) {

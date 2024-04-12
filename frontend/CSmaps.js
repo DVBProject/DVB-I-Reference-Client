@@ -401,3 +401,34 @@ var TVASubtitlePurposeCSmap = [
 function SubtitlePurposeCS(vals) {
   return mapValues(vals, TVASubtitlePurposeCSmap);
 }
+
+var HbbTVStandard_uri = "urn:hbbtv:appinformation:standardversion:hbbtv";
+var CEAuri = "urn:cta:wave:appinformation:standardversion";
+var AppStandards_map = [
+  { value: `${HbbTVStandard_uri}:1.2.1`, definition: "HbbTV 1.5" },
+  { value: `${HbbTVStandard_uri}:1.5.1`, definition: "HbbTV 2.0.2" },
+  { value: `${HbbTVStandard_uri}:1.6.1`, definition: "HbbTV 2.0.3" },
+  { value: `${HbbTVStandard_uri}:1.7.1`, definition: "HbbTV 2.0.4" },
+  { value: `${CEAuri}:cta5000:2017`, definition: "CTA-5000" },
+  { value: `${CEAuri}:cta5000a:2018`, definition: "CTA-5000-A" },
+  { value: `${CEAuri}:cta5000b:2019`, definition: "CTA-5000-B" },
+  { value: `${CEAuri}:cta5000c:2020`, definition: "CTA-5000-C" },
+  { value: `${CEAuri}:cta5000d:2021`, definition: "CTA-5000-D" },
+  { value: `${CEAuri}:cta5000e:2022`, definition: "CTA-5000-E" },
+  { value: `${CEAuri}:cta5000f:2023`, definition: "CTA-5000-F" },
+];
+function StandardVersion(vals) {
+  return mapValues(vals, AppStandards_map);
+}
+
+var HbbTVOption_uri = "urn:hbbtv:appinformation:optionalfeature:hbbtv";
+var OptionalFeatures_map = [
+  { value: `${HbbTVOption_uri}:2decoder`, definition: "+2DECODER" },
+  { value: `${HbbTVOption_uri}:2html`, definition: "+2HTML" },
+  { value: `${HbbTVOption_uri}:graphics_01`, definition: "+GRAHICS_01" },
+  { value: `${HbbTVOption_uri}:graphics_02`, definition: "+GRAHICS_02" },
+  { value: `${HbbTVOption_uri}:aria`, definition: "+ARIA" },
+];
+function OptionalFeature(vals) {
+  return mapValues(vals, OptionalFeatures_map);
+}
