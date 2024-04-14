@@ -327,14 +327,9 @@ body.player {
     font-weight: 300;
     color: $lightred-color;
   }
-  .img {
-  }
 }
 #accessibility-info:nth-child(1) {
   font-style: italic;
-}
-#accessibility-info .colorize-icon {
-  filter: saturate(500%) contrast(800%) brightness(500%) invert(80%) sepia(50%) hue-rotate(120deg);
 }
 // Streaminfo
 #streaminfo {

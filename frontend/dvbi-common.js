@@ -154,7 +154,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
 
   if (accessibility_attributes.subtitles) {
     count += accessibility_attributes.subtitles.length;
-    res += `<tr><td rowspan=${accessibility_attributes.subtitles.length}><img class="colorize-icon" src="${CAPTIONS_ICON}" height="20" alt="Subtitle"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.subtitles.length}><img style="${accessiibilty_colour_result.filter}" src="${CAPTIONS_ICON}" height="20" alt="Subtitle"/></td>`;
     for (i = 0; i < accessibility_attributes.subtitles.length; i++) {
       var sub = accessibility_attributes.subtitles[i];
       res +=
@@ -173,7 +173,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   }
   if (accessibility_attributes.audio_descriptions) {
     count += accessibility_attributes.audio_descriptions.length;
-    res += `<tr><td rowspan=${accessibility_attributes.audio_descriptions.length}><img class="colorize-icon" src="${AUDIO_DESCRIPTION_ICON}" height="20" alt="Audio Description"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.audio_descriptions.length}><img style="${accessiibilty_colour_result.filter}" src="${AUDIO_DESCRIPTION_ICON}" height="20" alt="Audio Description"/></td>`;
     for (i = 0; i < accessibility_attributes.audio_descriptions.length; i++) {
       var ad = accessibility_attributes.audio_descriptions[i];
       res +=
@@ -190,7 +190,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   }
   if (accessibility_attributes.signings) {
     count += accessibility_attributes.signings.length;
-    res += `<tr><td rowspan=${accessibility_attributes.signings.length}><img class="colorize-icon" src="${SIGNING_ICON}" height="20" alt="Signing"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.signings.length}><img style="${accessiibilty_colour_result.filter}" src="${SIGNING_ICON}" height="20" alt="Signing"/></td>`;
     for (i = 0; i < accessibility_attributes.signings.length; i++) {
       var sa = accessibility_attributes.signings[i];
       res +=
@@ -208,7 +208,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   }
   if (accessibility_attributes.dialogue_enhancements) {
     count += accessibility_attributes.dialogue_enhancements.length;
-    res += `<tr><td rowspan=${accessibility_attributes.dialogue_enhancements.length}><img class="colorize-icon" src="${DIALOG_ENHANCEMENT_ICON}" height="20" alt="Dialog Enhancement"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.dialogue_enhancements.length}><img style="${accessiibilty_colour_result.filter}" src="${DIALOG_ENHANCEMENT_ICON}" height="20" alt="Dialog Enhancement"/></td>`;
     for (i = 0; i < accessibility_attributes.dialogue_enhancements.length; i++) {
       var de = accessibility_attributes.dialogue_enhancements[i];
       res +=
@@ -222,7 +222,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   }
   if (accessibility_attributes.spoken_subtitles) {
     count += accessibility_attributes.spoken_subtitles.length;
-    res += `<tr><td rowspan=${accessibility_attributes.spoken_subtitles.length}><img class="colorize-icon" src="${SPOKEN_SUBTITLES_ICON}" height="20" alt="Spoken Subtitles"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.spoken_subtitles.length}><img style="${accessiibilty_colour_result.filter}" src="${SPOKEN_SUBTITLES_ICON}" height="20" alt="Spoken Subtitles"/></td>`;
     for (i = 0; i < accessibility_attributes.spoken_subtitles.length; i++) {
       var ss = accessibility_attributes.spoken_subtitles[i];
       res +=
