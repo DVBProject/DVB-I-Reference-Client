@@ -391,13 +391,12 @@ function VideoCodecCS(vals) {
 
 var TVASubtitlePurposeCSuri = "urn:tva:metadata:cs:SubtitlePurposeCS:2023";
 var TVASubtitlePurposeCSmap = [
-  { value: `${TVASubtitlePurposeCSuri}:1`, definition: "Translation" },
-  { value: `${TVASubtitlePurposeCSuri}:2`, definition: "Hard of Hearing" },
-  { value: `${TVASubtitlePurposeCSuri}:3`, definition: "Audio Description" },
-  { value: `${TVASubtitlePurposeCSuri}:4`, definition: "Commentary" },
-  { value: `${TVASubtitlePurposeCSuri}:5`, definition: "Forced Narrative" },
+  { value: `${TVASubtitlePurposeCSuri}:1`, definition: "~subtitle_purpose_translation" },
+  { value: `${TVASubtitlePurposeCSuri}:2`, definition: "~subtitle_purpose_hard_of_hearing" },
+  { value: `${TVASubtitlePurposeCSuri}:3`, definition: "~subtitle_purpose_audio_description" },
+  { value: `${TVASubtitlePurposeCSuri}:4`, definition: "~subtitle_purpose_commentary" },
+  { value: `${TVASubtitlePurposeCSuri}:5`, definition: "~subtitle_purpose_forced_narrative" },
 ];
-
 function SubtitlePurposeCS(vals) {
   return mapValues(vals, TVASubtitlePurposeCSmap);
 }

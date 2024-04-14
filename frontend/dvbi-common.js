@@ -80,6 +80,19 @@ function AccessibilityApplication(element) {
   return res;
 }
 
+function AudioAttributesString(aa) {
+  if (!aa) return "";
+  var res = [];
+  if (aa.coding) res.push(aa.coding);
+  if (aa.num_channels) res.push(aa.num_channels + "ch");
+  if (aa.mix_type) res.push(aa.mix_type);
+  if (aa.language) res.push(aa.language);
+  if (aa.sample_frequency) res.push(aa.sample_frequency + "Hz");
+  if (aa.sample_size) res.push(aa.sample_size + "bits");
+  if (aa.bit_rate) res.push(aa.bit_rate + "bps");
+  return res.join(" / ");
+}
+
 function ParseTVAAccessibilityAttributes(accessibility_element) {
   var res = {};
   var sub_attributes = getChildElements(accessibility_element, "SubtitleAttributes");
@@ -103,7 +116,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       var audio_attributes = getChildElements(ad_attributes[k], "AudioAttributes");
       if (audio_attributes.length > 0) ad.audio_attributes = parseTVAAudioAttributesType(audio_attributes[0]);
       var receiver_mix = getChildValue(ad_attributes[k], "ReceiverMix");
-      ad.mix = receiver_mix ? receiver_mix.toLowerCase() == "true" : false;
+      ad.mix = receiver_mix ? receiver_mix.toLowerCase() : "false";
       ad.app = AccessibilityApplication(ad_attributes[k]);
       res.audio_descriptions.push(ad);
     }
@@ -154,61 +167,53 @@ function formatAccessibilityAttributes(accessibility_attributes) {
 
   if (accessibility_attributes.subtitles) {
     count += accessibility_attributes.subtitles.length;
-    res += `<tr><td rowspan=${accessibility_attributes.subtitles.length}><img style="${accessiibilty_colour_result.filter}" src="${CAPTIONS_ICON}" height="20" alt="Subtitle"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.subtitles.length}><img style="${accessibility_colour_result.filter}" src="${CAPTIONS_ICON}" height="20" alt="Subtitle"/></td>`;
     for (i = 0; i < accessibility_attributes.subtitles.length; i++) {
-      var sub = accessibility_attributes.subtitles[i];
-      res +=
-        (i != 0 ? "<tr>" : "") +
-        "<td>" +
-        (sub.app ? sub.app + "<br/>" : "") +
-        "language=" +
-        (sub.language ? sub.language : "unknown") +
-        "; carriage=" +
-        (sub.carriage ? sub.carriage : "unknown") +
-        "; coding=" +
-        (sub.coding ? sub.coding : "uknown") +
-        (sub.purpose ? ` (${sub.purpose})` : "") +
-        "</td></tr>";
+      var sub = accessibility_attributes.subtitles[i],
+        attrs = [];
+      if (sub.language) attrs.push(sub.language);
+      if (sub.carriage) attrs.push(sub.carriage);
+      if (sub.coding) attrs.push(sub.coding);
+      if (sub.purpose) attrs.push(sub.purpose.startsWith("~") ? i18n.getString(sub.purpose.substring(1)) : sub.purpose);
+      res += (i != 0 ? "<tr>" : "") + "<td>" + (sub.app ? sub.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
   }
   if (accessibility_attributes.audio_descriptions) {
     count += accessibility_attributes.audio_descriptions.length;
-    res += `<tr><td rowspan=${accessibility_attributes.audio_descriptions.length}><img style="${accessiibilty_colour_result.filter}" src="${AUDIO_DESCRIPTION_ICON}" height="20" alt="Audio Description"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.audio_descriptions.length}><img style="${accessibility_colour_result.filter}" src="${AUDIO_DESCRIPTION_ICON}" height="20" alt="Audio Description"/></td>`;
     for (i = 0; i < accessibility_attributes.audio_descriptions.length; i++) {
-      var ad = accessibility_attributes.audio_descriptions[i];
-      res +=
-        (i != 0 ? "<tr>" : "") +
-        "<td>" +
-        (ad.app ? ad.app + "<br/>" : "") +
-        "rx-mix=" +
-        ad.mix +
-        "; " +
-        (ad.audio_attributes ? AudioAttributesString(ad.audio_attributes) : "!no-audio!") +
-        "</td></tr>";
+      var ad = accessibility_attributes.audio_descriptions[i],
+        attrs = [];
+      if (ad.mix == "true")
+        attrs.push(
+          `<img style="${accessibility_colour_result.filter}" src="${RECEIVER_MIX_ICON}" height="20" alt="RX-MIX"/>`
+        );
+      if (ad.audio_attributes) attrs.push(AudioAttributesString(ad.audio_attributes));
+      res += (i != 0 ? "<tr>" : "") + "<td>" + (ad.app ? ad.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
     res += "";
   }
   if (accessibility_attributes.signings) {
     count += accessibility_attributes.signings.length;
-    res += `<tr><td rowspan=${accessibility_attributes.signings.length}><img style="${accessiibilty_colour_result.filter}" src="${SIGNING_ICON}" height="20" alt="Signing"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.signings.length}><img style="${accessibility_colour_result.filter}" src="${SIGNING_ICON}" height="20" alt="Signing"/></td>`;
     for (i = 0; i < accessibility_attributes.signings.length; i++) {
-      var sa = accessibility_attributes.signings[i];
-      res +=
-        (i != 0 ? "<tr>" : "") +
-        "<td>" +
-        (sa.app ? sa.app + "<br/>" : "") +
-        "coding=" +
-        (sa.coding ? sa.coding : "!unknown!") +
-        "; language=" +
-        (sa.language ? sa.language : "!unspecified!") +
-        "; closed=" +
-        (sa.closed ? sa.closed : "!unspecified!") +
-        "</td></tr>";
+      var sa = accessibility_attributes.signings[i],
+        attrs = [];
+      if (sa.coding) attrs.push(sa.coding);
+      if (sa.language) attrs.push(sa.language);
+      if (sa.closed)
+        attrs.push(
+          `<img style="${accessibility_colour_result.filter}" src="${
+            sa.closed == "true" ? CLOSED_CAPTIONS_ICON : OPEN_CAPTIONS_ICON
+          }" height="20" alt="captions"/>`
+        );
+      res += (i != 0 ? "<tr>" : "") + "<td>" + (sa.app ? sa.app + "<br/>" : "") + attrs.join(" / ");
+      ("</td></tr>");
     }
   }
   if (accessibility_attributes.dialogue_enhancements) {
     count += accessibility_attributes.dialogue_enhancements.length;
-    res += `<tr><td rowspan=${accessibility_attributes.dialogue_enhancements.length}><img style="${accessiibilty_colour_result.filter}" src="${DIALOG_ENHANCEMENT_ICON}" height="20" alt="Dialog Enhancement"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.dialogue_enhancements.length}><img style="${accessibility_colour_result.filter}" src="${DIALOG_ENHANCEMENT_ICON}" height="20" alt="Dialog Enhancement"/></td>`;
     for (i = 0; i < accessibility_attributes.dialogue_enhancements.length; i++) {
       var de = accessibility_attributes.dialogue_enhancements[i];
       res +=
@@ -222,7 +227,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   }
   if (accessibility_attributes.spoken_subtitles) {
     count += accessibility_attributes.spoken_subtitles.length;
-    res += `<tr><td rowspan=${accessibility_attributes.spoken_subtitles.length}><img style="${accessiibilty_colour_result.filter}" src="${SPOKEN_SUBTITLES_ICON}" height="20" alt="Spoken Subtitles"/></td>`;
+    res += `<tr><td rowspan=${accessibility_attributes.spoken_subtitles.length}><img style="${accessibility_colour_result.filter}" src="${SPOKEN_SUBTITLES_ICON}" height="20" alt="Spoken Subtitles"/></td>`;
     for (i = 0; i < accessibility_attributes.spoken_subtitles.length; i++) {
       var ss = accessibility_attributes.spoken_subtitles[i];
       res +=

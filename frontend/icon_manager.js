@@ -4,6 +4,10 @@ var SIGNING_ICON = `${INSTALL_LOCATION}/frontend/android/images/ons-icon-bsl-lar
 var DIALOG_ENHANCEMENT_ICON = `${INSTALL_LOCATION}/frontend/android/images/noun-speaking-5005852-trim.png`;
 var SPOKEN_SUBTITLES_ICON = `${INSTALL_LOCATION}/frontend/android/images/spoken-subtitles-2.png`;
 
+var OPEN_CAPTIONS_ICON = `${INSTALL_LOCATION}/frontend/android/images/open-caption.svg`;
+var CLOSED_CAPTIONS_ICON = `${INSTALL_LOCATION}/frontend/android/images/closed-captioning.svg`;
+var RECEIVER_MIX_ICON = `${INSTALL_LOCATION}/frontend/android/images/mixer-vertical.svg`;
+
 /**
  * colourise an icon
  * see https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
@@ -287,6 +291,6 @@ class Solver {
   }
 }
 
-var accessiibilty_icon_colour = new Color(0xff, 0xcc, 0xcb); // same as colour for ".programinfo .accessibility"
-var accessiibilty_colour_solver = new Solver(accessiibilty_icon_colour);
-var accessiibilty_colour_result = accessiibilty_colour_solver.solve();
+var accessibility_icon_colour = new Color(0xff, 0xcc, 0xcb); // same as colour for ".programinfo .accessibility"
+var accessibility_colour_solver = new Solver(accessibility_icon_colour);
+var accessibility_colour_result = accessibility_colour_solver.solve();
