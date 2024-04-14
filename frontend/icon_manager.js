@@ -4,9 +4,9 @@ var SIGNING_ICON = `${INSTALL_LOCATION}/frontend/android/images/ons-icon-bsl-lar
 var DIALOG_ENHANCEMENT_ICON = `${INSTALL_LOCATION}/frontend/android/images/noun-speaking-5005852-trim.png`;
 var SPOKEN_SUBTITLES_ICON = `${INSTALL_LOCATION}/frontend/android/images/spoken-subtitles-2.png`;
 
-var OPEN_CAPTIONS_ICON = `${INSTALL_LOCATION}/frontend/android/images/open-caption.svg`;
 var CLOSED_CAPTIONS_ICON = `${INSTALL_LOCATION}/frontend/android/images/closed-captioning.svg`;
 var RECEIVER_MIX_ICON = `${INSTALL_LOCATION}/frontend/android/images/mixer-vertical.svg`;
+var TTS_OK_ICON = `${INSTALL_LOCATION}/frontend/android/images/text-to-speech.svg`;
 
 /**
  * colourise an icon
@@ -294,3 +294,7 @@ class Solver {
 var accessibility_icon_colour = new Color(0xff, 0xcc, 0xcb); // same as colour for ".programinfo .accessibility"
 var accessibility_colour_solver = new Solver(accessibility_icon_colour);
 var accessibility_colour_result = accessibility_colour_solver.solve();
+
+var no_accessibility_icon_colour = new Color(0x6f, 0x6f, 0x6f); // icon is disabled
+var no_accessibility_colour_solver = new Solver(no_accessibility_icon_colour);
+var no_accessibility_colour_result = no_accessibility_colour_solver.solve();

@@ -104,6 +104,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       subt.carriage = SubtitleCarriageCS(getChildValues(sub_attributes[k], "Carriage", "href"));
       subt.coding = SubtitleCodingCS(getChildValues(sub_attributes[k], "Coding", "href"));
       subt.purpose = SubtitlePurposeCS(getChildValues(sub_attributes[k], "Purpose", "href"));
+      subt.forTTS = getChildValue(sub_attributes[k], "SuitableForTTS");
       subt.app = AccessibilityApplication(sub_attributes[k]);
       res.subtitles.push(subt);
     }
@@ -175,6 +176,12 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       if (sub.carriage) attrs.push(sub.carriage);
       if (sub.coding) attrs.push(sub.coding);
       if (sub.purpose) attrs.push(sub.purpose.startsWith("~") ? i18n.getString(sub.purpose.substring(1)) : sub.purpose);
+      if (sub.forTTS)
+        attrs.push(
+          `<img style="${
+            sub.forTTS == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
+          }" src="${TTS_OK_ICON}" height="20" alt="TTSok"/>`
+        );
       res += (i != 0 ? "<tr>" : "") + "<td>" + (sub.app ? sub.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
   }
@@ -184,10 +191,11 @@ function formatAccessibilityAttributes(accessibility_attributes) {
     for (i = 0; i < accessibility_attributes.audio_descriptions.length; i++) {
       var ad = accessibility_attributes.audio_descriptions[i],
         attrs = [];
-      if (ad.mix == "true")
-        attrs.push(
-          `<img style="${accessibility_colour_result.filter}" src="${RECEIVER_MIX_ICON}" height="20" alt="RX-MIX"/>`
-        );
+      attrs.push(
+        `<img style="${
+          ad.mix == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
+        }" src="${RECEIVER_MIX_ICON}" height="20" alt="RX-MIX"/>`
+      );
       if (ad.audio_attributes) attrs.push(AudioAttributesString(ad.audio_attributes));
       res += (i != 0 ? "<tr>" : "") + "<td>" + (ad.app ? ad.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
@@ -201,12 +209,11 @@ function formatAccessibilityAttributes(accessibility_attributes) {
         attrs = [];
       if (sa.coding) attrs.push(sa.coding);
       if (sa.language) attrs.push(sa.language);
-      if (sa.closed)
-        attrs.push(
-          `<img style="${accessibility_colour_result.filter}" src="${
-            sa.closed == "true" ? CLOSED_CAPTIONS_ICON : OPEN_CAPTIONS_ICON
-          }" height="20" alt="captions"/>`
-        );
+      attrs.push(
+        `<img style="${
+          sa.closed == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
+        }" src="${CLOSED_CAPTIONS_ICON}" height="20" alt="captions"/>`
+      );
       res += (i != 0 ? "<tr>" : "") + "<td>" + (sa.app ? sa.app + "<br/>" : "") + attrs.join(" / ");
       ("</td></tr>");
     }
@@ -220,7 +227,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
         (i != 0 ? "<tr>" : "") +
         "<td>" +
         (de.app ? de.app + "<br/>" : "") +
-        (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "!no-audio!") +
+        (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "") +
         "</td>";
     }
     res += "</tr>";
@@ -234,7 +241,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
         (i != 0 ? "<tr>" : "") +
         "<td>" +
         (ss.app ? ss.app + "<br/>" : "") +
-        (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "!no-audio!") +
+        (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "") +
         "</td></tr>";
     }
   }
