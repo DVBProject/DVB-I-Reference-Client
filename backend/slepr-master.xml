@@ -79,8 +79,8 @@
 			</sld:ElectronicAddress>
 		</sld:Provider>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		<sld:ServiceListName>DVB-I Reference Client service list</sld:ServiceListName>
-		<sld:ServiceListName xml:lang="zh">DVB-I 参考客户端服务列表</sld:ServiceListName>
+		<sld:ServiceListName>DVB-I Reference Client default service list</sld:ServiceListName>
+		<sld:ServiceListName xml:lang="zh">DVB-I 参考客户端默认服务列表</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example.xml</dvbisd:URI>
 			</sld:ServiceListURI>
@@ -90,7 +90,7 @@
 			</sld:Delivery>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
-    <sld:ServiceListName>DVB-I Reference Client Availability service list</sld:ServiceListName>
+    <sld:ServiceListName>Availability Windows service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example_availability.xml</dvbisd:URI>
 			</sld:ServiceListURI>
@@ -99,7 +99,7 @@
 			</sld:Delivery>
 		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		<sld:ServiceListName>DVB-I Reference Client DRM service list</sld:ServiceListName>
+		<sld:ServiceListName>DDRM service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=drm.xml</dvbisd:URI>
 			</sld:ServiceListURI>
@@ -126,7 +126,7 @@
 			</sld:Delivery>
 		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>Service prominence list(r6)</sld:ServiceListName>
+		  <sld:ServiceListName>Service prominence list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=prominence_r6.xml</dvbisd:URI>
 			</sld:ServiceListURI>
