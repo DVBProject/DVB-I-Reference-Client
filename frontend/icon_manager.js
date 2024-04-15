@@ -11,7 +11,7 @@ var TTS_OK_ICON = `${APP_IMAGES}/text-to-speech.svg`;
 
 var MAGNIFICATION_ICON = `${APP_IMAGES}/magnifier-glass-zoom-icon.png`;
 var HIGH_CONTRAST_ICON = `${APP_IMAGES}/contrast.png`;
-var SCREEN_READER_ICON = `${APP_IMAGES}/noun-text-to-speech-5024773.png`;
+var SCREEN_READER_ICON = `${APP_IMAGES}/noun-text-to-speech-5024773-trim.png`;
 var USER_ACTION_ICON = `${APP_IMAGES}/call-to-action.png`;
 
 /**
