@@ -80,5 +80,18 @@
   "subtitle_purpose_hard_of_hearing": "Huonokuuloinen",
   "subtitle_purpose_audio_description": "Äänikuvaus",
   "subtitle_purpose_commentary": "Kommentti",
-  "subtitle_purpose_forced_narrative": "Pakotettu kerronta"
+  "subtitle_purpose_forced_narrative": "Pakotettu kerronta",
+
+  "textMagnification": "Tekstin suurennus",
+  "magnifierGlass": "Suurennuslasi",
+  "screenZoom": "Näytön zoomaus",
+  "largeLayout": "Large Layout",
+  "monochrome": "Yksivärinen",
+  "maleVoice": "Miehen Ääni",
+  "femaleVoice": "Naisen Ääni",
+  "configurableVerbosity": "Konfiguroitava monisanaisuus",
+  "speed": "Nopeus",
+  "audio": "Audio",
+  "visual": "Visuaalinen",
+  "haptic": "Haptinen"
 }

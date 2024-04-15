@@ -1,0 +1,9 @@
+<AccessibilityAttributes>
+ <ScreenReaderAttributes>
+  <AppInformation>
+   <RequiredStandardVersion>urn:cta:wave:appinformation:standardversion:cta5000f:2023</RequiredStandardVersion>
+  </AppInformation>
+  <Purpose href="urn:tva:metadata:cs:AccessibilityPurposeCS:2023:3.2"/>
+  <Purpose href="urn:tva:metadata:cs:AccessibilityPurposeCS:2023:3.3"/>
+ </ScreenReaderAttributes>
+</AccessibilityAttributes>

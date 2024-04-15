@@ -80,5 +80,18 @@
   "subtitle_purpose_hard_of_hearing": "Hard of Hearing",
   "subtitle_purpose_audio_description": "Audio Description",
   "subtitle_purpose_commentary": "Commentary",
-  "subtitle_purpose_forced_narrative": "Forced Narrative"
+  "subtitle_purpose_forced_narrative": "Forced Narrative",
+
+  "textMagnification": "Text Magnification",
+  "magnifierGlass": "Magnifier Glass",
+  "screenZoom": "Screen Zoom",
+  "largeLayout": "Large Layout",
+  "monochrome": "Monochrome",
+  "maleVoice": "Male Voice",
+  "femaleVoice": "Female Voice",
+  "configurableVerbosity": "Configurable Verbosity",
+  "speed": "Speed",
+  "audio": "Audio",
+  "visual": "Visual",
+  "haptic": "Haptic"
 }

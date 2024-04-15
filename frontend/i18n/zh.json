@@ -78,5 +78,18 @@
   "subtitle_purpose_hard_of_hearing": "很难听清",
   "subtitle_purpose_audio_description": "音频描述",
   "subtitle_purpose_commentary": "评论",
-  "subtitle_purpose_forced_narrative": "强迫叙述"
+  "subtitle_purpose_forced_narrative": "强迫叙述",
+
+  "textMagnification": "文字放大",
+  "magnifierGlass": "放大镜",
+  "screenZoom": "屏幕缩放",
+  "largeLayout": "大布局",
+  "monochrome": "单色",
+  "maleVoice": "男声",
+  "femaleVoice": "女声",
+  "configurableVerbosity": "可配置的详细程度",
+  "speed": "速度",
+  "audio": "声音的",
+  "visual": "视觉的",
+  "haptic": "触觉"
 }

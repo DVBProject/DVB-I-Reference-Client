@@ -70,22 +70,34 @@ function AccessibilityApplication(element) {
     var req_std = apps[0].getElementsByTagNameNS(TVA_ns, "RequiredStandardVersion");
     var req_opts = apps[0].getElementsByTagNameNS(TVA_ns, "RequiredOptionalFeature");
 
-    res = req_std ? StandardVersion(req_std[0].childNodes[0].nodeValue) : "unspecified platform";
+    res = req_std ? makeString(StandardVersion(req_std[0].childNodes[0].nodeValue)) : "unspecified platform";
     var feat = [];
     for (var i = 0; i < req_opts.length; i++) {
-      feat.push(OptionalFeature(req_opts[i].childNodes[0].nodeValue));
+      feat.push(makeString(OptionalFeature(req_opts[i].childNodes[0].nodeValue)));
     }
     res += (feat.length ? "; " : "") + feat.join(", ");
   }
   return res;
 }
 
+function makeString(val_or_vals) {
+  if (datatypeIs(val_or_vals, "string")) return val_or_vals;
+  if (datatypeIs(val_or_vals, "array")) {
+    var res = [];
+    val_or_vals.forEach((v) => {
+      res.push(v.startsWith("~") ? i18n.getString(v.substring(1)) : v);
+    });
+    return res.join(",");
+  }
+  return "!!cannot process!!";
+}
+
 function AudioAttributesString(aa) {
   if (!aa) return "";
   var res = [];
-  if (aa.coding) res.push(aa.coding);
+  if (aa.coding) res.push(makeString(aa.coding));
   if (aa.num_channels) res.push(aa.num_channels + "ch");
-  if (aa.mix_type) res.push(aa.mix_type);
+  if (aa.mix_type) res.push(makeString(aa.mix_type));
   if (aa.language) res.push(aa.language);
   if (aa.sample_frequency) res.push(aa.sample_frequency + "Hz");
   if (aa.sample_size) res.push(aa.sample_size + "bits");
@@ -141,7 +153,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       var audio_attributes = getChildElements(de_attributes[k], "AudioAttributes");
       res.dialogue_enhancements.push({
         audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
-        app: AccessibilityApplication(audio_attributes[k]),
+        app: AccessibilityApplication(de_attributes[k]),
       });
     }
   }
@@ -152,7 +164,47 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       var audio_attributes = getChildElements(spoken_sub_attributes[k], "AudioAttributes");
       res.spoken_subtitles.push({
         audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
-        app: AccessibilityApplication(audio_attributes[k]),
+        app: AccessibilityApplication(spoken_sub_attributes[k]),
+      });
+    }
+  }
+  var magnification_attributes = getChildElements(accessibility_element, "MagnificationUIAttributes");
+  if (magnification_attributes.length > 0) {
+    res.magnification_ui = [];
+    for (k = 0; k < magnification_attributes.length; k++) {
+      res.magnification_ui.push({
+        app: AccessibilityApplication(magnification_attributes[k]),
+        purpose: AccessibilityPurposeCS(getChildValues(magnification_attributes[k], "Purpose", "href")),
+      });
+    }
+  }
+  var high_contrast_attributes = getChildElements(accessibility_element, "HighContrastUIAttributes");
+  if (high_contrast_attributes.length > 0) {
+    res.high_contrast_ui = [];
+    for (k = 0; k < high_contrast_attributes.length; k++) {
+      res.high_contrast_ui.push({
+        app: AccessibilityApplication(high_contrast_attributes[k]),
+        purpose: AccessibilityPurposeCS(getChildValues(high_contrast_attributes[k], "Purpose", "href")),
+      });
+    }
+  }
+  var screen_reader_attributes = getChildElements(accessibility_element, "ScreenReaderAttributes");
+  if (screen_reader_attributes.length > 0) {
+    res.screen_reader_ui = [];
+    for (k = 0; k < screen_reader_attributes.length; k++) {
+      res.screen_reader_ui.push({
+        app: AccessibilityApplication(screen_reader_attributes[k]),
+        purpose: AccessibilityPurposeCS(getChildValues(screen_reader_attributes[k], "Purpose", "href")),
+      });
+    }
+  }
+  var response_action_attributes = getChildElements(accessibility_element, "ResponseToUserActionAttributes");
+  if (response_action_attributes.length > 0) {
+    res.response_to_user_action_ui = [];
+    for (k = 0; k < response_action_attributes.length; k++) {
+      res.response_to_user_action_ui.push({
+        app: AccessibilityApplication(response_action_attributes[k]),
+        purpose: AccessibilityPurposeCS(getChildValues(response_action_attributes[k], "Purpose", "href")),
       });
     }
   }
@@ -161,6 +213,29 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
 
 function formatAccessibilityAttributes(accessibility_attributes) {
   if (!accessibility_attributes) return "";
+
+  function AppAndPurpose(el, index) {
+    if (!el) return "";
+    return (
+      (index != 0 ? "<tr>" : "") +
+      "<td>" +
+      (el.app ? el.app + "<br/>" : "") +
+      (el.purpose ? makeString(el.purpose) : "") +
+      "</td></tr>"
+    );
+  }
+
+  function AppAndAudio(el, index) {
+    if (!el) return "";
+    return (
+      (index != 0 ? "<tr>" : "") +
+      "<td>" +
+      (el.app ? el.app + "<br/>" : "") +
+      (el.audio_attributes ? AudioAttributesString(el.audio_attributes) : "") +
+      "</td></tr>"
+    );
+  }
+
   // include any accessibility items
   var res = "<table id='accessibility-info'>",
     count = 0,
@@ -173,9 +248,9 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       var sub = accessibility_attributes.subtitles[i],
         attrs = [];
       if (sub.language) attrs.push(sub.language);
-      if (sub.carriage) attrs.push(sub.carriage);
-      if (sub.coding) attrs.push(sub.coding);
-      if (sub.purpose) attrs.push(sub.purpose.startsWith("~") ? i18n.getString(sub.purpose.substring(1)) : sub.purpose);
+      if (sub.carriage) attrs.push(makeString(sub.carriage));
+      if (sub.coding) attrs.push(makeString(sub.coding));
+      if (sub.purpose) attrs.push(makeString(sub.purpose));
       if (sub.forTTS)
         attrs.push(
           `<img style="${
@@ -207,42 +282,56 @@ function formatAccessibilityAttributes(accessibility_attributes) {
     for (i = 0; i < accessibility_attributes.signings.length; i++) {
       var sa = accessibility_attributes.signings[i],
         attrs = [];
-      if (sa.coding) attrs.push(sa.coding);
+      if (sa.coding) attrs.push(makeString(sa.coding));
       if (sa.language) attrs.push(sa.language);
       attrs.push(
         `<img style="${
           sa.closed == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
         }" src="${CLOSED_CAPTIONS_ICON}" height="20" alt="captions"/>`
       );
-      res += (i != 0 ? "<tr>" : "") + "<td>" + (sa.app ? sa.app + "<br/>" : "") + attrs.join(" / ");
-      ("</td></tr>");
+      res += (i != 0 ? "<tr>" : "") + "<td>" + (sa.app ? sa.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
   }
   if (accessibility_attributes.dialogue_enhancements) {
     count += accessibility_attributes.dialogue_enhancements.length;
     res += `<tr><td rowspan=${accessibility_attributes.dialogue_enhancements.length}><img style="${accessibility_colour_result.filter}" src="${DIALOG_ENHANCEMENT_ICON}" height="20" alt="Dialog Enhancement"/></td>`;
     for (i = 0; i < accessibility_attributes.dialogue_enhancements.length; i++) {
-      var de = accessibility_attributes.dialogue_enhancements[i];
-      res +=
-        (i != 0 ? "<tr>" : "") +
-        "<td>" +
-        (de.app ? de.app + "<br/>" : "") +
-        (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "") +
-        "</td>";
+      res += AppAndAudio(accessibility_attributes.dialogue_enhancements[i], i);
     }
-    res += "</tr>";
   }
   if (accessibility_attributes.spoken_subtitles) {
     count += accessibility_attributes.spoken_subtitles.length;
     res += `<tr><td rowspan=${accessibility_attributes.spoken_subtitles.length}><img style="${accessibility_colour_result.filter}" src="${SPOKEN_SUBTITLES_ICON}" height="20" alt="Spoken Subtitles"/></td>`;
     for (i = 0; i < accessibility_attributes.spoken_subtitles.length; i++) {
-      var ss = accessibility_attributes.spoken_subtitles[i];
-      res +=
-        (i != 0 ? "<tr>" : "") +
-        "<td>" +
-        (ss.app ? ss.app + "<br/>" : "") +
-        (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "") +
-        "</td></tr>";
+      res += AppAndAudio(accessibility_attributes.spoken_subtitles[i], i);
+    }
+  }
+  if (accessibility_attributes.magnification_ui) {
+    count += accessibility_attributes.magnification_ui.length;
+    res += `<tr><td rowspan=${accessibility_attributes.magnification_ui.length}><img style="${accessibility_colour_result.filter}" src="${MAGNIFICATION_ICON}" height="20" alt="Magnification"/></td>`;
+    for (i = 0; i < accessibility_attributes.magnification_ui.length; i++) {
+      res += AppAndPurpose(accessibility_attributes.magnification_ui[i], i);
+    }
+  }
+  if (accessibility_attributes.high_contrast_ui) {
+    count += accessibility_attributes.high_contrast_ui.length;
+    res += `<tr><td rowspan=${accessibility_attributes.high_contrast_ui.length}><img style="${accessibility_colour_result.filter}" src="${HIGH_CONTRAST_ICON}" height="20" alt="High Contrast"/></td>`;
+    for (i = 0; i < accessibility_attributes.high_contrast_ui.length; i++) {
+      res += AppAndPurpose(accessibility_attributes.high_contrast_ui[i], i);
+    }
+  }
+  if (accessibility_attributes.screen_reader_ui) {
+    count += accessibility_attributes.screen_reader_ui.length;
+    res += `<tr><td rowspan=${accessibility_attributes.screen_reader_ui.length}><img style="${accessibility_colour_result.filter}" src="${SCREEN_READER_ICON}" height="20" alt="Screen Reader"/></td>`;
+    for (i = 0; i < accessibility_attributes.screen_reader_ui.length; i++) {
+      res += AppAndPurpose(accessibility_attributes.screen_reader_ui[i], i);
+    }
+  }
+  if (accessibility_attributes.response_to_user_action_ui) {
+    count += accessibility_attributes.response_to_user_action_ui.length;
+    res += `<tr><td rowspan=${accessibility_attributes.response_to_user_action_ui.length}><img style="${accessibility_colour_result.filter}" src="${USER_ACTION_ICON}" height="20" alt="User Action"/></td>`;
+    for (i = 0; i < accessibility_attributes.response_to_user_action_ui.length; i++) {
+      res += AppAndPurpose(accessibility_attributes.response_to_user_action_ui[i], i);
     }
   }
   res += "</table>";

@@ -80,5 +80,18 @@
   "subtitle_purpose_hard_of_hearing": "Hörbehinderte",
   "subtitle_purpose_audio_description": "Audiobeschreibung",
   "subtitle_purpose_commentary": "Kommentar",
-  "subtitle_purpose_forced_narrative": "Erzwungene Erzählung"
+  "subtitle_purpose_forced_narrative": "Erzwungene Erzählung",
+
+  "textMagnification": "Textvergrößerung",
+  "magnifierGlass": "Lupe",
+  "screenZoom": "Bildschirmzoom",
+  "largeLayout": "Großes Layout",
+  "monochrome": "Einfarbig",
+  "maleVoice": "Männliche Stimme",
+  "femaleVoice": "Weibliche Stimme",
+  "configurableVerbosity": "Konfigurierbare Ausführlichkeit",
+  "speed": "Geschwindigkeit",
+  "audio": "Audio",
+  "visual": "Visuell",
+  "haptic": "Haptisch"
 }

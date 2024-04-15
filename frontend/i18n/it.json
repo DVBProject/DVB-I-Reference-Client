@@ -80,5 +80,18 @@
   "subtitle_purpose_hard_of_hearing": "Non udenti",
   "subtitle_purpose_audio_description": "Descrizione audio",
   "subtitle_purpose_commentary": "Commento",
-  "subtitle_purpose_forced_narrative": "Narrativa forzata"
+  "subtitle_purpose_forced_narrative": "Narrativa forzata",
+
+  "textMagnification": "Ingrandimento del testo",
+  "magnifierGlass": "Lente d'ingrandimento",
+  "screenZoom": "Zoom dello schermo",
+  "largeLayout": "Disposizione ampia",
+  "monochrome": "Monocroma",
+  "maleVoice": "Voce maschile",
+  "femaleVoice": "Voce femminile",
+  "configurableVerbosity": "Verbosità configurabile",
+  "speed": "Velocità",
+  "audio": "Audio",
+  "visual": "Visiva",
+  "haptic": "Tattile"
 }

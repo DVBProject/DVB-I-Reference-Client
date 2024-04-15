@@ -8,7 +8,7 @@ function mapValues(vals, map) {
     if (vals.length == 0) return null;
     let res = [];
     for (var i = 0; i < vals.length; i++) res.push(mapValue(vals[i]));
-    return res.join(",");
+    return res;
   } else if (typ == "string") {
     return vals == "" ? null : mapValue(vals);
   }
@@ -430,4 +430,24 @@ var OptionalFeatures_map = [
 ];
 function OptionalFeature(vals) {
   return mapValues(vals, OptionalFeatures_map);
+}
+
+var AccessibilityPurposeCSuri = "urn:tva:metadata:cs:AccessibilityPurposeCS:2023";
+var AccessibilityPurposeCSmap = [
+  { value: `${AccessibilityPurposeCSuri}:1.1`, definition: "~textMagnification" },
+  { value: `${AccessibilityPurposeCSuri}:1.2`, definition: "~magnifierGlass" },
+  { value: `${AccessibilityPurposeCSuri}:1.3`, definition: "~screenZoom" },
+  { value: `${AccessibilityPurposeCSuri}:1.4`, definition: "~largeLayout" },
+  { value: `${AccessibilityPurposeCSuri}:2.1`, definition: "~monochrome" },
+  { value: `${AccessibilityPurposeCSuri}:3.1`, definition: "~maleVoice" },
+  { value: `${AccessibilityPurposeCSuri}:3.2`, definition: "~femaleVoice" },
+  { value: `${AccessibilityPurposeCSuri}:3.3`, definition: "~configurableVerbosity" },
+  { value: `${AccessibilityPurposeCSuri}:3.4`, definition: "~speed" },
+  { value: `${AccessibilityPurposeCSuri}:4.1`, definition: "~audio" },
+  { value: `${AccessibilityPurposeCSuri}:4.2`, definition: "~visual" },
+  { value: `${AccessibilityPurposeCSuri}:4.3`, definition: "~haptic" },
+];
+
+function AccessibilityPurposeCS(vals) {
+  return mapValues(vals, AccessibilityPurposeCSmap);
 }

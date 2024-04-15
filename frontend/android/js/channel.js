@@ -311,19 +311,6 @@ Channel.prototype.nowNextUpdateRequired = function () {
   return true;
 };
 
-function AudioAttributesString(aa) {
-  if (!aa) return "";
-  var res = [];
-  if (aa.coding) res.push(aa.coding);
-  if (aa.num_channels) res.push(aa.num_channels + "ch");
-  if (aa.mix_type) res.push(aa.mix_type);
-  if (aa.language) res.push(aa.language);
-  if (aa.sample_frequency) res.push(aa.sample_frequency + "Hz");
-  if (aa.sample_size) res.push(aa.sample_size + "bits");
-  if (aa.bit_rate) res.push(aa.bit_rate + "bps");
-  return res.join(" / ");
-}
-
 Channel.prototype.updateChannelInfo = function () {
   var self = this,
     i,

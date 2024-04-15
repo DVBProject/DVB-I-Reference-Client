@@ -1,12 +1,18 @@
-var CAPTIONS_ICON = `${INSTALL_LOCATION}/frontend/android/images/noun-subtitles-78795-trim.png`;
-var AUDIO_DESCRIPTION_ICON = `${INSTALL_LOCATION}/frontend/android/images/noun-audio-description-4258567-trim.png`;
-var SIGNING_ICON = `${INSTALL_LOCATION}/frontend/android/images/ons-icon-bsl-large-mono-2.png`;
-var DIALOG_ENHANCEMENT_ICON = `${INSTALL_LOCATION}/frontend/android/images/noun-speaking-5005852-trim.png`;
-var SPOKEN_SUBTITLES_ICON = `${INSTALL_LOCATION}/frontend/android/images/spoken-subtitles-2.png`;
+var APP_IMAGES = `${INSTALL_LOCATION}/frontend/android/images`;
+var CAPTIONS_ICON = `${APP_IMAGES}/noun-subtitles-78795-trim.png`;
+var AUDIO_DESCRIPTION_ICON = `${APP_IMAGES}/noun-audio-description-4258567-trim.png`;
+var SIGNING_ICON = `${APP_IMAGES}/ons-icon-bsl-large-mono-2.png`;
+var DIALOG_ENHANCEMENT_ICON = `${APP_IMAGES}/noun-speaking-5005852-trim.png`;
+var SPOKEN_SUBTITLES_ICON = `${APP_IMAGES}/spoken-subtitles-2.png`;
 
-var CLOSED_CAPTIONS_ICON = `${INSTALL_LOCATION}/frontend/android/images/closed-captioning.svg`;
-var RECEIVER_MIX_ICON = `${INSTALL_LOCATION}/frontend/android/images/mixer-vertical.svg`;
-var TTS_OK_ICON = `${INSTALL_LOCATION}/frontend/android/images/text-to-speech.svg`;
+var CLOSED_CAPTIONS_ICON = `${APP_IMAGES}/closed-captioning.svg`;
+var RECEIVER_MIX_ICON = `${APP_IMAGES}/mixer-vertical.svg`;
+var TTS_OK_ICON = `${APP_IMAGES}/text-to-speech.svg`;
+
+var MAGNIFICATION_ICON = `${APP_IMAGES}/magnifier-glass-zoom-icon.png`;
+var HIGH_CONTRAST_ICON = `${APP_IMAGES}/contrast.png`;
+var SCREEN_READER_ICON = `${APP_IMAGES}/noun-text-to-speech-5024773.png`;
+var USER_ACTION_ICON = `${APP_IMAGES}/call-to-action.png`;
 
 /**
  * colourise an icon
