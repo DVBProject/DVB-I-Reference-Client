@@ -99,7 +99,7 @@
 			</sld:Delivery>
 		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		<sld:ServiceListName>DDRM service list</sld:ServiceListName>
+		<sld:ServiceListName>DRM service list</sld:ServiceListName>
 			<sld:ServiceListURI contentType="application/xml">
 				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=drm.xml</dvbisd:URI>
 			</sld:ServiceListURI>
