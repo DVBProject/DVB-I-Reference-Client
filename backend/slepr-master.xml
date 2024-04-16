@@ -21,50 +21,7 @@
 			<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
 		</sld:ElectronicAddress>
 	</sld:ServiceListRegistryEntity>
-	<sld:ProviderOffering>
-		<sld:Provider>
-			<sld:Name>SES</sld:Name>
-			<sld:Address>
-				<mpeg7:Name>Jan</mpeg7:Name>
-				<mpeg7:PostalAddress>
-					<mpeg7:AddressLine>Luxembourg</mpeg7:AddressLine>
-				</mpeg7:PostalAddress>
-			</sld:Address>
-			<sld:ElectronicAddress>
-				<mpeg7:Telephone>+352 00000000</mpeg7:Telephone>
-				<mpeg7:Email>dvb-i@ses.com</mpeg7:Email>
-			</sld:ElectronicAddress>
-		</sld:Provider>
-		<sld:ServiceListOffering>
-			<sld:ServiceListName>ASTRA 19.2 E</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>
-					https://www.satip.info/sites/satip/files/files/ASTRA_19_2_E.xml
-				</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DVBSDelivery>
-					<sld:OrbitalPosition>19.2</sld:OrbitalPosition>
-				</sld:DVBSDelivery>
-			</sld:Delivery>
-			<sld:TargetCountry>DEU</sld:TargetCountry>
-		</sld:ServiceListOffering>
-    <sld:ServiceListOffering>
-			<sld:ServiceListName>ASTRA 28.2 E</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>
-					https://www.satip.info/sites/satip/files/files/ASTRA_28_2_E.xml
-				</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DVBSDelivery>
-					<sld:OrbitalPosition>28.2</sld:OrbitalPosition>
-				</sld:DVBSDelivery>
-			</sld:Delivery>
-			<sld:TargetCountry>GBR</sld:TargetCountry>
-		</sld:ServiceListOffering>
-	</sld:ProviderOffering>
-	
+
 		<sld:ProviderOffering>
 		<sld:Provider>
 			<sld:Name>DVB default list</sld:Name>
@@ -92,7 +49,7 @@
 		</sld:ServiceListOffering>
 
 	</sld:ProviderOffering>
-	
+
 	<sld:ProviderOffering>
 		<sld:Provider>
 			<sld:Name>DVB</sld:Name>
@@ -180,4 +137,49 @@
 			</sld:Delivery>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
+
+  	<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>SES</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>Jan</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>Luxembourg</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+352 00000000</mpeg7:Telephone>
+				<mpeg7:Email>dvb-i@ses.com</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+		<sld:ServiceListOffering>
+			<sld:ServiceListName>ASTRA 19.2 E</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>
+					https://www.satip.info/sites/satip/files/files/ASTRA_19_2_E.xml
+				</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DVBSDelivery>
+					<sld:OrbitalPosition>19.2</sld:OrbitalPosition>
+				</sld:DVBSDelivery>
+			</sld:Delivery>
+			<sld:TargetCountry>DEU</sld:TargetCountry>
+		</sld:ServiceListOffering>
+    <sld:ServiceListOffering>
+			<sld:ServiceListName>ASTRA 28.2 E</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>
+					https://www.satip.info/sites/satip/files/files/ASTRA_28_2_E.xml
+				</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DVBSDelivery>
+					<sld:OrbitalPosition>28.2</sld:OrbitalPosition>
+				</sld:DVBSDelivery>
+			</sld:Delivery>
+			<sld:TargetCountry>GBR</sld:TargetCountry>
+		</sld:ServiceListOffering>
+	</sld:ProviderOffering>
+
 </sld:ServiceListEntryPoints>
