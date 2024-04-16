@@ -313,6 +313,9 @@ body.player {
   font-weight: 300;
   color: #ffcccb;
 }
+#accessibility-info:nth-child(1) {
+  font-style: italic;
+}
 #streaminfo {
   position: absolute;
   display: none;

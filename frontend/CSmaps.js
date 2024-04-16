@@ -8,7 +8,7 @@ function mapValues(vals, map) {
     if (vals.length == 0) return null;
     let res = [];
     for (var i = 0; i < vals.length; i++) res.push(mapValue(vals[i]));
-    return res.join(",");
+    return res;
   } else if (typ == "string") {
     return vals == "" ? null : mapValue(vals);
   }
@@ -391,13 +391,63 @@ function VideoCodecCS(vals) {
 
 var TVASubtitlePurposeCSuri = "urn:tva:metadata:cs:SubtitlePurposeCS:2023";
 var TVASubtitlePurposeCSmap = [
-  { value: `${TVASubtitlePurposeCSuri}:1`, definition: "Translation" },
-  { value: `${TVASubtitlePurposeCSuri}:2`, definition: "Hard of Hearing" },
-  { value: `${TVASubtitlePurposeCSuri}:3`, definition: "Audio Description" },
-  { value: `${TVASubtitlePurposeCSuri}:4`, definition: "Commentary" },
-  { value: `${TVASubtitlePurposeCSuri}:5`, definition: "Forced Narrative" },
+  { value: `${TVASubtitlePurposeCSuri}:1`, definition: "~subtitle_purpose_translation" },
+  { value: `${TVASubtitlePurposeCSuri}:2`, definition: "~subtitle_purpose_hard_of_hearing" },
+  { value: `${TVASubtitlePurposeCSuri}:3`, definition: "~subtitle_purpose_audio_description" },
+  { value: `${TVASubtitlePurposeCSuri}:4`, definition: "~subtitle_purpose_commentary" },
+  { value: `${TVASubtitlePurposeCSuri}:5`, definition: "~subtitle_purpose_forced_narrative" },
 ];
-
 function SubtitlePurposeCS(vals) {
   return mapValues(vals, TVASubtitlePurposeCSmap);
+}
+
+var HbbTVStandard_uri = "urn:hbbtv:appinformation:standardversion:hbbtv";
+var CEAuri = "urn:cta:wave:appinformation:standardversion";
+var AppStandards_map = [
+  { value: `${HbbTVStandard_uri}:1.2.1`, definition: "HbbTV 1.5" },
+  { value: `${HbbTVStandard_uri}:1.5.1`, definition: "HbbTV 2.0.2" },
+  { value: `${HbbTVStandard_uri}:1.6.1`, definition: "HbbTV 2.0.3" },
+  { value: `${HbbTVStandard_uri}:1.7.1`, definition: "HbbTV 2.0.4" },
+  { value: `${CEAuri}:cta5000:2017`, definition: "CTA-5000" },
+  { value: `${CEAuri}:cta5000a:2018`, definition: "CTA-5000-A" },
+  { value: `${CEAuri}:cta5000b:2019`, definition: "CTA-5000-B" },
+  { value: `${CEAuri}:cta5000c:2020`, definition: "CTA-5000-C" },
+  { value: `${CEAuri}:cta5000d:2021`, definition: "CTA-5000-D" },
+  { value: `${CEAuri}:cta5000e:2022`, definition: "CTA-5000-E" },
+  { value: `${CEAuri}:cta5000f:2023`, definition: "CTA-5000-F" },
+];
+function StandardVersion(vals) {
+  return mapValues(vals, AppStandards_map);
+}
+
+var HbbTVOption_uri = "urn:hbbtv:appinformation:optionalfeature:hbbtv";
+var OptionalFeatures_map = [
+  { value: `${HbbTVOption_uri}:2decoder`, definition: "+2DECODER" },
+  { value: `${HbbTVOption_uri}:2html`, definition: "+2HTML" },
+  { value: `${HbbTVOption_uri}:graphics_01`, definition: "+GRAHICS_01" },
+  { value: `${HbbTVOption_uri}:graphics_02`, definition: "+GRAHICS_02" },
+  { value: `${HbbTVOption_uri}:aria`, definition: "+ARIA" },
+];
+function OptionalFeature(vals) {
+  return mapValues(vals, OptionalFeatures_map);
+}
+
+var AccessibilityPurposeCSuri = "urn:tva:metadata:cs:AccessibilityPurposeCS:2023";
+var AccessibilityPurposeCSmap = [
+  { value: `${AccessibilityPurposeCSuri}:1.1`, definition: "~textMagnification" },
+  { value: `${AccessibilityPurposeCSuri}:1.2`, definition: "~magnifierGlass" },
+  { value: `${AccessibilityPurposeCSuri}:1.3`, definition: "~screenZoom" },
+  { value: `${AccessibilityPurposeCSuri}:1.4`, definition: "~largeLayout" },
+  { value: `${AccessibilityPurposeCSuri}:2.1`, definition: "~monochrome" },
+  { value: `${AccessibilityPurposeCSuri}:3.1`, definition: "~maleVoice" },
+  { value: `${AccessibilityPurposeCSuri}:3.2`, definition: "~femaleVoice" },
+  { value: `${AccessibilityPurposeCSuri}:3.3`, definition: "~configurableVerbosity" },
+  { value: `${AccessibilityPurposeCSuri}:3.4`, definition: "~speed" },
+  { value: `${AccessibilityPurposeCSuri}:4.1`, definition: "~audio" },
+  { value: `${AccessibilityPurposeCSuri}:4.2`, definition: "~visual" },
+  { value: `${AccessibilityPurposeCSuri}:4.3`, definition: "~haptic" },
+];
+
+function AccessibilityPurposeCS(vals) {
+  return mapValues(vals, AccessibilityPurposeCSmap);
 }

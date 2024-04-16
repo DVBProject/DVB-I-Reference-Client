@@ -1,0 +1,10 @@
+<AccessibilityAttributes>
+ <SigningAttributes>
+  <AppInformation>
+    <RequiredStandardVersion>urn:cta:wave:appinformation:standardversion:cta5000e:2022</RequiredStandardVersion>
+  </AppInformation>
+  <Coding href="urn:dvb:metadata:cs:VideoCodecCS:2022:5.1.10"/>
+  <SignLanguage>gsg</SignLanguage>
+  <Closed>false</Closed>
+ </SigningAttributes>
+</AccessibilityAttributes>

@@ -5,9 +5,13 @@
   <Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:3.6.1.2"/> <!-- IMSC Subtitles Text Profile Version 1.0.1 -->
   <SubtitleLanguage>fra</SubtitleLanguage>
   <Purpose href="urn:tva:metadata:cs:SubtitlePurposeCS:2023:1"/> <!-- Translation -->
-  <SuitableForTTS>true</SuitableForTTS>
+  <SuitableForTTS>false</SuitableForTTS>
  </SubtitleAttributes>
  <AudioDescriptionAttributes>
+   <AppInformation>
+    <RequiredStandardVersion>urn:hbbtv:appinformation:standardversion:hbbtv:1.7.1</RequiredStandardVersion>
+    <RequiredOptionalFeature>urn:hbbtv:appinformation:optionalfeature:hbbtv:2decoder</RequiredOptionalFeature>
+    <RequiredOptionalFeature>urn:hbbtv:appinformation:optionalfeature:hbbtv:graphics_02</RequiredOptionalFeature>  </AppInformation>
   <AudioAttributes>
    <AudioLanguage>esp</AudioLanguage>
   </AudioAttributes>

@@ -327,8 +327,9 @@ body.player {
     font-weight: 300;
     color: $lightred-color;
   }
-  .img {
-  }
+}
+#accessibility-info:nth-child(1) {
+  font-style: italic;
 }
 // Streaminfo
 #streaminfo {

@@ -1,0 +1,8 @@
+<AccessibilityAttributes>
+ <ResponseToUserActionAttributes>
+  <AppInformation>
+   <RequiredStandardVersion>urn:cta:wave:appinformation:standardversion:cta5000e:2022</RequiredStandardVersion>
+  </AppInformation>
+  <Purpose href="urn:tva:metadata:cs:AccessibilityPurposeCS:2023:4.2"/>
+ </ResponseToUserActionAttributes>
+</AccessibilityAttributes>

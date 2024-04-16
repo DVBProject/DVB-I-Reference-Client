@@ -63,6 +63,48 @@ function parseTVAAudioAttributesType(audio_attributes_element) {
   return res;
 }
 
+function AccessibilityApplication(element) {
+  var res = null;
+  var apps = element.getElementsByTagNameNS(TVA_ns, "AppInformation");
+  if (apps.length) {
+    var req_std = apps[0].getElementsByTagNameNS(TVA_ns, "RequiredStandardVersion");
+    var req_opts = apps[0].getElementsByTagNameNS(TVA_ns, "RequiredOptionalFeature");
+
+    res = req_std ? makeString(StandardVersion(req_std[0].childNodes[0].nodeValue)) : "unspecified platform";
+    var feat = [];
+    for (var i = 0; i < req_opts.length; i++) {
+      feat.push(makeString(OptionalFeature(req_opts[i].childNodes[0].nodeValue)));
+    }
+    res += (feat.length ? "; " : "") + feat.join(", ");
+  }
+  return res;
+}
+
+function makeString(val_or_vals) {
+  if (datatypeIs(val_or_vals, "string")) return val_or_vals;
+  if (datatypeIs(val_or_vals, "array")) {
+    var res = [];
+    val_or_vals.forEach((v) => {
+      res.push(v.startsWith("~") ? i18n.getString(v.substring(1)) : v);
+    });
+    return res.join(",");
+  }
+  return "!!cannot process!!";
+}
+
+function AudioAttributesString(aa) {
+  if (!aa) return "";
+  var res = [];
+  if (aa.coding) res.push(makeString(aa.coding));
+  if (aa.num_channels) res.push(aa.num_channels + "ch");
+  if (aa.mix_type) res.push(makeString(aa.mix_type));
+  if (aa.language) res.push(aa.language);
+  if (aa.sample_frequency) res.push(aa.sample_frequency + "Hz");
+  if (aa.sample_size) res.push(aa.sample_size + "bits");
+  if (aa.bit_rate) res.push(aa.bit_rate + "bps");
+  return res.join(" / ");
+}
+
 function ParseTVAAccessibilityAttributes(accessibility_element) {
   var res = {};
   var sub_attributes = getChildElements(accessibility_element, "SubtitleAttributes");
@@ -74,6 +116,8 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       subt.carriage = SubtitleCarriageCS(getChildValues(sub_attributes[k], "Carriage", "href"));
       subt.coding = SubtitleCodingCS(getChildValues(sub_attributes[k], "Coding", "href"));
       subt.purpose = SubtitlePurposeCS(getChildValues(sub_attributes[k], "Purpose", "href"));
+      subt.forTTS = getChildValue(sub_attributes[k], "SuitableForTTS");
+      subt.app = AccessibilityApplication(sub_attributes[k]);
       res.subtitles.push(subt);
     }
   }
@@ -85,7 +129,8 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       var audio_attributes = getChildElements(ad_attributes[k], "AudioAttributes");
       if (audio_attributes.length > 0) ad.audio_attributes = parseTVAAudioAttributesType(audio_attributes[0]);
       var receiver_mix = getChildValue(ad_attributes[k], "ReceiverMix");
-      ad.mix = receiver_mix ? receiver_mix.toLowerCase() == "true" : false;
+      ad.mix = receiver_mix ? receiver_mix.toLowerCase() : "false";
+      ad.app = AccessibilityApplication(ad_attributes[k]);
       res.audio_descriptions.push(ad);
     }
   }
@@ -97,6 +142,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       sa.coding = VideoCodecCS(getChildValue(sign_attributes[k], "Coding", "href"));
       sa.language = getChildValue(sign_attributes[k], "SignLanguage");
       sa.closed = getChildValue(sign_attributes[k], "Closed");
+      sa.app = AccessibilityApplication(sign_attributes[k]);
       res.signings.push(sa);
     }
   }
@@ -107,6 +153,7 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       var audio_attributes = getChildElements(de_attributes[k], "AudioAttributes");
       res.dialogue_enhancements.push({
         audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
+        app: AccessibilityApplication(de_attributes[k]),
       });
     }
   }
@@ -117,6 +164,47 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
       var audio_attributes = getChildElements(spoken_sub_attributes[k], "AudioAttributes");
       res.spoken_subtitles.push({
         audio_attributes: parseTVAAudioAttributesType(audio_attributes[0]),
+        app: AccessibilityApplication(spoken_sub_attributes[k]),
+      });
+    }
+  }
+  var magnification_attributes = getChildElements(accessibility_element, "MagnificationUIAttributes");
+  if (magnification_attributes.length > 0) {
+    res.magnification_ui = [];
+    for (k = 0; k < magnification_attributes.length; k++) {
+      res.magnification_ui.push({
+        app: AccessibilityApplication(magnification_attributes[k]),
+        purpose: AccessibilityPurposeCS(getChildValues(magnification_attributes[k], "Purpose", "href")),
+      });
+    }
+  }
+  var high_contrast_attributes = getChildElements(accessibility_element, "HighContrastUIAttributes");
+  if (high_contrast_attributes.length > 0) {
+    res.high_contrast_ui = [];
+    for (k = 0; k < high_contrast_attributes.length; k++) {
+      res.high_contrast_ui.push({
+        app: AccessibilityApplication(high_contrast_attributes[k]),
+        purpose: AccessibilityPurposeCS(getChildValues(high_contrast_attributes[k], "Purpose", "href")),
+      });
+    }
+  }
+  var screen_reader_attributes = getChildElements(accessibility_element, "ScreenReaderAttributes");
+  if (screen_reader_attributes.length > 0) {
+    res.screen_reader_ui = [];
+    for (k = 0; k < screen_reader_attributes.length; k++) {
+      res.screen_reader_ui.push({
+        app: AccessibilityApplication(screen_reader_attributes[k]),
+        purpose: AccessibilityPurposeCS(getChildValues(screen_reader_attributes[k], "Purpose", "href")),
+      });
+    }
+  }
+  var response_action_attributes = getChildElements(accessibility_element, "ResponseToUserActionAttributes");
+  if (response_action_attributes.length > 0) {
+    res.response_to_user_action_ui = [];
+    for (k = 0; k < response_action_attributes.length; k++) {
+      res.response_to_user_action_ui.push({
+        app: AccessibilityApplication(response_action_attributes[k]),
+        purpose: AccessibilityPurposeCS(getChildValues(response_action_attributes[k], "Purpose", "href")),
       });
     }
   }
@@ -125,65 +213,129 @@ function ParseTVAAccessibilityAttributes(accessibility_element) {
 
 function formatAccessibilityAttributes(accessibility_attributes) {
   if (!accessibility_attributes) return "";
+
+  function AppAndPurpose(el, index) {
+    if (!el) return "";
+    return (
+      (index != 0 ? "<tr>" : "") +
+      "<td>" +
+      (el.app ? el.app + "<br/>" : "") +
+      (el.purpose ? makeString(el.purpose) : "") +
+      "</td></tr>"
+    );
+  }
+
+  function AppAndAudio(el, index) {
+    if (!el) return "";
+    return (
+      (index != 0 ? "<tr>" : "") +
+      "<td>" +
+      (el.app ? el.app + "<br/>" : "") +
+      (el.audio_attributes ? AudioAttributesString(el.audio_attributes) : "") +
+      "</td></tr>"
+    );
+  }
+
   // include any accessibility items
-  var aa = [],
+  var res = "<table id='accessibility-info'>",
+    count = 0,
     i;
+
   if (accessibility_attributes.subtitles) {
+    count += accessibility_attributes.subtitles.length;
+    res += `<tr><td rowspan=${accessibility_attributes.subtitles.length}><img style="${accessibility_colour_result.filter}" src="${CAPTIONS_ICON}" height="20" alt="Subtitle"/></td>`;
     for (i = 0; i < accessibility_attributes.subtitles.length; i++) {
-      var sub = accessibility_attributes.subtitles[i];
-      aa.push(
-        "<i>Subtitle:</i> language=" +
-          (sub.language ? sub.language : "unknown") +
-          "; carriage=" +
-          (sub.carriage ? sub.carriage : "unknown") +
-          "; coding=" +
-          (sub.coding ? sub.coding : "uknown") +
-          (sub.purpose ? ` (${sub.purpose})` : "")
-      );
+      var sub = accessibility_attributes.subtitles[i],
+        attrs = [];
+      if (sub.language) attrs.push(sub.language);
+      if (sub.carriage) attrs.push(makeString(sub.carriage));
+      if (sub.coding) attrs.push(makeString(sub.coding));
+      if (sub.purpose) attrs.push(makeString(sub.purpose));
+      if (sub.forTTS)
+        attrs.push(
+          `<img style="${
+            sub.forTTS == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
+          }" src="${TTS_OK_ICON}" height="20" alt="TTSok"/>`
+        );
+      res += (i != 0 ? "<tr>" : "") + "<td>" + (sub.app ? sub.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
   }
   if (accessibility_attributes.audio_descriptions) {
+    count += accessibility_attributes.audio_descriptions.length;
+    res += `<tr><td rowspan=${accessibility_attributes.audio_descriptions.length}><img style="${accessibility_colour_result.filter}" src="${AUDIO_DESCRIPTION_ICON}" height="20" alt="Audio Description"/></td>`;
     for (i = 0; i < accessibility_attributes.audio_descriptions.length; i++) {
-      var ad = accessibility_attributes.audio_descriptions[i];
-      aa.push(
-        "<i>Audio Description:</i> rx-mix=" +
-          ad.mix +
-          "; " +
-          (ad.audio_attributes ? AudioAttributesString(ad.audio_attributes) : "!no-audio!")
+      var ad = accessibility_attributes.audio_descriptions[i],
+        attrs = [];
+      attrs.push(
+        `<img style="${
+          ad.mix == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
+        }" src="${RECEIVER_MIX_ICON}" height="20" alt="RX-MIX"/>`
       );
+      if (ad.audio_attributes) attrs.push(AudioAttributesString(ad.audio_attributes));
+      res += (i != 0 ? "<tr>" : "") + "<td>" + (ad.app ? ad.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
+    res += "";
   }
   if (accessibility_attributes.signings) {
+    count += accessibility_attributes.signings.length;
+    res += `<tr><td rowspan=${accessibility_attributes.signings.length}><img style="${accessibility_colour_result.filter}" src="${SIGNING_ICON}" height="20" alt="Signing"/></td>`;
     for (i = 0; i < accessibility_attributes.signings.length; i++) {
-      var sa = accessibility_attributes.signings[i];
-      aa.push(
-        "<i>Signing:</i> coding=" +
-          (sa.coding ? sa.coding : "!unknown!") +
-          "; language=" +
-          (sa.language ? sa.language : "!unspecified!") +
-          "; closed=" +
-          (sa.closed ? sa.closed : "!unspecified!")
+      var sa = accessibility_attributes.signings[i],
+        attrs = [];
+      if (sa.coding) attrs.push(makeString(sa.coding));
+      if (sa.language) attrs.push(sa.language);
+      attrs.push(
+        `<img style="${
+          sa.closed == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
+        }" src="${CLOSED_CAPTIONS_ICON}" height="20" alt="captions"/>`
       );
+      res += (i != 0 ? "<tr>" : "") + "<td>" + (sa.app ? sa.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
   }
   if (accessibility_attributes.dialogue_enhancements) {
+    count += accessibility_attributes.dialogue_enhancements.length;
+    res += `<tr><td rowspan=${accessibility_attributes.dialogue_enhancements.length}><img style="${accessibility_colour_result.filter}" src="${DIALOG_ENHANCEMENT_ICON}" height="20" alt="Dialog Enhancement"/></td>`;
     for (i = 0; i < accessibility_attributes.dialogue_enhancements.length; i++) {
-      var de = accessibility_attributes.dialogue_enhancements[i];
-      aa.push(
-        "<i>Dialog Enhancement:</i> " +
-          (de.audio_attributes ? AudioAttributesString(de.audio_attributes) : "!no-audio!")
-      );
+      res += AppAndAudio(accessibility_attributes.dialogue_enhancements[i], i);
     }
   }
   if (accessibility_attributes.spoken_subtitles) {
+    count += accessibility_attributes.spoken_subtitles.length;
+    res += `<tr><td rowspan=${accessibility_attributes.spoken_subtitles.length}><img style="${accessibility_colour_result.filter}" src="${SPOKEN_SUBTITLES_ICON}" height="20" alt="Spoken Subtitles"/></td>`;
     for (i = 0; i < accessibility_attributes.spoken_subtitles.length; i++) {
-      var ss = accessibility_attributes.spoken_subtitles[i];
-      aa.push(
-        "<i>Spoken Subtitles:</i> " + (ss.audio_attributes ? AudioAttributesString(ss.audio_attributes) : "!no-audio!")
-      );
+      res += AppAndAudio(accessibility_attributes.spoken_subtitles[i], i);
     }
   }
-  return aa.length ? aa.join("<br/>") : "none";
+  if (accessibility_attributes.magnification_ui) {
+    count += accessibility_attributes.magnification_ui.length;
+    res += `<tr><td rowspan=${accessibility_attributes.magnification_ui.length}><img style="${accessibility_colour_result.filter}" src="${MAGNIFICATION_ICON}" height="20" alt="Magnification"/></td>`;
+    for (i = 0; i < accessibility_attributes.magnification_ui.length; i++) {
+      res += AppAndPurpose(accessibility_attributes.magnification_ui[i], i);
+    }
+  }
+  if (accessibility_attributes.high_contrast_ui) {
+    count += accessibility_attributes.high_contrast_ui.length;
+    res += `<tr><td rowspan=${accessibility_attributes.high_contrast_ui.length}><img style="${accessibility_colour_result.filter}" src="${HIGH_CONTRAST_ICON}" height="20" alt="High Contrast"/></td>`;
+    for (i = 0; i < accessibility_attributes.high_contrast_ui.length; i++) {
+      res += AppAndPurpose(accessibility_attributes.high_contrast_ui[i], i);
+    }
+  }
+  if (accessibility_attributes.screen_reader_ui) {
+    count += accessibility_attributes.screen_reader_ui.length;
+    res += `<tr><td rowspan=${accessibility_attributes.screen_reader_ui.length}><img style="${accessibility_colour_result.filter}" src="${SCREEN_READER_ICON}" height="20" alt="Screen Reader"/></td>`;
+    for (i = 0; i < accessibility_attributes.screen_reader_ui.length; i++) {
+      res += AppAndPurpose(accessibility_attributes.screen_reader_ui[i], i);
+    }
+  }
+  if (accessibility_attributes.response_to_user_action_ui) {
+    count += accessibility_attributes.response_to_user_action_ui.length;
+    res += `<tr><td rowspan=${accessibility_attributes.response_to_user_action_ui.length}><img style="${accessibility_colour_result.filter}" src="${USER_ACTION_ICON}" height="20" alt="User Action"/></td>`;
+    for (i = 0; i < accessibility_attributes.response_to_user_action_ui.length; i++) {
+      res += AppAndPurpose(accessibility_attributes.response_to_user_action_ui[i], i);
+    }
+  }
+  res += "</table>";
+  return count ? res : "none";
 }
 
 function parseServiceList(data, dvbChannels, supportedDrmSystems) {
@@ -793,7 +945,7 @@ function selectServiceListRegion(serviceList, regionId) {
 
 function getChildElements(parent, tagName) {
   var elements = [];
-  if (parent.childNodes) {
+  if (parent && parent.childNodes) {
     for (var i = 0; i < parent.childNodes.length; i++) {
       if (parent.childNodes[i].nodeType == 1 && parent.childNodes[i].localName == tagName) {
         // localName property does not include the prefix
