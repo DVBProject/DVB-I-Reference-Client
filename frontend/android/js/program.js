@@ -190,7 +190,7 @@ Program.prototype.populateProgramInfo = function () {
       }
       if (info.accessibility_attributes) {
         $("#accessibility_info").html(
-          "Accessibility:<br/>" + formatAccessibilityAttributes(info.accessibility_attributes)
+          i18n.getString("accessibilityLabel") + ":<br/>" + formatAccessibilityAttributes(info.accessibility_attributes)
         );
       }
     } else {
