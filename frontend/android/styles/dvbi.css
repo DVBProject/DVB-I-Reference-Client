@@ -455,3 +455,8 @@ body.player {
 .ranking_10000 {
   background-color: #0000ff30;
 }
+
+#servicelists h4 {
+  margin-block-start: 0.6rem;
+  margin-block-end: 0.1rem;
+}

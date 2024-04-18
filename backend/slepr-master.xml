@@ -21,7 +21,124 @@
 			<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
 		</sld:ElectronicAddress>
 	</sld:ServiceListRegistryEntity>
+
+		<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>DVB default list</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>DVB-I contact</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>Geneva, Switzerland</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+41 22 7100000</mpeg7:Telephone>
+				<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+		<sld:ServiceListOffering regulatorListFlag="false">
+		<sld:ServiceListName>DVB-I Reference Client default service list</sld:ServiceListName>
+		<sld:ServiceListName xml:lang="zh">DVB-I 参考客户端默认服务列表</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+				<sld:DVBTDelivery/>
+			</sld:Delivery>
+		</sld:ServiceListOffering>
+
+	</sld:ProviderOffering>
+
 	<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>DVB</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>DVB-I contact</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>Geneva, Switzerland</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+41 22 7100000</mpeg7:Telephone>
+				<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+
+    <sld:ServiceListOffering regulatorListFlag="false">
+    <sld:ServiceListName>Availability Windows service list</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example_availability.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+			</sld:Delivery>
+		</sld:ServiceListOffering>
+		<sld:ServiceListOffering regulatorListFlag="false">
+		<sld:ServiceListName>DRM service list</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=drm.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+			</sld:Delivery>
+		</sld:ServiceListOffering>
+    <sld:ServiceListOffering regulatorListFlag="false">
+		  <sld:ServiceListName>DVB-DASH Reference Streams</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=TM-STREAM0075r1 DVB-DASH_Reference_Streams.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+			</sld:Delivery>
+		</sld:ServiceListOffering>
+    <sld:ServiceListOffering regulatorListFlag="false">
+		  <sld:ServiceListName>Next generation codecs service list</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=advanced_codecs.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+			</sld:Delivery>
+		</sld:ServiceListOffering>
+		<sld:ServiceListOffering regulatorListFlag="false">
+		  <sld:ServiceListName>Service prominence list</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=prominence_r6.xml</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+			</sld:Delivery>
+		</sld:ServiceListOffering>
+	</sld:ProviderOffering>
+
+
+	<sld:ProviderOffering>
+		<sld:Provider>
+			<sld:Name>BMT</sld:Name>
+			<sld:Address>
+				<mpeg7:Name>BMT</mpeg7:Name>
+				<mpeg7:PostalAddress>
+					<mpeg7:AddressLine>Germany</mpeg7:AddressLine>
+				</mpeg7:PostalAddress>
+			</sld:Address>
+			<sld:ElectronicAddress>
+				<mpeg7:Telephone>+41 22 7100000</mpeg7:Telephone>
+				<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
+			</sld:ElectronicAddress>
+		</sld:Provider>
+		<sld:ServiceListOffering regulatorListFlag="false">
+		  <sld:ServiceListName>German service list</sld:ServiceListName>
+			<sld:ServiceListURI contentType="application/xml">
+				<dvbisd:URI>https://dvb-i-staging.bmt-technik.de/service-list</dvbisd:URI>
+			</sld:ServiceListURI>
+			<sld:Delivery>
+				<sld:DASHDelivery/>
+			</sld:Delivery>
+		</sld:ServiceListOffering>
+	</sld:ProviderOffering>
+
+  	<sld:ProviderOffering>
 		<sld:Provider>
 			<sld:Name>SES</sld:Name>
 			<sld:Address>
@@ -64,101 +181,5 @@
 			<sld:TargetCountry>GBR</sld:TargetCountry>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
-	<sld:ProviderOffering>
-		<sld:Provider>
-			<sld:Name>DVB</sld:Name>
-			<sld:Address>
-				<mpeg7:Name>DVB-I contact</mpeg7:Name>
-				<mpeg7:PostalAddress>
-					<mpeg7:AddressLine>Geneva, Switzerland</mpeg7:AddressLine>
-				</mpeg7:PostalAddress>
-			</sld:Address>
-			<sld:ElectronicAddress>
-				<mpeg7:Telephone>+41 22 7100000</mpeg7:Telephone>
-				<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
-			</sld:ElectronicAddress>
-		</sld:Provider>
-		<sld:ServiceListOffering regulatorListFlag="false">
-		<sld:ServiceListName>DVB-I Reference Client service list</sld:ServiceListName>
-		<sld:ServiceListName xml:lang="zh">DVB-I 参考客户端服务列表</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-				<sld:DVBTDelivery/>
-			</sld:Delivery>
-		</sld:ServiceListOffering>
-    <sld:ServiceListOffering regulatorListFlag="false">
-    <sld:ServiceListName>DVB-I Reference Client Availability service list</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example_availability.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
-		</sld:ServiceListOffering>
-		<sld:ServiceListOffering regulatorListFlag="false">
-		<sld:ServiceListName>DVB-I Reference Client DRM service list</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=drm.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
-		</sld:ServiceListOffering>
-    <sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>DVB-DASH Reference Streams</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=TM-STREAM0075r1 DVB-DASH_Reference_Streams.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
-		</sld:ServiceListOffering>
-    <sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>Next generation codecs service list</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=advanced_codecs.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
-		</sld:ServiceListOffering>
-		<sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>Service prominence list(r6)</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=prominence_r6.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
-		</sld:ServiceListOffering>
-	</sld:ProviderOffering>
 
-
-	<sld:ProviderOffering>
-		<sld:Provider>
-			<sld:Name>BMT</sld:Name>
-			<sld:Address>
-				<mpeg7:Name>BMT</mpeg7:Name>
-				<mpeg7:PostalAddress>
-					<mpeg7:AddressLine>Germany</mpeg7:AddressLine>
-				</mpeg7:PostalAddress>
-			</sld:Address>
-			<sld:ElectronicAddress>
-				<mpeg7:Telephone>+41 22 7100000</mpeg7:Telephone>
-				<mpeg7:Email>dvb@dvb.org</mpeg7:Email>
-			</sld:ElectronicAddress>
-		</sld:Provider>
-		<sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>German service list</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>https://dvb-i-staging.bmt-technik.de/service-list</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
-		</sld:ServiceListOffering>
-	</sld:ProviderOffering>
 </sld:ServiceListEntryPoints>
