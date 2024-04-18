@@ -11,8 +11,8 @@
  <Synopsis length="short" xml:lang="zh">这是简短的描述。 （最多 90 个字符）</Synopsis>
  <Synopsis length="medium">This is a medium length description that contains a brief summary of the program. (up to 250 characters)</Synopsis>
  <Synopsis length="medium" xml:lang="zh">这是一个中等长度的描述，包含程序的简短摘要。 （最多 250 个字符）</Synopsis>
- <Synopsis length="long">This is the log description (up to 1200 characters) where we can write quite a bit of synopsis about the program and it's actors with quite an amount of detail.</Synopsis>
- <Synopsis length="long" xml:lang="zh">这是日志描述（最多 1200 个字符），我们可以在其中写很多关于程序的概要，以及包含大量细节的演员。</Synopsis>
+ <Synopsis length="long">This is the long description (up to 1200 characters) where we can write quite a bit of synopsis about the program and it's actors with quite an amount of detail.</Synopsis>
+ <Synopsis length="long" xml:lang="zh">这是很长的描述（最多 1200 个字符），我们可以在其中写出有关该节目及其演员的大量详细信息。</Synopsis>
  <Keyword>FAMILY LIFE</Keyword>
  <Keyword>RELATIONSHIPS</Keyword>
  <Keyword type="other">Critic’s Choice</Keyword>

@@ -171,13 +171,13 @@ Program.prototype.populateProgramInfo = function () {
           }
           if (info.creditsItems[i].character) {
             extendedData +=
-              "(" + info.creditsItems[i].character.givenName + " " + info.creditsItems[i].character.familyName + ")";
+              " (" + info.creditsItems[i].character.givenName + " " + info.creditsItems[i].character.familyName + ")";
           }
           extendedData += "<br/>";
         }
       }
       if (info.keywords) {
-        extendedData += i18n.getString("label_keywords") + ":";
+        extendedData += i18n.getString("label_keywords") + ": ";
         for (i = 0; i < info.creditsItems.length; i++) {
           extendedData += info.keywords[i].value + ",";
         }
@@ -190,7 +190,7 @@ Program.prototype.populateProgramInfo = function () {
       }
       if (info.accessibility_attributes) {
         $("#accessibility_info").html(
-          "Accessibility:<br/>" + formatAccessibilityAttributes(info.accessibility_attributes)
+          i18n.getString("accessibilityLabel") + ":<br/>" + formatAccessibilityAttributes(info.accessibility_attributes)
         );
       }
     } else {

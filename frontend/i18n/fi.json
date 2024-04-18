@@ -62,6 +62,7 @@
   "prod_co": "Tuotantoyhtiö",
   "presenter": "Juontaja",
   "actor": "Näyttelijä",
+  "accessibilityLabel": "Esteettömyys",
 
   "genre_movie": "Elokuva/Draama",
   "genre_news": "Uutiset/Ajankohtaista",

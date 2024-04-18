@@ -156,7 +156,7 @@ Channel.prototype.parseSchedule = function (data) {
                 creditsItem.organizations.push(organizations[l2].childNodes[0].nodeValue);
               }
             }
-            var persons = creditsItems[k].getElementsByTagNameNS(TVA_ns, "PersonName");
+            var persons = creditsItems[k2].getElementsByTagNameNS(TVA_ns, "PersonName");
             if (persons.length > 0) {
               var person = {};
               var givenNames = persons[0].getElementsByTagNameNS(MPEG7_ns, "GivenName");
@@ -169,7 +169,7 @@ Channel.prototype.parseSchedule = function (data) {
               }
               creditsItem.person = person;
             }
-            persons = creditsItems[k].getElementsByTagNameNS(TVA_ns, "Character");
+            persons = creditsItems[k2].getElementsByTagNameNS(TVA_ns, "Character");
             if (persons.length > 0) {
               var person2 = {};
               var givenNames2 = persons[0].getElementsByTagNameNS(MPEG7_ns, "GivenName");
