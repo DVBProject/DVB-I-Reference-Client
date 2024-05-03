@@ -80,6 +80,16 @@
   "subtitle_purpose_commentary": "评论",
   "subtitle_purpose_forced_narrative": "强迫叙述",
 
+  "lang_eng": "英语",
+  "lang_fra": "法语",
+  "lang_esp": "西班牙语",
+  "lang_deu": "德语",
+  "lang_fin": "芬兰",
+  "lang_ita": "意大利语",
+  "lang_zhn": "普通话",
+  "lang_swe": "瑞典",
+  "lang_nld": "荷兰语",
+
   "textMagnification": "文字放大",
   "magnifierGlass": "放大镜",
   "screenZoom": "屏幕缩放",

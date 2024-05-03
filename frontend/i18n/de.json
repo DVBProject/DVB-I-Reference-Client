@@ -82,6 +82,16 @@
   "subtitle_purpose_commentary": "Kommentar",
   "subtitle_purpose_forced_narrative": "Erzwungene Erzählung",
 
+  "lang_eng": "Englisch",
+  "lang_fra": "Französisch",
+  "lang_esp": "Spanisch",
+  "lang_deu": "Deutsch",
+  "lang_fin": "Finnisch",
+  "lang_ita": "Italiano",
+  "lang_zhn": "Chinesisch",
+  "lang_swe": "Schwedisch",
+  "lang_nld": "Niederländisch",
+
   "textMagnification": "Textvergrößerung",
   "magnifierGlass": "Lupe",
   "screenZoom": "Bildschirmzoom",

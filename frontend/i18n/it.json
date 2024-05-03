@@ -82,6 +82,16 @@
   "subtitle_purpose_commentary": "Commento",
   "subtitle_purpose_forced_narrative": "Narrativa forzata",
 
+  "lang_eng": "Inglese",
+  "lang_fra": "Francese",
+  "lang_esp": "Spagnola",
+  "lang_deu": "Tedesca",
+  "lang_fin": "Finlandese",
+  "lang_ita": "Italiana",
+  "lang_zhn": "Cinese",
+  "lang_swe": "SVedese",
+  "lang_nld": "Olandese",
+
   "textMagnification": "Ingrandimento del testo",
   "magnifierGlass": "Lente d'ingrandimento",
   "screenZoom": "Zoom dello schermo",

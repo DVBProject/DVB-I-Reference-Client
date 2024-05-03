@@ -98,7 +98,7 @@ function AudioAttributesString(aa) {
   if (aa.coding) res.push(makeString(aa.coding));
   if (aa.num_channels) res.push(aa.num_channels + "ch");
   if (aa.mix_type) res.push(makeString(aa.mix_type));
-  if (aa.language) res.push(aa.language);
+  if (aa.language) res.push(i18n.getLanguageName(aa.language));
   if (aa.sample_frequency) res.push(aa.sample_frequency + "Hz");
   if (aa.sample_size) res.push(aa.sample_size + "bits");
   if (aa.bit_rate) res.push(aa.bit_rate + "bps");
@@ -247,7 +247,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
     for (i = 0; i < accessibility_attributes.subtitles.length; i++) {
       var sub = accessibility_attributes.subtitles[i],
         attrs = [];
-      if (sub.language) attrs.push(sub.language);
+      if (sub.language) attrs.push(i18n.getLanguageName(sub.language));
       if (sub.carriage) attrs.push(makeString(sub.carriage));
       if (sub.coding) attrs.push(makeString(sub.coding));
       if (sub.purpose) attrs.push(makeString(sub.purpose));
@@ -283,7 +283,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       var sa = accessibility_attributes.signings[i],
         attrs = [];
       if (sa.coding) attrs.push(makeString(sa.coding));
-      if (sa.language) attrs.push(sa.language);
+      if (sa.language) attrs.push(i18n.getLanguageName(sa.language));
       attrs.push(
         `<img style="${
           sa.closed == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
