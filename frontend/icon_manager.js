@@ -7,7 +7,6 @@ var SPOKEN_SUBTITLES_ICON = `${APP_IMAGES}/spoken-subtitles-2.png`;
 
 var CLOSED_CAPTIONS_ICON = `${APP_IMAGES}/closed-captioning.svg`;
 var RECEIVER_MIX_ICON = `${APP_IMAGES}/mixer-vertical.svg`;
-var TTS_OK_ICON = `${APP_IMAGES}/text-to-speech.svg`;
 
 var MAGNIFICATION_ICON = `${APP_IMAGES}/magnifier-glass-zoom-icon.png`;
 var HIGH_CONTRAST_ICON = `${APP_IMAGES}/contrast.png`;

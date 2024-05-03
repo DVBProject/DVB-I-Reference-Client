@@ -251,12 +251,6 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       if (sub.carriage) attrs.push(makeString(sub.carriage));
       if (sub.coding) attrs.push(makeString(sub.coding));
       if (sub.purpose) attrs.push(makeString(sub.purpose));
-      if (sub.forTTS)
-        attrs.push(
-          `<img style="${
-            sub.forTTS == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
-          }" src="${TTS_OK_ICON}" height="20" alt="TTSok"/>`
-        );
       res += (i != 0 ? "<tr>" : "") + "<td>" + (sub.app ? sub.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
   }
