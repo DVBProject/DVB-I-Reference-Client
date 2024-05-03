@@ -1,6 +1,7 @@
 <AccessibilityAttributes>
  <SubtitleAttributes>
   <Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:3"/> <!-- Subtitles in ISOBMFF -->
+  <Carriage href="urn:tva:metadata:cs:SubtitleCarriageCS:2023:5"/> <!-- Open subtitles -->
   <Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:3.2.2"/> <!-- EBU-TT-D Version 1.0.1 -->
   <Coding href="urn:tva:metadata:cs:SubtitleCodingFormatCS:2023:3.6.1.2"/> <!-- IMSC Subtitles Text Profile Version 1.0.1 -->
   <SubtitleLanguage>eng</SubtitleLanguage>

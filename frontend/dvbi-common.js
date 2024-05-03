@@ -251,6 +251,14 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       if (sub.carriage) attrs.push(makeString(sub.carriage));
       if (sub.coding) attrs.push(makeString(sub.coding));
       if (sub.purpose) attrs.push(makeString(sub.purpose));
+      attrs.push(
+        `<img style="${
+          sub.carriage.includes(OPEN_SUBITLES_STRING)
+            ? no_accessibility_colour_result.filter
+            : accessibility_colour_result.filter
+        }" src="${CLOSED_CAPTIONS_ICON}" height="20" alt="captions"/>`
+      );
+
       res += (i != 0 ? "<tr>" : "") + "<td>" + (sub.app ? sub.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
   }
