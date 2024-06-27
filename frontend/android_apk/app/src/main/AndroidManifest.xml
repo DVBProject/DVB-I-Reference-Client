@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:versionName="2.2.113" >
+
+    <uses-feature android:name="android.hardware.touchscreen"
+        android:required="false"/>
+    <uses-feature android:name="android.hardware.faketouch"
+        android:required="false"/>
+    <uses-feature android:name="android.hardware.telephony"
+        android:required="false"/>
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false"/>
+    <uses-feature android:name="android.hardware.nfc"
+        android:required="false"/>
+    <uses-feature android:name="android.hardware.location.gps"
+        android:required="false"/>
+    <uses-feature android:name="android.hardware.microphone"
+        android:required="false"/>
+    <uses-feature android:name="android.hardware.sensor"
+        android:required="false"/>
+    <!-- Some TV devices have an ethernet connection only -->
+    <uses-feature android:name="android.hardware.wifi"
+        android:required="false"/>
+    <uses-feature android:name="android.software.leanback" android:required="false" />
+    <uses-permission android:name="android.webkit.resource.PROTECTED_MEDIA_ID"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name="com.dvb.dvb_i.DvbiReferenceApplication"
+        android:fullBackupOnly="true"
+        android:icon="@mipmap/ic_launcher_dvb"
+        android:label="DVB-I Reference client"
+        android:logo="@drawable/ic_banner_dvb"
+        android:banner="@mipmap/ic_banner_dvb"
+        android:screenOrientation="landscape"
+
+        android:theme="@style/AppTheme.Splash"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="30">
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.dvb.dvb_i.MainActivity"
+            android:screenOrientation="landscape"
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTask"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

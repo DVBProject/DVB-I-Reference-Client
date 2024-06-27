@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="ic_action_refresh" format="reference"/>
+    <attr name="ic_action_search" format="reference"/>
+    <attr name="ic_action_share" format="reference"/>
+
+    <style name="SplashScreen">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowFrame">@null</item>
+    </style>
+
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:drawable">@drawable/dvb_splash</item>
+    </style>
+</resources>
