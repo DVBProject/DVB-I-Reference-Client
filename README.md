@@ -69,6 +69,10 @@ node opapp_package.js
 
 This will create opapp.pkg in the project root directory. Edit the [XML AIT](https://dvb-i-reference.dvb.org/client/frontend/hbbtv/opapp.aitx) to change the application id, organization id and the package location as needed. The opapp.pkg needs to be encrypted and signed according to the Operator application specification.
 
+### Android APK
+
+In the frontend/android_apk-directory is an Android Studio project for building an Andordoid APK. It is intended for DVB-I NIP implementation with Android JS interface to discover potential NIP (or HB) Gateway with Android native APIs. The APK can be found [HERE](https://dvb-i-reference.dvb.org/client/frontend/android/com.dvb.dvb_i.DvbiReferenceApplication-v36-normal-debug.apk)
+
 ## Backend
 
 - Backend: [https://dvb-i-reference.dvb.org/client/backend/](https://dvb-i-reference.dvb.org/client/backend/)
