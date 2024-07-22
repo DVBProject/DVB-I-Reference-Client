@@ -2,7 +2,7 @@
  <DialogueEnhancementAttributes>
   <AudioAttributes>
    <Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:1"/>
-   <NumOfChannels>2</NumOfChannels>
+   <!-- <NumOfChannels>2</NumOfChannels> -->
    <MixType href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2007:2"/>
    <AudioLanguage>nld</AudioLanguage>
   </AudioAttributes>

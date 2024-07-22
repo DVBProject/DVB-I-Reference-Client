@@ -52,14 +52,14 @@ function parseTVAAudioAttributesType(audio_attributes_element) {
     se;
   se = getChildElements(audio_attributes_element, "Coding");
   res.coding = se.length > 0 ? AudioCodingCS(getChildValue(audio_attributes_element, "Coding", "href")) : null;
-  res.num_channels = getChildValue(audio_attributes_element, "NumOfChannels");
+  //res.num_channels = getChildValue(audio_attributes_element, "NumOfChannels");
   se = getChildElements(audio_attributes_element, "MixType");
   res.mix_type = se.length > 0 ? AudioPresentationCS(getChildValue(audio_attributes_element, "MixType", "href")) : null;
   res.language = getChildValue(audio_attributes_element, "AudioLanguage");
-  res.sample_frequency = getChildValue(audio_attributes_element, "SampleFrequency");
-  res.sample_size = getChildValue(audio_attributes_element, "BitsPerSample");
-  se = getChildElements(audio_attributes_element, "BitRate");
-  res.bit_rate = se.length > 0 ? getChildValue(audio_attributes_element, "BitRate") : null;
+  //res.sample_frequency = getChildValue(audio_attributes_element, "SampleFrequency");
+  //res.sample_size = getChildValue(audio_attributes_element, "BitsPerSample");
+  //se = getChildElements(audio_attributes_element, "BitRate");
+  //res.bit_rate = se.length > 0 ? getChildValue(audio_attributes_element, "BitRate") : null;
   return res;
 }
 
@@ -96,12 +96,12 @@ function AudioAttributesString(aa) {
   if (!aa) return "";
   var res = [];
   if (aa.coding) res.push(makeString(aa.coding));
-  if (aa.num_channels) res.push(aa.num_channels + "ch");
+  //if (aa.num_channels) res.push(aa.num_channels + "ch");
   if (aa.mix_type) res.push(makeString(aa.mix_type));
   if (aa.language) res.push(i18n.getLanguageName(aa.language));
-  if (aa.sample_frequency) res.push(aa.sample_frequency + "Hz");
-  if (aa.sample_size) res.push(aa.sample_size + "bits");
-  if (aa.bit_rate) res.push(aa.bit_rate + "bps");
+  //if (aa.sample_frequency) res.push(aa.sample_frequency + "Hz");
+  //if (aa.sample_size) res.push(aa.sample_size + "bits");
+  //if (aa.bit_rate) res.push(aa.bit_rate + "bps");
   return res.join(" / ");
 }
 

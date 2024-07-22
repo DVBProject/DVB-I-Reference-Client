@@ -2,7 +2,7 @@
  <SpokenSubtitlesAttributes>
   <AudioAttributes>
    <Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:8"/>
-   <NumOfChannels>2</NumOfChannels>
+   <!-- <NumOfChannels>2</NumOfChannels> -->
    <MixType href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2007:3"/>
    <AudioLanguage>cat</AudioLanguage>
   </AudioAttributes>
