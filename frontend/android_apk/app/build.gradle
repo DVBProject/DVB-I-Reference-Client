@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+apply from: '../constants.gradle'
+
+android {
+    compileSdkVersion 33
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 33
+        applicationId "com.dvb.dvb_i.DvbiReferenceApplication"
+        versionCode 36
+        versionName "36"
+
+        manifestPlaceholders = [manifestApplicationId: "${applicationId}"]
+        setProperty("archivesBaseName", applicationId + "-v" + versionCode)
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        debug {
+	        applicationIdSuffix ".debug"
+        }
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            zipAlignEnabled true
+        }
+    }
+
+    flavorDimensions "webview"
+
+    productFlavors {
+        normal {
+            dimension "webview"
+        }
+    }
+    lint {
+        abortOnError true
+        checkReleaseBuilds true
+    }
+    namespace 'com.dvb.dvb_i'
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
+    implementation 'com.google.code.gson:gson:2.8.7'
+
+    implementation 'androidx.tvprovider:tvprovider:1.1.0-alpha01'
+    
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("androidx.security:security-crypto:1.1.0-alpha03")
+    implementation 'androidx.recyclerview:recyclerview:'                     + project.ext.jetpackVersion            // (344 KB) https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview?repo=google
+
+    implementation "androidx.constraintlayout:constraintlayout:2.1.0"
+    implementation "androidx.tvprovider:tvprovider:"
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    
+    // Minimal version for suitest is 25.2.0, you can use any higher.
+    debugImplementation 'org.java-websocket:Java-WebSocket:1.5.1'
+}
