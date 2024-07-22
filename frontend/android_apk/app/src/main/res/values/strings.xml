@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">DVB-I Reference client</string>
+    <string name="ssl_error_generic">Error establishing SSL Connection</string>
+	<string name="ssl_error_expired">SSL certificate has expired</string>
+	<string name="ssl_error_cert">Invalid SSL certificate</string>
+</resources>
