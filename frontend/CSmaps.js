@@ -1,3 +1,5 @@
+var OPEN_SUBITLES_STRING = "open";
+
 function mapValues(vals, map) {
   function mapValue(val) {
     var found = map.find((e) => e.value == val);
@@ -21,7 +23,7 @@ var TVASubtitleCarriageCSmap = [
   { value: `${TVASubtitleCarriageCSuri}:2.1`, definition: "ttml" },
   { value: `${TVASubtitleCarriageCSuri}:3`, definition: "isobmff" },
   { value: `${TVASubtitleCarriageCSuri}:4`, definition: "standalone" },
-  { value: `${TVASubtitleCarriageCSuri}:5`, definition: "open" },
+  { value: `${TVASubtitleCarriageCSuri}:5`, definition: OPEN_SUBITLES_STRING },
   { value: `${TVASubtitleCarriageCSuri}:99`, definition: "other" },
 ];
 function SubtitleCarriageCS(vals) {

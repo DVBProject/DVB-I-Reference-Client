@@ -62,7 +62,6 @@
   "prod_co": "Production Company",
   "presenter": "Presenter",
   "actor": "Actor",
-  "accessibilityLabel": "Accessibility",
 
   "genre_movie": "Movie/Drama",
   "genre_news": "News/Current affairs",
@@ -82,6 +81,16 @@
   "subtitle_purpose_audio_description": "Audio Description",
   "subtitle_purpose_commentary": "Commentary",
   "subtitle_purpose_forced_narrative": "Forced Narrative",
+
+  "lang_eng": "English",
+  "lang_fra": "French",
+  "lang_esp": "Spanish",
+  "lang_deu": "German",
+  "lang_fin": "Finnish",
+  "lang_ita": "Italian",
+  "lang_zhn": "Chinese",
+  "lang_swe": "Swedish",
+  "lang_nld": "Dutch",
 
   "textMagnification": "Text Magnification",
   "magnifierGlass": "Magnifier Glass",

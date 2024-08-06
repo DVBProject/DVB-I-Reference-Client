@@ -189,9 +189,7 @@ Program.prototype.populateProgramInfo = function () {
         $("#description").html(longDesc);
       }
       if (info.accessibility_attributes) {
-        $("#accessibility_info").html(
-          i18n.getString("accessibilityLabel") + ":<br/>" + formatAccessibilityAttributes(info.accessibility_attributes)
-        );
+        $("#accessibility_info").html(formatAccessibilityAttributes(info.accessibility_attributes));
       }
     } else {
       $("#extended_info").html("");

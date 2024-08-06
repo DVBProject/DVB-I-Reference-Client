@@ -52,14 +52,14 @@ function parseTVAAudioAttributesType(audio_attributes_element) {
     se;
   se = getChildElements(audio_attributes_element, "Coding");
   res.coding = se.length > 0 ? AudioCodingCS(getChildValue(audio_attributes_element, "Coding", "href")) : null;
-  res.num_channels = getChildValue(audio_attributes_element, "NumOfChannels");
+  //res.num_channels = getChildValue(audio_attributes_element, "NumOfChannels");
   se = getChildElements(audio_attributes_element, "MixType");
   res.mix_type = se.length > 0 ? AudioPresentationCS(getChildValue(audio_attributes_element, "MixType", "href")) : null;
   res.language = getChildValue(audio_attributes_element, "AudioLanguage");
-  res.sample_frequency = getChildValue(audio_attributes_element, "SampleFrequency");
-  res.sample_size = getChildValue(audio_attributes_element, "BitsPerSample");
-  se = getChildElements(audio_attributes_element, "BitRate");
-  res.bit_rate = se.length > 0 ? getChildValue(audio_attributes_element, "BitRate") : null;
+  //res.sample_frequency = getChildValue(audio_attributes_element, "SampleFrequency");
+  //res.sample_size = getChildValue(audio_attributes_element, "BitsPerSample");
+  //se = getChildElements(audio_attributes_element, "BitRate");
+  //res.bit_rate = se.length > 0 ? getChildValue(audio_attributes_element, "BitRate") : null;
   return res;
 }
 
@@ -96,12 +96,12 @@ function AudioAttributesString(aa) {
   if (!aa) return "";
   var res = [];
   if (aa.coding) res.push(makeString(aa.coding));
-  if (aa.num_channels) res.push(aa.num_channels + "ch");
+  //if (aa.num_channels) res.push(aa.num_channels + "ch");
   if (aa.mix_type) res.push(makeString(aa.mix_type));
-  if (aa.language) res.push(aa.language);
-  if (aa.sample_frequency) res.push(aa.sample_frequency + "Hz");
-  if (aa.sample_size) res.push(aa.sample_size + "bits");
-  if (aa.bit_rate) res.push(aa.bit_rate + "bps");
+  if (aa.language) res.push(i18n.getLanguageName(aa.language));
+  //if (aa.sample_frequency) res.push(aa.sample_frequency + "Hz");
+  //if (aa.sample_size) res.push(aa.sample_size + "bits");
+  //if (aa.bit_rate) res.push(aa.bit_rate + "bps");
   return res.join(" / ");
 }
 
@@ -247,16 +247,18 @@ function formatAccessibilityAttributes(accessibility_attributes) {
     for (i = 0; i < accessibility_attributes.subtitles.length; i++) {
       var sub = accessibility_attributes.subtitles[i],
         attrs = [];
-      if (sub.language) attrs.push(sub.language);
+      if (sub.language) attrs.push(i18n.getLanguageName(sub.language));
       if (sub.carriage) attrs.push(makeString(sub.carriage));
       if (sub.coding) attrs.push(makeString(sub.coding));
       if (sub.purpose) attrs.push(makeString(sub.purpose));
-      if (sub.forTTS)
-        attrs.push(
-          `<img style="${
-            sub.forTTS == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
-          }" src="${TTS_OK_ICON}" height="20" alt="TTSok"/>`
-        );
+      attrs.push(
+        `<img style="${
+          sub.carriage.includes(OPEN_SUBITLES_STRING)
+            ? no_accessibility_colour_result.filter
+            : accessibility_colour_result.filter
+        }" src="${CLOSED_CAPTIONS_ICON}" height="20" alt="captions"/>`
+      );
+
       res += (i != 0 ? "<tr>" : "") + "<td>" + (sub.app ? sub.app + "<br/>" : "") + attrs.join(" / ") + "</td></tr>";
     }
   }
@@ -283,7 +285,7 @@ function formatAccessibilityAttributes(accessibility_attributes) {
       var sa = accessibility_attributes.signings[i],
         attrs = [];
       if (sa.coding) attrs.push(makeString(sa.coding));
-      if (sa.language) attrs.push(sa.language);
+      if (sa.language) attrs.push(i18n.getLanguageName(sa.language));
       attrs.push(
         `<img style="${
           sa.closed == "true" ? accessibility_colour_result.filter : no_accessibility_colour_result.filter
