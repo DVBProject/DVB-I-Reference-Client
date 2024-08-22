@@ -21,6 +21,7 @@
   "more_episodes_label": "More Episodes",
   "sl_select_page": "Service list selection",
   "select_sl": "Select service list",
+  "select_nip":"Service lists discoverd by NIP",
   "select_region": "Select region",
   "default_region": "default",
   "slrquery_params_title": "Filter",

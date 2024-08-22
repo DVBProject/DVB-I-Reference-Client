@@ -496,12 +496,12 @@
             </div>
             <div class="form-group row">
               <label for="delivery" class="col-4 col-form-label slrquery_delivery_field">Delivery</label>
-              <div class="col-8">
-                  <input id="dvb-dash_delivery" class="delivery" type="checkbox" value="dvb-dash"></input><label for="dvb-dash_delivery">DASHDelivery</label>
-                  <input id="dvb-t_delivery" class="delivery" type="checkbox" value="dvb-t"></input><label for="dvb-t_delivery">DVBTDelivery</label>
-                  <input id="dvb-c_delivery" class="delivery" type="checkbox" value="dvb-c"></input><label for="dvb-c_delivery">DVBCDelivery</label>
-                  <input id="dvb-s_delivery" class="delivery" type="checkbox" value="dvb-s"></input><label for="dvb-s_delivery">DVBSDelivery</label>
-                  <input id="dvb-ipt_delivery" class="delivery" type="checkbox" value="dvb-ipt"></input><label for="dvb-ipt_delivery">MulticastTSDelivery and/or RTSPDelivery</label>
+              <div class="col-6">
+                  <input id="dvb-dash_delivery" class="delivery" type="checkbox" value="dvb-dash"></input><label for="dvb-dash_delivery">DASHDelivery</label><br/>
+                  <input id="dvb-t_delivery" class="delivery" type="checkbox" value="dvb-t"></input><label for="dvb-t_delivery">DVBTDelivery</label><br/>
+                  <input id="dvb-c_delivery" class="delivery" type="checkbox" value="dvb-c"></input><label for="dvb-c_delivery">DVBCDelivery</label><br/>
+                  <input id="dvb-s_delivery" class="delivery" type="checkbox" value="dvb-s"></input><label for="dvb-s_delivery">DVBSDelivery</label><br/>
+                  <input id="dvb-ipt_delivery" class="delivery" type="checkbox" value="dvb-ipt"></input><label for="dvb-ipt_delivery">MulticastTSDelivery and/or RTSPDelivery</label><br/>
                   <input id="aplication_delivery" class="delivery" type="checkbox" value="application"></input><label for="aplication_delivery">ApplicationDelivery</label>
               </div>
             </div>
@@ -517,7 +517,9 @@
             </div>
           </div>
           <div class="col-6 offset-3">
+            <div class="text-white p-1 rounded"><h2 class="select_sl"></h2></div>
             <div class="text-white p-1 rounded" id="servicelists"></div>
+            <div class="text-white p-1 rounded" id="nip"></div>
           </div>
         </div>
       </div>
@@ -571,6 +573,7 @@
         <span class="btn btn-outline-dark btn-small mr-2 p-1 d-block mb-1" onclick="showStreamInfo()"
           ><span class="text-white settings_menu_streaminfo">Show stream info</span></span
         >
+        <span>Android API:</span><span id="testmsg"></span>
       </div>
     </div>
 

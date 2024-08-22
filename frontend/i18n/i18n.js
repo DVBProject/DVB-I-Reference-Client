@@ -31,6 +31,7 @@ function I18n() {
     "more_episodes_label",
     "sl_select_page",
     "select_sl",
+    "select_nip",
     "select_region",
     "default_region",
     "slrquery_params_title",

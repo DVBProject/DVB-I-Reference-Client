@@ -21,6 +21,7 @@
   "more_episodes_label": "Lisää jaksoja",
   "sl_select_page": "Palveluluettelon valinta",
   "select_sl": "Valitse palveluluettelo",
+  "select_nip":"NIP-palveluluettelot",
   "select_region": "Valitse alue",
   "default_region": "oletuksena",
   "slrquery_params_title": "Seuloa",
