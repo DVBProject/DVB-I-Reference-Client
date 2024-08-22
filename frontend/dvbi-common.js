@@ -1008,7 +1008,7 @@ function generateServiceListQuery(baseurl, providers, language, genre, targetCou
         parameters.push("Delivery[]=" + delivery[i]);
       }
     }
-  } else if (delivery != null && delivery !== "") {
+  } else if (delivery != null && delivery != "") {
     parameters.push("Delivery=" + delivery);
   }
 
