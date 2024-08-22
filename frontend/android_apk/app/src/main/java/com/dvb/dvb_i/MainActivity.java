@@ -330,7 +330,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     public void runJavascript(String javascript) {
         if (javascript == null) return;
-        this.mWebview.runJavascript(javascript);
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.w(TAG, "run javascript:"+javascript);
+                mWebview.runJavascript(javascript);
+            }
+        });
     }
 
 	public boolean isDisconnected(){
