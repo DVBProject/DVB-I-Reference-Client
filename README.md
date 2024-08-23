@@ -10,7 +10,7 @@ Welcome to DVB's open source HTML5 reference client implementation of DVB-I.
 
 - If you are looking for more information on what DVB-I is and how it can help, please see [here](https://dvb-i.tv/).
 
-- If you are looking for a DVB-I client for Android phones and tablets, please see [here](https://dvb-i-reference.dvb.org/client/frontend/android/). The client is available as a Progressive Web App (PWA) and as an installable Android Package (APK). 
+- If you are looking for a DVB-I client for Android phones and tablets, please see [here](https://dvb-i-reference.dvb.org/client/frontend/android/). The client is available as a Progressive Web App (PWA) and as [an installable Android Package (APK)](https://dvb-i-reference.dvb.org/client/frontend/android/com.dvb.dvb_i.DvbiReferenceApplication-v36-normal-debug.apk). 
 
   Note that for the Progressive Web App and you can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app on your device. The APK can be installed with any APK installer and behaves like a normal Android App. 
 
@@ -44,7 +44,7 @@ Demo installations available at:
 
 (one can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app)
 
-- Android APK: Android Studio project for building an Android APK is provided in frontend/android_apk-directory. Currently it is intended for DVB-I/DVB-NIP implementation with Android JS interface to discover potential DVB-NIP (or HB) Gateways with Android native APIs. The ready-built APK can be downloaded from [HERE](https://dvb-i-reference.dvb.org/client/frontend/android/com.dvb.dvb_i.DvbiReferenceApplication-v36-normal-debug.apk)
+- Android APK: Android Studio project for building an Android APK is provided in frontend/android_apk-directory. Currently it is intended for DVB-I/DVB-NIP implementation with Android JS interface to discover potential DVB-NIP (or HB) Gateways with Android native APIs. The ready-built APK can be downloaded from [here](https://dvb-i-reference.dvb.org/client/frontend/android/com.dvb.dvb_i.DvbiReferenceApplication-v36-normal-debug.apk).
 
 To test the OpApp version, follow the specific opapp installations instructions for the device in use. The repository offers methods to build the specification compliant opapp.pkg template.
 
