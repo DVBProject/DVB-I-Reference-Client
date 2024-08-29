@@ -28,6 +28,14 @@ if(isset($_GET['now_next']) && isset($_GET['sid']) && $_GET['now_next'] == "true
 else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sid']) ){
     $schedule_start = intval($_GET['start']);
     $schedule_end = intval($_GET['end']);
+    $start_of_day = time();
+    $start_of_day = $start_of_day - ($start_of_day % 86400);
+
+    //Limit schedule requests to +-28 days from current date
+    if( $schedule_end-$schedule_start < 0 || $schedule_start < ($start_of_day - 60*60*24*28) || $schedule_end > ($start_of_day + 60*60*24*29))  {
+        http_response_code(400);
+        exit();
+    }
     $sid = $_GET['sid'];
     $schedule = getSchdeule($sid,$schedule_start,$schedule_end);
     if($schedule  != NULL) {

@@ -53,6 +53,7 @@ The app can also be tested by generating a Transport Stream with an AIT pointing
 ```
 stream download password: dvbi2023ts
 ```
+NOTE: When using the TS, TDT restamp is recommended so the schedule information is retrieved with a correct date.
 
 Note that this version runs as a "Normal HbbTV" version and might lack some of the functionalities of the OpApp version, and might display some inconsistent UI behavior.
 
