@@ -65,7 +65,7 @@ window.onload = function () {
       window.nip = {};
       window.nip.serviceDiscovered = function (data) {
         console.log("Service  discovered:", data.dvbi_sep,data.dvbi_sl,data.orb_pos_A,data.orb_pos_B,data.orb_pos_C,data.orb_pos_D);
-        $("#testmsg").append("NIP Service  discovered!<br/>")
+        $("#testmsg").append("NIP Service  discovered:" + (data.dvbi_sep ? ("SEP:"+data.dvbi_sep) : "" )+ (data.dvbi_sl ? ("SL:"+ data.dvbi_sl) : "" ) + "<br/>")
       } ;
       android_interface.startNIPDiscovery()
     }
