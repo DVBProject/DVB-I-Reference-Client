@@ -1,6 +1,16 @@
 apply plugin: 'com.android.application'
 apply from: '../constants.gradle'
 
+tasks.register('copyFiles', Sync) {
+    from new File("$projectDir/../../../")
+    into "${layout.buildDirectory.get()}/assets/"
+    include 'identifiers.js'
+    include 'jquery-3.7.1.min.js'
+    include 'namespaces.js'
+    include 'frontend/i18n/**'
+    include 'frontend/*.js'
+    include 'frontend/android/**'
+}
 android {
     compileSdkVersion 33
 
@@ -8,8 +18,8 @@ android {
         minSdkVersion 24
         targetSdkVersion 33
         applicationId "com.dvb.dvb_i.DvbiReferenceApplication"
-        versionCode 36
-        versionName "36"
+        versionCode 37
+        versionName "37"
 
         manifestPlaceholders = [manifestApplicationId: "${applicationId}"]
         setProperty("archivesBaseName", applicationId + "-v" + versionCode)
@@ -40,6 +50,13 @@ android {
     lint {
         abortOnError true
         checkReleaseBuilds true
+    }
+    sourceSets {
+        main {
+            assets {
+                srcDir copyFiles
+            }
+        }
     }
     namespace 'com.dvb.dvb_i'
 }

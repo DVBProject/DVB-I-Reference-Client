@@ -85,6 +85,7 @@ public class WebViewConfiguration {
         webSettings.setSupportMultipleWindows(true);
         webSettings.setGeolocationEnabled(false);
         webSettings.setMediaPlaybackRequiresUserGesture(false);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
     }
 
     public static void removeCallbacks(LeanWebView webview) {
