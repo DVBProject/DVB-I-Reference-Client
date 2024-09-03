@@ -1,10 +1,10 @@
 const sourceTypes = {
-  SOURCE_DVB_DASH: "DVB-DASH",
-  SOURCE_DVB_T: "DVB-T",
-  SOURCE_DVB_S: "DVB-S",
-  SOURCE_DVB_C: "DVB-C",
-  SOURCE_DVB_IPTV: "DVB-IPTV",
-  SOURCE_DVB_APPLICATION: "Application",
+  [SOURCE_DVB_DASH]: "DVB-DASH",
+  [SOURCE_DVB_T]: "DVB-T",
+  [SOURCE_DVB_S]: "DVB-S",
+  [SOURCE_DVB_C]: "DVB-C",
+  [SOURCE_DVB_IPTV]: "DVB-IPTV",
+  [SOURCE_DVB_APPLICATION]: "Application",
 };
 
 const polarizationTypes = {
