@@ -10,9 +10,9 @@ Welcome to DVB's open source HTML5 reference client implementation of DVB-I.
 
 - If you are looking for more information on what DVB-I is and how it can help, please see [here](https://dvb-i.tv/).
 
-- If you are looking for a DVB-I client for Android phones and tablets, please see [here](https://dvb-i-reference.dvb.org/client/frontend/android/). The client is available as a Progressive Web App (PWA) and as [an installable Android Package (APK)](https://dvb-i-reference.dvb.org/client/frontend/android/com.dvb.dvb_i.DvbiReferenceApplication-v36-normal-debug.apk). 
+- If you are looking for a DVB-I client for Android phones and tablets, please see [here](https://dvb-i-reference.dvb.org/client/frontend/android/). The client is available as a Progressive Web App (PWA) and as [an installable Android Package (APK)](https://dvb-i-reference.dvb.org/client/frontend/android/com.dvb.dvb_i.DvbiReferenceApplication-v37-normal-debug.apk).
 
-  Note that for the Progressive Web App and you can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app on your device. The APK can be installed with any APK installer and behaves like a normal Android App. 
+  Note that for the Progressive Web App and you can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app on your device. The APK can be installed with any APK installer and behaves like a normal Android App.
 
 - If you are looking for a DVB-I client for regular HbbTV TV sets, please download the transport stream from [here](https://github.com/DVBProject/DVB-I-Reference-Client#operator-application-package) and play it into your TV set. The password is "dvbi2023ts".
 
@@ -22,17 +22,17 @@ Welcome to DVB's open source HTML5 reference client implementation of DVB-I.
 
 - If you are looking for a DVB-I client for iOS devices, the generic HTML5 client should work on iPads. DVB's reference client relies on features not yet supported on iPhones. For iPhones please [join the DVB-I Forum discord server](https://discord.gg/2jhVnDqQ3U) and ask there.
 
-- If you are looking for a DVB-I client for Smart TVs excluding HbbTV and have a way to directly enter URLs, the generic HTML5 client may work. This is not a supported configuration. In the future the APK can be extended to support AndroidTV's and Android STB's. 
+- If you are looking for a DVB-I client for Smart TVs excluding HbbTV and have a way to directly enter URLs, the generic HTML5 client may work. This is not a supported configuration. In the future the APK can be extended to support AndroidTV's and Android STB's.
 
 - For bug reports, feature requests and pull requests for this DVB-I reference client, please use the regular features of github.
 
 - For anything else relating to DVB-I and DVB-I clients, please [join the DVB-I Forum discord server](https://discord.gg/2jhVnDqQ3U) and ask there.
 
-Features common to most versions are service list navigation, selection/tuning of services, an info banner on changing service and a simple EPG. All versions use the common backend. 
+Features common to most versions are service list navigation, selection/tuning of services, an info banner on changing service and a simple EPG. All versions use the common backend.
 
 ## Frontend
 
-The frontend is a HbbTV OpApp implementation of a DVB-I compatible Client. It offers Service list navigation, selection/tuning of services, info banner and a simple EPG. A separate client is offered for Android devices. Android client is offered as both PWA and APK applications, offering roughly the same functionality. APK can be extended with native Android code to enable features requiring native code, like new network service discovery protocols (DVB-NIP, 5G broadcast, and other protocols using the Android Tuner Interface Framework). Note that support for these in Android devices can be quite limited. 
+The frontend is a HbbTV OpApp implementation of a DVB-I compatible Client. It offers Service list navigation, selection/tuning of services, info banner and a simple EPG. A separate client is offered for Android devices. Android client is offered as both PWA and APK applications, offering roughly the same functionality. APK can be extended with native Android code to enable features requiring native code, like new network service discovery protocols (DVB-NIP, 5G broadcast, and other protocols using the Android Tuner Interface Framework). Note that support for these in Android devices can be quite limited.
 
 Demo installations available at:
 
@@ -44,7 +44,7 @@ Demo installations available at:
 
 (one can use the "Add to Home screen" functionality of Chrome to create a nice launch icon and proper PWA app)
 
-- Android APK: Android Studio project for building an Android APK is provided in frontend/android_apk-directory. Currently it is intended for DVB-I/DVB-NIP implementation with Android JS interface to discover potential DVB-NIP (or HB) Gateways with Android native APIs. The ready-built APK can be downloaded from [here](https://dvb-i-reference.dvb.org/client/frontend/android/com.dvb.dvb_i.DvbiReferenceApplication-v36-normal-debug.apk).
+- Android APK: Android Studio project for building an Android APK is provided in frontend/android_apk-directory. Currently it is intended for DVB-I/DVB-NIP implementation with Android JS interface to discover potential DVB-NIP (or HB) Gateways with Android native APIs. The ready-built APK can be downloaded from [here](https://dvb-i-reference.dvb.org/client/frontend/android/com.dvb.dvb_i.DvbiReferenceApplication-v37-normal-debug.apk).
 
 To test the OpApp version, follow the specific opapp installations instructions for the device in use. The repository offers methods to build the specification compliant opapp.pkg template.
 
@@ -53,6 +53,7 @@ The app can also be tested by generating a Transport Stream with an AIT pointing
 ```
 stream download password: dvbi2023ts
 ```
+
 NOTE: When using the TS, TDT restamp is recommended so the schedule information is retrieved with a correct date.
 
 Note that this version runs as a "Normal HbbTV" version and might lack some of the functionalities of the OpApp version, and might display some inconsistent UI behavior.
