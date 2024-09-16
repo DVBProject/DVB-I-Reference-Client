@@ -37,14 +37,25 @@ else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sid']) ){
         exit();
     }
     $sid = $_GET['sid'];
-    $schedule = getSchdeule($sid,$schedule_start,$schedule_end);
+    $inclusive = false;
+    if(isset($_GET['inclusive']) && $_GET['inclusive'] == "true") {
+        $inclusive = true;
+    }
+    $schedule = getSchdeule($sid,$schedule_start,$schedule_end,$inclusive);
     if($schedule  != NULL) {
         echo $schedule;
         exit();
     }
     $program_length = rand(10,60);
-    $start = $schedule_start -(rand(1,$program_length)*60);
+    $start = $schedule_start;
+    if($inclusive) {
+     $start = $start - (rand(1,$program_length)*60);
+    }
+    else {
+     $start = $start + (rand(1,$program_length)*60);
+    }
     $start = $start - ( $start % 60);
+    $schedule_start = $start;
     $programs = "";
     $schedules = "";
     $index = 1;
@@ -67,7 +78,7 @@ else if(isset($_GET['start']) && isset($_GET['end']) && isset($_GET['sid']) ){
     $schedule_document = file_get_contents("schedule_template.xml");
     $schedule_document =str_replace( "SERVICE_ID_TEMPLATE",$_GET['sid'],$schedule_document);
     $schedule_document =str_replace( "START_TEMPLATE",date($timeformat, $schedule_start),$schedule_document);
-    $schedule_document =str_replace( "END_TEMPLATE",date($timeformat, $schedule_end),$schedule_document);
+    $schedule_document =str_replace( "END_TEMPLATE",date($timeformat, $start),$schedule_document);
     $schedule_document =str_replace( "<!--PROGRAMS-->",$programs,$schedule_document);
     $schedule_document =str_replace( "<!--GROUPS-->","",$schedule_document);
     $schedule_document =str_replace( "<!--SCHEDULES-->",$schedules,$schedule_document);
@@ -168,7 +179,7 @@ function getNowNext( $sid ) {
     return $schedule_document;
 }
 
-function getSchdeule( $sid,$start,$end ) {
+function getSchdeule( $sid,$start,$end,$inclusive ) {
     global $timeformat;
     $sid_file = str_replace(":","_",$sid);
     if (is_int($start) === false || is_int($end) === false || strpos($sid_file, '/') !== false || strpos($sid_file, '..') !== false || file_exists("./schedule_templates/".$sid_file.".xml") === false) {
@@ -189,7 +200,7 @@ function getSchdeule( $sid,$start,$end ) {
             $event = $schedule->ProgramDescription->ProgramLocationTable->Schedule->ScheduleEvent[$i];
             $event_start = strtotime($event->PublishedStartTime);
             $event_end = $event_start + ISO8601ToSeconds($event->PublishedDuration);
-            if($start <= $event_start && $event_start < $end) {
+            if((($inclusive &&  $start <= $event_end )||  $start <= $event_start )&& $event_start < $end) {
                 array_push($programs,$event);
             }
             if($event_end > $end) {
