@@ -68,6 +68,12 @@ public class AndroidJsInterface {
                                         Log.e(TAG, "Resolve Succeeded. " + serviceInfo);
                                         JSONObject reply = new JSONObject();
                                         byte[] sep = serviceInfo.getAttributes().get("dvbi_sep");
+
+                                        try {
+                                                reply.put("service_name", serviceInfo.getServiceName());
+                                        } catch (JSONException e) {
+                                        }
+
                                         if (sep != null && sep.length > 0) {
                                             try {
                                                 reply.put("dvbi_sep", new String(sep));
