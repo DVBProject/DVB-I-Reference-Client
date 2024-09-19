@@ -56,23 +56,36 @@ function channelSelected(channelId) {
   selectedChannel = newChannel;
 }
 
-
-
 window.onload = function () {
   try {
-    if(android_interface) {
-      $("#testmsg").append("available<br/>")
+    if (android_interface) {
+      $("#testmsg").append("available<br/>");
       window.nip = {};
       window.nip.serviceDiscovered = function (data) {
-        console.log("Service  discovered:", data.dvbi_sep,data.dvbi_sl,data.orb_pos_A,data.orb_pos_B,data.orb_pos_C,data.orb_pos_D);
-        $("#testmsg").append("NIP Service  discovered:" + (data.dvbi_sep ? ("SEP:"+data.dvbi_sep) : "" )+ (data.dvbi_sl ? ("SL:"+ data.dvbi_sl) : "" ) + "<br/>")
-      } ;
-      android_interface.startNIPDiscovery()
+        console.log(
+          "Service  discovered:",
+          data.service_name,
+          data.dvbi_sep,
+          data.dvbi_sl,
+          data.orb_pos_A,
+          data.orb_pos_B,
+          data.orb_pos_C,
+          data.orb_pos_D
+        );
+        $("#testmsg").append(
+          "NIP Service  discovered: instance: " +
+            data.service_name +
+            " " +
+            (data.dvbi_sep ? "SEP:" + data.dvbi_sep : "") +
+            (data.dvbi_sl ? "SL:" + data.dvbi_sl : "") +
+            "<br/>"
+        );
+      };
+      android_interface.startNIPDiscovery();
     }
-  }
-  catch(e) {
-    $("#testmsg").append("not found<br/>")
-    console.log(e)
+  } catch (e) {
+    $("#testmsg").append("not found<br/>");
+    console.log(e);
   }
   var i;
   $(".epg").hide();
@@ -223,7 +236,6 @@ window.onload = function () {
     }
     select.appendChild(option);
   }
-
 };
 
 function resetHideTimeout() {
@@ -408,87 +420,99 @@ function selectServiceList() {
   showSettings("servicelist_registry");
   loadServicelistProviders(PROVIDER_LIST);
   try {
-  loadNIPProviders();
-  }
-  catch(e) {
-    console.log(e)
+    loadNIPProviders();
+  } catch (e) {
+    console.log(e);
   }
 }
 
-function loadNIPProviders(hideCloseButton,filter) {
-  if(typeof android_interface == "undefined") {
-    return
+function loadNIPProviders(hideCloseButton, filter) {
+  if (typeof android_interface == "undefined") {
+    return;
   }
   try {
     var nip = document.getElementById("nip");
-    $(nip).empty()
-    $(nip).append('<div class="text-white p-1 rounded"><h2>'+i18n.getString("select_nip")+'</h2></div>');
+    $(nip).empty();
+    $(nip).append('<div class="text-white p-1 rounded"><h2>' + i18n.getString("select_nip") + "</h2></div>");
     var servicesString = android_interface.getServices();
     var services = JSON.parse(servicesString);
 
-    var sls = []
-    var seps = []
-    if(!filter) {
-      filter = {}
+    var sls = [];
+    var seps = [];
+    if (!filter) {
+      filter = {};
     }
-    var positionList = ["A", "B", "C", "D"]
-    for( var i = 0;i < services.length;i++) {
-      var postions = []
-      for(var j = 0; j < positionList.length;j++) {
-        if(services[i]["orb_pos_"+positionList[j]]) {
-          postions.push(services[i]["orb_pos_"+positionList[j]]);
+    var positionList = ["A", "B", "C", "D"];
+    for (var i = 0; i < services.length; i++) {
+      var positions = [];
+      for (var j = 0; j < positionList.length; j++) {
+        if (services[i]["orb_pos_" + positionList[j]]) {
+          positions.push(services[i]["orb_pos_" + positionList[j]]);
         }
       }
-      if(services[i].dvbi_sep) {
-        var sep = document.createElement("div");
-        sep.classList.add("text-white","p-1","rounded")
-        loadServicelistProviders(
-        generateServiceListQuery(services[i].dvbi_sep,
-                                  filter.providers,
-                                  filter.language,
-                                  filter.genre,
-                                  filter.targetCountry,
-                                  filter.regulatorListFlag,
-                                  filter.delivery)
-                                ,hideCloseButton,sep)
-        
-        if(postions.length > 0 ) {
-          var positionElement = document.createElement("h4"); 
-          positionElement.appendChild(document.createTextNode("Orbital position:"+postions.join(", ")));
-          seps.push(positionElement)
-        }
-        seps.push(sep)
-      }
-      if(services[i].dvbi_sl) {
+      if (services[i].dvbi_sep) {
         var container = document.createElement("div");
+        var title = document.createElement("h4");
+        title.appendChild(document.createTextNode("Instance name: " + services[i].service_name));
+        container.appendChild(title);
+        if (positions.length > 0) {
+          var positionElement = document.createElement("div");
+          positionElement.appendChild(document.createTextNode("Orbital position:" + positions.join(", ")));
+          container.appendChild(positionElement);
+        }
+        var sep = document.createElement("div");
+        container.appendChild(sep);
+        sep.classList.add("text-white", "p-1", "rounded");
+        loadServicelistProviders(
+          generateServiceListQuery(
+            services[i].dvbi_sep,
+            filter.providers,
+            filter.language,
+            filter.genre,
+            filter.targetCountry,
+            filter.regulatorListFlag,
+            filter.delivery
+          ),
+          hideCloseButton,
+          sep
+        );
+        seps.push(container);
+      }
+      if (services[i].dvbi_sl) {
+        var container = document.createElement("div");
+        var title = document.createElement("h4");
+        title.appendChild(document.createTextNode("Instance name:" + services[i].service_name));
+        container.appendChild(title);
         var provider2 = document.createElement("a");
         provider2.appendChild(document.createTextNode(services[i].dvbi_sl));
         provider2.href = "javascript:listSelected('" + services[i].dvbi_sl + "')";
         container.appendChild(provider2);
-        var positionElement = document.createElement("span"); 
-        positionElement.appendChild(document.createTextNode("Orbital position:"+postions.join(", ")));
-        container.appendChild(positionElement);
-        sls.push(container)
+        if (positions.length > 0) {
+          var positionElement = document.createElement("div");
+          positionElement.appendChild(document.createTextNode("Orbital position:" + positions.join(", ")));
+          container.appendChild(positionElement);
+        }
+        sls.push(container);
       }
     }
-    if(seps.length > 0) {
+    if (seps.length > 0) {
       var header = document.createElement("h3");
       header.appendChild(document.createTextNode("NIP service list providers"));
       nip.appendChild(header);
-      for(var i = 0;i < seps.length;i++) {
+      for (var i = 0; i < seps.length; i++) {
         nip.appendChild(seps[i]);
       }
     }
-    if(sls.length > 0) {
+    if (sls.length > 0) {
       header = document.createElement("h3");
       header.appendChild(document.createTextNode("NIP service lists"));
       nip.appendChild(header);
-      for(var i = 0;i < sls.length;i++) {
+      for (var i = 0; i < sls.length; i++) {
         nip.appendChild(sls[i]);
       }
     }
-  }catch(e) {
-    $("#testmsg").append(e.message +"<br/>")
+  } catch (e) {
+    $("#testmsg").append(e.message + "<br/>");
   }
 }
 
@@ -503,12 +527,18 @@ function filterServiceLists() {
       return e.value;
     })
     .toArray();
-  
+
   loadServicelistProviders(
     generateServiceListQuery(PROVIDER_LIST, providers, language, genre, targetCountry, regulatorListFlag, delivery)
   );
-  loadNIPProviders(false,{ providers: providers,language: language, genre: genre,targetCountry: targetCountry,regulatorListFlag: regulatorListFlag, delivery: delivery})
-
+  loadNIPProviders(false, {
+    providers: providers,
+    language: language,
+    genre: genre,
+    targetCountry: targetCountry,
+    regulatorListFlag: regulatorListFlag,
+    delivery: delivery,
+  });
 }
 
 function loadServicelistProviders(list, hideCloseButton, listElement) {
@@ -521,7 +551,7 @@ function loadServicelistProviders(list, hideCloseButton, listElement) {
     list,
     function (data) {
       var servicelists = parseServiceListProviders(data);
-      if(!listElement) {
+      if (!listElement) {
         listElement = document.getElementById("servicelists");
       }
       $(listElement).empty();
