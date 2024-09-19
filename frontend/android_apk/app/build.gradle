@@ -18,8 +18,8 @@ android {
         minSdkVersion 24
         targetSdkVersion 33
         applicationId "com.dvb.dvb_i.DvbiReferenceApplication"
-        versionCode 37
-        versionName "37"
+        versionCode 38
+        versionName "38"
 
         manifestPlaceholders = [manifestApplicationId: "${applicationId}"]
         setProperty("archivesBaseName", applicationId + "-v" + versionCode)
