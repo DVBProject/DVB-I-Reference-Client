@@ -13,9 +13,13 @@ Android layer provides the following Javascript API for DVB-I NIP service discov
 
 ```json
 [
-  { "dvbi_sl": "https://dvb-i-reference.dvb.org/client/backend/servicelist.php?list=example.xml" },
   {
-    "dvbi_sep": "https://dvb-i-reference.dvb.org/client/backend/servicelist_regis",
+    "service_name": "my-gw",
+    "dvbi_sl": "https://dvb-i-reference.dvb.org/client/backend/servicelist.php?list=example.xml"
+  },
+  {
+    "service_name": "example_gw",
+    "dvbi_sep": "https://dvb-i-reference.dvb.org/client/backend/servicelist_registry.php",
     "orb_pos_A": "1",
     "orb_pos_B": "2",
     "orb_pos_C": "3",
