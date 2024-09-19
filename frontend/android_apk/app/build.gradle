@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 apply from: '../constants.gradle'
 
-tasks.register('copyFiles', Sync) {
+tasks.register('copyFiles', Copy) {
     from new File("$projectDir/../../../")
-    into "${layout.buildDirectory.get()}/assets/"
+    into "${layout.projectDirectory}/src/main/assets/"
     include 'identifiers.js'
     include 'jquery-3.7.1.min.js'
     include 'namespaces.js'
@@ -51,15 +51,11 @@ android {
         abortOnError true
         checkReleaseBuilds true
     }
-    sourceSets {
-        main {
-            assets {
-                srcDir copyFiles
-            }
-        }
-    }
+
     namespace 'com.dvb.dvb_i'
 }
+
+preBuild.dependsOn(copyFiles)
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
