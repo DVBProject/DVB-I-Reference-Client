@@ -58,7 +58,7 @@ function channelSelected(channelId) {
 
 window.onload = function () {
   try {
-    if (android_interface) {
+    if (typeof android_interface != "undefined") {
       $("#testmsg").append("available<br/>");
       window.nip = {};
       window.nip.serviceDiscovered = function (data) {
