@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sld:ServiceListEntryPoints xml:lang="en" xmlns:sld="urn:dvb:metadata:servicelistdiscovery:2024" xmlns:dvbisd="urn:dvb:metadata:servicediscovery:2024" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicelistdiscovery:2024 dvbi_service_list_discovery_v1.6.xsd">
+<sld:ServiceListEntryPoints xml:lang="en" xmlns:sld="urn:dvb:metadata:servicelistdiscovery:2024" xmlns:tva="urn:tva:metadata:2024" xmlns:dvbisd="urn:dvb:metadata:servicediscovery:2024" xmlns:sd-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicelistdiscovery:2024 dvbi_service_list_discovery_v1.6.xsd">
 	<sld:ServiceListRegistryEntity regulatorFlag="false">
 		<mpeg7:Icon>
-			<mpeg7:MediaUri>http://dvb.org/img/f/dvb-logo.png</mpeg7:MediaUri>
+		<mpeg7:InlineMedia type="image/x-png">
+				<mpeg7:MediaData64>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</mpeg7:MediaData64>
+				</mpeg7:InlineMedia>
 		</mpeg7:Icon>
 		<sld:Name type="main" xml:lang="en">DVB</sld:Name>
 		<sld:ContactName>
@@ -37,15 +39,25 @@
 			</sld:ElectronicAddress>
 		</sld:Provider>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		<sld:ServiceListName>DVB-I Reference Client default service list</sld:ServiceListName>
-		<sld:ServiceListName xml:lang="zh">DVB-I 参考客户端默认服务列表</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-				<sld:DVBTDelivery/>
-			</sld:Delivery>
+		<sd-types:ServiceListName>DVB-I Reference Client default service list</sd-types:ServiceListName>
+		<sd-types:ServiceListName xml:lang="zh">DVB-I 参考客户端默认服务列表</sd-types:ServiceListName>
+		<sd-types:ServiceListURI contentType="application/xml">
+			<sd-types:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example.xml</sd-types:URI>
+		</sd-types:ServiceListURI>
+
+		<sd-types:Delivery>
+				<sd-types:DASHDelivery/>
+				<sd-types:DVBTDelivery/>
+			</sd-types:Delivery>
+			<sd-types:RelatedMaterial>
+				<tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2020:1001.1"/>
+				<tva:MediaLocator>
+					<tva:InlineMedia type="image/x-png">
+					<mpeg7:MediaData64>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</mpeg7:MediaData64>
+					</tva:InlineMedia>
+				</tva:MediaLocator>
+			</sd-types:RelatedMaterial>
+			<sd-types:ServiceListId>tag:dvb.org,2024:list1</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
 
 	</sld:ProviderOffering>
@@ -66,49 +78,54 @@
 		</sld:Provider>
 
     <sld:ServiceListOffering regulatorListFlag="false">
-    <sld:ServiceListName>Availability Windows service list</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example_availability.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
+    <sd-types:ServiceListName>Availability Windows service list</sd-types:ServiceListName>
+			<sd-types:ServiceListURI contentType="application/xml">
+				<sd-types:URI>INSTALL~~LOCATION/backend/servicelist.php?list=example_availability.xml</sd-types:URI>
+			</sd-types:ServiceListURI>
+			<sd-types:Delivery>
+				<sd-types:DASHDelivery/>
+			</sd-types:Delivery>
+			<sd-types:ServiceListId>tag:dvb.org,2024:list2</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		<sld:ServiceListName>DRM service list</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=drm.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
+		<sd-types:ServiceListName>DRM service list</sd-types:ServiceListName>
+			<sd-types:ServiceListURI contentType="application/xml">
+				<sd-types:URI>INSTALL~~LOCATION/backend/servicelist.php?list=drm.xml</sd-types:URI>
+			</sd-types:ServiceListURI>
+			<sd-types:Delivery>
+				<sd-types:DASHDelivery/>
+			</sd-types:Delivery>
+			<sd-types:ServiceListId>tag:dvb.org,2024:list3</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>DVB-DASH Reference Streams</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=TM-STREAM0075r1 DVB-DASH_Reference_Streams.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
+		  <sd-types:ServiceListName>DVB-DASH Reference Streams</sd-types:ServiceListName>
+			<sd-types:ServiceListURI contentType="application/xml">
+				<sd-types:URI>INSTALL~~LOCATION/backend/servicelist.php?list=TM-STREAM0075r1 DVB-DASH_Reference_Streams.xml</sd-types:URI>
+			</sd-types:ServiceListURI>
+			<sd-types:Delivery>
+				<sd-types:DASHDelivery/>
+			</sd-types:Delivery>
+			<sd-types:ServiceListId>tag:dvb.org,2024:list3</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>Next generation codecs service list</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=advanced_codecs.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
+		  <sd-types:ServiceListName>Next generation codecs service list</sd-types:ServiceListName>
+			<sd-types:ServiceListURI contentType="application/xml">
+				<sd-types:URI>INSTALL~~LOCATION/backend/servicelist.php?list=advanced_codecs.xml</sd-types:URI>
+			</sd-types:ServiceListURI>
+			<sd-types:Delivery>
+				<sd-types:DASHDelivery/>
+			</sd-types:Delivery>
+			<sd-types:ServiceListId>tag:dvb.org,2024:list4</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>Service prominence list</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>INSTALL~~LOCATION/backend/servicelist.php?list=prominence_r6.xml</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
+		  <sd-types:ServiceListName>Service prominence list</sd-types:ServiceListName>
+			<sd-types:ServiceListURI contentType="application/xml">
+				<sd-types:URI>INSTALL~~LOCATION/backend/servicelist.php?list=prominence_r6.xml</sd-types:URI>
+			</sd-types:ServiceListURI>
+			<sd-types:Delivery>
+				<sd-types:DASHDelivery/>
+			</sd-types:Delivery>
+			<sd-types:ServiceListId>tag:dvb.org,2024:list5</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
 
@@ -128,13 +145,14 @@
 			</sld:ElectronicAddress>
 		</sld:Provider>
 		<sld:ServiceListOffering regulatorListFlag="false">
-		  <sld:ServiceListName>German service list</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>https://dvb-i-staging.bmt-technik.de/service-list</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DASHDelivery/>
-			</sld:Delivery>
+		  <sd-types:ServiceListName>German service list</sd-types:ServiceListName>
+			<sd-types:ServiceListURI contentType="application/xml">
+				<sd-types:URI>https://dvb-i-staging.bmt-technik.de/service-list</sd-types:URI>
+			</sd-types:ServiceListURI>
+			<sd-types:Delivery>
+				<sd-types:DASHDelivery/>
+			</sd-types:Delivery>
+				<sd-types:ServiceListId>tag:BMT,2024:list1</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
 
@@ -153,33 +171,34 @@
 			</sld:ElectronicAddress>
 		</sld:Provider>
 		<sld:ServiceListOffering>
-			<sld:ServiceListName>ASTRA 19.2 E</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>
+			<sd-types:ServiceListName>ASTRA 19.2 E</sd-types:ServiceListName>
+			<sd-types:ServiceListURI contentType="application/xml">
+				<sd-types:URI>
 					https://www.satip.info/sites/satip/files/files/ASTRA_19_2_E.xml
-				</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DVBSDelivery>
-					<sld:OrbitalPosition>19.2</sld:OrbitalPosition>
-				</sld:DVBSDelivery>
-			</sld:Delivery>
-			<sld:TargetCountry>DEU</sld:TargetCountry>
+				</sd-types:URI>
+			</sd-types:ServiceListURI>
+			<sd-types:Delivery>
+				<sd-types:DVBSDelivery>
+					<sd-types:OrbitalPosition>19.2</sd-types:OrbitalPosition>
+				</sd-types:DVBSDelivery>
+			</sd-types:Delivery>
+			<sd-types:TargetCountry>DEU</sd-types:TargetCountry>
+				<sd-types:ServiceListId>tag:ses.org,2024:astra_19.2</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
     <sld:ServiceListOffering>
-			<sld:ServiceListName>ASTRA 28.2 E</sld:ServiceListName>
-			<sld:ServiceListURI contentType="application/xml">
-				<dvbisd:URI>
+			<sd-types:ServiceListName>ASTRA 28.2 E</sd-types:ServiceListName>
+			<sd-types:ServiceListURI contentType="application/xml">
+				<sd-types:URI>
 					https://www.satip.info/sites/satip/files/files/ASTRA_28_2_E.xml
-				</dvbisd:URI>
-			</sld:ServiceListURI>
-			<sld:Delivery>
-				<sld:DVBSDelivery>
-					<sld:OrbitalPosition>28.2</sld:OrbitalPosition>
-				</sld:DVBSDelivery>
-			</sld:Delivery>
-			<sld:TargetCountry>GBR</sld:TargetCountry>
+				</sd-types:URI>
+			</sd-types:ServiceListURI>
+			<sd-types:Delivery>
+				<sd-types:DVBSDelivery>
+					<sd-types:OrbitalPosition>28.2</sd-types:OrbitalPosition>
+				</sd-types:DVBSDelivery>
+			</sd-types:Delivery>
+			<sd-types:TargetCountry>GBR</sd-types:TargetCountry>
+			<sd-types:ServiceListId>tag:ses.org,2024:astra_28.2</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
-
 </sld:ServiceListEntryPoints>
