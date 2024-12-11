@@ -377,9 +377,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
     try {
       var howRelated1 = relatedMaterial1[j].getElementsByTagNameNS(TVA_ns, "HowRelated")[0].getAttribute("href");
       if (howRelated1 == DVBi_Service_List_Logo) {
-        serviceList.image = relatedMaterial1[j]
-          .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
-          .getElementsByTagNameNS(TVA_ns, "MediaUri")[0].childNodes[0].nodeValue;
+        serviceList.image = getMedia(relatedMaterial1[j]);
       }
     } catch (e) {
       console.log(e);
@@ -509,14 +507,10 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
       try {
         var howRelated = relatedMaterial[j].getElementsByTagNameNS(TVA_ns, "HowRelated")[0].getAttribute("href");
         if (howRelated == DVBi_Service_Logo) {
-          chan.image = relatedMaterial[j]
-            .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
-            .getElementsByTagNameNS(TVA_ns, "MediaUri")[0].childNodes[0].nodeValue;
+          chan.image = getMedia(relatedMaterial[j]);
         }
         if (howRelated == DVBi_Out_Of_Service_Logo) {
-          chan.out_of_service_image = relatedMaterial[j]
-            .getElementsByTagNameNS(TVA_ns, "MediaLocator")[0]
-            .getElementsByTagNameNS(TVA_ns, "MediaUri")[0].childNodes[0].nodeValue;
+          chan.out_of_service_image = getMedia(relatedMaterial[j]);
         } else if (howRelated == DVBi_App_In_Parallel) {
           var app = {};
           var mediaUri = relatedMaterial[j]
@@ -958,7 +952,16 @@ function getChildElements(parent, tagName) {
   return elements;
 }
 
-function generateServiceListQuery(baseurl, providers, language, genre, targetCountry, regulatorListFlag, delivery) {
+function generateServiceListQuery(
+  baseurl,
+  providers,
+  language,
+  genre,
+  targetCountry,
+  regulatorListFlag,
+  delivery,
+  inlineImages
+) {
   var query = baseurl;
   var parameters = [],
     i;
@@ -1002,10 +1005,12 @@ function generateServiceListQuery(baseurl, providers, language, genre, targetCou
     parameters.push("TargetCountry=" + targetCountry);
   }
 
-  if (Array.isArray(delivery) && delivery.length > 0) {
-    for (i = 0; i < delivery.length; i++) {
-      if (delivery[i] !== "") {
-        parameters.push("Delivery[]=" + delivery[i]);
+  if (Array.isArray(delivery)) {
+    if (delivery.length > 0) {
+      for (i = 0; i < delivery.length; i++) {
+        if (delivery[i] !== "") {
+          parameters.push("Delivery[]=" + delivery[i]);
+        }
       }
     }
   } else if (delivery != null && delivery != "") {
@@ -1015,10 +1020,31 @@ function generateServiceListQuery(baseurl, providers, language, genre, targetCou
   if (regulatorListFlag === true) {
     parameters.push("regulatorListFlag=true");
   }
+  if (inlineImages === true) {
+    parameters.push("inlineImages=true");
+  }
   if (parameters.length > 0) {
     query += "?" + parameters.join("&");
   }
   return query;
+}
+
+function parseProviderInfo(providerInfo, ns) {
+  var info = {};
+  if (providerInfo.length > 0) {
+    info["name"] = providerInfo[0].getElementsByTagNameNS(ns, "Name")[0].childNodes[0].nodeValue;
+    var iconData = [];
+    var icons = providerInfo[0].getElementsByTagNameNS("*", "Icon");
+    console.log(info["name"], icons.length);
+    for (var j = 0; j < icons.length; j++) {
+      var media = getMedia(icons[j]);
+      if (media) {
+        iconData.push(media);
+      }
+    }
+    info["icons"] = iconData;
+  }
+  return info;
 }
 
 function parseServiceListProviders(data) {
@@ -1033,14 +1059,13 @@ function parseServiceListProviders(data) {
   if (!servicediscoveryNS) {
     servicediscoveryNS = DVBi_Service_Discovery_Schema; //Fallback value
   }
+  var registryEntity = doc.getElementsByTagNameNS(ns, "ServiceListRegistryEntity");
+  var registryInfo = parseProviderInfo(registryEntity, ns);
 
   var providers = doc.getElementsByTagNameNS(ns, "ProviderOffering");
   for (var i = 0; i < providers.length; i++) {
     var providerInfo = providers[i].getElementsByTagNameNS(ns, "Provider");
-    var info = {};
-    if (providerInfo.length > 0) {
-      info["name"] = providerInfo[0].getElementsByTagNameNS(ns, "Name")[0].childNodes[0].nodeValue;
-    }
+    var info = parseProviderInfo(providerInfo, ns);
     var lists = providers[i].getElementsByTagNameNS(ns, "ServiceListOffering");
     var servicelists = [];
     info["servicelists"] = servicelists;
@@ -1050,11 +1075,54 @@ function parseServiceListProviders(data) {
       list["url"] = lists[j]
         .getElementsByTagNameNS(ns, "ServiceListURI")[0]
         .getElementsByTagNameNS(servicediscoveryNS, "URI")[0].childNodes[0].nodeValue;
+      var listIcons = [];
+      var relatedMaterial = lists[j].getElementsByTagNameNS(ns, "RelatedMaterial");
+      for (var k = 0; k < relatedMaterial.length; k++) {
+        var howRelated = relatedMaterial[k].getElementsByTagNameNS(ns, "HowRelated")[0].getAttribute("href");
+        if (howRelated == "urn:dvb:metadata:cs:HowRelatedCS:2020:1001.1") {
+          var mediaLocators = relatedMaterial[k].getElementsByTagNameNS(ns, "MediaLocator");
+          for (var l = 0; l < mediaLocators.length; l++) {
+            var media = getMedia(mediaLocators[l]);
+            if (media) {
+              listIcons.push(media);
+            }
+          }
+        }
+      }
+      list["icons"] = listIcons;
       servicelists.push(list);
     }
     providerslist.push(info);
   }
-  return providerslist;
+  return { registryInfo: registryInfo, providerList: providerslist };
+}
+
+function getMedia(element) {
+  if (!element) {
+    return null;
+  }
+  var tvaNS = "*";
+  var mediaUri = element.getElementsByTagNameNS(tvaNS, "MediaUri");
+  if (mediaUri.length > 0) {
+    return { mediaUri: mediaUri[0].childNodes[0].nodeValue };
+  }
+  var inlineMedia = element.getElementsByTagNameNS(tvaNS, "InlineMedia");
+  if (inlineMedia.length > 0) {
+    var mediaData64 = inlineMedia[0].getElementsByTagNameNS("urn:tva:mpeg7:2008", "MediaData64");
+    if (mediaData64.length > 0) {
+      return {
+        mediaData64: mediaData64[0].childNodes[0].nodeValue,
+        type: inlineMedia[0].getAttribute("type"),
+      };
+    }
+    var mediaData16 = inlineMedia[0].getElementsByTagNameNS("urn:tva:mpeg7:2008", "MediaData16");
+    if (mediaData16.length > 0) {
+      return {
+        mediaData16: mediaData16[0].childNodes[0].nodeValue,
+        type: inlineMedia[0].getAttribute("type"),
+      };
+    }
+  }
 }
 
 getParentalRating = function (href) {

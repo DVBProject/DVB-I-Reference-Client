@@ -74,7 +74,7 @@ Channel.prototype.init = function (init_obj, channel_index) {
     var span1 = document.createElement("span");
     span1.classList.add("chicon", "pl-1", "order-3");
     var img = document.createElement("img");
-    img.setAttribute("src", self.image || "./images/empty.png");
+    img.src = this.getImageSrc(self.image);
     span1.appendChild(img);
     newTextbox.appendChild(span1);
     var span = document.createElement("span");
@@ -320,7 +320,7 @@ Channel.prototype.updateChannelInfo = function () {
   var channelInfo = $("#channel_info");
   channelInfo.empty();
   channelInfo.append(
-    '<span class="menuitem_chicon d-inline-block"><img src="' + (self.image || "./images/empty.png") + '"></span>'
+    '<span class="menuitem_chicon d-inline-block"><img src="' + this.getImageSrc(self.image) + '"></span>'
   );
   channelInfo.append(
     '<span class="menuitem_chnumber d-inline-block">' +

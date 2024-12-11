@@ -137,7 +137,8 @@ function loadServicelistProviders(url, cancelAllowed) {
   $.get(
     url,
     function (data) {
-      var servicelists = parseServiceListProviders(data);
+      var providers = parseServiceListProviders(data);
+      var servicelists = providers.providerList;
       var buttons = [];
       var urls = [];
       var serviceList = getLocalStorage("servicelist");

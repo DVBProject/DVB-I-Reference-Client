@@ -527,9 +527,18 @@ function filterServiceLists() {
       return e.value;
     })
     .toArray();
-
+  var inlineImages = $("#inlineImages").is(":checked");
   loadServicelistProviders(
-    generateServiceListQuery(PROVIDER_LIST, providers, language, genre, targetCountry, regulatorListFlag, delivery)
+    generateServiceListQuery(
+      PROVIDER_LIST,
+      providers,
+      language,
+      genre,
+      targetCountry,
+      regulatorListFlag,
+      delivery,
+      inlineImages
+    )
   );
   loadNIPProviders(false, {
     providers: providers,
@@ -550,18 +559,77 @@ function loadServicelistProviders(list, hideCloseButton, listElement) {
   $.get(
     list,
     function (data) {
-      var servicelists = parseServiceListProviders(data);
+      var providers = parseServiceListProviders(data);
+      var servicelists = providers.providerList;
       if (!listElement) {
         listElement = document.getElementById("servicelists");
       }
       $(listElement).empty();
+      if (providers.registryInfo) {
+        var registry = document.createElement("h3");
+        registry.appendChild(document.createTextNode(i18n.getString("registry_provider") + ": "));
+        if (providers.registryInfo.icons) {
+          for (var j = 0; j < providers.registryInfo["icons"].length; j++) {
+            if (providers.registryInfo["icons"][j].mediaUri) {
+              var icon = document.createElement("img");
+              icon.className = "providerIcon";
+              icon.src = providers.registryInfo["icons"][j].mediaUri;
+              registry.appendChild(icon);
+            } else if (providers.registryInfo["icons"][j].mediaData64) {
+              var icon = document.createElement("img");
+              icon.className = "providerIcon";
+              icon.src =
+                "data:" +
+                providers.registryInfo["icons"][j].type +
+                ";base64," +
+                providers.registryInfo["icons"][j].mediaData64;
+              registry.appendChild(icon);
+            }
+          }
+        }
+        registry.appendChild(document.createTextNode(providers.registryInfo["name"]));
+        listElement.appendChild(registry);
+      }
+
       for (var i = 0; i < servicelists.length; i++) {
         var provider3 = document.createElement("h4");
-        provider3.appendChild(document.createTextNode(servicelists[i]["name"]));
+        if (servicelists[i]["icons"]) {
+          for (var j = 0; j < servicelists[i]["icons"].length; j++) {
+            if (servicelists[i]["icons"][j].mediaUri) {
+              var icon = document.createElement("img");
+              icon.className = "providerIcon";
+              icon.src = servicelists[i]["icons"][j].mediaUri;
+              provider3.appendChild(icon);
+            } else if (servicelists[i]["icons"][j].mediaData64) {
+              var icon = document.createElement("img");
+              icon.className = "providerIcon";
+              icon.src =
+                "data:" + servicelists[i]["icons"][j].type + ";base64," + servicelists[i]["icons"][j].mediaData64;
+              provider3.appendChild(icon);
+            }
+          }
+          provider3.appendChild(document.createTextNode(servicelists[i]["name"]));
+        }
         listElement.appendChild(provider3);
         for (var j = 0; j < servicelists[i]["servicelists"].length; j++) {
           var container = document.createElement("div");
           var provider2 = document.createElement("a");
+          if (servicelists[i]["servicelists"][j].icons) {
+            for (var k = 0; k < servicelists[i]["servicelists"][j].icons.length; k++) {
+              var iconData = servicelists[i]["servicelists"][j].icons[k];
+              if (iconData.mediaUri) {
+                var icon = document.createElement("img");
+                icon.className = "listIcon";
+                icon.src = iconData.mediaUri;
+                provider2.appendChild(icon);
+              } else if (iconData.mediaData64) {
+                var icon = document.createElement("img");
+                icon.className = "listIcon";
+                icon.src = "data:" + iconData.type + ";base64," + iconData.mediaData64;
+                provider2.appendChild(icon);
+              }
+            }
+          }
           provider2.appendChild(document.createTextNode(servicelists[i]["servicelists"][j]["name"]));
           provider2.href = "javascript:listSelected('" + servicelists[i]["servicelists"][j]["url"] + "')";
           container.appendChild(provider2);

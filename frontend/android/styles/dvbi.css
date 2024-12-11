@@ -460,3 +460,10 @@ body.player {
   margin-block-start: 0.6rem;
   margin-block-end: 0.1rem;
 }
+.providerIcon {
+  max-height: 40px;
+}
+
+.listIcon {
+  max-height: 30px;
+}

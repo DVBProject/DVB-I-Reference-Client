@@ -177,6 +177,25 @@ if(isset( $_GET['Delivery'])) {
         }
     }
 }
+if(!isset( $_GET['inlineImages']) || $_GET['inlineImages'] !== 'true') {
+    $entries->registerXPathNamespace('tva','urn:tva:metadata:2024');
+    $inline = $entries->xpath('//tva:InlineMedia');
+    for($j = 0; $j < count($inline);$j++) {
+        $parent= $inline[$j]->xpath("parent::*");
+        $domRef = dom_import_simplexml($parent[0]);
+        //Remove the RelatedMaterial parent-element. Could there be multiple MediaLocator elements in the relatedmaterial element?
+        $domRef->parentNode->parentNode->removeChild($domRef->parentNode);
+
+    }
+    //ServiceListRegistryEntity uses different namespace for the InlineMedia-element
+    $entries->registerXPathNamespace('mpeg7','urn:tva:mpeg7:2008');
+    $inline = $entries->xpath('//mpeg7:InlineMedia');
+    for($j = 0; $j < count($inline);$j++) {
+        $parent= $inline[$j]->xpath("parent::*");
+        $domRef = dom_import_simplexml($parent[0]);
+        $domRef->parentNode->removeChild($domRef);
+    }
+}
 
 $processed_list =str_replace("INSTALL~~LOCATION",$install_location,$list->asXML());
 

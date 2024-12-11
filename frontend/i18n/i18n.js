@@ -34,6 +34,7 @@ function I18n() {
     "select_nip",
     "select_region",
     "default_region",
+    "registry_provider",
     "slrquery_params_title",
     "slrquery_provider_field",
     "slrquery_language_field",

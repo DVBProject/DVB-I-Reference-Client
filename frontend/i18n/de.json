@@ -23,6 +23,7 @@
   "select_sl": "Wähle Serviceliste",
   "select_region": "Wähle Region",
   "default_region": "ursprünglich",
+  "registy_provider": "Registrierungsanbieter",
   "slrquery_params_title": "Filter",
   "slrquery_provider_field": "Anbieter",
   "slrquery_language_field": "Sprache",

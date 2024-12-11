@@ -247,8 +247,9 @@ Channel.prototype.init = function (init_obj, element_id) {
     // Menuitem title
     var menuitem_title = document.createElement("div");
     var innerHtml = "";
-    if (self.image && self.image.length > 0) {
-      innerHtml = '<span class="menuitem_chicon"><img src="' + self.image.replace(/&/g, "&amp;") + '"></img></span>';
+    var src = this.getImageSrc(self.image);
+    if (src) {
+      innerHtml = '<span class="menuitem_chicon"><img src="' + src.replace(/&/g, "&amp;") + '"></img></span>';
     }
     var ranking = this.getRanking();
     var rankingClass = "";
