@@ -4,8 +4,8 @@ var PROGRAM_BORDER_THICKNESS = 1;
 
 /********* EPGProgram ***********/
 function EPGProgram(programdata, element_id, channelObject) {
+  this.init(programdata, element_id);
   this.element_id = element_id;
-  this.init(programdata);
   this.visible = false;
   this.scrollStartTimeout = null;
   this.timeouts = [];

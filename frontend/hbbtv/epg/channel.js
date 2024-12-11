@@ -20,7 +20,7 @@ EPGChannel.prototype.getSchedule = function (start, end, callback, earlier) {
         for (var i = 0; i < programData.length; i++) {
           var program2 = new EPGProgram(programData[i], self.element_id + "_program_" + i, self);
           program2.bilingual = self.bilingual;
-          program2.channelimage = this.getImageSrc(self.image);
+          program2.channelimage = self.getImageSrc(self.image);
           program2.channel_streamurl = self.streamurl;
           newPrograms.push(program2);
         }
