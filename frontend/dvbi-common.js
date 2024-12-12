@@ -1106,23 +1106,6 @@ function getMedia(element) {
   if (mediaUri.length > 0) {
     return { mediaUri: mediaUri[0].childNodes[0].nodeValue };
   }
-  var inlineMedia = element.getElementsByTagNameNS(tvaNS, "InlineMedia");
-  if (inlineMedia.length > 0) {
-    var mediaData64 = inlineMedia[0].getElementsByTagNameNS("urn:tva:mpeg7:2008", "MediaData64");
-    if (mediaData64.length > 0) {
-      return {
-        mediaData64: mediaData64[0].childNodes[0].nodeValue,
-        type: inlineMedia[0].getAttribute("type"),
-      };
-    }
-    var mediaData16 = inlineMedia[0].getElementsByTagNameNS("urn:tva:mpeg7:2008", "MediaData16");
-    if (mediaData16.length > 0) {
-      return {
-        mediaData16: mediaData16[0].childNodes[0].nodeValue,
-        type: inlineMedia[0].getAttribute("type"),
-      };
-    }
-  }
 }
 
 getParentalRating = function (href) {
