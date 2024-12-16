@@ -125,6 +125,16 @@
 			</sd-types:Delivery>
 			<sd-types:ServiceListId>tag:dvb.org,2024:list5</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
+			<sld:ServiceListOffering regulatorListFlag="false">
+		  <sd-types:ServiceListName>Region list</sd-types:ServiceListName>
+			<sd-types:ServiceListURI contentType="application/xml">
+				<sd-types:URI>INSTALL~~LOCATION/backend/servicelist.php?list=regions.xml</sd-types:URI>
+			</sd-types:ServiceListURI>
+			<sd-types:Delivery>
+				<sd-types:DASHDelivery/>
+			</sd-types:Delivery>
+			<sd-types:ServiceListId>tag:dvb.org,2024:list6</sd-types:ServiceListId>
+		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
 
 
