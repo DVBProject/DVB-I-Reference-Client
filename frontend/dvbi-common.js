@@ -763,6 +763,10 @@ function parseRegion(regionElement, countryCodes) {
   } else {
     region.countryCodes = countryCodes;
   }
+  region.selectable = true;
+  if (regionElement.getAttribute("selectable") == "false") {
+    region.selectable = false;
+  }
   region.regionID = regionElement.getAttribute("regionID");
   var names = getChildElements(regionElement, "RegionName");
   if (names.length == 1) {

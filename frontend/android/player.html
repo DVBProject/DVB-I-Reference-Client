@@ -501,7 +501,7 @@
                   <input id="dvb-t_delivery" class="delivery" type="checkbox" value="dvb-t"></input><label for="dvb-t_delivery">DVBTDelivery</label><br/>
                   <input id="dvb-c_delivery" class="delivery" type="checkbox" value="dvb-c"></input><label for="dvb-c_delivery">DVBCDelivery</label><br/>
                   <input id="dvb-s_delivery" class="delivery" type="checkbox" value="dvb-s"></input><label for="dvb-s_delivery">DVBSDelivery</label><br/>
-                  <input id="dvb-ipt_delivery" class="delivery" type="checkbox" value="dvb-ipt"></input><label for="dvb-ipt_delivery">MulticastTSDelivery and/or RTSPDelivery</label><br/>
+                  <input id="dvb-ipt_delivery" class="delivery" type="checkbox" value="dvb-ipt"></input><label for="dvb-ipt_delivery">MulticastTS/RTSPDelivery</label><br/>
                   <input id="aplication_delivery" class="delivery" type="checkbox" value="application"></input><label for="aplication_delivery">ApplicationDelivery</label>
               </div>
             </div>
@@ -519,6 +519,18 @@
                 ><a href="javascript:filterServiceLists()" class="text-white slrquery_filter_button">Filter</a></span
               >
             </div>
+            <div class="form-group row">
+              <label for="slpostcode" class="col-4 col-form-label slrquery_postcode_field">Postcode for server side filtering</label>
+              <div class="col-8">
+                <input id="slpostcode" name="slpostcode" type="number" value="" class="form-control form-control-sm" />
+              </div>
+            </div>
+            <a class="d-flex">Example postcodes for Region list:</a>
+            <a class="d-flex" href="#" onclick="setpostcode('86150')">Augsburg</a>
+            <a class="d-flex" href="#" onclick="setpostcode('44135')">Dortmund</a>
+            <a class="d-flex" href="#" onclick="setpostcode('40210')">Düsseldorf</a>
+            <a class="d-flex" href="#" onclick="setpostcode('90402')">Franken</a>
+            <a class="d-flex" href="#" onclick="setpostcode('50126')">Köln</a>
           </div>
           <div class="col-6 offset-3">
             <div class="text-white p-1 rounded"><h2 class="select_sl"></h2></div>

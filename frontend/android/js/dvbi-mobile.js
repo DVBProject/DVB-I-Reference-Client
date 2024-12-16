@@ -121,7 +121,7 @@ window.onload = function () {
       }
     );
   } else if (serviceList) {
-    listSelected(serviceList);
+    listSelected(serviceList, true);
   } else {
     showModalDialog(
       "<img src='images/icons-128.png'/><br/>" +
@@ -304,7 +304,17 @@ function loadServicelist(list) {
     function (data) {
       serviceList = parseServiceList(data, null, supportedDrmSystems);
       if (serviceList.regions) {
-        selectRegion();
+        var selectable = 0;
+        for (var i = 0; i < serviceList.regions.length; i++) {
+          if (serviceList.regions[i].selectable) {
+            selectable++;
+          }
+          if (selectable > 1) {
+            selectRegion();
+            return;
+          }
+        }
+        serviceListSelected();
       } else {
         serviceListSelected();
       }
@@ -416,7 +426,6 @@ function regionSelected(regionId) {
 }
 
 function selectServiceList() {
-  getLocalStorage("region", true); //clear region selection
   showSettings("servicelist_registry");
   loadServicelistProviders(PROVIDER_LIST);
   try {
@@ -641,14 +650,21 @@ function loadServicelistProviders(list, hideCloseButton, listElement) {
   );
 }
 
-function listSelected(list) {
+function listSelected(list, keepRegion) {
   $("#servicelist_registry").hide();
   $("#settings").hide();
   $("#buttons").show();
   $("#channel_list").empty();
-  setLocalStorage("servicelist", list);
+  if (!keepRegion) {
+    getLocalStorage("region", true); //clear region selection
+  }
   channels = [];
   epg = null;
+  var postcode = $("#slpostcode").val();
+  if (postcode && postcode.length > 0) {
+    list += "?posctode=" + postcode;
+  }
+  setLocalStorage("servicelist", list);
   loadServicelist(list);
 }
 
@@ -1033,4 +1049,8 @@ function modalClosed() {
     modalClosedCallback.call();
     modalClosedCallback = null;
   }
+}
+
+function setpostcode(code) {
+  $("#slpostcode").val(code);
 }
