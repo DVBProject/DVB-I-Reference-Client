@@ -2,7 +2,7 @@
 <Name>Regionlist</Name>
 <ProviderName>DVB</ProviderName>
 <RegionList version="1">
-<Region countryCodes="DEU" regionID="deutschland">
+<Region selectable="false" countryCodes="DEU" regionID="deutschland">
 <RegionName>Deutschland</RegionName>
 <Region regionID="augsburg">
 <RegionName>Augsburg</RegionName>
@@ -46,10 +46,6 @@
 </RegionList>
 <LCNTableList>
 <LCNTable>
-<TargetRegion>deutschland</TargetRegion>
-<LCN channelNumber="1" serviceRef="tag:dvb.org,2024:deutschland"/>
-</LCNTable>
-<LCNTable>
 <TargetRegion>augsburg</TargetRegion>
 <LCN channelNumber="1" serviceRef="tag:dvb.org,2024:deutschland"/>
 <LCN channelNumber="2" serviceRef="tag:dvb.org,2024:ausburg"/>
@@ -84,7 +80,7 @@
 </UriBasedLocation>
 </DASHDeliveryParameters>
 </ServiceInstance>
-<ServiceName>Franken channel</ServiceName>
+<ServiceName>Franken service</ServiceName>
 <ProviderName>DVB</ProviderName>
 </Service>
 <Service version="3">
@@ -96,7 +92,7 @@
 </UriBasedLocation>
 </DASHDeliveryParameters>
 </ServiceInstance>
-<ServiceName>Düsseldorf channel</ServiceName>
+<ServiceName>Düsseldorf service</ServiceName>
 <ProviderName>DVB</ProviderName>
 </Service>
 <Service version="2">
@@ -120,7 +116,7 @@
 </UriBasedLocation>
 </DASHDeliveryParameters>
 </ServiceInstance>
-<ServiceName>Köln channel</ServiceName>
+<ServiceName>Köln service</ServiceName>
 <ProviderName>DVB</ProviderName>
 </Service>
 <Service version="3">
