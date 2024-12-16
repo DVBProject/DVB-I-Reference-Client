@@ -1039,7 +1039,6 @@ function parseProviderInfo(providerInfo, ns) {
     info["name"] = providerInfo[0].getElementsByTagNameNS(ns, "Name")[0].childNodes[0].nodeValue;
     var iconData = [];
     var icons = providerInfo[0].getElementsByTagNameNS("*", "Icon");
-    console.log(info["name"], icons.length);
     for (var j = 0; j < icons.length; j++) {
       var media = getMedia(icons[j]);
       if (media) {
