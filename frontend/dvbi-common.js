@@ -411,7 +411,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
 
   var maxLcn = 0;
   var lcnTables = doc.getElementsByTagNameNS(DVBi_ns, "LCNTable");
-  var lcnList = lcnTables[0].getElementsByTagNameNS(DVBi_ns, "LCN");
+  var lcnList = doc.getElementsByTagNameNS(DVBi_ns, "LCN");
   serviceList.lcnTables = [];
   for (i = 0; i < lcnTables.length; i++) {
     var lcnTable = {};
