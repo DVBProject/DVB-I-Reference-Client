@@ -146,29 +146,22 @@ if(isset( $_GET['Delivery'])) {
             $deliveryElements = array_merge($deliveryElements,$types[$delivery[$h]]);
         }
     }
+    $entries->registerXPathNamespace('sd-types','urn:dvb:metadata:servicediscovery-types:2023"');
     for($i = 0; $i < count($entries->ProviderOffering);$i++) {
         for($j = 0; $j < count($entries->ProviderOffering[$i]->ServiceListOffering);$j++) {
             //Delivery element is mandatory
-            if( count($entries->ProviderOffering[$i]->ServiceListOffering[$j]->Delivery) > 0) {
-                $keep = false;
-                $deliveryList = $entries->ProviderOffering[$i]->ServiceListOffering[$j]->Delivery[0];
-                foreach ($deliveryList->children("urn:dvb:metadata:servicelistdiscovery:2024") as $child)
-                {
-                    for($l =0; $l < count($deliveryElements);$l++) {
-                        if($deliveryElements[$l] == $child->getName()) {
-                            $keep = true;
-                            break;
-                        }
-                    }
-                }
-                if($keep) {
+            $keep = false;
+            for($l =0; $l < count($deliveryElements);$l++) {
+                $delivery = $entries->ProviderOffering[$i]->ServiceListOffering[$j]->xpath('sd-types:Delivery/sd-types:'.$deliveryElements[$l]);
+                //var_dump($delivery);
+                if(count($delivery) > 0) {
+                    $keep = true;
                     break;
                 }
-
-                if(!$keep) {
-                    unset($entries->ProviderOffering[$i]->ServiceListOffering[$j]);
-                    $j--;
-                }
+            }
+            if(!$keep) {
+                unset($entries->ProviderOffering[$i]->ServiceListOffering[$j]);
+                $j--;
             }
         }
         if(count($entries->ProviderOffering[$i]->ServiceListOffering) == 0) {
