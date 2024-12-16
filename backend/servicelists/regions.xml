@@ -1,0 +1,150 @@
+<ServiceList xmlns="urn:dvb:metadata:servicediscovery:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2024" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="tag:dvb.org,2024:regionlist" version="20241216073134" xml:lang="en" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2024">
+<Name>Regionlist</Name>
+<ProviderName>DVB</ProviderName>
+<RegionList version="1">
+<Region countryCodes="DEU" regionID="deutschland">
+<RegionName>Deutschland</RegionName>
+<Region regionID="augsburg">
+<RegionName>Augsburg</RegionName>
+<Postcode>89447</Postcode>
+<PostcodeRange from="86150" to="86989"/>
+<PostcodeRange from="89312" to="89446"/>
+</Region>
+<Region regionID="dortmund">
+<RegionName>Dortmund</RegionName>
+<Postcode>59439</Postcode>
+<PostcodeRange from="44135" to="44581"/>
+<PostcodeRange from="45525" to="45772"/>
+<PostcodeRange from="46282" to="46286"/>
+<PostcodeRange from="58089" to="58456"/>
+<PostcodeRange from="58730" to="58730"/>
+<PostcodeRange from="59063" to="59199"/>
+<PostcodeRange from="59423" to="59438"/>
+</Region>
+<Region regionID="düsseldorf">
+<RegionName>Düsseldorf</RegionName>
+<Postcode>47929</Postcode>
+<PostcodeRange from="40210" to="41751"/>
+<PostcodeRange from="42781" to="42781"/>
+<PostcodeRange from="47798" to="47928"/>
+</Region>
+<Region regionID="franken">
+<RegionName>Franken</RegionName>
+<Postcode>97258</Postcode>
+<PostcodeRange from="90402" to="91807"/>
+<PostcodeRange from="92283" to="92369"/>
+<PostcodeRange from="96152" to="97257"/>
+</Region>
+<Region regionID="köln">
+<RegionName>Köln</RegionName>
+<Postcode>51789</Postcode>
+<PostcodeRange from="50126" to="51381"/>
+<PostcodeRange from="51427" to="51545"/>
+<PostcodeRange from="51580" to="51788"/>
+</Region>
+</Region>
+</RegionList>
+<LCNTableList>
+<LCNTable>
+<TargetRegion>deutschland</TargetRegion>
+<LCN channelNumber="1" serviceRef="tag:dvb.org,2024:deutschland"/>
+</LCNTable>
+<LCNTable>
+<TargetRegion>augsburg</TargetRegion>
+<LCN channelNumber="1" serviceRef="tag:dvb.org,2024:deutschland"/>
+<LCN channelNumber="2" serviceRef="tag:dvb.org,2024:ausburg"/>
+</LCNTable>
+<LCNTable>
+<TargetRegion>dortmund</TargetRegion>
+<LCN channelNumber="1" serviceRef="tag:dvb.org,2024:deutschland"/>
+<LCN channelNumber="2" serviceRef="tag:dvb.org,2024:dortmund"/>
+</LCNTable>
+<LCNTable>
+<TargetRegion>düsseldorf</TargetRegion>
+<LCN channelNumber="2" serviceRef="tag:dvb.org,2024:dusseldorf"/>
+<LCN channelNumber="1" serviceRef="tag:dvb.org,2024:deutschland"/>
+</LCNTable>
+<LCNTable>
+<TargetRegion>franken</TargetRegion>
+<LCN channelNumber="2" serviceRef="tag:dvb.org,2024:franken"/>
+<LCN channelNumber="1" serviceRef="tag:dvb.org,2024:deutschland"/>
+</LCNTable>
+<LCNTable>
+<TargetRegion>köln</TargetRegion>
+<LCN channelNumber="1" serviceRef="tag:dvb.org,2024:deutschland"/>
+<LCN channelNumber="2" serviceRef="tag:dvb.org,2024:koln"/>
+</LCNTable>
+</LCNTableList>
+<Service version="3">
+<UniqueIdentifier>tag:dvb.org,2024:franken</UniqueIdentifier>
+<ServiceInstance priority="1">
+<DASHDeliveryParameters>
+<UriBasedLocation contentType="application/dash+xml">
+<dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+</UriBasedLocation>
+</DASHDeliveryParameters>
+</ServiceInstance>
+<ServiceName>Franken channel</ServiceName>
+<ProviderName>DVB</ProviderName>
+</Service>
+<Service version="3">
+<UniqueIdentifier>tag:dvb.org,2024:dusseldorf</UniqueIdentifier>
+<ServiceInstance priority="1">
+<DASHDeliveryParameters>
+<UriBasedLocation contentType="application/dash+xml">
+<dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+</UriBasedLocation>
+</DASHDeliveryParameters>
+</ServiceInstance>
+<ServiceName>Düsseldorf channel</ServiceName>
+<ProviderName>DVB</ProviderName>
+</Service>
+<Service version="2">
+<UniqueIdentifier>tag:dvb.org,2024:deutschland</UniqueIdentifier>
+<ServiceInstance priority="1">
+<DASHDeliveryParameters>
+<UriBasedLocation contentType="application/dash+xml">
+<dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+</UriBasedLocation>
+</DASHDeliveryParameters>
+</ServiceInstance>
+<ServiceName xml:lang="en">Deutschland service</ServiceName>
+<ProviderName>DVB</ProviderName>
+</Service>
+<Service version="3">
+<UniqueIdentifier>tag:dvb.org,2024:koln</UniqueIdentifier>
+<ServiceInstance priority="1">
+<DASHDeliveryParameters>
+<UriBasedLocation contentType="application/dash+xml">
+<dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+</UriBasedLocation>
+</DASHDeliveryParameters>
+</ServiceInstance>
+<ServiceName>Köln channel</ServiceName>
+<ProviderName>DVB</ProviderName>
+</Service>
+<Service version="3">
+<UniqueIdentifier>tag:dvb.org,2024:ausburg</UniqueIdentifier>
+<ServiceInstance priority="1">
+<DASHDeliveryParameters>
+<UriBasedLocation contentType="application/dash+xml">
+<dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+</UriBasedLocation>
+</DASHDeliveryParameters>
+</ServiceInstance>
+<ServiceName>Augsburg service</ServiceName>
+<ProviderName>DVB</ProviderName>
+</Service>
+<Service version="2">
+<UniqueIdentifier>tag:dvb.org,2024:dortmund</UniqueIdentifier>
+<ServiceInstance priority="1">
+<DASHDeliveryParameters>
+<UriBasedLocation contentType="application/dash+xml">
+<dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+</UriBasedLocation>
+</DASHDeliveryParameters>
+</ServiceInstance>
+<ServiceName>Dortmund service</ServiceName>
+<ProviderName>DVB</ProviderName>
+</Service>
+</ServiceList>
