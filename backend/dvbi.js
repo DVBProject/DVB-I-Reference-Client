@@ -54,6 +54,15 @@ function addServiceInstance(serviceId, instanceElement) {
   inputDiv.classList.add("form-group", "mb-1", "row");
   var inputLabel = document.createElement("label");
   inputLabel.classList.add("col-6", "col-form-label", "col-form-label-sm", "my-auto");
+  inputLabel.appendChild(document.createTextNode("Content Attributes (Raw XML)"));
+  inputDiv.appendChild(inputLabel);
+  newTextbox = document.createElement("textarea");
+  newTextbox.classList.add("form-control", "form-control-sm", "col-5", "my-auto");
+  newTextbox.id = "instance_" + serviceId + "_" + instanceId + "_contentAttributes";
+
+  inputDiv.appendChild(newTextbox);
+  inputLabel = document.createElement("label");
+  inputLabel.classList.add("col-6", "col-form-label", "col-form-label-sm", "my-auto");
   inputLabel.appendChild(document.createTextNode("Source Type"));
   inputDiv.appendChild(inputLabel);
 
@@ -71,7 +80,6 @@ function addServiceInstance(serviceId, instanceElement) {
     option.text = sourceTypes[sourceType];
     newTextbox.appendChild(option);
   }
-
   inputDiv.appendChild(newTextbox);
   instanceDiv.appendChild(inputDiv);
   var params = document.createElement("div");
@@ -153,6 +161,9 @@ function addServiceInstance(serviceId, instanceElement) {
               .getElementsByTagNameNS(TVA_ns, "MediaUri")[0].childNodes[0].nodeValue;
           }
         }
+      } else if (children[i].nodeName === "ContentAttributes") {
+        document.getElementById("instance_" + serviceId + "_" + instanceId + "_contentAttributes").value =
+          new XMLSerializer().serializeToString(children[i]);
       }
     }
   } else {
@@ -253,6 +264,24 @@ function addService(serviceElement) {
     createTextInput("service_" + serviceId + "_parallel_app", "Application with media in parallel")
   );
 
+  var inputId = "service_" + serviceId + "_prominent";
+  var inputDiv = document.createElement("div");
+  inputDiv.classList.add("form-group", "row", "mb-1");
+  var inputLabel = document.createElement("label");
+  inputLabel.classList.add("col-6", "col-form-label", "col-form-label-sm", "my-auto");
+  inputLabel.htmlFor = inputId;
+  inputLabel.appendChild(document.createTextNode("Prominent service"));
+  inputDiv.appendChild(inputLabel);
+  var inputElement = document.createElement("input");
+  inputElement.classList.add("form-control-sm", "col-5", "my-auto");
+  inputElement.type = "checkbox";
+  inputElement.name = inputId;
+  inputElement.id = inputId;
+  inputDiv.appendChild(inputElement);
+  serviceDiv.appendChild(inputDiv);
+
+  serviceDiv.appendChild(createTextInput("service_" + serviceId + "_prominent_ranking", "Service prominence ranking"));
+
   var newTextbox1 = document.createElement("a");
   newTextbox1.href = "javascript:addServiceInstance('" + serviceId + "')";
   newTextbox1.classList.add("btn", "btn-outline-blue", "btn-sm", "mr-1", "mt-2");
@@ -310,6 +339,19 @@ function addService(serviceElement) {
           addServiceInstance(serviceId, children[i]);
         } catch (e) {
           console.log("Error reading service instance", e);
+        }
+      } else if (children[i].nodeName === "ProminenceList") {
+        try {
+          var prominence = children[i].getElementsByTagName("Prominence");
+          if (prominence.length > 0) {
+            document.getElementById("service_" + serviceId + "_prominent").checked = true;
+            var ranking = prominence[0].getAttribute("ranking");
+            if (ranking) {
+              document.getElementById("service_" + serviceId + "_prominent_ranking").value = ranking;
+            }
+          }
+        } catch (e) {
+          console.log(e);
         }
       }
     }
@@ -479,6 +521,16 @@ function generateXML() {
       propertyElement.appendChild(doc.createTextNode(contentGuideServiceRef));
       serviceElement.appendChild(propertyElement);
     }
+    if (document.getElementById(serviceId + "_prominent").checked) {
+      prominenceListElement = doc.createElement("ProminenceList");
+      serviceElement.appendChild(prominenceListElement);
+      prominenceElement = doc.createElement("Prominence");
+      var ranking = document.getElementById(serviceId + "_prominent_ranking").value;
+      if (ranking) {
+        prominenceElement.setAttribute("ranking", ranking);
+      }
+      prominenceListElement.appendChild(prominenceElement);
+    }
     doc.documentElement.appendChild(serviceElement);
     var lcnValue = document.getElementById(serviceId + "_lcn").value;
     if (lcnValue && lcnValue.length > 0) {
@@ -535,7 +587,7 @@ function generateServiceInstance(instance, doc) {
     var deliveryParametersElement = doc.createElement("DASHDeliveryParameters");
     var locationElement = doc.createElement("UriBasedLocation");
     locationElement.setAttribute("contentType", DASH_MIME);
-    var uriElement = doc.createElement("URI");
+    var uriElement = doc.createElement("dvbi-types:URI");
     uriElement.appendChild(doc.createTextNode(document.getElementById(instanceId + "_dash_uri").value));
     locationElement.appendChild(uriElement);
     deliveryParametersElement.appendChild(locationElement);
@@ -577,6 +629,21 @@ function generateServiceInstance(instance, doc) {
     parameter2.appendChild(doc.createTextNode(document.getElementById(instanceId + "_polarization").value));
     deliveryParametersElement3.appendChild(parameter2);
     instanceElement.appendChild(deliveryParametersElement3);
+  }
+  var content_attributes = document.getElementById(instanceId + "_contentAttributes").value;
+  if (content_attributes && content_attributes.length > 0) {
+    var parser;
+    var doc;
+
+    if (window.DOMParser) {
+      parser = new DOMParser();
+      doc = parser.parseFromString(content_attributes, XML_MIME);
+    } else {
+      doc = new ActiveXObject("Microsoft.XMLDOM");
+      doc.async = false;
+      doc.loadXML(data);
+    }
+    instanceElement.appendChild(doc.documentElement);
   }
   return instanceElement;
 }
