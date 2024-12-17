@@ -1092,6 +1092,12 @@ function parseServiceListProviders(data) {
           }
         }
       }
+      var srsSupport = lists[j].getElementsByTagNameNS(ns, "SRSSupport");
+      if (srsSupport.length > 0) {
+        list.potcodeFiltering = srsSupport[0].getAttribute("postcode") == "true";
+        list.regionIdFiltering = srsSupport[0].getAttribute("regionID") == "true";
+        list.multiplexFiltering = srsSupport[0].getAttribute("receivedMultiplex") == "true";
+      }
       list["icons"] = listIcons;
       servicelists.push(list);
     }

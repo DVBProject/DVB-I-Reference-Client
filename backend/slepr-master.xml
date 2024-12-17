@@ -133,6 +133,7 @@
 			<sd-types:Delivery>
 				<sd-types:DASHDelivery/>
 			</sd-types:Delivery>
+			<sd-types:SRSSupport postcode="true"></sd-types:SRSSupport>
 			<sd-types:ServiceListId>tag:dvb.org,2024:list6</sd-types:ServiceListId>
 		</sld:ServiceListOffering>
 	</sld:ProviderOffering>
