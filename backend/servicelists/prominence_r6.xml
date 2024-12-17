@@ -241,5 +241,20 @@
     </ServiceInstance>
     <ServiceName>Service Ranking None</ServiceName>
     <ProviderName>DVB</ProviderName>
+    <ProminenceList>
+      <Prominence/>
+    </ProminenceList>
+  </Service>
+  <Service version="1">
+    <UniqueIdentifier>tag:dvb-i-referenceapp,2023:Ranking-NotProminent</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>Service No Prominence</ServiceName>
+    <ProviderName>DVB</ProviderName>
   </Service>
 </ServiceList>

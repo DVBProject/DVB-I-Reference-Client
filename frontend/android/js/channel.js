@@ -91,7 +91,9 @@ Channel.prototype.init = function (init_obj, channel_index) {
     var container = document.createElement("div");
     var ranking = this.getRanking();
     if (ranking) {
-      if (ranking <= 10) {
+      if (ranking === true) {
+        newTextbox.classList.add("ranking_none");
+      } else if (ranking <= 10) {
         newTextbox.classList.add("ranking_" + ranking);
       } else if (ranking <= 100) {
         newTextbox.classList.add("ranking_100");

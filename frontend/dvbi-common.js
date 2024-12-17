@@ -548,8 +548,8 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
           var ranking = parseInt(prominences[j].getAttribute("ranking"));
           if (!isNaN(ranking)) {
             prominence.ranking = ranking;
-            chan.prominences.push(prominence);
           }
+          chan.prominences.push(prominence);
         } catch {}
       }
     }

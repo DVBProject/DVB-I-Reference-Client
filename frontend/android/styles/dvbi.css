@@ -406,6 +406,9 @@ body.player {
   cursor: pointer;
 }
 
+.ranking_none {
+  background-color: #ff000080;
+}
 .ranking_1 {
   font-size: 1.7em;
   background-color: #ff0000e0;

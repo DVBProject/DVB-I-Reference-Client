@@ -254,7 +254,9 @@ Channel.prototype.init = function (init_obj, element_id) {
     var ranking = this.getRanking();
     var rankingClass = "";
     if (ranking) {
-      if (ranking <= 10) {
+      if (ranking === true) {
+        rankingClass = " ranking_none";
+      } else if (ranking <= 10) {
         rankingClass = " ranking_" + ranking;
       } else if (ranking <= 100) {
         rankingClass = " ranking_100";

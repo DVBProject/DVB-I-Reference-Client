@@ -322,7 +322,7 @@ Channel.prototype.getRanking = function () {
     //Region should be unque, no need to check the country
     for (i = 0; i < this.prominences.length; i++) {
       if (this.prominences[i].region === region) {
-        return this.prominences[i].ranking;
+        return this.prominences[i].ranking || true;
       }
     }
   }
@@ -334,14 +334,14 @@ Channel.prototype.getRanking = function () {
         countryList.indexOf(this.prominences[i].country) != -1 &&
         !this.prominences[i].region
       ) {
-        return this.prominences[i].ranking;
+        return this.prominences[i].ranking || true;
       }
     }
   }
   //general prominence, no country or region specified
   for (i = 0; i < this.prominences.length; i++) {
     if (!this.prominences[i].country && !this.prominences[i].region) {
-      return this.prominences[i].ranking;
+      return this.prominences[i].ranking || true;
     }
   }
   return null;
