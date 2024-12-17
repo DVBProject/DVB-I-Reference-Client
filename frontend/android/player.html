@@ -469,7 +469,7 @@
         </div>
         <div class="row">
           <div class="text-white p-1 rounded col-3" id="servicelist_filter">
-            <h2 class="slrquery_params_title">Filter</h2>
+            <h2 class="slrquery_params_title">Filter service lists</h2>
             <div class="form-group row">
               <label for="providers" class="col-4 col-form-label slrquery_provider_field">Provider</label>
               <div class="col-8">
@@ -519,18 +519,21 @@
                 ><a href="javascript:filterServiceLists()" class="text-white slrquery_filter_button">Filter</a></span
               >
             </div>
+            <h2 class="slrquery_params_serverside_filtering">Server-side filtering for selected service list</h2>
             <div class="form-group row">
               <label for="slpostcode" class="col-4 col-form-label slrquery_postcode_field">Postcode for server side filtering</label>
               <div class="col-8">
                 <input id="slpostcode" name="slpostcode" type="number" value="" class="form-control form-control-sm" />
               </div>
             </div>
-            <a class="d-flex">Example postcodes for Region list:</a>
+            <span class="slrquery_postcode_examples">Example postcodes for "DVB/Region List":</span>
             <a class="d-flex" href="#" onclick="setpostcode('86150')">Augsburg</a>
             <a class="d-flex" href="#" onclick="setpostcode('44135')">Dortmund</a>
             <a class="d-flex" href="#" onclick="setpostcode('40210')">Düsseldorf</a>
             <a class="d-flex" href="#" onclick="setpostcode('90402')">Franken</a>
             <a class="d-flex" href="#" onclick="setpostcode('50126')">Köln</a>
+            <span class="slrquery_postcode_examples_note">Note: Server-side filtering works best with "DVB/Region List" service list</span><br/>
+            <span class="slrquery_postcode_query"></span><span id="postcode_query"></span>
           </div>
           <div class="col-6 offset-3">
             <div class="text-white p-1 rounded"><h2 class="select_sl"></h2></div>

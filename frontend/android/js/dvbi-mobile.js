@@ -236,6 +236,11 @@ window.onload = function () {
     }
     select.appendChild(option);
   }
+
+  $("#slpostcode").on("change", function (e) {
+    var val = $("#slpostcode").val();
+    $("#postcode_query").text(val ? "'?postcode=" + val + "'" : "");
+  });
 };
 
 function resetHideTimeout() {
@@ -1053,4 +1058,5 @@ function modalClosed() {
 
 function setpostcode(code) {
   $("#slpostcode").val(code);
+  $("#postcode_query").text(code ? "'?postcode=" + code + "'" : "");
 }
