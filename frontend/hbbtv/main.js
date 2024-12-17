@@ -152,7 +152,7 @@ function loadServicelistProviders(url, cancelAllowed) {
           if (servicelists[i]["servicelists"][j]["url"] == serviceList) {
             selected = urls.length;
           }
-          urls.push(servicelists[i]["servicelists"][j]["url"]);
+          urls.push(servicelists[i]["servicelists"][j]);
         }
       }
       showDialog(
@@ -161,20 +161,108 @@ function loadServicelistProviders(url, cancelAllowed) {
         selected,
         selected,
         function (checked) {
-          setLocalStorage("servicelist", urls[checked]);
-          getLocalStorage("region", true); //New service list selected, clear region
-          getServiceList(
-            urls[checked],
-            function (servicelist) {
-              $("#dialog").html("");
-              $("#dialog").removeClass("show");
-              $("#dialog").addClass("hide");
-              selectServiceList(servicelist);
-            },
-            function () {
-              console.log("Error in fetching service data");
-            }
-          );
+          if (urls[checked].postcodeFiltering) {
+            var postcodes = [
+              "Enter postcode:",
+              "Skip",
+              "Example: Augsburg (86150)",
+              "Example: Dortmund (44135)",
+              "Example: Düsseldorf (40210)",
+              "Example: Franken (90402)",
+              "Example: Köln (50126)",
+            ];
+            var values = ["", null, "86150", "44135", "40210", "90402", "50126"];
+            showDialog(
+              "Server side postcode filtering",
+              postcodes,
+              null,
+              null,
+              function (checked2) {
+                var url = urls[checked]["url"];
+
+                if (values[checked2]) {
+                  url += "?postcode=" + values[checked2];
+                }
+
+                setLocalStorage("servicelist", url);
+                getLocalStorage("region", true); //New service list selected, clear region
+                getServiceList(
+                  url,
+                  function (servicelist) {
+                    $("#dialog").html("");
+                    $("#dialog").removeClass("show");
+                    $("#dialog").addClass("hide");
+                    selectServiceList(servicelist);
+                  },
+                  function () {
+                    console.log("Error in fetching service data");
+                  }
+                );
+              },
+              null,
+              function (keyCode, button) {
+                if (button != 0) {
+                  return false;
+                }
+                if (keyCode == VK_BACK) {
+                  return true;
+                } else {
+                  var num_key = null;
+                  switch (keyCode) {
+                    case VK_0:
+                      num_key = "0";
+                      break;
+                    case VK_1:
+                      num_key = "1";
+                      break;
+                    case VK_2:
+                      num_key = "2";
+                      break;
+                    case VK_3:
+                      num_key = "3";
+                      break;
+                    case VK_4:
+                      num_key = "4";
+                      break;
+                    case VK_5:
+                      num_key = "5";
+                      break;
+                    case VK_6:
+                      num_key = "6";
+                      break;
+                    case VK_7:
+                      num_key = "7";
+                      break;
+                    case VK_8:
+                      num_key = "8";
+                      break;
+                    case VK_9:
+                      num_key = "9";
+                      break;
+                  }
+                  if (num_key != null) {
+                    values[0] += num_key;
+                    updateLabel(button, "Enter postcode:" + values[0]);
+                  }
+                }
+              }
+            );
+          } else {
+            setLocalStorage("servicelist", urls[checked]["url"]);
+            getLocalStorage("region", true); //New service list selected, clear region
+            getServiceList(
+              urls[checked]["url"],
+              function (servicelist) {
+                $("#dialog").html("");
+                $("#dialog").removeClass("show");
+                $("#dialog").addClass("hide");
+                selectServiceList(servicelist);
+              },
+              function () {
+                console.log("Error in fetching service data");
+              }
+            );
+          }
         },
         cancelAllowed
       );
@@ -193,7 +281,18 @@ function selectServiceList(servicelistXML) {
   } catch (e) {}
   serviceList = parseServiceList(servicelistXML, channelList, supportedDrmSystems);
   epgServiceList = serviceList;
+  var selectable = 0;
   if (serviceList.regions) {
+    for (var i = 0; i < serviceList.regions.length; i++) {
+      if (serviceList.regions[i].selectable) {
+        selectable++;
+      }
+      if (selectable > 1) {
+        break;
+      }
+    }
+  }
+  if (selectable > 1) {
     selectRegion(serviceList, currentChannel, channelList);
   } else {
     createMenu(serviceList, currentChannel, channelList);
@@ -209,7 +308,7 @@ function selectRegion(serviceList, currentChannel, channelList) {
   }
   var buttons = [];
   for (var i = 0; i < serviceList.regions.length; i++) {
-    if (serviceList.regions[i].regionName) {
+    if (serviceList.regions[i].regionName && serviceList.regions[i].selectable != false) {
       buttons.push(serviceList.regions[i].regionName);
     }
   }
