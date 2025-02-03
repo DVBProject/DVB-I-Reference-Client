@@ -340,6 +340,49 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   return count ? res : "none";
 }
 
+function parseCMCDInitInfo(data) {
+  // parse CMCDInitialisationType according to dash.js (https://dashif.org/dash.js/pages/usage/cmcd.html)
+  //
+  if (!data.hasAttribute("reportingMode") || !data.hasAttribute("reportingMethod")) return null;
+  var CMCDinfo = {
+    applyParametersFromMpd: false,
+    enabled: true,
+    includeInRequests: ["segment", "mpd"],
+    version: 1,
+  };
+  switch (data.getAttribute("reportingMode")) {
+    case "urn:dvb:metadata:cmcd:delivery:request":
+      // currently not used in dash.js
+      break;
+    default:
+      CMCDinfo.enabled = false;
+      break;
+  }
+  switch (data.getAttribute("reportingMethod")) {
+    case "urn:dvb:metadata:cmcd:delivery:customHTTPHeader":
+      CMCDinfo.mode = "header";
+      break;
+    case "urn:dvb:metadata:cmcd:delivery:queryArguments":
+      CMCDinfo.mode = "query";
+      break;
+    default:
+      CMCDinfo.enabled = false;
+      break;
+  }
+  CMCDinfo.enabledKeys = data.hasAttribute("enabledKeys") ? data.getAttribute("enabledKeys").split(" ") : null;
+  CMCDinfo.cid = data.hasAttribute("contentId") ? data.getAttribute("contentId") : null;
+
+  /*
+  // skip the "probability" calculation - always report any configured values
+  var prob = data.hasAttribute("probability") ? parseInt(data.hasAttribite("probability"), 10) : 1000;
+  if (Math.random() * 1000 > prob)
+    CMCDinfo.enabled = false;
+  }
+  */
+
+  return CMCDinfo;
+}
+
 function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   var i, j, k, l;
   var serviceList = {};
@@ -671,6 +714,9 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
             DVBi_TYPES_ns,
             "URI"
           )[0].childNodes[0].nodeValue;
+          if (serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "CMCD").length > 0) {
+            instance.CMCDinit = parseCMCDInitInfo(serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "CMCD")[0]);
+          }
           sourceTypes.push("DVB-DASH");
           instances.push(instance);
         } catch (e) {}

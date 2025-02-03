@@ -174,6 +174,12 @@ Channel.prototype.checkAvailability = function () {
   this.availablityTimer = setTimeout(this.checkAvailability.bind(this), 60 * 1000);
 };
 
+function initialiseCMCD(player, instance) {
+  player.updateSettings({
+    streaming: { cmcd: instance.hasOwnProperty("CMCDinit") ? instance.CMCDinit : { enabled: false } },
+  });
+}
+
 Channel.prototype.channelSelected = function () {
   var self = this;
   $("#notification").hide();
@@ -206,6 +212,7 @@ Channel.prototype.channelSelected = function () {
       $("#parentalpin").hide();
       if (self.serviceInstance) {
         player.attachSource(self.serviceInstance.dashUrl);
+        initialiseCMCD(player, self.serviceInstance);
       }
     } else {
       player.attachSource(null);
@@ -221,6 +228,7 @@ Channel.prototype.channelSelected = function () {
             //player throws an error is there is no souce attached
             player.attachSource(self.serviceInstance.dashUrl);
           }
+          initialiseCMCD(player, self.serviceInstane);
         },
         function () {
           $("#notification").show();
@@ -253,6 +261,7 @@ Channel.prototype.programChanged = function () {
         //player throws an error is there is no souce attached
         player.attachSource(serviceInstance.dashUrl);
       }
+      initialiseCMCD(player, serviceInstance);
     } else {
       player.attachSource(null);
       checkParentalPIN(
@@ -267,6 +276,7 @@ Channel.prototype.programChanged = function () {
             //player throws an error is there is no souce attached
             player.attachSource(serviceInstance.dashUrl);
           }
+          initialiseCMCD(player, serviceInstance);
         },
         function () {
           $("#notification").show();
@@ -482,9 +492,10 @@ Channel.prototype.parentalRatingChanged = function (callback) {
         player.attachSource(serviceInstance.dashUrl);
       }
     } catch (e) {
-      //player throws an error is there is no souce attached
+      //player throws an error if there is no souce attached
       player.attachSource(serviceInstance.dashUrl);
     }
+    initialiseCMCD(player, serviceInstance);
   } else {
     player.attachSource(null);
     checkParentalPIN(
@@ -499,6 +510,7 @@ Channel.prototype.parentalRatingChanged = function (callback) {
           //player throws an error is there is no souce attached
           player.attachSource(serviceInstance.dashUrl);
         }
+        initialiseCMCD(player, serviceInstance);
       },
       function () {
         $("#notification").show();

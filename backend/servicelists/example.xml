@@ -71,6 +71,7 @@
         <UriBasedLocation contentType="application/dash+xml">
           <dvbi-types:URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</dvbi-types:URI>
         </UriBasedLocation>
+        <CMCD reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788" enabledKeys="cid pr sf"/>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName xml:lang="en">IRT test channel</ServiceName>
