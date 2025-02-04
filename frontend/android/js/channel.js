@@ -174,10 +174,36 @@ Channel.prototype.checkAvailability = function () {
   this.availablityTimer = setTimeout(this.checkAvailability.bind(this), 60 * 1000);
 };
 
-function initialiseCMCD(player, instance) {
-  player.updateSettings({
-    streaming: { cmcd: instance.hasOwnProperty("CMCDinit") ? instance.CMCDinit : { enabled: false } },
-  });
+function UUIDv7() {
+  return "tttttttt-tttt-7xxx-yxxx-xxxxxxxxxxxx"
+    .replace(/[xy]/g, function (c) {
+      const r = Math.trunc(Math.random() * 16);
+      const v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    })
+    .replace(/^[t]{8}-[t]{4}/, function () {
+      const unixtimestamp = Date.now().toString(16).padStart(12, "0");
+      return unixtimestamp.slice(0, 8) + "-" + unixtimestamp.slice(8);
+    });
+}
+
+function playDASH(player, instance) {
+  if (instance == null) {
+    player.attachSource(null);
+    return;
+  }
+  player.attachSource(instance.dashUrl);
+  if (instance.hasOwnProperty("CMCDinit") && instance.CMCDinit != null) {
+    var cmcd_vars = instance.CMCDinit;
+    if (cmcd_vars.enabledKeys && cmcd_vars.enabledKeys.includes("sid")) {
+      cmcd_vars.sid = UUIDv7();
+    }
+    player.updateSettings({
+      streaming: { cmcd: cmcd_vars },
+    });
+  } else {
+    player.updateSettings({ streaming: { cmcd: { enabled: false } } });
+  }
 }
 
 Channel.prototype.channelSelected = function () {
@@ -211,24 +237,22 @@ Channel.prototype.channelSelected = function () {
     } else if (self.isProgramAllowed()) {
       $("#parentalpin").hide();
       if (self.serviceInstance) {
-        player.attachSource(self.serviceInstance.dashUrl);
-        initialiseCMCD(player, self.serviceInstance);
+        playDASH(player, self.serviceInstance);
       }
     } else {
-      player.attachSource(null);
+      playDASH(player, null);
       checkParentalPIN(
         "Enter parental PIN to watch service",
         function () {
           $("#notification").hide();
           try {
             if (player.getSource() != self.serviceInstance.dashUrl) {
-              player.attachSource(self.serviceInstance.dashUrl);
+              playDASH(player, self.serviceInstance);
             }
           } catch (e) {
             //player throws an error is there is no souce attached
-            player.attachSource(self.serviceInstance.dashUrl);
+            playDASH(player, self.serviceInstance);
           }
-          initialiseCMCD(player, self.serviceInstane);
         },
         function () {
           $("#notification").show();
@@ -255,13 +279,12 @@ Channel.prototype.programChanged = function () {
       $("#notification").hide();
       try {
         if (player.getSource() != serviceInstance.dashUrl) {
-          player.attachSource(serviceInstance.dashUrl);
+          playDASH(player, serviceInstance);
         }
       } catch (e) {
         //player throws an error is there is no souce attached
-        player.attachSource(serviceInstance.dashUrl);
+        playDASH(player, serviceInstance);
       }
-      initialiseCMCD(player, serviceInstance);
     } else {
       player.attachSource(null);
       checkParentalPIN(
@@ -270,13 +293,12 @@ Channel.prototype.programChanged = function () {
           $("#notification").hide();
           try {
             if (player.getSource() != serviceInstance.dashUrl) {
-              player.attachSource(serviceInstance.dashUrl);
+              playDASH(player, serviceInstance);
             }
           } catch (e) {
             //player throws an error is there is no souce attached
-            player.attachSource(serviceInstance.dashUrl);
+            playDASH(player, serviceInstance);
           }
-          initialiseCMCD(player, serviceInstance);
         },
         function () {
           $("#notification").show();
@@ -489,13 +511,12 @@ Channel.prototype.parentalRatingChanged = function (callback) {
     $("#notification").hide();
     try {
       if (player.getSource() != serviceInstance.dashUrl) {
-        player.attachSource(serviceInstance.dashUrl);
+        playDASH(player, serviceInstance);
       }
     } catch (e) {
       //player throws an error if there is no souce attached
-      player.attachSource(serviceInstance.dashUrl);
+      playDASH(player, serviceInstance);
     }
-    initialiseCMCD(player, serviceInstance);
   } else {
     player.attachSource(null);
     checkParentalPIN(
@@ -504,13 +525,12 @@ Channel.prototype.parentalRatingChanged = function (callback) {
         $("#notification").hide();
         try {
           if (player.getSource() != serviceInstance.dashUrl) {
-            player.attachSource(serviceInstance.dashUrl);
+            playDASH(player, serviceInstance);
           }
         } catch (e) {
           //player throws an error is there is no souce attached
-          player.attachSource(serviceInstance.dashUrl);
+          playDASH(player, serviceInstance);
         }
-        initialiseCMCD(player, serviceInstance);
       },
       function () {
         $("#notification").show();
