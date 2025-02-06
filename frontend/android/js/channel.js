@@ -202,9 +202,7 @@ function playDASH(player, instance) {
 
   if (instance.hasOwnProperty("CMCDinit") && instance.CMCDinit != null) {
     var cmcd_vars = instance.CMCDinit;
-    if (cmcd_vars.enabledKeys && cmcd_vars.enabledKeys.includes("sid")) {
-      cmcd_vars.sid = UUIDv7();
-    }
+    cmcd_vars.sid = UUIDv7();
     if (DASHjsVersion5(player)) {
       cmcd_vars.applyParametersFromMpd = false;
       cmcd_vars.includeInRequests = ["segment", "mpd"];
