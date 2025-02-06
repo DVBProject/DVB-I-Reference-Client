@@ -187,6 +187,11 @@ function UUIDv7() {
     });
 }
 
+function DASHjsVersion5(player) {
+  var [major, minor, micro] = player.getVersion().split(".");
+  return major >= 5;
+}
+
 function playDASH(player, instance) {
   if (instance == null) {
     player.attachSource(null);
@@ -197,6 +202,12 @@ function playDASH(player, instance) {
     var cmcd_vars = instance.CMCDinit;
     if (cmcd_vars.enabledKeys && cmcd_vars.enabledKeys.includes("sid")) {
       cmcd_vars.sid = UUIDv7();
+    }
+    if (DASHjsVersion5(player)) {
+      cmcd_vars.applyParametersFromMpd = false;
+      cmcd_vars.includeInRequests = ["segment", "mpd"];
+    } else {
+      delete cmcd_vars.version;
     }
     player.updateSettings({
       streaming: { cmcd: cmcd_vars },

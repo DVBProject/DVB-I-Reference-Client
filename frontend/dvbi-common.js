@@ -343,13 +343,12 @@ function formatAccessibilityAttributes(accessibility_attributes) {
 function parseCMCDInitInfo(data) {
   // parse CMCDInitialisationType according to dash.js (https://dashif.org/dash.js/pages/usage/cmcd.html)
   //
-  if (!data.hasAttribute("reportingMode") || !data.hasAttribute("reportingMethod")) return null;
+  if (!data.hasAttribute("reportingMode") || !data.hasAttribute("reportingMethod") || !data.hasAttribute("version"))
+    return null;
   var CMCDinfo = {
-    applyParametersFromMpd: false, // as of 2025-02-04 this gives "Settings parameter streaming.cmcd.applyParametersFromMpd is not supported" in the console output
     enabled: true,
-    includeInRequests: ["segment", "mpd"], // as of 2025-02-04 this gives "Settings parameter streaming.cmcd.includeInRequests is not supported" in the console output
-    version: 1, // as of 2025-02-04 this gives "Settings parameter streaming.cmcd.version is not supported" in the console output
   };
+
   switch (data.getAttribute("reportingMode")) {
     case "urn:dvb:metadata:cmcd:delivery:request":
       // currently not used in dash.js
@@ -371,6 +370,7 @@ function parseCMCDInitInfo(data) {
   }
   CMCDinfo.enabledKeys = data.hasAttribute("enabledKeys") ? data.getAttribute("enabledKeys").split(" ") : null;
   CMCDinfo.cid = data.hasAttribute("contentId") ? data.getAttribute("contentId") : null;
+  CMCDinfo.version = parseInt(data.getAttribute("version"), 10);
   /*
   // skip the "probability" calculation - always report any configured values
   var prob = data.hasAttribute("probability") ? parseInt(data.hasAttribite("probability"), 10) : 1000;
