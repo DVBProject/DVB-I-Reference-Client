@@ -175,6 +175,7 @@ Channel.prototype.checkAvailability = function () {
 };
 
 function UUIDv7() {
+  // see https://stackoverflow.com/questions/71816194/uuidv6-v7-v8-in-javascript-browser
   return "tttttttt-tttt-7xxx-yxxx-xxxxxxxxxxxx"
     .replace(/[xy]/g, function (c) {
       const r = Math.trunc(Math.random() * 16);
@@ -194,10 +195,11 @@ function DASHjsVersion5(player) {
 
 function playDASH(player, instance) {
   if (instance == null) {
+    player.updateSettings({ streaming: { cmcd: { enabled: false } } });
     player.attachSource(null);
     return;
   }
-  player.attachSource(instance.dashUrl);
+
   if (instance.hasOwnProperty("CMCDinit") && instance.CMCDinit != null) {
     var cmcd_vars = instance.CMCDinit;
     if (cmcd_vars.enabledKeys && cmcd_vars.enabledKeys.includes("sid")) {
@@ -215,6 +217,7 @@ function playDASH(player, instance) {
   } else {
     player.updateSettings({ streaming: { cmcd: { enabled: false } } });
   }
+  player.attachSource(instance.dashUrl);
 }
 
 Channel.prototype.channelSelected = function () {
