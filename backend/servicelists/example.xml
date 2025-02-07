@@ -257,8 +257,8 @@
 				<UriBasedLocation contentType="application/dash+xml">
 					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
 				</UriBasedLocation>
-        <CMCD version="1"
-          reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+      <!--  <CMCD version="1"
+          reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/> -->
 			</DASHDeliveryParameters>
 		</ServiceInstance>
 		<ServiceName>Akamai LL test</ServiceName>
