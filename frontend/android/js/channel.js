@@ -149,7 +149,7 @@ Channel.prototype.getMediaPresentationApp = function (serviceInstance) {
   if (serviceInstance && serviceInstance.mediaPresentationApps) {
     for (i = 0; i < serviceInstance.mediaPresentationApps.length; i++) {
       mediaPresentationApp = serviceInstance.mediaPresentationApps[i];
-      if (mediaPresentationApp.contentType == XML_MIME || mediaPresentationApp.contentType == XHTML_MIMR) {
+      if (mediaPresentationApp.contentType == XML_MIME || mediaPresentationApp.contentType == XHTML_MIME) {
         return mediaPresentationApp.url;
       }
     }

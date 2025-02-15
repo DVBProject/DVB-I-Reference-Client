@@ -708,6 +708,24 @@ function showStreamInfo() {
 
 function updateStreamInfo() {
   if (player) {
+    document.getElementById("DASHjs_version").innerHTML = player.getVersion();
+    if (DASHjsVersion5(player)) {
+      document.getElementById("live_settings").innerHTML =
+        "Low latency mode:" +
+        "INDEVv5" +
+        " Delay:" +
+        "INDEVv5" +
+        "<br/>Min drift:" +
+        "INDEVv5" +
+        " Catchup Rate" +
+        "INDEVv5";
+
+      document.getElementById("audio_bitrate").innerHTML = "INDEVv5";
+      document.getElementById("video_bitrate").innerHTML = "INDEVv5";
+      document.getElementById("video_resolution").innerHTML = "INDEVv5";
+      document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency() + "s";
+      return;
+    }
     try {
       var settings = player.getSettings();
       document.getElementById("live_settings").innerHTML =

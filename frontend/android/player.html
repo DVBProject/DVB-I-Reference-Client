@@ -22,7 +22,9 @@
     <link rel="icon" href="images/icons-512.png" type="image/x-icon" />
     <link rel="manifest" href="./manifest.json" />
 
-    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+   <script src="http://cdn.dashjs.org/v4.7.4/dash.all.min.js"></script>
+<!--    <script src="https://cdn.dashjs.org/v5.0.0/modern/umd/dash.all.min.js"></script> -->
+<!--    <script src="https://cdn.dashjs.org/v5.0.0/modern/umd/dash.all.debug.js"></script> -->
     <script src="../../identifiers.js"></script>
     <script src="../../namespaces.js"></script>
     <script src="../channel-common.js"></script>
@@ -200,6 +202,10 @@
     <div class="text-white container mt-2" id="streaminfo">
       <div class="row">
         <div class="streaminfoContainer col-8 col-lg-4 offset-4 p-1 rounded">
+          <div class="row">
+            <span class="col-5 d-inline-block stats_DASHjs_version">DASHjs version</span>
+            <span id="DASHjs_version" class="col-7 d-inline-block"></span>
+          </div>
           <div class="row">
             <span class="col-5 d-inline-block stats_video_resolution">Video resolution</span>
             <span id="video_resolution" class="col-7 d-inline-block"></span>
