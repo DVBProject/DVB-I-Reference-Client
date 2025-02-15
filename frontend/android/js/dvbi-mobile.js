@@ -717,12 +717,16 @@ function updateStreamInfo() {
         "INDEVv5" +
         "<br/>Min drift:" +
         "INDEVv5" +
-        " Catchup Rate" +
+        " Catchup Rate:" +
         "INDEVv5";
 
-      document.getElementById("audio_bitrate").innerHTML = "INDEVv5";
-      document.getElementById("video_bitrate").innerHTML = "INDEVv5";
-      document.getElementById("video_resolution").innerHTML = "INDEVv5";
+      var audioTrack = player.getCurrentRepresentationForType("audio");
+      document.getElementById("audio_bitrate").innerHTML = audioTrack ? audioTrack.bitrateInKbit + "kbits" : "no-audio";
+
+      var videoTrack = player.getCurrentRepresentationForType("video");
+      document.getElementById("video_bitrate").innerHTML = videoTrack ? videoTrack.bitrateInKbit + "kbits" : "no-video";
+      document.getElementById("video_resolution").innerHTML = videoTrack.width + "x" + videoTrack.height;
+
       document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency() + "s";
       return;
     }
@@ -735,7 +739,7 @@ function updateStreamInfo() {
         settings.streaming.liveDelay +
         "<br/>Min drift:" +
         settings.streaming.liveCatchUpMinDrift +
-        " Catchup Rate" +
+        " Catchup Rate:" +
         settings.streaming.liveCatchUpPlaybackRate;
       var audioTrack = player.getBitrateInfoListFor("audio")[player.getQualityFor("audio")];
       var videoTrack = player.getBitrateInfoListFor("video")[player.getQualityFor("video")];
