@@ -749,8 +749,7 @@ function updateStreamInfo() {
         document.getElementById("video_resolution").innerHTML =
           videoTrack.width + "x" + videoTrack.height + (highestRes ? " (max:" + highestRes + ")" : "");
 
-        document.getElementById("live_latency").innerHTML =
-          player.getCurrentLiveLatency() + "s (avg: " + player.getAverageLatency() + ")";
+        document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency() + "s";
       } else {
         document.getElementById("live_settings").innerHTML =
           "Low latency mode:" +
