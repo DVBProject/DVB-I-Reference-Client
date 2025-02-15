@@ -708,54 +708,75 @@ function showStreamInfo() {
 
 function updateStreamInfo() {
   if (player) {
-    document.getElementById("DASHjs_version").innerHTML = player.getVersion();
-    if (DASHjsVersion5(player)) {
-      document.getElementById("live_settings").innerHTML =
-        "Low latency mode:" +
-        "INDEVv5" +
-        " Delay:" +
-        "INDEVv5" +
-        "<br/>Min drift:" +
-        "INDEVv5" +
-        " Catchup Rate:" +
-        "INDEVv5";
-
-      var audioTrack = player.getCurrentRepresentationForType("audio");
-      document.getElementById("audio_bitrate").innerHTML = audioTrack ? audioTrack.bitrateInKbit + "kbits" : "no-audio";
-
-      var videoTrack = player.getCurrentRepresentationForType("video");
-      document.getElementById("video_bitrate").innerHTML = videoTrack ? videoTrack.bitrateInKbit + "kbits" : "no-video";
-      document.getElementById("video_resolution").innerHTML = videoTrack.width + "x" + videoTrack.height;
-
-      document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency() + "s";
-      return;
-    }
     try {
+      document.getElementById("DASHjs_version").innerHTML = player.getVersion();
       var settings = player.getSettings();
-      document.getElementById("live_settings").innerHTML =
-        "Low latency mode:" +
-        settings.streaming.lowLatencyEnabled +
-        " Delay:" +
-        settings.streaming.liveDelay +
-        "<br/>Min drift:" +
-        settings.streaming.liveCatchUpMinDrift +
-        " Catchup Rate:" +
-        settings.streaming.liveCatchUpPlaybackRate;
-      var audioTrack = player.getBitrateInfoListFor("audio")[player.getQualityFor("audio")];
-      var videoTrack = player.getBitrateInfoListFor("video")[player.getQualityFor("video")];
-      var bestAudio = player.getTopBitrateInfoFor("audio");
-      var bestVideo = player.getTopBitrateInfoFor("video");
-      if (audioTrack) {
-        document.getElementById("audio_bitrate").innerHTML =
-          audioTrack.bitrate / 1000 + "kbits (max:" + bestAudio.bitrate / 1000 + "kbits)";
-      }
-      if (videoTrack) {
-        document.getElementById("video_bitrate").innerHTML =
-          videoTrack.bitrate / 1000 + "kbits (max:" + bestVideo.bitrate / 1000 + "kbits)";
+
+      if (DASHjsVersion5(player)) {
+        document.getElementById("live_settings").innerHTML =
+          "Low latency mode:" +
+          player.getLowLatencyModeEnabled() +
+          " Delay:" +
+          "INDEVv5" +
+          "<br/>Min drift:" +
+          "INDEVv5" +
+          " Catchup Rate:" +
+          "INDEVv5";
+
+        var audioTrack = player.getCurrentRepresentationForType("audio");
+        var highestAudio = 0,
+          audioReps = player.getRepresentationsByType("audio");
+        for (var i = 0; i < audioReps.length; i++) {
+          if (audioReps[i].bitrateInKbit > highestAudio) highestAudio = audioReps[i].bitrateInKbit;
+        }
+        document.getElementById("audio_bitrate").innerHTML = audioTrack
+          ? audioTrack.bitrateInKbit + "kbits (max:" + highestAudio + "kbits)"
+          : "no-audio";
+
+        var videoTrack = player.getCurrentRepresentationForType("video");
+        var highestVideo = 0,
+          highestRes = null,
+          videoReps = player.getRepresentationsByType("video");
+        for (var j = 0; j < videoReps.length; j++) {
+          if (videoReps[j].bitrateInKbit > highestVideo) {
+            highestVideo = videoReps[j].bitrateInKbit;
+            highestRes = videoReps[j].width + "x" + videoReps[j].height;
+          }
+        }
+        document.getElementById("video_bitrate").innerHTML = videoTrack
+          ? videoTrack.bitrateInKbit + "kbits (max:" + highestVideo + "kbits)"
+          : "no-video";
         document.getElementById("video_resolution").innerHTML =
-          videoTrack.width + "x" + videoTrack.height + " (max:" + bestVideo.width + "x" + bestVideo.height + ")";
+          videoTrack.width + "x" + videoTrack.height + (highestRes ? " (max:" + highestRes + ")" : "");
+
+        document.getElementById("live_latency").innerHTML =
+          player.getCurrentLiveLatency() + "s (avg: " + player.getAverageLatency() + ")";
+      } else {
+        document.getElementById("live_settings").innerHTML =
+          "Low latency mode:" +
+          settings.streaming.lowLatencyEnabled +
+          " Delay:" +
+          settings.streaming.liveDelay +
+          "<br/>Min drift:" +
+          settings.streaming.liveCatchUpMinDrift +
+          " Catchup Rate:" +
+          settings.streaming.liveCatchUpPlaybackRate;
+        var audioTrack = player.getBitrateInfoListFor("audio")[player.getQualityFor("audio")];
+        var videoTrack = player.getBitrateInfoListFor("video")[player.getQualityFor("video")];
+        var bestAudio = player.getTopBitrateInfoFor("audio");
+        var bestVideo = player.getTopBitrateInfoFor("video");
+        if (audioTrack) {
+          document.getElementById("audio_bitrate").innerHTML =
+            audioTrack.bitrate / 1000 + "kbits (max:" + bestAudio.bitrate / 1000 + "kbits)";
+        }
+        if (videoTrack) {
+          document.getElementById("video_bitrate").innerHTML =
+            videoTrack.bitrate / 1000 + "kbits (max:" + bestVideo.bitrate / 1000 + "kbits)";
+          document.getElementById("video_resolution").innerHTML =
+            videoTrack.width + "x" + videoTrack.height + " (max:" + bestVideo.width + "x" + bestVideo.height + ")";
+        }
+        document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency() + "s";
       }
-      document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency() + "s";
     } catch (e) {
       document.getElementById("audio_bitrate").innerHTML = "error";
       document.getElementById("video_bitrate").innerHTML = "error";
