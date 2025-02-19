@@ -338,7 +338,7 @@ function serviceListSelected() {
   $("#servicelist_registry").hide();
   $("#settings").hide();
   if (serviceList.image) {
-    $("#list_logo").attr("src", serviceList.image);
+    $("#list_logo").attr("src", serviceList.image.mediaUri);
   } else {
     $("#list_logo").attr("src", "images/logo_dvbi_sofia.png");
   }
