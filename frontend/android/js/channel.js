@@ -150,7 +150,7 @@ Channel.prototype.getMediaPresentationApp = function (serviceInstance) {
   if (serviceInstance && serviceInstance.mediaPresentationApps) {
     for (i = 0; i < serviceInstance.mediaPresentationApps.length; i++) {
       mediaPresentationApp = serviceInstance.mediaPresentationApps[i];
-      if (mediaPresentationApp.contentType == XML_MIME || mediaPresentationApp.contentType == XHTML_MIMR) {
+      if (mediaPresentationApp.contentType == XML_MIME || mediaPresentationApp.contentType == XHTML_MIME) {
         return mediaPresentationApp.url;
       }
     }
@@ -175,6 +175,50 @@ Channel.prototype.checkAvailability = function () {
   this.availablityTimer = setTimeout(this.checkAvailability.bind(this), 60 * 1000);
 };
 
+function UUIDv7() {
+  // see https://stackoverflow.com/questions/71816194/uuidv6-v7-v8-in-javascript-browser
+  return "tttttttt-tttt-7xxx-yxxx-xxxxxxxxxxxx"
+    .replace(/[xy]/g, function (c) {
+      const r = Math.trunc(Math.random() * 16);
+      const v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    })
+    .replace(/^[t]{8}-[t]{4}/, function () {
+      const unixtimestamp = Date.now().toString(16).padStart(12, "0");
+      return unixtimestamp.slice(0, 8) + "-" + unixtimestamp.slice(8);
+    });
+}
+
+function DASHjsVersion5(player) {
+  var [major, minor, micro] = player.getVersion().split(".");
+  return major >= 5;
+}
+
+function playDASH(player, instance) {
+  if (instance == null) {
+    player.updateSettings({ streaming: { cmcd: { enabled: false } } });
+    player.attachSource(null);
+    return;
+  }
+
+  if (instance.hasOwnProperty("CMCDinit") && instance.CMCDinit != null) {
+    var cmcd_vars = { ...instance.CMCDinit };
+    cmcd_vars.sid = UUIDv7();
+    if (DASHjsVersion5(player)) {
+      cmcd_vars.applyParametersFromMpd = false;
+      cmcd_vars.includeInRequests = ["segment", "mpd"];
+    } else {
+      delete cmcd_vars.version;
+    }
+    player.updateSettings({
+      streaming: { cmcd: cmcd_vars },
+    });
+  } else {
+    player.updateSettings({ streaming: { cmcd: { enabled: false } } });
+  }
+  player.attachSource(instance.dashUrl);
+}
+
 Channel.prototype.channelSelected = function () {
   var self = this;
   $("#notification").hide();
@@ -193,9 +237,7 @@ Channel.prototype.channelSelected = function () {
       $("#notification").removeClass();
       $("#notification").addClass("noservice");
       if (self.out_of_service_image) {
-        $("#notification").html(
-          '<img src="' + self.out_of_service_image.mediaUri + '" class="img-fluid position-relative"/>'
-        );
+        $("#notification").html('<img src="' + self.out_of_service_image.mediaUri + '" class="img-fluid position-relative"/>');
       } else {
         $("#notification").text("Service not available");
       }
@@ -208,21 +250,21 @@ Channel.prototype.channelSelected = function () {
     } else if (self.isProgramAllowed()) {
       $("#parentalpin").hide();
       if (self.serviceInstance) {
-        player.attachSource(self.serviceInstance.dashUrl);
+        playDASH(player, self.serviceInstance);
       }
     } else {
-      player.attachSource(null);
+      playDASH(player, null);
       checkParentalPIN(
         "Enter parental PIN to watch service",
         function () {
           $("#notification").hide();
           try {
             if (player.getSource() != self.serviceInstance.dashUrl) {
-              player.attachSource(self.serviceInstance.dashUrl);
+              playDASH(player, self.serviceInstance);
             }
           } catch (e) {
             //player throws an error is there is no souce attached
-            player.attachSource(self.serviceInstance.dashUrl);
+            playDASH(player, self.serviceInstance);
           }
         },
         function () {
@@ -250,11 +292,11 @@ Channel.prototype.programChanged = function () {
       $("#notification").hide();
       try {
         if (player.getSource() != serviceInstance.dashUrl) {
-          player.attachSource(serviceInstance.dashUrl);
+          playDASH(player, serviceInstance);
         }
       } catch (e) {
         //player throws an error is there is no souce attached
-        player.attachSource(serviceInstance.dashUrl);
+        playDASH(player, serviceInstance);
       }
     } else {
       player.attachSource(null);
@@ -264,11 +306,11 @@ Channel.prototype.programChanged = function () {
           $("#notification").hide();
           try {
             if (player.getSource() != serviceInstance.dashUrl) {
-              player.attachSource(serviceInstance.dashUrl);
+              playDASH(player, serviceInstance);
             }
           } catch (e) {
             //player throws an error is there is no souce attached
-            player.attachSource(serviceInstance.dashUrl);
+            playDASH(player, serviceInstance);
           }
         },
         function () {
@@ -482,11 +524,11 @@ Channel.prototype.parentalRatingChanged = function (callback) {
     $("#notification").hide();
     try {
       if (player.getSource() != serviceInstance.dashUrl) {
-        player.attachSource(serviceInstance.dashUrl);
+        playDASH(player, serviceInstance);
       }
     } catch (e) {
-      //player throws an error is there is no souce attached
-      player.attachSource(serviceInstance.dashUrl);
+      //player throws an error if there is no souce attached
+      playDASH(player, serviceInstance);
     }
   } else {
     player.attachSource(null);
@@ -496,11 +538,11 @@ Channel.prototype.parentalRatingChanged = function (callback) {
         $("#notification").hide();
         try {
           if (player.getSource() != serviceInstance.dashUrl) {
-            player.attachSource(serviceInstance.dashUrl);
+            playDASH(player, serviceInstance);
           }
         } catch (e) {
           //player throws an error is there is no souce attached
-          player.attachSource(serviceInstance.dashUrl);
+          playDASH(player, serviceInstance);
         }
       },
       function () {
