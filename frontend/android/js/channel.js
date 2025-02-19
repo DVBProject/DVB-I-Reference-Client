@@ -1,9 +1,8 @@
 Channel.prototype.getNowNext = function (callback) {
   var self = this;
   if (self.contentGuideURI) {
-    $.get(
-      self.contentGuideURI + "?sid=" + self.getServiceRef() + "&now_next=true",
-      function (data) {
+    NetworkRequest(self.contentGuideURI + "?sid=" + self.getServiceRef() + "&now_next=true", {
+      success: function (data) {
         var now_next = {};
         var newPrograms = self.parseSchedule(data);
         if (newPrograms.length > 0) {
@@ -25,8 +24,8 @@ Channel.prototype.getNowNext = function (callback) {
           callback.call();
         }
       },
-      "text"
-    );
+      dataType: "text",
+    });
   }
 };
 
@@ -35,23 +34,25 @@ Channel.prototype.getSchedule = function (callback) {
   self.programs = [];
 
   if (self.contentGuideURI) {
-    $.get(
+    NetworkRequest(
       self.contentGuideURI + "?sid=" + self.getServiceRef() + "&start=" + self.epg.start + "&end=" + self.epg.end,
-      function (data) {
-        var programData = self.parseSchedule(data);
-        self.programs = [];
-        for (var i = 0; i < programData.length; i++) {
-          var program2 = new Program(programData[i], this.element_id + "_program_" + i, self);
-          program2.bilingual = this.bilingual;
-          program2.channelimage = this.image;
-          program2.channel_streamurl = this.streamurl;
-          self.programs.push(program2);
-        }
-        if (typeof callback == "function") {
-          callback.call();
-        }
-      },
-      "text"
+      {
+        success: function (data) {
+          var programData = self.parseSchedule(data);
+          self.programs = [];
+          for (var i = 0; i < programData.length; i++) {
+            var program2 = new Program(programData[i], this.element_id + "_program_" + i, self);
+            program2.bilingual = this.bilingual;
+            program2.channelimage = this.image;
+            program2.channel_streamurl = this.streamurl;
+            self.programs.push(program2);
+          }
+          if (typeof callback == "function") {
+            callback.call();
+          }
+        },
+        dataType: "text",
+      }
     );
   }
 };
@@ -192,7 +193,9 @@ Channel.prototype.channelSelected = function () {
       $("#notification").removeClass();
       $("#notification").addClass("noservice");
       if (self.out_of_service_image) {
-        $("#notification").html('<img src="' + self.out_of_service_image + '" class="img-fluid position-relative"/>');
+        $("#notification").html(
+          '<img src="' + self.out_of_service_image.mediaUri + '" class="img-fluid position-relative"/>'
+        );
       } else {
         $("#notification").text("Service not available");
       }
