@@ -304,9 +304,8 @@ function openProgramInfo(program) {
 }
 
 function loadServicelist(list) {
-  $.get(
-    list,
-    function (data) {
+  NetworkRequest(list, {
+    success: function (data) {
       serviceList = parseServiceList(data, null, supportedDrmSystems);
       if (serviceList.regions) {
         var selectable = 0;
@@ -324,8 +323,8 @@ function loadServicelist(list) {
         serviceListSelected();
       }
     },
-    "text"
-  ).fail(function () {
+    dataType: "text",
+  }).fail(function () {
     $("#notification").text("Error loading service list. You can select a new service list from the settings.");
     $("#notification").show();
     setTimeout(function () {
@@ -570,9 +569,8 @@ function loadServicelistProviders(list, hideCloseButton, listElement) {
   } else {
     $("#close_service_providers").show();
   }
-  $.get(
-    list,
-    function (data) {
+  NetworkRequest(list, {
+    success: function (data) {
       var providers = parseServiceListProviders(data);
       var servicelists = providers.providerList;
       if (!listElement) {
@@ -651,8 +649,8 @@ function loadServicelistProviders(list, hideCloseButton, listElement) {
         }
       }
     },
-    "text"
-  );
+    dataType: "text",
+  });
 }
 
 function listSelected(list, keepRegion) {

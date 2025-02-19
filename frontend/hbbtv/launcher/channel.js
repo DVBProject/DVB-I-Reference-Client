@@ -1,9 +1,8 @@
 Channel.prototype.getNowNext = function () {
   var self = this;
   if (self.contentGuideURI) {
-    $.get(
-      self.contentGuideURI + "?sid=" + self.getServiceRef() + "&now_next=true",
-      function (data) {
+    NetworkRequest(self.contentGuideURI + "?sid=" + self.getServiceRef() + "&now_next=true", {
+      success: function (data) {
         var epg = {};
         var boxes = [];
         var now_next = {};
@@ -203,8 +202,8 @@ Channel.prototype.getNowNext = function () {
           self.setOpen(true, focus);
         }
       },
-      "text"
-    );
+      dataType: "text",
+    });
   } else {
     self.center = 0;
     self.populate(null);

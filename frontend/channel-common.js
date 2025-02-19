@@ -270,14 +270,17 @@ Channel.prototype.getServiceInstanceByCPSIndex = function (cpsIndex) {
 Channel.prototype.getMoreEpisodes = function (programId, callback) {
   var self = this;
   if (this.moreEpisodesURI && typeof callback == "function") {
-    $.get(
-      this.moreEpisodesURI + "?pid=" + programId + "&type=ondemand",
-      function (data) {
+    NetworkRequest({
+      url: this.moreEpisodesURI + "?pid=" + programId + "&type=ondemand",
+      success: function (data) {
         var episodes = self.parseSchedule(data);
         callback.call(callback, episodes);
       },
-      "text"
-    );
+      datatype: "text",
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Accept", "application/vnd.dvb.dvbi.r6");
+      },
+    });
   } else if (typeof callback == "function") {
     callback.call(null);
   }
@@ -286,9 +289,8 @@ Channel.prototype.getMoreEpisodes = function (programId, callback) {
 Channel.prototype.getProgramInfo = function (programId, callback) {
   var self = this;
   if (this.programInfoURI && typeof callback == "function") {
-    $.get(
-      this.programInfoURI + "?pid=" + programId,
-      function (data) {
+    NetworkRequest(this.programInfoURI + "?pid=" + programId, {
+      success: function (data) {
         var episodes = self.parseSchedule(data);
         if (episodes.length > 0) {
           callback.call(callback, episodes[0]);
@@ -296,8 +298,8 @@ Channel.prototype.getProgramInfo = function (programId, callback) {
           callback.call(null);
         }
       },
-      "text"
-    );
+      dataType: "text",
+    });
   } else if (typeof callback == "function") {
     callback.call(null);
   }
