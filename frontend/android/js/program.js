@@ -86,7 +86,7 @@ function UseLocalisation(elems, language) {
 
 Program.prototype.populateProgramInfo = function () {
   var i;
-  $("#info_chicon").attr("src", this.channel.image || "./images/empty.png");
+  $("#info_chicon").attr("src", this.channel?.image?.mediaUri || "./images/empty.png");
   $("#info_chnumber").text(this.channel.lcn);
   $(".chdrm_prginfo").remove();
   if (this.cpsIndex) {
