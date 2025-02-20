@@ -270,16 +270,12 @@ Channel.prototype.getServiceInstanceByCPSIndex = function (cpsIndex) {
 Channel.prototype.getMoreEpisodes = function (programId, callback) {
   var self = this;
   if (this.moreEpisodesURI && typeof callback == "function") {
-    NetworkRequest({
-      url: this.moreEpisodesURI + "?pid=" + programId + "&type=ondemand",
+    NetworkRequest(this.moreEpisodesURI + "?pid=" + programId + "&type=ondemand", {
       success: function (data) {
         var episodes = self.parseSchedule(data);
         callback.call(callback, episodes);
       },
       datatype: "text",
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader("Accept", "application/vnd.dvb.dvbi.r6");
-      },
     });
   } else if (typeof callback == "function") {
     callback.call(null);
