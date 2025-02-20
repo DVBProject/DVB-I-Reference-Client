@@ -477,7 +477,7 @@ Channel.prototype.showEPG = function () {
     var header = document.createElement("div");
     header.addClass("epg_chinfo align-items-center sticky-top px-2");
     var logo = document.createElement("img");
-    logo.setAttribute("src", self.image || "./images/empty.png");
+    logo.setAttribute("src", self?.image?.mediaUri || "./images/empty.png");
     logo.setAttribute("alt", "channel icon");
     logo.addClass("chicon img-fluid d-block");
     header.appendChild(logo);
