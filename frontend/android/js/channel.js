@@ -75,7 +75,7 @@ Channel.prototype.init = function (init_obj, channel_index) {
     var span1 = document.createElement("span");
     span1.classList.add("chicon", "pl-1", "order-3");
     var img = document.createElement("img");
-    img.src = this.getImageSrc(self.image);
+    img.src = getImageSrc(self.image);
     span1.appendChild(img);
     newTextbox.appendChild(span1);
     var span = document.createElement("span");
@@ -237,7 +237,9 @@ Channel.prototype.channelSelected = function () {
       $("#notification").removeClass();
       $("#notification").addClass("noservice");
       if (self.out_of_service_image) {
-        $("#notification").html('<img src="' + self.out_of_service_image.mediaUri + '" class="img-fluid position-relative"/>');
+        $("#notification").html(
+          '<img src="' + getImageSrc(self.out_of_service_image) + '" class="img-fluid position-relative"/>'
+        );
       } else {
         $("#notification").text("Service not available");
       }
@@ -366,9 +368,7 @@ Channel.prototype.updateChannelInfo = function () {
     cpsInstance;
   var channelInfo = $("#channel_info");
   channelInfo.empty();
-  channelInfo.append(
-    '<span class="menuitem_chicon d-inline-block"><img src="' + this.getImageSrc(self.image) + '"></span>'
-  );
+  channelInfo.append('<span class="menuitem_chicon d-inline-block"><img src="' + getImageSrc(self.image) + '"></span>');
   channelInfo.append(
     '<span class="menuitem_chnumber d-inline-block">' +
       self.lcn +
@@ -477,7 +477,7 @@ Channel.prototype.showEPG = function () {
     var header = document.createElement("div");
     header.addClass("epg_chinfo align-items-center sticky-top px-2");
     var logo = document.createElement("img");
-    logo.setAttribute("src", self?.image?.mediaUri || "./images/empty.png");
+    logo.setAttribute("src", getImageSrc(self?.image));
     logo.setAttribute("alt", "channel icon");
     logo.addClass("chicon img-fluid d-block");
     header.appendChild(logo);

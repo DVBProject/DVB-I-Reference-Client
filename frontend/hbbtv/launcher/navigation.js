@@ -1039,7 +1039,7 @@ function doServiceSelection() {
         } catch (e) {}
       }
       if (selectedService.out_of_service_image) {
-        showInfo('<img src="' + selectedService.out_of_service_image + '"/>', 60, "noservice");
+        showInfo('<img src="' + getImageSrc(selectedService.out_of_service_image) + '"/>', 60, "noservice");
       } else {
         showInfo("Service not available", 60, "noservice");
       }

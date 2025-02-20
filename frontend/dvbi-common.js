@@ -1162,6 +1162,18 @@ function getMedia(element) {
   }
 }
 
+function getImageSrc(image, defaultImage = "./images/empty.png") {
+  if (image && image.mediaUri) {
+    return image.mediaUri;
+  } else if (image && image.mediaData64) {
+    return "data:" + image.type + ";base64," + image.mediaData64;
+  } else if (defaultImage) {
+    return defaultImage;
+  } else {
+    return null;
+  }
+}
+
 getParentalRating = function (href) {
   if (href == "urn:fvc:metadata:cs:ContentRatingCS:2014-07:no_parental_controls") {
     return "None";
