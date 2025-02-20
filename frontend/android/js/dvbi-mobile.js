@@ -337,7 +337,7 @@ function loadServicelist(list) {
 function serviceListSelected() {
   $("#servicelist_registry").hide();
   $("#settings").hide();
-  $("#list_logo").attr("src", serviceList?.image?.mediaUri || "images/logo_dvbi_sofia.png");
+  $("#list_logo").attr("src", getImageSrc(serviceList.image, "images/logo_dvbi_sofia.png"));
   var channelIndex = 0;
   for (var i = 0; i < serviceList.services.length; i++) {
     var channel = new Channel();

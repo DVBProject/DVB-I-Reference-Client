@@ -32,18 +32,6 @@ Channel.prototype.getGenre = function (genre) {
   return null;
 };
 
-Channel.prototype.getImageSrc = function (image, defaultImage = true) {
-  if (image && image.mediaUri) {
-    return image.mediaUri;
-  } else if (image && image.mediaData64) {
-    return "data:" + image.type + ";base64," + image.mediaData64;
-  } else if (defaultImage) {
-    return "./images/empty.png";
-  } else {
-    return null;
-  }
-};
-
 Channel.prototype.parseSchedule = function (data) {
   var newPrograms = [];
   var parser = new DOMParser();
