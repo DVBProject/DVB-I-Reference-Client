@@ -1,7 +1,7 @@
 # Build a DVB-I Server
-
+(This guide assumes some Linux experience, exact system directories, package names and system maintenance commands may vary between Linux distributions) 
 ## System libraries and modules
-### Install PHP 7.4 (includes Apache 2)
+### Install latest PHP 8 (includes Apache 2)
 ``sudo apt install php``
 
 ### Configure PHP to allow execution in user directories
