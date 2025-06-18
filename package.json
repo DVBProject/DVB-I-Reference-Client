@@ -1,6 +1,6 @@
 {
   "name": "dvb-i-reference-application",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Script to package HbbTV client as an operator application package",
   "main": "opapp_package.js",
   "repository": {
@@ -13,7 +13,10 @@
     "url": "https://github.com/DVBProject/DVB-I-Reference-Client/issues"
   },
   "homepage": "https://github.com/DVBProject/DVB-I-Reference-Client#readme",
-  "dependencies": {
-    "archiver": "^5.3.1"
+  "scripts": {
+    "build": "node opapp_package.js"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1"
   }
 }
