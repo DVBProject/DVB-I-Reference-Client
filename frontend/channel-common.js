@@ -32,18 +32,6 @@ Channel.prototype.getGenre = function (genre) {
   return null;
 };
 
-Channel.prototype.getImageSrc = function (image, defaultImage = true) {
-  if (image && image.mediaUri) {
-    return image.mediaUri;
-  } else if (image && image.mediaData64) {
-    return "data:" + image.type + ";base64," + image.mediaData64;
-  } else if (defaultImage) {
-    return "./images/empty.png";
-  } else {
-    return null;
-  }
-};
-
 Channel.prototype.parseSchedule = function (data) {
   var newPrograms = [];
   var parser = new DOMParser();
@@ -270,14 +258,13 @@ Channel.prototype.getServiceInstanceByCPSIndex = function (cpsIndex) {
 Channel.prototype.getMoreEpisodes = function (programId, callback) {
   var self = this;
   if (this.moreEpisodesURI && typeof callback == "function") {
-    $.get(
-      this.moreEpisodesURI + "?pid=" + programId + "&type=ondemand",
-      function (data) {
+    NetworkRequest(this.moreEpisodesURI + "?pid=" + programId + "&type=ondemand", {
+      success: function (data) {
         var episodes = self.parseSchedule(data);
         callback.call(callback, episodes);
       },
-      "text"
-    );
+      datatype: "text",
+    });
   } else if (typeof callback == "function") {
     callback.call(null);
   }
@@ -286,9 +273,8 @@ Channel.prototype.getMoreEpisodes = function (programId, callback) {
 Channel.prototype.getProgramInfo = function (programId, callback) {
   var self = this;
   if (this.programInfoURI && typeof callback == "function") {
-    $.get(
-      this.programInfoURI + "?pid=" + programId,
-      function (data) {
+    NetworkRequest(this.programInfoURI + "?pid=" + programId, {
+      success: function (data) {
         var episodes = self.parseSchedule(data);
         if (episodes.length > 0) {
           callback.call(callback, episodes[0]);
@@ -296,8 +282,8 @@ Channel.prototype.getProgramInfo = function (programId, callback) {
           callback.call(null);
         }
       },
-      "text"
-    );
+      dataType: "text",
+    });
   } else if (typeof callback == "function") {
     callback.call(null);
   }

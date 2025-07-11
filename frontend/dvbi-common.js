@@ -340,6 +340,47 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   return count ? res : "none";
 }
 
+function parseCMCDInitInfo(data) {
+  // parse CMCDInitialisationType according to dash.js (https://dashif.org/dash.js/pages/usage/cmcd.html)
+  //
+  if (!data.hasAttribute("reportingMode") || !data.hasAttribute("reportingMethod") || !data.hasAttribute("version"))
+    return null;
+  var CMCDinfo = {
+    enabled: true,
+  };
+
+  switch (data.getAttribute("reportingMode")) {
+    case "urn:dvb:metadata:cmcd:delivery:request":
+      // currently not used in dash.js
+      break;
+    default:
+      CMCDinfo.enabled = false;
+      break;
+  }
+  switch (data.getAttribute("reportingMethod")) {
+    case "urn:dvb:metadata:cmcd:delivery:customHTTPHeader":
+      CMCDinfo.mode = "header";
+      break;
+    case "urn:dvb:metadata:cmcd:delivery:queryArguments":
+      CMCDinfo.mode = "query";
+      break;
+    default:
+      CMCDinfo.enabled = false;
+      break;
+  }
+  CMCDinfo.enabledKeys = data.hasAttribute("enabledKeys") ? data.getAttribute("enabledKeys").split(" ") : null;
+  CMCDinfo.cid = data.hasAttribute("contentId") ? data.getAttribute("contentId") : null;
+  CMCDinfo.version = parseInt(data.getAttribute("version"), 10);
+  /*
+  // skip the "probability" calculation - always report any configured values
+  var prob = data.hasAttribute("probability") ? parseInt(data.hasAttribite("probability"), 10) : 1000;
+  if (Math.random() * 1000 > prob)
+    CMCDinfo.enabled = false;
+  }
+  */
+  return CMCDinfo;
+}
+
 function parseServiceList(data, dvbChannels, supportedDrmSystems) {
   var i, j, k, l;
   var serviceList = {};
@@ -671,6 +712,10 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
             DVBi_TYPES_ns,
             "URI"
           )[0].childNodes[0].nodeValue;
+          instance.CMCDinit =
+            serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "CMCD").length > 0
+              ? parseCMCDInitInfo(serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "CMCD")[0])
+              : null;
           sourceTypes.push("DVB-DASH");
           instances.push(instance);
         } catch (e) {}
@@ -1114,6 +1159,18 @@ function getMedia(element) {
   var mediaUri = element.getElementsByTagNameNS(tvaNS, "MediaUri");
   if (mediaUri.length > 0) {
     return { mediaUri: mediaUri[0].childNodes[0].nodeValue };
+  }
+}
+
+function getImageSrc(image, defaultImage = "./images/empty.png") {
+  if (image && image.mediaUri) {
+    return image.mediaUri;
+  } else if (image && image.mediaData64) {
+    return "data:" + image.type + ";base64," + image.mediaData64;
+  } else if (defaultImage) {
+    return defaultImage;
+  } else {
+    return null;
   }
 }
 

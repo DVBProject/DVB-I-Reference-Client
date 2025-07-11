@@ -1,9 +1,8 @@
 Channel.prototype.getNowNext = function (callback) {
   var self = this;
   if (self.contentGuideURI) {
-    $.get(
-      self.contentGuideURI + "?sid=" + self.getServiceRef() + "&now_next=true",
-      function (data) {
+    NetworkRequest(self.contentGuideURI + "?sid=" + self.getServiceRef() + "&now_next=true", {
+      success: function (data) {
         var now_next = {};
         var newPrograms = self.parseSchedule(data);
         if (newPrograms.length > 0) {
@@ -25,8 +24,8 @@ Channel.prototype.getNowNext = function (callback) {
           callback.call();
         }
       },
-      "text"
-    );
+      dataType: "text",
+    });
   }
 };
 
@@ -35,23 +34,25 @@ Channel.prototype.getSchedule = function (callback) {
   self.programs = [];
 
   if (self.contentGuideURI) {
-    $.get(
+    NetworkRequest(
       self.contentGuideURI + "?sid=" + self.getServiceRef() + "&start=" + self.epg.start + "&end=" + self.epg.end,
-      function (data) {
-        var programData = self.parseSchedule(data);
-        self.programs = [];
-        for (var i = 0; i < programData.length; i++) {
-          var program2 = new Program(programData[i], this.element_id + "_program_" + i, self);
-          program2.bilingual = this.bilingual;
-          program2.channelimage = this.image;
-          program2.channel_streamurl = this.streamurl;
-          self.programs.push(program2);
-        }
-        if (typeof callback == "function") {
-          callback.call();
-        }
-      },
-      "text"
+      {
+        success: function (data) {
+          var programData = self.parseSchedule(data);
+          self.programs = [];
+          for (var i = 0; i < programData.length; i++) {
+            var program2 = new Program(programData[i], this.element_id + "_program_" + i, self);
+            program2.bilingual = this.bilingual;
+            program2.channelimage = this.image;
+            program2.channel_streamurl = this.streamurl;
+            self.programs.push(program2);
+          }
+          if (typeof callback == "function") {
+            callback.call();
+          }
+        },
+        dataType: "text",
+      }
     );
   }
 };
@@ -74,7 +75,7 @@ Channel.prototype.init = function (init_obj, channel_index) {
     var span1 = document.createElement("span");
     span1.classList.add("chicon", "pl-1", "order-3");
     var img = document.createElement("img");
-    img.src = this.getImageSrc(self.image);
+    img.src = getImageSrc(self.image);
     span1.appendChild(img);
     newTextbox.appendChild(span1);
     var span = document.createElement("span");
@@ -149,7 +150,7 @@ Channel.prototype.getMediaPresentationApp = function (serviceInstance) {
   if (serviceInstance && serviceInstance.mediaPresentationApps) {
     for (i = 0; i < serviceInstance.mediaPresentationApps.length; i++) {
       mediaPresentationApp = serviceInstance.mediaPresentationApps[i];
-      if (mediaPresentationApp.contentType == XML_MIME || mediaPresentationApp.contentType == XHTML_MIMR) {
+      if (mediaPresentationApp.contentType == XML_MIME || mediaPresentationApp.contentType == XHTML_MIME) {
         return mediaPresentationApp.url;
       }
     }
@@ -174,6 +175,50 @@ Channel.prototype.checkAvailability = function () {
   this.availablityTimer = setTimeout(this.checkAvailability.bind(this), 60 * 1000);
 };
 
+function UUIDv7() {
+  // see https://stackoverflow.com/questions/71816194/uuidv6-v7-v8-in-javascript-browser
+  return "tttttttt-tttt-7xxx-yxxx-xxxxxxxxxxxx"
+    .replace(/[xy]/g, function (c) {
+      const r = Math.trunc(Math.random() * 16);
+      const v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    })
+    .replace(/^[t]{8}-[t]{4}/, function () {
+      const unixtimestamp = Date.now().toString(16).padStart(12, "0");
+      return unixtimestamp.slice(0, 8) + "-" + unixtimestamp.slice(8);
+    });
+}
+
+function DASHjsVersion5(player) {
+  var [major, minor, micro] = player.getVersion().split(".");
+  return major >= 5;
+}
+
+function playDASH(player, instance) {
+  if (instance == null) {
+    player.updateSettings({ streaming: { cmcd: { enabled: false } } });
+    player.attachSource(null);
+    return;
+  }
+
+  if (instance.hasOwnProperty("CMCDinit") && instance.CMCDinit != null) {
+    var cmcd_vars = { ...instance.CMCDinit };
+    cmcd_vars.sid = UUIDv7();
+    if (DASHjsVersion5(player)) {
+      cmcd_vars.applyParametersFromMpd = false;
+      cmcd_vars.includeInRequests = ["segment", "mpd"];
+    } else {
+      delete cmcd_vars.version;
+    }
+    player.updateSettings({
+      streaming: { cmcd: cmcd_vars },
+    });
+  } else {
+    player.updateSettings({ streaming: { cmcd: { enabled: false } } });
+  }
+  player.attachSource(instance.dashUrl);
+}
+
 Channel.prototype.channelSelected = function () {
   var self = this;
   $("#notification").hide();
@@ -192,7 +237,9 @@ Channel.prototype.channelSelected = function () {
       $("#notification").removeClass();
       $("#notification").addClass("noservice");
       if (self.out_of_service_image) {
-        $("#notification").html('<img src="' + self.out_of_service_image + '" class="img-fluid position-relative"/>');
+        $("#notification").html(
+          '<img src="' + getImageSrc(self.out_of_service_image) + '" class="img-fluid position-relative"/>'
+        );
       } else {
         $("#notification").text("Service not available");
       }
@@ -205,21 +252,21 @@ Channel.prototype.channelSelected = function () {
     } else if (self.isProgramAllowed()) {
       $("#parentalpin").hide();
       if (self.serviceInstance) {
-        player.attachSource(self.serviceInstance.dashUrl);
+        playDASH(player, self.serviceInstance);
       }
     } else {
-      player.attachSource(null);
+      playDASH(player, null);
       checkParentalPIN(
         "Enter parental PIN to watch service",
         function () {
           $("#notification").hide();
           try {
             if (player.getSource() != self.serviceInstance.dashUrl) {
-              player.attachSource(self.serviceInstance.dashUrl);
+              playDASH(player, self.serviceInstance);
             }
           } catch (e) {
             //player throws an error is there is no souce attached
-            player.attachSource(self.serviceInstance.dashUrl);
+            playDASH(player, self.serviceInstance);
           }
         },
         function () {
@@ -247,11 +294,11 @@ Channel.prototype.programChanged = function () {
       $("#notification").hide();
       try {
         if (player.getSource() != serviceInstance.dashUrl) {
-          player.attachSource(serviceInstance.dashUrl);
+          playDASH(player, serviceInstance);
         }
       } catch (e) {
         //player throws an error is there is no souce attached
-        player.attachSource(serviceInstance.dashUrl);
+        playDASH(player, serviceInstance);
       }
     } else {
       player.attachSource(null);
@@ -261,11 +308,11 @@ Channel.prototype.programChanged = function () {
           $("#notification").hide();
           try {
             if (player.getSource() != serviceInstance.dashUrl) {
-              player.attachSource(serviceInstance.dashUrl);
+              playDASH(player, serviceInstance);
             }
           } catch (e) {
             //player throws an error is there is no souce attached
-            player.attachSource(serviceInstance.dashUrl);
+            playDASH(player, serviceInstance);
           }
         },
         function () {
@@ -321,9 +368,7 @@ Channel.prototype.updateChannelInfo = function () {
     cpsInstance;
   var channelInfo = $("#channel_info");
   channelInfo.empty();
-  channelInfo.append(
-    '<span class="menuitem_chicon d-inline-block"><img src="' + this.getImageSrc(self.image) + '"></span>'
-  );
+  channelInfo.append('<span class="menuitem_chicon d-inline-block"><img src="' + getImageSrc(self.image) + '"></span>');
   channelInfo.append(
     '<span class="menuitem_chnumber d-inline-block">' +
       self.lcn +
@@ -432,7 +477,7 @@ Channel.prototype.showEPG = function () {
     var header = document.createElement("div");
     header.addClass("epg_chinfo align-items-center sticky-top px-2");
     var logo = document.createElement("img");
-    logo.setAttribute("src", self.image || "./images/empty.png");
+    logo.setAttribute("src", getImageSrc(self?.image));
     logo.setAttribute("alt", "channel icon");
     logo.addClass("chicon img-fluid d-block");
     header.appendChild(logo);
@@ -479,11 +524,11 @@ Channel.prototype.parentalRatingChanged = function (callback) {
     $("#notification").hide();
     try {
       if (player.getSource() != serviceInstance.dashUrl) {
-        player.attachSource(serviceInstance.dashUrl);
+        playDASH(player, serviceInstance);
       }
     } catch (e) {
-      //player throws an error is there is no souce attached
-      player.attachSource(serviceInstance.dashUrl);
+      //player throws an error if there is no souce attached
+      playDASH(player, serviceInstance);
     }
   } else {
     player.attachSource(null);
@@ -493,11 +538,11 @@ Channel.prototype.parentalRatingChanged = function (callback) {
         $("#notification").hide();
         try {
           if (player.getSource() != serviceInstance.dashUrl) {
-            player.attachSource(serviceInstance.dashUrl);
+            playDASH(player, serviceInstance);
           }
         } catch (e) {
           //player throws an error is there is no souce attached
-          player.attachSource(serviceInstance.dashUrl);
+          playDASH(player, serviceInstance);
         }
       },
       function () {

@@ -304,9 +304,8 @@ function openProgramInfo(program) {
 }
 
 function loadServicelist(list) {
-  $.get(
-    list,
-    function (data) {
+  NetworkRequest(list, {
+    success: function (data) {
       serviceList = parseServiceList(data, null, supportedDrmSystems);
       if (serviceList.regions) {
         var selectable = 0;
@@ -324,8 +323,8 @@ function loadServicelist(list) {
         serviceListSelected();
       }
     },
-    "text"
-  ).fail(function () {
+    dataType: "text",
+  }).fail(function () {
     $("#notification").text("Error loading service list. You can select a new service list from the settings.");
     $("#notification").show();
     setTimeout(function () {
@@ -338,11 +337,7 @@ function loadServicelist(list) {
 function serviceListSelected() {
   $("#servicelist_registry").hide();
   $("#settings").hide();
-  if (serviceList.image) {
-    $("#list_logo").attr("src", serviceList.image);
-  } else {
-    $("#list_logo").attr("src", "images/logo_dvbi_sofia.png");
-  }
+  $("#list_logo").attr("src", getImageSrc(serviceList.image, "images/logo_dvbi_sofia.png"));
   var channelIndex = 0;
   for (var i = 0; i < serviceList.services.length; i++) {
     var channel = new Channel();
@@ -570,9 +565,8 @@ function loadServicelistProviders(list, hideCloseButton, listElement) {
   } else {
     $("#close_service_providers").show();
   }
-  $.get(
-    list,
-    function (data) {
+  NetworkRequest(list, {
+    success: function (data) {
       var providers = parseServiceListProviders(data);
       var servicelists = providers.providerList;
       if (!listElement) {
@@ -651,8 +645,8 @@ function loadServicelistProviders(list, hideCloseButton, listElement) {
         }
       }
     },
-    "text"
-  );
+    dataType: "text",
+  });
 }
 
 function listSelected(list, keepRegion) {
@@ -709,31 +703,73 @@ function showStreamInfo() {
 function updateStreamInfo() {
   if (player) {
     try {
+      document.getElementById("DASHjs_version").innerHTML = player.getVersion();
       var settings = player.getSettings();
-      document.getElementById("live_settings").innerHTML =
-        "Low latency mode:" +
-        settings.streaming.lowLatencyEnabled +
-        " Delay:" +
-        settings.streaming.liveDelay +
-        "<br/>Min drift:" +
-        settings.streaming.liveCatchUpMinDrift +
-        " Catchup Rate" +
-        settings.streaming.liveCatchUpPlaybackRate;
-      var audioTrack = player.getBitrateInfoListFor("audio")[player.getQualityFor("audio")];
-      var videoTrack = player.getBitrateInfoListFor("video")[player.getQualityFor("video")];
-      var bestAudio = player.getTopBitrateInfoFor("audio");
-      var bestVideo = player.getTopBitrateInfoFor("video");
-      if (audioTrack) {
-        document.getElementById("audio_bitrate").innerHTML =
-          audioTrack.bitrate / 1000 + "kbits (max:" + bestAudio.bitrate / 1000 + "kbits)";
-      }
-      if (videoTrack) {
-        document.getElementById("video_bitrate").innerHTML =
-          videoTrack.bitrate / 1000 + "kbits (max:" + bestVideo.bitrate / 1000 + "kbits)";
+
+      if (DASHjsVersion5(player)) {
+        document.getElementById("live_settings").innerHTML =
+          "Low latency mode:" +
+          player.getLowLatencyModeEnabled() +
+          " Delay:" +
+          "INDEVv5" +
+          "<br/>Min drift:" +
+          "INDEVv5" +
+          " Catchup Rate:" +
+          "INDEVv5";
+
+        var audioTrack = player.getCurrentRepresentationForType("audio");
+        var highestAudio = 0,
+          audioReps = player.getRepresentationsByType("audio");
+        for (var i = 0; i < audioReps.length; i++) {
+          if (audioReps[i].bitrateInKbit > highestAudio) highestAudio = audioReps[i].bitrateInKbit;
+        }
+        document.getElementById("audio_bitrate").innerHTML = audioTrack
+          ? audioTrack.bitrateInKbit + "kbits (max:" + highestAudio + "kbits)"
+          : "no-audio";
+
+        var videoTrack = player.getCurrentRepresentationForType("video");
+        var highestVideo = 0,
+          highestRes = null,
+          videoReps = player.getRepresentationsByType("video");
+        for (var j = 0; j < videoReps.length; j++) {
+          if (videoReps[j].bitrateInKbit > highestVideo) {
+            highestVideo = videoReps[j].bitrateInKbit;
+            highestRes = videoReps[j].width + "x" + videoReps[j].height;
+          }
+        }
+        document.getElementById("video_bitrate").innerHTML = videoTrack
+          ? videoTrack.bitrateInKbit + "kbits (max:" + highestVideo + "kbits)"
+          : "no-video";
         document.getElementById("video_resolution").innerHTML =
-          videoTrack.width + "x" + videoTrack.height + " (max:" + bestVideo.width + "x" + bestVideo.height + ")";
+          videoTrack.width + "x" + videoTrack.height + (highestRes ? " (max:" + highestRes + ")" : "");
+
+        document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency() + "s";
+      } else {
+        document.getElementById("live_settings").innerHTML =
+          "Low latency mode:" +
+          settings.streaming.lowLatencyEnabled +
+          " Delay:" +
+          settings.streaming.liveDelay +
+          "<br/>Min drift:" +
+          settings.streaming.liveCatchUpMinDrift +
+          " Catchup Rate:" +
+          settings.streaming.liveCatchUpPlaybackRate;
+        var audioTrack = player.getBitrateInfoListFor("audio")[player.getQualityFor("audio")];
+        var videoTrack = player.getBitrateInfoListFor("video")[player.getQualityFor("video")];
+        var bestAudio = player.getTopBitrateInfoFor("audio");
+        var bestVideo = player.getTopBitrateInfoFor("video");
+        if (audioTrack) {
+          document.getElementById("audio_bitrate").innerHTML =
+            audioTrack.bitrate / 1000 + "kbits (max:" + bestAudio.bitrate / 1000 + "kbits)";
+        }
+        if (videoTrack) {
+          document.getElementById("video_bitrate").innerHTML =
+            videoTrack.bitrate / 1000 + "kbits (max:" + bestVideo.bitrate / 1000 + "kbits)";
+          document.getElementById("video_resolution").innerHTML =
+            videoTrack.width + "x" + videoTrack.height + " (max:" + bestVideo.width + "x" + bestVideo.height + ")";
+        }
+        document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency() + "s";
       }
-      document.getElementById("live_latency").innerHTML = player.getCurrentLiveLatency() + "s";
     } catch (e) {
       document.getElementById("audio_bitrate").innerHTML = "error";
       document.getElementById("video_bitrate").innerHTML = "error";

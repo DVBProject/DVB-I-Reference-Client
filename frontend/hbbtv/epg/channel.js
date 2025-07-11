@@ -10,48 +10,50 @@ EPGChannel.prototype.getSchedule = function (start, end, callback, earlier) {
 
   if (self.contentGuideURI) {
     var offset = new Date().getTimezoneOffset() * 60;
-    $.get(
+    NetworkRequest(
       self.contentGuideURI + "?sid=" + self.getServiceRef() + "&start=" + (start + offset) + "&end=" + (end + offset),
-      function (data) {
-        //TODO use ContentGuideServiceRef from the service
-        var j,
-          programData = self.parseSchedule(data);
-        var newPrograms = [];
-        for (var i = 0; i < programData.length; i++) {
-          var program2 = new EPGProgram(programData[i], self.element_id + "_program_" + i, self);
-          program2.bilingual = self.bilingual;
-          program2.channelimage = self.getImageSrc(self.image);
-          program2.channel_streamurl = self.streamurl;
-          newPrograms.push(program2);
-        }
-        if (newPrograms.length == 0) {
-          var program0 = {};
-          var programId = "no_program_" + start + "_" + end;
-          program0.start = new Date(start * 1000);
-          program0.end = new Date(end * 1000);
-          program0.prglen = (program0.end.getTime() - program0.start.getTime()) / (1000 * 60);
-          program0.title = "No programinfo available";
-          var program = new EPGProgram(program0, self.element_id + "_no_program", self);
-          program.bilingual = self.bilingual;
-          program.channelimage = self.image;
-          program.channel_streamurl = self.streamurl;
-          program.noprogram = true;
-          newPrograms.push(program);
-        }
-        if (earlier) {
-          for (j = newPrograms.length - 1; j >= 0; j--) {
-            self.programs.unshift(newPrograms[j]);
+      {
+        success: function (data) {
+          //TODO use ContentGuideServiceRef from the service
+          var j,
+            programData = self.parseSchedule(data);
+          var newPrograms = [];
+          for (var i = 0; i < programData.length; i++) {
+            var program2 = new EPGProgram(programData[i], self.element_id + "_program_" + i, self);
+            program2.bilingual = self.bilingual;
+            program2.channelimage = getImageSrc(self.image);
+            program2.channel_streamurl = self.streamurl;
+            newPrograms.push(program2);
           }
-        } else {
-          for (j = 0; j < newPrograms.length; j++) {
-            self.programs.push(newPrograms[j]);
+          if (newPrograms.length == 0) {
+            var program0 = {};
+            var programId = "no_program_" + start + "_" + end;
+            program0.start = new Date(start * 1000);
+            program0.end = new Date(end * 1000);
+            program0.prglen = (program0.end.getTime() - program0.start.getTime()) / (1000 * 60);
+            program0.title = "No programinfo available";
+            var program = new EPGProgram(program0, self.element_id + "_no_program", self);
+            program.bilingual = self.bilingual;
+            program.channelimage = self.image;
+            program.channel_streamurl = self.streamurl;
+            program.noprogram = true;
+            newPrograms.push(program);
           }
-        }
-        if (typeof callback == "function") {
-          callback.call();
-        }
-      },
-      "text"
+          if (earlier) {
+            for (j = newPrograms.length - 1; j >= 0; j--) {
+              self.programs.unshift(newPrograms[j]);
+            }
+          } else {
+            for (j = 0; j < newPrograms.length; j++) {
+              self.programs.push(newPrograms[j]);
+            }
+          }
+          if (typeof callback == "function") {
+            callback.call();
+          }
+        },
+        dataType: "text",
+      }
     ).fail(function () {
       var program0 = {};
       var programId = "no_program_" + start + "_" + end;

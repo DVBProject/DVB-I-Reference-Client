@@ -134,9 +134,8 @@ function init() {
 }
 
 function loadServicelistProviders(url, cancelAllowed) {
-  $.get(
-    url,
-    function (data) {
+  NetworkRequest(url, {
+    success: function (data) {
       var providers = parseServiceListProviders(data);
       var servicelists = providers.providerList;
       var buttons = [];
@@ -267,8 +266,8 @@ function loadServicelistProviders(url, cancelAllowed) {
         cancelAllowed
       );
     },
-    "text"
-  );
+    dataType: "text",
+  });
 }
 function selectServiceList(servicelistXML) {
   var currentChannel = null;
@@ -494,13 +493,12 @@ function updateProggressbars() {
 }
 
 function getServiceList(list, succesCallback, errorCallback) {
-  $.get(
-    list,
-    function (data) {
+  NetworkRequest(list, {
+    success: function (data) {
       succesCallback(data);
     },
-    "text"
-  );
+    dataType: "text",
+  });
 }
 
 function initClock() {
