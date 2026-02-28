@@ -3,3 +3,6 @@ Backend
  - include the following in the service list editor
     ~ <ServiceProminence>
 	~ <AccessibilityAttributes>
+
+System
+ - use jQuery 4.0.0
