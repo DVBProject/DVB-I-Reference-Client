@@ -13,7 +13,10 @@
     "url": "https://github.com/DVBProject/DVB-I-Reference-Client/issues"
   },
   "homepage": "https://github.com/DVBProject/DVB-I-Reference-Client#readme",
-  "dependencies": {
-    "archiver": "^5.3.1"
+  "scripts": {
+	  "build": "node opapp_package.js"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1"
   }
 }
