@@ -80,3 +80,50 @@ This will create opapp.pkg in the project root directory. Edit the [XML AIT](htt
 Backend is deployable to any web server with PHP support. Make sure that the "servicelists" directory is writable. The backend stores new servicelists there.
 
 NOTE: The frontend uses "example.xml" as the service list. It can be browsed in the Backend editor as well, but not modified. [https://dvb-i-reference.dvb.org/client/backend/servicelists/example.xml](https://dvb-i-reference.dvb.org/client/backend/servicelists/example.xml)
+
+## Installation Alternative with Docker
+
+For ease of deployment and development, you can utilize Docker to run the DVB-I Reference Application. This method allows you to quickly set up an environment without requiring manual configuration.
+
+### Prerequisites
+
+Before proceeding, ensure that you have the following installed on your system:
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Steps for Docker Deployment
+
+1. **Clone the Repository**:
+   Begin by cloning the repository to your local machine.
+   ```bash
+   git clone https://github.com/DVBProject/DVB-I-Reference-Client.git
+   cd DVB-I-Reference-Client
+   ```
+
+2. **Run Docker Containers**:
+   Use the provided `docker-compose.yml` file to run the container.
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Access the Application**:
+   Once the containers are up and running, you can access the DVB-I Reference Application by navigating to [http://localhost:8888/client](http://localhost:8888/client) in your web browser.
+
+### Development Mode with Docker Volumes
+
+If you prefer to work in a development mode, where changes to the source code are reflected immediately, you can use Docker volumes:
+
+1. **Uncomment volume mapping at docker-compose.yml**:
+   ```yml
+   volumes:
+      - ./:/var/www/html/client
+   ```
+
+2. **Run Docker Containers**:
+   Use the modified `docker-compose.yml` file to run the container.
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Access the Application**:
+   Continue to access the application via [http://localhost:8888/client](http://localhost:8888/client).
