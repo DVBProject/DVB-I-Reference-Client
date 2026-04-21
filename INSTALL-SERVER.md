@@ -2,10 +2,10 @@
 (This guide assumes some Linux experience, exact system directories, package names and system maintenance commands may vary between Linux distributions) 
 ## System libraries and modules
 ### Install latest PHP 8 (includes Apache 2)
-``sudo apt install php``
+``sudo apt install php8.3``
 
 ### Configure PHP to allow execution in user directories
-Edit ``/etc/apache2/mods-enabled/php7.4.conf`` to comment out the restrictions on PHP in user directories
+Edit ``/etc/apache2/mods-enabled/php8.3.conf`` to comment out the restrictions on PHP in user directories
 
     # To re-enable php in user directories comment the following lines
     # (from <IfModule ...> to </IfModule>.) Do NOT set it to On as it
@@ -29,6 +29,7 @@ Edit ``/etc/apache2/mods-enabled/php7.4.conf`` to comment out the restrictions o
     git clone https://github.com/DVBProject/DVB-I-Reference-Client ~/dvbi/
     sudo ln -s ~/dvbi  /var/www/html/MyDVBi
 
+Make sure Apache has access to ~/dvbi/
 Note that, you could also create a custom Apache site in `/etc/apache2/sites-available` and enable it with `a2ensite`.
 
 ### Update files to refer to local endpoints
