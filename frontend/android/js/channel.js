@@ -413,7 +413,7 @@ Channel.prototype.updateChannelInfo = function () {
           );
         }
       }
-      info.click(function () {
+      info.on("click", function () {
         openProgramInfo(now);
       });
     }
@@ -451,7 +451,7 @@ Channel.prototype.updateChannelInfo = function () {
           );
         }
       }
-      info.click(function () {
+      info.on("click", function () {
         openProgramInfo(next);
       });
     }

@@ -5,7 +5,7 @@ tasks.register('copyFiles', Copy) {
     from new File("$projectDir/../../../")
     into "${layout.projectDirectory}/src/main/assets/"
     include 'identifiers.js'
-    include 'jquery-3.7.1.min.js'
+    include 'jquery-4.0.0.min.js'
     include 'namespaces.js'
     include 'frontend/i18n/**'
     include 'frontend/*.js'
@@ -63,7 +63,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.7'
 
     implementation 'androidx.tvprovider:tvprovider:1.1.0-alpha01'
-    
+
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("androidx.security:security-crypto:1.1.0-alpha03")
     implementation 'androidx.recyclerview:recyclerview:'                     + project.ext.jetpackVersion            // (344 KB) https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview?repo=google
@@ -71,7 +71,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:2.1.0"
     implementation "androidx.tvprovider:tvprovider:"
     implementation 'pub.devrel:easypermissions:3.0.0'
-    
+
     // Minimal version for suitest is 25.2.0, you can use any higher.
     debugImplementation 'org.java-websocket:Java-WebSocket:1.5.1'
 }

@@ -97,7 +97,7 @@ function showAlertDialog(q1, q2, buttons, _checked, _focused, callback, cancel) 
     lastvisible = buttonElems[Math.min(buttonElems.length - 1, firstvisibleIdx + alertDialog.visibleItems - 1)];
     lastvisible.addClass("lastvisible");
 
-    var scrolltop = $(".dialogButton:eq(" + alertDialog.focused + ")").outerHeight(true) * firstvisibleIdx;
+    var scrolltop = $(".dialogButton").eq(alertDialog.focused).outerHeight(true) * firstvisibleIdx;
     $("#dialogWrapper").scrollTop(scrolltop);
   }
   //handleAlertDialogArrows();
@@ -124,12 +124,10 @@ function navigateAlertDialog(keyCode) {
       case VK_DOWN:
       case VK_UP:
         if (keyCode == VK_UP && alertDialog.focused) {
-          if ($(".dialogButton:eq(" + alertDialog.focused + ")").hasClass("firstvisible") && alertDialog.focused > 0) {
+          if ($(".dialogButton").eq(alertDialog.focused).hasClass("firstvisible") && alertDialog.focused > 0) {
             animating = true;
-            $(".dialogButton:eq(" + alertDialog.focused + ")").removeClass("firstvisible");
-            $(".dialogButton:eq(" + alertDialog.focused + ")")
-              .prev()
-              .addClass("firstvisible");
+            $(".dialogButton").eq(alertDialog.focused).removeClass("firstvisible");
+            $(".dialogButton").eq(alertDialog.focused).prev().addClass("firstvisible");
             var lastvisible = $(".dialogButton.lastvisible");
             lastvisible.removeClass("lastvisible");
             lastvisible.prev().addClass("lastvisible");
@@ -137,8 +135,7 @@ function navigateAlertDialog(keyCode) {
             $("#dialogWrapper").animate(
               {
                 scrollTop:
-                  $("#dialogWrapper").scrollTop() -
-                  $(".dialogButton:eq(" + alertDialog.focused + ")").outerHeight(true),
+                  $("#dialogWrapper").scrollTop() - $(".dialogButton").eq(alertDialog.focused).outerHeight(true),
               },
               {
                 duration: 250,
@@ -156,14 +153,12 @@ function navigateAlertDialog(keyCode) {
           alertDialog.focused--;
         } else if (keyCode == VK_DOWN && alertDialog.focused < alertDialog.options - 1) {
           if (
-            $(".dialogButton:eq(" + alertDialog.focused + ")").hasClass("lastvisible") &&
+            $(".dialogButton").eq(alertDialog.focused).hasClass("lastvisible") &&
             alertDialog.focused + 1 < alertDialog.options
           ) {
             animating = true;
-            $(".dialogButton:eq(" + alertDialog.focused + ")").removeClass("lastvisible");
-            $(".dialogButton:eq(" + alertDialog.focused + ")")
-              .next()
-              .addClass("lastvisible");
+            $(".dialogButton").eq(alertDialog.focused).removeClass("lastvisible");
+            $(".dialogButton").eq(alertDialog.focused).next().addClass("lastvisible");
             var firstvisible = $(".dialogButton.firstvisible");
             firstvisible.removeClass("firstvisible");
             firstvisible.next().addClass("firstvisible");
@@ -171,8 +166,7 @@ function navigateAlertDialog(keyCode) {
             $("#dialogWrapper").animate(
               {
                 scrollTop:
-                  $("#dialogWrapper").scrollTop() +
-                  $(".dialogButton:eq(" + alertDialog.focused + ")").outerHeight(true),
+                  $("#dialogWrapper").scrollTop() + $(".dialogButton").eq(alertDialog.focused).outerHeight(true),
               },
               {
                 duration: 250,
@@ -190,7 +184,7 @@ function navigateAlertDialog(keyCode) {
           alertDialog.focused++;
         }
         $(".dialogButton.focused").removeClass("focused");
-        $(".dialogButton:eq(" + alertDialog.focused + ")").addClass("focused");
+        $(".dialogButton").eq(alertDialog.focused).addClass("focused");
         break;
 
       case VK_ENTER:

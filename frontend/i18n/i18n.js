@@ -1,10 +1,10 @@
 function I18n() {
   this.languages = [
-    { lang: "en", name: "English" },
-    { lang: "zh", name: "Chinese" },
-    { lang: "de", name: "German" },
-    { lang: "fi", name: "Suomi" },
-    { lang: "it", name: "Italian" },
+    { lang: "en", name: "English", strings: xlate_English },
+    { lang: "zh", name: "Chinese", strings: xlate_Chinese },
+    { lang: "de", name: "German", strings: xlate_German },
+    { lang: "fi", name: "Suomi", strings: xlate_Finnish },
+    { lang: "it", name: "Italian", strings: xlate_Italian },
   ];
   this.languageData = null;
   this.currentLanguage = null;
@@ -106,21 +106,11 @@ I18n.prototype.loadLanguage = function (language, callback) {
   if (!found) {
     return false;
   }
-  var jsFileLocation = $("script[src*=i18n]").attr("src"); // the js file path
-  jsFileLocation = jsFileLocation.replace("i18n.js", "");
-  console.log(language);
-  var self = this;
   this.currentLanguage = language;
-  $.get(
-    jsFileLocation + language + ".json",
-    function (data) {
-      self.languageData = data;
-      if (typeof callback == "function") {
-        callback.call();
-      }
-    },
-    "json"
-  );
+  this.languageData = this.languages[i].strings;
+  if (typeof callback == "function") {
+    callback.call();
+  }
   return true;
 };
 

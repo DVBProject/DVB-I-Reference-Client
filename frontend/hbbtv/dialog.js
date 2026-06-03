@@ -80,7 +80,7 @@ function showDialog(q, buttons, _checked, _focused, callback, cancel, keyHandler
     lastvisible = buttonElems[0].children[Math.min(buttonElems.length - 1, firstvisibleIdx + dialog.visibleItems - 1)];
     lastvisible.addClass("lastvisible");
 
-    var scrolltop = $(".dialogButton:eq(" + dialog.focused + ")").outerHeight(true) * firstvisibleIdx;
+    var scrolltop = $(".dialogButton").eq(dialog.focused).outerHeight(true) * firstvisibleIdx;
     $("#dialogWrapper").scrollTop(scrolltop);
   }
   if (!header) {
@@ -120,20 +120,17 @@ function navigateDialog(keyCode) {
       case VK_DOWN:
       case VK_UP:
         if (keyCode == VK_UP && dialog.focused) {
-          if ($(".dialogButton:eq(" + dialog.focused + ")").hasClass("firstvisible") && dialog.focused > 0) {
+          if ($(".dialogButton").eq(dialog.focused).hasClass("firstvisible") && dialog.focused > 0) {
             animating = true;
-            $(".dialogButton:eq(" + dialog.focused + ")").removeClass("firstvisible");
-            $(".dialogButton:eq(" + dialog.focused + ")")
-              .prev()
-              .addClass("firstvisible");
+            $(".dialogButton").eq(dialog.focused).removeClass("firstvisible");
+            $(".dialogButton").eq(dialog.focused).prev().addClass("firstvisible");
             var lastvisible = $(".dialogButton.lastvisible");
             lastvisible.removeClass("lastvisible");
             lastvisible.prev().addClass("lastvisible");
             animating = true;
             $("#dialogWrapper").animate(
               {
-                scrollTop:
-                  $("#dialogWrapper").scrollTop() - $(".dialogButton:eq(" + dialog.focused + ")").outerHeight(true),
+                scrollTop: $("#dialogWrapper").scrollTop() - $(".dialogButton").eq(dialog.focused).outerHeight(true),
               },
               {
                 duration: 250,
@@ -150,23 +147,17 @@ function navigateDialog(keyCode) {
           }
           dialog.focused--;
         } else if (keyCode == VK_DOWN && dialog.focused < dialog.options - 1) {
-          if (
-            $(".dialogButton:eq(" + dialog.focused + ")").hasClass("lastvisible") &&
-            dialog.focused + 1 < dialog.options
-          ) {
+          if ($(".dialogButton").eq(dialog.focused).hasClass("lastvisible") && dialog.focused + 1 < dialog.options) {
             animating = true;
-            $(".dialogButton:eq(" + dialog.focused + ")").removeClass("lastvisible");
-            $(".dialogButton:eq(" + dialog.focused + ")")
-              .next()
-              .addClass("lastvisible");
+            $(".dialogButton").eq(dialog.focused).removeClass("lastvisible");
+            $(".dialogButton").eq(dialog.focused).next().addClass("lastvisible");
             var firstvisible = $(".dialogButton.firstvisible");
             firstvisible.removeClass("firstvisible");
             firstvisible.next().addClass("firstvisible");
             animating = true;
             $("#dialogWrapper").animate(
               {
-                scrollTop:
-                  $("#dialogWrapper").scrollTop() + $(".dialogButton:eq(" + dialog.focused + ")").outerHeight(true),
+                scrollTop: $("#dialogWrapper").scrollTop() + $(".dialogButton").eq(dialog.focused).outerHeight(true),
               },
               {
                 duration: 250,
@@ -184,7 +175,7 @@ function navigateDialog(keyCode) {
           dialog.focused++;
         }
         $(".dialogButton.focused").removeClass("focused");
-        $(".dialogButton:eq(" + dialog.focused + ")").addClass("focused");
+        $(".dialogButton").eq(dialog.focused).addClass("focused");
         break;
 
       case VK_ENTER:
