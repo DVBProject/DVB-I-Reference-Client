@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList xml:lang="en" version="1" id="tag:dvb.org,2024:ref-example"
-    xmlns="urn:dvb:metadata:servicediscovery:2025" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:tva="urn:tva:metadata:2024"
+<ServiceList xml:lang="en" version="1" id="tag:dvb.org,2026:ref-example"
+    xmlns="urn:dvb:metadata:servicediscovery:2026" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2026" xmlns:tva="urn:tva:metadata:2026"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mpeg7="urn:tva:mpeg7:2008"
-    xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2024 schemas/dvbi_v6.0.xsd">
+    xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2026 schemas/dvbi_v8.0.xsd">
   <Name>DVB-I example service list</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
-    <LCNTable>
+    <LCNTable version="1">
       <LCN channelNumber="646" serviceRef="tag:dvb.org,2020:sid1"/>
       <LCN channelNumber="11" serviceRef="tag:dvb.org,2020:sid2"/>
       <LCN channelNumber="4" serviceRef="tag:dvb.org,2020:sid3"/>
@@ -61,9 +61,14 @@
         <UriBasedLocation contentType="application/dash+xml">
           <dvbi-types:URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</dvbi-types:URI>
         </UriBasedLocation>
-        <CMCD version="1" enabledKeys="sid cid pr sf"
-          reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"
-          contentId="AABBCCDD-1122-DEAD-BEEF-334455667788"/>
+        <CMCD CMCDversion="1">
+			    <Report
+				    enabledKeys="sid cid pr sf"
+				    reportingMode="urn:dvb:metadata:cmcd:delivery:request"
+				    reportingMethod="GET"
+				    transmissionMode="urn:dvb:metadata:cmcd:delivery:queryArguments"
+				    contentId="AABBCCDD-1122-DEAD-BEEF-111111111111"/>
+		    </CMCD>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName xml:lang="en">IRT test channel</ServiceName>
@@ -231,7 +236,7 @@
 				<UriBasedLocation contentType="application/dash+xml">
 					<dvbi-types:URI>https://livesim.dashif.org/livesim-chunked/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd</dvbi-types:URI>
 				</UriBasedLocation>
-			</DASHDeliveryParameters>
+ 			</DASHDeliveryParameters>
 		</ServiceInstance>
 		<ServiceName>DASH-IF livesim LL</ServiceName>
  		<ProviderName>DASH Industry Forum</ProviderName>
@@ -257,8 +262,6 @@
 				<UriBasedLocation contentType="application/dash+xml">
 					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
 				</UriBasedLocation>
-      <!--  <CMCD version="1"
-          reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/> -->
 			</DASHDeliveryParameters>
 		</ServiceInstance>
 		<ServiceName>Akamai LL test</ServiceName>

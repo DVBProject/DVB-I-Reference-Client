@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceList version="45" id="tag:dvb.org,2024:ref-advanced-codecs" xml:lang="en"
-    xmlns="urn:dvb:metadata:servicediscovery:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:tva="urn:tva:metadata:2024"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2024 schemas/dvbi_v6.0.xsd">
+<ServiceList version="45" id="tag:dvb.org,2026:ref-advanced-codecs" xml:lang="en"
+    xmlns="urn:dvb:metadata:servicediscovery:2026" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2026" xmlns:tva="urn:tva:metadata:2026"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2026 schemas/dvbi_v8.0.xsd">
   <Name>Advanced codecs Service list</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
-    <LCNTable>
+    <LCNTable version="1">
       <LCN channelNumber="1" serviceRef="tag:dvb.org,2021:advsid1"></LCN>
     </LCNTable>
   </LCNTableList>

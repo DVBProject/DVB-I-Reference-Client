@@ -340,24 +340,31 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   return count ? res : "none";
 }
 
-function parseCMCDInitInfo(data) {
+function parseCMCDInitInfo(CMCDelement) {
   // parse CMCDInitialisationType according to dash.js (https://dashif.org/dash.js/pages/usage/cmcd.html)
   //
-  if (!data.hasAttribute("reportingMode") || !data.hasAttribute("reportingMethod") || !data.hasAttribute("version"))
+  var version_attr = CMCDelement.getAttribute("CMCDversion");
+  if ( !CMCDelement.hasAttribute("CMCDversion") || parseInt(CMCDelement.getAttribute("CMCDversion"), 10) != 1)
     return null;
+
+  var Report = CMCDelement.getElementsByTagNameNS(DVBi_ns, "Report")[0];
+  if (!Report)
+    return null;
+
   var CMCDinfo = {
     enabled: true,
+    applyParametersFromMpd: false,
   };
 
-  switch (data.getAttribute("reportingMode")) {
+  switch (Report.getAttribute("reportingMode")) {
     case "urn:dvb:metadata:cmcd:delivery:request":
-      // currently not used in dash.js
+      // currently not signalled to dash.js
       break;
     default:
       CMCDinfo.enabled = false;
       break;
   }
-  switch (data.getAttribute("reportingMethod")) {
+  switch (Report.getAttribute("transmissionMode")) {
     case "urn:dvb:metadata:cmcd:delivery:customHTTPHeader":
       CMCDinfo.mode = "header";
       break;
@@ -368,9 +375,11 @@ function parseCMCDInitInfo(data) {
       CMCDinfo.enabled = false;
       break;
   }
-  CMCDinfo.enabledKeys = data.hasAttribute("enabledKeys") ? data.getAttribute("enabledKeys").split(" ") : null;
-  CMCDinfo.cid = data.hasAttribute("contentId") ? data.getAttribute("contentId") : null;
-  CMCDinfo.version = parseInt(data.getAttribute("version"), 10);
+  if (Report.hasAttribute("enabledKeys"))
+    CMCDinfo.enabledKeys =  Report.getAttribute("enabledKeys").split(" ");
+  if (Report.hasAttribute("contentId"))
+    CMCDinfo.cid = Report.getAttribute("contentId");
+  CMCDinfo.version = parseInt(CMCDelement.getAttribute("version"), 10);
   /*
   // skip the "probability" calculation - always report any configured values
   var prob = data.hasAttribute("probability") ? parseInt(data.hasAttribite("probability"), 10) : 1000;
@@ -707,14 +716,12 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         }
       }
       if (serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DASHDeliveryParameters").length > 0) {
+        var DASHparams = serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DASHDeliveryParameters")[0];
         try {
-          instance.dashUrl = serviceInstances[j].getElementsByTagNameNS(
-            DVBi_TYPES_ns,
-            "URI"
-          )[0].childNodes[0].nodeValue;
+          instance.dashUrl = serviceInstances[j].getElementsByTagNameNS(DVBi_TYPES_ns, "URI")[0].childNodes[0].nodeValue;
           instance.CMCDinit =
-            serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "CMCD").length > 0
-              ? parseCMCDInitInfo(serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "CMCD")[0])
+            DASHparams.getElementsByTagNameNS(DVBi_ns, "CMCD").length > 0
+              ? parseCMCDInitInfo(DASHparams.getElementsByTagNameNS(DVBi_ns, "CMCD")[0])
               : null;
           sourceTypes.push("DVB-DASH");
           instances.push(instance);
