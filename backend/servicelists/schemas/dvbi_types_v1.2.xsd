@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2024" targetNamespace="urn:dvb:metadata:servicediscovery-types:2023" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<import namespace="urn:tva:metadata:2024" schemaLocation="tva_metadata_3-1.xsd"/>
+<!DOCTYPE schema [
+	<!ENTITY Letter "A-Za-z">
+	<!ENTITY HexDigit "[0-9A-Fa-f]">
+	<!-- CombiningChar per https://www.w3.org/TR/2000/WD-xml-2e-20000814#NT-CombiningChar  -->
+	<!ENTITY CombiningChar "&#x0300;-&#x0345;&#x0360;-&#x0361;&#x0483;-&#x0486;&#x0591;-&#x05A1;&#x05A3;-&#x05B9;&#x05BB;-&#x05BD;&#x05BF;&#x05C1;-&#x05C2;&#x05C4;&#x064B;-&#x0652;&#x0670;&#x06D6;-&#x06DC;&#x06DD;-&#x06DF;&#x06E0;-&#x06E4;&#x06E7;-&#x06E8;&#x06EA;-&#x06ED;&#x0901;-&#x0903;&#x093C;&#x093E;-&#x094C;&#x094D;&#x0951;-&#x0954;&#x0962;-&#x0963;&#x0981;-&#x0983;&#x09BC;&#x09BE;&#x09BF;&#x09C0;-&#x09C4;&#x09C7;-&#x09C8;&#x09CB;-&#x09CD;&#x09D7;&#x09E2;-&#x09E3;&#x0A02;&#x0A3C;&#x0A3E;&#x0A3F;&#x0A40;-&#x0A42;&#x0A47;-&#x0A48;&#x0A4B;-&#x0A4D;&#x0A70;-&#x0A71;&#x0A81;-&#x0A83;&#x0ABC;&#x0ABE;-&#x0AC5;&#x0AC7;-&#x0AC9;&#x0ACB;-&#x0ACD;&#x0B01;-&#x0B03;&#x0B3C;&#x0B3E;-&#x0B43;&#x0B47;-&#x0B48;&#x0B4B;-&#x0B4D;&#x0B56;-&#x0B57;&#x0B82;-&#x0B83;&#x0BBE;-&#x0BC2;&#x0BC6;-&#x0BC8;&#x0BCA;-&#x0BCD;&#x0BD7;&#x0C01;-&#x0C03;&#x0C3E;-&#x0C44;&#x0C46;-&#x0C48;&#x0C4A;-&#x0C4D;&#x0C55;-&#x0C56;&#x0C82;-&#x0C83;&#x0CBE;-&#x0CC4;&#x0CC6;-&#x0CC8;&#x0CCA;-&#x0CCD;&#x0CD5;-&#x0CD6;&#x0D02;-&#x0D03;&#x0D3E;-&#x0D43;&#x0D46;-&#x0D48;&#x0D4A;-&#x0D4D;&#x0D57;&#x0E31;&#x0E34;-&#x0E3A;&#x0E47;-&#x0E4E;&#x0EB1;&#x0EB4;-&#x0EB9;&#x0EBB;-&#x0EBC;&#x0EC8;-&#x0ECD;&#x0F18;-&#x0F19;&#x0F35;&#x0F37;&#x0F39;&#x0F3E;&#x0F3F;&#x0F71;-&#x0F84;&#x0F86;-&#x0F8B;&#x0F90;-&#x0F95;&#x0F97;&#x0F99;-&#x0FAD;&#x0FB1;-&#x0FB7;&#x0FB9;&#x20D0;-&#x20DC;&#x20E1;&#x302A;-&#x302F;&#x3099;&#x309A;">
+	<!-- Extender per https://www.w3.org/TR/2000/WD-xml-2e-20000814#NT-Extender -->
+	<!ENTITY Extender "&#x00B7;&#x02D0;&#x02D1;&#x0387;&#x0640;&#x0E46;&#x0EC6;&#x3005;&#x3031;-&#x3035;&#x309D;-&#x309E;&#x30FC;-&#x30FE;">
+	<!ENTITY Identifier "[.\-_:/&Letter;\d&CombiningChar;&Extender;]+">
+	<!ENTITY UUID "&HexDigit;{8}\-&HexDigit;{4}\-&HexDigit;{4}\-&HexDigit;{4}\-&HexDigit;{12}">
+]>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2026" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2026" targetNamespace="urn:dvb:metadata:servicediscovery-types:2026" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<import namespace="urn:tva:metadata:2026" schemaLocation="tva_metadata_3-1_v1141.xsd"/>
 	<import namespace="urn:tva:mpeg7:2008" schemaLocation="tva_mpeg7.xsd"/>
 	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<complexType name="ExtensionBaseType" abstract="true">
@@ -33,10 +43,17 @@
 	<simpleType name="NetworkIdType">
 		<restriction base="unsignedShort"/>
 	</simpleType>
+	<complexType name="ServiceListURIType">
+		<complexContent>
+			<extension base="dvbi-types:ExtendedURIType">
+				<attribute name="standardVersion" type="mpeg7:termReferenceType"/>
+			</extension>
+		</complexContent>
+	</complexType>
 	<complexType name="ServiceListOfferingType">
 		<sequence>
 			<element name="ServiceListName" type="mpeg7:TextualType" maxOccurs="unbounded"/>
-			<element name="ServiceListURI" type="dvbi-types:ExtendedURIType" maxOccurs="unbounded"/>
+			<element name="ServiceListURI" type="dvbi-types:ServiceListURIType" maxOccurs="unbounded"/>
 			<element name="Delivery" type="dvbi-types:DeliveryType"/>
 			<element name="Language" type="tva:AudioLanguageType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="Genre" type="tva:GenreType" minOccurs="0" maxOccurs="unbounded"/>
@@ -45,7 +62,7 @@
 			<element name="SRSSupport" minOccurs="0">
 				<complexType>
 					<attribute name="postcode" type="boolean" default="false"/>
-					<attribute name="regionId" type="boolean" default="false"/>
+					<attribute name="regionID" type="boolean" default="false"/>
 					<attribute name="receivedMultiplex" type="boolean" default="false"/>
 				</complexType>
 			</element>
@@ -86,11 +103,12 @@
 		<complexContent>
 			<extension base="dvbi-types:AbstractDeliveryType">
 				<sequence>
-					<element name="OriginalNetworkID" type="dvbi-types:NetworkIdType" minOccurs="0" 
-						maxOccurs="unbounded"/>
+					<element name="OriginalNetworkID" type="dvbi-types:NetworkIdType" minOccurs="0" maxOccurs="unbounded"/>
 				</sequence>
 				<attribute name="originalNetworkID" type="dvbi-types:NetworkIdType" use="optional">
-					<annotation><documentation>The use of this attribute is deprecated.</documentation></annotation>
+					<annotation>
+						<documentation>The use of this attribute is deprecated.</documentation>
+					</annotation>
 				</attribute>
 			</extension>
 		</complexContent>
@@ -98,7 +116,7 @@
 	<complexType name="DVBCDeliveryType">
 		<complexContent>
 			<extension base="dvbi-types:AbstractDeliveryType">
-				<attribute name="networkID" type="dvbi-types:NetworkIdType" use="required"/>
+				<attribute name="networkID" type="dvbi-types:NetworkIdType" use="optional"/>
 			</extension>
 		</complexContent>
 	</complexType>
@@ -106,7 +124,15 @@
 		<complexContent>
 			<extension base="dvbi-types:AbstractDeliveryType">
 				<sequence>
-					<element name="OrbitalPosition" type="dvbi-types:LongitudeType" maxOccurs="unbounded"/>
+					<element name="OrbitalPosition" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="dvbi-types:LongitudeType">
+									<attribute name="directTuningAvailable" type="boolean" use="optional" default="false"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
 				</sequence>
 				<attribute name="originalNetworkID" type="dvbi-types:NetworkIdType" use="optional">
 					<annotation>
@@ -125,22 +151,83 @@
 			</extension>
 		</complexContent>
 	</complexType>
+	<simpleType name="ApplicationTypeList">
+		<list itemType="anyURI"/>
+	</simpleType>
 	<complexType name="ApplicationType">
-		<attribute name="contentType" type="mpeg7:mimeType" use="required"/>
-		<attribute name="xmlAitApplicationType" type="mpeg7:mimeType"/>
+		<simpleContent>
+			<extension base="dvbi-types:ApplicationTypeList">
+				<attribute name="contentType" type="mpeg7:mimeType" use="required"/>
+				<attribute name="xmlAitApplicationType" type="mpeg7:mimeType"/>
+			</extension>
+		</simpleContent>
 	</complexType>
 	<complexType name="ExtendedURIPathType">
 		<sequence>
 			<element name="URI">
-				<simpleType>
-					<restriction base="anyURI">
-						<pattern value=".+/"/>
-					</restriction>
-				</simpleType>
+				<complexType>
+					<simpleContent>
+						<restriction base="dvbi-types:uriWithVerificationPolicy">
+							<pattern value=".+/"/>
+						</restriction>
+					</simpleContent>
+				</complexType>
 			</element>
 		</sequence>
 		<attribute name="contentType" type="mpeg7:mimeType" use="required"/>
 	</complexType>
+	<simpleType name="IdentifierOrUUIDType">
+		<restriction base="token">
+			<pattern value="&Identifier;"/>
+			<pattern value="&UUID;"/>
+		</restriction>
+	</simpleType>
+	<complexType name="SignaturePoliciesType">
+		<sequence>
+			<element name="SignaturePolicy" type="dvbi-types:SignaturePolicyType" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="SignaturePolicyType">
+		<sequence>
+			<element name="Enforcement">
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="required"/>
+						<enumeration value="warn"/>
+						<enumeration value="vendor"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="TrustAnchor">
+				<complexType>
+					<sequence>
+						<element name="CAFingerprint" maxOccurs="unbounded">
+							<complexType>
+								<simpleContent>
+									<extension base="dvbi-types:CAFingerprintType">
+										<attribute name="algorithm" type="string" use="required"/>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="SubjectConstraint" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="CN" type="anyURI" maxOccurs="unbounded"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="policyId" type="anyURI" use="required"/>
+	</complexType>
+	<simpleType name="CAFingerprintType">
+		<restriction base="string">
+			<pattern value="&HexDigit;{2}(:&HexDigit;{2})*"/>
+		</restriction>
+	</simpleType>
 	<!-- -->
 	<!-- data types adapted from  SDnS v1.4 -->
 	<!-- -->
@@ -181,8 +268,15 @@
 	<!-- -->
 	<complexType name="ExtendedURIType">
 		<sequence>
-			<element name="URI" type="anyURI"/>
+			<element name="URI" type="dvbi-types:uriWithVerificationPolicy"/>
 		</sequence>
 		<attribute name="contentType" type="mpeg7:mimeType" use="required"/>
+	</complexType>
+	<complexType name="uriWithVerificationPolicy">
+		<simpleContent>
+			<extension base="anyURI">
+				<attribute name="verificationPolicy" type="anyURI"/>
+			</extension>
+		</simpleContent>
 	</complexType>
 </schema>

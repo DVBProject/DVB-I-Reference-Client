@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2019 sp2 (x64) (http://www.altova.com) by Paul Higgs (Private) -->
 <!DOCTYPE schema [
 	<!ENTITY PostcodeChar "A-Za-z0-9">
 	<!ENTITY PostcodeSep "\- ">
@@ -13,17 +14,20 @@
 	<!ENTITY Hex16 "&HexDigit;{1,4}">
 	<!ENTITY Hex8 "&HexDigit;{1,2}">
 ]>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dvbisd="urn:dvb:metadata:servicediscovery:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2024" targetNamespace="urn:dvb:metadata:servicediscovery:2024" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<import namespace="urn:dvb:metadata:servicediscovery-types:2023" schemaLocation="dvbi_types_v1.0.xsd"/>
-	<import namespace="urn:tva:metadata:2024" schemaLocation="tva_metadata_3-1.xsd"/>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dvbisd="urn:dvb:metadata:servicediscovery:2026" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2026" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2026" targetNamespace="urn:dvb:metadata:servicediscovery:2026" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<import namespace="urn:dvb:metadata:servicediscovery-types:2026" schemaLocation="dvbi_types_v1.2.xsd"/>
+	<import namespace="urn:tva:metadata:2026" schemaLocation="tva_metadata_3-1_v1141.xsd"/>
 	<import namespace="urn:tva:mpeg7:2008" schemaLocation="tva_mpeg7.xsd"/>
 	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<element name="ServiceList" type="dvbisd:ServiceListType"/>
 	<element name="Playlist" type="dvbisd:DASHPlaylistType"/>
 	<complexType name="ServiceListType">
 		<sequence>
+			<element name="StandardVersion" type="mpeg7:termReferenceType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="Name" type="mpeg7:TextualType" maxOccurs="unbounded"/>
 			<element name="ProviderName" type="mpeg7:TextualType" maxOccurs="unbounded"/>
+			<element name="Requires" type="dvbisd:InstallationRequirementsType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="SignaturePolicies" type="dvbi-types:SignaturePoliciesType" minOccurs="0"/>
 			<element name="LanguageList" type="dvbisd:LanguageListType" minOccurs="0"/>
 			<element name="RelatedMaterial" type="tva:RelatedMaterialType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="RegionList" type="dvbisd:RegionListType" minOccurs="0"/>
@@ -56,6 +60,16 @@
 			</simpleType>
 		</attribute>
 		<attribute ref="xml:lang" use="required"/>
+	</complexType>
+	<complexType name="InstallationRequirementsType">
+		<sequence>
+			<element name="Delivery" type="dvbi-types:DeliveryType" minOccurs="0"/>
+		</sequence>
+		<attribute name="extraCapabilities">
+			<simpleType>
+				<list itemType="dvbi-types:IdentifierOrUUIDType"/>
+			</simpleType>
+		</attribute>
 	</complexType>
 	<complexType name="ContentGuideSourceListType">
 		<sequence>
@@ -127,8 +141,8 @@
 			<element name="SourceType" type="anyURI" minOccurs="0">
 				<annotation>
 					<documentation>
-					The use of this element is deprecated in this version of the specification, in favour of the client application making 
-					a delivery system determination based on the specified delivery parameters.
+					The use of this element is deprecated in this version of the specification, in favour of the client 
+					application making a delivery system determination based on the specified delivery parameters.
 				</documentation>
 				</annotation>
 			</element>
@@ -179,6 +193,8 @@
 		<complexContent>
 			<extension base="dvbisd:ProtectionSystemType">
 				<attribute name="encryptionScheme" type="dvbisd:EncryptionSchemeType" use="required"/>
+				<attribute name="LAURL" type="anyURI"/>
+				<attribute name="certificateURL" type="anyURI"/>
 			</extension>
 		</complexContent>
 	</complexType>
@@ -228,7 +244,7 @@
 			<element name="MinimumAge" maxOccurs="unbounded">
 				<complexType>
 					<simpleContent>
-						<extension base="nonNegativeInteger">
+						<extension base="dvbisd:RatingConstrainedAgeType">
 							<attribute name="countryCodes" type="tva:ISO-3166-List" use="optional"/>
 						</extension>
 					</simpleContent>
@@ -236,6 +252,12 @@
 			</element>
 		</sequence>
 	</complexType>
+	<simpleType name="RatingConstrainedAgeType">
+		<restriction base="nonNegativeInteger">
+			<minExclusive value="3"/>
+			<maxInclusive value="18"/>
+		</restriction>
+	</simpleType>
 	<complexType name="DVBTDeliveryParametersType">
 		<sequence>
 			<element name="DVBTriplet" type="dvbi-types:DVBTripletType"/>
@@ -380,7 +402,7 @@
 					<documentation>The use of this element is deprecated.</documentation>
 				</annotation>
 			</element>
-			<element name="NetworkID" type="dvbi-types:NetworkIdType"/>
+			<element name="NetworkID" type="dvbi-types:NetworkIdType" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 	</complexType>
 	<complexType name="RTSPDeliveryParametersType">
@@ -401,8 +423,81 @@
 		<sequence>
 			<element name="UriBasedLocation" type="dvbi-types:ExtendedURIType"/>
 			<element name="MinimumBitRate" type="unsignedInt" minOccurs="0"/>
+			<element name="CMCD" type="dvbisd:CMCDInitialisationType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="Extension" type="dvbi-types:ExtensionBaseType" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
+	</complexType>
+	<complexType name="CMCDInitialisationType">
+		<sequence>
+			<element name="Report" maxOccurs="unbounded">
+				<complexType>
+					<attribute name="reportingMode" use="required">
+						<simpleType>
+							<restriction base="string">
+								<enumeration value="urn:dvb:metadata:cmcd:delivery:request">
+									<annotation>
+										<documentation>CMCD Request Reporting Mode</documentation>
+									</annotation>
+								</enumeration>
+								<enumeration value="urn:dvb:metadata:cmcd:delivery:event">
+									<annotation>
+										<documentation>CMCD Event Reporting Mode</documentation>
+									</annotation>
+								</enumeration>
+							</restriction>
+						</simpleType>
+					</attribute>
+					<attribute name="eventURL" type="anyURI"/>
+					<attribute name="transmissionMode" use="required">
+						<simpleType>
+							<restriction base="string">
+								<enumeration value="urn:dvb:metadata:cmcd:delivery:customHTTPHeader"/>
+								<enumeration value="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+								<enumeration value="urn:dvb:metadata:cmcd:delivery:batch"/>
+							</restriction>
+						</simpleType>
+					</attribute>
+					<attribute name="batchSize" type="positiveInteger"/>
+					<attribute name="reportingMethod" use="required">
+						<simpleType>
+							<list>
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="POST"/>
+										<enumeration value="GET"/>
+									</restriction>
+								</simpleType>
+							</list>
+						</simpleType>
+					</attribute>
+					<attribute name="contentId">
+						<simpleType>
+							<restriction base="string">
+								<maxLength value="128"/>
+							</restriction>
+						</simpleType>
+					</attribute>
+					<attribute name="enabledKeys" type="string"/>
+					<attribute name="probability" default="1000">
+						<simpleType>
+							<restriction base="unsignedInt">
+								<minInclusive value="1"/>
+								<maxInclusive value="1000"/>
+							</restriction>
+						</simpleType>
+					</attribute>
+					<attribute name="obfuscateURL" type="boolean" default="true"/>
+				</complexType>
+			</element>
+		</sequence>
+		<attribute name="CMCDversion" use="required">
+			<simpleType>
+				<restriction base="unsignedInt">
+					<minInclusive value="1"/>
+					<maxInclusive value="2"/>
+				</restriction>
+			</simpleType>
+		</attribute>
 	</complexType>
 	<complexType name="IdentifierBasedDeliveryParametersType">
 		<simpleContent>
@@ -544,11 +639,14 @@
 		<sequence>
 			<element name="TargetRegion" type="dvbisd:RegionIdRefType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="SubscriptionPackage" type="dvbisd:SubscriptionPackageType" minOccurs="0" maxOccurs="unbounded">
-				<annotation><documentation>The use of this element is deprecated.</documentation></annotation>
+				<annotation>
+					<documentation>The use of this element is deprecated.</documentation>
+				</annotation>
 			</element>
 			<element name="LCN" type="dvbisd:LCNTableEntryType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="LCNRange" type="dvbisd:LCNRangeType" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
+		<attribute name="version" type="positiveInteger" use="required"/>
 		<attribute name="preserveBroadcastLCN" type="boolean" default="false"/>
 	</complexType>
 	<complexType name="LCNTableEntryType">
@@ -595,7 +693,7 @@
 	</complexType>
 	<complexType name="DASHPlaylistType">
 		<sequence>
-			<element name="PlaylistEntry" type="anyURI" maxOccurs="unbounded"/>
+			<element name="PlaylistEntry" type="dvbi-types:uriWithVerificationPolicy" maxOccurs="unbounded"/>
 		</sequence>
 	</complexType>
 	<complexType name="NVODType">
@@ -640,7 +738,7 @@
 				</annotation>
 			</element>
 			<element name="VideoAttributes" type="dvbisd:VideoAttributesType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="VideoConformancePoint" type="tva:ControlledTermType" minOccurs="0"/>
+			<element name="VideoConformancePoint" type="tva:ControlledTermType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="AccessibilityAttributes" type="tva:AccessibilityAttributesType" minOccurs="0"/>
 		</sequence>
 	</complexType>

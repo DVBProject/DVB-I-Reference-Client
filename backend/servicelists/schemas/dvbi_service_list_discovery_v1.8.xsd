@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dvbisld="urn:dvb:metadata:servicelistdiscovery:2024" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2024" targetNamespace="urn:dvb:metadata:servicelistdiscovery:2024" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<import namespace="urn:tva:metadata:2024" schemaLocation="tva_metadata_3-1.xsd"/>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dvbisld="urn:dvb:metadata:servicelistdiscovery:2026" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2026" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2026" targetNamespace="urn:dvb:metadata:servicelistdiscovery:2026" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<import namespace="urn:tva:metadata:2026" schemaLocation="tva_metadata_3-1_v1141.xsd"/>
 	<import namespace="urn:tva:mpeg7:2008" schemaLocation="tva_mpeg7.xsd"/>
-	<import namespace="urn:dvb:metadata:servicediscovery-types:2023" schemaLocation="dvbi_types_v1.0.xsd"/>
+	<import namespace="urn:dvb:metadata:servicediscovery-types:2026" schemaLocation="dvbi_types_v1.2.xsd"/>
 	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<element name="ServiceListEntryPoints" type="dvbisld:ServiceListEntryPointsType"/>
 	<complexType name="ServiceListEntryPointsType">
 		<sequence>
 			<element name="ServiceListRegistryEntity" type="dvbisld:OrganizationType"/>
+			<element name="SignaturePolicies" type="dvbi-types:SignaturePoliciesType" minOccurs="0"/>
 			<element name="ProviderOffering" type="dvbisld:ProviderOfferingType" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="Extension" type="dvbi-types:ExtensionBaseType" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>

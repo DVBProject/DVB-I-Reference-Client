@@ -5,7 +5,7 @@ header('Content-Type: text/xml');
 header('Access-Control-Allow-Origin: *');
 
 $list = new Simplexmlelement(file_get_contents("./slepr-master.xml"));
-$entries  = $list->children("urn:dvb:metadata:servicelistdiscovery:2024",false);
+$entries  = $list->children("urn:dvb:metadata:servicelistdiscovery:2026",false);
 if(isset( $_GET['regulatorListFlag'])) {
     $regulatorListFlag = $_GET['regulatorListFlag'];
     for($i = 0; $i < count($entries->ProviderOffering);$i++) {
@@ -146,7 +146,7 @@ if(isset( $_GET['Delivery'])) {
             $deliveryElements = array_merge($deliveryElements,$types[$delivery[$h]]);
         }
     }
-    $entries->registerXPathNamespace('sd-types','urn:dvb:metadata:servicediscovery-types:2023"');
+    $entries->registerXPathNamespace('sd-types','urn:dvb:metadata:servicediscovery-types:2026"');
     for($i = 0; $i < count($entries->ProviderOffering);$i++) {
         for($j = 0; $j < count($entries->ProviderOffering[$i]->ServiceListOffering);$j++) {
             //Delivery element is mandatory
@@ -171,7 +171,7 @@ if(isset( $_GET['Delivery'])) {
     }
 }
 if(!isset( $_GET['inlineImages']) || $_GET['inlineImages'] !== 'true') {
-    $entries->registerXPathNamespace('tva','urn:tva:metadata:2024');
+    $entries->registerXPathNamespace('tva','urn:tva:metadata:2026');
     $inline = $entries->xpath('//tva:MediaUri');
     for($j = 0; $j < count($inline);$j++) {
         $value = (string) $inline[$j][0];

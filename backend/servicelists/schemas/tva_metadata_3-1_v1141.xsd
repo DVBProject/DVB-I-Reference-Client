@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:tva="urn:tva:metadata:2024" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:tva:metadata:2024" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<schema xmlns:tva="urn:tva:metadata:2026" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:tva:metadata:2026" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<annotation>
-		<documentation xml:lang="en">This schema consists of datatypes that are normatively defined in ETSI TS 102 822-3-1 v1.13.1</documentation>
+		<documentation xml:lang="en">This schema consists of datatypes that are normatively defined in ETSI TS 102 822-3-1 v1.14.1</documentation>
 	</annotation>
 	<annotation>
 		<documentation xml:lang="en">Changes for this new version of the TVA specification </documentation>
@@ -624,7 +624,7 @@
 					<element name="Carriage" type="tva:ControlledTermType"/>
 					<element name="Coding" type="tva:ControlledTermType" maxOccurs="unbounded"/>
 					<element name="SubtitleLanguage" type="language"/>
-					<element name="Purpose" type="tva:ControlledTermType" minOccurs="0"/>
+					<element name="Purpose" type="tva:ControlledTermType" minOccurs="0" maxOccurs="unbounded"/>
 					<element name="SuitableForTTS" type="boolean"/>
 				</sequence>
 			</extension>
@@ -644,7 +644,7 @@
 		<complexContent>
 			<extension base="tva:BaseAccessibilityAttributesType">
 				<sequence>
-					<element name="Coding" type="tva:ControlledTermType" maxOccurs="unbounded"/>
+					<element name="Coding" type="tva:ControlledTermType" minOccurs="0"/>
 					<element name="SignLanguage" type="language" minOccurs="0"/>
 					<element name="Closed" type="boolean" default="false" minOccurs="0"/>
 				</sequence>
