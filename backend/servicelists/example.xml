@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ServiceList xml:lang="en" version="1" id="tag:dvb.org,2024:ref-example"
-    xmlns="urn:dvb:metadata:servicediscovery:2025" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2023" xmlns:tva="urn:tva:metadata:2024"
+    xmlns="urn:dvb:metadata:servicediscovery:2026" xmlns:dvbi-types="urn:dvb:metadata:servicediscovery-types:2026" xmlns:tva="urn:tva:metadata:2026"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mpeg7="urn:tva:mpeg7:2008"
-    xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2024 schemas/dvbi_v6.0.xsd">
+    xsi:schemaLocation="urn:dvb:metadata:servicediscovery:2026 schemas/dvbi_v8.0.xsd">
   <Name>DVB-I example service list</Name>
   <ProviderName>DVB</ProviderName>
   <LCNTableList>
@@ -16,6 +16,8 @@
 
       <LCN channelNumber="21" serviceRef="tag:dvb.org,2020:DASHIF-LL"/>
       <LCN channelNumber="23" serviceRef="tag:dvb.org,2020:AKAMAI-LL"/>
+      <LCN channelNumber="24" serviceRef="tag:dvb.org,2020:AKAMAI-LL-CMCDv1-req"/>
+      <LCN channelNumber="25" serviceRef="tag:dvb.org,2020:AKAMAI-LL-CMCDv1-header"/>
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
@@ -61,9 +63,10 @@
         <UriBasedLocation contentType="application/dash+xml">
           <dvbi-types:URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</dvbi-types:URI>
         </UriBasedLocation>
-        <CMCD version="1" enabledKeys="sid cid pr sf"
-          reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"
-          contentId="AABBCCDD-1122-DEAD-BEEF-334455667788"/>
+        <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
+          <Report enabledKeys="sid cid pr sf"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+        </CMCD>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName xml:lang="en">IRT test channel</ServiceName>
@@ -257,11 +260,73 @@
 				<UriBasedLocation contentType="application/dash+xml">
 					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
 				</UriBasedLocation>
-      <!--  <CMCD version="1"
+      <!--  <CMCD CMCDversion="1"
           reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/> -->
 			</DASHDeliveryParameters>
 		</ServiceInstance>
 		<ServiceName>Akamai LL test</ServiceName>
+ 		<ProviderName>Akamai</ProviderName>
+	</Service>
+
+  <Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:AKAMAI-LL-CMCDv1-req</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>30/1.001</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
+				</UriBasedLocation>
+        <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
+          <!-- report all CMCDv1 params-->
+          <Report enabledKeys="br bl bs cid d dl mtp nor nrr ot pr rtp sf sid st su tb v"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+        </CMCD>
+    	</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Akamai LL+CMCDv1-req test</ServiceName>
+ 		<ProviderName>Akamai</ProviderName>
+	</Service>
+
+  <Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:AKAMAI-LL-CMCDv1-header</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>30/1.001</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
+				</UriBasedLocation>
+        <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
+          <!-- report all CMCDv1 params-->
+          <Report enabledKeys="br bl bs cid d dl mtp nor nrr ot pr rtp sf sid st su tb v"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:customHTTPHeader"/>
+        </CMCD>
+    	</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Akamai LL+CMCDv1-head test</ServiceName>
  		<ProviderName>Akamai</ProviderName>
 	</Service>
 
