@@ -340,11 +340,10 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   return count ? res : "none";
 }
 
-function parseCMCDInitInfo(CMCDelement) {
+function parseCMCDInitInfo(CMCDelem) {
   // parse CMCDInitialisationType according to dash.js (https://dashif.org/dash.js/pages/usage/cmcd.html)
   //
-  var version_attr = CMCDelement.getAttribute("CMCDversion");
-  if ( !CMCDelement.hasAttribute("CMCDversion") || parseInt(CMCDelement.getAttribute("CMCDversion"), 10) != 1)
+  if (!CMCDelem.hasAttribute("CMCDversion"))
     return null;
 
   var Report = CMCDelement.getElementsByTagNameNS(DVBi_ns, "Report")[0];
@@ -353,34 +352,45 @@ function parseCMCDInitInfo(CMCDelement) {
 
   var CMCDinfo = {
     enabled: true,
-    applyParametersFromMpd: false,
+    version: parseInt(CMCDelem.getAttribute("CMCDversion")),
   };
+  if (CMCDelem.hasAttribute("contentId")) {
+    CMCDinfo.cid = CMCDelem.getAttribute("contentId");
+  }
 
-  switch (Report.getAttribute("reportingMode")) {
-    case "urn:dvb:metadata:cmcd:delivery:request":
-      // currently not signalled to dash.js
+  switch (CMCDinfo.version) {
+    case 1:
+      // there should only be one <Report> element and it should use the request reporting mode, but check them all and use the first one
+      var Reports = CMCDelem.getElementsByTagNameNS(DVBi_ns, "Report");
+      if (Reports.length == 0)
+        return null;
+      for (var r = 0; r < Reports.length; r++) {
+        if (Reports[r].getAttribute("reportingMode") == "urn:dvb:metadata:cmcd:delivery:request") {
+
+          switch (Reports[r].getAttribute("reportingMethod")) {
+            case "urn:dvb:metadata:cmcd:delivery:customHTTPHeader":
+              CMCDinfo.mode = "header";
+              break;
+            case "urn:dvb:metadata:cmcd:delivery:queryArguments":
+              CMCDinfo.mode = "query";
+              break;
+            default:
+              CMCDinfo.enabled = false;
+              break;
+          }
+
+          if (Reports[r].hasAttribute("enabledKeys"))
+            CMCDinfo.enabledKeys = Reports[r].getAttribute("enabledKeys").split(" ")
+
+          r = Reports.length + 1; // break the loop
+        }
+      }
       break;
     default:
-      CMCDinfo.enabled = false;
-      break;
+      return null;
   }
-  switch (Report.getAttribute("transmissionMode")) {
-    case "urn:dvb:metadata:cmcd:delivery:customHTTPHeader":
-      CMCDinfo.mode = "header";
-      break;
-    case "urn:dvb:metadata:cmcd:delivery:queryArguments":
-      CMCDinfo.mode = "query";
-      break;
-    default:
-      CMCDinfo.enabled = false;
-      break;
-  }
-  if (Report.hasAttribute("enabledKeys"))
-    CMCDinfo.enabledKeys =  Report.getAttribute("enabledKeys").split(" ");
-  if (Report.hasAttribute("contentId"))
-    CMCDinfo.cid = Report.getAttribute("contentId");
-  CMCDinfo.version = parseInt(CMCDelement.getAttribute("version"), 10);
-  /*
+
+    /*
   // skip the "probability" calculation - always report any configured values
   var prob = data.hasAttribute("probability") ? parseInt(data.hasAttribite("probability"), 10) : 1000;
   if (Math.random() * 1000 > prob)
@@ -720,8 +730,8 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         try {
           instance.dashUrl = serviceInstances[j].getElementsByTagNameNS(DVBi_TYPES_ns, "URI")[0].childNodes[0].nodeValue;
           instance.CMCDinit =
-            DASHparams.getElementsByTagNameNS(DVBi_ns, "CMCD").length > 0
-              ? parseCMCDInitInfo(DASHparams.getElementsByTagNameNS(DVBi_ns, "CMCD")[0])
+            serviceInstances[j].getElementsByTagNameNS(DVBi_ns,  "CMCD").length > 0
+              ? parseCMCDInitInfo(serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "CMCD")[0])
               : null;
           sourceTypes.push("DVB-DASH");
           instances.push(instance);
