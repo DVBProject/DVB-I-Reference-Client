@@ -201,15 +201,16 @@ function playDASH(player, instance) {
     return;
   }
 
-  if (instance.hasOwnProperty("CMCDinit") && instance.CMCDinit != null) {
-    var cmcd_vars = { ...instance.CMCDinit };
+  var cmcd_vars = null;
+  if (instance.hasOwnProperty("CMCDinitV2") && instance.CMCDinitV2 != null) {
+    cmcd_vars = { ...instance.CMCDinitV2 };
+  }
+  else if (instance.hasOwnProperty("CMCDinitV1") && instance.CMCDinitV1 != null) {
+    cmcd_vars = { ...instance.CMCDinitV1 };
+  }
+  if (cmcd_vars) {
     cmcd_vars.sid = UUIDv7();
-    if (DASHjsVersion5(player)) {
-      cmcd_vars.applyParametersFromMpd = false;
-      cmcd_vars.includeInRequests = ["segment", "mpd"];
-    } else {
-      delete cmcd_vars.version;
-    }
+    cmcd_vars.applyParametersFromMpd = false;
     player.updateSettings({
       streaming: { cmcd: cmcd_vars },
     });

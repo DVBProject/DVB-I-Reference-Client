@@ -346,57 +346,53 @@ function parseCMCDInitInfo(CMCDelem) {
   if (!CMCDelem.hasAttribute("CMCDversion"))
     return null;
 
-  var Report = CMCDelement.getElementsByTagNameNS(DVBi_ns, "Report")[0];
-  if (!Report)
+  var Reports = CMCDelem.getElementsByTagNameNS(DVBi_ns, "Report");
+  if (Reports.length == 0)
     return null;
 
   var CMCDinfo = {
-    enabled: true,
+    applyParametersFromMpd: false,
+    enabled: false,
+    includeInRequets: ['segment', 'mpd'],
     version: parseInt(CMCDelem.getAttribute("CMCDversion")),
   };
   if (CMCDelem.hasAttribute("contentId")) {
     CMCDinfo.cid = CMCDelem.getAttribute("contentId");
   }
+  if (CMCDinfo.version >= 2) {
+    CMCDinfo.eventTargets=[];
+  }
 
-  switch (CMCDinfo.version) {
-    case 1:
-      // there should only be one <Report> element and it should use the request reporting mode, but check them all and use the first one
-      var Reports = CMCDelem.getElementsByTagNameNS(DVBi_ns, "Report");
-      if (Reports.length == 0)
-        return null;
-      for (var r = 0; r < Reports.length; r++) {
-        if (Reports[r].getAttribute("reportingMode") == "urn:dvb:metadata:cmcd:delivery:request") {
-
-          switch (Reports[r].getAttribute("reportingMethod")) {
-            case "urn:dvb:metadata:cmcd:delivery:customHTTPHeader":
-              CMCDinfo.mode = "header";
-              break;
-            case "urn:dvb:metadata:cmcd:delivery:queryArguments":
-              CMCDinfo.mode = "query";
-              break;
-            default:
-              CMCDinfo.enabled = false;
-              break;
-          }
-
-          if (Reports[r].hasAttribute("enabledKeys"))
-            CMCDinfo.enabledKeys = Reports[r].getAttribute("enabledKeys").split(" ")
-
-          r = Reports.length + 1; // break the loop
-        }
+  for (var r = 0; r < Reports.length; r++) {
+    if (Reports[r].getAttribute("reportingMode") == "urn:dvb:metadata:cmcd:delivery:request") {
+      CMCDinfo.enabled = true;
+      switch (Reports[r].getAttribute("reportingMethod")) {
+        case "urn:dvb:metadata:cmcd:delivery:customHTTPHeader":
+          CMCDinfo.mode = "header";
+          break;
+        case "urn:dvb:metadata:cmcd:delivery:queryArguments":
+          CMCDinfo.mode = "query";
+          break;
+        default:
+          CMCDinfo.enabled = false;
+          break;
       }
-      break;
-    default:
-      return null;
+      if (Reports[r].hasAttribute("enabledKeys"))
+        CMCDinfo.enabledKeys = Reports[r].getAttribute("enabledKeys").split(" ");
+    }
+    else if (Reports[r].getAttribute("reportingMode") == "urn:dvb:metadata:cmcd:delivery:event" && CMCDinfo.version >= 2) {
+      var newEvent = {
+        enabled: true,
+        url: Reports[r].getAttribute("eventURL"),
+        events: [],
+        interval: 30,
+        enabledKeys: Reports[r].getAttribute("enabledKeys").split(" "),
+        includeInRequests: ['segment', 'mpd'],
+        batchSize: 1,
+      };
+      CMCDinfo.eventTargets.push(newEvent);
+    }
   }
-
-    /*
-  // skip the "probability" calculation - always report any configured values
-  var prob = data.hasAttribute("probability") ? parseInt(data.hasAttribite("probability"), 10) : 1000;
-  if (Math.random() * 1000 > prob)
-    CMCDinfo.enabled = false;
-  }
-  */
   return CMCDinfo;
 }
 
@@ -729,10 +725,22 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
         var DASHparams = serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DASHDeliveryParameters")[0];
         try {
           instance.dashUrl = serviceInstances[j].getElementsByTagNameNS(DVBi_TYPES_ns, "URI")[0].childNodes[0].nodeValue;
-          instance.CMCDinit =
-            serviceInstances[j].getElementsByTagNameNS(DVBi_ns,  "CMCD").length > 0
-              ? parseCMCDInitInfo(serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "CMCD")[0])
-              : null;
+
+          var CMCDinits = serviceInstances[j].getElementsByTagNameNS(DVBi_ns,  "CMCD");
+          for (var c = 0; c < CMCDinits.length; c++) {
+            if (CMCDinits[c].hasAttribute("CMCDversion")) {
+              switch (parseInt(CMCDinits[c].getAttribute("CMCDversion"))) {
+                case 1:
+                  if (!instance.CMCDinitV1)
+                    instance.CMCDinitV1 = parseCMCDInitInfo(CMCDinits[c]);
+                  break;
+                case 2:
+                  if (!instance.CMCDinitV2)
+                    instance.CMCDinitV2 = parseCMCDInitInfo(CMCDinits[c]);
+                  break;
+              }
+            }
+          }
           sourceTypes.push("DVB-DASH");
           instances.push(instance);
         } catch (e) {}
