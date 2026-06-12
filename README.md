@@ -77,6 +77,6 @@ This will create opapp.pkg in the project root directory. Edit the [XML AIT](htt
 
 - Backend: [https://dvb-i-reference.dvb.org/client/backend/](https://dvb-i-reference.dvb.org/client/backend/)
 
-Backend is deployable to any web server with PHP support. Make sure that the "servicelists" directory is writable. The backend stores new servicelists there.
+Backend is deployable to any web server with PHP support. Make sure that the "servicelists" directory is writable. The backend stores new servicelists there. Instructions on setting up your own backend server are available in (INSTALL-SERVER.md)[https://github.com/DVBProject/DVB-I-Reference-Client/blob/master/INSTALL-SERVER.md].
 
 NOTE: The frontend uses "example.xml" as the service list. It can be browsed in the Backend editor as well, but not modified. [https://dvb-i-reference.dvb.org/client/backend/servicelists/example.xml](https://dvb-i-reference.dvb.org/client/backend/servicelists/example.xml)
