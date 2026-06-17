@@ -368,7 +368,7 @@ function parseCMCDInitInfo(CMCDelem) {
       CMCDinfo.enabled = true;
       switch (Reports[r].getAttribute("reportingMethod")) {
         case "urn:dvb:metadata:cmcd:delivery:customHTTPHeader":
-          CMCDinfo.mode = "header";
+          CMCDinfo.mode = "headers";
           break;
         case "urn:dvb:metadata:cmcd:delivery:queryArguments":
           CMCDinfo.mode = "query";
