@@ -340,6 +340,19 @@ function formatAccessibilityAttributes(accessibility_attributes) {
   return count ? res : "none";
 }
 
+const CMCDdata = {
+  allEventTypes: ["abs", "abe", "ae", "as", "b", "bc", "c", "ce", "e", "h", "m", "pc", "pe", "pr", "ps", "rr", "sk", "t", "um"],
+  allRequestTypes: ["segment", "mpd", "xlink", "steering", "other"],
+
+  eventMode: "urn:dvb:metadata:cmcd:delivery:event",
+  requestMode: "urn:dvb:metadata:cmcd:delivery:request",
+
+  customHeaders: "urn:dvb:metadata:cmcd:delivery:customHTTPHeader",
+  queryArguments: "urn:dvb:metadata:cmcd:delivery:queryArguments",
+  body: ""
+}
+
+
 function parseCMCDInitInfo(CMCDelem) {
   // parse CMCDInitialisationType according to dash.js (https://dashif.org/dash.js/pages/usage/cmcd.html)
   //
@@ -353,7 +366,7 @@ function parseCMCDInitInfo(CMCDelem) {
   var CMCDinfo = {
     applyParametersFromMpd: false,
     enabled: false,
-    includeInRequets: ['segment', 'mpd'],
+    includeInRequets: CMCDdata.allRequestTypes,
     version: parseInt(CMCDelem.getAttribute("CMCDversion")),
   };
   if (CMCDelem.hasAttribute("contentId")) {
@@ -364,13 +377,13 @@ function parseCMCDInitInfo(CMCDelem) {
   }
 
   for (var r = 0; r < Reports.length; r++) {
-    if (Reports[r].getAttribute("reportingMode") == "urn:dvb:metadata:cmcd:delivery:request") {
+    if (Reports[r].getAttribute("reportingMode") == CMCDdata.requestMode) {
       CMCDinfo.enabled = true;
       switch (Reports[r].getAttribute("reportingMethod")) {
-        case "urn:dvb:metadata:cmcd:delivery:customHTTPHeader":
+        case CMCDdata.customHeaders:
           CMCDinfo.mode = "headers";
           break;
-        case "urn:dvb:metadata:cmcd:delivery:queryArguments":
+        case CMCDdata.queryArguments:
           CMCDinfo.mode = "query";
           break;
         default:
@@ -380,14 +393,14 @@ function parseCMCDInitInfo(CMCDelem) {
       if (Reports[r].hasAttribute("enabledKeys"))
         CMCDinfo.enabledKeys = Reports[r].getAttribute("enabledKeys").split(" ");
     }
-    else if (Reports[r].getAttribute("reportingMode") == "urn:dvb:metadata:cmcd:delivery:event" && CMCDinfo.version >= 2) {
+    else if (Reports[r].getAttribute("reportingMode") == CMCDdata.eventMode && CMCDinfo.version >= 2) {
       var newEvent = {
         enabled: true,
         url: Reports[r].getAttribute("eventURL"),
-        events: [],
+        events: Reports[r].hasAttribute("eventTypes") ? Reports[r].getAttribute("eventTypes").split(" ") : CMCDdata.allEventTypes,
         interval: 30,
         enabledKeys: Reports[r].getAttribute("enabledKeys").split(" "),
-        includeInRequests: ['segment', 'mpd'],
+        includeInRequests: CMCDdata.allRequestTypes,
         batchSize: 1,
       };
       CMCDinfo.eventTargets.push(newEvent);
@@ -743,7 +756,9 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
           }
           sourceTypes.push("DVB-DASH");
           instances.push(instance);
-        } catch (e) {}
+        } catch (e) {
+          console.log(`ERR: ${e}`)
+        }
       } else if (dvbChannels) {
         var triplets = serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DVBTriplet");
         if (triplets.length > 0) {
