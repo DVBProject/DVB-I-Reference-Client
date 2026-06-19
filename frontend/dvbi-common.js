@@ -756,9 +756,7 @@ function parseServiceList(data, dvbChannels, supportedDrmSystems) {
           }
           sourceTypes.push("DVB-DASH");
           instances.push(instance);
-        } catch (e) {
-          console.log(`ERR: ${e}`)
-        }
+        } catch (e) { }
       } else if (dvbChannels) {
         var triplets = serviceInstances[j].getElementsByTagNameNS(DVBi_ns, "DVBTriplet");
         if (triplets.length > 0) {
