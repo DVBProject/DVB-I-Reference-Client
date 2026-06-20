@@ -366,7 +366,7 @@ function parseCMCDInitInfo(CMCDelem) {
   var CMCDinfo = {
     applyParametersFromMpd: false,
     enabled: false,
-    includeInRequets: CMCDdata.allRequestTypes,
+    includeInRequests: CMCDdata.allRequestTypes,
     version: parseInt(CMCDelem.getAttribute("CMCDversion")),
   };
   if (CMCDelem.hasAttribute("contentId")) {
