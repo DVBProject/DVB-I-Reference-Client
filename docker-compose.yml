@@ -1,0 +1,13 @@
+version: '1.0'
+services:
+  dvb-i-reference-client:
+    # Comment build and uncomment image if you want to use prebuilt image rather than build from the source code
+    # build: .
+    image: ghcr.io/ccma-enginyeria/dvb-i-reference-client/dvb-i-reference-client:latest
+    # Uncomment volumes if you want to use the source code rather than use from docker image
+    # volumes:
+    #   - ./:/var/www/html/client
+    environment:
+      - INSTALL_LOCATION=${INSTALL_LOCATION:-http://localhost:8888/client}
+    ports:
+      - "8888:80"
