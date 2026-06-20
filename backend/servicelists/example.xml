@@ -19,6 +19,10 @@
       <LCN channelNumber="24" serviceRef="tag:dvb.org,2020:AKAMAI-LL-CMCDv1-req"/>
       <LCN channelNumber="25" serviceRef="tag:dvb.org,2020:AKAMAI-LL-CMCDv1-header"/>
       <LCN channelNumber="26" serviceRef="tag:dvb.org,2020:AKAMAI-LL-CMCDv2-req"/>
+
+      <LCN channelNumber="101" serviceRef="tag:onscreen.tv,2026:MAYNARD-CMCDv2-req"/>
+      <LCN channelNumber="102" serviceRef="tag:onscreen.tv,2026:MAYNARD-CMCDv2-header"/>
+
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
@@ -288,7 +292,6 @@
 					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
 				</UriBasedLocation>
         <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
-          <!-- report all CMCDv1 params-->
           <Report enabledKeys="br bl bs cid d dl mtp nor nrr ot pr rtp sf sid st su tb v"
             reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
         </CMCD>
@@ -319,7 +322,6 @@
 					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
 				</UriBasedLocation>
         <CMCD CMCDversion="2" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
-          <!-- report all CMCDv2 params-->
           <Report enabledKeys="ab bl bg br bs bsa bsd bsda cid cs d dfa dl ec lab lb ltc msd mtp nor nr ot pb pr pt rtp sf sid sn st sta su tab tb tbl tpb v"
             reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
         </CMCD>
@@ -350,7 +352,6 @@
 					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
 				</UriBasedLocation>
         <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
-          <!-- report all CMCDv1 params-->
           <Report enabledKeys="br bl bs cid d dl mtp nor nrr ot pr rtp sf sid st su tb v"
             reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:customHTTPHeader"/>
         </CMCD>
@@ -359,5 +360,41 @@
 		<ServiceName>Akamai LL+CMCDv1-head test</ServiceName>
  		<ProviderName>Akamai</ProviderName>
 	</Service>
+
+ <Service version="1">
+		<UniqueIdentifier>tag:onscreen.tv,2026:MAYNARD-CMCDv2-req</UniqueIdentifier>
+		<ServiceInstance>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<dvbi-types:URI>https://dev.onscreenpublisher.co.uk/videos/streams/2rn2/RTÉ_One/manifest.php</dvbi-types:URI>
+				</UriBasedLocation>
+        <CMCD CMCDversion="2" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
+          <Report enabledKeys="ab bl bg br bs bsa bsd bsda cid cs d dfa dl ec lab lb ltc msd mtp nor nr ot pb pr pt rtp sf sid sn st sta su tab tb tbl tpb v"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+        </CMCD>
+    	</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Maynard RTÉ_One+CMCDv2-req test</ServiceName>
+ 		<ProviderName>Maynard</ProviderName>
+	</Service>
+
+  <Service version="1">
+		<UniqueIdentifier>tag:onscreen.tv,2026:MAYNARD-CMCDv2-header</UniqueIdentifier>
+		<ServiceInstance>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<dvbi-types:URI>https://dev.onscreenpublisher.co.uk/videos/streams/2rn2/RTÉ_One/manifest.php</dvbi-types:URI>
+				</UriBasedLocation>
+        <CMCD CMCDversion="2" contentId="11223344-5566-7788-0000-aabbccddeeff">
+          <Report enabledKeys="ab bl bg br bs bsa bsd bsda cid cs d dfa dl ec lab lb ltc msd mtp nor nr ot pb pr pt rtp sf sid sn st sta su tab tb tbl tpb v"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:customHTTPHeader"/>
+        </CMCD>
+    	</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Maynard RTÉ_One+CMCDv2-head test</ServiceName>
+ 		<ProviderName>Maynard</ProviderName>
+	</Service>
+
+
 
 </ServiceList>
