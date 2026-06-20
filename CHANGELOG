@@ -3,7 +3,7 @@
 -Identifying DRM protected programs when the service isn't protected as a whole, HbbTV client
 -Accessible audio selection implemented
 -ProgramInfo endpoint implemented, additional program info displayed if available.
--A177rev1 example service list added,includes out of service image example 
+-A177rev1 example service list added,includes out of service image example
 
 2.19 9 Dec 2020
 
@@ -35,7 +35,7 @@
 2.15 17 Nov 2020
 
 -Service instance availability implemented. Interval recurrence not implemented yet.
--Support for the A177 Rev.1 schema added. 
+-Support for the A177 Rev.1 schema added.
 
 2.14 11 Nov 2020
 
@@ -89,7 +89,7 @@
 
  -Service provider list URL was accidentally replaced by a development version, reverted back to the production.
 
-2.6 22 Apr 2020 
+2.6 22 Apr 2020
 
  -Default UI language selection fixed
 
@@ -116,14 +116,12 @@ Example schedule information does not contain parental ratings at the moment, se
 31 Jan 2020
 
 First release
-Backend: generation of DVB-I Service list supporting DASH and DVB style 
+Backend: generation of DVB-I Service list supporting DASH and DVB style
 services, LCNs and most commonly used features of the service list.
 
-Frontend: First attempt of the HbbTV OpApp version of the DVB-I implementation, 
-supporting DVB and DASH services, selecting services and browsing the list. 
+Frontend: First attempt of the HbbTV OpApp version of the DVB-I implementation,
+supporting DVB and DASH services, selecting services and browsing the list.
 A simple EPG and info banner implementations are also present.
 
 TO-DO
-code cleanups
-UI cleanups, DVB branding
 More useful TV Anytime data

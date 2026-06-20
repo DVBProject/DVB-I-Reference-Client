@@ -16,6 +16,13 @@
 
       <LCN channelNumber="21" serviceRef="tag:dvb.org,2020:DASHIF-LL"/>
       <LCN channelNumber="23" serviceRef="tag:dvb.org,2020:AKAMAI-LL"/>
+      <LCN channelNumber="24" serviceRef="tag:dvb.org,2020:AKAMAI-LL-CMCDv1-req"/>
+      <LCN channelNumber="25" serviceRef="tag:dvb.org,2020:AKAMAI-LL-CMCDv1-header"/>
+      <LCN channelNumber="26" serviceRef="tag:dvb.org,2020:AKAMAI-LL-CMCDv2-req"/>
+
+      <LCN channelNumber="101" serviceRef="tag:onscreen.tv,2026:MAYNARD-CMCDv2-req"/>
+      <LCN channelNumber="102" serviceRef="tag:onscreen.tv,2026:MAYNARD-CMCDv2-header"/>
+
     </LCNTable>
   </LCNTableList>
   <ContentGuideSource CGSID="cgid-1">
@@ -61,14 +68,10 @@
         <UriBasedLocation contentType="application/dash+xml">
           <dvbi-types:URI>https://livesim.dashif.org/livesim/testpic_2s/multi_subs.mpd</dvbi-types:URI>
         </UriBasedLocation>
-        <CMCD CMCDversion="1">
-			    <Report
-				    enabledKeys="sid cid pr sf"
-				    reportingMode="urn:dvb:metadata:cmcd:delivery:request"
-				    reportingMethod="GET"
-				    transmissionMode="urn:dvb:metadata:cmcd:delivery:queryArguments"
-				    contentId="AABBCCDD-1122-DEAD-BEEF-111111111111"/>
-		    </CMCD>
+        <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
+          <Report enabledKeys="sid cid pr sf"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+        </CMCD>
       </DASHDeliveryParameters>
     </ServiceInstance>
     <ServiceName xml:lang="en">IRT test channel</ServiceName>
@@ -262,10 +265,136 @@
 				<UriBasedLocation contentType="application/dash+xml">
 					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
 				</UriBasedLocation>
-			</DASHDeliveryParameters>
+ 			</DASHDeliveryParameters>
 		</ServiceInstance>
 		<ServiceName>Akamai LL test</ServiceName>
  		<ProviderName>Akamai</ProviderName>
 	</Service>
+
+  <Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:AKAMAI-LL-CMCDv1-req</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>30/1.001</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
+				</UriBasedLocation>
+        <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
+          <Report enabledKeys="br bl bs cid d dl mtp nor nrr ot pr rtp sf sid st su tb v"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+        </CMCD>
+    	</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Akamai LL+CMCDv1-req test</ServiceName>
+ 		<ProviderName>Akamai</ProviderName>
+	</Service>
+
+ <Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:AKAMAI-LL-CMCDv2-req</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>30/1.001</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
+				</UriBasedLocation>
+        <CMCD CMCDversion="2" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
+          <Report enabledKeys="ab bl bg br bs bsa bsd bsda cid cs d dfa dl ec lab lb ltc msd mtp nor nr ot pb pr pt rtp sf sid sn st sta su tab tb tbl tpb v"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+        </CMCD>
+    	</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Akamai LL+CMCDv2-req test</ServiceName>
+ 		<ProviderName>Akamai</ProviderName>
+	</Service>
+
+  <Service version="1">
+		<UniqueIdentifier>tag:dvb.org,2020:AKAMAI-LL-CMCDv1-header</UniqueIdentifier>
+		<ServiceInstance>
+			<ContentAttributes>
+				<AudioAttributes>
+					<tva:Coding href="urn:mpeg:mpeg7:cs:AudioCodingFormatCS:2001:4.3.1"/> <!-- mp4a.40.2 == Low Complexity AAC -->
+					<tva:NumOfChannels>2</tva:NumOfChannels> <!-- <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/> -->
+					<tva:SampleFrequency>48000</tva:SampleFrequency>
+				</AudioAttributes>
+				<VideoAttributes>
+					<tva:Coding href="urn:dvb:metadata:cs:VideoCodecCS:2007:1.4.10"/><!-- "avc1.64001F" == MPEG-4 AVC High profile level 3.1 -->
+					<tva:HorizontalSize>1280</tva:HorizontalSize>
+					<tva:VerticalSize>720</tva:VerticalSize>
+					<tva:FrameRate>30/1.001</tva:FrameRate>
+				</VideoAttributes>
+			</ContentAttributes>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<dvbi-types:URI>https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd</dvbi-types:URI>
+				</UriBasedLocation>
+        <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
+          <Report enabledKeys="br bl bs cid d dl mtp nor nrr ot pr rtp sf sid st su tb v"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:customHTTPHeader"/>
+        </CMCD>
+    	</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Akamai LL+CMCDv1-head test</ServiceName>
+ 		<ProviderName>Akamai</ProviderName>
+	</Service>
+
+ <Service version="1">
+		<UniqueIdentifier>tag:onscreen.tv,2026:MAYNARD-CMCDv2-req</UniqueIdentifier>
+		<ServiceInstance>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<dvbi-types:URI>https://dev.onscreenpublisher.co.uk/videos/streams/2rn2/RTÉ_One/manifest.php</dvbi-types:URI>
+				</UriBasedLocation>
+        <CMCD CMCDversion="2" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
+          <Report enabledKeys="ab bl bg br bs bsa bsd bsda cid cs d dfa dl ec lab lb ltc msd mtp nor nr ot pb pr pt rtp sf sid sn st sta su tab tb tbl tpb v"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+        </CMCD>
+    	</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Maynard RTÉ_One+CMCDv2-req test</ServiceName>
+ 		<ProviderName>Maynard</ProviderName>
+	</Service>
+
+  <Service version="1">
+		<UniqueIdentifier>tag:onscreen.tv,2026:MAYNARD-CMCDv2-header</UniqueIdentifier>
+		<ServiceInstance>
+			<DASHDeliveryParameters>
+				<UriBasedLocation contentType="application/dash+xml">
+					<dvbi-types:URI>https://dev.onscreenpublisher.co.uk/videos/streams/2rn2/RTÉ_One/manifest.php</dvbi-types:URI>
+				</UriBasedLocation>
+        <CMCD CMCDversion="2" contentId="11223344-5566-7788-0000-aabbccddeeff">
+          <Report enabledKeys="ab bl bg br bs bsa bsd bsda cid cs d dfa dl ec lab lb ltc msd mtp nor nr ot pb pr pt rtp sf sid sn st sta su tab tb tbl tpb v"
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:customHTTPHeader"/>
+        </CMCD>
+    	</DASHDeliveryParameters>
+		</ServiceInstance>
+		<ServiceName>Maynard RTÉ_One+CMCDv2-head test</ServiceName>
+ 		<ProviderName>Maynard</ProviderName>
+	</Service>
+
+
 
 </ServiceList>
