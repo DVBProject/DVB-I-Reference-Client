@@ -342,7 +342,6 @@ function formatAccessibilityAttributes(accessibility_attributes) {
 
 const CMCDdata = {
   allEventTypes: ["abs", "abe", "ae", "as", "b", "bc", "c", "ce", "e", "h", "m", "pc", "pe", "pr", "ps", "rr", "sk", "t", "um"],
-  allRequestTypes: ["segment", "mpd", "xlink", "steering", "other"],
 
   eventMode: "urn:dvb:metadata:cmcd:delivery:event",
   requestMode: "urn:dvb:metadata:cmcd:delivery:request",
@@ -352,6 +351,32 @@ const CMCDdata = {
   body: ""
 }
 
+
+function makeRequestTypes(objectTypes) {
+  // convert requested object types to CMCD initialisation for dash.js
+  // dash.js reports on the following request types:  ["segment", "mpd", "xlink", "steering", "other"]
+  var res = [];
+  objectTypes.split(" ").forEach((ot) => {
+    switch (ot) {
+      case 'm':           // CTA-5004-B, m = text file such as manifest or playlist
+        res.push('mpd');
+        break;
+      case 'a':           // CTA-5004-B, a = audio only
+      case 'v':           // CTA-5004-B, v = video only
+      case 'av':          // CTA-5004-B, av = muxed audio and video
+      case 'i':           // CTA-5004-B, i = init segment
+      case 'c':           // CTA-5004-B, c = caption or subtitle
+      case 'tt':          // CTA-5004-B, tt = ISOBMFF timed text track
+        res.push('segment');
+        break;
+      case 'k':           // CTA-5004-B, k = cryptographic key, license or certifice
+      case 'o':           // CTA-5004-B, o = other
+        res.push('other');
+        break;
+    }
+  })
+  return res.length ? res : null;
+}
 
 function parseCMCDInitInfo(CMCDelem) {
   // parse CMCDInitialisationType according to dash.js (https://dashif.org/dash.js/pages/usage/cmcd.html)
@@ -366,7 +391,7 @@ function parseCMCDInitInfo(CMCDelem) {
   var CMCDinfo = {
     applyParametersFromMpd: false,
     enabled: false,
-    includeInRequests: CMCDdata.allRequestTypes,
+    includeInRequests: null,
     version: parseInt(CMCDelem.getAttribute("CMCDversion")),
   };
   if (CMCDelem.hasAttribute("contentId")) {
@@ -392,6 +417,7 @@ function parseCMCDInitInfo(CMCDelem) {
       }
       if (Reports[r].hasAttribute("enabledKeys"))
         CMCDinfo.enabledKeys = Reports[r].getAttribute("enabledKeys").split(" ");
+      CMCDinfo.includeInRequests = Reports[r].hasAttribute("objectTypes") ? makeRequestTypes(Reports[r].getAttribute("objectTypes")) : null;
     }
     else if (Reports[r].getAttribute("reportingMode") == CMCDdata.eventMode && CMCDinfo.version >= 2) {
       var newEvent = {
@@ -400,7 +426,7 @@ function parseCMCDInitInfo(CMCDelem) {
         events: Reports[r].hasAttribute("eventTypes") ? Reports[r].getAttribute("eventTypes").split(" ") : CMCDdata.allEventTypes,
         interval: 30,
         enabledKeys: Reports[r].getAttribute("enabledKeys").split(" "),
-        includeInRequests: CMCDdata.allRequestTypes,
+        includeInRequests: Reports[r].hasAttribute("objectTypes") ? makeRequestTypes(Reports[r].getAttribute("objectTypes")) : null,
         batchSize: 1,
       };
       CMCDinfo.eventTargets.push(newEvent);

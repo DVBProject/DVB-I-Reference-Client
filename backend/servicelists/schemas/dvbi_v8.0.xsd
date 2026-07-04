@@ -141,7 +141,7 @@
 			<element name="SourceType" type="anyURI" minOccurs="0">
 				<annotation>
 					<documentation>
-					The use of this element is deprecated in this version of the specification, in favour of the client 
+					The use of this element is deprecated in this version of the specification, in favour of the client
 					application making a delivery system determination based on the specified delivery parameters.
 				</documentation>
 				</annotation>
@@ -458,25 +458,8 @@
 						</simpleType>
 					</attribute>
 					<attribute name="batchSize" type="positiveInteger"/>
-					<attribute name="reportingMethod" use="required">
-						<simpleType>
-							<list>
-								<simpleType>
-									<restriction base="string">
-										<enumeration value="POST"/>
-										<enumeration value="GET"/>
-									</restriction>
-								</simpleType>
-							</list>
-						</simpleType>
-					</attribute>
-					<attribute name="contentId">
-						<simpleType>
-							<restriction base="string">
-								<maxLength value="128"/>
-							</restriction>
-						</simpleType>
-					</attribute>
+					<attribute name="eventTypes" type="string"/>
+					<attribite name="objectTypes" type="string"/>
 					<attribute name="enabledKeys" type="string"/>
 					<attribute name="probability" default="1000">
 						<simpleType>
@@ -495,6 +478,13 @@
 				<restriction base="unsignedInt">
 					<minInclusive value="1"/>
 					<maxInclusive value="2"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="contentId">
+			<simpleType>
+				<restriction base="string">
+					<maxLength value="128"/>
 				</restriction>
 			</simpleType>
 		</attribute>
