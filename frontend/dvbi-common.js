@@ -1220,6 +1220,15 @@ function parseServiceListProviders(data) {
   return { registryInfo: registryInfo, providerList: providerslist };
 }
 
+/**
+ * extract the image payload from the provided @inline_image.
+ *
+ * @param {string} inline_image
+ */
+function parseImageData(inline_image) {
+  return inline_image.substring(inline_image.indexOf(","));
+}
+
 function getMedia(element) {
   if (!element) {
     return null;
@@ -1231,7 +1240,7 @@ function getMedia(element) {
   if (content_digest) {
     var digests = content_digest.split(" ");
     var img_url = mediaUri[0].childNodes[0].nodeValue;
-    var img = NetworkRequestS(img_url, {});
+    var img = img_url.startsWith("http") ? NetworkRequestS(img_url, {}) : parseImageData(img_url);
     var is_valid = false;
 
     var re = new RegExp("([a-z0-9]+)=:([a-zA-Z0-9]+):");
@@ -1242,6 +1251,7 @@ function getMedia(element) {
       if (algorithm == "sha1") {
         var sha1obj = new jsSHA("SHA-1", "TEXT");
         sha1obj.update(img);
+        console.log(`sha1=${sha1obj.getHash("HEX")}`)
         if (sha1obj.getHash("HEX") == digest) {
           is_valid = true;
         }
@@ -1249,6 +1259,7 @@ function getMedia(element) {
       else if (algorithm = "sha256") {
         var sha256obj = new jsSHA("SHA-256","TEXT");
         sha256obj.update(img);
+        console.log(`sha256=${sha256obj.getHash("HEX")}`)
         if (sha256obj.getHash("HEX") == digest) {
           is_valid = true;
         }
