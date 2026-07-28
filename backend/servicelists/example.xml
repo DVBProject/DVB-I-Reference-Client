@@ -14,6 +14,8 @@
       <LCN channelNumber="648" serviceRef="tag:dvb.org,2020:sid18"/>
       <LCN channelNumber="649" serviceRef="tag:dvb-i-referenceapp,2023:Parental-1"/>
 
+      <LCN channelNumber="401" serviceRef="tag:dvb-i-referenceapp,2026:Digest-1"/>
+
       <LCN channelNumber="21" serviceRef="tag:dvb.org,2020:DASHIF-LL"/>
       <LCN channelNumber="23" serviceRef="tag:dvb.org,2020:AKAMAI-LL"/>
       <LCN channelNumber="24" serviceRef="tag:dvb.org,2020:AKAMAI-LL-CMCDv1-req"/>
@@ -73,6 +75,12 @@
     <ServiceName xml:lang="en">IRT test channel</ServiceName>
     <ServiceName xml:lang="zh">IRT测试通道</ServiceName>
     <ProviderName>IRT</ProviderName>
+    <RelatedMaterial>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
+        <tva:MediaUri contentType="image/jpeg">INSTALL~~LOCATION/backend/images/IRT_logo.jpg</tva:MediaUri>
+      </tva:MediaLocator>
+    </RelatedMaterial>
     <ContentGuideServiceRef>cgsid_3</ContentGuideServiceRef>
   </Service>
   <Service version="1">
@@ -190,6 +198,7 @@
     <ProviderName>DVB</ProviderName>
     <ContentGuideServiceRef>cgsid_4</ContentGuideServiceRef>
   </Service>
+
   <Service version="1">
     <UniqueIdentifier>tag:dvb-i-referenceapp,2023:Parental-1</UniqueIdentifier>
     <ServiceInstance priority="1">
@@ -201,9 +210,40 @@
     </ServiceInstance>
     <ServiceName>Parental rating service 2</ServiceName>
     <ProviderName>DVB</ProviderName>
+    <RelatedMaterial>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
+        <tva:MediaUri contentType="image/png">INSTALL~~LOCATION/backend/images/dvb-logo.png</tva:MediaUri>
+      </tva:MediaLocator>
+    </RelatedMaterial>
   </Service>
 
-  	<Service version="1">
+    <Service version="1">
+    <UniqueIdentifier>tag:dvb-i-referenceapp,2026:Digest-1</UniqueIdentifier>
+    <ServiceInstance priority="1">
+      <DASHDeliveryParameters>
+        <UriBasedLocation contentType="application/dash+xml">
+          <dvbi-types:URI>https://refapp.hbbtv.org/livesim/02_llamanofragv1/manifest.mpd</dvbi-types:URI>
+        </UriBasedLocation>
+      </DASHDeliveryParameters>
+    </ServiceInstance>
+    <ServiceName>Digest Svc Logo</ServiceName>
+    <ProviderName>DVB</ProviderName>
+    <RelatedMaterial>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
+        <!-- neither of the @integrity values are correct, so the warning image should be shown. -->
+        <!-- correct sha1 checksum is 7a9bcd546488ec16eadc5979457b1931e046a258 -->
+        <!-- correct sha256 checkaum is da310f0a2b34a312a4562f4efcf0f44ec065eab81eed464292979337470fae92 -->
+        <tva:MediaUri contentType="image/png"
+          integrity="sha1=:7a9bcd546488ec16eadc5979457b1931e046a259: sha256=:da310f0a2b34a312a4562f4efcf0f44ec065eab81eed464292979337470fae93:">
+            INSTALL~~LOCATION/backend/images/dvb-logo.png
+        </tva:MediaUri>
+      </tva:MediaLocator>
+    </RelatedMaterial>
+  </Service>
+
+  <Service version="1">
 		<UniqueIdentifier>tag:dvb.org,2020:DASHIF-LL</UniqueIdentifier>
 		<ServiceInstance>
 			<ContentAttributes>
@@ -239,6 +279,12 @@
 		</ServiceInstance>
 		<ServiceName>DASH-IF livesim LL</ServiceName>
  		<ProviderName>DASH Industry Forum</ProviderName>
+    <RelatedMaterial>
+      <tva:HowRelated href="urn:dvb:metadata:cs:HowRelatedCS:2021:1001.2"/>
+      <tva:MediaLocator>
+        <tva:MediaUri contentType="image/jpeg">INSTALL~~LOCATION/backend/images/dashif-logo-283x100_new.jpg</tva:MediaUri>
+      </tva:MediaLocator>
+    </RelatedMaterial>
 	</Service>
 
   <Service version="1">
