@@ -135,10 +135,13 @@ Channel.prototype.parseSchedule = function (data) {
           var howRelated = relatedMaterial[k1].getElementsByTagNameNS(TVA_ns, "HowRelated")[0].getAttribute("href");
           if (howRelated == TVA_Promotional_Still_Image) {
             //Program still image
-            program.mediaimage = relatedMaterial[k1].getElementsByTagNameNS(
-              TVA_ns,
-              "MediaUri"
-            )[0].childNodes[0].nodeValue;
+         //   program.mediaimage = relatedMaterial[k1].getElementsByTagNameNS(
+         //     TVA_ns,
+         //     "MediaUri"
+         //   )[0].childNodes[0].nodeValue;
+            var mediaLocators = relatedMaterial[k1].getElementsByTagNameNS(TVA_ns, "MediaLocator");
+            var image_uri = getMedia(relatedMaterial[k1], {});
+            program.mediaimage = image_uri ? image_uri.mediaUri : null;
             break;
           }
         }
