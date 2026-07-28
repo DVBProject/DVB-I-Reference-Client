@@ -1251,7 +1251,6 @@ function getMedia(element) {
       if (algorithm == "sha1") {
         var sha1obj = new jsSHA("SHA-1", "TEXT");
         sha1obj.update(img);
-        console.log(`sha1=${sha1obj.getHash("HEX")}`)
         if (sha1obj.getHash("HEX") == digest) {
           is_valid = true;
         }
@@ -1259,7 +1258,6 @@ function getMedia(element) {
       else if (algorithm = "sha256") {
         var sha256obj = new jsSHA("SHA-256","TEXT");
         sha256obj.update(img);
-        console.log(`sha256=${sha256obj.getHash("HEX")}`)
         if (sha256obj.getHash("HEX") == digest) {
           is_valid = true;
         }
