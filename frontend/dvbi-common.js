@@ -407,7 +407,7 @@ function parseCMCDInitInfo(CMCDelem) {
   for (var r = 0; r < Reports.length; r++) {
     if (Reports[r].getAttribute("reportingMode") == CMCDdata.requestMode) {
       CMCDinfo.enabled = true;
-      switch (Reports[r].getAttribute("reportingMethod")) {
+      switch (Reports[r].getAttribute("transmissionMode")) {
         case CMCDdata.customHeaders:
           CMCDinfo.mode = "headers";
           break;
