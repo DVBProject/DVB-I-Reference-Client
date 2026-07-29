@@ -69,7 +69,7 @@
         </UriBasedLocation>
         <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
           <Report enabledKeys="sid cid pr sf"
-            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" transmissionMode="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
         </CMCD>
       </DASHDeliveryParameters>
     </ServiceInstance>
@@ -361,7 +361,7 @@
         <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
           <Report enabledKeys="br bl bs cid d dl mtp nor nrr ot pr rtp sf sid st su tb v"
             objectTypes="av"
-            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" transmissionMode="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
         </CMCD>
     	</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -392,7 +392,7 @@
         <CMCD CMCDversion="2" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
           <Report enabledKeys="ab bl bg br bs bsa bsd bsda cid cs d dfa dl ec lab lb ltc msd mtp nor nr ot pb pr pt rtp sf sid sn st sta su tab tb tbl tpb v"
             objectTypes="m av"
-            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" transmissionMode="urn:dvb:metadata:cmcd:delivery:queryArguments"/>
         </CMCD>
     	</DASHDeliveryParameters>
 		</ServiceInstance>
@@ -423,7 +423,7 @@
         <CMCD CMCDversion="1" contentId="AABBCCDD-1122-DEAD-BEEF-334455667788">
           <Report enabledKeys="br bl bs cid d dl mtp nor nrr ot pr rtp sf sid st su tb v"
             objectTypes="av"
-            reportingMode="urn:dvb:metadata:cmcd:delivery:request" reportingMethod="urn:dvb:metadata:cmcd:delivery:customHTTPHeader"/>
+            reportingMode="urn:dvb:metadata:cmcd:delivery:request" transmissionMode="urn:dvb:metadata:cmcd:delivery:customHTTPHeader"/>
         </CMCD>
     	</DASHDeliveryParameters>
 		</ServiceInstance>
