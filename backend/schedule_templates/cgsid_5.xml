@@ -193,7 +193,7 @@
 					<RelatedMaterial>
 						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
 						<MediaLocator>
-							<MediaUri contentType="image/png">http://tmsimg.com/assets/p10117343_i_h13_ab.jpg</MediaUri>
+							<MediaUri contentType="image/png" integrity="sha1=:broken:">http://tmsimg.com/assets/p10117343_i_h13_ab.jpg</MediaUri>
 						</MediaLocator>
 					</RelatedMaterial>
 				</BasicDescription>
