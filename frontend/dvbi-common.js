@@ -1238,7 +1238,7 @@ function getMedia(element) {
 
   var content_digest = mediaUri[0].getAttribute("integrity");
   if (content_digest) {
-    var digests = content_digest.split(" ");
+    var digests = content_digest.split(",");
     var img_url = mediaUri[0].childNodes[0].nodeValue;
     var img = img_url.startsWith("http") ? NetworkRequestS(img_url, {}) : parseImageData(img_url);
     var is_valid = false;
