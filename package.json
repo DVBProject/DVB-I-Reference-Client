@@ -17,6 +17,6 @@
 	  "build": "node opapp_package.js"
   },
   "devDependencies": {
-    "archiver": "^7.0.1"
+    "archiver": "^8.0.0"
   }
 }
