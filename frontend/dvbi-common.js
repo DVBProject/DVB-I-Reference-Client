@@ -1229,6 +1229,7 @@ function parseImageData(inline_image) {
   return inline_image.substring(inline_image.indexOf(","));
 }
 
+
 function getMedia(element) {
   if (!element) {
     return null;
@@ -1255,13 +1256,14 @@ function getMedia(element) {
           is_valid = true;
         }
       }
-      else if (algorithm = "sha256") {
+      else if (algorithm == "sha256") {
         var sha256obj = new jsSHA("SHA-256","TEXT");
         sha256obj.update(img);
         if (sha256obj.getHash("HEX") == digest) {
           is_valid = true;
         }
       }
+      //TODO add check for sm3 checksum (once we can find a usable library)
     });
     return {mediaUri: is_valid ? img_url : INVALID_DIGEST_IMAGE};
   }
